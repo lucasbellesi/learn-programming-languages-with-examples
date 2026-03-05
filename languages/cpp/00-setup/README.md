@@ -15,6 +15,30 @@ g++ --version
 
 You should see an installed GNU C++ compiler.
 
+## Install Notes
+
+### Windows (MSYS2 + MinGW)
+
+Use the MSYS2 MinGW shell and install toolchain packages:
+
+```bash
+pacman -S --needed mingw-w64-ucrt-x86_64-gcc
+```
+
+Then verify:
+
+```bash
+g++ --version
+```
+
+### Linux (Debian/Ubuntu)
+
+```bash
+sudo apt update
+sudo apt install g++
+g++ --version
+```
+
 ## Compile Command (C++17)
 
 ```bash
@@ -40,3 +64,5 @@ Windows (MSYS2 shell):
 - Recommended extensions are in `.vscode/extensions.json`.
 - C++ standard is set to C++17 in `.vscode/settings.json`.
 - Build task compiles the currently open C++ file in place.
+- Run task executes the compiled binary from the same folder.
+- Combined task builds and runs for faster exercise iteration.

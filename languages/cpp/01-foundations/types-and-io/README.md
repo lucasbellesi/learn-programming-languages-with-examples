@@ -2,6 +2,13 @@
 
 This module introduces basic C++ data types and console input/output.
 
+## Quick Run
+
+```bash
+g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o types_and_io_example
+./types_and_io_example
+```
+
 ## Topics Covered
 
 ### `cin` and `cout`
@@ -40,6 +47,11 @@ std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 - `char`: single character
 - `bool`: true/false values
 - `std::string`: text
+
+## Exercise Focus
+
+- `exercises/01.cpp`: process multiple numeric inputs and compute summary statistics.
+- `exercises/02.cpp`: parse one line of structured input (`product price quantity`) and compute total price.
 
 ## Checkpoint
 

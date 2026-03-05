@@ -24,6 +24,29 @@
             "options": {
                 "cwd": "${workspaceFolder}"
             }
+        },
+        {
+            "label": "Run active C++ file",
+            "type": "shell",
+            "command": "${fileDirname}/${fileBasenameNoExtension}",
+            "windows": {
+                "command": "${fileDirname}\\${fileBasenameNoExtension}.exe"
+            },
+            "linux": {
+                "command": "${fileDirname}/${fileBasenameNoExtension}"
+            },
+            "problemMatcher": [],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "Build and run active C++ file",
+            "dependsOn": [
+                "Build active C++ file (C++17)",
+                "Run active C++ file"
+            ],
+            "dependsOrder": "sequence"
         }
     ]
 }

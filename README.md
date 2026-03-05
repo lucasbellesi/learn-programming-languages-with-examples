@@ -15,9 +15,10 @@ The first fully implemented track is **C++ (C++17)**, designed for beginners whi
 
 ```text
 learn-programming-languages-with-examples/
-  templates/                # Reusable concept layout
+  .vscode/                  # VS Code tasks and recommendations
+  templates/                # Reusable concept layout for new modules
   languages/
-    cpp/                    # Fully implemented C++ track
+    cpp/                    # Active C++ track (implemented)
     python/                 # Planned track
     go/                     # Planned track
     csharp/                 # Planned track
@@ -25,14 +26,23 @@ learn-programming-languages-with-examples/
 
 Main C++ content lives in `languages/cpp` and is split into numbered modules.
 
-## How To Use This Repository
+Current C++ foundations modules:
 
-1. Start with `languages/cpp/00-setup/README.md`.
-2. Follow modules in numeric order.
-3. Read each concept README first.
-4. Run the `example/main.cpp` file.
-5. Solve exercises in the same folder.
-6. Track progress in `languages/cpp/CHECKLIST.md`.
+- `types-and-io`
+- `control-flow`
+- `functions`
+- `arrays-and-vectors`
+
+## Guided Learning Path
+
+1. Complete setup: `languages/cpp/00-setup/README.md`
+2. Open C++ roadmap: `languages/cpp/README.md`
+3. Study one concept at a time:
+   - read `README.md`
+   - run `example/main.cpp`
+   - solve `exercises/01.cpp` and `exercises/02.cpp`
+4. Mark progress in `languages/cpp/CHECKLIST.md`
+5. Repeat until all modules are complete
 
 ## Compile And Run (C++17)
 
@@ -57,6 +67,13 @@ g++ -std=c++17 -Wall -Wextra -pedantic languages/cpp/01-foundations/types-and-io
 ```
 
 VS Code users can also run the included build task in `.vscode/tasks.json` to compile the currently open C++ file.
+
+## VS Code Workflow (Zero Friction)
+
+1. Open any `*.cpp` file.
+2. Press `Ctrl+Shift+B` to build it with C++17 and strict warnings.
+3. Run the task `Run active C++ file` from the command palette (`Tasks: Run Task`).
+4. Use `Build and run active C++ file` for one-step iteration while studying exercises.
 
 ## Contribution Summary
 

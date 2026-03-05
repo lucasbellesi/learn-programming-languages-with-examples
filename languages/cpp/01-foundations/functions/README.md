@@ -2,6 +2,13 @@
 
 Functions let you organize reusable logic with clear inputs and outputs.
 
+## Quick Run
+
+```bash
+g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o functions_example
+./functions_example
+```
+
 ## Topics Covered
 
 ### Pass by Value
@@ -22,6 +29,17 @@ Useful for large objects like `std::vector` and `std::string`.
 ### Returning Values
 
 Functions can return computed results and keep `main` cleaner.
+
+## Common Pitfalls
+
+- Passing large objects by value unintentionally, causing unnecessary copies.
+- Forgetting `const` on reference parameters that should not be modified.
+- Declaring a non-`void` function and missing a return statement.
+
+## Exercise Focus
+
+- `exercises/01.cpp`: create a reusable function that returns the max of three values.
+- `exercises/02.cpp`: use `const std::string&` and return a computed count.
 
 ## Checkpoint
 
