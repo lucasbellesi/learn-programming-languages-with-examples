@@ -1,0 +1,56 @@
+#include <iostream>
+#include <vector>
+
+int sum(int a, int b) {
+    return a + b;
+}
+
+void swapByReference(int& left, int& right) {
+    const int temp = left;
+    left = right;
+    right = temp;
+}
+
+void printVector(const std::vector<int>& values) {
+    std::cout << "[";
+    for (std::size_t i = 0; i < values.size(); ++i) {
+        std::cout << values[i];
+        if (i + 1 < values.size()) {
+            std::cout << ", ";
+        }
+    }
+    std::cout << "]\n";
+}
+
+void incrementByValue(int number) {
+    ++number;
+    std::cout << "Inside incrementByValue: " << number << '\n';
+}
+
+void incrementByReference(int& number) {
+    ++number;
+    std::cout << "Inside incrementByReference: " << number << '\n';
+}
+
+int main() {
+    std::cout << "sum(4, 6) = " << sum(4, 6) << '\n';
+
+    int first = 10;
+    int second = 20;
+    std::cout << "Before swap: first=" << first << ", second=" << second << '\n';
+    swapByReference(first, second);
+    std::cout << "After swap:  first=" << first << ", second=" << second << '\n';
+
+    const std::vector<int> numbers{1, 2, 3, 4, 5};
+    std::cout << "Vector content: ";
+    printVector(numbers);
+
+    int value = 5;
+    std::cout << "\nOriginal value: " << value << '\n';
+    incrementByValue(value);
+    std::cout << "After incrementByValue: " << value << '\n';
+    incrementByReference(value);
+    std::cout << "After incrementByReference: " << value << '\n';
+
+    return 0;
+}
