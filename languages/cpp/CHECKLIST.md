@@ -13,3 +13,5 @@
 - [ ] control-flow exercises completed.
 - [ ] functions: understand pass by value, reference, const reference, and return values.
 - [ ] functions exercises completed.
+- [ ] arrays-and-vectors: understand fixed arrays, dynamic vectors, iteration, and safe indexing.
+- [ ] arrays-and-vectors exercises completed.
