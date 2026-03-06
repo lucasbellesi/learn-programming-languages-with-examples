@@ -8,6 +8,13 @@ This repository teaches programming through small, runnable examples and focused
 - Expansion-ready for more languages (Python, Go, C#)
 - Designed for a **VS Code-first** workflow on Windows and Linux
 
+## Start Here (5 Minutes)
+
+1. Open [C++ setup](languages/cpp/00-setup/README.md)
+2. Open the [C++ roadmap](languages/cpp/README.md)
+3. Run one example (for example, `types-and-io/example/main.cpp`)
+4. Solve one exercise and mark progress in [C++ checklist](languages/cpp/CHECKLIST.md)
+
 ## Learning Philosophy
 
 The project follows a practical, step-by-step approach:
@@ -54,23 +61,30 @@ module-name/
 
 ## How To Navigate The Repository
 
-1. Start with setup: `languages/cpp/00-setup/README.md`
-2. Open the C++ roadmap: `languages/cpp/README.md`
+1. Start with setup: [languages/cpp/00-setup/README.md](languages/cpp/00-setup/README.md)
+2. Open the C++ roadmap: [languages/cpp/README.md](languages/cpp/README.md)
 3. For each module:
    - read `README.md`
    - run `example/main.cpp`
    - solve `exercises/01.cpp` and `exercises/02.cpp`
+   - expected pace: about 30-60 minutes per module, plus exercise time
 4. Track completion:
-   - `languages/cpp/CHECKLIST.md`
-   - `languages/cpp/<level>/PROGRESS.md`
+   - [languages/cpp/CHECKLIST.md](languages/cpp/CHECKLIST.md)
+   - `languages/cpp/<level>/PROGRESS.md` (for example: `languages/cpp/01-foundations/PROGRESS.md`)
 5. Complete level practice:
    - capstones in `languages/cpp/projects/`
    - assessments in `languages/cpp/assessments/`
 6. Use:
-   - `STUDY_PLAN.md` for pacing
-   - `languages/cpp/SOLUTION_RUBRIC.md` for self-review quality
+   - [STUDY_PLAN.md](STUDY_PLAN.md) for pacing
+   - [languages/cpp/SOLUTION_RUBRIC.md](languages/cpp/SOLUTION_RUBRIC.md) for self-review quality
 
 ## How To Run Examples (C++17)
+
+### Prerequisites
+
+- `g++` installed and available in terminal
+- VS Code installed (recommended)
+- Terminal access (PowerShell, Bash, or WSL shell)
 
 Required compile command:
 
@@ -86,6 +100,14 @@ g++ -std=c++17 -Wall -Wextra -pedantic languages/cpp/01-foundations/types-and-io
 ```
 
 On Windows (MSYS2/MinGW), run `types_and_io_example.exe`.
+
+### Windows + WSL example
+
+```bash
+cd /mnt/d/REPOS/personal/learn-programming-languages-with-examples
+g++ -std=c++17 -Wall -Wextra -pedantic languages/cpp/01-foundations/types-and-io/example/main.cpp -o types_and_io_example
+./types_and_io_example
+```
 
 ### Build helpers
 
@@ -108,6 +130,12 @@ Run one module example quickly:
 ```bash
 bash ./scripts/run-module.sh languages/cpp/01-foundations/strings
 ```
+
+### Common First Errors
+
+- `g++: command not found`: install `g++` (MSYS2/MinGW on Windows or `g++` in WSL/Linux)
+- `No such file or directory`: run commands from the repository root folder
+- Program does not run on Windows: try `./program_name.exe` instead of `./program_name`
 
 ## Development Environment
 
