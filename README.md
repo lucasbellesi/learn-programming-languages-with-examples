@@ -1,4 +1,4 @@
-# learn-programming-languages-with-examples
+# Learn Programming Languages With Examples
 
 ## Project Overview
 
