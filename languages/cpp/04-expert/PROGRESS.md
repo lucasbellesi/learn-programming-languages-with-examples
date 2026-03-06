@@ -13,7 +13,7 @@ Use this file as your personal progress log for this level.
 ## Level Milestones
 
 - [ ] Completed capstone: `languages/cpp/projects/04-expert`
-- [ ] (Optional for now) add and complete `languages/cpp/assessments/04-expert`
+- [ ] Completed assessment: `languages/cpp/assessments/04-expert`
 - [ ] Updated global checklist: `languages/cpp/CHECKLIST.md`
 
 ## My Struggles And Fixes

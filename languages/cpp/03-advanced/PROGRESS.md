@@ -13,7 +13,7 @@ Use this file as your personal progress log for this level.
 ## Level Milestones
 
 - [ ] Completed capstone: `languages/cpp/projects/03-advanced`
-- [ ] (Optional for now) add and complete `languages/cpp/assessments/03-advanced`
+- [ ] Completed assessment: `languages/cpp/assessments/03-advanced`
 - [ ] Updated global checklist: `languages/cpp/CHECKLIST.md`
 
 ## My Struggles And Fixes

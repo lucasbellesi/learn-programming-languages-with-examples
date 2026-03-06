@@ -40,7 +40,7 @@
 - [ ] Complete `03-advanced/inheritance-and-polymorphism`.
 - [ ] Complete `03-advanced/templates-basics`.
 - [ ] Complete capstone `projects/03-advanced`.
-- [ ] Complete assessment `assessments/03-advanced` (when available).
+- [ ] Complete assessment `assessments/03-advanced`.
 - [ ] Update `03-advanced/PROGRESS.md` with session notes.
 
 ## 04-expert
@@ -51,5 +51,5 @@
 - [ ] Complete `04-expert/performance-and-profiling-basics`.
 - [ ] Complete `04-expert/modularization-and-build-structure`.
 - [ ] Complete capstone `projects/04-expert`.
-- [ ] Complete assessment `assessments/04-expert` (when available).
+- [ ] Complete assessment `assessments/04-expert`.
 - [ ] Update `04-expert/PROGRESS.md` with session notes.
