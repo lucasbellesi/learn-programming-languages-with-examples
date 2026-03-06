@@ -9,6 +9,15 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o control_flow_example
 ./control_flow_example
 ```
 
+## More Examples
+
+- `example/menu-loop.cpp`:
+
+```bash
+g++ -std=c++17 -Wall -Wextra -pedantic example/menu-loop.cpp -o control_flow_menu_loop
+./control_flow_menu_loop
+```
+
 ## Topics Covered
 
 - `if`, `else if`, `else`.

@@ -9,6 +9,15 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o types_and_io_example
 ./types_and_io_example
 ```
 
+## More Examples
+
+- `example/input-validation-loop.cpp`:
+
+```bash
+g++ -std=c++17 -Wall -Wextra -pedantic example/input-validation-loop.cpp -o types_and_io_validation_loop
+./types_and_io_validation_loop
+```
+
 ## Topics Covered
 
 - `int`, `double`, `char`, `bool`, `std::string`.

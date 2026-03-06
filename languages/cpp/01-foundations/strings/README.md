@@ -9,6 +9,15 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o strings_example
 ./strings_example
 ```
 
+## More Examples
+
+- `example/string-clean-and-tokenize.cpp`:
+
+```bash
+g++ -std=c++17 -Wall -Wextra -pedantic example/string-clean-and-tokenize.cpp -o strings_clean_and_tokenize
+./strings_clean_and_tokenize
+```
+
 ## Topics Covered
 
 - Reading full lines with `std::getline`.

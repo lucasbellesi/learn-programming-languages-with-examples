@@ -9,6 +9,15 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o arrays_and_vectors_ex
 ./arrays_and_vectors_example
 ```
 
+## More Examples
+
+- `example/vector-filter.cpp`:
+
+```bash
+g++ -std=c++17 -Wall -Wextra -pedantic example/vector-filter.cpp -o arrays_and_vectors_filter
+./arrays_and_vectors_filter
+```
+
 ## Topics Covered
 
 - Fixed-size arrays (`T values[N]`).
