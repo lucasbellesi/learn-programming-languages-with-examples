@@ -24,6 +24,11 @@ You can also validate all C++ files with:
 - `./scripts/build-all.ps1` (PowerShell)
 - `bash ./scripts/build-all.sh` (Bash)
 
+Validate markdown links with:
+
+- `./scripts/check-links.ps1` (PowerShell)
+- `bash ./scripts/check-links.sh` (Bash)
+
 4. Update related README files when behavior or structure changes.
 5. Open a pull request with a clear description of what changed and why.
 

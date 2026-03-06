@@ -73,6 +73,17 @@ module-name/
 5. Mark progress in `CHECKLIST.md`.
 6. Complete level capstone project in `projects/<level>/`.
 
+## Capstone Projects
+
+Use capstones to combine concepts in a realistic task flow:
+
+- [projects/README.md](./projects/README.md)
+
+## Hint Guides
+
+- [01-foundations/HINTS.md](./01-foundations/HINTS.md)
+- [02-core/HINTS.md](./02-core/HINTS.md)
+
 ## Build Command
 
 ```bash

@@ -16,6 +16,9 @@ jobs:
           sudo apt update
           sudo apt install -y g++
 
+      - name: Check markdown links
+        run: bash ./scripts/check-links.sh
+
       - name: Compile all C++ files
         run: bash ./scripts/build-all.sh
 
@@ -31,6 +34,11 @@ jobs:
           update: true
           install: >-
             mingw-w64-ucrt-x86_64-gcc
+
+      - name: Check markdown links
+        shell: msys2 {0}
+        run: |
+          ./scripts/check-links.sh
 
       - name: Compile all C++ files
         shell: msys2 {0}

@@ -48,6 +48,7 @@ Python parity starter modules live in `languages/python/01-foundations`:
    - read `README.md`
    - run `example/main.cpp`
    - solve `exercises/01.cpp` and `exercises/02.cpp`
+   - use level `HINTS.md` only when blocked
    - follow the level order from foundations to expert
 4. Mark progress in `languages/cpp/CHECKLIST.md`
 5. Build capstones in `languages/cpp/projects/`
@@ -107,6 +108,20 @@ g++ -std=c++17 -Wall -Wextra -pedantic
 ```
 
 CI also validates this on Linux and Windows in `.github/workflows/cpp-build.yml`.
+
+You can validate markdown links with:
+
+PowerShell:
+
+```powershell
+./scripts/check-links.ps1
+```
+
+Bash:
+
+```bash
+bash ./scripts/check-links.sh
+```
 
 ## Contribution Summary
 
