@@ -81,6 +81,12 @@ Use capstones to combine concepts in a realistic task flow:
 
 - [projects/README.md](./projects/README.md)
 
+## Level Assessments
+
+Use assessments after each level to validate readiness before moving on:
+
+- [assessments/README.md](./assessments/README.md)
+
 ## Hint Guides
 
 - [01-foundations/HINTS.md](./01-foundations/HINTS.md)

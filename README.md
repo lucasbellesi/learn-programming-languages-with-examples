@@ -52,7 +52,8 @@ Python parity starter modules live in `languages/python/01-foundations`:
    - follow the level order from foundations to expert
 4. Mark progress in `languages/cpp/CHECKLIST.md`
 5. Build capstones in `languages/cpp/projects/`
-6. Follow weekly pacing in `STUDY_PLAN.md`
+6. Complete level assessments in `languages/cpp/assessments/`
+7. Follow weekly pacing in `STUDY_PLAN.md`
 
 ## Compile And Run (C++17)
 
@@ -101,7 +102,21 @@ Bash:
 bash ./scripts/build-all.sh
 ```
 
-Both scripts compile each `*.cpp` file under `languages/cpp` with:
+Run a single module example quickly:
+
+PowerShell:
+
+```powershell
+./scripts/run-module.ps1 languages/cpp/01-foundations/strings
+```
+
+Bash:
+
+```bash
+bash ./scripts/run-module.sh languages/cpp/01-foundations/strings
+```
+
+`build-all` compiles each `*.cpp` file under `languages/cpp` with:
 
 ```bash
 g++ -std=c++17 -Wall -Wextra -pedantic
