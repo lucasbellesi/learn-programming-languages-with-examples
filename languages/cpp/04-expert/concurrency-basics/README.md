@@ -11,6 +11,11 @@ g++ -std=c++17 -Wall -Wextra -pedantic -pthread example/main.cpp -o concurrency_
 
 On Linux, `-pthread` is required for thread support.
 
+## More Examples
+
+- `example/main.cpp` is the primary runnable sample for this module.
+- Try one variation: copy it to `example/variation.cpp`, change one rule, and compare outputs.
+
 ## Topics Covered
 
 - Creating and joining threads with `std::thread`.

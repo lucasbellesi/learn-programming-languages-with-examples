@@ -4,6 +4,7 @@
 
 - [ ] Complete `00-setup`.
 - [ ] Compile and run one C++17 file in VS Code.
+- [ ] Review `SOLUTION_RUBRIC.md` and how you will self-check exercises.
 
 ## 01-foundations
 
@@ -16,6 +17,8 @@
 - [ ] Complete `01-foundations/scope-and-lifetime-basics`.
 - [ ] Complete `01-foundations/formatted-output-and-iomanip`.
 - [ ] Complete capstone `projects/01-foundations`.
+- [ ] Complete assessment `assessments/01-foundations`.
+- [ ] Update `01-foundations/PROGRESS.md` with session notes.
 
 ## 02-core
 
@@ -26,6 +29,8 @@
 - [ ] Complete `02-core/maps-and-frequency-counting`.
 - [ ] Complete `02-core/error-handling-and-defensive-programming`.
 - [ ] Complete capstone `projects/02-core`.
+- [ ] Complete assessment `assessments/02-core`.
+- [ ] Update `02-core/PROGRESS.md` with session notes.
 
 ## 03-advanced
 
@@ -35,6 +40,8 @@
 - [ ] Complete `03-advanced/inheritance-and-polymorphism`.
 - [ ] Complete `03-advanced/templates-basics`.
 - [ ] Complete capstone `projects/03-advanced`.
+- [ ] Complete assessment `assessments/03-advanced` (when available).
+- [ ] Update `03-advanced/PROGRESS.md` with session notes.
 
 ## 04-expert
 
@@ -44,3 +51,5 @@
 - [ ] Complete `04-expert/performance-and-profiling-basics`.
 - [ ] Complete `04-expert/modularization-and-build-structure`.
 - [ ] Complete capstone `projects/04-expert`.
+- [ ] Complete assessment `assessments/04-expert` (when available).
+- [ ] Update `04-expert/PROGRESS.md` with session notes.

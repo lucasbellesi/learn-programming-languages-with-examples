@@ -104,7 +104,7 @@ On Windows (MSYS2/MinGW), run `types_and_io_example.exe`.
 ### Windows + WSL example
 
 ```bash
-cd /mnt/d/REPOS/personal/learn-programming-languages-with-examples
+cd /path/to/learn-programming-languages-with-examples
 g++ -std=c++17 -Wall -Wextra -pedantic languages/cpp/01-foundations/types-and-io/example/main.cpp -o types_and_io_example
 ./types_and_io_example
 ```
@@ -129,6 +129,16 @@ Run one module example quickly:
 
 ```bash
 bash ./scripts/run-module.sh languages/cpp/01-foundations/strings
+```
+
+Run full repository checks (links + C++ build):
+
+```powershell
+./scripts/verify-repo.ps1
+```
+
+```bash
+bash ./scripts/verify-repo.sh
 ```
 
 ### Common First Errors

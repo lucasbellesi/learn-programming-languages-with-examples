@@ -9,6 +9,11 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o memory_raii_example
 ./memory_raii_example
 ```
 
+## More Examples
+
+- `example/main.cpp` is the primary runnable sample for this module.
+- Try one variation: copy it to `example/variation.cpp`, change one rule, and compare outputs.
+
 ## Topics Covered
 
 - Stack vs heap lifetime.
