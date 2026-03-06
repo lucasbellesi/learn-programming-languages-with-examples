@@ -1,10 +1,19 @@
-# Python Track (Planned)
+# Python Track
 
-This track will introduce programming concepts in Python with the same teaching style used in the C++ track:
+This track mirrors the teaching style used in C++:
 
-- Concept-first explanations
-- Runnable examples
-- Short exercises
-- Progressive roadmap
+- concept README
+- runnable example
+- two exercises
 
-Current status: planned, not implemented yet.
+## Current Levels
+
+1. [01-foundations](./01-foundations/README.md)
+
+## Cross-Language Parity
+
+The first Python modules mirror C++ foundations:
+
+- `types-and-io`
+- `control-flow`
+- `functions`

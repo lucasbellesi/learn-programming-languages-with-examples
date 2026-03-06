@@ -1,17 +1,28 @@
 # 02 Core
 
-This level introduces intermediate patterns that build directly on foundations.
+This level focuses on robust input handling, common algorithm patterns, and file-based data workflows.
 
 ## Module Order
 
 1. [input-validation](./input-validation/README.md)
 2. [algorithms-basics](./algorithms-basics/README.md)
+3. [file-io-basics](./file-io-basics/README.md)
+4. [sorting-and-searching](./sorting-and-searching/README.md)
+5. [maps-and-frequency-counting](./maps-and-frequency-counting/README.md)
+6. [error-handling-and-defensive-programming](./error-handling-and-defensive-programming/README.md)
 
-## How To Study This Level
+## Level Outcomes
 
-For each module:
+- Validate user input and recover from invalid states.
+- Implement search, counting, and sorting patterns confidently.
+- Read and write structured text files with C++ streams.
+- Build defensive programs that handle edge cases explicitly.
 
-1. Read `README.md`.
-2. Run `example/main.cpp`.
-3. Complete `exercises/01.cpp` and `exercises/02.cpp`.
-4. Mark progress in `../CHECKLIST.md`.
+## Done When
+
+- [ ] You completed every module in this level.
+- [ ] You solved all exercises (`01.cpp` and `02.cpp`) for each module.
+- [ ] You can explain at least one edge case for every exercise.
+- [ ] You completed capstone project `languages/cpp/projects/02-core`.
+
+After finishing this level, continue with [03-advanced](../03-advanced/README.md).

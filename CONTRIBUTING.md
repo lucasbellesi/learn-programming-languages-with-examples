@@ -19,12 +19,18 @@ Thank you for contributing to this repository.
 g++ -std=c++17 -Wall -Wextra -pedantic <file>.cpp -o <output>
 ```
 
+You can also validate all C++ files with:
+
+- `./scripts/build-all.ps1` (PowerShell)
+- `bash ./scripts/build-all.sh` (Bash)
+
 4. Update related README files when behavior or structure changes.
 5. Open a pull request with a clear description of what changed and why.
 
 ## Content Expectations
 
 - New concept modules should follow the existing folder layout.
+- Every concept README should include: `Quick Run`, `Topics Covered`, `Common Pitfalls`, `Exercise Focus`, and `Checkpoint`.
 - Every exercise file must contain complete, runnable content.
 - Avoid external dependencies and test frameworks for C++ modules.
 - Keep examples aligned with C++17.

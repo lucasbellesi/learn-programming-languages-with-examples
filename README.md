@@ -2,7 +2,8 @@
 
 An educational repository for learning programming languages through focused concepts, runnable examples, and hands-on exercises.
 
-The first fully implemented track is **C++ (C++17)**, designed for beginners while following solid coding practices.
+The first fully implemented track is **C++ (C++17)**.  
+Content is designed for VS Code-first workflows and cross-platform execution (Windows MSYS2/MinGW + Linux g++).
 
 ## Project Goals
 
@@ -17,35 +18,27 @@ The first fully implemented track is **C++ (C++17)**, designed for beginners whi
 learn-programming-languages-with-examples/
   .vscode/                  # VS Code tasks and recommendations
   templates/                # Reusable concept layout for new modules
+  scripts/                  # Build validation scripts (PowerShell + Bash)
   languages/
     cpp/                    # Active C++ track (implemented)
-    python/                 # Planned track
+    python/                 # Python parity track (foundations started)
     go/                     # Planned track
     csharp/                 # Planned track
+  STUDY_PLAN.md             # 4-week guided learning plan
 ```
 
-Main C++ content lives in `languages/cpp` and is split into numbered modules.
+Main C++ content lives in `languages/cpp` and is split into measurable levels:
 
-Current C++ foundations modules:
+- `01-foundations`
+- `02-core`
+- `03-advanced`
+- `04-expert`
 
-- `types-and-io`
-- `control-flow`
-- `functions`
-- `arrays-and-vectors`
-- `strings`
+Python parity starter modules live in `languages/python/01-foundations`:
 
-Current C++ core modules:
-
-- `02-core/input-validation`
-- `02-core/algorithms-basics`
-
-Current C++ advanced modules:
-
-- `03-advanced/structs-and-classes`
-
-Current C++ expert modules:
-
-- `04-expert/memory-management-and-raii`
+- [`types-and-io`](languages/python/01-foundations/types-and-io/README.md)
+- [`control-flow`](languages/python/01-foundations/control-flow/README.md)
+- [`functions`](languages/python/01-foundations/functions/README.md)
 
 ## Guided Learning Path
 
@@ -55,9 +48,10 @@ Current C++ expert modules:
    - read `README.md`
    - run `example/main.cpp`
    - solve `exercises/01.cpp` and `exercises/02.cpp`
-   - after foundations, continue with `languages/cpp/02-core`, then `languages/cpp/03-advanced`, then `languages/cpp/04-expert`
+   - follow the level order from foundations to expert
 4. Mark progress in `languages/cpp/CHECKLIST.md`
-5. Repeat until all modules are complete
+5. Build capstones in `languages/cpp/projects/`
+6. Follow weekly pacing in `STUDY_PLAN.md`
 
 ## Compile And Run (C++17)
 
@@ -89,6 +83,30 @@ VS Code users can also run the included build task in `.vscode/tasks.json` to co
 2. Press `Ctrl+Shift+B` to build it with C++17 and strict warnings.
 3. Run the task `Run active C++ file` from the command palette (`Tasks: Run Task`).
 4. Use `Build and run active C++ file` for one-step iteration while studying exercises.
+
+## Build Validation Scripts
+
+You can compile all C++ examples and exercises with:
+
+PowerShell:
+
+```powershell
+./scripts/build-all.ps1
+```
+
+Bash:
+
+```bash
+bash ./scripts/build-all.sh
+```
+
+Both scripts compile each `*.cpp` file under `languages/cpp` with:
+
+```bash
+g++ -std=c++17 -Wall -Wextra -pedantic
+```
+
+CI also validates this on Linux and Windows in `.github/workflows/cpp-build.yml`.
 
 ## Contribution Summary
 

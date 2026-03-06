@@ -1,11 +1,6 @@
 # Memory Management and RAII
 
-This module introduces safe ownership patterns in modern C++.
-
-## Why It Matters
-
-Many C++ bugs come from incorrect memory or resource handling.  
-RAII and smart pointers reduce those bugs by tying cleanup to object lifetime.
+This module introduces ownership and deterministic cleanup in C++.
 
 ## Quick Run
 
@@ -14,43 +9,39 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o memory_raii_example
 ./memory_raii_example
 ```
 
-On Windows (MSYS2 shell), run:
-
-```bash
-./memory_raii_example.exe
-```
-
 ## Topics Covered
 
-### Stack vs Heap
-
-- Stack objects are destroyed automatically at scope end.
-- Heap objects need ownership and cleanup strategy.
-
-### RAII (Resource Acquisition Is Initialization)
-
-Acquire resources in constructors and release them in destructors.
-
-### Smart Pointers
-
-- `std::unique_ptr<T>`: single owner.
-- `std::shared_ptr<T>`: shared ownership (use carefully).
-- Prefer `unique_ptr` unless shared ownership is required.
+- Stack vs heap lifetime.
+- RAII and destructor-driven cleanup.
+- `std::unique_ptr` ownership.
+- Move semantics for exclusive ownership transfer.
 
 ## Common Pitfalls
 
-- Using raw `new`/`delete` directly in beginner/intermediate code.
-- Copying `unique_ptr` (it must be moved).
-- Creating ownership cycles with `shared_ptr`.
+- Raw `new`/`delete` in modern educational code.
+- Attempting to copy `unique_ptr`.
+- Mixing ownership and non-ownership pointers incorrectly.
 
 ## Exercise Focus
 
-- `exercises/01.cpp`: use `std::unique_ptr<int[]>` for dynamic arrays safely.
-- `exercises/02.cpp`: model RAII with a scope-based guard class.
+- `exercises/01.cpp`: dynamic array with `std::unique_ptr<int[]>`.
+- `exercises/02.cpp`: RAII guard with automatic scope cleanup.
+
+### Exercise Specs
+
+1. `exercises/01.cpp`
+- Input: integer `n`, then `n` integers.
+- Output: sum and reversed sequence.
+- Edge cases: `n <= 0` message; negative values in sequence.
+
+2. `exercises/02.cpp`
+- Input: none (scope demonstration).
+- Output: enter/exit logs proving automatic cleanup.
+- Edge cases: nested scopes; final counter should return to zero.
 
 ## Checkpoint
 
-- [ ] I can explain ownership with `unique_ptr`.
-- [ ] I understand how destructors enforce cleanup.
-- [ ] I can model scope-based resource management.
+- [ ] I can explain why RAII prevents leaks.
+- [ ] I can use `unique_ptr` for owned dynamic memory.
+- [ ] I can design classes with cleanup in destructors.
 - [ ] I completed both exercises.

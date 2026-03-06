@@ -1,0 +1,38 @@
+name: C++ Build Matrix
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install g++
+        run: |
+          sudo apt update
+          sudo apt install -y g++
+
+      - name: Compile all C++ files
+        run: bash ./scripts/build-all.sh
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup MSYS2
+        uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          install: >-
+            mingw-w64-ucrt-x86_64-gcc
+
+      - name: Compile all C++ files
+        shell: msys2 {0}
+        run: |
+          ./scripts/build-all.sh

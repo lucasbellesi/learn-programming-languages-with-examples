@@ -1,6 +1,6 @@
 # Control Flow
 
-Control flow decides which code runs and how many times it runs.
+This module teaches branching and repetition in C++ programs.
 
 ## Quick Run
 
@@ -11,60 +11,37 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o control_flow_example
 
 ## Topics Covered
 
-### `if / else`
-
-Use conditional logic to choose between branches.
-
-```cpp
-if (value > 0) {
-    // positive
-} else if (value < 0) {
-    // negative
-} else {
-    // zero
-}
-```
-
-### `switch`
-
-Use `switch` for multi-way branching on integral values (such as menu options).
-
-```cpp
-switch (option) {
-    case 1:
-        // action
-        break;
-    default:
-        // fallback
-        break;
-}
-```
-
-### Loops (`for`, `while`)
-
-- `for`: ideal when the number of iterations is known.
-- `while`: ideal when repeating until a condition changes.
-
-### `break` and `continue`
-
-- `break`: exits the nearest loop immediately.
-- `continue`: skips the rest of the current iteration and moves to the next one.
+- `if`, `else if`, `else`.
+- `switch` with `case` and `default`.
+- `for` and `while` loops.
+- Loop control with `break` and `continue`.
 
 ## Common Pitfalls
 
-- Forgetting braces when an `if` block has multiple statements.
-- Accidentally creating infinite loops by not updating loop variables.
-- Using `switch` without `break`, causing unintentional fallthrough.
+- Missing braces in multi-line branches.
+- Infinite loops due to missing updates.
+- Missing `break` in `switch` cases.
 
 ## Exercise Focus
 
-- `exercises/01.cpp`: implement classic FizzBuzz logic with conditions.
-- `exercises/02.cpp`: process values until a sentinel and compute average safely.
+- `exercises/01.cpp`: implement FizzBuzz.
+- `exercises/02.cpp`: read numbers until `-1` and compute average.
+
+### Exercise Specs
+
+1. `exercises/01.cpp`
+- Input: integer `N`.
+- Output: numbers `1..N` with FizzBuzz substitutions.
+- Edge cases: `N <= 0` should print a friendly message; multiples of both 3 and 5 should print `FizzBuzz`.
+
+2. `exercises/02.cpp`
+- Input: sequence of integers ending with `-1`.
+- Output: average of entered numbers before sentinel.
+- Edge cases: immediate `-1` should print "no values"; negative values other than `-1` are valid inputs.
 
 ## Checkpoint
 
-- [ ] I can branch using `if / else`.
-- [ ] I can use `switch` for menu-like decisions.
-- [ ] I can write `for` and `while` loops.
-- [ ] I understand when to use `break` and `continue`.
-- [ ] I completed `exercises/01.cpp` and `exercises/02.cpp`.
+- [ ] I can choose between `if` and `switch`.
+- [ ] I can write safe, terminating loops.
+- [ ] I can reason about branch and loop edge cases.
+- [ ] I completed both exercises.

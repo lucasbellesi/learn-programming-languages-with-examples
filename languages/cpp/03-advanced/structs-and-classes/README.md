@@ -1,11 +1,6 @@
 # Structs and Classes
 
-This module introduces object modeling with `struct` and `class` in C++.
-
-## Why It Matters
-
-As programs grow, related data and behavior should be grouped together.  
-`struct` and `class` help you model real entities clearly.
+This module introduces object modeling with `struct` and `class`.
 
 ## Quick Run
 
@@ -14,49 +9,39 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o structs_and_classes_e
 ./structs_and_classes_example
 ```
 
-On Windows (MSYS2 shell), run:
-
-```bash
-./structs_and_classes_example.exe
-```
-
 ## Topics Covered
 
-### `struct` vs `class`
-
-- `struct` members are `public` by default.
-- `class` members are `private` by default.
-- Both can have fields, methods, and constructors.
-
-### Constructors
-
-Constructors initialize objects when they are created.
-
-```cpp
-class Account {
-public:
-    Account(const std::string& ownerName, double initialBalance);
-};
-```
-
-### Encapsulation
-
-Keep object state private and expose safe methods (`deposit`, `withdraw`, getters).
+- Default access: `struct` public, `class` private.
+- Constructors for initialization.
+- Encapsulation with private fields and public methods.
+- `const` member functions.
 
 ## Common Pitfalls
 
-- Exposing all fields publicly in classes that should protect state.
-- Forgetting `const` on methods that do not modify object state.
-- Not validating values in constructors or mutating methods.
+- Exposing mutable state publicly without reason.
+- Forgetting to validate constructor inputs.
+- Missing `const` on read-only methods.
 
 ## Exercise Focus
 
-- `exercises/01.cpp`: model a rectangle with a `struct` and member methods.
-- `exercises/02.cpp`: create a small class with private state and controlled updates.
+- `exercises/01.cpp`: model rectangle using `struct` and methods.
+- `exercises/02.cpp`: create encapsulated `Counter` class.
+
+### Exercise Specs
+
+1. `exercises/01.cpp`
+- Input: width and height.
+- Output: area and perimeter.
+- Edge cases: non-positive dimensions should stop with message; decimal values should work.
+
+2. `exercises/02.cpp`
+- Input: sequence of commands (`inc`, `dec`, `reset`, `stop`).
+- Output: counter value updates and final value.
+- Edge cases: unknown commands; immediate `stop`.
 
 ## Checkpoint
 
-- [ ] I can explain default access in `struct` and `class`.
-- [ ] I can write and use constructors.
-- [ ] I can protect state with private fields and public methods.
+- [ ] I can explain `struct` vs `class`.
+- [ ] I can initialize objects with constructors.
+- [ ] I can protect state through methods.
 - [ ] I completed both exercises.

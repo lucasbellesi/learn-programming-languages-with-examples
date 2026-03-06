@@ -1,68 +1,47 @@
-# 02 Strings
+# Strings
 
-This module introduces practical string handling in C++.
+This module introduces practical text handling with `std::string`.
 
-## Learning Goals
-
-- Read full-line text safely with `std::getline`.
-- Understand `std::string` size and indexing basics.
-- Use common operations: concatenation, `find`, `substr`.
-- Avoid common input bugs when mixing `cin >>` and `getline`.
-
-## Quick Run (Terminal)
-
-From this folder:
+## Quick Run
 
 ```bash
 g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o strings_example
 ./strings_example
 ```
 
-On Windows (MSYS2 shell), run:
-
-```bash
-./strings_example.exe
-```
-
-## Run In VS Code
-
-1. Open `example/main.cpp`.
-2. Press `Ctrl+Shift+B` to build.
-3. Run task `Run active C++ file`.
-4. For one step, run task `Build and run active C++ file`.
-
 ## Topics Covered
 
-### Read Full Text Input
+- Reading full lines with `std::getline`.
+- `size`, `find`, and `substr`.
+- Character inspection with `<cctype>`.
+- Case-insensitive comparisons.
 
-Use `getline` for names and sentences with spaces:
+## Common Pitfalls
 
-```cpp
-std::string line;
-std::getline(std::cin, line);
-```
-
-### Basic Operations
-
-- `text.size()` for length
-- `left + right` for concatenation
-- `text.find("word")` to search
-- `text.substr(start, length)` to slice
-
-### Common Pitfalls
-
-- Mixing `cin >>` and `getline` without clearing leftover newline.
-- Accessing string indexes without checking boundaries.
-- Assuming `find` always succeeds (it returns `std::string::npos` when not found).
+- Forgetting to clear newline before `getline`.
+- Using string indexes without boundary checks.
+- Not checking for `std::string::npos` after `find`.
 
 ## Exercise Focus
 
-- `exercises/01.cpp`: count words in a sentence robustly.
-- `exercises/02.cpp`: test whether text is a palindrome ignoring case and non-letters.
+- `exercises/01.cpp`: count words in a sentence.
+- `exercises/02.cpp`: palindrome check ignoring case and non-letters.
+
+### Exercise Specs
+
+1. `exercises/01.cpp`
+- Input: one line of text.
+- Output: integer word count.
+- Edge cases: multiple spaces between words; empty or whitespace-only lines.
+
+2. `exercises/02.cpp`
+- Input: one line of text.
+- Output: `Palindrome: true` or `Palindrome: false`.
+- Edge cases: mixed case letters; punctuation and spaces should be ignored.
 
 ## Checkpoint
 
-- [ ] I can read and process full sentences.
-- [ ] I can use `find` and handle the "not found" case.
-- [ ] I can slice text with `substr` when indexes are valid.
-- [ ] I completed both exercises and understand each step.
+- [ ] I can read and parse full-line text input.
+- [ ] I can use `find`/`substr` safely.
+- [ ] I can process characters with `std::tolower` and `std::isalpha`.
+- [ ] I completed both exercises.

@@ -1,47 +1,47 @@
 # Arrays and Vectors
 
-This module introduces collections of values and how to process them safely.
+This module introduces fixed-size and dynamic collections in C++.
 
-## Why This Matters
+## Quick Run
 
-Real programs rarely use only one variable. You often work with lists of data such as scores, prices, or names.
+```bash
+g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o arrays_and_vectors_example
+./arrays_and_vectors_example
+```
 
 ## Topics Covered
 
-### Arrays
+- Fixed-size arrays (`T values[N]`).
+- Dynamic arrays with `std::vector<T>`.
+- Index-based and range-based iteration.
+- Safe indexing and input count validation.
 
-- Fixed size, decided at creation time.
-- Good for small, known-size data.
+## Common Pitfalls
 
-```cpp
-int scores[3] = {85, 90, 78};
-```
+- Accessing out-of-range indexes.
+- Mixing signed and unsigned indexes carelessly.
+- Forgetting to validate `n` before reading values.
 
-### `std::vector`
+## Exercise Focus
 
-- Dynamic size (can grow or shrink).
-- Safer and more flexible than raw arrays for beginners.
+- `exercises/01.cpp`: print user-provided integers in reverse order.
+- `exercises/02.cpp`: count frequency of a target number in a vector.
 
-```cpp
-std::vector<int> scores;
-scores.push_back(85);
-scores.push_back(90);
-```
+### Exercise Specs
 
-### Iteration
+1. `exercises/01.cpp`
+- Input: integer `n`, then `n` integers.
+- Output: values in reverse order.
+- Edge cases: `n <= 0` should print a friendly message; repeated values should remain repeated in output.
 
-- Index-based loops when you need positions.
-- Range-based loops when you only need values.
-
-### Common Pitfalls
-
-- Accessing out-of-range indexes (for example, `values[values.size()]`).
-- Mixing signed `int` and unsigned `size_t` carelessly.
-- Forgetting to validate how many values were read from input.
+2. `exercises/02.cpp`
+- Input: integer `n`, then `n` integers, then one target integer.
+- Output: number of occurrences of target.
+- Edge cases: target not found should print `0`; all values equal target should print `n`.
 
 ## Checkpoint
 
-- [ ] I understand fixed-size arrays vs dynamic vectors.
-- [ ] I can add values to a vector using `push_back`.
-- [ ] I can loop through values and compute results.
-- [ ] I completed `exercises/01.cpp` and `exercises/02.cpp`.
+- [ ] I can choose between arrays and vectors.
+- [ ] I can loop over vectors safely.
+- [ ] I can solve frequency/counting tasks with vectors.
+- [ ] I completed both exercises.

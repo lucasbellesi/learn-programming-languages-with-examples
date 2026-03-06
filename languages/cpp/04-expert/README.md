@@ -1,16 +1,25 @@
 # 04 Expert
 
-This level focuses on robust C++ design for resource safety and performance.
+This level focuses on ownership, concurrency, performance thinking, and multi-file structure.
 
 ## Module Order
 
 1. [memory-management-and-raii](./memory-management-and-raii/README.md)
+2. [smart-pointers-in-depth](./smart-pointers-in-depth/README.md)
+3. [concurrency-basics](./concurrency-basics/README.md)
+4. [performance-and-profiling-basics](./performance-and-profiling-basics/README.md)
+5. [modularization-and-build-structure](./modularization-and-build-structure/README.md)
 
-## How To Study This Level
+## Level Outcomes
 
-For each module:
+- Apply RAII and smart pointers correctly for resource ownership.
+- Build thread-safe examples with mutex-protected shared data.
+- Measure and reason about performance with simple benchmarks.
+- Organize programs across headers and source files.
 
-1. Read `README.md`.
-2. Run `example/main.cpp`.
-3. Complete `exercises/01.cpp` and `exercises/02.cpp`.
-4. Mark progress in `../CHECKLIST.md`.
+## Done When
+
+- [ ] You completed every module in this level.
+- [ ] You solved all exercises (`01.cpp` and `02.cpp`) for each module.
+- [ ] You can explain ownership, thread-safety, and performance tradeoffs.
+- [ ] You completed capstone project `languages/cpp/projects/04-expert`.

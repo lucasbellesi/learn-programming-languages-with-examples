@@ -1,0 +1,47 @@
+# Performance and Profiling Basics
+
+This module introduces simple measurement and optimization patterns.
+
+## Quick Run
+
+```bash
+g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o performance_profiling_example
+./performance_profiling_example
+```
+
+## Topics Covered
+
+- Measuring elapsed time with `std::chrono`.
+- Comparing two algorithm choices.
+- Avoiding premature optimization.
+- Data structure and allocation effects.
+
+## Common Pitfalls
+
+- Timing too-small workloads.
+- Drawing conclusions from one run.
+- Ignoring algorithmic complexity.
+
+## Exercise Focus
+
+- `exercises/01.cpp`: compare pass-by-value vs const-reference.
+- `exercises/02.cpp`: compare vector push with/without reserve.
+
+### Exercise Specs
+
+1. `exercises/01.cpp`
+- Input: vector size.
+- Output: timing for value vs reference calls.
+- Edge cases: small size (noisy timings); larger size.
+
+2. `exercises/02.cpp`
+- Input: element count.
+- Output: timing for push_back with and without reserve.
+- Edge cases: zero count; large count.
+
+## Checkpoint
+
+- [ ] I can measure code sections with `std::chrono`.
+- [ ] I can compare two implementations fairly.
+- [ ] I can justify simple optimization choices.
+- [ ] I completed both exercises.

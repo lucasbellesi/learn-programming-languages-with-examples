@@ -66,3 +66,17 @@ Windows (MSYS2 shell):
 - Build task compiles the currently open C++ file in place.
 - Run task executes the compiled binary from the same folder.
 - Combined task builds and runs for faster exercise iteration.
+
+## Build All Examples and Exercises
+
+PowerShell:
+
+```powershell
+./scripts/build-all.ps1
+```
+
+Bash:
+
+```bash
+bash ./scripts/build-all.sh
+```

@@ -1,0 +1,47 @@
+# Sorting and Searching
+
+This module introduces basic sorting and searching techniques.
+
+## Quick Run
+
+```bash
+g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o sorting_searching_example
+./sorting_searching_example
+```
+
+## Topics Covered
+
+- Manual sorting with nested loops.
+- Linear search.
+- Binary search assumptions.
+- Algorithm complexity intuition.
+
+## Common Pitfalls
+
+- Running binary search on unsorted data.
+- Off-by-one index errors.
+- Forgetting to return `-1` when target is missing.
+
+## Exercise Focus
+
+- `exercises/01.cpp`: implement selection sort.
+- `exercises/02.cpp`: binary search on sorted input.
+
+### Exercise Specs
+
+1. `exercises/01.cpp`
+- Input: integer `n`, then `n` integers.
+- Output: numbers sorted ascending.
+- Edge cases: duplicate values; already sorted input.
+
+2. `exercises/02.cpp`
+- Input: sorted list and target.
+- Output: index of target or `-1`.
+- Edge cases: target smaller than min; target larger than max.
+
+## Checkpoint
+
+- [ ] I can implement selection sort from scratch.
+- [ ] I know when linear vs binary search is appropriate.
+- [ ] I can debug boundary conditions in search loops.
+- [ ] I completed both exercises.
