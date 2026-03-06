@@ -1,153 +1,144 @@
 # learn-programming-languages-with-examples
 
-An educational repository for learning programming languages through focused concepts, runnable examples, and hands-on exercises.
+## Project Overview
 
-The first fully implemented track is **C++ (C++17)**.  
-Content is designed for VS Code-first workflows and cross-platform execution (Windows MSYS2/MinGW + Linux g++).
+This repository teaches programming through small, runnable examples and focused exercises.
 
-## Project Goals
+- Primary implemented track: **C++ (C++17)**
+- Expansion-ready for more languages (Python, Go, C#)
+- Designed for a **VS Code-first** workflow on Windows and Linux
 
-- Learn core programming concepts progressively.
-- Compare how the same ideas appear across languages.
-- Practice with small exercises after each concept.
-- Keep everything easy to run in VS Code on Windows and Linux.
+## Learning Philosophy
+
+The project follows a practical, step-by-step approach:
+
+- Learn one concept at a time.
+- Run a minimal example.
+- Solve short exercises immediately.
+- Build level capstones and assessments to combine concepts.
+- Track progress with checklists and review notes.
 
 ## Repository Structure
 
 ```text
 learn-programming-languages-with-examples/
   .vscode/                  # VS Code tasks and recommendations
-  templates/                # Reusable concept layout for new modules
-  scripts/                  # Build validation scripts (PowerShell + Bash)
+  scripts/                  # Build/run/link-check helpers (PowerShell + Bash)
+  templates/                # Concept module template
   languages/
-    cpp/                    # Active C++ track (implemented)
-    python/                 # Python parity track (foundations started)
-    go/                     # Planned track
-    csharp/                 # Planned track
-  STUDY_PLAN.md             # 4-week guided learning plan
+    cpp/                    # Main implemented learning track
+    python/                 # Foundations started
+    go/                     # Planned
+    csharp/                 # Planned
+  STUDY_PLAN.md             # 4-week C++ study path
 ```
 
-Main C++ content lives in `languages/cpp` and is split into measurable levels:
+## Learning Levels (C++)
 
-- `01-foundations`
-- `02-core`
-- `03-advanced`
-- `04-expert`
+C++ content lives in `languages/cpp` and is organized into measurable levels:
 
-Python parity starter modules live in `languages/python/01-foundations`:
+1. `01-foundations`
+2. `02-core`
+3. `03-advanced`
+4. `04-expert`
 
-- [`types-and-io`](languages/python/01-foundations/types-and-io/README.md)
-- [`control-flow`](languages/python/01-foundations/control-flow/README.md)
-- [`functions`](languages/python/01-foundations/functions/README.md)
+Each concept module follows this structure:
 
-## Guided Learning Path
+```text
+module-name/
+  README.md
+  example/main.cpp
+  exercises/01.cpp
+  exercises/02.cpp
+```
 
-1. Complete setup: `languages/cpp/00-setup/README.md`
-2. Open C++ roadmap: `languages/cpp/README.md`
-3. Study one concept at a time:
+## How To Navigate The Repository
+
+1. Start with setup: `languages/cpp/00-setup/README.md`
+2. Open the C++ roadmap: `languages/cpp/README.md`
+3. For each module:
    - read `README.md`
    - run `example/main.cpp`
    - solve `exercises/01.cpp` and `exercises/02.cpp`
-   - use level `HINTS.md` only when blocked
-   - follow the level order from foundations to expert
-4. Mark progress in `languages/cpp/CHECKLIST.md`
-5. Build capstones in `languages/cpp/projects/`
-6. Complete level assessments in `languages/cpp/assessments/`
-7. Follow weekly pacing in `STUDY_PLAN.md`
-8. Use per-level `PROGRESS.md` + `languages/cpp/SOLUTION_RUBRIC.md` for self-review
+4. Track completion:
+   - `languages/cpp/CHECKLIST.md`
+   - `languages/cpp/<level>/PROGRESS.md`
+5. Complete level practice:
+   - capstones in `languages/cpp/projects/`
+   - assessments in `languages/cpp/assessments/`
+6. Use:
+   - `STUDY_PLAN.md` for pacing
+   - `languages/cpp/SOLUTION_RUBRIC.md` for self-review quality
 
-## Compile And Run (C++17)
+## How To Run Examples (C++17)
 
-All C++ code is standard C++17 and should compile cleanly with:
+Required compile command:
 
 ```bash
-g++ -std=c++17 -Wall -Wextra -pedantic path/to/file.cpp -o path/to/output
+g++ -std=c++17 -Wall -Wextra -pedantic path/to/file.cpp -o output_name
 ```
 
-### Linux example
+Example:
 
 ```bash
 g++ -std=c++17 -Wall -Wextra -pedantic languages/cpp/01-foundations/types-and-io/example/main.cpp -o types_and_io_example
 ./types_and_io_example
 ```
 
-### Windows (MSYS2 MinGW) example
+On Windows (MSYS2/MinGW), run `types_and_io_example.exe`.
 
-```bash
-g++ -std=c++17 -Wall -Wextra -pedantic languages/cpp/01-foundations/types-and-io/example/main.cpp -o types_and_io_example
-./types_and_io_example.exe
-```
+### Build helpers
 
-VS Code users can also run the included build task in `.vscode/tasks.json` to compile the currently open C++ file.
-
-## VS Code Workflow (Zero Friction)
-
-1. Open any `*.cpp` file.
-2. Press `Ctrl+Shift+B` to build it with C++17 and strict warnings.
-3. Run the task `Run active C++ file` from the command palette (`Tasks: Run Task`).
-4. Use `Build and run active C++ file` for one-step iteration while studying exercises.
-
-## Build Validation Scripts
-
-You can compile all C++ examples and exercises with:
-
-PowerShell:
+Compile all C++ files:
 
 ```powershell
 ./scripts/build-all.ps1
 ```
 
-Bash:
-
 ```bash
 bash ./scripts/build-all.sh
 ```
 
-Run a single module example quickly:
-
-PowerShell:
+Run one module example quickly:
 
 ```powershell
 ./scripts/run-module.ps1 languages/cpp/01-foundations/strings
 ```
 
-Bash:
-
 ```bash
 bash ./scripts/run-module.sh languages/cpp/01-foundations/strings
 ```
 
-`build-all` compiles each `*.cpp` file under `languages/cpp` with:
+## Development Environment
 
-```bash
-g++ -std=c++17 -Wall -Wextra -pedantic
-```
+Recommended environment:
 
-CI also validates this on Linux and Windows in `.github/workflows/cpp-build.yml`.
+- **Editor**: VS Code
+- **C++ standard**: C++17
+- **Compiler flags**: `-Wall -Wextra -pedantic`
+- **Windows**: Windows 11 + MSYS2/MinGW `g++` (or WSL Ubuntu with `g++`)
+- **Linux**: `g++` (GNU C++ compiler)
 
-You can validate markdown links with:
+VS Code tasks are preconfigured in `.vscode/tasks.json` to build/run the active C++ file.
 
-PowerShell:
+## How To Contribute
 
-```powershell
-./scripts/check-links.ps1
-```
+Contributions are welcome.
 
-Bash:
+1. Read `CONTRIBUTING.md`
+2. Follow `CODE_OF_CONDUCT.md`
+3. Keep examples beginner-friendly and runnable
+4. Preserve level structure and module pattern
+5. Ensure C++ code compiles with:
+   - `g++ -std=c++17 -Wall -Wextra -pedantic`
 
-```bash
-bash ./scripts/check-links.sh
-```
+## Future Languages / Roadmap
 
-## Contribution Summary
-
-Contributions are welcome. Please:
-
-- Read `CONTRIBUTING.md` for workflow and coding expectations.
-- Follow the `CODE_OF_CONDUCT.md`.
-- Keep changes educational, clear, and cross-platform.
-- Ensure C++ examples compile with `-Wall -Wextra -pedantic`.
+- C++ is the active, most complete track.
+- Python foundations are started under `languages/python/01-foundations`.
+- Go and C# directories are present as planned tracks.
+- Goal: keep concept structure consistent across languages for easier comparison.
 
 ## License
 
-This repository is licensed under the MIT License. See `LICENSE`.
+This project is licensed under the MIT License. See [LICENSE](./LICENSE).
