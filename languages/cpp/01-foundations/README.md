@@ -11,6 +11,8 @@ This section builds the core mental model needed for all later C++ topics.
 
 Follow this order. Each concept depends on the previous one.
 
+After finishing this section, continue with [02-strings](../02-strings/README.md).
+
 ## How To Study
 
 For each module:

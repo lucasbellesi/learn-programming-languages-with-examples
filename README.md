@@ -33,6 +33,10 @@ Current C++ foundations modules:
 - `functions`
 - `arrays-and-vectors`
 
+Next C++ module:
+
+- `02-strings`
+
 ## Guided Learning Path
 
 1. Complete setup: `languages/cpp/00-setup/README.md`
@@ -41,6 +45,7 @@ Current C++ foundations modules:
    - read `README.md`
    - run `example/main.cpp`
    - solve `exercises/01.cpp` and `exercises/02.cpp`
+   - after `01-foundations`, continue with `languages/cpp/02-strings`
 4. Mark progress in `languages/cpp/CHECKLIST.md`
 5. Repeat until all modules are complete
 

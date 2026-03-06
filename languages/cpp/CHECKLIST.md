@@ -15,3 +15,8 @@
 - [ ] functions exercises completed.
 - [ ] arrays-and-vectors: understand fixed arrays, dynamic vectors, iteration, and safe indexing.
 - [ ] arrays-and-vectors exercises completed.
+
+## Strings
+
+- [ ] 02-strings: understand line input, string operations, and safe indexing.
+- [ ] 02-strings exercises completed.

@@ -18,6 +18,7 @@ This path is for beginners who are learning programming fundamentals and want pr
 4. [control-flow](./01-foundations/control-flow/README.md)
 5. [functions](./01-foundations/functions/README.md)
 6. [arrays-and-vectors](./01-foundations/arrays-and-vectors/README.md)
+7. [02-strings](./02-strings/README.md)
 
 Use the checklist: [CHECKLIST.md](./CHECKLIST.md)
 
@@ -48,6 +49,8 @@ For each concept:
 3. Solve exercise 01 without looking up the answer.
 4. Solve exercise 02 and refactor your first attempt.
 5. Compare your approach with the example style and naming.
+
+After finishing all concepts in `01-foundations`, continue with `02-strings`.
 
 ## Build Command
 
