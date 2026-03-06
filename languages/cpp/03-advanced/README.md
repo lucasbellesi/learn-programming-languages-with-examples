@@ -24,4 +24,6 @@ This level introduces object-oriented design, generic programming, and value sem
 - [ ] You can explain where `const`, constructors, and ownership matter in your code.
 - [ ] You completed capstone project `languages/cpp/projects/03-advanced`.
 
+Track sessions and struggles in [PROGRESS.md](./PROGRESS.md).
+
 After finishing this level, continue with [04-expert](../04-expert/README.md).

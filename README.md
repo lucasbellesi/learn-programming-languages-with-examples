@@ -54,6 +54,7 @@ Python parity starter modules live in `languages/python/01-foundations`:
 5. Build capstones in `languages/cpp/projects/`
 6. Complete level assessments in `languages/cpp/assessments/`
 7. Follow weekly pacing in `STUDY_PLAN.md`
+8. Use per-level `PROGRESS.md` + `languages/cpp/SOLUTION_RUBRIC.md` for self-review
 
 ## Compile And Run (C++17)
 

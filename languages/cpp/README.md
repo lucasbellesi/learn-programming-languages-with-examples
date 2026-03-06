@@ -12,7 +12,16 @@ This track teaches C++ through small, runnable programs and focused exercises.
 
 Use progress tracking: [CHECKLIST.md](./CHECKLIST.md)
   
+Per-level session trackers:
+
+- [01-foundations/PROGRESS.md](./01-foundations/PROGRESS.md)
+- [02-core/PROGRESS.md](./02-core/PROGRESS.md)
+- [03-advanced/PROGRESS.md](./03-advanced/PROGRESS.md)
+- [04-expert/PROGRESS.md](./04-expert/PROGRESS.md)
+  
 Module README format reference: [MODULE_README_STYLE.md](./MODULE_README_STYLE.md)
+  
+Exercise quality rubric: [SOLUTION_RUBRIC.md](./SOLUTION_RUBRIC.md)
 
 ## Modules By Level
 

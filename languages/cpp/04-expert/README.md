@@ -23,3 +23,5 @@ This level focuses on ownership, concurrency, performance thinking, and multi-fi
 - [ ] You solved all exercises (`01.cpp` and `02.cpp`) for each module.
 - [ ] You can explain ownership, thread-safety, and performance tradeoffs.
 - [ ] You completed capstone project `languages/cpp/projects/04-expert`.
+
+Track sessions and struggles in [PROGRESS.md](./PROGRESS.md).

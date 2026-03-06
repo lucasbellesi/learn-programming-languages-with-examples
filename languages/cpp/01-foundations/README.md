@@ -28,5 +28,6 @@ This level builds the beginner mental model for writing small C++ programs.
 - [ ] You completed capstone project `languages/cpp/projects/01-foundations`.
 
 Need guidance while solving? Use [HINTS.md](./HINTS.md) first, then [SOLUTIONS.md](./SOLUTIONS.md) for strategy checks.
+Track sessions and struggles in [PROGRESS.md](./PROGRESS.md).
 
 After finishing this level, continue with [02-core](../02-core/README.md).
