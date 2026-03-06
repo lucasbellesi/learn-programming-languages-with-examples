@@ -31,6 +31,10 @@ Current concept modules inside `02-core`:
 - [input-validation](./02-core/input-validation/README.md)
 - [algorithms-basics](./02-core/algorithms-basics/README.md)
 
+Current concept modules inside `03-advanced`:
+
+- [structs-and-classes](./03-advanced/structs-and-classes/README.md)
+
 Use the checklist: [CHECKLIST.md](./CHECKLIST.md)
 
 ## Concept Folder Structure
@@ -65,6 +69,10 @@ After finishing all concepts in `01-foundations`, continue with `02-core` in thi
 
 1. `input-validation`
 2. `algorithms-basics`
+
+Then continue with `03-advanced`:
+
+1. `structs-and-classes`
 
 ## Build Command
 

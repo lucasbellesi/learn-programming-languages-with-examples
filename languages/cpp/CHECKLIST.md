@@ -24,3 +24,8 @@
 - [ ] input-validation exercises completed.
 - [ ] algorithms-basics: implement linear search, counting, and min/max patterns.
 - [ ] algorithms-basics exercises completed.
+
+## Advanced
+
+- [ ] structs-and-classes: model entities with constructors and encapsulation.
+- [ ] structs-and-classes exercises completed.
