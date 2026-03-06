@@ -9,6 +9,15 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o structs_and_classes_e
 ./structs_and_classes_example
 ```
 
+## More Examples
+
+- `example/class-with-validation.cpp`:
+
+```bash
+g++ -std=c++17 -Wall -Wextra -pedantic example/class-with-validation.cpp -o structs_class_with_validation
+./structs_class_with_validation
+```
+
 ## Topics Covered
 
 - Default access: `struct` public, `class` private.

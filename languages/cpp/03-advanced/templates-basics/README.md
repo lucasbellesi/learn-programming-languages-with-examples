@@ -9,6 +9,15 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o templates_basics_exam
 ./templates_basics_example
 ```
 
+## More Examples
+
+- `example/generic-print-and-sum.cpp`:
+
+```bash
+g++ -std=c++17 -Wall -Wextra -pedantic example/generic-print-and-sum.cpp -o templates_generic_print_sum
+./templates_generic_print_sum
+```
+
 ## Topics Covered
 
 - Function templates.

@@ -9,6 +9,15 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o file_io_example
 ./file_io_example
 ```
 
+## More Examples
+
+- `example/csv-like-reader.cpp`:
+
+```bash
+g++ -std=c++17 -Wall -Wextra -pedantic example/csv-like-reader.cpp -o file_io_csv_like_reader
+./file_io_csv_like_reader
+```
+
 ## Topics Covered
 
 - `std::ifstream` for reading files.

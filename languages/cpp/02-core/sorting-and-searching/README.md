@@ -9,6 +9,15 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o sorting_searching_exa
 ./sorting_searching_example
 ```
 
+## More Examples
+
+- `example/stable-vs-unstable-sort.cpp`:
+
+```bash
+g++ -std=c++17 -Wall -Wextra -pedantic example/stable-vs-unstable-sort.cpp -o sorting_stable_vs_unstable
+./sorting_stable_vs_unstable
+```
+
 ## Topics Covered
 
 - Manual sorting with nested loops.

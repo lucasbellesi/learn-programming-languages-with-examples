@@ -9,6 +9,15 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o inheritance_polymorph
 ./inheritance_polymorphism_example
 ```
 
+## More Examples
+
+- `example/polymorphic-menu.cpp`:
+
+```bash
+g++ -std=c++17 -Wall -Wextra -pedantic example/polymorphic-menu.cpp -o inheritance_polymorphic_menu
+./inheritance_polymorphic_menu
+```
+
 ## Topics Covered
 
 - Base and derived classes.
