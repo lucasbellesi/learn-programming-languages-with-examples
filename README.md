@@ -35,7 +35,7 @@ Current C++ foundations modules:
 
 Next C++ module:
 
-- `02-strings`
+- `01-foundations/strings`
 
 ## Guided Learning Path
 
@@ -45,7 +45,7 @@ Next C++ module:
    - read `README.md`
    - run `example/main.cpp`
    - solve `exercises/01.cpp` and `exercises/02.cpp`
-   - after `01-foundations`, continue with `languages/cpp/02-strings`
+   - for strings, continue with `languages/cpp/01-foundations/strings`
 4. Mark progress in `languages/cpp/CHECKLIST.md`
 5. Repeat until all modules are complete
 

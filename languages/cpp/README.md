@@ -14,11 +14,17 @@ This path is for beginners who are learning programming fundamentals and want pr
 
 1. [00-setup](./00-setup/README.md)
 2. [01-foundations overview](./01-foundations/README.md)
-3. [types-and-io](./01-foundations/types-and-io/README.md)
-4. [control-flow](./01-foundations/control-flow/README.md)
-5. [functions](./01-foundations/functions/README.md)
-6. [arrays-and-vectors](./01-foundations/arrays-and-vectors/README.md)
-7. [02-strings](./02-strings/README.md)
+3. [02-core overview](./02-core/README.md)
+4. [03-advanced overview](./03-advanced/README.md)
+5. [04-expert overview](./04-expert/README.md)
+
+Current concept modules inside `01-foundations`:
+
+- [types-and-io](./01-foundations/types-and-io/README.md)
+- [control-flow](./01-foundations/control-flow/README.md)
+- [functions](./01-foundations/functions/README.md)
+- [arrays-and-vectors](./01-foundations/arrays-and-vectors/README.md)
+- [strings](./01-foundations/strings/README.md)
 
 Use the checklist: [CHECKLIST.md](./CHECKLIST.md)
 
@@ -50,7 +56,7 @@ For each concept:
 4. Solve exercise 02 and refactor your first attempt.
 5. Compare your approach with the example style and naming.
 
-After finishing all concepts in `01-foundations`, continue with `02-strings`.
+After finishing all concepts in `01-foundations`, continue to the next level folder (`02-core`).
 
 ## Build Command
 

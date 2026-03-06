@@ -8,10 +8,11 @@ This section builds the core mental model needed for all later C++ topics.
 2. [control-flow](./control-flow/README.md)
 3. [functions](./functions/README.md)
 4. [arrays-and-vectors](./arrays-and-vectors/README.md)
+5. [strings](./strings/README.md)
 
 Follow this order. Each concept depends on the previous one.
 
-After finishing this section, continue with [02-strings](../02-strings/README.md).
+After finishing this section, continue with [02-core](../02-core/README.md).
 
 ## How To Study
 
