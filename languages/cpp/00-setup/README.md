@@ -69,6 +69,8 @@ Windows (MSYS2 shell):
 
 ## Build All Examples and Exercises
 
+From the repository root:
+
 PowerShell:
 
 ```powershell
