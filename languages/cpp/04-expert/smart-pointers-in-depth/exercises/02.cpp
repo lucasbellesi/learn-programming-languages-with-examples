@@ -1,42 +1,44 @@
-#include <iostream>
+﻿#include <iostream>
 #include <memory>
+using namespace std;
+
 
 class Parent;
 
 class Child {
 public:
-    void setParent(const std::shared_ptr<Parent>& parentRef) {
+    void setParent(const shared_ptr<Parent>& parentRef) {
         parent = parentRef;
     }
 
     void checkParent() const {
         if (parent.lock()) {
-            std::cout << "Parent is still alive.\n";
+            cout << "Parent is still alive.\n";
         } else {
-            std::cout << "Parent no longer exists.\n";
+            cout << "Parent no longer exists.\n";
         }
     }
 
 private:
-    std::weak_ptr<Parent> parent;
+    weak_ptr<Parent> parent;
 };
 
-class Parent : public std::enable_shared_from_this<Parent> {
+class Parent : public enable_shared_from_this<Parent> {
 public:
-    void attachChild(const std::shared_ptr<Child>& child) {
+    void attachChild(const shared_ptr<Child>& child) {
         childRef = child;
         child->setParent(shared_from_this());
     }
 
 private:
-    std::shared_ptr<Child> childRef;
+    shared_ptr<Child> childRef;
 };
 
 int main() {
-    std::shared_ptr<Child> child(new Child());
+    shared_ptr<Child> child(new Child());
 
     {
-        std::shared_ptr<Parent> parent(new Parent());
+        shared_ptr<Parent> parent(new Parent());
         parent->attachChild(child);
         child->checkParent();
     }

@@ -1,21 +1,23 @@
-#include <iostream>
+﻿#include <iostream>
 #include <string>
 #include <vector>
+using namespace std;
+
 
 struct Student {
-    std::string name;
+    string name;
     int age;
     double grade;
 
     void print() const {
-        std::cout << "Student{name=\"" << name << "\", age=" << age
+        cout << "Student{name=\"" << name << "\", age=" << age
                   << ", grade=" << grade << "}\n";
     }
 };
 
 class BankAccount {
 public:
-    BankAccount(const std::string& ownerName, double initialBalance)
+    BankAccount(const string& ownerName, double initialBalance)
         : owner(ownerName), balance(initialBalance) {
         if (balance < 0.0) {
             balance = 0.0;
@@ -38,7 +40,7 @@ public:
         return true;
     }
 
-    const std::string& getOwner() const {
+    const string& getOwner() const {
         return owner;
     }
 
@@ -47,17 +49,17 @@ public:
     }
 
 private:
-    std::string owner;
+    string owner;
     double balance;
 };
 
 int main() {
-    std::vector<Student> students{
+    vector<Student> students{
         {"Alex Johnson", 19, 8.7},
         {"Maya Patel", 20, 9.1}
     };
 
-    std::cout << "Students (struct example):\n";
+    cout << "Students (struct example):\n";
     for (const Student& student : students) {
         student.print();
     }
@@ -66,9 +68,9 @@ int main() {
     account.deposit(40.0);
     account.withdraw(25.0);
 
-    std::cout << "\nBank account (class example):\n";
-    std::cout << "Owner: " << account.getOwner() << '\n';
-    std::cout << "Balance: " << account.getBalance() << '\n';
+    cout << "\nBank account (class example):\n";
+    cout << "Owner: " << account.getOwner() << '\n';
+    cout << "Balance: " << account.getBalance() << '\n';
 
     return 0;
 }

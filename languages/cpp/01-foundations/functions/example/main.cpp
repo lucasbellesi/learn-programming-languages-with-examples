@@ -1,5 +1,7 @@
-#include <iostream>
+﻿#include <iostream>
 #include <vector>
+using namespace std;
+
 
 int sum(int a, int b) {
     return a + b;
@@ -11,46 +13,46 @@ void swapByReference(int& left, int& right) {
     right = temp;
 }
 
-void printVector(const std::vector<int>& values) {
-    std::cout << "[";
-    for (std::size_t i = 0; i < values.size(); ++i) {
-        std::cout << values[i];
+void printVector(const vector<int>& values) {
+    cout << "[";
+    for (size_t i = 0; i < values.size(); ++i) {
+        cout << values[i];
         if (i + 1 < values.size()) {
-            std::cout << ", ";
+            cout << ", ";
         }
     }
-    std::cout << "]\n";
+    cout << "]\n";
 }
 
 void incrementByValue(int number) {
     ++number;
-    std::cout << "Inside incrementByValue: " << number << '\n';
+    cout << "Inside incrementByValue: " << number << '\n';
 }
 
 void incrementByReference(int& number) {
     ++number;
-    std::cout << "Inside incrementByReference: " << number << '\n';
+    cout << "Inside incrementByReference: " << number << '\n';
 }
 
 int main() {
-    std::cout << "sum(4, 6) = " << sum(4, 6) << '\n';
+    cout << "sum(4, 6) = " << sum(4, 6) << '\n';
 
     int first = 10;
     int second = 20;
-    std::cout << "Before swap: first=" << first << ", second=" << second << '\n';
+    cout << "Before swap: first=" << first << ", second=" << second << '\n';
     swapByReference(first, second);
-    std::cout << "After swap:  first=" << first << ", second=" << second << '\n';
+    cout << "After swap:  first=" << first << ", second=" << second << '\n';
 
-    const std::vector<int> numbers{1, 2, 3, 4, 5};
-    std::cout << "Vector content: ";
+    const vector<int> numbers{1, 2, 3, 4, 5};
+    cout << "Vector content: ";
     printVector(numbers);
 
     int value = 5;
-    std::cout << "\nOriginal value: " << value << '\n';
+    cout << "\nOriginal value: " << value << '\n';
     incrementByValue(value);
-    std::cout << "After incrementByValue: " << value << '\n';
+    cout << "After incrementByValue: " << value << '\n';
     incrementByReference(value);
-    std::cout << "After incrementByReference: " << value << '\n';
+    cout << "After incrementByReference: " << value << '\n';
 
     return 0;
 }

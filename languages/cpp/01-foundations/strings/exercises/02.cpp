@@ -1,18 +1,20 @@
-#include <cctype>
+﻿#include <cctype>
 #include <iostream>
 #include <string>
+using namespace std;
 
-bool isPalindromeIgnoringNonLetters(const std::string& text) {
-    std::size_t left = 0;
-    std::size_t right = text.size();
+
+bool isPalindromeIgnoringNonLetters(const string& text) {
+    size_t left = 0;
+    size_t right = text.size();
 
     while (left < right) {
         while (left < right &&
-               !std::isalpha(static_cast<unsigned char>(text[left]))) {
+               !isalpha(static_cast<unsigned char>(text[left]))) {
             ++left;
         }
         while (left < right &&
-               !std::isalpha(static_cast<unsigned char>(text[right - 1]))) {
+               !isalpha(static_cast<unsigned char>(text[right - 1]))) {
             --right;
         }
 
@@ -21,9 +23,9 @@ bool isPalindromeIgnoringNonLetters(const std::string& text) {
         }
 
         const char leftChar =
-            static_cast<char>(std::tolower(static_cast<unsigned char>(text[left])));
+            static_cast<char>(tolower(static_cast<unsigned char>(text[left])));
         const char rightChar =
-            static_cast<char>(std::tolower(static_cast<unsigned char>(text[right - 1])));
+            static_cast<char>(tolower(static_cast<unsigned char>(text[right - 1])));
 
         if (leftChar != rightChar) {
             return false;
@@ -37,14 +39,14 @@ bool isPalindromeIgnoringNonLetters(const std::string& text) {
 }
 
 int main() {
-    std::string text;
-    std::cout << "Enter text: ";
-    std::getline(std::cin, text);
+    string text;
+    cout << "Enter text: ";
+    getline(cin, text);
 
     if (isPalindromeIgnoringNonLetters(text)) {
-        std::cout << "Palindrome: true\n";
+        cout << "Palindrome: true\n";
     } else {
-        std::cout << "Palindrome: false\n";
+        cout << "Palindrome: false\n";
     }
 
     return 0;

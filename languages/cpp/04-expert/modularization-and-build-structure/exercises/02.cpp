@@ -1,5 +1,7 @@
-#include <iostream>
+﻿#include <iostream>
 #include <string>
+using namespace std;
+
 
 int add(int left, int right) {
     return left + right;
@@ -10,21 +12,21 @@ int subtract(int left, int right) {
 }
 
 int main() {
-    std::string op;
+    string op;
     int a = 0;
     int b = 0;
 
-    std::cout << "Operation (add/sub): ";
-    std::cin >> op;
-    std::cout << "Enter two integers: ";
-    std::cin >> a >> b;
+    cout << "Operation (add/sub): ";
+    cin >> op;
+    cout << "Enter two integers: ";
+    cin >> a >> b;
 
     if (op == "add") {
-        std::cout << "Result: " << add(a, b) << '\n';
+        cout << "Result: " << add(a, b) << '\n';
     } else if (op == "sub") {
-        std::cout << "Result: " << subtract(a, b) << '\n';
+        cout << "Result: " << subtract(a, b) << '\n';
     } else {
-        std::cout << "Unsupported operation.\n";
+        cout << "Unsupported operation.\n";
     }
 
     return 0;

@@ -1,4 +1,6 @@
-#include <iostream>
+﻿#include <iostream>
+using namespace std;
+
 
 class BankAccount {
 public:
@@ -34,23 +36,23 @@ private:
 
 int main() {
     double initial = 0.0;
-    std::cout << "Initial balance: ";
-    std::cin >> initial;
+    cout << "Initial balance: ";
+    cin >> initial;
 
     BankAccount account(initial);
 
     double depositAmount = 0.0;
-    std::cout << "Deposit amount: ";
-    std::cin >> depositAmount;
+    cout << "Deposit amount: ";
+    cin >> depositAmount;
     account.deposit(depositAmount);
 
     double withdrawAmount = 0.0;
-    std::cout << "Withdraw amount: ";
-    std::cin >> withdrawAmount;
+    cout << "Withdraw amount: ";
+    cin >> withdrawAmount;
     if (!account.withdraw(withdrawAmount)) {
-        std::cout << "Withdrawal rejected.\n";
+        cout << "Withdrawal rejected.\n";
     }
 
-    std::cout << "Final balance: " << account.getBalance() << '\n';
+    cout << "Final balance: " << account.getBalance() << '\n';
     return 0;
 }

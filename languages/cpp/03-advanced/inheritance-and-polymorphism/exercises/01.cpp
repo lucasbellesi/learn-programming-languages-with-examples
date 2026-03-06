@@ -1,4 +1,6 @@
-#include <iostream>
+﻿#include <iostream>
+using namespace std;
+
 
 class Shape {
 public:
@@ -22,10 +24,10 @@ private:
 int main() {
     double base = 0.0;
     double height = 0.0;
-    std::cout << "Enter base and height: ";
-    std::cin >> base >> height;
+    cout << "Enter base and height: ";
+    cin >> base >> height;
 
     Triangle triangle(base, height);
-    std::cout << "Triangle area: " << triangle.area() << '\n';
+    cout << "Triangle area: " << triangle.area() << '\n';
     return 0;
 }

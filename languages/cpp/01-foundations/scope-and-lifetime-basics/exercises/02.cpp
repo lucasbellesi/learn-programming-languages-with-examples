@@ -1,12 +1,14 @@
-#include <iostream>
+﻿#include <iostream>
+using namespace std;
+
 
 int main() {
     int n = 0;
-    std::cout << "Enter N: ";
-    std::cin >> n;
+    cout << "Enter N: ";
+    cin >> n;
 
     if (n <= 0) {
-        std::cout << "N must be positive.\n";
+        cout << "N must be positive.\n";
         return 0;
     }
 
@@ -17,6 +19,6 @@ int main() {
         }
     }
 
-    std::cout << "Sum 1.." << n << " = " << sum << '\n';
+    cout << "Sum 1.." << n << " = " << sum << '\n';
     return 0;
 }

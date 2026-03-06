@@ -1,36 +1,38 @@
-#include <iostream>
+﻿#include <iostream>
 #include <mutex>
 #include <thread>
 #include <vector>
+using namespace std;
+
 
 int main() {
     const int threadCount = 4;
     const int incrementsPerThread = 50000;
 
     int counter = 0;
-    std::mutex counterMutex;
+    mutex counterMutex;
 
     auto worker = [&counter, &counterMutex, incrementsPerThread]() {
         for (int i = 0; i < incrementsPerThread; ++i) {
-            std::lock_guard<std::mutex> lock(counterMutex);
+            lock_guard<mutex> lock(counterMutex);
             ++counter;
         }
     };
 
-    std::vector<std::thread> threads;
-    threads.reserve(static_cast<std::size_t>(threadCount));
+    vector<thread> threads;
+    threads.reserve(static_cast<size_t>(threadCount));
 
     for (int i = 0; i < threadCount; ++i) {
         threads.emplace_back(worker);
     }
 
-    for (std::thread& thread : threads) {
+    for (thread& thread : threads) {
         thread.join();
     }
 
     const int expected = threadCount * incrementsPerThread;
-    std::cout << "Expected: " << expected << '\n';
-    std::cout << "Actual: " << counter << '\n';
+    cout << "Expected: " << expected << '\n';
+    cout << "Actual: " << counter << '\n';
 
     return 0;
 }

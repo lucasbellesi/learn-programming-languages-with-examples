@@ -1,10 +1,12 @@
-#include <iostream>
+﻿#include <iostream>
 #include <map>
 #include <string>
+using namespace std;
+
 
 int main() {
-    std::string text = "banana bandana";
-    std::map<char, int> frequencies;
+    string text = "banana bandana";
+    map<char, int> frequencies;
 
     for (char ch : text) {
         if (ch == ' ') {
@@ -13,9 +15,9 @@ int main() {
         ++frequencies[ch];
     }
 
-    std::cout << "Character frequencies:\n";
+    cout << "Character frequencies:\n";
     for (const auto& entry : frequencies) {
-        std::cout << entry.first << " -> " << entry.second << '\n';
+        cout << entry.first << " -> " << entry.second << '\n';
     }
 
     return 0;

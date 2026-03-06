@@ -1,6 +1,8 @@
-#include <iostream>
+﻿#include <iostream>
+using namespace std;
+
 
 int main() {
-    std::cout << "Template example: replace this file with concept-specific content.\n";
+    cout << "Template example: replace this file with concept-specific content.\n";
     return 0;
 }

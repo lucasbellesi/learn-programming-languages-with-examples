@@ -1,12 +1,14 @@
-#include <iostream>
+﻿#include <iostream>
+using namespace std;
+
 
 int main() {
     int score = 0;
-    std::cout << "Enter score (0-100): ";
-    std::cin >> score;
+    cout << "Enter score (0-100): ";
+    cin >> score;
 
     if (score < 0 || score > 100) {
-        std::cout << "Invalid score.\n";
+        cout << "Invalid score.\n";
         return 0;
     }
 
@@ -21,6 +23,6 @@ int main() {
         grade = 'D';
     }
 
-    std::cout << "Grade: " << grade << '\n';
+    cout << "Grade: " << grade << '\n';
     return 0;
 }

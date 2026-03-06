@@ -1,46 +1,48 @@
-#include <iostream>
+﻿#include <iostream>
 #include <utility>
 #include <vector>
+using namespace std;
+
 
 class IntBuffer {
 public:
-    explicit IntBuffer(std::size_t size) : data(size, 0) {
-        std::cout << "Constructed IntBuffer\n";
+    explicit IntBuffer(size_t size) : data(size, 0) {
+        cout << "Constructed IntBuffer\n";
     }
 
     IntBuffer(const IntBuffer& other) : data(other.data) {
-        std::cout << "Copied IntBuffer\n";
+        cout << "Copied IntBuffer\n";
     }
 
-    IntBuffer(IntBuffer&& other) noexcept : data(std::move(other.data)) {
-        std::cout << "Moved IntBuffer\n";
+    IntBuffer(IntBuffer&& other) noexcept : data(move(other.data)) {
+        cout << "Moved IntBuffer\n";
     }
 
     IntBuffer& operator=(const IntBuffer& other) {
         if (this != &other) {
             data = other.data;
-            std::cout << "Copy-assigned IntBuffer\n";
+            cout << "Copy-assigned IntBuffer\n";
         }
         return *this;
     }
 
     IntBuffer& operator=(IntBuffer&& other) noexcept {
         if (this != &other) {
-            data = std::move(other.data);
-            std::cout << "Move-assigned IntBuffer\n";
+            data = move(other.data);
+            cout << "Move-assigned IntBuffer\n";
         }
         return *this;
     }
 
 private:
-    std::vector<int> data;
+    vector<int> data;
 };
 
 int main() {
     IntBuffer a(4);
     IntBuffer b = a;
-    IntBuffer c = std::move(a);
+    IntBuffer c = move(a);
     b = c;
-    c = std::move(b);
+    c = move(b);
     return 0;
 }

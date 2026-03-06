@@ -1,5 +1,7 @@
-#include <iomanip>
+﻿#include <iomanip>
 #include <iostream>
+using namespace std;
+
 
 int main() {
     const char* item1 = "Notebook";
@@ -10,16 +12,16 @@ int main() {
     const double p2 = 1.2;
     const double p3 = 30.0;
 
-    std::cout << std::left << std::setw(12) << "Item"
-              << std::right << std::setw(10) << "Price" << '\n';
-    std::cout << "----------------------\n";
+    cout << left << setw(12) << "Item"
+              << right << setw(10) << "Price" << '\n';
+    cout << "----------------------\n";
 
-    std::cout << std::left << std::setw(12) << item1
-              << std::right << std::setw(10) << std::fixed << std::setprecision(2) << p1 << '\n';
-    std::cout << std::left << std::setw(12) << item2
-              << std::right << std::setw(10) << std::fixed << std::setprecision(2) << p2 << '\n';
-    std::cout << std::left << std::setw(12) << item3
-              << std::right << std::setw(10) << std::fixed << std::setprecision(2) << p3 << '\n';
+    cout << left << setw(12) << item1
+              << right << setw(10) << fixed << setprecision(2) << p1 << '\n';
+    cout << left << setw(12) << item2
+              << right << setw(10) << fixed << setprecision(2) << p2 << '\n';
+    cout << left << setw(12) << item3
+              << right << setw(10) << fixed << setprecision(2) << p3 << '\n';
 
     return 0;
 }

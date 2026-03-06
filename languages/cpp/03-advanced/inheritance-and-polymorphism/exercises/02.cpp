@@ -1,6 +1,8 @@
-#include <iostream>
+﻿#include <iostream>
 #include <memory>
 #include <vector>
+using namespace std;
+
 
 class Shape {
 public:
@@ -34,15 +36,15 @@ private:
 };
 
 int main() {
-    std::vector<std::unique_ptr<Shape>> shapes;
-    shapes.push_back(std::unique_ptr<Shape>(new Rectangle(2.0, 5.0)));
-    shapes.push_back(std::unique_ptr<Shape>(new Circle(1.5)));
+    vector<unique_ptr<Shape>> shapes;
+    shapes.push_back(unique_ptr<Shape>(new Rectangle(2.0, 5.0)));
+    shapes.push_back(unique_ptr<Shape>(new Circle(1.5)));
 
     double totalArea = 0.0;
     for (const auto& shape : shapes) {
         totalArea += shape->area();
     }
 
-    std::cout << "Total area: " << totalArea << '\n';
+    cout << "Total area: " << totalArea << '\n';
     return 0;
 }

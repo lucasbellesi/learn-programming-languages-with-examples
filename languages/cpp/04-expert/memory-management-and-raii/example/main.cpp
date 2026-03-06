@@ -1,56 +1,58 @@
-#include <cstddef>
+﻿#include <cstddef>
 #include <iostream>
 #include <memory>
 #include <string>
+using namespace std;
+
 
 class ScopedMessage {
 public:
-    explicit ScopedMessage(const std::string& labelText) : label(labelText) {
-        std::cout << "[acquire] " << label << '\n';
+    explicit ScopedMessage(const string& labelText) : label(labelText) {
+        cout << "[acquire] " << label << '\n';
     }
 
     ~ScopedMessage() {
-        std::cout << "[release] " << label << '\n';
+        cout << "[release] " << label << '\n';
     }
 
 private:
-    std::string label;
+    string label;
 };
 
-std::unique_ptr<int[]> makeSequence(std::size_t size) {
-    std::unique_ptr<int[]> data(new int[size]);
-    for (std::size_t i = 0; i < size; ++i) {
+unique_ptr<int[]> makeSequence(size_t size) {
+    unique_ptr<int[]> data(new int[size]);
+    for (size_t i = 0; i < size; ++i) {
         data[i] = static_cast<int>((i + 1) * 10);
     }
     return data;
 }
 
-void printSequence(const std::unique_ptr<int[]>& data, std::size_t size) {
-    std::cout << "Sequence: ";
-    for (std::size_t i = 0; i < size; ++i) {
-        std::cout << data[i];
+void printSequence(const unique_ptr<int[]>& data, size_t size) {
+    cout << "Sequence: ";
+    for (size_t i = 0; i < size; ++i) {
+        cout << data[i];
         if (i + 1 < size) {
-            std::cout << ' ';
+            cout << ' ';
         }
     }
-    std::cout << '\n';
+    cout << '\n';
 }
 
 int main() {
-    std::cout << "RAII scope demo:\n";
+    cout << "RAII scope demo:\n";
     {
         ScopedMessage scoped("temporary operation");
-        std::cout << "Inside scope.\n";
+        cout << "Inside scope.\n";
     }
 
-    const std::size_t size = 5;
-    std::unique_ptr<int[]> values = makeSequence(size);
+    const size_t size = 5;
+    unique_ptr<int[]> values = makeSequence(size);
     printSequence(values, size);
 
-    std::cout << "Ownership transfer with move:\n";
-    std::unique_ptr<int[]> movedValues = std::move(values);
+    cout << "Ownership transfer with move:\n";
+    unique_ptr<int[]> movedValues = move(values);
     if (!values) {
-        std::cout << "Original pointer is now empty after move.\n";
+        cout << "Original pointer is now empty after move.\n";
     }
     printSequence(movedValues, size);
 

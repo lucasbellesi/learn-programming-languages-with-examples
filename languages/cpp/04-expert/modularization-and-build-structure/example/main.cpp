@@ -1,4 +1,6 @@
-#include <iostream>
+﻿#include <iostream>
+using namespace std;
+
 
 int add(int left, int right) {
     return left + right;
@@ -9,8 +11,8 @@ int multiply(int left, int right) {
 }
 
 void printReport(int a, int b) {
-    std::cout << "Add: " << add(a, b) << '\n';
-    std::cout << "Multiply: " << multiply(a, b) << '\n';
+    cout << "Add: " << add(a, b) << '\n';
+    cout << "Multiply: " << multiply(a, b) << '\n';
 }
 
 int main() {

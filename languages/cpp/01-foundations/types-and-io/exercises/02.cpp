@@ -1,20 +1,22 @@
-#include <iostream>
+﻿#include <iostream>
 #include <string>
+using namespace std;
+
 
 int main() {
-    std::string product;
+    string product;
     double price = 0.0;
     int quantity = 0;
 
-    std::cout << "Enter product price quantity (example: notebook 2.50 4): ";
-    std::cin >> product >> price >> quantity;
+    cout << "Enter product price quantity (example: notebook 2.50 4): ";
+    cin >> product >> price >> quantity;
 
     const double totalPrice = price * quantity;
 
-    std::cout << "Product: " << product << '\n';
-    std::cout << "Unit price: " << price << '\n';
-    std::cout << "Quantity: " << quantity << '\n';
-    std::cout << "Total price: " << totalPrice << '\n';
+    cout << "Product: " << product << '\n';
+    cout << "Unit price: " << price << '\n';
+    cout << "Quantity: " << quantity << '\n';
+    cout << "Total price: " << totalPrice << '\n';
 
     return 0;
 }

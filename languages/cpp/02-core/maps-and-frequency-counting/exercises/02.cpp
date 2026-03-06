@@ -1,13 +1,15 @@
-#include <iostream>
+﻿#include <iostream>
 #include <map>
 #include <string>
+using namespace std;
+
 
 int main() {
-    std::string text;
-    std::cout << "Enter text: ";
-    std::getline(std::cin, text);
+    string text;
+    cout << "Enter text: ";
+    getline(cin, text);
 
-    std::map<char, int> frequency;
+    map<char, int> frequency;
     for (char ch : text) {
         ++frequency[ch];
     }
@@ -21,9 +23,9 @@ int main() {
     }
 
     if (result == '\0') {
-        std::cout << "No non-repeating character found.\n";
+        cout << "No non-repeating character found.\n";
     } else {
-        std::cout << "First non-repeating character: " << result << '\n';
+        cout << "First non-repeating character: " << result << '\n';
     }
 
     return 0;

@@ -1,12 +1,14 @@
-#include <iostream>
+﻿#include <iostream>
+using namespace std;
+
 
 int main() {
     int totalSeconds = 0;
-    std::cout << "Enter total seconds: ";
-    std::cin >> totalSeconds;
+    cout << "Enter total seconds: ";
+    cin >> totalSeconds;
 
     if (totalSeconds < 0) {
-        std::cout << "Please enter a non-negative value.\n";
+        cout << "Please enter a non-negative value.\n";
         return 0;
     }
 
@@ -14,6 +16,6 @@ int main() {
     const int minutes = (totalSeconds % 3600) / 60;
     const int seconds = totalSeconds % 60;
 
-    std::cout << "Converted time: " << hours << ":" << minutes << ":" << seconds << '\n';
+    cout << "Converted time: " << hours << ":" << minutes << ":" << seconds << '\n';
     return 0;
 }

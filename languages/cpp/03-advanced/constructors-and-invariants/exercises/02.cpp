@@ -1,4 +1,6 @@
-#include <iostream>
+﻿#include <iostream>
+using namespace std;
+
 
 class Date {
 public:
@@ -22,11 +24,11 @@ int main() {
     int month = 0;
     int day = 0;
 
-    std::cout << "Enter month and day: ";
-    std::cin >> month >> day;
+    cout << "Enter month and day: ";
+    cin >> month >> day;
 
     Date date(month, day);
-    std::cout << (date.isValid() ? "Valid date" : "Invalid date") << '\n';
+    cout << (date.isValid() ? "Valid date" : "Invalid date") << '\n';
 
     return 0;
 }

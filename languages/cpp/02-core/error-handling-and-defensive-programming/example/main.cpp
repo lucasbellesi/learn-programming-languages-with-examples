@@ -1,5 +1,7 @@
-#include <iostream>
+﻿#include <iostream>
 #include <limits>
+using namespace std;
+
 
 bool safeDivide(double left, double right, double& result) {
     if (right == 0.0) {
@@ -13,20 +15,20 @@ int main() {
     double a = 0.0;
     double b = 0.0;
 
-    std::cout << "Enter two numbers: ";
-    if (!(std::cin >> a >> b)) {
-        std::cout << "Invalid numeric input.\n";
+    cout << "Enter two numbers: ";
+    if (!(cin >> a >> b)) {
+        cout << "Invalid numeric input.\n";
         return 0;
     }
 
     double quotient = 0.0;
     if (!safeDivide(a, b, quotient)) {
-        std::cout << "Cannot divide by zero.\n";
+        cout << "Cannot divide by zero.\n";
         return 0;
     }
 
-    std::cout << "Result: " << quotient << '\n';
+    cout << "Result: " << quotient << '\n';
 
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     return 0;
 }

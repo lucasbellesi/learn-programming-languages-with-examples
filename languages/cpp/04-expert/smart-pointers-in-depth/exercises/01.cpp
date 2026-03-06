@@ -1,27 +1,29 @@
-#include <iostream>
+﻿#include <iostream>
 #include <memory>
+using namespace std;
+
 
 class Resource {
 public:
     Resource() {
-        std::cout << "Resource acquired\n";
+        cout << "Resource acquired\n";
     }
 
     ~Resource() {
-        std::cout << "Resource released\n";
+        cout << "Resource released\n";
     }
 };
 
 int main() {
-    std::unique_ptr<Resource> resource(new Resource());
+    unique_ptr<Resource> resource(new Resource());
 
-    std::unique_ptr<Resource> moved = std::move(resource);
+    unique_ptr<Resource> moved = move(resource);
     if (!resource) {
-        std::cout << "Ownership moved successfully.\n";
+        cout << "Ownership moved successfully.\n";
     }
 
     if (moved) {
-        std::cout << "Moved owner is active.\n";
+        cout << "Moved owner is active.\n";
     }
 
     return 0;

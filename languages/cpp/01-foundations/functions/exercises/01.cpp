@@ -1,4 +1,6 @@
-#include <iostream>
+﻿#include <iostream>
+using namespace std;
+
 
 int maxOfThree(int a, int b, int c) {
     int currentMax = a;
@@ -16,9 +18,9 @@ int main() {
     int y = 0;
     int z = 0;
 
-    std::cout << "Enter three integers: ";
-    std::cin >> x >> y >> z;
+    cout << "Enter three integers: ";
+    cin >> x >> y >> z;
 
-    std::cout << "Maximum: " << maxOfThree(x, y, z) << '\n';
+    cout << "Maximum: " << maxOfThree(x, y, z) << '\n';
     return 0;
 }

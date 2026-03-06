@@ -1,6 +1,8 @@
-#include <iostream>
+﻿#include <iostream>
 #include <limits>
 #include <string>
+using namespace std;
+
 
 class Counter {
 public:
@@ -28,14 +30,14 @@ private:
 
 int main() {
     Counter counter;
-    std::string command;
+    string command;
 
-    std::cout << "Commands: inc, dec, reset, stop\n";
+    cout << "Commands: inc, dec, reset, stop\n";
     while (true) {
-        std::cout << "Enter command: ";
-        if (!(std::cin >> command)) {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cout << "Enter command: ";
+        if (!(cin >> command)) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             continue;
         }
 
@@ -48,13 +50,13 @@ int main() {
         } else if (command == "stop") {
             break;
         } else {
-            std::cout << "Unknown command.\n";
+            cout << "Unknown command.\n";
             continue;
         }
 
-        std::cout << "Current value: " << counter.getValue() << '\n';
+        cout << "Current value: " << counter.getValue() << '\n';
     }
 
-    std::cout << "Final value: " << counter.getValue() << '\n';
+    cout << "Final value: " << counter.getValue() << '\n';
     return 0;
 }

@@ -1,32 +1,34 @@
-#include <iostream>
+﻿#include <iostream>
 #include <memory>
 #include <string>
+using namespace std;
+
 
 class Document {
 public:
-    explicit Document(const std::string& nameValue) : name(nameValue) {
-        std::cout << "Created: " << name << '\n';
+    explicit Document(const string& nameValue) : name(nameValue) {
+        cout << "Created: " << name << '\n';
     }
 
     ~Document() {
-        std::cout << "Destroyed: " << name << '\n';
+        cout << "Destroyed: " << name << '\n';
     }
 
 private:
-    std::string name;
+    string name;
 };
 
 int main() {
-    std::unique_ptr<Document> owner(new Document("DesignDoc"));
+    unique_ptr<Document> owner(new Document("DesignDoc"));
 
-    std::shared_ptr<Document> teamA(new Document("SharedSpec"));
-    std::shared_ptr<Document> teamB = teamA;
-    std::weak_ptr<Document> observer = teamA;
+    shared_ptr<Document> teamA(new Document("SharedSpec"));
+    shared_ptr<Document> teamB = teamA;
+    weak_ptr<Document> observer = teamA;
 
-    std::cout << "Shared use count: " << teamA.use_count() << '\n';
+    cout << "Shared use count: " << teamA.use_count() << '\n';
 
-    if (std::shared_ptr<Document> locked = observer.lock()) {
-        std::cout << "Observer can access shared document.\n";
+    if (shared_ptr<Document> locked = observer.lock()) {
+        cout << "Observer can access shared document.\n";
         (void)locked;
     }
 
@@ -35,7 +37,7 @@ int main() {
     teamB.reset();
 
     if (observer.expired()) {
-        std::cout << "Observer is expired after shared owners released.\n";
+        cout << "Observer is expired after shared owners released.\n";
     }
 
     return 0;

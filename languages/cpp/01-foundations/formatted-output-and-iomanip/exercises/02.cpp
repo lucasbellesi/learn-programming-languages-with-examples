@@ -1,21 +1,23 @@
-#include <iomanip>
+﻿#include <iomanip>
 #include <iostream>
+using namespace std;
+
 
 int main() {
     int precision = 2;
-    std::cout << "Enter precision (0-6): ";
-    std::cin >> precision;
+    cout << "Enter precision (0-6): ";
+    cin >> precision;
 
     if (precision < 0 || precision > 6) {
-        std::cout << "Precision must be between 0 and 6.\n";
+        cout << "Precision must be between 0 and 6.\n";
         return 0;
     }
 
     int n = 0;
-    std::cout << "How many numbers? ";
-    std::cin >> n;
+    cout << "How many numbers? ";
+    cin >> n;
     if (n <= 0) {
-        std::cout << "Please enter a positive count.\n";
+        cout << "Please enter a positive count.\n";
         return 0;
     }
 
@@ -25,8 +27,8 @@ int main() {
     double maxValue = 0.0;
 
     for (int i = 0; i < n; ++i) {
-        std::cout << "Value " << (i + 1) << ": ";
-        std::cin >> value;
+        cout << "Value " << (i + 1) << ": ";
+        cin >> value;
 
         if (i == 0) {
             minValue = value;
@@ -45,10 +47,10 @@ int main() {
 
     const double average = sum / n;
 
-    std::cout << std::fixed << std::setprecision(precision);
-    std::cout << "Average: " << average << '\n';
-    std::cout << "Minimum: " << minValue << '\n';
-    std::cout << "Maximum: " << maxValue << '\n';
+    cout << fixed << setprecision(precision);
+    cout << "Average: " << average << '\n';
+    cout << "Minimum: " << minValue << '\n';
+    cout << "Maximum: " << maxValue << '\n';
 
     return 0;
 }

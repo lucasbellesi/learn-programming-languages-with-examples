@@ -1,46 +1,48 @@
-#include <cctype>
+﻿#include <cctype>
 #include <iostream>
 #include <limits>
 #include <string>
+using namespace std;
+
 
 int main() {
     int year = 0;
-    std::string fullName;
-    std::string sentence;
+    string fullName;
+    string sentence;
 
-    std::cout << "Enter your birth year: ";
-    std::cin >> year;
+    cout << "Enter your birth year: ";
+    cin >> year;
 
     // Clear leftover newline before getline.
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-    std::cout << "Enter your full name: ";
-    std::getline(std::cin, fullName);
+    cout << "Enter your full name: ";
+    getline(cin, fullName);
 
-    std::cout << "Write a short sentence: ";
-    std::getline(std::cin, sentence);
+    cout << "Write a short sentence: ";
+    getline(cin, sentence);
 
-    const std::string greeting = "Hello, " + fullName + "!";
-    std::cout << '\n' << greeting << '\n';
-    std::cout << "Birth year: " << year << '\n';
-    std::cout << "Sentence length: " << sentence.size() << '\n';
+    const string greeting = "Hello, " + fullName + "!";
+    cout << '\n' << greeting << '\n';
+    cout << "Birth year: " << year << '\n';
+    cout << "Sentence length: " << sentence.size() << '\n';
 
-    const std::size_t spacePos = sentence.find(' ');
-    if (spacePos != std::string::npos) {
-        const std::string firstWord = sentence.substr(0, spacePos);
-        std::cout << "First word: " << firstWord << '\n';
+    const size_t spacePos = sentence.find(' ');
+    if (spacePos != string::npos) {
+        const string firstWord = sentence.substr(0, spacePos);
+        cout << "First word: " << firstWord << '\n';
     } else {
-        std::cout << "Your sentence has only one word.\n";
+        cout << "Your sentence has only one word.\n";
     }
 
     int vowelCount = 0;
     for (char ch : sentence) {
-        const char lower = static_cast<char>(std::tolower(static_cast<unsigned char>(ch)));
+        const char lower = static_cast<char>(tolower(static_cast<unsigned char>(ch)));
         if (lower == 'a' || lower == 'e' || lower == 'i' || lower == 'o' || lower == 'u') {
             ++vowelCount;
         }
     }
-    std::cout << "Vowel count: " << vowelCount << '\n';
+    cout << "Vowel count: " << vowelCount << '\n';
 
     return 0;
 }

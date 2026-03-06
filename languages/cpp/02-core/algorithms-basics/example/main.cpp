@@ -1,8 +1,10 @@
-#include <iostream>
+﻿#include <iostream>
 #include <vector>
+using namespace std;
 
-int linearSearch(const std::vector<int>& values, int target) {
-    for (std::size_t i = 0; i < values.size(); ++i) {
+
+int linearSearch(const vector<int>& values, int target) {
+    for (size_t i = 0; i < values.size(); ++i) {
         if (values[i] == target) {
             return static_cast<int>(i);
         }
@@ -10,7 +12,7 @@ int linearSearch(const std::vector<int>& values, int target) {
     return -1;
 }
 
-int countOccurrences(const std::vector<int>& values, int target) {
+int countOccurrences(const vector<int>& values, int target) {
     int count = 0;
     for (int value : values) {
         if (value == target) {
@@ -20,9 +22,9 @@ int countOccurrences(const std::vector<int>& values, int target) {
     return count;
 }
 
-void printMinMax(const std::vector<int>& values) {
+void printMinMax(const vector<int>& values) {
     if (values.empty()) {
-        std::cout << "No values to process.\n";
+        cout << "No values to process.\n";
         return;
     }
 
@@ -37,17 +39,17 @@ void printMinMax(const std::vector<int>& values) {
         }
     }
 
-    std::cout << "Minimum: " << minValue << '\n';
-    std::cout << "Maximum: " << maxValue << '\n';
+    cout << "Minimum: " << minValue << '\n';
+    cout << "Maximum: " << maxValue << '\n';
 }
 
 int main() {
-    const std::vector<int> values{4, 7, 4, 1, 9, 4, 2};
+    const vector<int> values{4, 7, 4, 1, 9, 4, 2};
     const int target = 4;
 
     const int firstIndex = linearSearch(values, target);
-    std::cout << "First index of " << target << ": " << firstIndex << '\n';
-    std::cout << "Occurrences of " << target << ": " << countOccurrences(values, target) << '\n';
+    cout << "First index of " << target << ": " << firstIndex << '\n';
+    cout << "Occurrences of " << target << ": " << countOccurrences(values, target) << '\n';
 
     printMinMax(values);
     return 0;

@@ -1,34 +1,36 @@
-#include <iostream>
+﻿#include <iostream>
 #include <vector>
+using namespace std;
+
 
 int main() {
     const int fixedScores[3] = {72, 88, 95};
 
-    std::cout << "Fixed array values: ";
+    cout << "Fixed array values: ";
     for (int i = 0; i < 3; ++i) {
-        std::cout << fixedScores[i];
+        cout << fixedScores[i];
         if (i < 2) {
-            std::cout << ", ";
+            cout << ", ";
         }
     }
-    std::cout << '\n';
+    cout << '\n';
 
     int count = 0;
-    std::cout << "How many temperatures do you want to enter? ";
-    std::cin >> count;
+    cout << "How many temperatures do you want to enter? ";
+    cin >> count;
 
     if (count <= 0) {
-        std::cout << "Nothing to process.\n";
+        cout << "Nothing to process.\n";
         return 0;
     }
 
-    std::vector<double> temperatures;
-    temperatures.reserve(static_cast<std::size_t>(count));
+    vector<double> temperatures;
+    temperatures.reserve(static_cast<size_t>(count));
 
     for (int i = 0; i < count; ++i) {
         double value = 0.0;
-        std::cout << "Temperature " << (i + 1) << ": ";
-        std::cin >> value;
+        cout << "Temperature " << (i + 1) << ": ";
+        cin >> value;
         temperatures.push_back(value);
     }
 
@@ -39,15 +41,15 @@ int main() {
 
     const double average = sum / temperatures.size();
 
-    std::cout << "\nYou entered: ";
-    for (std::size_t i = 0; i < temperatures.size(); ++i) {
-        std::cout << temperatures[i];
+    cout << "\nYou entered: ";
+    for (size_t i = 0; i < temperatures.size(); ++i) {
+        cout << temperatures[i];
         if (i + 1 < temperatures.size()) {
-            std::cout << ", ";
+            cout << ", ";
         }
     }
-    std::cout << '\n';
-    std::cout << "Average temperature: " << average << '\n';
+    cout << '\n';
+    cout << "Average temperature: " << average << '\n';
 
     return 0;
 }

@@ -1,29 +1,31 @@
-#include <iostream>
+﻿#include <iostream>
 #include <vector>
+using namespace std;
+
 
 int main() {
     int n = 0;
-    std::cout << "How many integers will you enter? ";
-    std::cin >> n;
+    cout << "How many integers will you enter? ";
+    cin >> n;
 
     if (n <= 0) {
-        std::cout << "Please enter a positive number.\n";
+        cout << "Please enter a positive number.\n";
         return 0;
     }
 
-    std::vector<int> values;
-    values.reserve(static_cast<std::size_t>(n));
+    vector<int> values;
+    values.reserve(static_cast<size_t>(n));
 
     for (int i = 0; i < n; ++i) {
         int number = 0;
-        std::cout << "Number " << (i + 1) << ": ";
-        std::cin >> number;
+        cout << "Number " << (i + 1) << ": ";
+        cin >> number;
         values.push_back(number);
     }
 
     int target = 0;
-    std::cout << "Enter the number to count: ";
-    std::cin >> target;
+    cout << "Enter the number to count: ";
+    cin >> target;
 
     int frequency = 0;
     for (int value : values) {
@@ -32,6 +34,6 @@ int main() {
         }
     }
 
-    std::cout << target << " appears " << frequency << " time(s).\n";
+    cout << target << " appears " << frequency << " time(s).\n";
     return 0;
 }

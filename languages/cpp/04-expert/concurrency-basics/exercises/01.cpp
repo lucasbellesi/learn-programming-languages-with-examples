@@ -1,31 +1,33 @@
-#include <iostream>
+﻿#include <iostream>
 #include <thread>
 #include <vector>
+using namespace std;
+
 
 int main() {
     int n = 0;
-    std::cout << "How many integers? ";
-    std::cin >> n;
+    cout << "How many integers? ";
+    cin >> n;
 
     if (n <= 0) {
-        std::cout << "Please enter a positive count.\n";
+        cout << "Please enter a positive count.\n";
         return 0;
     }
 
-    std::vector<int> values;
-    values.reserve(static_cast<std::size_t>(n));
+    vector<int> values;
+    values.reserve(static_cast<size_t>(n));
     for (int i = 0; i < n; ++i) {
         int value = 0;
-        std::cin >> value;
+        cin >> value;
         values.push_back(value);
     }
 
     int workerCount = 0;
-    std::cout << "How many worker threads? ";
-    std::cin >> workerCount;
+    cout << "How many worker threads? ";
+    cin >> workerCount;
 
     if (workerCount <= 0) {
-        std::cout << "Worker count must be positive.\n";
+        cout << "Worker count must be positive.\n";
         return 0;
     }
 
@@ -33,9 +35,9 @@ int main() {
         workerCount = n;
     }
 
-    std::vector<long long> partialSums(static_cast<std::size_t>(workerCount), 0);
-    std::vector<std::thread> workers;
-    workers.reserve(static_cast<std::size_t>(workerCount));
+    vector<long long> partialSums(static_cast<size_t>(workerCount), 0);
+    vector<thread> workers;
+    workers.reserve(static_cast<size_t>(workerCount));
 
     const int chunkSize = (n + workerCount - 1) / workerCount;
 
@@ -46,23 +48,23 @@ int main() {
 
             long long localSum = 0;
             for (int i = start; i < end; ++i) {
-                localSum += values[static_cast<std::size_t>(i)];
+                localSum += values[static_cast<size_t>(i)];
             }
 
-            partialSums[static_cast<std::size_t>(workerIndex)] = localSum;
+            partialSums[static_cast<size_t>(workerIndex)] = localSum;
         });
     }
 
-    for (std::thread& worker : workers) {
+    for (thread& worker : workers) {
         worker.join();
     }
 
     long long total = 0;
-    for (std::size_t i = 0; i < partialSums.size(); ++i) {
-        std::cout << "Thread " << i << " partial sum: " << partialSums[i] << '\n';
+    for (size_t i = 0; i < partialSums.size(); ++i) {
+        cout << "Thread " << i << " partial sum: " << partialSums[i] << '\n';
         total += partialSums[i];
     }
 
-    std::cout << "Final total: " << total << '\n';
+    cout << "Final total: " << total << '\n';
     return 0;
 }

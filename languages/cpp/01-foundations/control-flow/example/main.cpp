@@ -1,42 +1,44 @@
-#include <iostream>
+﻿#include <iostream>
+using namespace std;
+
 
 int main() {
     int value = 0;
-    std::cout << "Enter an integer: ";
-    std::cin >> value;
+    cout << "Enter an integer: ";
+    cin >> value;
 
     if (value > 0) {
-        std::cout << value << " is positive.\n";
+        cout << value << " is positive.\n";
     } else if (value < 0) {
-        std::cout << value << " is negative.\n";
+        cout << value << " is negative.\n";
     } else {
-        std::cout << "The value is zero.\n";
+        cout << "The value is zero.\n";
     }
 
     int n = 0;
-    std::cout << "Enter N for factorial and counting: ";
-    std::cin >> n;
+    cout << "Enter N for factorial and counting: ";
+    cin >> n;
 
     if (n < 0) {
-        std::cout << "Factorial is not defined for negative integers.\n";
+        cout << "Factorial is not defined for negative integers.\n";
     } else {
         unsigned long long factorial = 1;
         for (int i = 1; i <= n; ++i) {
             factorial *= static_cast<unsigned long long>(i);
         }
-        std::cout << n << "! = " << factorial << '\n';
+        cout << n << "! = " << factorial << '\n';
     }
 
-    std::cout << "Numbers from 1 to " << n << ": ";
+    cout << "Numbers from 1 to " << n << ": ";
     if (n > 0) {
         for (int i = 1; i <= n; ++i) {
-            std::cout << i;
+            cout << i;
             if (i < n) {
-                std::cout << ' ';
+                cout << ' ';
             }
         }
     }
-    std::cout << '\n';
+    cout << '\n';
 
     return 0;
 }

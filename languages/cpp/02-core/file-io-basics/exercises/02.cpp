@@ -1,20 +1,22 @@
-#include <fstream>
+﻿#include <fstream>
 #include <iostream>
 #include <limits>
 #include <string>
+using namespace std;
+
 
 int main() {
-    std::string path;
-    std::cout << "Enter file path (name score rows): ";
-    std::getline(std::cin, path);
+    string path;
+    cout << "Enter file path (name score rows): ";
+    getline(cin, path);
 
-    std::ifstream input(path);
+    ifstream input(path);
     if (!input) {
-        std::cout << "Could not open file.\n";
+        cout << "Could not open file.\n";
         return 0;
     }
 
-    std::string name;
+    string name;
     int score = 0;
     int validRows = 0;
     int invalidRows = 0;
@@ -30,18 +32,18 @@ int main() {
             }
             ++invalidRows;
             input.clear();
-            input.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            input.ignore(numeric_limits<streamsize>::max(), '\n');
         }
     }
 
-    std::cout << "Valid rows: " << validRows << '\n';
-    std::cout << "Invalid rows: " << invalidRows << '\n';
+    cout << "Valid rows: " << validRows << '\n';
+    cout << "Invalid rows: " << invalidRows << '\n';
 
     if (validRows > 0) {
         const double average = static_cast<double>(sum) / validRows;
-        std::cout << "Average score: " << average << '\n';
+        cout << "Average score: " << average << '\n';
     } else {
-        std::cout << "No valid rows found.\n";
+        cout << "No valid rows found.\n";
     }
 
     return 0;

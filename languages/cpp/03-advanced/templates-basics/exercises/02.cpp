@@ -1,8 +1,10 @@
-#include <iostream>
+﻿#include <iostream>
 #include <vector>
+using namespace std;
+
 
 template <typename T>
-double averageOf(const std::vector<T>& values) {
+double averageOf(const vector<T>& values) {
     if (values.empty()) {
         return 0.0;
     }
@@ -17,23 +19,23 @@ double averageOf(const std::vector<T>& values) {
 
 int main() {
     int n = 0;
-    std::cout << "How many numbers? ";
-    std::cin >> n;
+    cout << "How many numbers? ";
+    cin >> n;
 
     if (n <= 0) {
-        std::cout << "Please enter a positive count.\n";
+        cout << "Please enter a positive count.\n";
         return 0;
     }
 
-    std::vector<double> values;
-    values.reserve(static_cast<std::size_t>(n));
+    vector<double> values;
+    values.reserve(static_cast<size_t>(n));
 
     for (int i = 0; i < n; ++i) {
         double value = 0.0;
-        std::cin >> value;
+        cin >> value;
         values.push_back(value);
     }
 
-    std::cout << "Average: " << averageOf(values) << '\n';
+    cout << "Average: " << averageOf(values) << '\n';
     return 0;
 }

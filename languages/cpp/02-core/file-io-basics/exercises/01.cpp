@@ -1,35 +1,37 @@
-#include <fstream>
+﻿#include <fstream>
 #include <iostream>
 #include <string>
+using namespace std;
+
 
 int main() {
-    std::string inputPath;
-    std::string outputPath;
+    string inputPath;
+    string outputPath;
 
-    std::cout << "Input file path: ";
-    std::getline(std::cin, inputPath);
-    std::cout << "Output file path: ";
-    std::getline(std::cin, outputPath);
+    cout << "Input file path: ";
+    getline(cin, inputPath);
+    cout << "Output file path: ";
+    getline(cin, outputPath);
 
-    std::ifstream input(inputPath);
+    ifstream input(inputPath);
     if (!input) {
-        std::cout << "Could not open input file.\n";
+        cout << "Could not open input file.\n";
         return 0;
     }
 
-    std::ofstream output(outputPath);
+    ofstream output(outputPath);
     if (!output) {
-        std::cout << "Could not create output file.\n";
+        cout << "Could not create output file.\n";
         return 0;
     }
 
-    std::string line;
+    string line;
     int lineNumber = 1;
-    while (std::getline(input, line)) {
+    while (getline(input, line)) {
         output << lineNumber << ": " << line << '\n';
         ++lineNumber;
     }
 
-    std::cout << "Copied " << (lineNumber - 1) << " lines.\n";
+    cout << "Copied " << (lineNumber - 1) << " lines.\n";
     return 0;
 }

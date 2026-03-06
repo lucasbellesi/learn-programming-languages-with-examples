@@ -1,4 +1,6 @@
-#include <iostream>
+﻿#include <iostream>
+using namespace std;
+
 
 template <typename T>
 void swapValues(T& left, T& right) {
@@ -11,12 +13,12 @@ int main() {
     int a = 0;
     int b = 0;
 
-    std::cout << "Enter two integers: ";
-    std::cin >> a >> b;
+    cout << "Enter two integers: ";
+    cin >> a >> b;
 
-    std::cout << "Before swap: " << a << " " << b << '\n';
+    cout << "Before swap: " << a << " " << b << '\n';
     swapValues(a, b);
-    std::cout << "After swap: " << a << " " << b << '\n';
+    cout << "After swap: " << a << " " << b << '\n';
 
     return 0;
 }

@@ -1,23 +1,25 @@
-#include <iostream>
+﻿#include <iostream>
 #include <vector>
+using namespace std;
+
 
 int main() {
     int n = 0;
-    std::cout << "How many integers? ";
-    std::cin >> n;
+    cout << "How many integers? ";
+    cin >> n;
 
     if (n <= 0) {
-        std::cout << "Please enter a positive count.\n";
+        cout << "Please enter a positive count.\n";
         return 0;
     }
 
-    std::vector<int> values;
-    values.reserve(static_cast<std::size_t>(n));
+    vector<int> values;
+    values.reserve(static_cast<size_t>(n));
 
     for (int i = 0; i < n; ++i) {
         int value = 0;
-        std::cout << "Value " << (i + 1) << ": ";
-        std::cin >> value;
+        cout << "Value " << (i + 1) << ": ";
+        cin >> value;
         values.push_back(value);
     }
 
@@ -37,8 +39,8 @@ int main() {
         }
     }
 
-    std::cout << "Minimum: " << minValue << '\n';
-    std::cout << "Maximum: " << maxValue << '\n';
-    std::cout << "Even numbers: " << evenCount << '\n';
+    cout << "Minimum: " << minValue << '\n';
+    cout << "Maximum: " << maxValue << '\n';
+    cout << "Even numbers: " << evenCount << '\n';
     return 0;
 }

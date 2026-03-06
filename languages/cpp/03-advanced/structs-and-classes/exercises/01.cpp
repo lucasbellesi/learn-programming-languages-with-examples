@@ -1,4 +1,6 @@
-#include <iostream>
+﻿#include <iostream>
+using namespace std;
+
 
 struct Rectangle {
     double width;
@@ -16,15 +18,15 @@ struct Rectangle {
 int main() {
     Rectangle rectangle{0.0, 0.0};
 
-    std::cout << "Enter width and height: ";
-    std::cin >> rectangle.width >> rectangle.height;
+    cout << "Enter width and height: ";
+    cin >> rectangle.width >> rectangle.height;
 
     if (rectangle.width <= 0.0 || rectangle.height <= 0.0) {
-        std::cout << "Width and height must be positive.\n";
+        cout << "Width and height must be positive.\n";
         return 0;
     }
 
-    std::cout << "Area: " << rectangle.area() << '\n';
-    std::cout << "Perimeter: " << rectangle.perimeter() << '\n';
+    cout << "Area: " << rectangle.area() << '\n';
+    cout << "Perimeter: " << rectangle.perimeter() << '\n';
     return 0;
 }

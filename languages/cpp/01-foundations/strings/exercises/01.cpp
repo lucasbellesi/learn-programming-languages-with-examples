@@ -1,10 +1,12 @@
-#include <iostream>
+﻿#include <iostream>
 #include <string>
+using namespace std;
+
 
 int main() {
-    std::string sentence;
-    std::cout << "Enter a sentence: ";
-    std::getline(std::cin, sentence);
+    string sentence;
+    cout << "Enter a sentence: ";
+    getline(cin, sentence);
 
     int wordCount = 0;
     bool insideWord = false;
@@ -18,6 +20,6 @@ int main() {
         }
     }
 
-    std::cout << "Word count: " << wordCount << '\n';
+    cout << "Word count: " << wordCount << '\n';
     return 0;
 }

@@ -1,12 +1,14 @@
-#include <iostream>
+﻿#include <iostream>
+using namespace std;
+
 
 int main() {
     int n = 0;
-    std::cout << "How many numbers will you enter? ";
-    std::cin >> n;
+    cout << "How many numbers will you enter? ";
+    cin >> n;
 
     if (n <= 0) {
-        std::cout << "Please enter a positive count.\n";
+        cout << "Please enter a positive count.\n";
         return 0;
     }
 
@@ -16,8 +18,8 @@ int main() {
     double maximum = 0.0;
 
     for (int i = 0; i < n; ++i) {
-        std::cout << "Number " << (i + 1) << ": ";
-        std::cin >> value;
+        cout << "Number " << (i + 1) << ": ";
+        cin >> value;
 
         if (i == 0) {
             minimum = value;
@@ -36,11 +38,11 @@ int main() {
 
     const double average = sum / n;
 
-    std::cout << "\nResults:\n";
-    std::cout << "Sum: " << sum << '\n';
-    std::cout << "Average: " << average << '\n';
-    std::cout << "Minimum: " << minimum << '\n';
-    std::cout << "Maximum: " << maximum << '\n';
+    cout << "\nResults:\n";
+    cout << "Sum: " << sum << '\n';
+    cout << "Average: " << average << '\n';
+    cout << "Minimum: " << minimum << '\n';
+    cout << "Maximum: " << maximum << '\n';
 
     return 0;
 }

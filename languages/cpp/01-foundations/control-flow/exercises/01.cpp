@@ -1,26 +1,28 @@
-#include <iostream>
+﻿#include <iostream>
+using namespace std;
+
 
 int main() {
     int n = 0;
-    std::cout << "Run FizzBuzz up to: ";
-    std::cin >> n;
+    cout << "Run FizzBuzz up to: ";
+    cin >> n;
 
     for (int i = 1; i <= n; ++i) {
         if (i % 15 == 0) {
-            std::cout << "FizzBuzz";
+            cout << "FizzBuzz";
         } else if (i % 3 == 0) {
-            std::cout << "Fizz";
+            cout << "Fizz";
         } else if (i % 5 == 0) {
-            std::cout << "Buzz";
+            cout << "Buzz";
         } else {
-            std::cout << i;
+            cout << i;
         }
 
         if (i < n) {
-            std::cout << '\n';
+            cout << '\n';
         }
     }
 
-    std::cout << '\n';
+    cout << '\n';
     return 0;
 }

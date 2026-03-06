@@ -1,26 +1,28 @@
-#include <algorithm>
+﻿#include <algorithm>
 #include <iostream>
 #include <vector>
+using namespace std;
+
 
 int main() {
-    std::vector<int> values{7, 2, 9, 4, 2, 8};
+    vector<int> values{7, 2, 9, 4, 2, 8};
 
-    std::sort(values.begin(), values.end());
+    sort(values.begin(), values.end());
 
-    std::cout << "Sorted: ";
+    cout << "Sorted: ";
     for (int value : values) {
-        std::cout << value << ' ';
+        cout << value << ' ';
     }
-    std::cout << '\n';
+    cout << '\n';
 
     const int target = 4;
-    auto it = std::lower_bound(values.begin(), values.end(), target);
+    auto it = lower_bound(values.begin(), values.end(), target);
 
     if (it != values.end() && *it == target) {
-        const std::size_t index = static_cast<std::size_t>(it - values.begin());
-        std::cout << "Found " << target << " at index " << index << '\n';
+        const size_t index = static_cast<size_t>(it - values.begin());
+        cout << "Found " << target << " at index " << index << '\n';
     } else {
-        std::cout << target << " not found\n";
+        cout << target << " not found\n";
     }
 
     return 0;

@@ -1,12 +1,14 @@
-#include <cctype>
+﻿#include <cctype>
 #include <iostream>
 #include <limits>
 #include <string>
+using namespace std;
 
-int countVowels(const std::string& text) {
+
+int countVowels(const string& text) {
     int count = 0;
     for (char ch : text) {
-        const char lower = static_cast<char>(std::tolower(static_cast<unsigned char>(ch)));
+        const char lower = static_cast<char>(tolower(static_cast<unsigned char>(ch)));
         if (lower == 'a' || lower == 'e' || lower == 'i' || lower == 'o' || lower == 'u') {
             ++count;
         }
@@ -15,18 +17,18 @@ int countVowels(const std::string& text) {
 }
 
 int main() {
-    std::string line;
+    string line;
 
-    std::cout << "Enter a line of text: ";
-    std::getline(std::cin, line);
+    cout << "Enter a line of text: ";
+    getline(cin, line);
 
     // In case this file is run right after formatted extraction in some environments.
-    if (line.empty() && std::cin.good()) {
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::getline(std::cin, line);
+    if (line.empty() && cin.good()) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        getline(cin, line);
     }
 
-    std::cout << "Number of vowels: " << countVowels(line) << '\n';
+    cout << "Number of vowels: " << countVowels(line) << '\n';
     return 0;
 }
