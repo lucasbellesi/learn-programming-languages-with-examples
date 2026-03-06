@@ -27,6 +27,6 @@ This level builds the beginner mental model for writing small C++ programs.
 - [ ] You can compile each file with `-std=c++17 -Wall -Wextra -pedantic`.
 - [ ] You completed capstone project `languages/cpp/projects/01-foundations`.
 
-Need guidance while solving? Use [HINTS.md](./HINTS.md).
+Need guidance while solving? Use [HINTS.md](./HINTS.md) first, then [SOLUTIONS.md](./SOLUTIONS.md) for strategy checks.
 
 After finishing this level, continue with [02-core](../02-core/README.md).

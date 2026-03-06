@@ -25,6 +25,6 @@ This level focuses on robust input handling, common algorithm patterns, and file
 - [ ] You can explain at least one edge case for every exercise.
 - [ ] You completed capstone project `languages/cpp/projects/02-core`.
 
-Need guidance while solving? Use [HINTS.md](./HINTS.md).
+Need guidance while solving? Use [HINTS.md](./HINTS.md) first, then [SOLUTIONS.md](./SOLUTIONS.md) for strategy checks.
 
 After finishing this level, continue with [03-advanced](../03-advanced/README.md).

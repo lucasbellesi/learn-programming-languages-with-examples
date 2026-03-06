@@ -85,6 +85,8 @@ Use capstones to combine concepts in a realistic task flow:
 
 - [01-foundations/HINTS.md](./01-foundations/HINTS.md)
 - [02-core/HINTS.md](./02-core/HINTS.md)
+- [01-foundations/SOLUTIONS.md](./01-foundations/SOLUTIONS.md)
+- [02-core/SOLUTIONS.md](./02-core/SOLUTIONS.md)
 
 ## Build Command
 
