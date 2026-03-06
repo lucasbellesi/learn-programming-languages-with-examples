@@ -1,13 +1,17 @@
 # 02 Core
 
-This level is reserved for intermediate C++ topics that build on foundations.
+This level introduces intermediate patterns that build directly on foundations.
 
-## Intended Topics
+## Module Order
 
-- Strings in depth and parsing patterns
-- Standard library containers and algorithms
-- Error handling basics
+1. [input-validation](./input-validation/README.md)
+2. [algorithms-basics](./algorithms-basics/README.md)
 
-## Status
+## How To Study This Level
 
-This level folder is ready for future modules.
+For each module:
+
+1. Read `README.md`.
+2. Run `example/main.cpp`.
+3. Complete `exercises/01.cpp` and `exercises/02.cpp`.
+4. Mark progress in `../CHECKLIST.md`.

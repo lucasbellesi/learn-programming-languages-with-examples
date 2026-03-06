@@ -17,3 +17,10 @@
 - [ ] arrays-and-vectors exercises completed.
 - [ ] strings: understand line input, string operations, and safe indexing.
 - [ ] strings exercises completed.
+
+## Core
+
+- [ ] input-validation: recover from invalid input and enforce numeric ranges.
+- [ ] input-validation exercises completed.
+- [ ] algorithms-basics: implement linear search, counting, and min/max patterns.
+- [ ] algorithms-basics exercises completed.

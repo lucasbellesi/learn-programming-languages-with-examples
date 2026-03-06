@@ -32,10 +32,12 @@ Current C++ foundations modules:
 - `control-flow`
 - `functions`
 - `arrays-and-vectors`
+- `strings`
 
-Next C++ module:
+Current C++ core modules:
 
-- `01-foundations/strings`
+- `02-core/input-validation`
+- `02-core/algorithms-basics`
 
 ## Guided Learning Path
 
@@ -45,7 +47,7 @@ Next C++ module:
    - read `README.md`
    - run `example/main.cpp`
    - solve `exercises/01.cpp` and `exercises/02.cpp`
-   - for strings, continue with `languages/cpp/01-foundations/strings`
+   - after foundations, continue with `languages/cpp/02-core`
 4. Mark progress in `languages/cpp/CHECKLIST.md`
 5. Repeat until all modules are complete
 

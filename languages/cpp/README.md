@@ -26,6 +26,11 @@ Current concept modules inside `01-foundations`:
 - [arrays-and-vectors](./01-foundations/arrays-and-vectors/README.md)
 - [strings](./01-foundations/strings/README.md)
 
+Current concept modules inside `02-core`:
+
+- [input-validation](./02-core/input-validation/README.md)
+- [algorithms-basics](./02-core/algorithms-basics/README.md)
+
 Use the checklist: [CHECKLIST.md](./CHECKLIST.md)
 
 ## Concept Folder Structure
@@ -56,7 +61,10 @@ For each concept:
 4. Solve exercise 02 and refactor your first attempt.
 5. Compare your approach with the example style and naming.
 
-After finishing all concepts in `01-foundations`, continue to the next level folder (`02-core`).
+After finishing all concepts in `01-foundations`, continue with `02-core` in this order:
+
+1. `input-validation`
+2. `algorithms-basics`
 
 ## Build Command
 
