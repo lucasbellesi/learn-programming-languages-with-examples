@@ -11,6 +11,8 @@ This track teaches C++ through small, runnable programs and focused exercises.
 5. [04-expert](./04-expert/README.md)
 
 Use progress tracking: [CHECKLIST.md](./CHECKLIST.md)
+  
+Module README format reference: [MODULE_README_STYLE.md](./MODULE_README_STYLE.md)
 
 ## Modules By Level
 

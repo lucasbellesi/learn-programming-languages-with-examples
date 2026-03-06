@@ -1,6 +1,7 @@
 # Concept Template
 
 Use this template when creating a new concept module.
+For the C++ track, also follow `languages/cpp/MODULE_README_STYLE.md`.
 
 ## Quick Run
 

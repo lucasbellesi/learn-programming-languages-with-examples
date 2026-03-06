@@ -8,17 +8,50 @@ struct Student {
     int score;
 };
 
-int main() {
+int readPositiveCount() {
     int count = 0;
-    std::cout << "How many students? ";
-    std::cin >> count;
+    while (true) {
+        std::cout << "How many students? ";
+        if (!(std::cin >> count)) {
+            std::cout << "Invalid number. Try again.\n";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+        if (count <= 0) {
+            std::cout << "Please enter a positive number.\n";
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
 
-    if (count <= 0) {
-        std::cout << "Please enter a positive number.\n";
-        return 0;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        return count;
     }
+}
 
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+int readScore(const std::string& studentName) {
+    int score = 0;
+    while (true) {
+        std::cout << "Score for " << studentName << " (0-100): ";
+        if (!(std::cin >> score)) {
+            std::cout << "Invalid score. Enter a number from 0 to 100.\n";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+        if (score < 0 || score > 100) {
+            std::cout << "Score out of range. Enter a value from 0 to 100.\n";
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        return score;
+    }
+}
+
+int main() {
+    const int count = readPositiveCount();
 
     std::vector<Student> students;
     students.reserve(static_cast<std::size_t>(count));
@@ -27,10 +60,7 @@ int main() {
         Student student;
         std::cout << "Student name " << (i + 1) << ": ";
         std::getline(std::cin, student.name);
-
-        std::cout << "Score for " << student.name << " (0-100): ";
-        std::cin >> student.score;
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        student.score = readScore(student.name);
 
         students.push_back(student);
     }
