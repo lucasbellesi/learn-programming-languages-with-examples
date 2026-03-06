@@ -7,3 +7,5 @@ bin/
 .vscode/*.log
 .DS_Store
 Thumbs.db
+compiled_files.txt
+compile_errors.txt
