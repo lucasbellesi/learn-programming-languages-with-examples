@@ -29,3 +29,8 @@
 
 - [ ] structs-and-classes: model entities with constructors and encapsulation.
 - [ ] structs-and-classes exercises completed.
+
+## Expert
+
+- [ ] memory-management-and-raii: apply ownership rules and scope-based cleanup.
+- [ ] memory-management-and-raii exercises completed.

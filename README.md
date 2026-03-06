@@ -43,6 +43,10 @@ Current C++ advanced modules:
 
 - `03-advanced/structs-and-classes`
 
+Current C++ expert modules:
+
+- `04-expert/memory-management-and-raii`
+
 ## Guided Learning Path
 
 1. Complete setup: `languages/cpp/00-setup/README.md`
@@ -51,7 +55,7 @@ Current C++ advanced modules:
    - read `README.md`
    - run `example/main.cpp`
    - solve `exercises/01.cpp` and `exercises/02.cpp`
-   - after foundations, continue with `languages/cpp/02-core`, then `languages/cpp/03-advanced`
+   - after foundations, continue with `languages/cpp/02-core`, then `languages/cpp/03-advanced`, then `languages/cpp/04-expert`
 4. Mark progress in `languages/cpp/CHECKLIST.md`
 5. Repeat until all modules are complete
 

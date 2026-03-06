@@ -35,6 +35,10 @@ Current concept modules inside `03-advanced`:
 
 - [structs-and-classes](./03-advanced/structs-and-classes/README.md)
 
+Current concept modules inside `04-expert`:
+
+- [memory-management-and-raii](./04-expert/memory-management-and-raii/README.md)
+
 Use the checklist: [CHECKLIST.md](./CHECKLIST.md)
 
 ## Concept Folder Structure
@@ -73,6 +77,10 @@ After finishing all concepts in `01-foundations`, continue with `02-core` in thi
 Then continue with `03-advanced`:
 
 1. `structs-and-classes`
+
+Then continue with `04-expert`:
+
+1. `memory-management-and-raii`
 
 ## Build Command
 

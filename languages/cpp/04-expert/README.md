@@ -1,13 +1,16 @@
 # 04 Expert
 
-This level is reserved for expert-level C++ topics.
+This level focuses on robust C++ design for resource safety and performance.
 
-## Intended Topics
+## Module Order
 
-- Concurrency and synchronization
-- Performance and memory optimization
-- Large-scale C++ patterns and architecture
+1. [memory-management-and-raii](./memory-management-and-raii/README.md)
 
-## Status
+## How To Study This Level
 
-This level folder is ready for future modules.
+For each module:
+
+1. Read `README.md`.
+2. Run `example/main.cpp`.
+3. Complete `exercises/01.cpp` and `exercises/02.cpp`.
+4. Mark progress in `../CHECKLIST.md`.
