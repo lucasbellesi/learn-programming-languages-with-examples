@@ -13,11 +13,18 @@ fi
 
 mkdir -p build
 
+extra_flags=()
+case "$(uname -s)" in
+  Linux*|Darwin*)
+    extra_flags+=(-pthread)
+    ;;
+esac
+
 index=0
 for file in "${files[@]}"; do
   output="build/check_${index}"
   echo "Compiling: $file"
-  g++ -std=c++17 -Wall -Wextra -pedantic "$file" -o "$output"
+  g++ -std=c++17 -Wall -Wextra -pedantic "${extra_flags[@]}" "$file" -o "$output"
   index=$((index + 1))
 done
 

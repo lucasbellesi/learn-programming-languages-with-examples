@@ -1,27 +1,36 @@
 #include <iostream>
+#include <mutex>
+#include <thread>
 #include <vector>
 
 int main() {
-    int sharedCounter = 0;
+    const int threadCount = 4;
+    const int incrementsPerThread = 50000;
 
-    std::cout << "Simulated interleaving of two tasks:\n";
+    int counter = 0;
+    std::mutex counterMutex;
 
-    std::cout << "Task A reads " << sharedCounter << '\n';
-    int taskATemp = sharedCounter;
+    auto worker = [&counter, &counterMutex, incrementsPerThread]() {
+        for (int i = 0; i < incrementsPerThread; ++i) {
+            std::lock_guard<std::mutex> lock(counterMutex);
+            ++counter;
+        }
+    };
 
-    std::cout << "Task B reads " << sharedCounter << '\n';
-    int taskBTemp = sharedCounter;
+    std::vector<std::thread> threads;
+    threads.reserve(static_cast<std::size_t>(threadCount));
 
-    ++taskATemp;
-    ++taskBTemp;
+    for (int i = 0; i < threadCount; ++i) {
+        threads.emplace_back(worker);
+    }
 
-    sharedCounter = taskATemp;
-    std::cout << "Task A writes " << sharedCounter << '\n';
+    for (std::thread& thread : threads) {
+        thread.join();
+    }
 
-    sharedCounter = taskBTemp;
-    std::cout << "Task B writes " << sharedCounter << '\n';
-
-    std::cout << "Final counter: " << sharedCounter << " (expected 2 in synchronized execution)\n";
+    const int expected = threadCount * incrementsPerThread;
+    std::cout << "Expected: " << expected << '\n';
+    std::cout << "Actual: " << counter << '\n';
 
     return 0;
 }
