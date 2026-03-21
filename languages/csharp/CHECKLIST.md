@@ -16,6 +16,7 @@
 - [ ] Complete `02-core/input-validation`.
 - [ ] Complete `02-core/algorithms-basics`.
 - [ ] Complete `02-core/file-io-basics`.
+- [ ] Complete `02-core/sorting-and-searching`.
 
 ## Parity Goals
 

@@ -5,7 +5,7 @@
 This track currently covers `01-foundations` and has started `02-core`.
 
 - 8/8 foundations modules implemented.
-- 3/6 core modules implemented (`input-validation`, `algorithms-basics`, `file-io-basics`).
+- 4/6 core modules implemented (`input-validation`, `algorithms-basics`, `file-io-basics`, `sorting-and-searching`).
 - Same module naming as C++, Python, and C# for parity.
 
 ## Prerequisites
@@ -41,6 +41,7 @@ go run 01-foundations/types-and-io/example/main.go
   - [input-validation](./02-core/input-validation/README.md)
   - [algorithms-basics](./02-core/algorithms-basics/README.md)
   - [file-io-basics](./02-core/file-io-basics/README.md)
+  - [sorting-and-searching](./02-core/sorting-and-searching/README.md)
 
 ## Progress Tracking
 

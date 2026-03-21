@@ -25,19 +25,19 @@ This matrix tracks concept parity across C++, C#, Go, and Python.
 
 Current parity progress in non-C++ tracks:
 
-- C#: `3/6` modules complete
-- Go: `3/6` modules complete
-- Python: `3/6` modules complete
+- C#: `4/6` modules complete
+- Go: `4/6` modules complete
+- Python: `4/6` modules complete
 
 | Order | Module | C++ | C# | Go | Python |
 | --- | --- | --- | --- | --- | --- |
 | 1 | input-validation | Done | Done | Done | Done |
 | 2 | algorithms-basics | Done | Done | Done | Done |
 | 3 | file-io-basics | Done | Done | Done | Done |
-| 4 | sorting-and-searching | Done | Planned | Planned | Planned |
+| 4 | sorting-and-searching | Done | Done | Done | Done |
 | 5 | maps-and-frequency-counting | Done | Planned | Planned | Planned |
 | 6 | error-handling-and-defensive-programming | Done | Planned | Planned | Planned |
 
 ## Advanced and Expert
 
-`03-advanced` and `04-expert` currently exist only in the C++ track and are out of scope until `02-core` parity starts in C#, Go, and Python.
+`03-advanced` and `04-expert` currently exist only in the C++ track and are out of scope until `02-core` parity is complete in C#, Go, and Python.
