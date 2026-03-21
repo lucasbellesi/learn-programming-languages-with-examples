@@ -3,7 +3,7 @@
 This matrix tracks concept parity across C++, C#, Go, and Python.
 
 - Canonical order is defined by the C++ track.
-- Current priority is to complete `02-core` in C#, Go, and Python.
+- Current priority is to begin `03-advanced` parity planning in C#, Go, and Python.
 - Status labels:
   - `Done`: module implemented with example, exercises, and README.
   - `Planned`: module not implemented yet, already queued in order.
@@ -25,9 +25,9 @@ This matrix tracks concept parity across C++, C#, Go, and Python.
 
 Current parity progress in non-C++ tracks:
 
-- C#: `5/6` modules complete
-- Go: `5/6` modules complete
-- Python: `5/6` modules complete
+- C#: `6/6` modules complete
+- Go: `6/6` modules complete
+- Python: `6/6` modules complete
 
 | Order | Module | C++ | C# | Go | Python |
 | --- | --- | --- | --- | --- | --- |
@@ -36,8 +36,8 @@ Current parity progress in non-C++ tracks:
 | 3 | file-io-basics | Done | Done | Done | Done |
 | 4 | sorting-and-searching | Done | Done | Done | Done |
 | 5 | maps-and-frequency-counting | Done | Done | Done | Done |
-| 6 | error-handling-and-defensive-programming | Done | Planned | Planned | Planned |
+| 6 | error-handling-and-defensive-programming | Done | Done | Done | Done |
 
 ## Advanced and Expert
 
-`03-advanced` and `04-expert` currently exist only in the C++ track and are out of scope until `02-core` parity is complete in C#, Go, and Python.
+`03-advanced` and `04-expert` currently exist only in the C++ track. `02-core` parity is complete, so the next step is defining the first `03-advanced` parity batch.

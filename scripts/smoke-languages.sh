@@ -33,6 +33,7 @@ echo "[2/6] Python runtime smoke..."
 "$PYTHON_BIN" languages/python/02-core/algorithms-basics/example/main.py >/dev/null
 "$PYTHON_BIN" languages/python/02-core/sorting-and-searching/example/main.py >/dev/null
 "$PYTHON_BIN" languages/python/02-core/maps-and-frequency-counting/example/main.py >/dev/null
+"$PYTHON_BIN" languages/python/02-core/error-handling-and-defensive-programming/example/main.py >/dev/null
 
 echo "[3/6] Go compile check..."
 tmp_dir="$(mktemp -d)"
@@ -53,6 +54,7 @@ go run languages/go/01-foundations/formatted-output-and-iomanip/example/main.go 
 go run languages/go/02-core/algorithms-basics/example/main.go >/dev/null
 go run languages/go/02-core/sorting-and-searching/example/main.go >/dev/null
 go run languages/go/02-core/maps-and-frequency-counting/example/main.go >/dev/null
+go run languages/go/02-core/error-handling-and-defensive-programming/example/main.go >/dev/null
 
 echo "[5/6] C# build check..."
 while IFS= read -r project; do
@@ -65,5 +67,6 @@ dotnet run --project languages/csharp/01-foundations/formatted-output-and-iomani
 dotnet run --project languages/csharp/02-core/algorithms-basics/example/algorithms-basics-example.csproj >/dev/null
 dotnet run --project languages/csharp/02-core/sorting-and-searching/example/sorting-and-searching-example.csproj >/dev/null
 dotnet run --project languages/csharp/02-core/maps-and-frequency-counting/example/maps-and-frequency-counting-example.csproj >/dev/null
+dotnet run --project languages/csharp/02-core/error-handling-and-defensive-programming/example/error-handling-and-defensive-programming-example.csproj >/dev/null
 
 echo "Multi-language smoke checks passed."
