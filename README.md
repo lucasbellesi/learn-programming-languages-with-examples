@@ -27,7 +27,7 @@ This repository teaches programming through small runnable examples and focused 
 | C++ | 00-setup, 01-foundations, 02-core, 03-advanced, 04-expert | Foundations, Core, Advanced, Expert, projects, assessments | Most complete and primary track |
 | C# | 01-foundations | 8/8 foundations modules | Foundations implemented, expanding next levels |
 | Go | 01-foundations | 8/8 foundations modules | Foundations implemented, expanding next levels |
-| Python | 01-foundations | 8/8 foundations modules | Foundations implemented, expanding next levels |
+| Python | 01-foundations, 02-core (partial) | 8/8 foundations modules, 1/6 core modules | Foundations complete, core expansion started |
 
 Parity planning reference: [LANGUAGE_PARITY_MATRIX.md](LANGUAGE_PARITY_MATRIX.md)
 
@@ -93,6 +93,7 @@ Run checks locally:
 ~~~powershell
 ./scripts/check-links.ps1
 ./scripts/check-readme-structure.ps1
+./scripts/check-module-completeness.ps1
 ./scripts/smoke-languages.ps1
 ./scripts/build-all.ps1
 ./scripts/verify-repo.ps1
@@ -101,12 +102,13 @@ Run checks locally:
 ~~~bash
 bash ./scripts/check-links.sh
 bash ./scripts/check-readme-structure.sh
+bash ./scripts/check-module-completeness.sh
 bash ./scripts/smoke-languages.sh
 bash ./scripts/build-all.sh
 bash ./scripts/verify-repo.sh
 ~~~
 
-GitHub Actions validates links, README structure, C++ build, and multi-language smoke checks on Linux and Windows.
+GitHub Actions validates links, README structure, module completeness, C++ build, and multi-language smoke checks on Linux and Windows.
 
 ## Contributing
 

@@ -37,6 +37,9 @@ jobs:
       - name: Check README structure
         run: bash ./scripts/check-readme-structure.sh
 
+      - name: Check module completeness
+        run: bash ./scripts/check-module-completeness.sh
+
       - name: Compile all C++ files
         run: bash ./scripts/build-all.sh
 
@@ -92,6 +95,10 @@ jobs:
       - name: Check README structure
         shell: pwsh
         run: powershell -ExecutionPolicy Bypass -File scripts\check-readme-structure.ps1
+
+      - name: Check module completeness
+        shell: pwsh
+        run: powershell -ExecutionPolicy Bypass -File scripts\check-module-completeness.ps1
 
       - name: Compile all C++ files
         shell: pwsh

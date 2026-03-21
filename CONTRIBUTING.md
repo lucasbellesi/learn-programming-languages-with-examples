@@ -34,6 +34,11 @@ Validate README structure with:
 - `./scripts/check-readme-structure.ps1` (PowerShell)
 - `bash ./scripts/check-readme-structure.sh` (Bash)
 
+Validate module completeness with:
+
+- `./scripts/check-module-completeness.ps1` (PowerShell)
+- `bash ./scripts/check-module-completeness.sh` (Bash)
+
 Run full repository checks with:
 
 - `./scripts/verify-repo.ps1` (PowerShell)

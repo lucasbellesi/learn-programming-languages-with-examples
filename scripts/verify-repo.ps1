@@ -10,15 +10,19 @@ function Assert-LastExitCode([string]$action) {
     }
 }
 
-Write-Host "[1/3] Checking markdown links..."
+Write-Host "[1/4] Checking markdown links..."
 & "$PSScriptRoot\check-links.ps1"
 Assert-LastExitCode "Markdown link check"
 
-Write-Host "[2/3] Checking README structure..."
+Write-Host "[2/4] Checking README structure..."
 & "$PSScriptRoot\check-readme-structure.ps1"
 Assert-LastExitCode "README structure check"
 
-Write-Host "[3/3] Compiling C++ files..."
+Write-Host "[3/4] Checking module completeness..."
+& "$PSScriptRoot\check-module-completeness.ps1"
+Assert-LastExitCode "Module completeness check"
+
+Write-Host "[4/4] Compiling C++ files..."
 & "$PSScriptRoot\build-all.ps1"
 Assert-LastExitCode "C++ build"
 
