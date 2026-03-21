@@ -1,11 +1,13 @@
-# C++ Module README Style
+# Module README Style (All Languages)
 
 Use this structure for every concept module under:
 
-- `01-foundations`
-- `02-core`
-- `03-advanced`
-- `04-expert`
+- `languages/cpp/01-foundations`
+- `languages/csharp/01-foundations`
+- `languages/go/01-foundations`
+- `languages/python/01-foundations`
+
+This structure is strongly recommended for higher levels as tracks expand.
 
 ## Required Sections
 
@@ -18,16 +20,16 @@ Use this structure for every concept module under:
 
 ## Section Rules
 
-- `Quick Run`: include compile + run commands for `example/main.cpp`.
-- `Topics Covered`: short bullets of key concepts only.
-- `Common Pitfalls`: practical mistakes beginners actually make.
-- `Exercise Focus`: one bullet per exercise with task summary.
-- `Exercise Specs`: for each exercise define input, output, and at least 2 edge cases.
-- `Checkpoint`: 3-5 measurable learning outcomes as checkboxes.
+- `Quick Run`: include one runnable command for `example/main.*` (or equivalent entry project).
+- `Topics Covered`: concise bullets of concepts practiced in the module.
+- `Common Pitfalls`: practical mistakes beginners frequently make.
+- `Exercise Focus`: one bullet per exercise with a clear task summary.
+- `Exercise Specs`: for each exercise define input, output, and at least two edge cases.
+- `Checkpoint`: 3-5 measurable outcomes as checkboxes.
 
 ## Writing Guidelines
 
-- Keep explanations short and practical.
-- Prefer concrete examples over theory-heavy text.
-- Use the same naming style as folder names (kebab-case paths).
-- Keep all content in English.
+- Keep explanations practical and short.
+- Align language with beginner readability.
+- Keep content in English.
+- Use folder names exactly as they appear in paths.

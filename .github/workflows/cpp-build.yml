@@ -19,6 +19,9 @@ jobs:
       - name: Check markdown links
         run: bash ./scripts/check-links.sh
 
+      - name: Check README structure
+        run: bash ./scripts/check-readme-structure.sh
+
       - name: Compile all C++ files
         run: bash ./scripts/build-all.sh
 
@@ -52,6 +55,10 @@ jobs:
       - name: Check markdown links
         shell: pwsh
         run: powershell -ExecutionPolicy Bypass -File scripts\check-links.ps1
+
+      - name: Check README structure
+        shell: pwsh
+        run: powershell -ExecutionPolicy Bypass -File scripts\check-readme-structure.ps1
 
       - name: Compile all C++ files
         shell: pwsh

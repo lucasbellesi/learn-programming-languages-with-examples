@@ -1,19 +1,47 @@
-﻿# Arrays and Vectors (Python Lists)
+# Arrays and Vectors (Python)
+
+This module practices storing sequences, iterating them, and computing frequencies.
 
 ## Quick Run
 
-```bash
+~~~bash
 python example/main.py
-```
+~~~
 
 ## Topics Covered
 
-- Building lists with `append`
-- Iterating by value and index
-- Aggregations with `sum`, `min`, and `max`
-- Reverse traversal and slicing
+- Building dynamic collections from user input.
+- Forward and reverse iteration patterns.
+- Counting occurrences of a target value.
+- Handling empty or invalid-size collections.
+
+## Common Pitfalls
+
+- Trusting collection size input when count is zero or negative.
+- Off-by-one errors while reading N elements.
+- Not handling empty input in frequency tasks.
 
 ## Exercise Focus
 
-- `exercises/01.py`: read values and print them in reverse order.
-- `exercises/02.py`: count frequency of a target value in a list.
+- exercises/01.py: read N integers, store them, and print them in reverse order.
+- exercises/02.py: read a collection and count frequency for a target integer.
+
+### Exercise Specs
+
+1. exercises/01.py
+- Input: positive integer count and then count integers.
+- Output: values printed in reverse insertion order.
+- Edge cases: count <= 0; repeated values in the collection.
+
+2. exercises/02.py
+- Input: integer list plus a target integer.
+- Output: frequency count for target value.
+- Edge cases: empty list input; target not present.
+
+## Checkpoint
+
+- [ ] I can explain the core ideas of this module.
+- [ ] I can run and modify example/main.py.
+- [ ] I completed exercises/01.py.
+- [ ] I completed exercises/02.py.
+- [ ] I validated at least one edge case for each exercise.

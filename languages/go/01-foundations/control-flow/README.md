@@ -1,18 +1,47 @@
-﻿# Control Flow (Go)
+# Control Flow (Go)
+
+This module practices branching, looping, and sentinel-driven iteration.
 
 ## Quick Run
 
-```bash
+~~~bash
 go run example/main.go
-```
+~~~
 
 ## Topics Covered
 
-- `if / else`
-- `for` loops
-- `break` and `continue`
+- Conditional branches for FizzBuzz-style rules.
+- For loops with clear termination conditions.
+- While/for sentinel loops using stop value -1.
+- Handling empty input sequences safely.
+
+## Common Pitfalls
+
+- Not handling non-positive upper bounds before entering loops.
+- Forgetting to stop on sentinel values in streaming input.
+- Dividing by zero when no values were collected.
 
 ## Exercise Focus
 
-- `exercises/01.go`: FizzBuzz.
-- `exercises/02.go`: sentinel average.
+- exercises/01.go: run FizzBuzz rules from 1 to N using condition priority.
+- exercises/02.go: read integers until -1 and print average when values exist.
+
+### Exercise Specs
+
+1. exercises/01.go
+- Input: positive integer N.
+- Output: sequence with Fizz, Buzz, or FizzBuzz substitutions.
+- Edge cases: N <= 0; multiples of both 3 and 5.
+
+2. exercises/02.go
+- Input: integer stream terminated by -1.
+- Output: average of entered values or a no-data message.
+- Edge cases: first value already -1; negative values other than sentinel.
+
+## Checkpoint
+
+- [ ] I can explain the core ideas of this module.
+- [ ] I can run and modify example/main.go.
+- [ ] I completed exercises/01.go.
+- [ ] I completed exercises/02.go.
+- [ ] I validated at least one edge case for each exercise.

@@ -29,16 +29,33 @@ Validate markdown links with:
 - `./scripts/check-links.ps1` (PowerShell)
 - `bash ./scripts/check-links.sh` (Bash)
 
+Validate README structure with:
+
+- `./scripts/check-readme-structure.ps1` (PowerShell)
+- `bash ./scripts/check-readme-structure.sh` (Bash)
+
+Run full repository checks with:
+
+- `./scripts/verify-repo.ps1` (PowerShell)
+- `bash ./scripts/verify-repo.sh` (Bash)
+
 4. Update related README files when behavior or structure changes.
 5. Open a pull request with a clear description of what changed and why.
 
 ## Content Expectations
 
 - New concept modules should follow the existing folder layout.
-- Every concept README should include: `Quick Run`, `Topics Covered`, `Common Pitfalls`, `Exercise Focus`, and `Checkpoint`.
+- Every `01-foundations` concept README should include:
+  - `## Quick Run`
+  - `## Topics Covered`
+  - `## Common Pitfalls`
+  - `## Exercise Focus`
+  - `### Exercise Specs`
+  - `## Checkpoint`
 - Every exercise file must contain complete, runnable content.
 - Avoid external dependencies and test frameworks for C++ modules.
 - Keep examples aligned with C++17.
+- Keep documentation in English and keep path names consistent with folder names.
 
 ## Commit Messages
 

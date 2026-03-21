@@ -1,19 +1,47 @@
 # Strings (C#)
 
+This module practices splitting text, normalizing characters, and basic text analysis.
+
 ## Quick Run
 
-```bash
+~~~bash
 dotnet run --project example/strings-example.csproj
-```
+~~~
 
 ## Topics Covered
 
-- String normalization and case conversion
-- Filtering characters
-- Splitting text into tokens
-- Simple text analysis
+- Tokenizing text into words.
+- Character filtering and normalization.
+- Case-insensitive comparisons.
+- Simple palindrome checks on sanitized text.
+
+## Common Pitfalls
+
+- Counting words without removing extra spaces.
+- Comparing palindromes before removing punctuation and case differences.
+- Failing to handle inputs without alphabetic characters.
 
 ## Exercise Focus
 
-- `exercises/01.cs`: count words in a sentence.
-- `exercises/02.cs`: palindrome check ignoring punctuation and case.
+- exercises/01.cs: count words in an input line using robust whitespace handling.
+- exercises/02.cs: normalize input and detect whether it is a palindrome.
+
+### Exercise Specs
+
+1. exercises/01.cs
+- Input: single line of text.
+- Output: word count.
+- Edge cases: empty or blank line; multiple spaces between words.
+
+2. exercises/02.cs
+- Input: single line that may contain spaces or punctuation.
+- Output: Palindrome or Not palindrome style result.
+- Edge cases: input with no letters; mixed upper/lower case.
+
+## Checkpoint
+
+- [ ] I can explain the core ideas of this module.
+- [ ] I can run and modify example/main.cs.
+- [ ] I completed exercises/01.cs.
+- [ ] I completed exercises/02.cs.
+- [ ] I validated at least one edge case for each exercise.

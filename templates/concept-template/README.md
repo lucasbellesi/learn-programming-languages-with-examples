@@ -1,14 +1,25 @@
-# Concept Template
+# Concept Template (Language-Agnostic)
 
-Use this template when creating a new concept module.
-For the C++ track, also follow `languages/cpp/MODULE_README_STYLE.md`.
+Use this template when creating a new concept module in any track.
 
 ## Quick Run
 
-```bash
+Include one command that runs the module example.
+
+~~~bash
+# C++
 g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o concept_example
 ./concept_example
-```
+
+# Python
+python example/main.py
+
+# Go
+go run example/main.go
+
+# C#
+dotnet run --project example/<module>-example.csproj
+~~~
 
 ## Topics Covered
 
@@ -23,24 +34,24 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o concept_example
 
 ## Exercise Focus
 
-- `exercises/01.cpp`: short task summary.
-- `exercises/02.cpp`: short task summary.
+- exercises/01.<ext>: short task summary.
+- exercises/02.<ext>: short task summary.
 
 ### Exercise Specs
 
-1. `exercises/01.cpp`
+1. exercises/01.<ext>
 - Input:
 - Output:
 - Edge cases:
 
-2. `exercises/02.cpp`
+2. exercises/02.<ext>
 - Input:
 - Output:
 - Edge cases:
 
 ## Checkpoint
 
-- [ ] I understand the module core ideas.
+- [ ] I understand the core ideas of this module.
 - [ ] I can run and explain the example.
-- [ ] I solved exercise 01.
-- [ ] I solved exercise 02.
+- [ ] I completed exercise 01.
+- [ ] I completed exercise 02.
