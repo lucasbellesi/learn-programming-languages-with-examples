@@ -29,6 +29,8 @@ This repository teaches programming through small runnable examples and focused 
 | Go | 01-foundations | 8/8 foundations modules | Foundations implemented, expanding next levels |
 | Python | 01-foundations | 8/8 foundations modules | Foundations implemented, expanding next levels |
 
+Parity planning reference: [LANGUAGE_PARITY_MATRIX.md](LANGUAGE_PARITY_MATRIX.md)
+
 ## Run One Example Per Language
 
 ### C++
@@ -91,6 +93,7 @@ Run checks locally:
 ~~~powershell
 ./scripts/check-links.ps1
 ./scripts/check-readme-structure.ps1
+./scripts/smoke-languages.ps1
 ./scripts/build-all.ps1
 ./scripts/verify-repo.ps1
 ~~~
@@ -98,11 +101,12 @@ Run checks locally:
 ~~~bash
 bash ./scripts/check-links.sh
 bash ./scripts/check-readme-structure.sh
+bash ./scripts/smoke-languages.sh
 bash ./scripts/build-all.sh
 bash ./scripts/verify-repo.sh
 ~~~
 
-GitHub Actions validates links, README structure, and C++ build on Linux and Windows.
+GitHub Actions validates links, README structure, C++ build, and multi-language smoke checks on Linux and Windows.
 
 ## Contributing
 

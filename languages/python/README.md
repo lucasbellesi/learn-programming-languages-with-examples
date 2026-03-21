@@ -46,3 +46,4 @@ python 01-foundations/types-and-io/example/main.py
 - Complete one module in Python and then the same module in C++.
 - Compare readability, typing, and standard library approaches.
 - Document at least three implementation differences per module pair.
+- Track next parity milestones in [LANGUAGE_PARITY_MATRIX.md](../../LANGUAGE_PARITY_MATRIX.md).

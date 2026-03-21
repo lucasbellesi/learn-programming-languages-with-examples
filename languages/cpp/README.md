@@ -50,6 +50,7 @@ Use C++ as the reference implementation track:
 - Solve the same module in C++, then in Python, Go, or C#.
 - Compare syntax, type systems, and standard library patterns.
 - Keep concept folder names aligned across languages.
+- Track parity targets in [LANGUAGE_PARITY_MATRIX.md](../../LANGUAGE_PARITY_MATRIX.md).
 
 ## Documentation Standards
 

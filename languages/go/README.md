@@ -46,3 +46,4 @@ go run 01-foundations/types-and-io/example/main.go
 - Complete one module in Go and then the same module in C++.
 - Compare explicit error handling, type declarations, and control flow style.
 - Document at least three implementation differences per module pair.
+- Track next parity milestones in [LANGUAGE_PARITY_MATRIX.md](../../LANGUAGE_PARITY_MATRIX.md).

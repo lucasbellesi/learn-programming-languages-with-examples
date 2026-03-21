@@ -46,3 +46,4 @@ dotnet run --project 01-foundations/types-and-io/example/types-and-io-example.cs
 - Complete one module in C# and then the same module in C++.
 - Compare type inference, object model conventions, and runtime tooling.
 - Document at least three implementation differences per module pair.
+- Track next parity milestones in [LANGUAGE_PARITY_MATRIX.md](../../LANGUAGE_PARITY_MATRIX.md).

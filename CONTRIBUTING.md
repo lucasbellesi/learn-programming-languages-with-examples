@@ -39,6 +39,11 @@ Run full repository checks with:
 - `./scripts/verify-repo.ps1` (PowerShell)
 - `bash ./scripts/verify-repo.sh` (Bash)
 
+Run multi-language smoke checks with:
+
+- `./scripts/smoke-languages.ps1` (PowerShell)
+- `bash ./scripts/smoke-languages.sh` (Bash)
+
 4. Update related README files when behavior or structure changes.
 5. Open a pull request with a clear description of what changed and why.
 
@@ -56,6 +61,7 @@ Run full repository checks with:
 - Avoid external dependencies and test frameworks for C++ modules.
 - Keep examples aligned with C++17.
 - Keep documentation in English and keep path names consistent with folder names.
+- Keep parity planning updated in `LANGUAGE_PARITY_MATRIX.md` when adding modules to non-C++ tracks.
 
 ## Commit Messages
 

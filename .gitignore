@@ -10,3 +10,5 @@ bin/
 Thumbs.db
 compiled_files.txt
 compile_errors.txt
+__pycache__/
+*.pyc
