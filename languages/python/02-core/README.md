@@ -6,9 +6,10 @@ This level starts the core track with defensive programming patterns.
 
 1. [input-validation](./input-validation/README.md)
 2. [algorithms-basics](./algorithms-basics/README.md)
+3. [file-io-basics](./file-io-basics/README.md)
 
 Track progress in [../CHECKLIST.md](../CHECKLIST.md).
 
 ## Study Tip
 
-Use `algorithms-basics` to practice writing single-pass loops that compute multiple outputs efficiently.
+Use `file-io-basics` after `algorithms-basics` to practice safe parsing of text files with malformed lines.
