@@ -15,6 +15,13 @@ This repository teaches programming through small, runnable examples and focused
 3. Run one example (for example, `types-and-io/example/main.cpp`)
 4. Solve one exercise and mark progress in [C++ checklist](languages/cpp/CHECKLIST.md)
 
+## Language Guides
+
+- [C++ Guide](languages/cpp/README.md)
+- [Python Guide](languages/python/README.md)
+- [Go Guide](languages/go/README.md)
+- [C# Guide](languages/csharp/README.md)
+
 ## Learning Philosophy
 
 The project follows a practical, step-by-step approach:
@@ -35,8 +42,8 @@ learn-programming-languages-with-examples/
   languages/
     cpp/                    # Main implemented learning track
     python/                 # Foundations started
-    go/                     # Planned
-    csharp/                 # Planned
+    go/                     # Foundations started
+    csharp/                 # Foundations started
   STUDY_PLAN.md             # 4-week C++ study path
 ```
 
