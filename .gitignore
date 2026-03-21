@@ -2,6 +2,7 @@
 *.out
 *.o
 *.obj
+obj/
 build/
 bin/
 .vscode/*.log
