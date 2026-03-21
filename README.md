@@ -5,7 +5,7 @@
 This repository teaches programming through small, runnable examples and focused exercises.
 
 - Primary implemented track: **C++ (C++17)**
-- Expansion-ready for more languages (Python, Go, C#)
+- Foundations started in Python, Go, and C#
 - Designed for a **VS Code-first** workflow on Windows and Linux
 
 ## Start Here (5 Minutes)
@@ -174,7 +174,8 @@ Contributions are welcome.
 
 - C++ is the active, most complete track.
 - Python foundations are started under `languages/python/01-foundations`.
-- Go and C# directories are present as planned tracks.
+- Go foundations are started under `languages/go/01-foundations`.
+- C# foundations are started under `languages/csharp/01-foundations`.
 - Goal: keep concept structure consistent across languages for easier comparison.
 
 ## License

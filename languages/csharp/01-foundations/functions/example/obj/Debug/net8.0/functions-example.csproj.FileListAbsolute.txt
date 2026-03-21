@@ -1,0 +1,15 @@
+D:\REPOS\personal\learn-programming-languages-with-examples\languages\csharp\01-foundations\functions\example\bin\Debug\net8.0\functions-example.exe
+D:\REPOS\personal\learn-programming-languages-with-examples\languages\csharp\01-foundations\functions\example\bin\Debug\net8.0\functions-example.deps.json
+D:\REPOS\personal\learn-programming-languages-with-examples\languages\csharp\01-foundations\functions\example\bin\Debug\net8.0\functions-example.runtimeconfig.json
+D:\REPOS\personal\learn-programming-languages-with-examples\languages\csharp\01-foundations\functions\example\bin\Debug\net8.0\functions-example.dll
+D:\REPOS\personal\learn-programming-languages-with-examples\languages\csharp\01-foundations\functions\example\bin\Debug\net8.0\functions-example.pdb
+D:\REPOS\personal\learn-programming-languages-with-examples\languages\csharp\01-foundations\functions\example\obj\Debug\net8.0\functions-example.GeneratedMSBuildEditorConfig.editorconfig
+D:\REPOS\personal\learn-programming-languages-with-examples\languages\csharp\01-foundations\functions\example\obj\Debug\net8.0\functions-example.AssemblyInfoInputs.cache
+D:\REPOS\personal\learn-programming-languages-with-examples\languages\csharp\01-foundations\functions\example\obj\Debug\net8.0\functions-example.AssemblyInfo.cs
+D:\REPOS\personal\learn-programming-languages-with-examples\languages\csharp\01-foundations\functions\example\obj\Debug\net8.0\functions-example.csproj.CoreCompileInputs.cache
+D:\REPOS\personal\learn-programming-languages-with-examples\languages\csharp\01-foundations\functions\example\obj\Debug\net8.0\functions-example.sourcelink.json
+D:\REPOS\personal\learn-programming-languages-with-examples\languages\csharp\01-foundations\functions\example\obj\Debug\net8.0\functions-example.dll
+D:\REPOS\personal\learn-programming-languages-with-examples\languages\csharp\01-foundations\functions\example\obj\Debug\net8.0\refint\functions-example.dll
+D:\REPOS\personal\learn-programming-languages-with-examples\languages\csharp\01-foundations\functions\example\obj\Debug\net8.0\functions-example.pdb
+D:\REPOS\personal\learn-programming-languages-with-examples\languages\csharp\01-foundations\functions\example\obj\Debug\net8.0\functions-example.genruntimeconfig.cache
+D:\REPOS\personal\learn-programming-languages-with-examples\languages\csharp\01-foundations\functions\example\obj\Debug\net8.0\ref\functions-example.dll

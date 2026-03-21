@@ -1,9 +1,21 @@
-# Go Track (Planned)
+﻿# Go Track
 
-This track will teach core programming topics using Go:
+This track mirrors the practical style used in C++ and Python:
 
-- Clear explanations of syntax and concepts
-- Small, runnable examples
-- Practice-oriented exercises
+- concept README
+- runnable example
+- two exercises
 
-Current status: planned, not implemented yet.
+## Current Levels
+
+1. [01-foundations](./01-foundations/README.md)
+
+Use progress tracking: [CHECKLIST.md](./CHECKLIST.md)
+
+## Cross-Language Parity
+
+The first Go modules mirror early foundations:
+
+- `types-and-io`
+- `control-flow`
+- `functions`
