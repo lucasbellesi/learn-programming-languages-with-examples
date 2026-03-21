@@ -15,6 +15,13 @@ function Convert-ToWslPath([string]$path) {
     return "/mnt/$drive$rest"
 }
 
+function Assert-LastExitCode([string]$action) {
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "$action failed with exit code $LASTEXITCODE."
+        exit $LASTEXITCODE
+    }
+}
+
 $normalized = $ModulePath -replace "\\", "/"
 $fullModulePath = Join-Path $root $normalized
 $runningOnWindows = $env:OS -eq "Windows_NT"
@@ -52,26 +59,31 @@ try {
         $exampleWslPath = Convert-ToWslPath $exampleFile
         $outputWslPath = Convert-ToWslPath $outputPath
         wsl bash -lc "g++ -std=c++17 -Wall -Wextra -pedantic -pthread '$exampleWslPath' -o '$outputWslPath'"
+        Assert-LastExitCode "Compilation via WSL for $normalized/example/main.cpp"
     } else {
         $extraFlags = @()
         if (-not $runningOnWindows) {
             $extraFlags += "-pthread"
         }
         g++ -std=c++17 -Wall -Wextra -pedantic @extraFlags $exampleFile -o $outputPath
+        Assert-LastExitCode "Compilation for $normalized/example/main.cpp"
     }
 
     Write-Host "Running example..."
     if ($useWsl) {
         $outputWslPath = Convert-ToWslPath $outputPath
         wsl bash -lc "'$outputWslPath'"
+        Assert-LastExitCode "Execution via WSL for $normalized/example/main.cpp"
     } elseif ($runningOnWindows) {
         if (Test-Path "$outputPath.exe") {
             & "$outputPath.exe"
         } else {
             & $outputPath
         }
+        Assert-LastExitCode "Execution for $normalized/example/main.cpp"
     } else {
         & $outputPath
+        Assert-LastExitCode "Execution for $normalized/example/main.cpp"
     }
 
     $exerciseDir = Join-Path $fullModulePath "exercises"

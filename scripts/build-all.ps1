@@ -11,6 +11,13 @@ function Convert-ToWslPath([string]$path) {
     return "/mnt/$drive$rest"
 }
 
+function Assert-LastExitCode([string]$action) {
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "$action failed with exit code $LASTEXITCODE."
+        exit $LASTEXITCODE
+    }
+}
+
 $cppFiles = Get-ChildItem -Recurse -Path "languages/cpp" -Filter "*.cpp"
 if ($cppFiles.Count -eq 0) {
     Write-Host "No C++ files found under languages/cpp"
@@ -43,6 +50,7 @@ foreach ($file in $cppFiles) {
         $wslFile = Convert-ToWslPath $file.FullName
         $wslOutput = "/tmp/build_all_check_$index"
         wsl bash -lc "g++ -std=c++17 -Wall -Wextra -pedantic -pthread '$wslFile' -o '$wslOutput'"
+        Assert-LastExitCode "Compilation via WSL for $($file.FullName)"
     } else {
         $output = Join-Path $buildDir ("check_" + $index)
         $extraFlags = @()
@@ -50,6 +58,7 @@ foreach ($file in $cppFiles) {
             $extraFlags += "-pthread"
         }
         g++ -std=c++17 -Wall -Wextra -pedantic @extraFlags $file.FullName -o $output
+        Assert-LastExitCode "Compilation for $($file.FullName)"
     }
 
     $index++
