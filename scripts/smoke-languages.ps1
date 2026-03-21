@@ -16,6 +16,7 @@ python languages/python/02-core/error-handling-and-defensive-programming/example
 python languages/python/03-advanced/structs-and-classes/example/main.py | Out-Null
 python languages/python/03-advanced/constructors-and-invariants/example/main.py | Out-Null
 python languages/python/03-advanced/copy-and-move-semantics/example/main.py | Out-Null
+python languages/python/03-advanced/inheritance-and-polymorphism/example/main.py | Out-Null
 
 Write-Host "[3/6] Go compile check..."
 $tmpDir = Join-Path $env:TEMP ("go-smoke-" + [Guid]::NewGuid().ToString("N"))
@@ -46,6 +47,7 @@ go run languages/go/02-core/error-handling-and-defensive-programming/example/mai
 go run languages/go/03-advanced/structs-and-classes/example/main.go | Out-Null
 go run languages/go/03-advanced/constructors-and-invariants/example/main.go | Out-Null
 go run languages/go/03-advanced/copy-and-move-semantics/example/main.go | Out-Null
+go run languages/go/03-advanced/inheritance-and-polymorphism/example/main.go | Out-Null
 
 Write-Host "[5/6] C# build check..."
 $projects = Get-ChildItem -Path languages/csharp -Recurse -Filter *.csproj | Sort-Object FullName
@@ -63,5 +65,6 @@ dotnet run --project languages/csharp/02-core/error-handling-and-defensive-progr
 dotnet run --project languages/csharp/03-advanced/structs-and-classes/example/structs-and-classes-example.csproj | Out-Null
 dotnet run --project languages/csharp/03-advanced/constructors-and-invariants/example/constructors-and-invariants-example.csproj | Out-Null
 dotnet run --project languages/csharp/03-advanced/copy-and-move-semantics/example/copy-and-move-semantics-example.csproj | Out-Null
+dotnet run --project languages/csharp/03-advanced/inheritance-and-polymorphism/example/inheritance-and-polymorphism-example.csproj | Out-Null
 
 Write-Host "Multi-language smoke checks passed."

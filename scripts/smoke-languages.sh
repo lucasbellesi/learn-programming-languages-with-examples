@@ -37,6 +37,7 @@ echo "[2/6] Python runtime smoke..."
 "$PYTHON_BIN" languages/python/03-advanced/structs-and-classes/example/main.py >/dev/null
 "$PYTHON_BIN" languages/python/03-advanced/constructors-and-invariants/example/main.py >/dev/null
 "$PYTHON_BIN" languages/python/03-advanced/copy-and-move-semantics/example/main.py >/dev/null
+"$PYTHON_BIN" languages/python/03-advanced/inheritance-and-polymorphism/example/main.py >/dev/null
 
 echo "[3/6] Go compile check..."
 tmp_dir="$(mktemp -d)"
@@ -61,6 +62,7 @@ go run languages/go/02-core/error-handling-and-defensive-programming/example/mai
 go run languages/go/03-advanced/structs-and-classes/example/main.go >/dev/null
 go run languages/go/03-advanced/constructors-and-invariants/example/main.go >/dev/null
 go run languages/go/03-advanced/copy-and-move-semantics/example/main.go >/dev/null
+go run languages/go/03-advanced/inheritance-and-polymorphism/example/main.go >/dev/null
 
 echo "[5/6] C# build check..."
 while IFS= read -r project; do
@@ -77,5 +79,6 @@ dotnet run --project languages/csharp/02-core/error-handling-and-defensive-progr
 dotnet run --project languages/csharp/03-advanced/structs-and-classes/example/structs-and-classes-example.csproj >/dev/null
 dotnet run --project languages/csharp/03-advanced/constructors-and-invariants/example/constructors-and-invariants-example.csproj >/dev/null
 dotnet run --project languages/csharp/03-advanced/copy-and-move-semantics/example/copy-and-move-semantics-example.csproj >/dev/null
+dotnet run --project languages/csharp/03-advanced/inheritance-and-polymorphism/example/inheritance-and-polymorphism-example.csproj >/dev/null
 
 echo "Multi-language smoke checks passed."

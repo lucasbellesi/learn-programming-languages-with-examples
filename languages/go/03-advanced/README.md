@@ -7,9 +7,10 @@ This level starts advanced object modeling and type design.
 1. [structs-and-classes](./structs-and-classes/README.md)
 2. [constructors-and-invariants](./constructors-and-invariants/README.md)
 3. [copy-and-move-semantics](./copy-and-move-semantics/README.md)
+4. [inheritance-and-polymorphism](./inheritance-and-polymorphism/README.md)
 
 Track progress in [../CHECKLIST.md](../CHECKLIST.md).
 
 ## Study Tip
 
-Use `copy-and-move-semantics` after `constructors-and-invariants` to prevent accidental sharing when slices or objects are passed around.
+Use `inheritance-and-polymorphism` after `copy-and-move-semantics` to practice interface-based behavior variation with mixed implementations.

@@ -6,7 +6,7 @@ This track currently covers `01-foundations`, `02-core`, and early `03-advanced`
 
 - 8/8 foundations modules implemented.
 - 6/6 core modules implemented (`input-validation`, `algorithms-basics`, `file-io-basics`, `sorting-and-searching`, `maps-and-frequency-counting`, `error-handling-and-defensive-programming`).
-- 3/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`).
+- 4/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`).
 - Same module naming as C++, Go, and C# for parity.
 
 ## Prerequisites
@@ -49,6 +49,7 @@ python 01-foundations/types-and-io/example/main.py
   - [structs-and-classes](./03-advanced/structs-and-classes/README.md)
   - [constructors-and-invariants](./03-advanced/constructors-and-invariants/README.md)
   - [copy-and-move-semantics](./03-advanced/copy-and-move-semantics/README.md)
+  - [inheritance-and-polymorphism](./03-advanced/inheritance-and-polymorphism/README.md)
 
 ## Progress Tracking
 
