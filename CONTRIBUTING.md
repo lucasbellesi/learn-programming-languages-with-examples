@@ -62,6 +62,12 @@ Run multi-language smoke checks with:
   - `## Exercise Focus`
   - `### Exercise Specs`
   - `## Checkpoint`
+- Every `example/main.*` file should include intent-first comments for:
+  - program flow,
+  - input/validation blocks,
+  - core algorithm or transformation blocks,
+  - important branching decisions,
+  - output/verification sections.
 - Every exercise file must contain complete, runnable content.
 - Avoid external dependencies and test frameworks for C++ modules.
 - Keep examples aligned with C++17.

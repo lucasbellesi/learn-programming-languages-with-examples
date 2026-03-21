@@ -1,16 +1,21 @@
-﻿#include <iostream>
+// Example purpose: show the module flow with clear, beginner-friendly steps.
+
+#include <iostream>
 #include <limits>
 #include <string>
 using namespace std;
 
 
 int main() {
+    // Program flow: collect input, apply core logic, then print a verifiable result.
     string fullName;
     int age = 0;
     double gpa = 0.0;
     char enrolledAnswer = 'n';
 
+    // Intent: print intermediate or final output for quick behavior verification.
     cout << "Enter your full name: ";
+    // Intent: gather typed input first so later operations are predictable.
     getline(cin, fullName);
 
     cout << "Enter your age: ";

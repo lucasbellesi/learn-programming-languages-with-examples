@@ -1,4 +1,5 @@
 // This example demonstrates functions concepts.
+// Example purpose: show the module flow with clear, beginner-friendly steps.
 
 using System;
 
@@ -18,11 +19,13 @@ class Program
 
     static void PrintArray(int[] values)
     {
+        // Intent: print intermediate or final output for quick behavior verification.
         Console.WriteLine("[" + string.Join(", ", values) + "]");
     }
 
     static void Main()
     {
+        // Program flow: collect input, apply core logic, then print a verifiable result.
         Console.WriteLine(Add(4, 6));
 
         int[] numbers = { 10, 20, 30 };

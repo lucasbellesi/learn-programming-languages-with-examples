@@ -1,3 +1,5 @@
+// Example purpose: show the module flow with clear, beginner-friendly steps.
+
 package main
 
 import (
@@ -9,9 +11,13 @@ import (
 )
 
 func readIntInRange(reader *bufio.Reader, prompt string, minValue int, maxValue int) int {
+	// Intent: iterate through data in a clear and deterministic order.
 	for {
+		// Intent: print intermediate or final output for quick behavior verification.
 		fmt.Print(prompt)
+		// Intent: gather typed input first so later operations are predictable.
 		line, err := reader.ReadString('\n')
+		// Intent: guard invalid or edge-case paths before the main path continues.
 		if err != nil && len(line) == 0 {
 			fmt.Println("Input error. Please try again.")
 			continue
@@ -57,6 +63,7 @@ func readFloatInRange(reader *bufio.Reader, prompt string, minValue float64, max
 }
 
 func main() {
+	// Program flow: collect input, apply core logic, then print a verifiable result.
 	reader := bufio.NewReader(os.Stdin)
 
 	age := readIntInRange(reader, "Enter your age (1-120): ", 1, 120)

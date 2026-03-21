@@ -1,4 +1,5 @@
 // This example demonstrates types and io concepts.
+// Example purpose: show the module flow with clear, beginner-friendly steps.
 
 using System;
 
@@ -6,7 +7,10 @@ class Program
 {
     static void Main()
     {
+        // Program flow: collect input, apply core logic, then print a verifiable result.
+        // Intent: print intermediate or final output for quick behavior verification.
         Console.Write("Enter your full name: ");
+        // Intent: gather typed input first so later operations are predictable.
         string fullName = Console.ReadLine() ?? "";
 
         Console.Write("Enter your age: ");

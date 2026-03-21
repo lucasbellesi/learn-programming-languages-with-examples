@@ -1,4 +1,5 @@
 // This example demonstrates copy and move semantics concepts.
+// Example purpose: show the module flow with clear, beginner-friendly steps.
 
 #include <iostream>
 #include <utility>
@@ -9,6 +10,7 @@ using namespace std;
 class Buffer {
 public:
     explicit Buffer(size_t size) : data(size, 0) {
+        // Intent: print intermediate or final output for quick behavior verification.
         cout << "Constructed\n";
     }
 
@@ -21,6 +23,7 @@ public:
     }
 
     Buffer& operator=(const Buffer& other) {
+        // Intent: guard invalid or edge-case paths before the main path continues.
         if (this != &other) {
             data = other.data;
             cout << "Copy-assigned\n";
@@ -50,6 +53,7 @@ Buffer makeBuffer() {
 }
 
 int main() {
+    // Program flow: collect input, apply core logic, then print a verifiable result.
     Buffer first(3);
     Buffer second = first;
     Buffer third = makeBuffer();

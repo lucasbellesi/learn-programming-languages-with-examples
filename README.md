@@ -86,6 +86,14 @@ All concept module README files under `languages/<language>/<level>/<module>/REA
 
 Reference: [Module README Style](languages/cpp/MODULE_README_STYLE.md)
 
+## Example Commenting Standard
+
+Example files (`example/main.*`) should use intent-first comments to help new developers read code quickly:
+
+- Explain purpose, intent, and edge-case handling.
+- Place comments before meaningful logic blocks (not every single line).
+- Keep comments short, practical, and in English.
+
 ## Validation and CI
 
 Run checks locally:

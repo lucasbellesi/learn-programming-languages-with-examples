@@ -1,10 +1,15 @@
+// Example purpose: show the module flow with clear, beginner-friendly steps.
+
 package main
 
 import "fmt"
 
 func main() {
+	// Program flow: collect input, apply core logic, then print a verifiable result.
 	var totalSeconds int
+	// Intent: print intermediate or final output for quick behavior verification.
 	fmt.Print("Enter total seconds: ")
+	// Intent: gather typed input first so later operations are predictable.
 	fmt.Scanln(&totalSeconds)
 
 	hours := totalSeconds / 3600
@@ -23,6 +28,7 @@ func main() {
 	fmt.Printf("Difference: %.4f\n", a-b)
 	fmt.Printf("Product: %.4f\n", a*b)
 
+	// Intent: guard invalid or edge-case paths before the main path continues.
 	if b != 0 {
 		fmt.Printf("Division: %.4f\n", a/b)
 	} else {

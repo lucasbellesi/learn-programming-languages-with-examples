@@ -1,4 +1,5 @@
 // This example demonstrates constructors and invariants concepts.
+// Example purpose: show the module flow with clear, beginner-friendly steps.
 
 #include <iostream>
 #include <string>
@@ -8,6 +9,7 @@ using namespace std;
 class Temperature {
 public:
     explicit Temperature(double celsiusValue) : celsius(celsiusValue) {
+        // Intent: guard invalid or edge-case paths before the main path continues.
         if (celsius < -273.15) {
             celsius = -273.15;
         }
@@ -30,7 +32,9 @@ private:
 };
 
 int main() {
+    // Program flow: collect input, apply core logic, then print a verifiable result.
     Temperature temp(-500.0);
+    // Intent: print intermediate or final output for quick behavior verification.
     cout << "Initial value (clamped): " << temp.getCelsius() << " C\n";
 
     const bool ok = temp.setCelsius(25.0);

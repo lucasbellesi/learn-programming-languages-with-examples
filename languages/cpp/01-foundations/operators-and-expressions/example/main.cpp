@@ -1,13 +1,16 @@
 // This example demonstrates operators and expressions concepts.
+// Example purpose: show the module flow with clear, beginner-friendly steps.
 
 #include <iostream>
 using namespace std;
 
 
 int main() {
+    // Program flow: collect input, apply core logic, then print a verifiable result.
     const int a = 17;
     const int b = 5;
 
+    // Intent: print intermediate or final output for quick behavior verification.
     cout << "a = " << a << ", b = " << b << "\n\n";
     cout << "a + b = " << (a + b) << '\n';
     cout << "a - b = " << (a - b) << '\n';

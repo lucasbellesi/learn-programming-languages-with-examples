@@ -1,5 +1,9 @@
+# Example purpose: show the module flow with clear, beginner-friendly steps.
+
 def linear_search(values, target):
+    # Intent: iterate through data in a clear and deterministic order.
     for index, value in enumerate(values):
+        # Intent: guard invalid or edge-case paths before the main path continues.
         if value == target:
             return index
     return -1
@@ -32,6 +36,7 @@ values = [4, 7, 4, 1, 9, 4, 2]
 target = 4
 
 first_index = linear_search(values, target)
+# Intent: print intermediate or final output for quick behavior verification.
 print(f"First index of {target}: {first_index}")
 print(f"Occurrences of {target}: {count_occurrences(values, target)}")
 

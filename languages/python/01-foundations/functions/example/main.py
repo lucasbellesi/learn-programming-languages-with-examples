@@ -1,4 +1,5 @@
 # This example demonstrates functions concepts.
+# Example purpose: show the module flow with clear, beginner-friendly steps.
 
 def add(a, b):
     return a + b
@@ -9,6 +10,7 @@ def swap_in_list(values, i, j):
 
 
 def print_list(values):
+    # Intent: print intermediate or final output for quick behavior verification.
     print(values)
 
 

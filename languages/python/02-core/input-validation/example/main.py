@@ -1,12 +1,18 @@
+# Example purpose: show the module flow with clear, beginner-friendly steps.
+
 def read_int_in_range(prompt, min_value, max_value):
+    # Intent: iterate through data in a clear and deterministic order.
     while True:
+        # Intent: gather typed input first so later operations are predictable.
         raw = input(prompt).strip()
         try:
             value = int(raw)
         except ValueError:
+            # Intent: print intermediate or final output for quick behavior verification.
             print("Invalid input type. Please enter an integer.")
             continue
 
+        # Intent: guard invalid or edge-case paths before the main path continues.
         if value < min_value or value > max_value:
             print(f"Value must be between {min_value} and {max_value}.")
             continue

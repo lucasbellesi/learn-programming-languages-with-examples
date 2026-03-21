@@ -1,4 +1,5 @@
 // This example demonstrates functions concepts.
+// Example purpose: show the module flow with clear, beginner-friendly steps.
 
 package main
 
@@ -13,10 +14,12 @@ func swapInSlice(values []int, i int, j int) {
 }
 
 func printSlice(values []int) {
+    // Intent: print intermediate or final output for quick behavior verification.
     fmt.Println(values)
 }
 
 func main() {
+    // Program flow: collect input, apply core logic, then print a verifiable result.
     fmt.Println(add(4, 6))
 
     numbers := []int{10, 20, 30}

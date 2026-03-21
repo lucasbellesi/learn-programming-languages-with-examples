@@ -1,4 +1,5 @@
 // This example demonstrates inheritance and polymorphism concepts.
+// Example purpose: show the module flow with clear, beginner-friendly steps.
 
 #include <iostream>
 #include <memory>
@@ -38,11 +39,14 @@ private:
 };
 
 int main() {
+    // Program flow: collect input, apply core logic, then print a verifiable result.
     vector<unique_ptr<Shape>> shapes;
     shapes.push_back(unique_ptr<Shape>(new Rectangle(3.0, 4.0)));
     shapes.push_back(unique_ptr<Shape>(new Circle(2.0)));
 
+    // Intent: iterate through data in a clear and deterministic order.
     for (const auto& shape : shapes) {
+        // Intent: print intermediate or final output for quick behavior verification.
         cout << "Area: " << shape->area() << '\n';
     }
 

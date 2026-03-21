@@ -1,4 +1,5 @@
 // This example demonstrates arrays and vectors concepts.
+// Example purpose: show the module flow with clear, beginner-friendly steps.
 
 #include <iostream>
 #include <vector>
@@ -6,11 +7,15 @@ using namespace std;
 
 
 int main() {
+    // Program flow: collect input, apply core logic, then print a verifiable result.
     const int fixedScores[3] = {72, 88, 95};
 
+    // Intent: print intermediate or final output for quick behavior verification.
     cout << "Fixed array values: ";
+    // Intent: iterate through data in a clear and deterministic order.
     for (int i = 0; i < 3; ++i) {
         cout << fixedScores[i];
+        // Intent: guard invalid or edge-case paths before the main path continues.
         if (i < 2) {
             cout << ", ";
         }
@@ -19,6 +24,7 @@ int main() {
 
     int count = 0;
     cout << "How many temperatures do you want to enter? ";
+    // Intent: gather typed input first so later operations are predictable.
     cin >> count;
 
     if (count <= 0) {
