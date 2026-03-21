@@ -25,9 +25,9 @@ This repository teaches programming through small runnable examples and focused 
 | Language | Current Levels | Module Coverage | Track Status |
 | --- | --- | --- | --- |
 | C++ | 00-setup, 01-foundations, 02-core, 03-advanced, 04-expert | Foundations, Core, Advanced, Expert, projects, assessments | Most complete and primary track |
-| C# | 01-foundations, 02-core (partial) | 8/8 foundations modules, 4/6 core modules | Foundations complete, core expansion in progress |
-| Go | 01-foundations, 02-core (partial) | 8/8 foundations modules, 4/6 core modules | Foundations complete, core expansion in progress |
-| Python | 01-foundations, 02-core (partial) | 8/8 foundations modules, 4/6 core modules | Foundations complete, core expansion in progress |
+| C# | 01-foundations, 02-core (partial) | 8/8 foundations modules, 5/6 core modules | Foundations complete, core expansion in progress |
+| Go | 01-foundations, 02-core (partial) | 8/8 foundations modules, 5/6 core modules | Foundations complete, core expansion in progress |
+| Python | 01-foundations, 02-core (partial) | 8/8 foundations modules, 5/6 core modules | Foundations complete, core expansion in progress |
 
 Parity planning reference: [LANGUAGE_PARITY_MATRIX.md](LANGUAGE_PARITY_MATRIX.md)
 

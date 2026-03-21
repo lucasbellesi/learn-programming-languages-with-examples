@@ -25,9 +25,9 @@ This matrix tracks concept parity across C++, C#, Go, and Python.
 
 Current parity progress in non-C++ tracks:
 
-- C#: `4/6` modules complete
-- Go: `4/6` modules complete
-- Python: `4/6` modules complete
+- C#: `5/6` modules complete
+- Go: `5/6` modules complete
+- Python: `5/6` modules complete
 
 | Order | Module | C++ | C# | Go | Python |
 | --- | --- | --- | --- | --- | --- |
@@ -35,7 +35,7 @@ Current parity progress in non-C++ tracks:
 | 2 | algorithms-basics | Done | Done | Done | Done |
 | 3 | file-io-basics | Done | Done | Done | Done |
 | 4 | sorting-and-searching | Done | Done | Done | Done |
-| 5 | maps-and-frequency-counting | Done | Planned | Planned | Planned |
+| 5 | maps-and-frequency-counting | Done | Done | Done | Done |
 | 6 | error-handling-and-defensive-programming | Done | Planned | Planned | Planned |
 
 ## Advanced and Expert

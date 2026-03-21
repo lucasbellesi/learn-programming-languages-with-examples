@@ -17,6 +17,7 @@
 - [ ] Complete `02-core/algorithms-basics`.
 - [ ] Complete `02-core/file-io-basics`.
 - [ ] Complete `02-core/sorting-and-searching`.
+- [ ] Complete `02-core/maps-and-frequency-counting`.
 
 ## Parity Goals
 
