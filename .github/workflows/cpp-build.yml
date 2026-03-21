@@ -1,11 +1,11 @@
-name: C++ Build Matrix
+name: Repository CI
 
 on:
   push:
   pull_request:
 
 jobs:
-  build-linux:
+  linux-bash:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -22,7 +22,10 @@ jobs:
       - name: Compile all C++ files
         run: bash ./scripts/build-all.sh
 
-  build-windows:
+      - name: Verify repository
+        run: bash ./scripts/verify-repo.sh
+
+  windows-powershell:
     runs-on: windows-latest
     steps:
       - name: Checkout
@@ -31,18 +34,29 @@ jobs:
       - name: Setup MSYS2
         uses: msys2/setup-msys2@v2
         with:
-          msystem: MINGW64
+          msystem: UCRT64
           path-type: inherit
           update: true
           install: >-
-            mingw-w64-x86_64-gcc
+            mingw-w64-ucrt-x86_64-gcc
+
+      - name: Add MinGW to PATH
+        shell: pwsh
+        run: |
+          "C:\msys64\ucrt64\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+
+      - name: Confirm g++ toolchain
+        shell: pwsh
+        run: g++ --version
 
       - name: Check markdown links
-        shell: msys2 {0}
-        run: |
-          ./scripts/check-links.sh
+        shell: pwsh
+        run: powershell -ExecutionPolicy Bypass -File scripts\check-links.ps1
 
       - name: Compile all C++ files
-        shell: msys2 {0}
-        run: |
-          ./scripts/build-all.sh
+        shell: pwsh
+        run: powershell -ExecutionPolicy Bypass -File scripts\build-all.ps1
+
+      - name: Verify repository
+        shell: pwsh
+        run: powershell -ExecutionPolicy Bypass -File scripts\verify-repo.ps1

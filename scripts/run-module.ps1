@@ -22,6 +22,15 @@ function Assert-LastExitCode([string]$action) {
     }
 }
 
+function Assert-WslToolchainReady() {
+    wsl bash -lc "command -v g++ >/dev/null 2>&1"
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "WSL fallback is not ready: unable to run g++ inside WSL."
+        Write-Host "Install g++ in WSL, fix WSL access, or install native g++ on Windows."
+        exit 1
+    }
+}
+
 $normalized = $ModulePath -replace "\\", "/"
 $fullModulePath = Join-Path $root $normalized
 $runningOnWindows = $env:OS -eq "Windows_NT"
@@ -46,6 +55,8 @@ $useWsl = $false
 if (-not $nativeGpp) {
     if ($runningOnWindows -and $wslCommand) {
         $useWsl = $true
+        Write-Host "Native g++ not found. Using WSL g++ fallback."
+        Assert-WslToolchainReady
     } else {
         Write-Host "g++ was not found in PATH."
         Write-Host "Install g++ (or use WSL on Windows) and try again."
