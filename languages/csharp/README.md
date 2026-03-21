@@ -14,8 +14,13 @@ Use progress tracking: [CHECKLIST.md](./CHECKLIST.md)
 
 ## Cross-Language Parity
 
-The first C# modules mirror early foundations:
+C# 01-foundations now mirrors C++ foundations modules:
 
 - `types-and-io`
+- `operators-and-expressions`
 - `control-flow`
 - `functions`
+- `arrays-and-vectors`
+- `strings`
+- `scope-and-lifetime-basics`
+- `formatted-output-and-iomanip`

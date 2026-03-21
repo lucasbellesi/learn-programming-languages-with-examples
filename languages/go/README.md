@@ -14,8 +14,13 @@ Use progress tracking: [CHECKLIST.md](./CHECKLIST.md)
 
 ## Cross-Language Parity
 
-The first Go modules mirror early foundations:
+Go 01-foundations now mirrors C++ foundations modules:
 
 - `types-and-io`
+- `operators-and-expressions`
 - `control-flow`
 - `functions`
+- `arrays-and-vectors`
+- `strings`
+- `scope-and-lifetime-basics`
+- `formatted-output-and-iomanip`

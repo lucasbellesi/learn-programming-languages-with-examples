@@ -1,0 +1,33 @@
+package main
+
+import "fmt"
+
+func main() {
+	fixedScores := [3]int{72, 88, 95}
+	fmt.Printf("Fixed array values: %d, %d, %d\n", fixedScores[0], fixedScores[1], fixedScores[2])
+
+	var count int
+	fmt.Print("How many temperatures do you want to enter? ")
+	fmt.Scanln(&count)
+
+	if count <= 0 {
+		fmt.Println("Nothing to process.")
+		return
+	}
+
+	temperatures := make([]float64, 0, count)
+	for i := 0; i < count; i++ {
+		var value float64
+		fmt.Printf("Temperature %d: ", i+1)
+		fmt.Scanln(&value)
+		temperatures = append(temperatures, value)
+	}
+
+	sum := 0.0
+	for _, value := range temperatures {
+		sum += value
+	}
+
+	average := sum / float64(len(temperatures))
+	fmt.Printf("Average temperature: %.2f\n", average)
+}

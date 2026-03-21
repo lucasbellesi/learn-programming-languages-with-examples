@@ -1,10 +1,15 @@
-# Python Progress Checklist
+﻿# Python Progress Checklist
 
 ## 01-foundations
 
 - [ ] Complete `01-foundations/types-and-io`.
+- [ ] Complete `01-foundations/operators-and-expressions`.
 - [ ] Complete `01-foundations/control-flow`.
 - [ ] Complete `01-foundations/functions`.
+- [ ] Complete `01-foundations/arrays-and-vectors`.
+- [ ] Complete `01-foundations/strings`.
+- [ ] Complete `01-foundations/scope-and-lifetime-basics`.
+- [ ] Complete `01-foundations/formatted-output-and-iomanip`.
 
 ## Parity Goals
 
