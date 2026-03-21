@@ -42,16 +42,16 @@ Current parity progress in non-C++ tracks:
 
 Current parity progress in non-C++ tracks:
 
-- C#: `1/5` modules complete in `03-advanced`
-- Go: `1/5` modules complete in `03-advanced`
-- Python: `1/5` modules complete in `03-advanced`
+- C#: `2/5` modules complete in `03-advanced`
+- Go: `2/5` modules complete in `03-advanced`
+- Python: `2/5` modules complete in `03-advanced`
 
 ### Advanced (`03-advanced`) - Current Expansion Queue
 
 | Order | Module | C++ | C# | Go | Python |
 | --- | --- | --- | --- | --- | --- |
 | 1 | structs-and-classes | Done | Done | Done | Done |
-| 2 | constructors-and-invariants | Done | Planned | Planned | Planned |
+| 2 | constructors-and-invariants | Done | Done | Done | Done |
 | 3 | copy-and-move-semantics | Done | Planned | Planned | Planned |
 | 4 | inheritance-and-polymorphism | Done | Planned | Planned | Planned |
 | 5 | templates-basics | Done | Planned | Planned | Planned |

@@ -23,6 +23,7 @@
 ## 03-advanced
 
 - [ ] Complete `03-advanced/structs-and-classes`.
+- [ ] Complete `03-advanced/constructors-and-invariants`.
 
 ## Parity Goals
 
