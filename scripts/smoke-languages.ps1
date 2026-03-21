@@ -13,6 +13,7 @@ python languages/python/02-core/algorithms-basics/example/main.py | Out-Null
 python languages/python/02-core/sorting-and-searching/example/main.py | Out-Null
 python languages/python/02-core/maps-and-frequency-counting/example/main.py | Out-Null
 python languages/python/02-core/error-handling-and-defensive-programming/example/main.py | Out-Null
+python languages/python/03-advanced/structs-and-classes/example/main.py | Out-Null
 
 Write-Host "[3/6] Go compile check..."
 $tmpDir = Join-Path $env:TEMP ("go-smoke-" + [Guid]::NewGuid().ToString("N"))
@@ -40,6 +41,7 @@ go run languages/go/02-core/algorithms-basics/example/main.go | Out-Null
 go run languages/go/02-core/sorting-and-searching/example/main.go | Out-Null
 go run languages/go/02-core/maps-and-frequency-counting/example/main.go | Out-Null
 go run languages/go/02-core/error-handling-and-defensive-programming/example/main.go | Out-Null
+go run languages/go/03-advanced/structs-and-classes/example/main.go | Out-Null
 
 Write-Host "[5/6] C# build check..."
 $projects = Get-ChildItem -Path languages/csharp -Recurse -Filter *.csproj | Sort-Object FullName
@@ -54,5 +56,6 @@ dotnet run --project languages/csharp/02-core/algorithms-basics/example/algorith
 dotnet run --project languages/csharp/02-core/sorting-and-searching/example/sorting-and-searching-example.csproj | Out-Null
 dotnet run --project languages/csharp/02-core/maps-and-frequency-counting/example/maps-and-frequency-counting-example.csproj | Out-Null
 dotnet run --project languages/csharp/02-core/error-handling-and-defensive-programming/example/error-handling-and-defensive-programming-example.csproj | Out-Null
+dotnet run --project languages/csharp/03-advanced/structs-and-classes/example/structs-and-classes-example.csproj | Out-Null
 
 Write-Host "Multi-language smoke checks passed."

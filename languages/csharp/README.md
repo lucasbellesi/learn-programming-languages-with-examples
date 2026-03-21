@@ -2,10 +2,11 @@
 
 ## Scope and Status
 
-This track currently covers `01-foundations` and `02-core`.
+This track currently covers `01-foundations`, `02-core`, and early `03-advanced`.
 
 - 8/8 foundations modules implemented.
 - 6/6 core modules implemented (`input-validation`, `algorithms-basics`, `file-io-basics`, `sorting-and-searching`, `maps-and-frequency-counting`, `error-handling-and-defensive-programming`).
+- 1/5 advanced modules implemented (`structs-and-classes`).
 - Same module naming as C++, Python, and Go for parity.
 
 ## Prerequisites
@@ -44,6 +45,8 @@ dotnet run --project 01-foundations/types-and-io/example/types-and-io-example.cs
   - [sorting-and-searching](./02-core/sorting-and-searching/README.md)
   - [maps-and-frequency-counting](./02-core/maps-and-frequency-counting/README.md)
   - [error-handling-and-defensive-programming](./02-core/error-handling-and-defensive-programming/README.md)
+- [03-advanced](./03-advanced/README.md)
+  - [structs-and-classes](./03-advanced/structs-and-classes/README.md)
 
 ## Progress Tracking
 

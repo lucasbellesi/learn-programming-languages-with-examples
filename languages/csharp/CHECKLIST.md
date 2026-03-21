@@ -20,6 +20,10 @@
 - [ ] Complete `02-core/maps-and-frequency-counting`.
 - [ ] Complete `02-core/error-handling-and-defensive-programming`.
 
+## 03-advanced
+
+- [ ] Complete `03-advanced/structs-and-classes`.
+
 ## Parity Goals
 
 - [ ] Compare each C# module with C++ and Python equivalents.
