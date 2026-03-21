@@ -5,7 +5,7 @@
 This track currently covers `01-foundations` and has started `02-core`.
 
 - 8/8 foundations modules implemented.
-- 1/6 core modules implemented (`input-validation`).
+- 2/6 core modules implemented (`input-validation`, `algorithms-basics`).
 - Same module naming as C++, Python, and C# for parity.
 
 ## Prerequisites
@@ -39,6 +39,7 @@ go run 01-foundations/types-and-io/example/main.go
   - [formatted-output-and-iomanip](./01-foundations/formatted-output-and-iomanip/README.md)
 - [02-core](./02-core/README.md)
   - [input-validation](./02-core/input-validation/README.md)
+  - [algorithms-basics](./02-core/algorithms-basics/README.md)
 
 ## Progress Tracking
 

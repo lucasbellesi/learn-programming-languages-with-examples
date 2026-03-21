@@ -26,7 +26,7 @@ This matrix tracks concept parity across C++, C#, Go, and Python.
 | Order | Module | C++ | C# | Go | Python |
 | --- | --- | --- | --- | --- | --- |
 | 1 | input-validation | Done | Done | Done | Done |
-| 2 | algorithms-basics | Done | Planned | Planned | Planned |
+| 2 | algorithms-basics | Done | Done | Done | Done |
 | 3 | file-io-basics | Done | Planned | Planned | Planned |
 | 4 | sorting-and-searching | Done | Planned | Planned | Planned |
 | 5 | maps-and-frequency-counting | Done | Planned | Planned | Planned |

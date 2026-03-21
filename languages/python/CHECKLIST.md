@@ -14,6 +14,7 @@
 ## 02-core
 
 - [ ] Complete `02-core/input-validation`.
+- [ ] Complete `02-core/algorithms-basics`.
 
 ## Parity Goals
 

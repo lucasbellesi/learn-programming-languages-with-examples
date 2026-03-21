@@ -30,6 +30,7 @@ echo "[1/6] Python syntax check..."
 echo "[2/6] Python runtime smoke..."
 "$PYTHON_BIN" languages/python/01-foundations/functions/example/main.py >/dev/null
 "$PYTHON_BIN" languages/python/01-foundations/formatted-output-and-iomanip/example/main.py >/dev/null
+"$PYTHON_BIN" languages/python/02-core/algorithms-basics/example/main.py >/dev/null
 
 echo "[3/6] Go compile check..."
 tmp_dir="$(mktemp -d)"
@@ -47,6 +48,7 @@ done < <(find languages/go -type f -name "*.go" | sort)
 echo "[4/6] Go runtime smoke..."
 go run languages/go/01-foundations/functions/example/main.go >/dev/null
 go run languages/go/01-foundations/formatted-output-and-iomanip/example/main.go >/dev/null
+go run languages/go/02-core/algorithms-basics/example/main.go >/dev/null
 
 echo "[5/6] C# build check..."
 while IFS= read -r project; do
@@ -56,5 +58,6 @@ done < <(find languages/csharp -type f -name "*.csproj" | sort)
 echo "[6/6] C# runtime smoke..."
 dotnet run --project languages/csharp/01-foundations/functions/example/functions-example.csproj >/dev/null
 dotnet run --project languages/csharp/01-foundations/formatted-output-and-iomanip/example/formatted-output-and-iomanip-example.csproj >/dev/null
+dotnet run --project languages/csharp/02-core/algorithms-basics/example/algorithms-basics-example.csproj >/dev/null
 
 echo "Multi-language smoke checks passed."
