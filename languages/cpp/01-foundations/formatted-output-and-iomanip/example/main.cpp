@@ -1,4 +1,6 @@
-﻿#include <iomanip>
+// This example demonstrates formatted output and iomanip concepts.
+
+#include <iomanip>
 #include <iostream>
 using namespace std;
 

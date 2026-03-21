@@ -1,3 +1,5 @@
+# This example demonstrates functions concepts.
+
 def add(a, b):
     return a + b
 

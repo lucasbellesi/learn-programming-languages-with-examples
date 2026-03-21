@@ -1,4 +1,6 @@
-﻿package main
+// This example demonstrates control flow concepts.
+
+package main
 
 import "fmt"
 

@@ -1,4 +1,6 @@
-﻿using System;
+// This example demonstrates types and io concepts.
+
+using System;
 
 class Program
 {

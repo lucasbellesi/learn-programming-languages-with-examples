@@ -1,4 +1,6 @@
-﻿using System;
+// This example demonstrates functions concepts.
+
+using System;
 
 class Program
 {

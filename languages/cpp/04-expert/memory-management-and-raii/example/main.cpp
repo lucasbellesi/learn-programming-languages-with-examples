@@ -1,4 +1,6 @@
-﻿#include <cstddef>
+// This example demonstrates memory management and raii concepts.
+
+#include <cstddef>
 #include <iostream>
 #include <memory>
 #include <string>

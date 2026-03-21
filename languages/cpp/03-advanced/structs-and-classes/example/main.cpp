@@ -1,4 +1,6 @@
-﻿#include <iostream>
+// This example demonstrates structs and classes concepts.
+
+#include <iostream>
 #include <string>
 #include <vector>
 using namespace std;

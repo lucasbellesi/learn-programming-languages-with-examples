@@ -1,3 +1,5 @@
+# This example demonstrates control flow concepts.
+
 value = int(input("Enter an integer: "))
 
 if value > 0:

@@ -1,4 +1,6 @@
-﻿#include <iostream>
+// This example demonstrates inheritance and polymorphism concepts.
+
+#include <iostream>
 #include <memory>
 #include <vector>
 using namespace std;

@@ -1,4 +1,6 @@
-﻿#include <iostream>
+// This example demonstrates copy and move semantics concepts.
+
+#include <iostream>
 #include <utility>
 #include <vector>
 using namespace std;

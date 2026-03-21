@@ -1,4 +1,6 @@
-﻿package main
+// This example demonstrates types and io concepts.
+
+package main
 
 import "fmt"
 

@@ -1,3 +1,5 @@
+# This example demonstrates types and io concepts.
+
 full_name = input("Enter your full name: ")
 age = int(input("Enter your age: "))
 gpa = float(input("Enter your GPA: "))

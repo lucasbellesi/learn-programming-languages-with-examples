@@ -1,4 +1,6 @@
-﻿#include <iostream>
+// This example demonstrates arrays and vectors concepts.
+
+#include <iostream>
 #include <vector>
 using namespace std;
 

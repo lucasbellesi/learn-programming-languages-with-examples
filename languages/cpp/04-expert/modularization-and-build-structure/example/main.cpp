@@ -1,4 +1,6 @@
-﻿#include <iostream>
+// This example demonstrates modularization and build structure concepts.
+
+#include <iostream>
 using namespace std;
 
 

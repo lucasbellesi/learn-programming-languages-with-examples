@@ -1,4 +1,6 @@
-﻿#include <iostream>
+// This example demonstrates templates basics concepts.
+
+#include <iostream>
 #include <string>
 using namespace std;
 

@@ -1,4 +1,6 @@
-﻿#include <fstream>
+// This example demonstrates file io basics concepts.
+
+#include <fstream>
 #include <iostream>
 #include <string>
 using namespace std;

@@ -1,4 +1,6 @@
-﻿package main
+// This example demonstrates functions concepts.
+
+package main
 
 import "fmt"
 

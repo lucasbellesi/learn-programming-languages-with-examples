@@ -1,4 +1,6 @@
-﻿#include <chrono>
+// This example demonstrates performance and profiling basics concepts.
+
+#include <chrono>
 #include <iostream>
 #include <vector>
 using namespace std;

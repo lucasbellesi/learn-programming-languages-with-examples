@@ -1,4 +1,6 @@
-﻿#include <iostream>
+// This example demonstrates input validation concepts.
+
+#include <iostream>
 #include <limits>
 #include <string>
 using namespace std;

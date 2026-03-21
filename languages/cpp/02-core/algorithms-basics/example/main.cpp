@@ -1,4 +1,6 @@
-﻿#include <iostream>
+// This example demonstrates algorithms basics concepts.
+
+#include <iostream>
 #include <vector>
 using namespace std;
 

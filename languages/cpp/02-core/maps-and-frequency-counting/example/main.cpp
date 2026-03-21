@@ -1,4 +1,6 @@
-﻿#include <iostream>
+// This example demonstrates maps and frequency counting concepts.
+
+#include <iostream>
 #include <map>
 #include <string>
 using namespace std;

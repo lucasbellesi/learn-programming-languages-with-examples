@@ -1,4 +1,6 @@
-﻿#include <iostream>
+// This example demonstrates smart pointers in depth concepts.
+
+#include <iostream>
 #include <memory>
 #include <string>
 using namespace std;

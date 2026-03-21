@@ -1,4 +1,6 @@
-﻿#include <iostream>
+// This example demonstrates concurrency basics concepts.
+
+#include <iostream>
 #include <mutex>
 #include <thread>
 #include <vector>

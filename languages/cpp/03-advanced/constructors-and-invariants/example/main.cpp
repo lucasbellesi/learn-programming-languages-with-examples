@@ -1,4 +1,6 @@
-﻿#include <iostream>
+// This example demonstrates constructors and invariants concepts.
+
+#include <iostream>
 #include <string>
 using namespace std;
 

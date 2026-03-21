@@ -1,4 +1,6 @@
-﻿#include <iostream>
+// This example demonstrates error handling and defensive programming concepts.
+
+#include <iostream>
 #include <limits>
 using namespace std;
 

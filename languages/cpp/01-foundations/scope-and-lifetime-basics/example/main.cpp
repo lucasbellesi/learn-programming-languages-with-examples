@@ -1,4 +1,6 @@
-﻿#include <iostream>
+// This example demonstrates scope and lifetime basics concepts.
+
+#include <iostream>
 using namespace std;
 
 

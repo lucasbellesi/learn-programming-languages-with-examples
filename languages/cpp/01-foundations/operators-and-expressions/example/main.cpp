@@ -1,4 +1,6 @@
-﻿#include <iostream>
+// This example demonstrates operators and expressions concepts.
+
+#include <iostream>
 using namespace std;
 
 

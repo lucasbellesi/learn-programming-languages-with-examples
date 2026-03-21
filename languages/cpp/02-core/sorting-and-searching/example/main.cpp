@@ -1,4 +1,6 @@
-﻿#include <algorithm>
+// This example demonstrates sorting and searching concepts.
+
+#include <algorithm>
 #include <iostream>
 #include <vector>
 using namespace std;
