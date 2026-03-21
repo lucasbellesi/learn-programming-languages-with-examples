@@ -11,6 +11,10 @@
 - [ ] Complete `01-foundations/scope-and-lifetime-basics`.
 - [ ] Complete `01-foundations/formatted-output-and-iomanip`.
 
+## 02-core
+
+- [ ] Complete `02-core/input-validation`.
+
 ## Parity Goals
 
 - [ ] Compare each Go module with C++ and Python equivalents.
