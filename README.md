@@ -75,7 +75,7 @@ learn-programming-languages-with-examples/
 
 ## Documentation Contract
 
-All `01-foundations/<module>/README.md` files follow one required structure:
+All concept module README files under `languages/<language>/<level>/<module>/README.md` follow one required structure:
 
 1. `## Quick Run`
 2. `## Topics Covered`

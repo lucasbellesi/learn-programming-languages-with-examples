@@ -2,12 +2,12 @@
 
 Use this structure for every concept module under:
 
-- `languages/cpp/01-foundations`
-- `languages/csharp/01-foundations`
-- `languages/go/01-foundations`
-- `languages/python/01-foundations`
+- `languages/cpp/01-foundations`, `02-core`, `03-advanced`, `04-expert`
+- `languages/csharp/01-foundations` and newer implemented levels
+- `languages/go/01-foundations` and newer implemented levels
+- `languages/python/01-foundations` and newer implemented levels
 
-This structure is strongly recommended for higher levels as tracks expand.
+This structure is required for all implemented concept modules.
 
 ## Required Sections
 

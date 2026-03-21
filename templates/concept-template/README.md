@@ -1,6 +1,7 @@
 # Concept Template (Language-Agnostic)
 
 Use this template when creating a new concept module in any track.
+All section headings below are required by repository validation scripts.
 
 ## Quick Run
 

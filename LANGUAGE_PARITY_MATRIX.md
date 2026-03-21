@@ -23,6 +23,12 @@ This matrix tracks concept parity across C++, C#, Go, and Python.
 
 ## Core (`02-core`) - Next Expansion Queue
 
+Current parity progress in non-C++ tracks:
+
+- C#: `2/6` modules complete
+- Go: `2/6` modules complete
+- Python: `2/6` modules complete
+
 | Order | Module | C++ | C# | Go | Python |
 | --- | --- | --- | --- | --- | --- |
 | 1 | input-validation | Done | Done | Done | Done |

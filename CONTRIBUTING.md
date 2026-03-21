@@ -55,7 +55,7 @@ Run multi-language smoke checks with:
 ## Content Expectations
 
 - New concept modules should follow the existing folder layout.
-- Every `01-foundations` concept README should include:
+- Every concept README in implemented levels should include:
   - `## Quick Run`
   - `## Topics Covered`
   - `## Common Pitfalls`
