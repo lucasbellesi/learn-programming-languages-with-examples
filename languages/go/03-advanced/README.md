@@ -6,9 +6,10 @@ This level starts advanced object modeling and type design.
 
 1. [structs-and-classes](./structs-and-classes/README.md)
 2. [constructors-and-invariants](./constructors-and-invariants/README.md)
+3. [copy-and-move-semantics](./copy-and-move-semantics/README.md)
 
 Track progress in [../CHECKLIST.md](../CHECKLIST.md).
 
 ## Study Tip
 
-Use `constructors-and-invariants` after `structs-and-classes` to enforce type rules consistently from creation to updates.
+Use `copy-and-move-semantics` after `constructors-and-invariants` to prevent accidental sharing when slices or objects are passed around.
