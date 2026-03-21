@@ -31,18 +31,6 @@ jobs:
           sudo apt update
           sudo apt install -y g++
 
-      - name: Check markdown links
-        run: bash ./scripts/check-links.sh
-
-      - name: Check README structure
-        run: bash ./scripts/check-readme-structure.sh
-
-      - name: Check module completeness
-        run: bash ./scripts/check-module-completeness.sh
-
-      - name: Compile all C++ files
-        run: bash ./scripts/build-all.sh
-
       - name: Verify repository
         run: bash ./scripts/verify-repo.sh
 
@@ -87,22 +75,6 @@ jobs:
       - name: Confirm g++ toolchain
         shell: pwsh
         run: g++ --version
-
-      - name: Check markdown links
-        shell: pwsh
-        run: powershell -ExecutionPolicy Bypass -File scripts\check-links.ps1
-
-      - name: Check README structure
-        shell: pwsh
-        run: powershell -ExecutionPolicy Bypass -File scripts\check-readme-structure.ps1
-
-      - name: Check module completeness
-        shell: pwsh
-        run: powershell -ExecutionPolicy Bypass -File scripts\check-module-completeness.ps1
-
-      - name: Compile all C++ files
-        shell: pwsh
-        run: powershell -ExecutionPolicy Bypass -File scripts\build-all.ps1
 
       - name: Verify repository
         shell: pwsh

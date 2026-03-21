@@ -13,7 +13,20 @@ required_headings=(
   "## Checkpoint"
 )
 
-mapfile -t module_readmes < <(find ./languages -type f -path "*/01-foundations/*/README.md" | sort)
+languages=("cpp" "csharp" "go" "python")
+levels=("01-foundations" "02-core" "03-advanced" "04-expert")
+
+module_readmes=()
+for language in "${languages[@]}"; do
+  for level in "${levels[@]}"; do
+    level_path="./languages/$language/$level"
+    [[ -d "$level_path" ]] || continue
+    while IFS= read -r module_dir; do
+      readme="$module_dir/README.md"
+      [[ -f "$readme" ]] && module_readmes+=("$readme")
+    done < <(find "$level_path" -mindepth 1 -maxdepth 1 -type d | sort)
+  done
+done
 
 if [[ "${#module_readmes[@]}" -eq 0 ]]; then
   echo "No module README files found for validation."

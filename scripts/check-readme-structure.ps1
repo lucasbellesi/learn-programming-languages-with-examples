@@ -12,10 +12,23 @@ $requiredHeadings = @(
     "## Checkpoint"
 )
 
-$moduleReadmes = Get-ChildItem -Path (Join-Path $root "languages") -Recurse -Filter README.md |
-    Where-Object {
-        $_.FullName -match '[\\/](cpp|csharp|go|python)[\\/]01-foundations[\\/][^\\/]+[\\/]README\.md$'
+$languageNames = @("cpp", "csharp", "go", "python")
+$levelNames = @("01-foundations", "02-core", "03-advanced", "04-expert")
+
+$moduleReadmes = foreach ($language in $languageNames) {
+    foreach ($level in $levelNames) {
+        $levelPath = Join-Path $root "languages/$language/$level"
+        if (-not (Test-Path $levelPath)) {
+            continue
+        }
+
+        Get-ChildItem -Path $levelPath -Directory |
+            ForEach-Object { Join-Path $_.FullName "README.md" } |
+            Where-Object { Test-Path $_ }
     }
+}
+
+$moduleReadmes = $moduleReadmes | Sort-Object -Unique
 
 if ($moduleReadmes.Count -eq 0) {
     Write-Host "No module README files found for validation."
@@ -25,7 +38,7 @@ if ($moduleReadmes.Count -eq 0) {
 $failures = @()
 
 foreach ($file in $moduleReadmes) {
-    $content = Get-Content -Path $file.FullName -Raw
+    $content = Get-Content -Path $file -Raw
     $missing = @()
     $positions = @{}
 
@@ -39,7 +52,7 @@ foreach ($file in $moduleReadmes) {
     }
 
     if ($missing.Count -gt 0) {
-        $failures += "$($file.FullName): missing -> $($missing -join ', ')"
+        $failures += "${file}: missing -> $($missing -join ', ')"
         continue
     }
 
@@ -47,7 +60,7 @@ foreach ($file in $moduleReadmes) {
     foreach ($heading in $requiredHeadings) {
         $currentIndex = $positions[$heading]
         if ($currentIndex -lt $lastIndex) {
-            $failures += "$($file.FullName): required headings are out of order."
+            $failures += "${file}: required headings are out of order."
             break
         }
         $lastIndex = $currentIndex
