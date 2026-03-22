@@ -3,7 +3,7 @@
 This matrix tracks concept parity across C++, C#, Go, and Python.
 
 - Canonical order is defined by the C++ track.
-- Current priority is to finish `03-advanced` parity by implementing `templates-basics`.
+- Current priority is to define the next parity step after completing `03-advanced`.
 - Status labels:
   - `Done`: module implemented with example, exercises, and README.
   - `Planned`: module not implemented yet, already queued in order.
@@ -42,9 +42,9 @@ Current parity progress in non-C++ tracks:
 
 Current parity progress in non-C++ tracks:
 
-- C#: `4/5` modules complete in `03-advanced`
-- Go: `4/5` modules complete in `03-advanced`
-- Python: `4/5` modules complete in `03-advanced`
+- C#: `5/5` modules complete in `03-advanced`
+- Go: `5/5` modules complete in `03-advanced`
+- Python: `5/5` modules complete in `03-advanced`
 
 ### Advanced (`03-advanced`) - Current Expansion Queue
 
@@ -54,6 +54,6 @@ Current parity progress in non-C++ tracks:
 | 2 | constructors-and-invariants | Done | Done | Done | Done |
 | 3 | copy-and-move-semantics | Done | Done | Done | Done |
 | 4 | inheritance-and-polymorphism | Done | Done | Done | Done |
-| 5 | templates-basics | Done | Planned | Planned | Planned |
+| 5 | templates-basics | Done | Done | Done | Done |
 
 `04-expert` remains C++ only for now.

@@ -8,9 +8,10 @@ This level starts advanced object modeling and type design.
 2. [constructors-and-invariants](./constructors-and-invariants/README.md)
 3. [copy-and-move-semantics](./copy-and-move-semantics/README.md)
 4. [inheritance-and-polymorphism](./inheritance-and-polymorphism/README.md)
+5. [templates-basics](./templates-basics/README.md)
 
 Track progress in [../CHECKLIST.md](../CHECKLIST.md).
 
 ## Study Tip
 
-Use `inheritance-and-polymorphism` after `copy-and-move-semantics` to model behavior variation through a clean base contract.
+Use `templates-basics` last to generalize what you already modeled with concrete types and inheritance.

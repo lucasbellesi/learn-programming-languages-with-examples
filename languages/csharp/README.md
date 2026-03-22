@@ -2,11 +2,11 @@
 
 ## Scope and Status
 
-This track currently covers `01-foundations`, `02-core`, and early `03-advanced`.
+This track currently covers `01-foundations`, `02-core`, and `03-advanced`.
 
 - 8/8 foundations modules implemented.
 - 6/6 core modules implemented (`input-validation`, `algorithms-basics`, `file-io-basics`, `sorting-and-searching`, `maps-and-frequency-counting`, `error-handling-and-defensive-programming`).
-- 4/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`).
+- 5/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, `templates-basics`).
 - Same module naming as C++, Python, and Go for parity.
 
 ## Prerequisites
@@ -50,6 +50,7 @@ dotnet run --project 01-foundations/types-and-io/example/types-and-io-example.cs
   - [constructors-and-invariants](./03-advanced/constructors-and-invariants/README.md)
   - [copy-and-move-semantics](./03-advanced/copy-and-move-semantics/README.md)
   - [inheritance-and-polymorphism](./03-advanced/inheritance-and-polymorphism/README.md)
+  - [templates-basics](./03-advanced/templates-basics/README.md)
 
 ## Progress Tracking
 

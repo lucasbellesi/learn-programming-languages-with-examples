@@ -26,6 +26,7 @@
 - [ ] Complete `03-advanced/constructors-and-invariants`.
 - [ ] Complete `03-advanced/copy-and-move-semantics`.
 - [ ] Complete `03-advanced/inheritance-and-polymorphism`.
+- [ ] Complete `03-advanced/templates-basics`.
 
 ## Parity Goals
 
