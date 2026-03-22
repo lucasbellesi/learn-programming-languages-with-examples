@@ -18,14 +18,12 @@ class Buffer
     private Buffer(List<int> sourceValues)
     {
         values = sourceValues;
-        Console.WriteLine($"Transferred (size={values.Count})");
     }
 
     public Buffer Clone()
     {
         // Intent: deep copy isolates future changes between instances.
-        Buffer copy = new Buffer(0);
-        copy.values = new List<int>(values);
+        Buffer copy = new Buffer(new List<int>(values));
         Console.WriteLine("Cloned");
         return copy;
     }
@@ -35,7 +33,9 @@ class Buffer
         // Intent: transfer operation moves internal ownership-like responsibility.
         List<int> movedValues = values;
         values = new List<int>();
-        return new Buffer(movedValues);
+        Buffer transferred = new Buffer(movedValues);
+        Console.WriteLine($"Transferred (size={transferred.Size})");
+        return transferred;
     }
 
     public int Size => values.Count;

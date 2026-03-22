@@ -7,16 +7,9 @@ class Buffer:
         self._values = [0] * safe_size
         print(f"Constructed (size={len(self._values)})")
 
-    @classmethod
-    def _from_values(cls, values: list[int]) -> "Buffer":
-        obj = cls(0)
-        obj._values = values
-        print(f"Transferred (size={len(values)})")
-        return obj
-
     def clone(self) -> "Buffer":
         # Intent: deep copy isolates future changes between instances.
-        cloned = Buffer(0)
+        cloned = Buffer.__new__(Buffer)
         cloned._values = self._values.copy()
         print("Cloned")
         return cloned
@@ -25,7 +18,10 @@ class Buffer:
         # Intent: transfer operation hands over current data and resets source.
         moved_values = self._values
         self._values = []
-        return Buffer._from_values(moved_values)
+        transferred = Buffer.__new__(Buffer)
+        transferred._values = moved_values
+        print(f"Transferred (size={len(moved_values)})")
+        return transferred
 
     @property
     def size(self) -> int:

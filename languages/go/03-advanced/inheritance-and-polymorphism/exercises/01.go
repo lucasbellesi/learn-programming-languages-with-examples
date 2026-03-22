@@ -25,6 +25,11 @@ func main() {
 		return
 	}
 
+	if baseValue <= 0 || heightValue <= 0 {
+		fmt.Println("Base and height must be positive.")
+		return
+	}
+
 	triangle := Triangle{base: baseValue, height: heightValue}
 	fmt.Printf("Triangle area: %v\n", triangle.Area())
 }

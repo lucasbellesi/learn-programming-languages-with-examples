@@ -38,6 +38,12 @@ class Program
             return;
         }
 
+        if (baseValue <= 0.0 || heightValue <= 0.0)
+        {
+            Console.WriteLine("Base and height must be positive.");
+            return;
+        }
+
         Triangle triangle = new Triangle(baseValue, heightValue);
         Console.WriteLine($"Triangle area: {triangle.Area()}");
     }

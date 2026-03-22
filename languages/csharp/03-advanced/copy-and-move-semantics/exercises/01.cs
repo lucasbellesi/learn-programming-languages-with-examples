@@ -5,23 +5,20 @@ class IntBuffer
 {
     private List<int> values;
 
-    public IntBuffer(int size)
+    public IntBuffer(List<int> initialValues)
     {
-        int safeSize = size < 0 ? 0 : size;
-        values = new List<int>(new int[safeSize]);
+        values = new List<int>(initialValues);
         Console.WriteLine($"Constructed IntBuffer (size={values.Count})");
     }
 
     private IntBuffer(List<int> sourceValues)
     {
         values = sourceValues;
-        Console.WriteLine($"Transferred IntBuffer (size={values.Count})");
     }
 
     public IntBuffer Clone()
     {
-        IntBuffer copy = new IntBuffer(0);
-        copy.values = new List<int>(values);
+        IntBuffer copy = new IntBuffer(new List<int>(values));
         Console.WriteLine("Cloned IntBuffer");
         return copy;
     }
@@ -30,7 +27,9 @@ class IntBuffer
     {
         List<int> movedValues = values;
         values = new List<int>();
-        return new IntBuffer(movedValues);
+        IntBuffer transferred = new IntBuffer(movedValues);
+        Console.WriteLine($"Transferred IntBuffer (size={transferred.Size})");
+        return transferred;
     }
 
     public int Size => values.Count;
@@ -40,7 +39,35 @@ class Program
 {
     static void Main()
     {
-        IntBuffer a = new IntBuffer(4);
+        Console.Write("Buffer size: ");
+        if (!int.TryParse(Console.ReadLine(), out int size) || size < 0)
+        {
+            Console.WriteLine("Invalid size.");
+            return;
+        }
+
+        Console.Write("Buffer values: ");
+        string rawValues = Console.ReadLine() ?? string.Empty;
+        string[] parts = rawValues.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        if (parts.Length != size)
+        {
+            Console.WriteLine("The amount of values must match the buffer size.");
+            return;
+        }
+
+        List<int> parsedValues = new List<int>(size);
+        foreach (string part in parts)
+        {
+            if (!int.TryParse(part, out int parsed))
+            {
+                Console.WriteLine("Invalid value detected.");
+                return;
+            }
+
+            parsedValues.Add(parsed);
+        }
+
+        IntBuffer a = new IntBuffer(parsedValues);
         IntBuffer b = a.Clone();
         IntBuffer c = b.Transfer();
 

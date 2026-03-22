@@ -26,5 +26,8 @@ else:
     except ValueError:
         print("Invalid input.")
     else:
-        triangle = Triangle(base_value, height_value)
-        print(f"Triangle area: {triangle.area()}")
+        if base_value <= 0 or height_value <= 0:
+            print("Base and height must be positive.")
+        else:
+            triangle = Triangle(base_value, height_value)
+            print(f"Triangle area: {triangle.area()}")
