@@ -101,7 +101,7 @@ EOF
 )
 (
   cd languages/go/assessments/02-core
-  printf '91\n88\n72\n105\n60\n-1\n' | go run main.go >/dev/null
+  printf '12 17 31 77 91 105 64 -3 88 -1\n' | go run main.go >/dev/null
   [[ -f core_assessment_report.txt ]]
   rm -f core_assessment_report.txt
 )
@@ -139,7 +139,7 @@ EOF
 )
 (
   cd languages/csharp/assessments/02-core
-  printf '91\n88\n72\n105\n60\n-1\n' | dotnet run --project assessment-02-core.csproj >/dev/null
+  printf '12 17 31 77 91 105 64 -3 88 -1\n' | dotnet run --project assessment-02-core.csproj >/dev/null
   [[ -f core_assessment_report.txt ]]
   rm -f core_assessment_report.txt
 )

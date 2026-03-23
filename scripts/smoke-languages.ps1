@@ -128,7 +128,7 @@ finally {
 Push-Location languages/go/assessments/02-core
 try {
     $goAssessment02Input = Join-Path $env:TEMP ("go-assessment-02-" + [Guid]::NewGuid().ToString("N") + ".txt")
-    @("91", "88", "72", "105", "60", "-1") | Set-Content -Path $goAssessment02Input
+    @("12 17 31 77 91 105 64 -3 88 -1") | Set-Content -Path $goAssessment02Input
     Get-Content $goAssessment02Input | go run main.go | Out-Null
     if (-not (Test-Path "core_assessment_report.txt")) {
         throw "Go 02-core assessment did not create core_assessment_report.txt"
@@ -193,7 +193,7 @@ finally {
 Push-Location languages/csharp/assessments/02-core
 try {
     $csharpAssessment02Input = Join-Path $env:TEMP ("csharp-assessment-02-" + [Guid]::NewGuid().ToString("N") + ".txt")
-    @("91", "88", "72", "105", "60", "-1") | Set-Content -Path $csharpAssessment02Input
+    @("12 17 31 77 91 105 64 -3 88 -1") | Set-Content -Path $csharpAssessment02Input
     Get-Content $csharpAssessment02Input | dotnet run --project assessment-02-core.csproj | Out-Null
     if (-not (Test-Path "core_assessment_report.txt")) {
         throw "C# 02-core assessment did not create core_assessment_report.txt"

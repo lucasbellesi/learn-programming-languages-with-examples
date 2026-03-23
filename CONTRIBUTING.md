@@ -39,6 +39,11 @@ Validate module completeness with:
 - `./scripts/check-module-completeness.ps1` (PowerShell)
 - `bash ./scripts/check-module-completeness.sh` (Bash)
 
+Validate checkpoint completeness with:
+
+- `./scripts/check-checkpoint-completeness.ps1` (PowerShell)
+- `bash ./scripts/check-checkpoint-completeness.sh` (Bash)
+
 Run full repository checks with:
 
 - `./scripts/verify-repo.ps1` (PowerShell)

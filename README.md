@@ -108,6 +108,7 @@ Run checks locally:
 ./scripts/check-links.ps1
 ./scripts/check-readme-structure.ps1
 ./scripts/check-module-completeness.ps1
+./scripts/check-checkpoint-completeness.ps1
 ./scripts/smoke-languages.ps1
 ./scripts/build-all.ps1
 ./scripts/verify-repo.ps1
@@ -117,12 +118,13 @@ Run checks locally:
 bash ./scripts/check-links.sh
 bash ./scripts/check-readme-structure.sh
 bash ./scripts/check-module-completeness.sh
+bash ./scripts/check-checkpoint-completeness.sh
 bash ./scripts/smoke-languages.sh
 bash ./scripts/build-all.sh
 bash ./scripts/verify-repo.sh
 ~~~
 
-GitHub Actions validates links, README structure, module completeness, C++ build, and multi-language smoke checks on Linux and Windows.
+GitHub Actions validates links, README structure, module completeness, checkpoint completeness, C++ build, and multi-language smoke checks on Linux and Windows.
 
 ## Contributing
 

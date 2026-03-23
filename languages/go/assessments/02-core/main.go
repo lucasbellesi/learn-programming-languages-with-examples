@@ -36,24 +36,37 @@ func main() {
 
 	fmt.Println("Enter integer values (0-100). End with -1.")
 	scanner := bufio.NewScanner(os.Stdin)
+	stopReading := false
 	for scanner.Scan() {
 		text := strings.TrimSpace(scanner.Text())
-		value, parseErr := strconv.Atoi(text)
-		if parseErr != nil {
-			fmt.Println("Invalid input. Stopping read.")
-			break
-		}
-
-		if value == -1 {
-			break
-		}
-		if value < 0 || value > 100 {
-			fmt.Printf("Ignoring out-of-range value: %d\n", value)
+		tokens := strings.Fields(text)
+		if len(tokens) == 0 {
 			continue
 		}
 
-		values = append(values, value)
-		buckets[bucketForScore(value)]++
+		for _, token := range tokens {
+			value, parseErr := strconv.Atoi(token)
+			if parseErr != nil {
+				fmt.Printf("Ignoring invalid token: %s\n", token)
+				continue
+			}
+
+			if value == -1 {
+				stopReading = true
+				break
+			}
+			if value < 0 || value > 100 {
+				fmt.Printf("Ignoring out-of-range value: %d\n", value)
+				continue
+			}
+
+			values = append(values, value)
+			buckets[bucketForScore(value)]++
+		}
+
+		if stopReading {
+			break
+		}
 	}
 
 	if len(values) == 0 {

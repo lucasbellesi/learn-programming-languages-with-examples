@@ -12,3 +12,5 @@ compiled_files.txt
 compile_errors.txt
 __pycache__/
 *.pyc
+report.txt
+core_assessment_report.txt

@@ -23,28 +23,44 @@ class Program
         int[] buckets = new int[10];
 
         Console.WriteLine("Enter integer values (0-100). End with -1.");
+        bool stopReading = false;
         while (true)
         {
             string raw = Console.ReadLine() ?? string.Empty;
-            if (!int.TryParse(raw, out int value))
+            string[] tokens = raw.Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries);
+            if (tokens.Length == 0)
             {
-                Console.WriteLine("Invalid input. Stopping read.");
-                break;
-            }
-
-            if (value == -1)
-            {
-                break;
-            }
-
-            if (value < 0 || value > 100)
-            {
-                Console.WriteLine($"Ignoring out-of-range value: {value}");
                 continue;
             }
 
-            values.Add(value);
-            buckets[BucketForScore(value)]++;
+            foreach (string token in tokens)
+            {
+                if (!int.TryParse(token, out int value))
+                {
+                    Console.WriteLine($"Ignoring invalid token: {token}");
+                    continue;
+                }
+
+                if (value == -1)
+                {
+                    stopReading = true;
+                    break;
+                }
+
+                if (value < 0 || value > 100)
+                {
+                    Console.WriteLine($"Ignoring out-of-range value: {value}");
+                    continue;
+                }
+
+                values.Add(value);
+                buckets[BucketForScore(value)]++;
+            }
+
+            if (stopReading)
+            {
+                break;
+            }
         }
 
         if (values.Count == 0)
