@@ -1,0 +1,96 @@
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+	"strings"
+)
+
+type Student struct {
+	Name  string
+	Score int
+}
+
+func readPositiveCount(scanner *bufio.Scanner) int {
+	for {
+		fmt.Print("How many students? ")
+		if !scanner.Scan() {
+			continue
+		}
+
+		count, err := strconv.Atoi(strings.TrimSpace(scanner.Text()))
+		if err != nil {
+			fmt.Println("Invalid number. Try again.")
+			continue
+		}
+		if count <= 0 {
+			fmt.Println("Please enter a positive number.")
+			continue
+		}
+		return count
+	}
+}
+
+func readScore(scanner *bufio.Scanner, studentName string) int {
+	for {
+		fmt.Printf("Score for %s (0-100): ", studentName)
+		if !scanner.Scan() {
+			continue
+		}
+
+		score, err := strconv.Atoi(strings.TrimSpace(scanner.Text()))
+		if err != nil {
+			fmt.Println("Invalid score. Enter a number from 0 to 100.")
+			continue
+		}
+		if score < 0 || score > 100 {
+			fmt.Println("Score out of range. Enter a value from 0 to 100.")
+			continue
+		}
+		return score
+	}
+}
+
+func main() {
+	scanner := bufio.NewScanner(os.Stdin)
+	count := readPositiveCount(scanner)
+	students := make([]Student, 0, count)
+
+	for index := 0; index < count; index++ {
+		fmt.Printf("Student name %d: ", index+1)
+		scanner.Scan()
+		name := scanner.Text()
+		students = append(students, Student{Name: name, Score: readScore(scanner, name)})
+	}
+
+	total := 0
+	passCount := 0
+	highestIndex := 0
+	lowestIndex := 0
+
+	for index, student := range students {
+		total += student.Score
+		if student.Score >= 60 {
+			passCount++
+		}
+		if student.Score > students[highestIndex].Score {
+			highestIndex = index
+		}
+		if student.Score < students[lowestIndex].Score {
+			lowestIndex = index
+		}
+	}
+
+	average := float64(total) / float64(len(students))
+	fmt.Println()
+	fmt.Println("Students:")
+	for _, student := range students {
+		fmt.Printf("- %s: %d\n", student.Name, student.Score)
+	}
+	fmt.Printf("Average: %v\n", average)
+	fmt.Printf("Highest: %s (%d)\n", students[highestIndex].Name, students[highestIndex].Score)
+	fmt.Printf("Lowest: %s (%d)\n", students[lowestIndex].Name, students[lowestIndex].Score)
+	fmt.Printf("Passed: %d/%d\n", passCount, len(students))
+}

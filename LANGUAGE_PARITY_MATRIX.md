@@ -1,9 +1,9 @@
 # Language Parity Matrix
 
-This matrix tracks concept parity across C++, C#, Go, and Python.
+This matrix tracks module and checkpoint parity across C++, C#, Go, and Python.
 
 - Canonical order is defined by the C++ track.
-- Current priority is to define the next parity step after completing `03-advanced`.
+- Current priority is to extend checkpoint parity beyond `02-core` without fragmenting the curriculum.
 - Status labels:
   - `Done`: module implemented with example, exercises, and README.
   - `Planned`: module not implemented yet, already queued in order.
@@ -57,3 +57,28 @@ Current parity progress in non-C++ tracks:
 | 5 | templates-basics | Done | Done | Done | Done |
 
 `04-expert` remains C++ only for now.
+
+## Checkpoint Parity
+
+Status labels:
+
+- `Done`: checkpoint implemented with README and runnable entrypoint.
+- `Planned`: checkpoint not implemented yet.
+
+### Projects
+
+| Checkpoint | C++ | C# | Go | Python |
+| --- | --- | --- | --- | --- |
+| 01-foundations | Done | Done | Done | Done |
+| 02-core | Done | Done | Done | Done |
+| 03-advanced | Done | Planned | Planned | Planned |
+| 04-expert | Done | Planned | Planned | Planned |
+
+### Assessments
+
+| Checkpoint | C++ | C# | Go | Python |
+| --- | --- | --- | --- | --- |
+| 01-foundations | Done | Done | Done | Done |
+| 02-core | Done | Done | Done | Done |
+| 03-advanced | Done | Planned | Planned | Planned |
+| 04-expert | Done | Planned | Planned | Planned |

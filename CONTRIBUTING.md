@@ -62,6 +62,11 @@ Run multi-language smoke checks with:
   - `## Exercise Focus`
   - `### Exercise Specs`
   - `## Checkpoint`
+- Every project or assessment checkpoint should include:
+  - `README.md`
+  - runnable entrypoint (`main.cs` + `.csproj`, `main.go`, or `main.py`)
+  - the same learner goal, input/output shape, and acceptance expectations as the corresponding C++ checkpoint
+- Checkpoint README structure should mirror the matching C++ checkpoint style, not the module README contract.
 - Every `example/main.*` file should include intent-first comments for:
   - program flow,
   - input/validation blocks,
@@ -70,9 +75,11 @@ Run multi-language smoke checks with:
   - output/verification sections.
 - Every exercise file must contain complete, runnable content.
 - Avoid external dependencies and test frameworks for C++ modules.
+- Avoid external dependencies and test frameworks for non-C++ checkpoints.
 - Keep examples aligned with C++17.
 - Keep documentation in English and keep path names consistent with folder names.
-- Keep parity planning updated in `LANGUAGE_PARITY_MATRIX.md` when adding modules to non-C++ tracks.
+- Keep parity planning updated in `LANGUAGE_PARITY_MATRIX.md` when adding modules or checkpoints to non-C++ tracks.
+- Keep root and language README status sections aligned with project and assessment coverage when those directories change.
 
 ## Commit Messages
 

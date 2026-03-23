@@ -22,12 +22,12 @@ This repository teaches programming through small runnable examples and focused 
 
 ## Language Status
 
-| Language | Current Levels | Module Coverage | Track Status |
+| Language | Current Levels | Coverage | Track Status |
 | --- | --- | --- | --- |
 | C++ | 00-setup, 01-foundations, 02-core, 03-advanced, 04-expert | Foundations, Core, Advanced, Expert, projects, assessments | Most complete and primary track |
-| C# | 01-foundations, 02-core, 03-advanced | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules | Advanced parity complete |
-| Go | 01-foundations, 02-core, 03-advanced | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules | Advanced parity complete |
-| Python | 01-foundations, 02-core, 03-advanced | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules | Advanced parity complete |
+| C# | 01-foundations, 02-core, 03-advanced | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 2/4 projects, 2/4 assessments | Advanced parity complete, checkpoints started |
+| Go | 01-foundations, 02-core, 03-advanced | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 2/4 projects, 2/4 assessments | Advanced parity complete, checkpoints started |
+| Python | 01-foundations, 02-core, 03-advanced | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 2/4 projects, 2/4 assessments | Advanced parity complete, checkpoints started |
 
 Parity planning reference: [LANGUAGE_PARITY_MATRIX.md](LANGUAGE_PARITY_MATRIX.md)
 
@@ -85,6 +85,12 @@ All concept module README files under `languages/<language>/<level>/<module>/REA
 6. `## Checkpoint`
 
 Reference: [Module README Style](languages/cpp/MODULE_README_STYLE.md)
+
+Checkpoint artifacts under `languages/<language>/projects/*` and `languages/<language>/assessments/*` should mirror the corresponding C++ checkpoint style:
+
+- `README.md`
+- runnable entrypoint (`main.cs` + `.csproj`, `main.go`, or `main.py`)
+- same learner goal, input/output shape, and acceptance expectations as the C++ version
 
 ## Example Commenting Standard
 

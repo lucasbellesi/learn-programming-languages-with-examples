@@ -28,8 +28,18 @@
 - [ ] Complete `03-advanced/inheritance-and-polymorphism`.
 - [ ] Complete `03-advanced/templates-basics`.
 
+## Projects
+
+- [ ] Complete `projects/01-foundations`.
+- [ ] Complete `projects/02-core`.
+
+## Assessments
+
+- [ ] Complete `assessments/01-foundations`.
+- [ ] Complete `assessments/02-core`.
+
 ## Parity Goals
 
-- [ ] Compare each Python module with its C++ equivalent.
+- [ ] Compare each Python module or checkpoint with its C++ equivalent.
 - [ ] Re-implement one C++ exercise in Python without looking at solution.
 - [ ] Document at least 3 syntax/design differences between C++ and Python.

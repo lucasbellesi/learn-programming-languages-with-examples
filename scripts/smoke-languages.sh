@@ -39,6 +39,26 @@ echo "[2/6] Python runtime smoke..."
 "$PYTHON_BIN" languages/python/03-advanced/copy-and-move-semantics/example/main.py >/dev/null
 "$PYTHON_BIN" languages/python/03-advanced/inheritance-and-polymorphism/example/main.py >/dev/null
 "$PYTHON_BIN" languages/python/03-advanced/templates-basics/example/main.py >/dev/null
+printf '0\n2\nAna Smith\n101\n91\nBob Lee\n77\n' | "$PYTHON_BIN" languages/python/projects/01-foundations/main.py >/dev/null
+printf '3\nAna Smith\n91\nBob Lee\n55\nCarla Mendez\n88\n' | "$PYTHON_BIN" languages/python/assessments/01-foundations/main.py >/dev/null
+(
+  cd languages/python/projects/02-core
+  cat > smoke-input.txt <<'EOF'
+Ana Smith 91
+Bob Lee 77
+InvalidRow
+Carla Mendez 88
+EOF
+  printf '%s\n' "$(pwd)/smoke-input.txt" | "$PYTHON_BIN" main.py >/dev/null
+  [[ -f report.txt ]]
+  rm -f smoke-input.txt report.txt
+)
+(
+  cd languages/python/assessments/02-core
+  printf '91\n88\n72\n105\n60\n-1\n' | "$PYTHON_BIN" main.py >/dev/null
+  [[ -f core_assessment_report.txt ]]
+  rm -f core_assessment_report.txt
+)
 
 echo "[3/6] Go compile check..."
 tmp_dir="$(mktemp -d)"
@@ -65,6 +85,26 @@ go run languages/go/03-advanced/constructors-and-invariants/example/main.go >/de
 go run languages/go/03-advanced/copy-and-move-semantics/example/main.go >/dev/null
 go run languages/go/03-advanced/inheritance-and-polymorphism/example/main.go >/dev/null
 go run languages/go/03-advanced/templates-basics/example/main.go >/dev/null
+printf '0\n2\nAna Smith\n101\n91\nBob Lee\n77\n' | go run languages/go/projects/01-foundations/main.go >/dev/null
+printf '3\nAna Smith\n91\nBob Lee\n55\nCarla Mendez\n88\n' | go run languages/go/assessments/01-foundations/main.go >/dev/null
+(
+  cd languages/go/projects/02-core
+  cat > smoke-input.txt <<'EOF'
+Ana Smith 91
+Bob Lee 77
+InvalidRow
+Carla Mendez 88
+EOF
+  printf '%s\n' "$(pwd)/smoke-input.txt" | go run main.go >/dev/null
+  [[ -f report.txt ]]
+  rm -f smoke-input.txt report.txt
+)
+(
+  cd languages/go/assessments/02-core
+  printf '91\n88\n72\n105\n60\n-1\n' | go run main.go >/dev/null
+  [[ -f core_assessment_report.txt ]]
+  rm -f core_assessment_report.txt
+)
 
 echo "[5/6] C# build check..."
 while IFS= read -r project; do
@@ -83,5 +123,25 @@ dotnet run --project languages/csharp/03-advanced/constructors-and-invariants/ex
 dotnet run --project languages/csharp/03-advanced/copy-and-move-semantics/example/copy-and-move-semantics-example.csproj >/dev/null
 dotnet run --project languages/csharp/03-advanced/inheritance-and-polymorphism/example/inheritance-and-polymorphism-example.csproj >/dev/null
 dotnet run --project languages/csharp/03-advanced/templates-basics/example/templates-basics-example.csproj >/dev/null
+printf '0\n2\nAna Smith\n101\n91\nBob Lee\n77\n' | dotnet run --project languages/csharp/projects/01-foundations/foundations-project.csproj >/dev/null
+printf '3\nAna Smith\n91\nBob Lee\n55\nCarla Mendez\n88\n' | dotnet run --project languages/csharp/assessments/01-foundations/assessment-01-foundations.csproj >/dev/null
+(
+  cd languages/csharp/projects/02-core
+  cat > smoke-input.txt <<'EOF'
+Ana Smith 91
+Bob Lee 77
+InvalidRow
+Carla Mendez 88
+EOF
+  printf '%s\n' "$(pwd)/smoke-input.txt" | dotnet run --project core-project.csproj >/dev/null
+  [[ -f report.txt ]]
+  rm -f smoke-input.txt report.txt
+)
+(
+  cd languages/csharp/assessments/02-core
+  printf '91\n88\n72\n105\n60\n-1\n' | dotnet run --project assessment-02-core.csproj >/dev/null
+  [[ -f core_assessment_report.txt ]]
+  rm -f core_assessment_report.txt
+)
 
 echo "Multi-language smoke checks passed."

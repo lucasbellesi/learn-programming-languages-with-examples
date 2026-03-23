@@ -28,8 +28,18 @@
 - [ ] Complete `03-advanced/inheritance-and-polymorphism`.
 - [ ] Complete `03-advanced/templates-basics`.
 
+## Projects
+
+- [ ] Complete `projects/01-foundations`.
+- [ ] Complete `projects/02-core`.
+
+## Assessments
+
+- [ ] Complete `assessments/01-foundations`.
+- [ ] Complete `assessments/02-core`.
+
 ## Parity Goals
 
-- [ ] Compare each Go module with C++ and Python equivalents.
+- [ ] Compare each Go module or checkpoint with C++ and Python equivalents.
 - [ ] Re-implement one C++ exercise in Go without looking at solution.
 - [ ] Document at least 3 syntax/design differences.
