@@ -12,6 +12,43 @@ require_cmd() {
   fi
 }
 
+xml_escape() {
+  local value="$1"
+  value="${value//&/&amp;}"
+  value="${value//\"/&quot;}"
+  value="${value//</&lt;}"
+  value="${value//>/&gt;}"
+  printf '%s' "$value"
+}
+
+build_csharp_exercise() {
+  local exercise_path="$1"
+  local temp_root="$2"
+  local index="$3"
+  local project_dir="$temp_root/exercise-$index"
+  local escaped_path
+
+  escaped_path="$(xml_escape "$(realpath "$exercise_path")")"
+  mkdir -p "$project_dir"
+
+  cat > "$project_dir/exercise-check.csproj" <<EOF
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$escaped_path" Link="Program.cs" />
+  </ItemGroup>
+</Project>
+EOF
+
+  dotnet build "$project_dir/exercise-check.csproj" --nologo --verbosity quiet >/dev/null
+}
+
 if command -v python >/dev/null 2>&1; then
   PYTHON_BIN="python"
 elif command -v python3 >/dev/null 2>&1; then
@@ -23,6 +60,15 @@ fi
 
 require_cmd go
 require_cmd dotnet
+require_cmd realpath
+
+tmp_dir=""
+csharp_exercise_tmp_dir=""
+cleanup() {
+  [[ -n "${tmp_dir:-}" ]] && rm -rf "$tmp_dir"
+  [[ -n "${csharp_exercise_tmp_dir:-}" ]] && rm -rf "$csharp_exercise_tmp_dir"
+}
+trap cleanup EXIT
 
 echo "[1/6] Python syntax check..."
 "$PYTHON_BIN" -m compileall -q languages/python
@@ -62,10 +108,6 @@ EOF
 
 echo "[3/6] Go compile check..."
 tmp_dir="$(mktemp -d)"
-cleanup() {
-  rm -rf "$tmp_dir"
-}
-trap cleanup EXIT
 
 idx=0
 while IFS= read -r file; do
@@ -110,6 +152,13 @@ echo "[5/6] C# build check..."
 while IFS= read -r project; do
   dotnet build "$project" --nologo --verbosity quiet
 done < <(find languages/csharp -type f -name "*.csproj" | sort)
+
+csharp_exercise_tmp_dir="$(mktemp -d)"
+exercise_idx=0
+while IFS= read -r exercise; do
+  build_csharp_exercise "$exercise" "$csharp_exercise_tmp_dir" "$exercise_idx"
+  exercise_idx=$((exercise_idx + 1))
+done < <(find languages/csharp -type f -path "*/exercises/*.cs" | sort)
 
 echo "[6/6] C# runtime smoke..."
 dotnet run --project languages/csharp/01-foundations/functions/example/functions-example.csproj >/dev/null

@@ -15,6 +15,17 @@ $requiredHeadings = @(
 $languageNames = @("cpp", "csharp", "go", "python")
 $levelNames = @("01-foundations", "02-core", "03-advanced", "04-expert")
 
+function Get-HeadingLineNumber([string[]]$lines, [string]$heading) {
+    $escapedHeading = [regex]::Escape($heading)
+    for ($i = 0; $i -lt $lines.Count; $i++) {
+        if ($lines[$i] -match "^[ ]{0,3}$escapedHeading[ ]*$") {
+            return $i + 1
+        }
+    }
+
+    return -1
+}
+
 $moduleReadmes = foreach ($language in $languageNames) {
     foreach ($level in $levelNames) {
         $levelPath = Join-Path $root "languages/$language/$level"
@@ -38,16 +49,16 @@ if ($moduleReadmes.Count -eq 0) {
 $failures = @()
 
 foreach ($file in $moduleReadmes) {
-    $content = Get-Content -Path $file -Raw
+    $lines = Get-Content -Path $file
     $missing = @()
     $positions = @{}
 
     foreach ($heading in $requiredHeadings) {
-        $index = $content.IndexOf($heading)
-        if ($index -lt 0) {
+        $lineNumber = Get-HeadingLineNumber -lines $lines -heading $heading
+        if ($lineNumber -lt 0) {
             $missing += $heading
         } else {
-            $positions[$heading] = $index
+            $positions[$heading] = $lineNumber
         }
     }
 

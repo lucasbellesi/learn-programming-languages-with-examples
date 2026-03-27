@@ -16,6 +16,12 @@ required_headings=(
 languages=("cpp" "csharp" "go" "python")
 levels=("01-foundations" "02-core" "03-advanced" "04-expert")
 
+heading_line_number() {
+  local heading="$1"
+  local file="$2"
+  grep -nE "^[[:space:]]{0,3}${heading}[[:space:]]*$" "$file" | head -n1 | cut -d: -f1 || true
+}
+
 module_readmes=()
 for language in "${languages[@]}"; do
   for level in "${levels[@]}"; do
@@ -40,7 +46,7 @@ for file in "${module_readmes[@]}"; do
   lines=()
 
   for heading in "${required_headings[@]}"; do
-    line="$(grep -nF "$heading" "$file" | head -n1 | cut -d: -f1 || true)"
+    line="$(heading_line_number "$heading" "$file")"
     if [[ -z "$line" ]]; then
       missing+=("$heading")
     else

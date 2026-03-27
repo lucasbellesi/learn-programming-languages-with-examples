@@ -54,6 +54,8 @@ Run multi-language smoke checks with:
 - `./scripts/smoke-languages.ps1` (PowerShell)
 - `bash ./scripts/smoke-languages.sh` (Bash)
 
+These smoke checks also compile standalone C# exercises by generating temporary validation projects during the check.
+
 4. Update related README files when behavior or structure changes.
 5. Open a pull request with a clear description of what changed and why.
 

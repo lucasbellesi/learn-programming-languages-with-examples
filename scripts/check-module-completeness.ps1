@@ -20,6 +20,17 @@ $languageExtensions = @{
     python = "py"
 }
 
+function Get-HeadingLineNumber([string[]]$lines, [string]$heading) {
+    $escapedHeading = [regex]::Escape($heading)
+    for ($i = 0; $i -lt $lines.Count; $i++) {
+        if ($lines[$i] -match "^[ ]{0,3}$escapedHeading[ ]*$") {
+            return $i + 1
+        }
+    }
+
+    return -1
+}
+
 $failures = @()
 $moduleCount = 0
 
@@ -71,15 +82,15 @@ foreach ($language in $languageExtensions.Keys) {
                 $failures += "$($module.FullName): missing exercises/02.$ext"
             }
 
-            $content = Get-Content -Path $readmePath -Raw
+            $lines = Get-Content -Path $readmePath
             $positions = @{}
             $missingHeadings = @()
             foreach ($heading in $requiredHeadings) {
-                $index = $content.IndexOf($heading)
-                if ($index -lt 0) {
+                $lineNumber = Get-HeadingLineNumber -lines $lines -heading $heading
+                if ($lineNumber -lt 0) {
                     $missingHeadings += $heading
                 } else {
-                    $positions[$heading] = $index
+                    $positions[$heading] = $lineNumber
                 }
             }
 

@@ -3,6 +3,34 @@ $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $PSScriptRoot
 Set-Location $root
 
+function Convert-ToXmlAttributeValue([string]$value) {
+    return $value.Replace("&", "&amp;").Replace('"', "&quot;").Replace("<", "&lt;").Replace(">", "&gt;")
+}
+
+function Test-CSharpExerciseFile([string]$exercisePath, [string]$tempRoot, [int]$index) {
+    $projectDir = Join-Path $tempRoot ("exercise-" + $index)
+    New-Item -Path $projectDir -ItemType Directory | Out-Null
+
+    $escapedExercisePath = Convert-ToXmlAttributeValue ([System.IO.Path]::GetFullPath($exercisePath))
+    $projectPath = Join-Path $projectDir "exercise-check.csproj"
+    @"
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$escapedExercisePath" Link="Program.cs" />
+  </ItemGroup>
+</Project>
+"@ | Set-Content -Path $projectPath
+
+    dotnet build $projectPath --nologo --verbosity quiet | Out-Null
+}
+
 Write-Host "[1/6] Python syntax check..."
 python -m compileall -q languages/python
 
@@ -147,6 +175,25 @@ Write-Host "[5/6] C# build check..."
 $projects = Get-ChildItem -Path languages/csharp -Recurse -Filter *.csproj | Sort-Object FullName
 foreach ($project in $projects) {
     dotnet build $project.FullName --nologo --verbosity quiet
+}
+
+$csharpExerciseTempRoot = Join-Path $env:TEMP ("csharp-exercise-smoke-" + [Guid]::NewGuid().ToString("N"))
+New-Item -Path $csharpExerciseTempRoot -ItemType Directory | Out-Null
+try {
+    $exerciseIndex = 0
+    $exerciseFiles = Get-ChildItem -Path languages/csharp -Recurse -Filter *.cs |
+        Where-Object { $_.FullName -like "*\exercises\*" } |
+        Sort-Object FullName
+
+    foreach ($exercise in $exerciseFiles) {
+        Test-CSharpExerciseFile -exercisePath $exercise.FullName -tempRoot $csharpExerciseTempRoot -index $exerciseIndex
+        $exerciseIndex++
+    }
+}
+finally {
+    if (Test-Path $csharpExerciseTempRoot) {
+        Remove-Item -Path $csharpExerciseTempRoot -Recurse -Force
+    }
 }
 
 Write-Host "[6/6] C# runtime smoke..."

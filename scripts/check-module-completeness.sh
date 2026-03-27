@@ -25,6 +25,12 @@ ext_for_language() {
   esac
 }
 
+heading_line_number() {
+  local heading="$1"
+  local file="$2"
+  grep -nE "^[[:space:]]{0,3}${heading}[[:space:]]*$" "$file" | head -n1 | cut -d: -f1 || true
+}
+
 failures=0
 module_count=0
 
@@ -77,7 +83,7 @@ for language in cpp csharp go python; do
       missing=()
       lines=()
       for heading in "${required_headings[@]}"; do
-        line="$(grep -nF "$heading" "$readme" | head -n1 | cut -d: -f1 || true)"
+        line="$(heading_line_number "$heading" "$readme")"
         if [[ -z "$line" ]]; then
           missing+=("$heading")
         else
