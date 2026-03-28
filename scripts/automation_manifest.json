@@ -64,8 +64,11 @@
     },
     "csharp": {
       "extension": "cs",
-      "levels": ["01-foundations", "02-core", "03-advanced"],
-      "module_levels": ["01-foundations", "02-core", "03-advanced"],
+      "levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
+      "module_levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
+      "module_overrides": {
+        "04-expert": ["modularization-and-build-structure"]
+      },
       "checkpoints": {
         "projects": ["01-foundations", "02-core"],
         "assessments": ["01-foundations", "02-core"]
@@ -76,10 +79,11 @@
         "- 8/8 foundations modules implemented.",
         "- 6/6 core modules implemented (`input-validation`, `algorithms-basics`, `file-io-basics`, `sorting-and-searching`, `maps-and-frequency-counting`, `error-handling-and-defensive-programming`).",
         "- 5/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, `templates-basics`).",
+        "- 1/5 expert modules implemented (`modularization-and-build-structure`).",
         "- 2/4 projects implemented (`01-foundations`, `02-core`).",
         "- 2/4 assessments implemented (`01-foundations`, `02-core`)."
       ],
-      "root_status_row": "| C# | 01-foundations, 02-core, 03-advanced | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 2/4 projects, 2/4 assessments | Advanced parity complete, checkpoints started |"
+      "root_status_row": "| C# | 01-foundations, 02-core, 03-advanced, 04-expert (partial) | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 1/5 expert modules, 2/4 projects, 2/4 assessments | Advanced parity complete, expert rollout started |"
     },
     "go": {
       "extension": "go",
@@ -242,7 +246,8 @@
         "languages/csharp/03-advanced/constructors-and-invariants/example/constructors-and-invariants-example.csproj",
         "languages/csharp/03-advanced/copy-and-move-semantics/example/copy-and-move-semantics-example.csproj",
         "languages/csharp/03-advanced/inheritance-and-polymorphism/example/inheritance-and-polymorphism-example.csproj",
-        "languages/csharp/03-advanced/templates-basics/example/templates-basics-example.csproj"
+        "languages/csharp/03-advanced/templates-basics/example/templates-basics-example.csproj",
+        "languages/csharp/04-expert/modularization-and-build-structure/example/modularization-and-build-structure-example.csproj"
       ],
       "stdin_runs": [
         {

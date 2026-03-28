@@ -25,7 +25,7 @@ This repository teaches programming through small runnable examples and focused 
 | Language | Current Levels | Coverage | Track Status |
 | --- | --- | --- | --- |
 | C++ | 00-setup, 01-foundations, 02-core, 03-advanced, 04-expert | Foundations, Core, Advanced, Expert, projects, assessments | Most complete and primary track |
-| C# | 01-foundations, 02-core, 03-advanced | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 2/4 projects, 2/4 assessments | Advanced parity complete, checkpoints started |
+| C# | 01-foundations, 02-core, 03-advanced, 04-expert (partial) | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 1/5 expert modules, 2/4 projects, 2/4 assessments | Advanced parity complete, expert rollout started |
 | Go | 01-foundations, 02-core, 03-advanced | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 2/4 projects, 2/4 assessments | Advanced parity complete, checkpoints started |
 | Python | 01-foundations, 02-core, 03-advanced | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 2/4 projects, 2/4 assessments | Advanced parity complete, checkpoints started |
 

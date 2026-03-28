@@ -388,6 +388,14 @@ def iter_module_directories(ctx: RepoContext) -> list[tuple[str, str, Path]]:
     return directories
 
 
+def expected_modules_for_language_level(ctx: RepoContext, language: str, level: str) -> list[str]:
+    config = ctx.manifest.languages[language]
+    module_overrides = config.get("module_overrides", {})
+    if level in module_overrides:
+        return list(module_overrides[level])
+    return list(ctx.manifest.module_order[level])
+
+
 def check_readme_structure(ctx: RepoContext) -> None:
     readmes = [
         module_dir / "README.md"
@@ -423,7 +431,7 @@ def check_module_completeness(ctx: RepoContext) -> None:
             if not level_path.is_dir():
                 continue
 
-            expected_modules = list(ctx.manifest.module_order[level])
+            expected_modules = expected_modules_for_language_level(ctx, language, level)
             actual_modules = sorted(path.name for path in level_path.iterdir() if path.is_dir())
             missing_modules = [name for name in expected_modules if name not in actual_modules]
             unexpected_modules = [name for name in actual_modules if name not in expected_modules]
