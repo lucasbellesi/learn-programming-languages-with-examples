@@ -28,6 +28,10 @@
 - [ ] Complete `03-advanced/inheritance-and-polymorphism`.
 - [ ] Complete `03-advanced/templates-basics`.
 
+## 04-expert
+
+- [ ] Complete `04-expert/modularization-and-build-structure`.
+
 ## Projects
 
 - [ ] Complete `projects/01-foundations`.

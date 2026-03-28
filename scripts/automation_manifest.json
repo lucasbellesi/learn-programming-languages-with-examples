@@ -130,7 +130,7 @@
       "markers": [
         "- Canonical order is defined by the C++ track.",
         "- Current priority is to extend checkpoint parity beyond `02-core` without fragmenting the curriculum.",
-        "`04-expert` remains C++ only for now.",
+        "`04-expert` has started in C# with `modularization-and-build-structure`; broader expert parity is still planned.",
         "| 03-advanced | Done | Planned | Planned | Planned |",
         "| 04-expert | Done | Planned | Planned | Planned |"
       ]
