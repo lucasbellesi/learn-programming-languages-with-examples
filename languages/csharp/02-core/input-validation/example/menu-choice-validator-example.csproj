@@ -7,6 +7,6 @@
         <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     </PropertyGroup>
     <ItemGroup>
-        <Compile Include="main.cs" />
+        <Compile Include="menu-choice-validator.cs" />
     </ItemGroup>
 </Project>

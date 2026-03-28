@@ -749,7 +749,15 @@ def build_csharp_exercises(ctx: RepoContext) -> None:
                 encoding="utf-8",
             )
             run_command(
-                ["dotnet", "build", str(project_path), "--nologo", "--verbosity", "quiet"],
+                [
+                    "dotnet",
+                    "build",
+                    str(project_path),
+                    "--nologo",
+                    "--verbosity",
+                    "quiet",
+                    "-p:UseAppHost=false",
+                ],
                 quiet_stdout=True,
                 action=f"C# exercise build for {exercise_path}",
                 timeout_seconds=180,
@@ -865,7 +873,15 @@ def smoke_languages(ctx: RepoContext) -> None:
     for project in projects:
         print(f"  Building {project.relative_to(ctx.root)}")
         run_command(
-            ["dotnet", "build", str(project), "--nologo", "--verbosity", "quiet"],
+            [
+                "dotnet",
+                "build",
+                str(project),
+                "--nologo",
+                "--verbosity",
+                "quiet",
+                "-p:UseAppHost=false",
+            ],
             quiet_stdout=True,
             action=f"C# build for {project}",
             timeout_seconds=180,
