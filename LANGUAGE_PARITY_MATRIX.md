@@ -56,13 +56,13 @@ Current parity progress in non-C++ tracks:
 | 4 | inheritance-and-polymorphism | Done | Done | Done | Done |
 | 5 | templates-basics | Done | Done | Done | Done |
 
-`04-expert` has started in C# with `modularization-and-build-structure`; broader expert parity is still planned.
+`04-expert` has started in C# with `memory-management-and-raii` and `modularization-and-build-structure`; broader expert parity is still planned.
 
 ### Expert (`04-expert`) - Early Expansion
 
 | Order | Module | C++ | C# | Go | Python |
 | --- | --- | --- | --- | --- | --- |
-| 1 | memory-management-and-raii | Done | Planned | Planned | Planned |
+| 1 | memory-management-and-raii | Done | Done | Planned | Planned |
 | 2 | smart-pointers-in-depth | Done | Planned | Planned | Planned |
 | 3 | concurrency-basics | Done | Planned | Planned | Planned |
 | 4 | performance-and-profiling-basics | Done | Planned | Planned | Planned |

@@ -7,7 +7,7 @@ This track currently covers `01-foundations`, `02-core`, `03-advanced`, and an e
 - 8/8 foundations modules implemented.
 - 6/6 core modules implemented (`input-validation`, `algorithms-basics`, `file-io-basics`, `sorting-and-searching`, `maps-and-frequency-counting`, `error-handling-and-defensive-programming`).
 - 5/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, `templates-basics`).
-- 1/5 expert modules implemented (`modularization-and-build-structure`).
+- 2/5 expert modules implemented (`memory-management-and-raii`, `modularization-and-build-structure`).
 - 2/4 projects implemented (`01-foundations`, `02-core`).
 - 2/4 assessments implemented (`01-foundations`, `02-core`).
 - Same module naming as C++, Python, and Go for parity.
@@ -55,6 +55,7 @@ dotnet run --project 01-foundations/types-and-io/example/types-and-io-example.cs
   - [inheritance-and-polymorphism](./03-advanced/inheritance-and-polymorphism/README.md)
   - [templates-basics](./03-advanced/templates-basics/README.md)
 - [04-expert](./04-expert/README.md)
+  - [memory-management-and-raii](./04-expert/memory-management-and-raii/README.md)
   - [modularization-and-build-structure](./04-expert/modularization-and-build-structure/README.md)
 - [projects](./projects/README.md)
   - [01-foundations](./projects/01-foundations/README.md)
