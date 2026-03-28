@@ -11,7 +11,7 @@ class IntBuffer
         Console.WriteLine($"Constructed IntBuffer (size={values.Count})");
     }
 
-    private IntBuffer(List<int> sourceValues)
+    private IntBuffer(List<int> sourceValues, bool takeOwnership)
     {
         values = sourceValues;
     }
@@ -27,7 +27,7 @@ class IntBuffer
     {
         List<int> movedValues = values;
         values = new List<int>();
-        IntBuffer transferred = new IntBuffer(movedValues);
+        IntBuffer transferred = new IntBuffer(movedValues, true);
         Console.WriteLine($"Transferred IntBuffer (size={transferred.Size})");
         return transferred;
     }

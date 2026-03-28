@@ -126,6 +126,8 @@ bash ./scripts/verify-repo.sh
 
 GitHub Actions validates links, README structure, module completeness, checkpoint completeness, C++ build, and multi-language smoke checks on Linux and Windows.
 
+The public PowerShell and Bash scripts remain the supported entrypoints, but they now delegate to a shared Python automation core under `scripts/automation.py` backed by `scripts/automation_manifest.json`.
+
 The multi-language smoke scripts also compile standalone C# exercises by generating temporary validation projects during the check.
 
 ## Contributing

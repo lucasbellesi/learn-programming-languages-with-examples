@@ -3,31 +3,17 @@ $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $PSScriptRoot
 Set-Location $root
 
-function Assert-LastExitCode([string]$action) {
-    if (($null -ne $LASTEXITCODE) -and ($LASTEXITCODE -ne 0)) {
-        Write-Host "$action failed with exit code $LASTEXITCODE."
-        exit $LASTEXITCODE
-    }
+$pythonCmd = Get-Command python -ErrorAction SilentlyContinue
+if (-not $pythonCmd) {
+    $pythonCmd = Get-Command python3 -ErrorAction SilentlyContinue
 }
 
-Write-Host "[1/5] Checking markdown links..."
-& "$PSScriptRoot\check-links.ps1"
-Assert-LastExitCode "Markdown link check"
+if (-not $pythonCmd) {
+    Write-Host "Python was not found in PATH."
+    exit 1
+}
 
-Write-Host "[2/5] Checking README structure..."
-& "$PSScriptRoot\check-readme-structure.ps1"
-Assert-LastExitCode "README structure check"
-
-Write-Host "[3/5] Checking module completeness..."
-& "$PSScriptRoot\check-module-completeness.ps1"
-Assert-LastExitCode "Module completeness check"
-
-Write-Host "[4/5] Checking checkpoint completeness..."
-& "$PSScriptRoot\check-checkpoint-completeness.ps1"
-Assert-LastExitCode "Checkpoint completeness check"
-
-Write-Host "[5/5] Compiling C++ files..."
-& "$PSScriptRoot\build-all.ps1"
-Assert-LastExitCode "C++ build"
-
-Write-Host "Repository verification completed successfully."
+& $pythonCmd.Path "$PSScriptRoot\automation.py" verify-repo
+if ($LASTEXITCODE -ne 0) {
+    exit $LASTEXITCODE
+}

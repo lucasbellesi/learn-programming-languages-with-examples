@@ -1,0 +1,279 @@
+{
+  "required_readme_headings": [
+    "## Quick Run",
+    "## Topics Covered",
+    "## Common Pitfalls",
+    "## Exercise Focus",
+    "### Exercise Specs",
+    "## Checkpoint"
+  ],
+  "checkpoint_kinds": [
+    "projects",
+    "assessments"
+  ],
+  "module_order": {
+    "01-foundations": [
+      "types-and-io",
+      "operators-and-expressions",
+      "control-flow",
+      "functions",
+      "arrays-and-vectors",
+      "strings",
+      "scope-and-lifetime-basics",
+      "formatted-output-and-iomanip"
+    ],
+    "02-core": [
+      "input-validation",
+      "algorithms-basics",
+      "file-io-basics",
+      "sorting-and-searching",
+      "maps-and-frequency-counting",
+      "error-handling-and-defensive-programming"
+    ],
+    "03-advanced": [
+      "structs-and-classes",
+      "constructors-and-invariants",
+      "copy-and-move-semantics",
+      "inheritance-and-polymorphism",
+      "templates-basics"
+    ],
+    "04-expert": [
+      "memory-management-and-raii",
+      "smart-pointers-in-depth",
+      "concurrency-basics",
+      "performance-and-profiling-basics",
+      "modularization-and-build-structure"
+    ]
+  },
+  "languages": {
+    "cpp": {
+      "extension": "cpp",
+      "levels": ["00-setup", "01-foundations", "02-core", "03-advanced", "04-expert"],
+      "module_levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
+      "checkpoints": {
+        "projects": ["01-foundations", "02-core", "03-advanced", "04-expert"],
+        "assessments": ["01-foundations", "02-core", "03-advanced", "04-expert"]
+      },
+      "track_readme": "languages/cpp/README.md",
+      "track_readme_markers": [
+        "- Covers setup, foundations, core, advanced, and expert levels.",
+        "- Includes level capstone projects and assessments.",
+        "- Targets C++17 with `g++`."
+      ],
+      "root_status_row": "| C++ | 00-setup, 01-foundations, 02-core, 03-advanced, 04-expert | Foundations, Core, Advanced, Expert, projects, assessments | Most complete and primary track |"
+    },
+    "csharp": {
+      "extension": "cs",
+      "levels": ["01-foundations", "02-core", "03-advanced"],
+      "module_levels": ["01-foundations", "02-core", "03-advanced"],
+      "checkpoints": {
+        "projects": ["01-foundations", "02-core"],
+        "assessments": ["01-foundations", "02-core"]
+      },
+      "checkpoint_main": "main.cs",
+      "track_readme": "languages/csharp/README.md",
+      "track_readme_markers": [
+        "- 8/8 foundations modules implemented.",
+        "- 6/6 core modules implemented (`input-validation`, `algorithms-basics`, `file-io-basics`, `sorting-and-searching`, `maps-and-frequency-counting`, `error-handling-and-defensive-programming`).",
+        "- 5/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, `templates-basics`).",
+        "- 2/4 projects implemented (`01-foundations`, `02-core`).",
+        "- 2/4 assessments implemented (`01-foundations`, `02-core`)."
+      ],
+      "root_status_row": "| C# | 01-foundations, 02-core, 03-advanced | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 2/4 projects, 2/4 assessments | Advanced parity complete, checkpoints started |"
+    },
+    "go": {
+      "extension": "go",
+      "levels": ["01-foundations", "02-core", "03-advanced"],
+      "module_levels": ["01-foundations", "02-core", "03-advanced"],
+      "checkpoints": {
+        "projects": ["01-foundations", "02-core"],
+        "assessments": ["01-foundations", "02-core"]
+      },
+      "checkpoint_main": "main.go",
+      "track_readme": "languages/go/README.md",
+      "track_readme_markers": [
+        "- 8/8 foundations modules implemented.",
+        "- 6/6 core modules implemented (`input-validation`, `algorithms-basics`, `file-io-basics`, `sorting-and-searching`, `maps-and-frequency-counting`, `error-handling-and-defensive-programming`).",
+        "- 5/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, `templates-basics`).",
+        "- 2/4 projects implemented (`01-foundations`, `02-core`).",
+        "- 2/4 assessments implemented (`01-foundations`, `02-core`)."
+      ],
+      "root_status_row": "| Go | 01-foundations, 02-core, 03-advanced | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 2/4 projects, 2/4 assessments | Advanced parity complete, checkpoints started |"
+    },
+    "python": {
+      "extension": "py",
+      "levels": ["01-foundations", "02-core", "03-advanced"],
+      "module_levels": ["01-foundations", "02-core", "03-advanced"],
+      "checkpoints": {
+        "projects": ["01-foundations", "02-core"],
+        "assessments": ["01-foundations", "02-core"]
+      },
+      "checkpoint_main": "main.py",
+      "track_readme": "languages/python/README.md",
+      "track_readme_markers": [
+        "- 8/8 foundations modules implemented.",
+        "- 6/6 core modules implemented (`input-validation`, `algorithms-basics`, `file-io-basics`, `sorting-and-searching`, `maps-and-frequency-counting`, `error-handling-and-defensive-programming`).",
+        "- 5/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, `templates-basics`).",
+        "- 2/4 projects implemented (`01-foundations`, `02-core`).",
+        "- 2/4 assessments implemented (`01-foundations`, `02-core`)."
+      ],
+      "root_status_row": "| Python | 01-foundations, 02-core, 03-advanced | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 2/4 projects, 2/4 assessments | Advanced parity complete, checkpoints started |"
+    }
+  },
+  "docs": {
+    "root_readme": "README.md",
+    "root_readme_markers": [
+      "Parity planning reference: [LANGUAGE_PARITY_MATRIX.md](LANGUAGE_PARITY_MATRIX.md)"
+    ],
+    "parity_matrix": {
+      "path": "LANGUAGE_PARITY_MATRIX.md",
+      "markers": [
+        "- Canonical order is defined by the C++ track.",
+        "- Current priority is to extend checkpoint parity beyond `02-core` without fragmenting the curriculum.",
+        "`04-expert` remains C++ only for now.",
+        "| 03-advanced | Done | Planned | Planned | Planned |",
+        "| 04-expert | Done | Planned | Planned | Planned |"
+      ]
+    }
+  },
+  "smoke": {
+    "python": {
+      "compileall_path": "languages/python",
+      "example_paths": [
+        "languages/python/01-foundations/functions/example/main.py",
+        "languages/python/01-foundations/formatted-output-and-iomanip/example/main.py",
+        "languages/python/02-core/algorithms-basics/example/main.py",
+        "languages/python/02-core/sorting-and-searching/example/main.py",
+        "languages/python/02-core/maps-and-frequency-counting/example/main.py",
+        "languages/python/02-core/error-handling-and-defensive-programming/example/main.py",
+        "languages/python/03-advanced/structs-and-classes/example/main.py",
+        "languages/python/03-advanced/constructors-and-invariants/example/main.py",
+        "languages/python/03-advanced/copy-and-move-semantics/example/main.py",
+        "languages/python/03-advanced/inheritance-and-polymorphism/example/main.py",
+        "languages/python/03-advanced/templates-basics/example/main.py"
+      ],
+      "stdin_runs": [
+        {
+          "program": "languages/python/projects/01-foundations/main.py",
+          "input_lines": ["0", "2", "Ana Smith", "101", "91", "Bob Lee", "77"]
+        },
+        {
+          "program": "languages/python/assessments/01-foundations/main.py",
+          "input_lines": ["3", "Ana Smith", "91", "Bob Lee", "55", "Carla Mendez", "88"]
+        },
+        {
+          "working_dir": "languages/python/projects/02-core",
+          "program": "main.py",
+          "setup_files": [
+            {
+              "path": "smoke-input.txt",
+              "lines": ["Ana Smith 91", "Bob Lee 77", "InvalidRow", "Carla Mendez 88"]
+            }
+          ],
+          "input_file": "smoke-input.txt",
+          "required_outputs": ["report.txt"],
+          "cleanup_paths": ["smoke-input.txt", "report.txt"]
+        },
+        {
+          "working_dir": "languages/python/assessments/02-core",
+          "program": "main.py",
+          "input_lines": ["91", "88", "72", "105", "60", "-1"],
+          "required_outputs": ["core_assessment_report.txt"],
+          "cleanup_paths": ["core_assessment_report.txt"]
+        }
+      ]
+    },
+    "go": {
+      "build_glob_root": "languages/go",
+      "example_paths": [
+        "languages/go/01-foundations/functions/example/main.go",
+        "languages/go/01-foundations/formatted-output-and-iomanip/example/main.go",
+        "languages/go/02-core/algorithms-basics/example/main.go",
+        "languages/go/02-core/sorting-and-searching/example/main.go",
+        "languages/go/02-core/maps-and-frequency-counting/example/main.go",
+        "languages/go/02-core/error-handling-and-defensive-programming/example/main.go",
+        "languages/go/03-advanced/structs-and-classes/example/main.go",
+        "languages/go/03-advanced/constructors-and-invariants/example/main.go",
+        "languages/go/03-advanced/copy-and-move-semantics/example/main.go",
+        "languages/go/03-advanced/inheritance-and-polymorphism/example/main.go",
+        "languages/go/03-advanced/templates-basics/example/main.go"
+      ],
+      "stdin_runs": [
+        {
+          "program": "languages/go/projects/01-foundations/main.go",
+          "input_lines": ["0", "2", "Ana Smith", "101", "91", "Bob Lee", "77"]
+        },
+        {
+          "program": "languages/go/assessments/01-foundations/main.go",
+          "input_lines": ["3", "Ana Smith", "91", "Bob Lee", "55", "Carla Mendez", "88"]
+        },
+        {
+          "working_dir": "languages/go/projects/02-core",
+          "program": "main.go",
+          "setup_files": [
+            {
+              "path": "smoke-input.txt",
+              "lines": ["Ana Smith 91", "Bob Lee 77", "InvalidRow", "Carla Mendez 88"]
+            }
+          ],
+          "input_file": "smoke-input.txt",
+          "required_outputs": ["report.txt"],
+          "cleanup_paths": ["smoke-input.txt", "report.txt"]
+        },
+        {
+          "working_dir": "languages/go/assessments/02-core",
+          "program": "main.go",
+          "input_lines": ["12 17 31 77 91 105 64 -3 88 -1"],
+          "required_outputs": ["core_assessment_report.txt"],
+          "cleanup_paths": ["core_assessment_report.txt"]
+        }
+      ]
+    },
+    "csharp": {
+      "build_glob_root": "languages/csharp",
+      "example_projects": [
+        "languages/csharp/01-foundations/functions/example/functions-example.csproj",
+        "languages/csharp/01-foundations/formatted-output-and-iomanip/example/formatted-output-and-iomanip-example.csproj",
+        "languages/csharp/02-core/algorithms-basics/example/algorithms-basics-example.csproj",
+        "languages/csharp/02-core/sorting-and-searching/example/sorting-and-searching-example.csproj",
+        "languages/csharp/02-core/maps-and-frequency-counting/example/maps-and-frequency-counting-example.csproj",
+        "languages/csharp/02-core/error-handling-and-defensive-programming/example/error-handling-and-defensive-programming-example.csproj",
+        "languages/csharp/03-advanced/structs-and-classes/example/structs-and-classes-example.csproj",
+        "languages/csharp/03-advanced/constructors-and-invariants/example/constructors-and-invariants-example.csproj",
+        "languages/csharp/03-advanced/copy-and-move-semantics/example/copy-and-move-semantics-example.csproj",
+        "languages/csharp/03-advanced/inheritance-and-polymorphism/example/inheritance-and-polymorphism-example.csproj",
+        "languages/csharp/03-advanced/templates-basics/example/templates-basics-example.csproj"
+      ],
+      "stdin_runs": [
+        {
+          "project": "languages/csharp/projects/01-foundations/foundations-project.csproj",
+          "input_lines": ["0", "2", "Ana Smith", "101", "91", "Bob Lee", "77"]
+        },
+        {
+          "project": "languages/csharp/assessments/01-foundations/assessment-01-foundations.csproj",
+          "input_lines": ["3", "Ana Smith", "91", "Bob Lee", "55", "Carla Mendez", "88"]
+        },
+        {
+          "working_dir": "languages/csharp/projects/02-core",
+          "project": "core-project.csproj",
+          "setup_files": [
+            {
+              "path": "smoke-input.txt",
+              "lines": ["Ana Smith 91", "Bob Lee 77", "InvalidRow", "Carla Mendez 88"]
+            }
+          ],
+          "input_file": "smoke-input.txt",
+          "required_outputs": ["report.txt"],
+          "cleanup_paths": ["smoke-input.txt", "report.txt"]
+        },
+        {
+          "working_dir": "languages/csharp/assessments/02-core",
+          "project": "assessment-02-core.csproj",
+          "input_lines": ["12 17 31 77 91 105 64 -3 88 -1"],
+          "required_outputs": ["core_assessment_report.txt"],
+          "cleanup_paths": ["core_assessment_report.txt"]
+        }
+      ]
+    }
+  }
+}
