@@ -7,6 +7,6 @@
         <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     </PropertyGroup>
     <ItemGroup>
-        <Compile Include="main.cs" />
+        <Compile Include="stable-vs-unstable-sort.cs" />
     </ItemGroup>
 </Project>

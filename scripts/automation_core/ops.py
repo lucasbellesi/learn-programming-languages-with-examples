@@ -229,6 +229,7 @@ def run_command(
     input_text: str | None = None,
     quiet_stdout: bool = False,
     action: str | None = None,
+    timeout_seconds: float | None = None,
 ) -> subprocess.CompletedProcess[str]:
     try:
         completed = subprocess.run(
@@ -239,10 +240,19 @@ def run_command(
             stdout=subprocess.DEVNULL if quiet_stdout else None,
             stderr=None,
             check=False,
+            timeout=timeout_seconds,
         )
     except FileNotFoundError as error:
         missing = command[0] if command else "command"
         raise AutomationError(f"Required command not found: {missing}") from error
+    except subprocess.TimeoutExpired as error:
+        if action:
+            raise AutomationError(
+                f"{action} timed out after {error.timeout:g} second(s)."
+            ) from error
+        raise AutomationError(
+            f"Command timed out after {error.timeout:g} second(s): {' '.join(command)}"
+        ) from error
     if completed.returncode != 0:
         if action:
             raise AutomationError(f"{action} failed with exit code {completed.returncode}.")
@@ -700,6 +710,10 @@ def xml_escape(value: str) -> str:
     )
 
 
+def csharp_output_dll(project_path: Path) -> Path:
+    return project_path.parent / "bin" / "Debug" / "net8.0" / f"{project_path.stem}.dll"
+
+
 def build_csharp_exercises(ctx: RepoContext) -> None:
     exercise_files = sorted(
         path
@@ -709,6 +723,7 @@ def build_csharp_exercises(ctx: RepoContext) -> None:
     with tempfile.TemporaryDirectory(prefix="csharp-exercise-smoke-") as temp_root:
         temp_root_path = Path(temp_root)
         for index, exercise_path in enumerate(exercise_files):
+            print(f"  Building exercise smoke harness: {exercise_path.relative_to(ctx.root)}")
             project_dir = temp_root_path / f"exercise-{index}"
             project_dir.mkdir(parents=True, exist_ok=True)
             project_path = project_dir / "exercise-check.csproj"
@@ -737,6 +752,7 @@ def build_csharp_exercises(ctx: RepoContext) -> None:
                 ["dotnet", "build", str(project_path), "--nologo", "--verbosity", "quiet"],
                 quiet_stdout=True,
                 action=f"C# exercise build for {exercise_path}",
+                timeout_seconds=180,
             )
 
 
@@ -746,6 +762,7 @@ def smoke_runtime_job(
     *,
     command_builder: Any,
     label: str,
+    timeout_seconds: float = 30,
 ) -> None:
     working_dir = repo_path(ctx, job["working_dir"]) if "working_dir" in job else ctx.root
     setup_files = job.get("setup_files", [])
@@ -768,6 +785,7 @@ def smoke_runtime_job(
             input_text=input_text,
             quiet_stdout=True,
             action=label,
+            timeout_seconds=timeout_seconds,
         )
 
         for output_name in job.get("required_outputs", []):
@@ -845,30 +863,36 @@ def smoke_languages(ctx: RepoContext) -> None:
     print("[5/6] C# build check...")
     projects = sorted((ctx.root / "languages" / "csharp").rglob("*.csproj"))
     for project in projects:
+        print(f"  Building {project.relative_to(ctx.root)}")
         run_command(
             ["dotnet", "build", str(project), "--nologo", "--verbosity", "quiet"],
+            quiet_stdout=True,
             action=f"C# build for {project}",
+            timeout_seconds=180,
         )
     build_csharp_exercises(ctx)
 
     print("[6/6] C# runtime smoke...")
     for project in csharp_smoke["example_projects"]:
+        print(f"  Running {project}")
+        project_path = repo_path(ctx, project)
         run_command(
-            ["dotnet", "run", "--project", str(repo_path(ctx, project))],
+            ["dotnet", str(csharp_output_dll(project_path))],
             quiet_stdout=True,
             action=f"C# runtime smoke for {project}",
+            timeout_seconds=30,
         )
     for job in csharp_smoke["stdin_runs"]:
+        print(f"  Running {job.get('project', job.get('working_dir', 'job'))}")
         smoke_runtime_job(
             ctx,
             job,
             command_builder=lambda current_job, working_dir: [
                 "dotnet",
-                "run",
-                "--project",
-                str(resolve_job_path(ctx, working_dir, current_job["project"])),
+                str(csharp_output_dll(resolve_job_path(ctx, working_dir, current_job["project"]))),
             ],
             label=f"C# runtime smoke for {job.get('project', job.get('working_dir', 'job'))}",
+            timeout_seconds=30,
         )
 
     print("Multi-language smoke checks passed.")
