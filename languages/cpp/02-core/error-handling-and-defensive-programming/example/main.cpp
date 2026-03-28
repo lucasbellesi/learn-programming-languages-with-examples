@@ -5,7 +5,6 @@
 #include <limits>
 using namespace std;
 
-
 bool safeDivide(double left, double right, double& result) {
     // Intent: guard invalid or edge-case paths before the main path continues.
     if (right == 0.0) {

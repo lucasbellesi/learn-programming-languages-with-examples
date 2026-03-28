@@ -5,15 +5,12 @@
 #include <string>
 using namespace std;
 
-
-template <typename T>
-T maxValue(const T& left, const T& right) {
+template <typename T> T maxValue(const T& left, const T& right) {
     return (left > right) ? left : right;
 }
 
-template <typename T>
-class Pair {
-public:
+template <typename T> class Pair {
+  public:
     Pair(const T& firstValue, const T& secondValue) : first(firstValue), second(secondValue) {}
 
     void print() const {
@@ -21,7 +18,7 @@ public:
         cout << "(" << first << ", " << second << ")\n";
     }
 
-private:
+  private:
     T first;
     T second;
 };

@@ -95,7 +95,9 @@ class Program
         }
 
         Console.WriteLine($"Average: {average}");
-        Console.WriteLine($"Highest: {students[highestIndex].Name} ({students[highestIndex].Score})");
+        Console.WriteLine(
+            $"Highest: {students[highestIndex].Name} ({students[highestIndex].Score})"
+        );
         Console.WriteLine($"Lowest: {students[lowestIndex].Name} ({students[lowestIndex].Score})");
         Console.WriteLine($"Passed: {passCount}/{students.Count}");
     }

@@ -36,8 +36,10 @@ class Program
         foreach (double value in values)
         {
             sum += value;
-            if (value < min) min = value;
-            if (value > max) max = value;
+            if (value < min)
+                min = value;
+            if (value > max)
+                max = value;
         }
 
         double average = sum / values.Count;

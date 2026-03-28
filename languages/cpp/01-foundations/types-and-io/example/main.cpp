@@ -5,7 +5,6 @@
 #include <string>
 using namespace std;
 
-
 int main() {
     // Program flow: collect input, apply core logic, then print a verifiable result.
     string fullName;

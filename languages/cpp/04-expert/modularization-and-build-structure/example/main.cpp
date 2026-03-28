@@ -4,14 +4,9 @@
 #include <iostream>
 using namespace std;
 
+int add(int left, int right) { return left + right; }
 
-int add(int left, int right) {
-    return left + right;
-}
-
-int multiply(int left, int right) {
-    return left * right;
-}
+int multiply(int left, int right) { return left * right; }
 
 void printReport(int a, int b) {
     // Intent: print intermediate or final output for quick behavior verification.

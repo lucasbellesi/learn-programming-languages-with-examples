@@ -3,7 +3,6 @@
 #include <vector>
 using namespace std;
 
-
 long long sumByValue(vector<int> values) {
     long long sum = 0;
     for (int value : values) {
@@ -43,7 +42,8 @@ int main() {
     (void)a;
     (void)b;
 
-    const auto valueTime = chrono::duration_cast<chrono::microseconds>(endValue - startValue).count();
+    const auto valueTime =
+        chrono::duration_cast<chrono::microseconds>(endValue - startValue).count();
     const auto refTime = chrono::duration_cast<chrono::microseconds>(endRef - startRef).count();
 
     cout << "By value (us): " << valueTime << '\n';

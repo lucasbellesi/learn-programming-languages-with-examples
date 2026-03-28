@@ -34,6 +34,10 @@ class Manifest:
     def smoke(self) -> dict[str, dict[str, Any]]:
         return dict(self.data["smoke"])
 
+    @property
+    def lint(self) -> dict[str, dict[str, Any]]:
+        return dict(self.data["lint"])
+
 
 def load_manifest(scripts_dir: Path) -> Manifest:
     manifest_path = scripts_dir / "automation_manifest.json"

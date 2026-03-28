@@ -5,7 +5,6 @@
 #include <thread>
 using namespace std;
 
-
 int main() {
     int itemsToProduce = 0;
     cout << "How many items should be produced? ";

@@ -5,10 +5,7 @@
 #include <vector>
 using namespace std;
 
-
-int sum(int a, int b) {
-    return a + b;
-}
+int sum(int a, int b) { return a + b; }
 
 void swapByReference(int& left, int& right) {
     const int temp = left;

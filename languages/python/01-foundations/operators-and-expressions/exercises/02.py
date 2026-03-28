@@ -1,4 +1,4 @@
-﻿subtotal = float(input("Subtotal: "))
+subtotal = float(input("Subtotal: "))
 discount_percent = float(input("Discount percent: "))
 tax_percent = float(input("Tax percent: "))
 

@@ -50,11 +50,7 @@ class Program
     static void Main()
     {
         // Program flow: create mixed shapes and evaluate them through one base type.
-        List<Shape> shapes = new List<Shape>
-        {
-            new Rectangle(3.0, 4.0),
-            new Circle(2.0)
-        };
+        List<Shape> shapes = new List<Shape> { new Rectangle(3.0, 4.0), new Circle(2.0) };
 
         // Intent: polymorphic iteration keeps caller logic independent from concrete classes.
         foreach (Shape shape in shapes)

@@ -5,9 +5,8 @@
 #include <string>
 using namespace std;
 
-
 class Temperature {
-public:
+  public:
     explicit Temperature(double celsiusValue) : celsius(celsiusValue) {
         // Intent: guard invalid or edge-case paths before the main path continues.
         if (celsius < -273.15) {
@@ -23,11 +22,9 @@ public:
         return true;
     }
 
-    double getCelsius() const {
-        return celsius;
-    }
+    double getCelsius() const { return celsius; }
 
-private:
+  private:
     double celsius;
 };
 

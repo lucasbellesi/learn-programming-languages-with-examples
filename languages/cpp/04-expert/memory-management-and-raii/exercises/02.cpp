@@ -2,9 +2,8 @@
 #include <string>
 using namespace std;
 
-
 class CounterGuard {
-public:
+  public:
     explicit CounterGuard(int& sharedCounterRef, const string& labelText)
         : sharedCounter(sharedCounterRef), label(labelText) {
         ++sharedCounter;
@@ -16,7 +15,7 @@ public:
         cout << "[exit]  " << label << " | active guards: " << sharedCounter << '\n';
     }
 
-private:
+  private:
     int& sharedCounter;
     string label;
 };

@@ -6,7 +6,6 @@
 #include <vector>
 using namespace std;
 
-
 int linearSearch(const vector<int>& values, int target) {
     // Intent: iterate through data in a clear and deterministic order.
     for (size_t i = 0; i < values.size(); ++i) {

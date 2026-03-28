@@ -31,9 +31,11 @@ class Program
         string raw = Console.ReadLine() ?? string.Empty;
         string[] parts = raw.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-        if (parts.Length != 2 ||
-            !int.TryParse(parts[0], out int month) ||
-            !int.TryParse(parts[1], out int day))
+        if (
+            parts.Length != 2
+            || !int.TryParse(parts[0], out int month)
+            || !int.TryParse(parts[1], out int day)
+        )
         {
             Console.WriteLine("Invalid input.");
             return;

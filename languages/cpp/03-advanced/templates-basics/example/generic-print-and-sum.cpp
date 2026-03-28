@@ -4,8 +4,7 @@
 
 using namespace std;
 
-template <typename T>
-void printVector(const vector<T>& values, const string& label) {
+template <typename T> void printVector(const vector<T>& values, const string& label) {
     cout << label << ": [";
     for (size_t i = 0; i < values.size(); ++i) {
         cout << values[i];
@@ -16,8 +15,7 @@ void printVector(const vector<T>& values, const string& label) {
     cout << "]\n";
 }
 
-template <typename T>
-T sumVector(const vector<T>& values) {
+template <typename T> T sumVector(const vector<T>& values) {
     T total = T{};
     for (const T& value : values) {
         total += value;

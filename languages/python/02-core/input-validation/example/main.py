@@ -1,5 +1,6 @@
 # Example purpose: show the module flow with clear, beginner-friendly steps.
 
+
 def read_int_in_range(prompt, min_value, max_value):
     # Intent: iterate through data in a clear and deterministic order.
     while True:

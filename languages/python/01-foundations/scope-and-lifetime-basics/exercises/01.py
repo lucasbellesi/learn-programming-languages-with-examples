@@ -1,4 +1,4 @@
-﻿score = int(input("Enter score (0-100): "))
+score = int(input("Enter score (0-100): "))
 
 if score < 0 or score > 100:
     print("Score must be between 0 and 100.")

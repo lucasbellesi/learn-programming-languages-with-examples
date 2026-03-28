@@ -1,9 +1,8 @@
 ﻿#include <iostream>
 using namespace std;
 
-
 class BankAccount {
-public:
+  public:
     explicit BankAccount(double initialBalance) : balance(initialBalance) {
         if (balance < 0.0) {
             balance = 0.0;
@@ -26,11 +25,9 @@ public:
         return true;
     }
 
-    double getBalance() const {
-        return balance;
-    }
+    double getBalance() const { return balance; }
 
-private:
+  private:
     double balance;
 };
 

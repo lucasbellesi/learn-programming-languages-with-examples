@@ -42,11 +42,7 @@ class Program
 {
     static void Main()
     {
-        List<Shape> shapes = new List<Shape>
-        {
-            new Rectangle(2.0, 5.0),
-            new Circle(1.5)
-        };
+        List<Shape> shapes = new List<Shape> { new Rectangle(2.0, 5.0), new Circle(1.5) };
 
         double totalArea = 0.0;
         foreach (Shape shape in shapes)

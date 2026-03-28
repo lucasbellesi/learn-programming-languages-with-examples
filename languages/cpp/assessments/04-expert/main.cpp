@@ -15,9 +15,7 @@ struct Summary {
 };
 
 int main() {
-    auto data = make_unique<vector<int>>(vector<int>{
-        12, 7, 25, 4, 31, 19, 2, 45, 18, 9, 27, 6
-    });
+    auto data = make_unique<vector<int>>(vector<int>{12, 7, 25, 4, 31, 19, 2, 45, 18, 9, 27, 6});
 
     const size_t threadCount = 3;
     vector<thread> workers;

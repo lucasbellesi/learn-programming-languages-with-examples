@@ -2,16 +2,11 @@
 #include <memory>
 using namespace std;
 
-
 class Resource {
-public:
-    Resource() {
-        cout << "Resource acquired\n";
-    }
+  public:
+    Resource() { cout << "Resource acquired\n"; }
 
-    ~Resource() {
-        cout << "Resource released\n";
-    }
+    ~Resource() { cout << "Resource released\n"; }
 };
 
 int main() {

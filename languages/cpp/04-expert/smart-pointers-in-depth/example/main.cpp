@@ -6,19 +6,16 @@
 #include <string>
 using namespace std;
 
-
 class Document {
-public:
+  public:
     explicit Document(const string& nameValue) : name(nameValue) {
         // Intent: print intermediate or final output for quick behavior verification.
         cout << "Created: " << name << '\n';
     }
 
-    ~Document() {
-        cout << "Destroyed: " << name << '\n';
-    }
+    ~Document() { cout << "Destroyed: " << name << '\n'; }
 
-private:
+  private:
     string name;
 };
 

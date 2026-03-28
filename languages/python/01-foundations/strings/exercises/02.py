@@ -1,4 +1,4 @@
-﻿text = input("Enter text: ")
+text = input("Enter text: ")
 normalized = "".join(char.lower() for char in text if char.isalpha())
 
 if not normalized:

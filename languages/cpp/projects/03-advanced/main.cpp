@@ -2,7 +2,7 @@
 #include <string>
 
 class Course {
-public:
+  public:
     Course(const std::string& titleValue, int capacityValue)
         : title(titleValue), capacity(capacityValue), enrolled(0) {
         if (capacity < 0) {
@@ -30,7 +30,7 @@ public:
         std::cout << "Course: " << title << " | " << enrolled << "/" << capacity << " enrolled\n";
     }
 
-private:
+  private:
     std::string title;
     int capacity;
     int enrolled;

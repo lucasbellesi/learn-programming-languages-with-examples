@@ -109,6 +109,7 @@ Run checks locally:
 ./scripts/check-readme-structure.ps1
 ./scripts/check-module-completeness.ps1
 ./scripts/check-checkpoint-completeness.ps1
+./scripts/lint.ps1
 ./scripts/smoke-languages.ps1
 ./scripts/build-all.ps1
 ./scripts/verify-repo.ps1
@@ -119,12 +120,13 @@ bash ./scripts/check-links.sh
 bash ./scripts/check-readme-structure.sh
 bash ./scripts/check-module-completeness.sh
 bash ./scripts/check-checkpoint-completeness.sh
+bash ./scripts/lint.sh
 bash ./scripts/smoke-languages.sh
 bash ./scripts/build-all.sh
 bash ./scripts/verify-repo.sh
 ~~~
 
-GitHub Actions validates links, README structure, module completeness, checkpoint completeness, C++ build, and multi-language smoke checks on Linux and Windows.
+GitHub Actions validates links, README structure, module completeness, checkpoint completeness, documentation sync, C++ build, multi-language smoke checks, and Linux lint checks for C++, Python, Go, and C#.
 
 The public PowerShell and Bash scripts remain the supported entrypoints, but they now delegate to a shared Python automation core under `scripts/automation.py` backed by `scripts/automation_manifest.json`.
 

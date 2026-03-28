@@ -275,5 +275,30 @@
         }
       ]
     }
+  },
+  "lint": {
+    "cpp": {
+      "roots": ["languages/cpp"],
+      "extensions": [".cpp", ".h", ".hpp"],
+      "exclude_dirs": ["bin", "obj", "build"]
+    },
+    "python": {
+      "paths": [
+        "languages/python",
+        "scripts/automation.py",
+        "scripts/automation_core",
+        "scripts/check-links.py"
+      ]
+    },
+    "go": {
+      "roots": ["languages/go"],
+      "extensions": [".go"],
+      "exclude_dirs": ["bin", "obj", "build"]
+    },
+    "csharp": {
+      "roots": ["languages/csharp"],
+      "extensions": [".cs"],
+      "exclude_dirs": ["bin", "obj"]
+    }
   }
 }

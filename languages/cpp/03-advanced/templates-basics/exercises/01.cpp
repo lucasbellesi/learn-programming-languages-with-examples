@@ -1,9 +1,7 @@
 ﻿#include <iostream>
 using namespace std;
 
-
-template <typename T>
-void swapValues(T& left, T& right) {
+template <typename T> void swapValues(T& left, T& right) {
     const T temp = left;
     left = right;
     right = temp;

@@ -20,11 +20,7 @@ class Program
     static void Main()
     {
         // Program flow: run a fixed set of cases to show both safe and unsafe paths.
-        (double left, double right)[] scenarios = new[]
-        {
-            (42.0, 6.0),
-            (10.0, 0.0)
-        };
+        (double left, double right)[] scenarios = new[] { (42.0, 6.0), (10.0, 0.0) };
 
         foreach ((double left, double right) in scenarios)
         {

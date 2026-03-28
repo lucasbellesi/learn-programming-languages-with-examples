@@ -1,28 +1,30 @@
 /*
 Exercise Guide: languages/cpp/01-foundations/strings/exercises/02.cpp
-Goal: Solve the task defined in this module's README Exercise Specs.
-Build: g++ -std=c++17 -Wall -Wextra -pedantic languages/cpp/01-foundations/strings/exercises/02.cpp -o 02_exercise
-Run: ./02_exercise (Windows MSYS2: ./02_exercise.exe)
-Sample Input: Use one of the sample cases from the module README Exercise Specs.
-Expected Output: Follow the exact output rules described in the same exercise spec.
+Goal: Solve the task
+ * defined in this module's README Exercise Specs.
+Build: g++ -std=c++17 -Wall -Wextra -pedantic
+ * languages/cpp/01-foundations/strings/exercises/02.cpp -o 02_exercise
+Run: ./02_exercise (Windows
+ * MSYS2: ./02_exercise.exe)
+Sample Input: Use one of the sample cases from the module README
+ * Exercise Specs.
+Expected Output: Follow the exact output rules described in the same exercise
+ * spec.
 */
 #include <cctype>
 #include <iostream>
 #include <string>
 using namespace std;
 
-
 bool isPalindromeIgnoringNonLetters(const string& text) {
     size_t left = 0;
     size_t right = text.size();
 
     while (left < right) {
-        while (left < right &&
-               !isalpha(static_cast<unsigned char>(text[left]))) {
+        while (left < right && !isalpha(static_cast<unsigned char>(text[left]))) {
             ++left;
         }
-        while (left < right &&
-               !isalpha(static_cast<unsigned char>(text[right - 1]))) {
+        while (left < right && !isalpha(static_cast<unsigned char>(text[right - 1]))) {
             --right;
         }
 
@@ -30,8 +32,7 @@ bool isPalindromeIgnoringNonLetters(const string& text) {
             break;
         }
 
-        const char leftChar =
-            static_cast<char>(tolower(static_cast<unsigned char>(text[left])));
+        const char leftChar = static_cast<char>(tolower(static_cast<unsigned char>(text[left])));
         const char rightChar =
             static_cast<char>(tolower(static_cast<unsigned char>(text[right - 1])));
 

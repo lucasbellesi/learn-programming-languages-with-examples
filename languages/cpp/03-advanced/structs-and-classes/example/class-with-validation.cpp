@@ -5,9 +5,8 @@
 using namespace std;
 
 class BankAccount {
-public:
-    BankAccount(string ownerName, double initialBalance)
-        : owner(ownerName), balance(0.0) {
+  public:
+    BankAccount(string ownerName, double initialBalance) : owner(ownerName), balance(0.0) {
         if (owner.empty()) {
             throw invalid_argument("Owner name cannot be empty.");
         }
@@ -33,15 +32,11 @@ public:
         return true;
     }
 
-    const string& getOwner() const {
-        return owner;
-    }
+    const string& getOwner() const { return owner; }
 
-    double getBalance() const {
-        return balance;
-    }
+    double getBalance() const { return balance; }
 
-private:
+  private:
     string owner;
     double balance;
 };

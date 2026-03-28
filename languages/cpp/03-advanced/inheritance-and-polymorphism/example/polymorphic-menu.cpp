@@ -5,41 +5,33 @@
 using namespace std;
 
 class Shape {
-public:
+  public:
     virtual ~Shape() = default;
     virtual double area() const = 0;
     virtual const char* name() const = 0;
 };
 
 class Circle : public Shape {
-public:
+  public:
     explicit Circle(double radiusValue) : radius(radiusValue) {}
 
-    double area() const override {
-        return 3.1415926535 * radius * radius;
-    }
+    double area() const override { return 3.1415926535 * radius * radius; }
 
-    const char* name() const override {
-        return "Circle";
-    }
+    const char* name() const override { return "Circle"; }
 
-private:
+  private:
     double radius;
 };
 
 class Rectangle : public Shape {
-public:
+  public:
     Rectangle(double widthValue, double heightValue) : width(widthValue), height(heightValue) {}
 
-    double area() const override {
-        return width * height;
-    }
+    double area() const override { return width * height; }
 
-    const char* name() const override {
-        return "Rectangle";
-    }
+    const char* name() const override { return "Rectangle"; }
 
-private:
+  private:
     double width;
     double height;
 };

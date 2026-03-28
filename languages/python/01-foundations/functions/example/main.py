@@ -1,6 +1,7 @@
 # This example demonstrates functions concepts.
 # Example purpose: show the module flow with clear, beginner-friendly steps.
 
+
 def add(a, b):
     return a + b
 

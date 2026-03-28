@@ -1,5 +1,6 @@
 # Example purpose: show the module flow with clear, beginner-friendly steps.
 
+
 def linear_search(values, target):
     # Intent: iterate through data in a clear and deterministic order.
     for index, value in enumerate(values):

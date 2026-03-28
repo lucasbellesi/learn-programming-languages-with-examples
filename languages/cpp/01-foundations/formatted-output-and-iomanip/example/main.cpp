@@ -5,7 +5,6 @@
 #include <iostream>
 using namespace std;
 
-
 int main() {
     // Program flow: collect input, apply core logic, then print a verifiable result.
     const char* item1 = "Notebook";
@@ -17,16 +16,15 @@ int main() {
     const double p3 = 30.0;
 
     // Intent: print intermediate or final output for quick behavior verification.
-    cout << left << setw(12) << "Item"
-              << right << setw(10) << "Price" << '\n';
+    cout << left << setw(12) << "Item" << right << setw(10) << "Price" << '\n';
     cout << "----------------------\n";
 
-    cout << left << setw(12) << item1
-              << right << setw(10) << fixed << setprecision(2) << p1 << '\n';
-    cout << left << setw(12) << item2
-              << right << setw(10) << fixed << setprecision(2) << p2 << '\n';
-    cout << left << setw(12) << item3
-              << right << setw(10) << fixed << setprecision(2) << p3 << '\n';
+    cout << left << setw(12) << item1 << right << setw(10) << fixed << setprecision(2) << p1
+         << '\n';
+    cout << left << setw(12) << item2 << right << setw(10) << fixed << setprecision(2) << p2
+         << '\n';
+    cout << left << setw(12) << item3 << right << setw(10) << fixed << setprecision(2) << p3
+         << '\n';
 
     return 0;
 }

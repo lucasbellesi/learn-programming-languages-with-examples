@@ -1,18 +1,13 @@
 ﻿#include <iostream>
 using namespace std;
 
-
 struct Rectangle {
     double width;
     double height;
 
-    double area() const {
-        return width * height;
-    }
+    double area() const { return width * height; }
 
-    double perimeter() const {
-        return 2.0 * (width + height);
-    }
+    double perimeter() const { return 2.0 * (width + height); }
 };
 
 int main() {

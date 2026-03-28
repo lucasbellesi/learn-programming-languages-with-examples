@@ -3,7 +3,8 @@ using System.Collections.Generic;
 
 static class Helpers
 {
-    public static double AverageOf<T>(IReadOnlyList<T> values) where T : IConvertible
+    public static double AverageOf<T>(IReadOnlyList<T> values)
+        where T : IConvertible
     {
         if (values.Count == 0)
         {

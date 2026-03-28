@@ -56,8 +56,11 @@ def build_parser() -> argparse.ArgumentParser:
     add_simple_command(subparsers, "build-all", handle_build_all)
     add_simple_command(subparsers, "check-readme-structure", handle_check_readme_structure)
     add_simple_command(subparsers, "check-module-completeness", handle_check_module_completeness)
-    add_simple_command(subparsers, "check-checkpoint-completeness", handle_check_checkpoint_completeness)
+    add_simple_command(
+        subparsers, "check-checkpoint-completeness", handle_check_checkpoint_completeness
+    )
     add_simple_command(subparsers, "check-doc-sync", handle_check_doc_sync)
+    add_simple_command(subparsers, "lint", handle_lint)
     add_simple_command(subparsers, "smoke-languages", handle_smoke_languages)
     add_simple_command(subparsers, "verify-repo", handle_verify_repo)
 
@@ -113,6 +116,11 @@ def handle_smoke_languages(ctx: RepoContext, _: argparse.Namespace) -> int:
     return 0
 
 
+def handle_lint(ctx: RepoContext, _: argparse.Namespace) -> int:
+    lint_repo(ctx)
+    return 0
+
+
 def handle_verify_repo(ctx: RepoContext, _: argparse.Namespace) -> int:
     verify_repo(ctx)
     return 0
@@ -136,7 +144,9 @@ def ensure_text_file(path: Path) -> str:
 def markdown_heading_positions(path: Path, headings: list[str]) -> dict[str, int]:
     lines = path.read_text(encoding="utf-8").splitlines()
     positions: dict[str, int] = {}
-    patterns = {heading: re.compile(rf"^[ ]{{0,3}}{re.escape(heading)}[ ]*$") for heading in headings}
+    patterns = {
+        heading: re.compile(rf"^[ ]{{0,3}}{re.escape(heading)}[ ]*$") for heading in headings
+    }
     in_fence = False
 
     for index, raw_line in enumerate(lines, start=1):
@@ -180,6 +190,38 @@ def find_python_command() -> str:
     raise AutomationError("Python was not found in PATH.")
 
 
+def find_command(*candidates: str) -> str | None:
+    for candidate in candidates:
+        resolved = shutil.which(candidate)
+        if resolved:
+            return resolved
+    return None
+
+
+def find_clang_format(ctx: RepoContext) -> str:
+    resolved = find_command("clang-format", "clang-format.exe")
+    if resolved:
+        return resolved
+
+    if ctx.is_windows:
+        windows_candidates = [
+            Path(
+                r"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\Llvm\bin"
+                r"\clang-format.exe"
+            ),
+            Path(
+                r"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\Llvm\x64\bin"
+                r"\clang-format.exe"
+            ),
+            Path(r"C:\Program Files\CodeBlocks\MinGW\bin\clang-format.exe"),
+        ]
+        for candidate in windows_candidates:
+            if candidate.exists():
+                return str(candidate)
+
+    raise AutomationError("Required command not found: clang-format")
+
+
 def run_command(
     command: list[str],
     *,
@@ -204,7 +246,9 @@ def run_command(
     if completed.returncode != 0:
         if action:
             raise AutomationError(f"{action} failed with exit code {completed.returncode}.")
-        raise AutomationError(f"Command failed with exit code {completed.returncode}: {' '.join(command)}")
+        raise AutomationError(
+            f"Command failed with exit code {completed.returncode}: {' '.join(command)}"
+        )
     return completed
 
 
@@ -228,7 +272,9 @@ def resolve_gpp_toolchain(ctx: RepoContext) -> GppToolchain:
             "Install g++ in WSL, fix WSL access, or install native g++ on Windows."
         )
 
-    raise AutomationError("g++ was not found in PATH.\nInstall g++ (or use WSL on Windows) and try again.")
+    raise AutomationError(
+        "g++ was not found in PATH.\nInstall g++ (or use WSL on Windows) and try again."
+    )
 
 
 def to_wsl_path(path: Path) -> str:
@@ -238,7 +284,9 @@ def to_wsl_path(path: Path) -> str:
     return f"/mnt/{drive}{tail}"
 
 
-def cpp_compile_command(ctx: RepoContext, toolchain: GppToolchain, source: Path, output: Path) -> list[str]:
+def cpp_compile_command(
+    ctx: RepoContext, toolchain: GppToolchain, source: Path, output: Path
+) -> list[str]:
     if toolchain.mode == "native":
         command = [
             toolchain.command,
@@ -290,6 +338,32 @@ def resolve_job_path(ctx: RepoContext, working_dir: Path, raw_path: str) -> Path
     return ctx.root / candidate
 
 
+def enumerate_source_files(
+    ctx: RepoContext,
+    *,
+    roots: list[str],
+    extensions: list[str],
+    exclude_dirs: list[str] | None = None,
+) -> list[Path]:
+    excluded = set(exclude_dirs or [])
+    files: list[Path] = []
+
+    for root in roots:
+        root_path = repo_path(ctx, root)
+        if not root_path.exists():
+            continue
+
+        for extension in extensions:
+            for path in root_path.rglob(f"*{extension}"):
+                if not path.is_file():
+                    continue
+                if excluded.intersection(path.parts):
+                    continue
+                files.append(path)
+
+    return sorted(set(files))
+
+
 def iter_module_directories(ctx: RepoContext) -> list[tuple[str, str, Path]]:
     directories: list[tuple[str, str, Path]] = []
     for language, config in ctx.manifest.languages.items():
@@ -297,13 +371,19 @@ def iter_module_directories(ctx: RepoContext) -> list[tuple[str, str, Path]]:
             level_path = ctx.root / "languages" / language / level
             if not level_path.is_dir():
                 continue
-            for module_dir in sorted((path for path in level_path.iterdir() if path.is_dir()), key=lambda path: path.name):
+            for module_dir in sorted(
+                (path for path in level_path.iterdir() if path.is_dir()), key=lambda path: path.name
+            ):
                 directories.append((language, level, module_dir))
     return directories
 
 
 def check_readme_structure(ctx: RepoContext) -> None:
-    readmes = [module_dir / "README.md" for _, _, module_dir in iter_module_directories(ctx) if (module_dir / "README.md").is_file()]
+    readmes = [
+        module_dir / "README.md"
+        for _, _, module_dir in iter_module_directories(ctx)
+        if (module_dir / "README.md").is_file()
+    ]
     if not readmes:
         raise AutomationError("No module README files found for validation.")
 
@@ -368,7 +448,9 @@ def check_module_completeness(ctx: RepoContext) -> None:
                 if not exercise02.is_file():
                     failures.append(f"{module_dir}: missing exercises/02.{extension}")
 
-                heading_failures = require_markdown_headings(readme_path, ctx.manifest.required_readme_headings)
+                heading_failures = require_markdown_headings(
+                    readme_path, ctx.manifest.required_readme_headings
+                )
                 for failure in heading_failures:
                     suffix = failure.split(": ", 1)[1] if ": " in failure else failure
                     failures.append(f"{module_dir}: README {suffix}")
@@ -433,7 +515,9 @@ def check_checkpoint_completeness(ctx: RepoContext) -> None:
             print(f" - {failure}")
         raise AutomationError("Checkpoint completeness validation failed.")
 
-    print(f"Checkpoint completeness validation passed for {checkpoint_count} checkpoint directories.")
+    print(
+        f"Checkpoint completeness validation passed for {checkpoint_count} checkpoint directories."
+    )
 
 
 def check_doc_sync(ctx: RepoContext) -> None:
@@ -469,6 +553,75 @@ def check_doc_sync(ctx: RepoContext) -> None:
         raise AutomationError("Documentation sync validation failed.")
 
     print("Documentation sync validation passed.")
+
+
+def lint_repo(ctx: RepoContext) -> None:
+    lint_config = ctx.manifest.lint
+
+    print("[1/4] C++ formatting check...")
+    cpp_files = enumerate_source_files(
+        ctx,
+        roots=lint_config["cpp"]["roots"],
+        extensions=lint_config["cpp"]["extensions"],
+        exclude_dirs=lint_config["cpp"].get("exclude_dirs", []),
+    )
+    clang_format = find_clang_format(ctx)
+    for source in cpp_files:
+        run_command(
+            [clang_format, "--dry-run", "--Werror", str(source)],
+            action=f"C++ formatting check for {source}",
+        )
+
+    print("[2/4] Python lint and format check...")
+    python_cmd = find_python_command()
+    python_paths = [str(repo_path(ctx, path)) for path in lint_config["python"]["paths"]]
+    run_command([python_cmd, "-m", "ruff", "check", *python_paths], action="Python lint check")
+    run_command(
+        [python_cmd, "-m", "ruff", "format", "--check", *python_paths], action="Python format check"
+    )
+
+    print("[3/4] Go formatting check...")
+    gofmt = find_command("gofmt", "gofmt.exe")
+    if not gofmt:
+        raise AutomationError("Required command not found: gofmt")
+    go_files = enumerate_source_files(
+        ctx,
+        roots=lint_config["go"]["roots"],
+        extensions=lint_config["go"]["extensions"],
+        exclude_dirs=lint_config["go"].get("exclude_dirs", []),
+    )
+    gofmt_result = subprocess.run(
+        [gofmt, "-l", *[str(path) for path in go_files]],
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    if gofmt_result.returncode != 0:
+        raise AutomationError(
+            f"Go formatting check failed with exit code {gofmt_result.returncode}."
+        )
+    if gofmt_result.stdout.strip():
+        print(gofmt_result.stdout.strip())
+        raise AutomationError("Go formatting check failed.")
+
+    print("[4/4] C# formatting check...")
+    csharp_files = enumerate_source_files(
+        ctx,
+        roots=lint_config["csharp"]["roots"],
+        extensions=lint_config["csharp"]["extensions"],
+        exclude_dirs=lint_config["csharp"].get("exclude_dirs", []),
+    )
+    tool_manifest = ctx.root / ".config" / "dotnet-tools.json"
+    run_command(
+        ["dotnet", "tool", "restore", "--tool-manifest", str(tool_manifest)],
+        action="C# tool restore",
+    )
+    run_command(
+        ["dotnet", "tool", "run", "csharpier", "check", *[str(path) for path in csharp_files]],
+        action="C# formatting check",
+    )
+
+    print("Lint checks passed.")
 
 
 def build_all(ctx: RepoContext) -> None:
@@ -522,7 +675,9 @@ def run_module(ctx: RepoContext, module_path: str) -> None:
         print("Running example...")
         if toolchain.mode == "wsl":
             binary_command = ["wsl", "bash", "-lc", shlex.quote(to_wsl_path(output_path))]
-            run_command(binary_command, action=f"Execution via WSL for {normalized}/example/main.cpp")
+            run_command(
+                binary_command, action=f"Execution via WSL for {normalized}/example/main.cpp"
+            )
         else:
             binary_path = compiled_binary_path(ctx, output_path)
             run_command([str(binary_path)], action=f"Execution for {normalized}/example/main.cpp")
@@ -541,10 +696,7 @@ def run_module(ctx: RepoContext, module_path: str) -> None:
 
 def xml_escape(value: str) -> str:
     return (
-        value.replace("&", "&amp;")
-        .replace('"', "&quot;")
-        .replace("<", "&lt;")
-        .replace(">", "&gt;")
+        value.replace("&", "&amp;").replace('"', "&quot;").replace("<", "&lt;").replace(">", "&gt;")
     )
 
 
@@ -560,6 +712,7 @@ def build_csharp_exercises(ctx: RepoContext) -> None:
             project_dir = temp_root_path / f"exercise-{index}"
             project_dir.mkdir(parents=True, exist_ok=True)
             project_path = project_dir / "exercise-check.csproj"
+            escaped_path = xml_escape(str(exercise_path.resolve()))
             project_path.write_text(
                 "\n".join(
                     [
@@ -572,7 +725,7 @@ def build_csharp_exercises(ctx: RepoContext) -> None:
                         "    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>",
                         "  </PropertyGroup>",
                         "  <ItemGroup>",
-                        f'    <Compile Include="{xml_escape(str(exercise_path.resolve()))}" Link="Program.cs" />',
+                        f'    <Compile Include="{escaped_path}" Link="Program.cs" />',
                         "  </ItemGroup>",
                         "</Project>",
                         "",
@@ -630,13 +783,23 @@ def smoke_languages(ctx: RepoContext) -> None:
     python_smoke = ctx.manifest.smoke["python"]
     print("[1/6] Python syntax check...")
     run_command(
-        [python_cmd, "-m", "compileall", "-q", str(repo_path(ctx, python_smoke["compileall_path"]))],
+        [
+            python_cmd,
+            "-m",
+            "compileall",
+            "-q",
+            str(repo_path(ctx, python_smoke["compileall_path"])),
+        ],
         action="Python syntax check",
     )
 
     print("[2/6] Python runtime smoke...")
     for program in python_smoke["example_paths"]:
-        run_command([python_cmd, str(repo_path(ctx, program))], quiet_stdout=True, action=f"Python runtime smoke for {program}")
+        run_command(
+            [python_cmd, str(repo_path(ctx, program))],
+            quiet_stdout=True,
+            action=f"Python runtime smoke for {program}",
+        )
     for job in python_smoke["stdin_runs"]:
         smoke_runtime_job(
             ctx,
@@ -661,7 +824,11 @@ def smoke_languages(ctx: RepoContext) -> None:
 
     print("[4/6] Go runtime smoke...")
     for program in go_smoke["example_paths"]:
-        run_command(["go", "run", str(repo_path(ctx, program))], quiet_stdout=True, action=f"Go runtime smoke for {program}")
+        run_command(
+            ["go", "run", str(repo_path(ctx, program))],
+            quiet_stdout=True,
+            action=f"Go runtime smoke for {program}",
+        )
     for job in go_smoke["stdin_runs"]:
         smoke_runtime_job(
             ctx,

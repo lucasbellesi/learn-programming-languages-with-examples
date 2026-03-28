@@ -1,4 +1,4 @@
-﻿line = input("Enter integers separated by spaces: ").strip()
+line = input("Enter integers separated by spaces: ").strip()
 
 if not line:
     print("No values entered.")

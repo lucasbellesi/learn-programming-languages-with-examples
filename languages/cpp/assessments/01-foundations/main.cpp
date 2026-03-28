@@ -91,10 +91,10 @@ int main() {
     }
 
     cout << "Average: " << average << '\n';
-    cout << "Highest: " << students[highestIndex].name
-         << " (" << students[highestIndex].score << ")\n";
-    cout << "Lowest: " << students[lowestIndex].name
-         << " (" << students[lowestIndex].score << ")\n";
+    cout << "Highest: " << students[highestIndex].name << " (" << students[highestIndex].score
+         << ")\n";
+    cout << "Lowest: " << students[lowestIndex].name << " (" << students[lowestIndex].score
+         << ")\n";
     cout << "Passed: " << passCount << "/" << students.size() << '\n';
 
     return 0;

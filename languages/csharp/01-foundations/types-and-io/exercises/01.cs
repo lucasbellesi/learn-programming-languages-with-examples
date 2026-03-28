@@ -24,8 +24,10 @@ class Program
             Console.Write($"Value {i}: ");
             double value = double.Parse(Console.ReadLine() ?? "0");
             sum += value;
-            if (value < min) min = value;
-            if (value > max) max = value;
+            if (value < min)
+                min = value;
+            if (value > max)
+                max = value;
         }
 
         Console.WriteLine($"Sum: {sum:F4}");

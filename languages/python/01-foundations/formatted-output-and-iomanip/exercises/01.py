@@ -1,4 +1,4 @@
-﻿products = []
+products = []
 count = int(input("How many products? "))
 
 if count <= 0:

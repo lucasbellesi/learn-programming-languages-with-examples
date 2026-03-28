@@ -30,9 +30,11 @@ class Program
         string raw = Console.ReadLine() ?? string.Empty;
         string[] parts = raw.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-        if (parts.Length != 2 ||
-            !double.TryParse(parts[0], out double width) ||
-            !double.TryParse(parts[1], out double height))
+        if (
+            parts.Length != 2
+            || !double.TryParse(parts[0], out double width)
+            || !double.TryParse(parts[1], out double height)
+        )
         {
             Console.WriteLine("Invalid input. Enter exactly two numbers.");
             return;

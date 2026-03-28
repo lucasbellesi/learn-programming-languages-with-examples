@@ -1,22 +1,19 @@
 ﻿#include <iostream>
 using namespace std;
 
-
 class Shape {
-public:
+  public:
     virtual ~Shape() = default;
     virtual double area() const = 0;
 };
 
 class Triangle : public Shape {
-public:
+  public:
     Triangle(double baseValue, double heightValue) : base(baseValue), height(heightValue) {}
 
-    double area() const override {
-        return 0.5 * base * height;
-    }
+    double area() const override { return 0.5 * base * height; }
 
-private:
+  private:
     double base;
     double height;
 };

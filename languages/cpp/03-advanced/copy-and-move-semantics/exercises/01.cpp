@@ -3,20 +3,13 @@
 #include <vector>
 using namespace std;
 
-
 class IntBuffer {
-public:
-    explicit IntBuffer(size_t size) : data(size, 0) {
-        cout << "Constructed IntBuffer\n";
-    }
+  public:
+    explicit IntBuffer(size_t size) : data(size, 0) { cout << "Constructed IntBuffer\n"; }
 
-    IntBuffer(const IntBuffer& other) : data(other.data) {
-        cout << "Copied IntBuffer\n";
-    }
+    IntBuffer(const IntBuffer& other) : data(other.data) { cout << "Copied IntBuffer\n"; }
 
-    IntBuffer(IntBuffer&& other) noexcept : data(move(other.data)) {
-        cout << "Moved IntBuffer\n";
-    }
+    IntBuffer(IntBuffer&& other) noexcept : data(move(other.data)) { cout << "Moved IntBuffer\n"; }
 
     IntBuffer& operator=(const IntBuffer& other) {
         if (this != &other) {
@@ -34,7 +27,7 @@ public:
         return *this;
     }
 
-private:
+  private:
     vector<int> data;
 };
 

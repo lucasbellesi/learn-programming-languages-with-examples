@@ -4,7 +4,8 @@ using System;
 
 static class Helpers
 {
-    public static T MaxValue<T>(T left, T right) where T : IComparable<T>
+    public static T MaxValue<T>(T left, T right)
+        where T : IComparable<T>
     {
         return left.CompareTo(right) > 0 ? left : right;
     }

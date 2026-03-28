@@ -1,4 +1,4 @@
-﻿total_seconds = int(input("Enter total seconds: "))
+total_seconds = int(input("Enter total seconds: "))
 
 if total_seconds < 0:
     print("Please enter a non-negative value.")

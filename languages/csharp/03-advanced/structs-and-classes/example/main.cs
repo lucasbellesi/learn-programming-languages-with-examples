@@ -73,14 +73,16 @@ class Program
         {
             new Coordinate(2, 3),
             new Coordinate(-1, 4),
-            new Coordinate(5, -2)
+            new Coordinate(5, -2),
         };
 
         Console.WriteLine("Coordinates (struct example):");
         // Intent: deterministic iteration helps beginners verify output quickly.
         foreach (Coordinate point in route)
         {
-            Console.WriteLine($"Point {point}, Manhattan distance = {point.ManhattanDistanceFromOrigin()}");
+            Console.WriteLine(
+                $"Point {point}, Manhattan distance = {point.ManhattanDistanceFromOrigin()}"
+            );
         }
 
         Wallet wallet = new Wallet("Maya", 120m);

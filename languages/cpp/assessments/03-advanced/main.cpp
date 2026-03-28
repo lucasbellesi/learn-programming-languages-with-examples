@@ -9,48 +9,38 @@
 using namespace std;
 
 class Shape {
-public:
+  public:
     virtual ~Shape() = default;
     virtual double area() const = 0;
     virtual string name() const = 0;
 };
 
 class Circle : public Shape {
-public:
+  public:
     explicit Circle(double radiusValue) : radius(radiusValue) {}
 
-    double area() const override {
-        return 3.141592653589793 * radius * radius;
-    }
+    double area() const override { return 3.141592653589793 * radius * radius; }
 
-    string name() const override {
-        return "Circle";
-    }
+    string name() const override { return "Circle"; }
 
-private:
+  private:
     double radius;
 };
 
 class Rectangle : public Shape {
-public:
-    Rectangle(double widthValue, double heightValue)
-        : width(widthValue), height(heightValue) {}
+  public:
+    Rectangle(double widthValue, double heightValue) : width(widthValue), height(heightValue) {}
 
-    double area() const override {
-        return width * height;
-    }
+    double area() const override { return width * height; }
 
-    string name() const override {
-        return "Rectangle";
-    }
+    string name() const override { return "Rectangle"; }
 
-private:
+  private:
     double width;
     double height;
 };
 
-template <typename T>
-void printVector(const vector<T>& values, const string& label) {
+template <typename T> void printVector(const vector<T>& values, const string& label) {
     cout << label << ": [";
     for (size_t i = 0; i < values.size(); ++i) {
         cout << values[i];

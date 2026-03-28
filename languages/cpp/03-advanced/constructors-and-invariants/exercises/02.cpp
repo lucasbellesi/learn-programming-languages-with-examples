@@ -1,9 +1,8 @@
 ﻿#include <iostream>
 using namespace std;
 
-
 class Date {
-public:
+  public:
     Date(int monthValue, int dayValue) : month(monthValue), day(dayValue) {}
 
     bool isValid() const {
@@ -15,7 +14,7 @@ public:
         return day >= 1 && day <= daysInMonth[month - 1];
     }
 
-private:
+  private:
     int month;
     int day;
 };

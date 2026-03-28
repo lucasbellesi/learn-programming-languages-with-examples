@@ -3,35 +3,30 @@
 #include <vector>
 using namespace std;
 
-
 class Shape {
-public:
+  public:
     virtual ~Shape() = default;
     virtual double area() const = 0;
 };
 
 class Rectangle : public Shape {
-public:
+  public:
     Rectangle(double widthValue, double heightValue) : width(widthValue), height(heightValue) {}
 
-    double area() const override {
-        return width * height;
-    }
+    double area() const override { return width * height; }
 
-private:
+  private:
     double width;
     double height;
 };
 
 class Circle : public Shape {
-public:
+  public:
     explicit Circle(double radiusValue) : radius(radiusValue) {}
 
-    double area() const override {
-        return 3.14159265358979323846 * radius * radius;
-    }
+    double area() const override { return 3.14159265358979323846 * radius * radius; }
 
-private:
+  private:
     double radius;
 };
 

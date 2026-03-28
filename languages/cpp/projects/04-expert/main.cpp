@@ -5,22 +5,16 @@
 #include <vector>
 
 class Step {
-public:
+  public:
     explicit Step(const std::string& nameValue) : name(nameValue), processedCount(0) {}
 
-    void run() {
-        ++processedCount;
-    }
+    void run() { ++processedCount; }
 
-    const std::string& getName() const {
-        return name;
-    }
+    const std::string& getName() const { return name; }
 
-    int getProcessedCount() const {
-        return processedCount;
-    }
+    int getProcessedCount() const { return processedCount; }
 
-private:
+  private:
     std::string name;
     int processedCount;
 };
@@ -46,7 +40,8 @@ int main() {
 
     std::cout << "Running " << jobCount << " jobs through " << steps.size() << " steps...\n";
     for (const auto& step : steps) {
-        std::cout << "Step " << step->getName() << " processed " << step->getProcessedCount() << " jobs\n";
+        std::cout << "Step " << step->getName() << " processed " << step->getProcessedCount()
+                  << " jobs\n";
     }
     std::cout << "Elapsed (microseconds): " << elapsed << '\n';
 

@@ -7,19 +7,16 @@
 #include <string>
 using namespace std;
 
-
 class ScopedMessage {
-public:
+  public:
     explicit ScopedMessage(const string& labelText) : label(labelText) {
         // Intent: print intermediate or final output for quick behavior verification.
         cout << "[acquire] " << label << '\n';
     }
 
-    ~ScopedMessage() {
-        cout << "[release] " << label << '\n';
-    }
+    ~ScopedMessage() { cout << "[release] " << label << '\n'; }
 
-private:
+  private:
     string label;
 };
 

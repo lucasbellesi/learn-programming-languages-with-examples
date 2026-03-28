@@ -3,7 +3,6 @@
 #include <memory>
 using namespace std;
 
-
 int main() {
     int n = 0;
     cout << "How many integers? ";

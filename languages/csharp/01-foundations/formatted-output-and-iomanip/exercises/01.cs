@@ -30,7 +30,7 @@ class Program
             products.Add((name, price, quantity));
         }
 
-        Console.WriteLine($"{"Product",-16}{"Price",10}{"Qty",8}{"Total",12}");
+        Console.WriteLine($"{"Product", -16}{"Price", 10}{"Qty", 8}{"Total", 12}");
         Console.WriteLine(new string('-', 46));
 
         double grandTotal = 0;
@@ -38,10 +38,12 @@ class Program
         {
             double total = product.Price * product.Quantity;
             grandTotal += total;
-            Console.WriteLine($"{product.Name,-16}{product.Price,10:F2}{product.Quantity,8}{total,12:F2}");
+            Console.WriteLine(
+                $"{product.Name, -16}{product.Price, 10:F2}{product.Quantity, 8}{total, 12:F2}"
+            );
         }
 
         Console.WriteLine(new string('-', 46));
-        Console.WriteLine($"{"Grand total",-34}{grandTotal,12:F2}");
+        Console.WriteLine($"{"Grand total", -34}{grandTotal, 12:F2}");
     }
 }

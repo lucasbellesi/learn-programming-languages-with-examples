@@ -6,7 +6,6 @@
 #include <string>
 using namespace std;
 
-
 int readIntInRange(const string& label, int minValue, int maxValue) {
     int value = 0;
 

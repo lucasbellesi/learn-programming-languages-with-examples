@@ -2,9 +2,7 @@
 #include <vector>
 using namespace std;
 
-
-template <typename T>
-double averageOf(const vector<T>& values) {
+template <typename T> double averageOf(const vector<T>& values) {
     if (values.empty()) {
         return 0.0;
     }

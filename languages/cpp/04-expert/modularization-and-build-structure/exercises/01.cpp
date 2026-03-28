@@ -1,7 +1,6 @@
 ﻿#include <iostream>
 using namespace std;
 
-
 double safeDivide(double left, double right) {
     if (right == 0.0) {
         return 0.0;
@@ -9,9 +8,7 @@ double safeDivide(double left, double right) {
     return left / right;
 }
 
-double computeExpression(double a, double b, double c) {
-    return safeDivide((a + b), c);
-}
+double computeExpression(double a, double b, double c) { return safeDivide((a + b), c); }
 
 int main() {
     double a = 0.0;

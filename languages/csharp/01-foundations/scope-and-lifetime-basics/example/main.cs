@@ -9,10 +9,14 @@ class Program
     static string Classify(int score)
     {
         // Intent: guard invalid or edge-case paths before the main path continues.
-        if (score >= 90) return "A";
-        if (score >= 80) return "B";
-        if (score >= 70) return "C";
-        if (score >= PassingScore) return "D";
+        if (score >= 90)
+            return "A";
+        if (score >= 80)
+            return "B";
+        if (score >= 70)
+            return "C";
+        if (score >= PassingScore)
+            return "D";
         return "F";
     }
 

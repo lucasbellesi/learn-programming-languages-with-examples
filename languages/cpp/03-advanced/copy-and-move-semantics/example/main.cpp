@@ -6,21 +6,16 @@
 #include <vector>
 using namespace std;
 
-
 class Buffer {
-public:
+  public:
     explicit Buffer(size_t size) : data(size, 0) {
         // Intent: print intermediate or final output for quick behavior verification.
         cout << "Constructed\n";
     }
 
-    Buffer(const Buffer& other) : data(other.data) {
-        cout << "Copied\n";
-    }
+    Buffer(const Buffer& other) : data(other.data) { cout << "Copied\n"; }
 
-    Buffer(Buffer&& other) noexcept : data(move(other.data)) {
-        cout << "Moved\n";
-    }
+    Buffer(Buffer&& other) noexcept : data(move(other.data)) { cout << "Moved\n"; }
 
     Buffer& operator=(const Buffer& other) {
         // Intent: guard invalid or edge-case paths before the main path continues.
@@ -39,11 +34,9 @@ public:
         return *this;
     }
 
-    size_t size() const {
-        return data.size();
-    }
+    size_t size() const { return data.size(); }
 
-private:
+  private:
     vector<int> data;
 };
 

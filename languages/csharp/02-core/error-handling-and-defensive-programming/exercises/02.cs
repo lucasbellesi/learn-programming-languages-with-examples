@@ -10,9 +10,11 @@ class Program
             string raw = Console.ReadLine() ?? string.Empty;
             string[] parts = raw.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-            if (parts.Length != 2 ||
-                !double.TryParse(parts[0], out double a) ||
-                !double.TryParse(parts[1], out double b))
+            if (
+                parts.Length != 2
+                || !double.TryParse(parts[0], out double a)
+                || !double.TryParse(parts[1], out double b)
+            )
             {
                 Console.WriteLine("Invalid input type. Try again.");
                 continue;

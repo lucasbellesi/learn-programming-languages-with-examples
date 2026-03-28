@@ -30,9 +30,11 @@ class Program
         string raw = Console.ReadLine() ?? string.Empty;
         string[] parts = raw.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-        if (parts.Length != 2 ||
-            !double.TryParse(parts[0], out double baseValue) ||
-            !double.TryParse(parts[1], out double heightValue))
+        if (
+            parts.Length != 2
+            || !double.TryParse(parts[0], out double baseValue)
+            || !double.TryParse(parts[1], out double heightValue)
+        )
         {
             Console.WriteLine("Invalid input.");
             return;

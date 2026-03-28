@@ -4,7 +4,6 @@
 #include <iostream>
 using namespace std;
 
-
 void printRangeSum(int from, int to) {
     int sum = 0;
     // Intent: iterate through data in a clear and deterministic order.

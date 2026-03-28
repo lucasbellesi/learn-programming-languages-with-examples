@@ -5,7 +5,6 @@
 #include <vector>
 using namespace std;
 
-
 int main() {
     // Program flow: collect input, apply core logic, then print a verifiable result.
     const int fixedScores[3] = {72, 88, 95};

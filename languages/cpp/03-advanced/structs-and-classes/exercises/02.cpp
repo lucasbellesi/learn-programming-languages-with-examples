@@ -3,28 +3,19 @@
 #include <string>
 using namespace std;
 
-
 class Counter {
-public:
+  public:
     Counter() : value(0) {}
 
-    void increment() {
-        ++value;
-    }
+    void increment() { ++value; }
 
-    void decrement() {
-        --value;
-    }
+    void decrement() { --value; }
 
-    void reset() {
-        value = 0;
-    }
+    void reset() { value = 0; }
 
-    int getValue() const {
-        return value;
-    }
+    int getValue() const { return value; }
 
-private:
+  private:
     int value;
 };
 

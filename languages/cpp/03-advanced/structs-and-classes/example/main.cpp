@@ -6,7 +6,6 @@
 #include <vector>
 using namespace std;
 
-
 struct Student {
     string name;
     int age;
@@ -14,13 +13,12 @@ struct Student {
 
     void print() const {
         // Intent: print intermediate or final output for quick behavior verification.
-        cout << "Student{name=\"" << name << "\", age=" << age
-                  << ", grade=" << grade << "}\n";
+        cout << "Student{name=\"" << name << "\", age=" << age << ", grade=" << grade << "}\n";
     }
 };
 
 class BankAccount {
-public:
+  public:
     BankAccount(const string& ownerName, double initialBalance)
         : owner(ownerName), balance(initialBalance) {
         // Intent: guard invalid or edge-case paths before the main path continues.
@@ -45,25 +43,18 @@ public:
         return true;
     }
 
-    const string& getOwner() const {
-        return owner;
-    }
+    const string& getOwner() const { return owner; }
 
-    double getBalance() const {
-        return balance;
-    }
+    double getBalance() const { return balance; }
 
-private:
+  private:
     string owner;
     double balance;
 };
 
 int main() {
     // Program flow: collect input, apply core logic, then print a verifiable result.
-    vector<Student> students{
-        {"Alex Johnson", 19, 8.7},
-        {"Maya Patel", 20, 9.1}
-    };
+    vector<Student> students{{"Alex Johnson", 19, 8.7}, {"Maya Patel", 20, 9.1}};
 
     cout << "Students (struct example):\n";
     // Intent: iterate through data in a clear and deterministic order.

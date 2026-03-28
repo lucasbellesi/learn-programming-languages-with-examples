@@ -54,6 +54,11 @@ Run multi-language smoke checks with:
 - `./scripts/smoke-languages.ps1` (PowerShell)
 - `bash ./scripts/smoke-languages.sh` (Bash)
 
+Run language lint checks with:
+
+- `./scripts/lint.ps1` (PowerShell)
+- `bash ./scripts/lint.sh` (Bash)
+
 These smoke checks also compile standalone C# exercises by generating temporary validation projects during the check.
 
 The public PowerShell and Bash scripts are thin wrappers over the shared Python automation core in `scripts/automation.py`. Curriculum validation and smoke target metadata live in `scripts/automation_manifest.json`.

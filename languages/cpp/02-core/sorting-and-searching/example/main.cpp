@@ -6,7 +6,6 @@
 #include <vector>
 using namespace std;
 
-
 int main() {
     // Program flow: collect input, apply core logic, then print a verifiable result.
     vector<int> values{7, 2, 9, 4, 2, 8};

@@ -1,4 +1,4 @@
-﻿count = int(input("How many values? "))
+count = int(input("How many values? "))
 
 if count <= 0:
     print("Please enter a positive count.")
