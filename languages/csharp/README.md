@@ -9,7 +9,7 @@ This track currently covers `01-foundations`, `02-core`, `03-advanced`, and `04-
 - 5/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, `templates-basics`).
 - 5/5 expert modules implemented (`memory-management-and-raii`, `smart-pointers-in-depth`, `concurrency-basics`, `performance-and-profiling-basics`, `modularization-and-build-structure`).
 - 3/4 projects implemented (`01-foundations`, `02-core`, `03-advanced`).
-- 2/4 assessments implemented (`01-foundations`, `02-core`).
+- 3/4 assessments implemented (`01-foundations`, `02-core`, `03-advanced`).
 - Same module naming as C++, Python, and Go for parity.
 
 ## Prerequisites
@@ -67,6 +67,7 @@ dotnet run --project 01-foundations/types-and-io/example/types-and-io-example.cs
 - [assessments](./assessments/README.md)
   - [01-foundations](./assessments/01-foundations/README.md)
   - [02-core](./assessments/02-core/README.md)
+  - [03-advanced](./assessments/03-advanced/README.md)
 
 ## Progress Tracking
 
