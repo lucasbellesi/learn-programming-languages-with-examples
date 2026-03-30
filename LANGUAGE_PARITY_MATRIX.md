@@ -82,7 +82,7 @@ Status labels:
 | 01-foundations | Done | Done | Done | Done |
 | 02-core | Done | Done | Done | Done |
 | 03-advanced | Done | Done | Done | Done |
-| 04-expert | Done | Planned | Planned | Planned |
+| 04-expert | Done | Done | Done | Done |
 
 ### Assessments
 
