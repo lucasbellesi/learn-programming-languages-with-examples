@@ -67,7 +67,7 @@
       "levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
       "module_levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
       "module_overrides": {
-        "04-expert": ["memory-management-and-raii", "modularization-and-build-structure"]
+        "04-expert": ["memory-management-and-raii", "concurrency-basics", "modularization-and-build-structure"]
       },
       "checkpoints": {
         "projects": ["01-foundations", "02-core"],
@@ -79,11 +79,11 @@
         "- 8/8 foundations modules implemented.",
         "- 6/6 core modules implemented (`input-validation`, `algorithms-basics`, `file-io-basics`, `sorting-and-searching`, `maps-and-frequency-counting`, `error-handling-and-defensive-programming`).",
         "- 5/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, `templates-basics`).",
-        "- 2/5 expert modules implemented (`memory-management-and-raii`, `modularization-and-build-structure`).",
+        "- 3/5 expert modules implemented (`memory-management-and-raii`, `concurrency-basics`, `modularization-and-build-structure`).",
         "- 2/4 projects implemented (`01-foundations`, `02-core`).",
         "- 2/4 assessments implemented (`01-foundations`, `02-core`)."
       ],
-      "root_status_row": "| C# | 01-foundations, 02-core, 03-advanced, 04-expert (partial) | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 2/5 expert modules, 2/4 projects, 2/4 assessments | Advanced parity complete, expert rollout in progress |"
+      "root_status_row": "| C# | 01-foundations, 02-core, 03-advanced, 04-expert (partial) | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 3/5 expert modules, 2/4 projects, 2/4 assessments | Advanced parity complete, expert rollout in progress |"
     },
     "go": {
       "extension": "go",
@@ -134,7 +134,7 @@
       "markers": [
         "- Canonical order is defined by the C++ track.",
         "- Current priority is to extend checkpoint parity beyond `02-core` without fragmenting the curriculum.",
-        "`04-expert` has started in C# with `memory-management-and-raii` and `modularization-and-build-structure`; broader expert parity is still planned.",
+        "`04-expert` has started in C# with `memory-management-and-raii`, `concurrency-basics`, and `modularization-and-build-structure`; broader expert parity is still planned.",
         "| 03-advanced | Done | Planned | Planned | Planned |",
         "| 04-expert | Done | Planned | Planned | Planned |"
       ]
@@ -248,6 +248,7 @@
         "languages/csharp/03-advanced/inheritance-and-polymorphism/example/inheritance-and-polymorphism-example.csproj",
         "languages/csharp/03-advanced/templates-basics/example/templates-basics-example.csproj",
         "languages/csharp/04-expert/memory-management-and-raii/example/memory-management-and-raii-example.csproj",
+        "languages/csharp/04-expert/concurrency-basics/example/concurrency-basics-example.csproj",
         "languages/csharp/04-expert/modularization-and-build-structure/example/modularization-and-build-structure-example.csproj"
       ],
       "stdin_runs": [

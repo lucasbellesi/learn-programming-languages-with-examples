@@ -31,6 +31,7 @@
 ## 04-expert
 
 - [ ] Complete `04-expert/memory-management-and-raii`.
+- [ ] Complete `04-expert/concurrency-basics`.
 - [ ] Complete `04-expert/modularization-and-build-structure`.
 
 ## Projects
