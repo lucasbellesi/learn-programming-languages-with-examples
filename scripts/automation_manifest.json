@@ -68,7 +68,7 @@
       "module_levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
       "checkpoints": {
         "projects": ["01-foundations", "02-core", "03-advanced", "04-expert"],
-        "assessments": ["01-foundations", "02-core", "03-advanced"]
+        "assessments": ["01-foundations", "02-core", "03-advanced", "04-expert"]
       },
       "checkpoint_main": "main.cs",
       "track_readme": "languages/csharp/README.md",
@@ -78,9 +78,9 @@
         "- 5/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, `templates-basics`).",
         "- 5/5 expert modules implemented (`memory-management-and-raii`, `smart-pointers-in-depth`, `concurrency-basics`, `performance-and-profiling-basics`, `modularization-and-build-structure`).",
         "- 4/4 projects implemented (`01-foundations`, `02-core`, `03-advanced`, `04-expert`).",
-        "- 3/4 assessments implemented (`01-foundations`, `02-core`, `03-advanced`)."
+        "- 4/4 assessments implemented (`01-foundations`, `02-core`, `03-advanced`, `04-expert`)."
       ],
-      "root_status_row": "| C# | 01-foundations, 02-core, 03-advanced, 04-expert | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 5/5 expert modules, 4/4 projects, 3/4 assessments | Module parity complete through expert, final assessments pending |"
+      "root_status_row": "| C# | 01-foundations, 02-core, 03-advanced, 04-expert | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 5/5 expert modules, 4/4 projects, 4/4 assessments | Module and checkpoint parity complete through expert |"
     },
     "go": {
       "extension": "go",
@@ -88,7 +88,7 @@
       "module_levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
       "checkpoints": {
         "projects": ["01-foundations", "02-core", "03-advanced", "04-expert"],
-        "assessments": ["01-foundations", "02-core", "03-advanced"]
+        "assessments": ["01-foundations", "02-core", "03-advanced", "04-expert"]
       },
       "checkpoint_main": "main.go",
       "track_readme": "languages/go/README.md",
@@ -98,9 +98,9 @@
         "- 5/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, `templates-basics`).",
         "- 5/5 expert modules implemented (`memory-management-and-raii`, `smart-pointers-in-depth`, `concurrency-basics`, `performance-and-profiling-basics`, `modularization-and-build-structure`).",
         "- 4/4 projects implemented (`01-foundations`, `02-core`, `03-advanced`, `04-expert`).",
-        "- 3/4 assessments implemented (`01-foundations`, `02-core`, `03-advanced`)."
+        "- 4/4 assessments implemented (`01-foundations`, `02-core`, `03-advanced`, `04-expert`)."
       ],
-      "root_status_row": "| Go | 01-foundations, 02-core, 03-advanced, 04-expert | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 5/5 expert modules, 4/4 projects, 3/4 assessments | Module parity complete through expert, final assessments pending |"
+      "root_status_row": "| Go | 01-foundations, 02-core, 03-advanced, 04-expert | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 5/5 expert modules, 4/4 projects, 4/4 assessments | Module and checkpoint parity complete through expert |"
     },
     "python": {
       "extension": "py",
@@ -108,7 +108,7 @@
       "module_levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
       "checkpoints": {
         "projects": ["01-foundations", "02-core", "03-advanced", "04-expert"],
-        "assessments": ["01-foundations", "02-core", "03-advanced"]
+        "assessments": ["01-foundations", "02-core", "03-advanced", "04-expert"]
       },
       "checkpoint_main": "main.py",
       "track_readme": "languages/python/README.md",
@@ -118,9 +118,9 @@
         "- 5/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, `templates-basics`).",
         "- 5/5 expert modules implemented (`memory-management-and-raii`, `smart-pointers-in-depth`, `concurrency-basics`, `performance-and-profiling-basics`, `modularization-and-build-structure`).",
         "- 4/4 projects implemented (`01-foundations`, `02-core`, `03-advanced`, `04-expert`).",
-        "- 3/4 assessments implemented (`01-foundations`, `02-core`, `03-advanced`)."
+        "- 4/4 assessments implemented (`01-foundations`, `02-core`, `03-advanced`, `04-expert`)."
       ],
-      "root_status_row": "| Python | 01-foundations, 02-core, 03-advanced, 04-expert | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 5/5 expert modules, 4/4 projects, 3/4 assessments | Module parity complete through expert, final assessments pending |"
+      "root_status_row": "| Python | 01-foundations, 02-core, 03-advanced, 04-expert | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 5/5 expert modules, 4/4 projects, 4/4 assessments | Module and checkpoint parity complete through expert |"
     }
   },
   "docs": {
@@ -132,8 +132,8 @@
       "path": "LANGUAGE_PARITY_MATRIX.md",
       "markers": [
         "- Canonical order is defined by the C++ track.",
-        "- Current priority is to extend checkpoint parity beyond `02-core` now that module parity reaches `04-expert` across all active tracks.",
-        "`04-expert` is now implemented across C#, Go, and Python; the next parity target is projects and assessments beyond `02-core`.",
+        "- Module and checkpoint parity now reach `04-expert` across all active tracks.",
+        "`04-expert` projects and assessments are now implemented across C#, Go, and Python.",
         "| 03-advanced | Done | Done | Done | Done |",
         "| 04-expert | Done | Done | Done | Done |"
       ]
@@ -171,6 +171,9 @@
         },
         {
           "program": "languages/python/assessments/03-advanced/main.py"
+        },
+        {
+          "program": "languages/python/assessments/04-expert/main.py"
         },
         {
           "program": "languages/python/projects/03-advanced/main.py"
@@ -233,6 +236,9 @@
           "program": "languages/go/assessments/03-advanced/main.go"
         },
         {
+          "program": "languages/go/assessments/04-expert/main.go"
+        },
+        {
           "program": "languages/go/projects/03-advanced/main.go"
         },
         {
@@ -291,6 +297,9 @@
         },
         {
           "project": "languages/csharp/assessments/03-advanced/assessment-03-advanced.csproj"
+        },
+        {
+          "project": "languages/csharp/assessments/04-expert/assessment-04-expert.csproj"
         },
         {
           "project": "languages/csharp/projects/03-advanced/advanced-project.csproj"

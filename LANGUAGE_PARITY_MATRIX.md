@@ -3,7 +3,7 @@
 This matrix tracks module and checkpoint parity across C++, C#, Go, and Python.
 
 - Canonical order is defined by the C++ track.
-- Current priority is to extend checkpoint parity beyond `02-core` now that module parity reaches `04-expert` across all active tracks.
+- Module and checkpoint parity now reach `04-expert` across all active tracks.
 - Status labels:
   - `Done`: module implemented with example, exercises, and README.
   - `Planned`: module not implemented yet, already queued in order.
@@ -56,7 +56,7 @@ Current parity progress in non-C++ tracks:
 | 4 | inheritance-and-polymorphism | Done | Done | Done | Done |
 | 5 | templates-basics | Done | Done | Done | Done |
 
-`04-expert` is now implemented across C#, Go, and Python; the next parity target is projects and assessments beyond `02-core`.
+`04-expert` projects and assessments are now implemented across C#, Go, and Python.
 
 ### Expert (`04-expert`)
 
@@ -91,4 +91,4 @@ Status labels:
 | 01-foundations | Done | Done | Done | Done |
 | 02-core | Done | Done | Done | Done |
 | 03-advanced | Done | Done | Done | Done |
-| 04-expert | Done | Planned | Planned | Planned |
+| 04-expert | Done | Done | Done | Done |

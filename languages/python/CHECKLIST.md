@@ -48,6 +48,7 @@
 - [ ] Complete `assessments/01-foundations`.
 - [ ] Complete `assessments/02-core`.
 - [ ] Complete `assessments/03-advanced`.
+- [ ] Complete `assessments/04-expert`.
 
 ## Parity Goals
 
