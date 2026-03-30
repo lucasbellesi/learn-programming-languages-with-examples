@@ -2,11 +2,12 @@
 
 ## Scope and Status
 
-This track currently covers `01-foundations`, `02-core`, and `03-advanced`, plus the first checkpoint layer in `projects` and `assessments`.
+This track currently covers `01-foundations`, `02-core`, `03-advanced`, and `04-expert`, plus the first checkpoint layer in `projects` and `assessments`.
 
 - 8/8 foundations modules implemented.
 - 6/6 core modules implemented (`input-validation`, `algorithms-basics`, `file-io-basics`, `sorting-and-searching`, `maps-and-frequency-counting`, `error-handling-and-defensive-programming`).
 - 5/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, `templates-basics`).
+- 5/5 expert modules implemented (`memory-management-and-raii`, `smart-pointers-in-depth`, `concurrency-basics`, `performance-and-profiling-basics`, `modularization-and-build-structure`).
 - 2/4 projects implemented (`01-foundations`, `02-core`).
 - 2/4 assessments implemented (`01-foundations`, `02-core`).
 - Same module naming as C++, Go, and C# for parity.
@@ -53,6 +54,12 @@ python 01-foundations/types-and-io/example/main.py
   - [copy-and-move-semantics](./03-advanced/copy-and-move-semantics/README.md)
   - [inheritance-and-polymorphism](./03-advanced/inheritance-and-polymorphism/README.md)
   - [templates-basics](./03-advanced/templates-basics/README.md)
+- [04-expert](./04-expert/README.md)
+  - [memory-management-and-raii](./04-expert/memory-management-and-raii/README.md)
+  - [smart-pointers-in-depth](./04-expert/smart-pointers-in-depth/README.md)
+  - [concurrency-basics](./04-expert/concurrency-basics/README.md)
+  - [performance-and-profiling-basics](./04-expert/performance-and-profiling-basics/README.md)
+  - [modularization-and-build-structure](./04-expert/modularization-and-build-structure/README.md)
 - [projects](./projects/README.md)
   - [01-foundations](./projects/01-foundations/README.md)
   - [02-core](./projects/02-core/README.md)

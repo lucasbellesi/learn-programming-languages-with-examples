@@ -1,6 +1,6 @@
-# C# 04 Expert
+# Go 04 Expert
 
-This level is now fully implemented in C#.
+This level extends the Go track into resource cleanup, pointers, concurrency, performance, and larger-structure design.
 
 ## Module Order
 
@@ -14,4 +14,4 @@ Track progress in [../CHECKLIST.md](../CHECKLIST.md).
 
 ## Study Tip
 
-Use this level to move from deterministic cleanup into ownership modeling, concurrent coordination, performance measurement, and modular project structure.
+Use this level to compare Go's `defer`, pointers, goroutines, and package-oriented design with the more object-heavy expert tracks in C++ and C#.

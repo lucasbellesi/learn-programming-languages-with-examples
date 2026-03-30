@@ -66,9 +66,6 @@
       "extension": "cs",
       "levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
       "module_levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
-      "module_overrides": {
-        "04-expert": ["memory-management-and-raii", "concurrency-basics", "modularization-and-build-structure"]
-      },
       "checkpoints": {
         "projects": ["01-foundations", "02-core"],
         "assessments": ["01-foundations", "02-core"]
@@ -79,16 +76,16 @@
         "- 8/8 foundations modules implemented.",
         "- 6/6 core modules implemented (`input-validation`, `algorithms-basics`, `file-io-basics`, `sorting-and-searching`, `maps-and-frequency-counting`, `error-handling-and-defensive-programming`).",
         "- 5/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, `templates-basics`).",
-        "- 3/5 expert modules implemented (`memory-management-and-raii`, `concurrency-basics`, `modularization-and-build-structure`).",
+        "- 5/5 expert modules implemented (`memory-management-and-raii`, `smart-pointers-in-depth`, `concurrency-basics`, `performance-and-profiling-basics`, `modularization-and-build-structure`).",
         "- 2/4 projects implemented (`01-foundations`, `02-core`).",
         "- 2/4 assessments implemented (`01-foundations`, `02-core`)."
       ],
-      "root_status_row": "| C# | 01-foundations, 02-core, 03-advanced, 04-expert (partial) | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 3/5 expert modules, 2/4 projects, 2/4 assessments | Advanced parity complete, expert rollout in progress |"
+      "root_status_row": "| C# | 01-foundations, 02-core, 03-advanced, 04-expert | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 5/5 expert modules, 2/4 projects, 2/4 assessments | Module parity complete through expert |"
     },
     "go": {
       "extension": "go",
-      "levels": ["01-foundations", "02-core", "03-advanced"],
-      "module_levels": ["01-foundations", "02-core", "03-advanced"],
+      "levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
+      "module_levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
       "checkpoints": {
         "projects": ["01-foundations", "02-core"],
         "assessments": ["01-foundations", "02-core"]
@@ -99,15 +96,16 @@
         "- 8/8 foundations modules implemented.",
         "- 6/6 core modules implemented (`input-validation`, `algorithms-basics`, `file-io-basics`, `sorting-and-searching`, `maps-and-frequency-counting`, `error-handling-and-defensive-programming`).",
         "- 5/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, `templates-basics`).",
+        "- 5/5 expert modules implemented (`memory-management-and-raii`, `smart-pointers-in-depth`, `concurrency-basics`, `performance-and-profiling-basics`, `modularization-and-build-structure`).",
         "- 2/4 projects implemented (`01-foundations`, `02-core`).",
         "- 2/4 assessments implemented (`01-foundations`, `02-core`)."
       ],
-      "root_status_row": "| Go | 01-foundations, 02-core, 03-advanced | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 2/4 projects, 2/4 assessments | Advanced parity complete, checkpoints started |"
+      "root_status_row": "| Go | 01-foundations, 02-core, 03-advanced, 04-expert | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 5/5 expert modules, 2/4 projects, 2/4 assessments | Module parity complete through expert |"
     },
     "python": {
       "extension": "py",
-      "levels": ["01-foundations", "02-core", "03-advanced"],
-      "module_levels": ["01-foundations", "02-core", "03-advanced"],
+      "levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
+      "module_levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
       "checkpoints": {
         "projects": ["01-foundations", "02-core"],
         "assessments": ["01-foundations", "02-core"]
@@ -118,10 +116,11 @@
         "- 8/8 foundations modules implemented.",
         "- 6/6 core modules implemented (`input-validation`, `algorithms-basics`, `file-io-basics`, `sorting-and-searching`, `maps-and-frequency-counting`, `error-handling-and-defensive-programming`).",
         "- 5/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, `templates-basics`).",
+        "- 5/5 expert modules implemented (`memory-management-and-raii`, `smart-pointers-in-depth`, `concurrency-basics`, `performance-and-profiling-basics`, `modularization-and-build-structure`).",
         "- 2/4 projects implemented (`01-foundations`, `02-core`).",
         "- 2/4 assessments implemented (`01-foundations`, `02-core`)."
       ],
-      "root_status_row": "| Python | 01-foundations, 02-core, 03-advanced | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 2/4 projects, 2/4 assessments | Advanced parity complete, checkpoints started |"
+      "root_status_row": "| Python | 01-foundations, 02-core, 03-advanced, 04-expert | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 5/5 expert modules, 2/4 projects, 2/4 assessments | Module parity complete through expert |"
     }
   },
   "docs": {
@@ -133,8 +132,8 @@
       "path": "LANGUAGE_PARITY_MATRIX.md",
       "markers": [
         "- Canonical order is defined by the C++ track.",
-        "- Current priority is to extend checkpoint parity beyond `02-core` without fragmenting the curriculum.",
-        "`04-expert` has started in C# with `memory-management-and-raii`, `concurrency-basics`, and `modularization-and-build-structure`; broader expert parity is still planned.",
+        "- Current priority is to extend checkpoint parity beyond `02-core` now that module parity reaches `04-expert` across all active tracks.",
+        "`04-expert` is now implemented across C#, Go, and Python; the next parity target is projects and assessments beyond `02-core`.",
         "| 03-advanced | Done | Planned | Planned | Planned |",
         "| 04-expert | Done | Planned | Planned | Planned |"
       ]
@@ -154,7 +153,12 @@
         "languages/python/03-advanced/constructors-and-invariants/example/main.py",
         "languages/python/03-advanced/copy-and-move-semantics/example/main.py",
         "languages/python/03-advanced/inheritance-and-polymorphism/example/main.py",
-        "languages/python/03-advanced/templates-basics/example/main.py"
+        "languages/python/03-advanced/templates-basics/example/main.py",
+        "languages/python/04-expert/memory-management-and-raii/example/main.py",
+        "languages/python/04-expert/smart-pointers-in-depth/example/main.py",
+        "languages/python/04-expert/concurrency-basics/example/main.py",
+        "languages/python/04-expert/performance-and-profiling-basics/example/main.py",
+        "languages/python/04-expert/modularization-and-build-structure/example/main.py"
       ],
       "stdin_runs": [
         {
@@ -200,7 +204,12 @@
         "languages/go/03-advanced/constructors-and-invariants/example/main.go",
         "languages/go/03-advanced/copy-and-move-semantics/example/main.go",
         "languages/go/03-advanced/inheritance-and-polymorphism/example/main.go",
-        "languages/go/03-advanced/templates-basics/example/main.go"
+        "languages/go/03-advanced/templates-basics/example/main.go",
+        "languages/go/04-expert/memory-management-and-raii/example/main.go",
+        "languages/go/04-expert/smart-pointers-in-depth/example/main.go",
+        "languages/go/04-expert/concurrency-basics/example/main.go",
+        "languages/go/04-expert/performance-and-profiling-basics/example/main.go",
+        "languages/go/04-expert/modularization-and-build-structure/example/main.go"
       ],
       "stdin_runs": [
         {
@@ -249,6 +258,8 @@
         "languages/csharp/03-advanced/templates-basics/example/templates-basics-example.csproj",
         "languages/csharp/04-expert/memory-management-and-raii/example/memory-management-and-raii-example.csproj",
         "languages/csharp/04-expert/concurrency-basics/example/concurrency-basics-example.csproj",
+        "languages/csharp/04-expert/smart-pointers-in-depth/example/smart-pointers-in-depth-example.csproj",
+        "languages/csharp/04-expert/performance-and-profiling-basics/example/performance-and-profiling-basics-example.csproj",
         "languages/csharp/04-expert/modularization-and-build-structure/example/modularization-and-build-structure-example.csproj"
       ],
       "stdin_runs": [

@@ -28,6 +28,14 @@
 - [ ] Complete `03-advanced/inheritance-and-polymorphism`.
 - [ ] Complete `03-advanced/templates-basics`.
 
+## 04-expert
+
+- [ ] Complete `04-expert/memory-management-and-raii`.
+- [ ] Complete `04-expert/smart-pointers-in-depth`.
+- [ ] Complete `04-expert/concurrency-basics`.
+- [ ] Complete `04-expert/performance-and-profiling-basics`.
+- [ ] Complete `04-expert/modularization-and-build-structure`.
+
 ## Projects
 
 - [ ] Complete `projects/01-foundations`.

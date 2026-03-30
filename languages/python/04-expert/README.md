@@ -1,6 +1,6 @@
-# C# 04 Expert
+# Python 04 Expert
 
-This level is now fully implemented in C#.
+This level extends the Python track into context management, references, concurrency, performance, and module organization.
 
 ## Module Order
 
@@ -14,4 +14,4 @@ Track progress in [../CHECKLIST.md](../CHECKLIST.md).
 
 ## Study Tip
 
-Use this level to move from deterministic cleanup into ownership modeling, concurrent coordination, performance measurement, and modular project structure.
+Use this level to compare Python's context managers, weak references, threads, and module layout with the expert tracks in C++, Go, and C#.
