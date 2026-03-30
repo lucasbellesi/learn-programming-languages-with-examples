@@ -11,11 +11,6 @@ sealed class Report
     }
 
     public string Title { get; }
-
-    ~Report()
-    {
-        Console.WriteLine($"Finalized report: {Title}");
-    }
 }
 
 sealed class ReportOwner
@@ -74,7 +69,7 @@ class Program
 {
     static void Main()
     {
-        // Program flow: move one strongly-owned reference, then watch a weak observer expire.
+        // Program flow: move one strongly-owned reference, then observe a weak reference expire.
         ReportOwner inbox = new ReportOwner("Inbox", new Report("Quarterly Summary"));
         ReportOwner archive = new ReportOwner("Archive", null);
 
@@ -87,11 +82,11 @@ class Program
         PreviewPane preview = CreatePreview();
         preview.Describe();
 
+        // Intent: the helper method released the last strong owner before we force collection.
         GC.Collect();
         GC.WaitForPendingFinalizers();
         GC.Collect();
 
-        // Intent: final state confirms that the weak observer did not keep the object alive.
         preview.Describe();
     }
 

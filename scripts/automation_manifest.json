@@ -221,7 +221,7 @@
         "languages/go/04-expert/smart-pointers-in-depth/example/main.go",
         "languages/go/04-expert/concurrency-basics/example/main.go",
         "languages/go/04-expert/performance-and-profiling-basics/example/main.go",
-        "languages/go/04-expert/modularization-and-build-structure/example/main.go"
+        "languages/go/04-expert/modularization-and-build-structure/example"
       ],
       "stdin_runs": [
         {

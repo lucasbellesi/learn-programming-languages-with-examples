@@ -348,6 +348,29 @@ def resolve_job_path(ctx: RepoContext, working_dir: Path, raw_path: str) -> Path
     return ctx.root / candidate
 
 
+def go_target_arguments(path: Path) -> list[str]:
+    if path.is_dir():
+        return [str(candidate) for candidate in sorted(path.glob("*.go"))]
+    return [str(path)]
+
+
+def go_directory_needs_package_build(directory: Path) -> bool:
+    go_files = sorted(directory.glob("*.go"))
+    if len(go_files) <= 1:
+        return False
+
+    if not any(path.name != "main.go" for path in go_files):
+        return False
+
+    main_function_count = 0
+    for path in go_files:
+        main_function_count += len(
+            re.findall(r"(?m)^func\s+main\s*\(", path.read_text(encoding="utf-8"))
+        )
+
+    return main_function_count <= 1
+
+
 def enumerate_source_files(
     ctx: RepoContext,
     *,
@@ -849,17 +872,40 @@ def smoke_languages(ctx: RepoContext) -> None:
     print("[3/6] Go compile check...")
     with tempfile.TemporaryDirectory(prefix="go-smoke-") as temp_root:
         temp_root_path = Path(temp_root)
-        go_files = sorted(repo_path(ctx, go_smoke["build_glob_root"]).rglob("*.go"))
-        for index, source in enumerate(go_files):
+        go_root = repo_path(ctx, go_smoke["build_glob_root"])
+        package_dirs = sorted(
+            path
+            for path in {file_path.parent for file_path in go_root.rglob("*.go")}
+            if go_directory_needs_package_build(path)
+        )
+        package_dir_set = set(package_dirs)
+        standalone_files = sorted(
+            path for path in go_root.rglob("*.go") if path.parent not in package_dir_set
+        )
+
+        for index, package_dir in enumerate(package_dirs):
             run_command(
-                ["go", "build", "-o", str(temp_root_path / f"go_build_{index}"), str(source)],
+                [
+                    "go",
+                    "build",
+                    "-o",
+                    str(temp_root_path / f"go_build_pkg_{index}"),
+                    *go_target_arguments(package_dir),
+                ],
+                action=f"Go build for {package_dir}",
+            )
+
+        for index, source in enumerate(standalone_files):
+            run_command(
+                ["go", "build", "-o", str(temp_root_path / f"go_build_file_{index}"), str(source)],
                 action=f"Go build for {source}",
             )
 
     print("[4/6] Go runtime smoke...")
     for program in go_smoke["example_paths"]:
+        program_path = repo_path(ctx, program)
         run_command(
-            ["go", "run", str(repo_path(ctx, program))],
+            ["go", "run", *go_target_arguments(program_path)],
             quiet_stdout=True,
             action=f"Go runtime smoke for {program}",
         )
@@ -870,7 +916,7 @@ def smoke_languages(ctx: RepoContext) -> None:
             command_builder=lambda current_job, working_dir: [
                 "go",
                 "run",
-                str(resolve_job_path(ctx, working_dir, current_job["program"])),
+                *go_target_arguments(resolve_job_path(ctx, working_dir, current_job["program"])),
             ],
             label=f"Go runtime smoke for {job.get('program', job.get('working_dir', 'job'))}",
         )

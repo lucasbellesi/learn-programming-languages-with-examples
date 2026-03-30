@@ -5,10 +5,18 @@ from __future__ import annotations
 import time
 
 
-def measure(action) -> float:
-    start = time.perf_counter()
+retained_object: object | None = None
+
+
+def measure_average(action, repetitions: int) -> float:
     action()
-    return time.perf_counter() - start
+
+    total = 0.0
+    for _ in range(repetitions):
+        start = time.perf_counter()
+        action()
+        total += time.perf_counter() - start
+    return total / repetitions
 
 
 def build_with_concatenation(line_count: int) -> str:
@@ -40,19 +48,37 @@ def fill_with_presize(item_count: int) -> list[int]:
 def main() -> None:
     # Program flow: measure two paired implementations on the same workload size.
     line_count = 4_000
-    concat_duration = measure(lambda: build_with_concatenation(line_count))
-    join_duration = measure(lambda: build_with_join(line_count))
+    repetitions = 12
 
-    print(f"String concatenation: {concat_duration:.6f}s")
-    print(f"str.join: {join_duration:.6f}s")
+    def remember(value: object) -> None:
+        global retained_object
+        retained_object = value
+
+    concat_duration = measure_average(
+        lambda: remember(build_with_concatenation(line_count)),
+        repetitions,
+    )
+    join_duration = measure_average(
+        lambda: remember(build_with_join(line_count)),
+        repetitions,
+    )
+
+    print(f"Average string concatenation ({repetitions} runs): {concat_duration:.6f}s")
+    print(f"Average str.join ({repetitions} runs): {join_duration:.6f}s")
 
     item_count = 200_000
-    no_presize = measure(lambda: fill_without_presize(item_count))
-    with_presize = measure(lambda: fill_with_presize(item_count))
+    no_presize = measure_average(
+        lambda: remember(fill_without_presize(item_count)),
+        repetitions,
+    )
+    with_presize = measure_average(
+        lambda: remember(fill_with_presize(item_count)),
+        repetitions,
+    )
 
     # Intent: final output keeps the comparison direct and easy to verify.
-    print(f"List fill without pre-size: {no_presize:.6f}s")
-    print(f"List fill with pre-size: {with_presize:.6f}s")
+    print(f"Average list fill without pre-size ({repetitions} runs): {no_presize:.6f}s")
+    print(f"Average list fill with pre-size ({repetitions} runs): {with_presize:.6f}s")
 
 
 if __name__ == "__main__":

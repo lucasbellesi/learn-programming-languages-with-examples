@@ -7,31 +7,61 @@ using System.Text;
 
 class Program
 {
+    static string retainedText = string.Empty;
+    static List<int> retainedValues = new List<int>();
+
     static void Main()
     {
         // Program flow: measure two paired implementations on the same workload size.
         const int lineCount = 4000;
-        long concatTicks = Measure(() => BuildWithConcatenation(lineCount));
-        long builderTicks = Measure(() => BuildWithStringBuilder(lineCount));
+        const int repetitions = 12;
+        long concatTicks = MeasureAverage(
+            () => retainedText = BuildWithConcatenation(lineCount),
+            repetitions
+        );
+        long builderTicks = MeasureAverage(
+            () => retainedText = BuildWithStringBuilder(lineCount),
+            repetitions
+        );
 
-        Console.WriteLine($"String concatenation ticks: {concatTicks}");
-        Console.WriteLine($"StringBuilder ticks: {builderTicks}");
+        Console.WriteLine(
+            $"Average string concatenation ticks ({repetitions} runs): {concatTicks}"
+        );
+        Console.WriteLine($"Average StringBuilder ticks ({repetitions} runs): {builderTicks}");
 
         const int itemCount = 200000;
-        long noCapacityTicks = Measure(() => FillWithoutCapacity(itemCount));
-        long withCapacityTicks = Measure(() => FillWithCapacity(itemCount));
+        long noCapacityTicks = MeasureAverage(
+            () => retainedValues = FillWithoutCapacity(itemCount),
+            repetitions
+        );
+        long withCapacityTicks = MeasureAverage(
+            () => retainedValues = FillWithCapacity(itemCount),
+            repetitions
+        );
 
         // Intent: final output keeps the comparison direct and easy to verify.
-        Console.WriteLine($"List fill without capacity ticks: {noCapacityTicks}");
-        Console.WriteLine($"List fill with capacity ticks: {withCapacityTicks}");
+        Console.WriteLine(
+            $"Average list fill without capacity ticks ({repetitions} runs): {noCapacityTicks}"
+        );
+        Console.WriteLine(
+            $"Average list fill with capacity ticks ({repetitions} runs): {withCapacityTicks}"
+        );
     }
 
-    static long Measure(Action action)
+    static long MeasureAverage(Action action, int repetitions)
     {
-        Stopwatch stopwatch = Stopwatch.StartNew();
         action();
-        stopwatch.Stop();
-        return stopwatch.ElapsedTicks;
+
+        long totalTicks = 0;
+        for (int iteration = 0; iteration < repetitions; iteration++)
+        {
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            action();
+            stopwatch.Stop();
+            totalTicks += stopwatch.ElapsedTicks;
+        }
+
+        return totalTicks / repetitions;
     }
 
     static string BuildWithConcatenation(int lineCount)

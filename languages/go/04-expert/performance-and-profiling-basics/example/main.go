@@ -8,28 +8,40 @@ import (
 	"time"
 )
 
+var (
+	retainedText   string
+	retainedValues []int
+)
+
 func main() {
 	// Program flow: measure two paired implementations on the same workload size.
 	const lineCount = 4000
-	concatDuration := measure(func() { _ = buildWithConcatenation(lineCount) })
-	builderDuration := measure(func() { _ = buildWithBuilder(lineCount) })
+	const repetitions = 12
+	concatDuration := measureAverage(func() { retainedText = buildWithConcatenation(lineCount) }, repetitions)
+	builderDuration := measureAverage(func() { retainedText = buildWithBuilder(lineCount) }, repetitions)
 
-	fmt.Printf("String concatenation: %v\n", concatDuration)
-	fmt.Printf("strings.Builder: %v\n", builderDuration)
+	fmt.Printf("Average string concatenation (%d runs): %v\n", repetitions, concatDuration)
+	fmt.Printf("Average strings.Builder (%d runs): %v\n", repetitions, builderDuration)
 
 	const itemCount = 200000
-	noCapacity := measure(func() { _ = fillWithoutCapacity(itemCount) })
-	withCapacity := measure(func() { _ = fillWithCapacity(itemCount) })
+	noCapacity := measureAverage(func() { retainedValues = fillWithoutCapacity(itemCount) }, repetitions)
+	withCapacity := measureAverage(func() { retainedValues = fillWithCapacity(itemCount) }, repetitions)
 
 	// Intent: final output keeps the comparison direct and easy to verify.
-	fmt.Printf("Slice fill without capacity: %v\n", noCapacity)
-	fmt.Printf("Slice fill with capacity: %v\n", withCapacity)
+	fmt.Printf("Average slice fill without capacity (%d runs): %v\n", repetitions, noCapacity)
+	fmt.Printf("Average slice fill with capacity (%d runs): %v\n", repetitions, withCapacity)
 }
 
-func measure(action func()) time.Duration {
-	start := time.Now()
+func measureAverage(action func(), repetitions int) time.Duration {
 	action()
-	return time.Since(start)
+
+	var total time.Duration
+	for iteration := 0; iteration < repetitions; iteration++ {
+		start := time.Now()
+		action()
+		total += time.Since(start)
+	}
+	return total / time.Duration(repetitions)
 }
 
 func buildWithConcatenation(lineCount int) string {

@@ -5,14 +5,14 @@ This module introduces separation of responsibilities and package-oriented desig
 ## Quick Run
 
 ~~~bash
-go run example/main.go
+go run example/main.go example/pricing.go example/formatting.go
 ~~~
 
 ## Topics Covered
 
-- Separating calculation, formatting, and orchestration responsibilities.
+- Separating calculation, formatting, and orchestration responsibilities across files.
 - Keeping `main` thin and coordination-focused.
-- Designing helper functions and types that could later move into packages.
+- Designing helper functions and types that live outside the entrypoint.
 - Treating file and package layout as part of program design.
 
 ## Common Pitfalls

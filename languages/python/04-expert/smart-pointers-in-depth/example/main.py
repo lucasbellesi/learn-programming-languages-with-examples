@@ -11,9 +11,6 @@ class Report:
         self.title = title
         print(f"Created report: {title}")
 
-    def __del__(self) -> None:
-        print(f"Finalized report: {self.title}")
-
 
 class ReportOwner:
     def __init__(self, name: str, report: Report | None) -> None:
@@ -44,13 +41,27 @@ class PreviewPane:
         print(f"Preview can still see: {report.title}")
 
 
-def make_preview() -> PreviewPane:
-    transient = Report("Transient Draft")
-    return PreviewPane(transient)
+class PreviewSession:
+    def __init__(self, report: Report) -> None:
+        self._report = report
+
+    @property
+    def current(self) -> Report | None:
+        return self._report
+
+    def release(self) -> None:
+        self._report = None
+
+
+def create_preview_session() -> tuple[PreviewPane, PreviewSession]:
+    session = PreviewSession(Report("Transient Draft"))
+    current = session.current
+    assert current is not None
+    return PreviewPane(current), session
 
 
 def main() -> None:
-    # Program flow: move one strongly-owned reference, then watch a weak observer expire.
+    # Program flow: move one strongly-owned reference, then release a temporary strong owner.
     inbox = ReportOwner("Inbox", Report("Quarterly Summary"))
     archive = ReportOwner("Archive", None)
 
@@ -60,11 +71,12 @@ def main() -> None:
     inbox.describe()
     archive.describe()
 
-    preview = make_preview()
+    preview, session = create_preview_session()
     preview.describe()
-    gc.collect()
 
-    # Intent: final state confirms that the weak observer did not keep the object alive.
+    # Intent: dropping the last strong owner makes the weak observer expire on the next collection.
+    session.release()
+    gc.collect()
     preview.describe()
 
 
