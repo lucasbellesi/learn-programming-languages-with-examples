@@ -40,6 +40,7 @@
 
 - [ ] Complete `projects/01-foundations`.
 - [ ] Complete `projects/02-core`.
+- [ ] Complete `projects/03-advanced`.
 
 ## Assessments
 
