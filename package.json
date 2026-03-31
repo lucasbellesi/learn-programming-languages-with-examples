@@ -1,0 +1,15 @@
+{
+  "name": "learn-programming-languages-with-examples",
+  "private": true,
+  "devDependencies": {
+    "@types/node": "^22.14.1",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3"
+  },
+  "scripts": {
+    "build:typescript": "tsc --project languages/typescript/tsconfig.json",
+    "check:typescript": "tsc --project languages/typescript/tsconfig.json --noEmit",
+    "format:typescript": "prettier --check \"languages/typescript/**/*.ts\"",
+    "format:typescript:write": "prettier --write \"languages/typescript/**/*.ts\""
+  }
+}

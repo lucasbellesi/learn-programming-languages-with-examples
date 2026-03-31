@@ -8,6 +8,7 @@ Thank you for contributing to this repository.
 - Prefer simple, readable examples over clever implementations.
 - Use clear English for all text, comments, and instructions.
 - Maintain cross-platform compatibility (Windows MSYS2 + Linux).
+- Keep Node-based tooling simple and explicit when touching the TypeScript track.
 
 ## Workflow
 
@@ -60,6 +61,7 @@ Run language lint checks with:
 - `bash ./scripts/lint.sh` (Bash)
 
 These smoke checks also compile standalone C# exercises by generating temporary validation projects during the check.
+TypeScript checks restore Node dependencies from `package-lock.json`, compile with `tsc`, and execute the emitted JavaScript with `node`.
 
 The public PowerShell and Bash scripts are thin wrappers over the shared Python automation core in `scripts/automation.py`. Curriculum validation and smoke target metadata live in `scripts/automation_manifest.json`.
 
@@ -79,7 +81,7 @@ The public PowerShell and Bash scripts are thin wrappers over the shared Python 
   - `## Checkpoint`
 - Every project or assessment checkpoint should include:
   - `README.md`
-  - runnable entrypoint (`main.cs` + `.csproj`, `main.go`, or `main.py`)
+  - runnable entrypoint (`main.cs` + `.csproj`, `main.go`, `main.py`, or `main.ts`)
   - the same learner goal, input/output shape, and acceptance expectations as the corresponding C++ checkpoint
   - required `## Learning Metadata` before `## Quick Run` with `Difficulty`, `Estimated Time`, `Prerequisites`, and `Learning Focus`
 - Every implemented level README should include required `## Learning Metadata` before `## Module Order` with `Difficulty`, `Estimated Time`, `Prerequisites`, and `Study Strategy`.
@@ -93,6 +95,7 @@ The public PowerShell and Bash scripts are thin wrappers over the shared Python 
 - Every exercise file must contain complete, runnable content.
 - Avoid external dependencies and test frameworks for C++ modules.
 - Avoid external dependencies and test frameworks for non-C++ checkpoints.
+- Keep the TypeScript track on plain Node console programs; do not introduce browser, DOM, or framework dependencies.
 - Keep examples aligned with C++17.
 - Keep documentation in English and keep path names consistent with folder names.
 - Keep parity planning updated in `LANGUAGE_PARITY_MATRIX.md` when adding modules or checkpoints to non-C++ tracks.

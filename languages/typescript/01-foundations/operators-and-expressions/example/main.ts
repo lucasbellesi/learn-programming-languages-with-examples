@@ -1,0 +1,11 @@
+const subtotal = 120;
+const couponPercent = 10;
+const isLoyalCustomer = true;
+const couponDiscount = subtotal * (couponPercent / 100);
+const loyaltyDiscount = isLoyalCustomer ? 5 : 0;
+const finalTotal = subtotal - couponDiscount - loyaltyDiscount;
+console.log(`Subtotal: ${subtotal}`);
+console.log(`Coupon discount: ${couponDiscount}`);
+console.log(`Loyal customer: ${isLoyalCustomer}`);
+console.log(`Final total: ${finalTotal}`);
+export {};

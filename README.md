@@ -4,7 +4,7 @@
 
 This repository teaches programming through small runnable examples and focused exercises.
 
-- Four active language tracks: C++, C#, Go, and Python.
+- Five active language tracks: C++, C#, Go, Python, and TypeScript.
 - Shared concept naming across tracks for easier comparison.
 - VS Code-first workflow, with scripts for Windows PowerShell and Bash.
 
@@ -15,6 +15,7 @@ This repository teaches programming through small runnable examples and focused 
    - [C# Guide](languages/csharp/README.md)
    - [Go Guide](languages/go/README.md)
    - [Python Guide](languages/python/README.md)
+   - [TypeScript Guide](languages/typescript/README.md)
 2. Open the `01-foundations` roadmap for your selected language.
 3. Run one module example.
 4. Solve `exercises/01` and `exercises/02` in that module.
@@ -28,6 +29,7 @@ This repository teaches programming through small runnable examples and focused 
 | C# | 01-foundations, 02-core, 03-advanced, 04-expert | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 5/5 expert modules, 4/4 projects, 4/4 assessments | Module and checkpoint parity complete through expert |
 | Go | 01-foundations, 02-core, 03-advanced, 04-expert | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 5/5 expert modules, 4/4 projects, 4/4 assessments | Module and checkpoint parity complete through expert |
 | Python | 01-foundations, 02-core, 03-advanced, 04-expert | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 5/5 expert modules, 4/4 projects, 4/4 assessments | Module and checkpoint parity complete through expert |
+| TypeScript | 01-foundations | 8/8 foundations modules, 1/4 projects, 1/4 assessments | Foundations launched; core and above planned |
 
 Parity planning reference: [LANGUAGE_PARITY_MATRIX.md](LANGUAGE_PARITY_MATRIX.md)
 
@@ -58,6 +60,13 @@ go run languages/go/01-foundations/types-and-io/example/main.go
 python languages/python/01-foundations/types-and-io/example/main.py
 ~~~
 
+### TypeScript
+
+~~~bash
+npm run build:typescript
+node build/typescript/01-foundations/types-and-io/example/main.js
+~~~
+
 ## Repository Structure
 
 ~~~text
@@ -71,6 +80,7 @@ learn-programming-languages-with-examples/
     csharp/
     go/
     python/
+    typescript/
 ~~~
 
 ## Documentation Contract
@@ -95,7 +105,7 @@ A standardized `## Learning Metadata` block is required before `## Quick Run` fo
 Checkpoint artifacts under `languages/<language>/projects/*` and `languages/<language>/assessments/*` should mirror the corresponding C++ checkpoint style:
 
 - `README.md`
-- runnable entrypoint (`main.cs` + `.csproj`, `main.go`, or `main.py`)
+- runnable entrypoint (`main.cs` + `.csproj`, `main.go`, `main.py`, or `main.ts`)
 - same learner goal, input/output shape, and acceptance expectations as the C++ version
 
 ## Example Commenting Standard
@@ -132,11 +142,11 @@ bash ./scripts/build-all.sh
 bash ./scripts/verify-repo.sh
 ~~~
 
-GitHub Actions validates links, README structure, module completeness, checkpoint completeness, documentation sync, C++ build, multi-language smoke checks, and Linux lint checks for C++, Python, Go, and C#.
+GitHub Actions validates links, README structure, module completeness, checkpoint completeness, documentation sync, compiled-language builds, multi-language smoke checks, and Linux lint checks for C++, Python, Go, C#, and TypeScript.
 
 The public PowerShell and Bash scripts remain the supported entrypoints, but they now delegate to a shared Python automation core under `scripts/automation.py` backed by `scripts/automation_manifest.json`.
 
-The multi-language smoke scripts also compile standalone C# exercises by generating temporary validation projects during the check.
+The multi-language smoke scripts also compile standalone C# exercises by generating temporary validation projects during the check and compile TypeScript foundations programs before executing their smoke targets.
 
 ## Contributing
 

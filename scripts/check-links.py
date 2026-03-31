@@ -7,6 +7,7 @@ from pathlib import Path
 from urllib.parse import unquote
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
+SKIP_DIR_NAMES = {"node_modules", "build", ".git"}
 FENCE_RE = re.compile(r"^\s{0,3}(`{3,}|~{3,})")
 REFERENCE_RE = re.compile(r"^\s{0,3}\[([^\]]+)\]:\s*(.+?)\s*$")
 URI_SCHEME_RE = re.compile(r"^[a-zA-Z][a-zA-Z0-9+.-]*:")
@@ -276,7 +277,11 @@ def check_file(file_path: Path) -> list[str]:
 
 
 def main() -> int:
-    markdown_files = sorted(ROOT_DIR.rglob("*.md"))
+    markdown_files = sorted(
+        file_path
+        for file_path in ROOT_DIR.rglob("*.md")
+        if not any(part in SKIP_DIR_NAMES for part in file_path.parts)
+    )
     broken_links: list[str] = []
 
     for file_path in markdown_files:

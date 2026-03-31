@@ -141,6 +141,24 @@
         "- 4/4 assessments implemented (`01-foundations`, `02-core`, `03-advanced`, `04-expert`)."
       ],
       "root_status_row": "| Python | 01-foundations, 02-core, 03-advanced, 04-expert | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 5/5 expert modules, 4/4 projects, 4/4 assessments | Module and checkpoint parity complete through expert |"
+    },
+    "typescript": {
+      "extension": "ts",
+      "levels": ["01-foundations"],
+      "module_levels": ["01-foundations"],
+      "checkpoints": {
+        "projects": ["01-foundations"],
+        "assessments": ["01-foundations"]
+      },
+      "checkpoint_main": "main.ts",
+      "track_readme": "languages/typescript/README.md",
+      "track_readme_markers": [
+        "- 8/8 foundations modules implemented.",
+        "- 1/4 projects implemented (`01-foundations`).",
+        "- 1/4 assessments implemented (`01-foundations`).",
+        "- `02-core`, `03-advanced`, and `04-expert` are planned next."
+      ],
+      "root_status_row": "| TypeScript | 01-foundations | 8/8 foundations modules, 1/4 projects, 1/4 assessments | Foundations launched; core and above planned |"
     }
   },
   "docs": {
@@ -153,9 +171,11 @@
       "markers": [
         "- Canonical order is defined by the C++ track.",
         "- Module and checkpoint parity now reach `04-expert` across all active tracks.",
+        "- TypeScript is the newest incremental track with `01-foundations` implemented first.",
         "`04-expert` projects and assessments are now implemented across C#, Go, and Python.",
-        "| 03-advanced | Done | Done | Done | Done |",
-        "| 04-expert | Done | Done | Done | Done |"
+        "| types-and-io | Done | Done | Done | Done | Done |",
+        "| 02-core | Done | Done | Done | Done | Planned |",
+        "| 04-expert | Done | Done | Done | Done | Planned |"
       ]
     }
   },
@@ -405,6 +425,26 @@
           "cleanup_paths": ["core_assessment_report.txt"]
         }
       ]
+    },
+    "typescript": {
+      "example_paths": [
+        "languages/typescript/01-foundations/types-and-io/example/main.ts",
+        "languages/typescript/01-foundations/arrays-and-vectors/example/main.ts",
+        "languages/typescript/01-foundations/functions/example/main.ts",
+        "languages/typescript/01-foundations/formatted-output-and-iomanip/example/main.ts"
+      ],
+      "stdin_runs": [
+        {
+          "program": "languages/typescript/projects/01-foundations/main.ts",
+          "input_lines": ["0", "2", "Ana Smith", "101", "91", "Bob Lee", "77"],
+          "required_stdout_contains": ["Students:", "Average:", "Minimum:", "Maximum:"]
+        },
+        {
+          "program": "languages/typescript/assessments/01-foundations/main.ts",
+          "input_lines": ["3", "Ana Smith", "91", "Bob Lee", "55", "Carla Mendez", "88"],
+          "required_stdout_contains": ["Students:", "Average:", "Highest:", "Lowest:", "Passed:"]
+        }
+      ]
     }
   },
   "lint": {
@@ -430,6 +470,11 @@
       "roots": ["languages/csharp"],
       "extensions": [".cs"],
       "exclude_dirs": ["bin", "obj"]
+    },
+    "typescript": {
+      "roots": ["languages/typescript"],
+      "extensions": [".ts"],
+      "exclude_dirs": ["node_modules", "build"]
     }
   }
 }

@@ -289,6 +289,20 @@ def find_command(*candidates: str) -> str | None:
     return None
 
 
+def find_node_command() -> str:
+    resolved = find_command("node", "node.exe")
+    if resolved:
+        return resolved
+    raise AutomationError("Required command not found: node")
+
+
+def find_npm_command() -> str:
+    resolved = find_command("npm", "npm.cmd", "npm.exe")
+    if resolved:
+        return resolved
+    raise AutomationError("Required command not found: npm")
+
+
 def find_clang_format(ctx: RepoContext) -> str:
     resolved = find_command("clang-format", "clang-format.exe")
     if resolved:
@@ -426,6 +440,65 @@ def compiled_binary_path(ctx: RepoContext, base_output: Path) -> Path:
     if ctx.is_windows and not base_output.exists() and base_output.with_suffix(".exe").exists():
         return base_output.with_suffix(".exe")
     return base_output
+
+
+def ensure_typescript_tooling(ctx: RepoContext) -> str:
+    find_node_command()
+    npm = find_npm_command()
+    tsc_candidates = [ctx.root / "node_modules" / ".bin" / "tsc"]
+    prettier_candidates = [ctx.root / "node_modules" / ".bin" / "prettier"]
+
+    if ctx.is_windows:
+        tsc_candidates.append(ctx.root / "node_modules" / ".bin" / "tsc.cmd")
+        prettier_candidates.append(ctx.root / "node_modules" / ".bin" / "prettier.cmd")
+
+    tooling_ready = any(path.exists() for path in tsc_candidates) and any(
+        path.exists() for path in prettier_candidates
+    )
+    if not tooling_ready:
+        run_command(
+            [npm, "ci", "--no-fund", "--no-audit"],
+            cwd=ctx.root,
+            quiet_stdout=True,
+            action="TypeScript dependency restore",
+            timeout_seconds=300,
+        )
+
+    return npm
+
+
+def typescript_output_path(ctx: RepoContext, output_root: Path, source_path: Path) -> Path:
+    track_root = ctx.root / "languages" / "typescript"
+    relative = source_path.resolve().relative_to(track_root.resolve())
+    return output_root / relative.with_suffix(".js")
+
+
+def compile_typescript(
+    ctx: RepoContext,
+    *,
+    out_dir: Path | None = None,
+    no_emit: bool = False,
+) -> None:
+    npm = ensure_typescript_tooling(ctx)
+    command = [
+        npm,
+        "exec",
+        "--",
+        "tsc",
+        "--project",
+        str(ctx.root / "languages" / "typescript" / "tsconfig.json"),
+    ]
+    if out_dir is not None:
+        command.extend(["--outDir", str(out_dir)])
+    if no_emit:
+        command.append("--noEmit")
+    run_command(
+        command,
+        cwd=ctx.root,
+        quiet_stdout=True,
+        action="TypeScript compilation",
+        timeout_seconds=300,
+    )
 
 
 def remove_paths(base_dir: Path, relative_paths: list[str]) -> None:
@@ -734,7 +807,7 @@ def check_doc_sync(ctx: RepoContext) -> None:
 def lint_repo(ctx: RepoContext) -> None:
     lint_config = ctx.manifest.lint
 
-    print("[1/4] C++ formatting check...")
+    print("[1/5] C++ formatting check...")
     cpp_files = enumerate_source_files(
         ctx,
         roots=lint_config["cpp"]["roots"],
@@ -748,7 +821,7 @@ def lint_repo(ctx: RepoContext) -> None:
             action=f"C++ formatting check for {source}",
         )
 
-    print("[2/4] Python lint and format check...")
+    print("[2/5] Python lint and format check...")
     python_cmd = find_python_command()
     python_paths = [str(repo_path(ctx, path)) for path in lint_config["python"]["paths"]]
     run_command([python_cmd, "-m", "ruff", "check", *python_paths], action="Python lint check")
@@ -756,7 +829,7 @@ def lint_repo(ctx: RepoContext) -> None:
         [python_cmd, "-m", "ruff", "format", "--check", *python_paths], action="Python format check"
     )
 
-    print("[3/4] Go formatting check...")
+    print("[3/5] Go formatting check...")
     gofmt = find_command("gofmt", "gofmt.exe")
     if not gofmt:
         raise AutomationError("Required command not found: gofmt")
@@ -780,7 +853,7 @@ def lint_repo(ctx: RepoContext) -> None:
         print(gofmt_result.stdout.strip())
         raise AutomationError("Go formatting check failed.")
 
-    print("[4/4] C# formatting check...")
+    print("[4/5] C# formatting check...")
     csharp_files = enumerate_source_files(
         ctx,
         roots=lint_config["csharp"]["roots"],
@@ -797,29 +870,49 @@ def lint_repo(ctx: RepoContext) -> None:
         action="C# formatting check",
     )
 
+    print("[5/5] TypeScript formatting and type check...")
+    ts_files = enumerate_source_files(
+        ctx,
+        roots=lint_config["typescript"]["roots"],
+        extensions=lint_config["typescript"]["extensions"],
+        exclude_dirs=lint_config["typescript"].get("exclude_dirs", []),
+    )
+    npm = ensure_typescript_tooling(ctx)
+    run_command(
+        [npm, "exec", "--", "prettier", "--check", *[str(path) for path in ts_files]],
+        cwd=ctx.root,
+        action="TypeScript formatting check",
+        timeout_seconds=300,
+    )
+    compile_typescript(ctx, no_emit=True)
+
     print("Lint checks passed.")
 
 
 def build_all(ctx: RepoContext) -> None:
     cpp_files = sorted((ctx.root / "languages" / "cpp").rglob("*.cpp"))
-    if not cpp_files:
-        print("No C++ files found under languages/cpp")
-        return
-
     build_dir = ctx.root / "build"
     build_dir.mkdir(exist_ok=True)
-    toolchain = resolve_gpp_toolchain(ctx)
+    if cpp_files:
+        toolchain = resolve_gpp_toolchain(ctx)
+        for index, source in enumerate(cpp_files):
+            print(f"Compiling: {source}")
+            output = build_dir / f"check_{index}"
+            command = cpp_compile_command(ctx, toolchain, source, output)
+            action = f"Compilation for {source}"
+            if toolchain.mode == "wsl":
+                action = f"Compilation via WSL for {source}"
+            run_command(command, action=action)
+        print(f"Compiled {len(cpp_files)} C++ file(s) successfully.")
+    else:
+        print("No C++ files found under languages/cpp")
 
-    for index, source in enumerate(cpp_files):
-        print(f"Compiling: {source}")
-        output = build_dir / f"check_{index}"
-        command = cpp_compile_command(ctx, toolchain, source, output)
-        action = f"Compilation for {source}"
-        if toolchain.mode == "wsl":
-            action = f"Compilation via WSL for {source}"
-        run_command(command, action=action)
-
-    print(f"Compiled {len(cpp_files)} file(s) successfully.")
+    typescript_root = ctx.root / "languages" / "typescript"
+    if typescript_root.is_dir():
+        ts_files = sorted(typescript_root.rglob("*.ts"))
+        print("Compiling TypeScript files...")
+        compile_typescript(ctx, out_dir=build_dir / "typescript")
+        print(f"Compiled {len(ts_files)} TypeScript file(s) successfully.")
 
 
 def run_module(ctx: RepoContext, module_path: str) -> None:
@@ -830,44 +923,82 @@ def run_module(ctx: RepoContext, module_path: str) -> None:
     if not full_module_path.is_dir():
         raise AutomationError(f"Module folder not found: {normalized}")
 
-    example_file = full_module_path / "example" / "main.cpp"
-    if not example_file.is_file():
-        raise AutomationError(f"Missing example file: {normalized}/example/main.cpp")
+    relative_module = full_module_path.resolve().relative_to(ctx.root.resolve())
+    if len(relative_module.parts) < 3 or relative_module.parts[0] != "languages":
+        raise AutomationError(f"Unsupported module path: {normalized}")
 
-    toolchain = resolve_gpp_toolchain(ctx)
-    fd, temp_output = tempfile.mkstemp(prefix="run_module_")
-    os.close(fd)
-    output_path = Path(temp_output)
-    output_path.unlink(missing_ok=True)
+    language = relative_module.parts[1]
 
-    print(f"Compiling example: {normalized}/example/main.cpp")
-    try:
-        command = cpp_compile_command(ctx, toolchain, example_file, output_path)
-        action = f"Compilation for {normalized}/example/main.cpp"
-        if toolchain.mode == "wsl":
-            action = f"Compilation via WSL for {normalized}/example/main.cpp"
-        run_command(command, action=action)
+    if language == "cpp":
+        example_file = full_module_path / "example" / "main.cpp"
+        if not example_file.is_file():
+            raise AutomationError(f"Missing example file: {normalized}/example/main.cpp")
 
-        print("Running example...")
-        if toolchain.mode == "wsl":
-            binary_command = ["wsl", "bash", "-lc", shlex.quote(to_wsl_path(output_path))]
+        toolchain = resolve_gpp_toolchain(ctx)
+        fd, temp_output = tempfile.mkstemp(prefix="run_module_")
+        os.close(fd)
+        output_path = Path(temp_output)
+        output_path.unlink(missing_ok=True)
+
+        print(f"Compiling example: {normalized}/example/main.cpp")
+        try:
+            command = cpp_compile_command(ctx, toolchain, example_file, output_path)
+            action = f"Compilation for {normalized}/example/main.cpp"
+            if toolchain.mode == "wsl":
+                action = f"Compilation via WSL for {normalized}/example/main.cpp"
+            run_command(command, action=action)
+
+            print("Running example...")
+            if toolchain.mode == "wsl":
+                binary_command = ["wsl", "bash", "-lc", shlex.quote(to_wsl_path(output_path))]
+                run_command(
+                    binary_command, action=f"Execution via WSL for {normalized}/example/main.cpp"
+                )
+            else:
+                binary_path = compiled_binary_path(ctx, output_path)
+                run_command(
+                    [str(binary_path)],
+                    action=f"Execution for {normalized}/example/main.cpp",
+                )
+
+            exercises_dir = full_module_path / "exercises"
+            exercise_files = sorted(exercises_dir.glob("*.cpp")) if exercises_dir.is_dir() else []
+            if exercise_files:
+                print()
+                print(f"Exercises in {normalized}/exercises:")
+                for exercise in exercise_files:
+                    print(f"- {normalized}/exercises/{exercise.name}")
+        finally:
+            compiled_binary_path(ctx, output_path).unlink(missing_ok=True)
+            output_path.unlink(missing_ok=True)
+        return
+
+    if language == "typescript":
+        example_file = full_module_path / "example" / "main.ts"
+        if not example_file.is_file():
+            raise AutomationError(f"Missing example file: {normalized}/example/main.ts")
+
+        with tempfile.TemporaryDirectory(prefix="run_module_ts_") as temp_root:
+            temp_root_path = Path(temp_root)
+            print(f"Compiling example: {normalized}/example/main.ts")
+            compile_typescript(ctx, out_dir=temp_root_path)
+            print("Running example...")
+            compiled_example = typescript_output_path(ctx, temp_root_path, example_file)
             run_command(
-                binary_command, action=f"Execution via WSL for {normalized}/example/main.cpp"
+                [find_node_command(), str(compiled_example)],
+                action=f"Execution for {normalized}/example/main.ts",
             )
-        else:
-            binary_path = compiled_binary_path(ctx, output_path)
-            run_command([str(binary_path)], action=f"Execution for {normalized}/example/main.cpp")
 
         exercises_dir = full_module_path / "exercises"
-        exercise_files = sorted(exercises_dir.glob("*.cpp")) if exercises_dir.is_dir() else []
+        exercise_files = sorted(exercises_dir.glob("*.ts")) if exercises_dir.is_dir() else []
         if exercise_files:
             print()
             print(f"Exercises in {normalized}/exercises:")
             for exercise in exercise_files:
                 print(f"- {normalized}/exercises/{exercise.name}")
-    finally:
-        compiled_binary_path(ctx, output_path).unlink(missing_ok=True)
-        output_path.unlink(missing_ok=True)
+        return
+
+    raise AutomationError(f"run-module does not support language: {language}")
 
 
 def xml_escape(value: str) -> str:
@@ -992,7 +1123,7 @@ def smoke_languages(ctx: RepoContext) -> None:
     python_cmd = find_python_command()
 
     python_smoke = ctx.manifest.smoke["python"]
-    print("[1/6] Python syntax check...")
+    print("[1/8] Python syntax check...")
     run_command(
         [
             python_cmd,
@@ -1004,7 +1135,7 @@ def smoke_languages(ctx: RepoContext) -> None:
         action="Python syntax check",
     )
 
-    print("[2/6] Python runtime smoke...")
+    print("[2/8] Python runtime smoke...")
     for program in python_smoke["example_paths"]:
         run_command(
             [python_cmd, str(repo_path(ctx, program))],
@@ -1023,7 +1154,7 @@ def smoke_languages(ctx: RepoContext) -> None:
         )
 
     go_smoke = ctx.manifest.smoke["go"]
-    print("[3/6] Go compile check...")
+    print("[3/8] Go compile check...")
     with tempfile.TemporaryDirectory(prefix="go-smoke-") as temp_root:
         temp_root_path = Path(temp_root)
         go_root = repo_path(ctx, go_smoke["build_glob_root"])
@@ -1055,7 +1186,7 @@ def smoke_languages(ctx: RepoContext) -> None:
                 action=f"Go build for {source}",
             )
 
-    print("[4/6] Go runtime smoke...")
+    print("[4/8] Go runtime smoke...")
     for program in go_smoke["example_paths"]:
         program_path = repo_path(ctx, program)
         run_command(
@@ -1075,8 +1206,43 @@ def smoke_languages(ctx: RepoContext) -> None:
             label=f"Go runtime smoke for {job.get('program', job.get('working_dir', 'job'))}",
         )
 
+    typescript_smoke = ctx.manifest.smoke["typescript"]
+    print("[5/8] TypeScript compile check...")
+    node_cmd = find_node_command()
+    with tempfile.TemporaryDirectory(prefix="ts-smoke-") as temp_root:
+        temp_root_path = Path(temp_root)
+        compile_typescript(ctx, out_dir=temp_root_path)
+
+        print("[6/8] TypeScript runtime smoke...")
+        for program in typescript_smoke["example_paths"]:
+            source_path = repo_path(ctx, program)
+            run_command(
+                [node_cmd, str(typescript_output_path(ctx, temp_root_path, source_path))],
+                quiet_stdout=True,
+                action=f"TypeScript runtime smoke for {program}",
+            )
+        for job in typescript_smoke["stdin_runs"]:
+            smoke_runtime_job(
+                ctx,
+                job,
+                command_builder=lambda current_job, working_dir: [
+                    node_cmd,
+                    str(
+                        typescript_output_path(
+                            ctx,
+                            temp_root_path,
+                            resolve_job_path(ctx, working_dir, current_job["program"]),
+                        )
+                    ),
+                ],
+                label=(
+                    f"TypeScript runtime smoke for "
+                    f"{job.get('program', job.get('working_dir', 'job'))}"
+                ),
+            )
+
     csharp_smoke = ctx.manifest.smoke["csharp"]
-    print("[5/6] C# build check...")
+    print("[7/8] C# build check...")
     projects = sorted((ctx.root / "languages" / "csharp").rglob("*.csproj"))
     for project in projects:
         print(f"  Building {project.relative_to(ctx.root)}")
@@ -1096,7 +1262,7 @@ def smoke_languages(ctx: RepoContext) -> None:
         )
     build_csharp_exercises(ctx)
 
-    print("[6/6] C# runtime smoke...")
+    print("[8/8] C# runtime smoke...")
     for project in csharp_smoke["example_projects"]:
         print(f"  Running {project}")
         project_path = repo_path(ctx, project)
@@ -1140,7 +1306,7 @@ def verify_repo(ctx: RepoContext) -> None:
     print("[5/6] Checking documentation sync...")
     check_doc_sync(ctx)
 
-    print("[6/6] Compiling C++ files...")
+    print("[6/6] Compiling compiled-language tracks...")
     build_all(ctx)
 
     print("Repository verification completed successfully.")
