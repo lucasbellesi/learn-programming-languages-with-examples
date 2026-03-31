@@ -23,17 +23,20 @@ Write a program that:
 dotnet run --project assessment-04-expert.csproj
 ```
 
-## Expected Output (shape)
+## Expected Output
 
 ```text
-Worker 0 partial sum: ...
-Worker 1 partial sum: ...
-...
+Worker 0 partial sum: 48
+Worker 1 partial sum: 97
+Worker 2 partial sum: 60
+
 Final summary:
-Total: ...
-Minimum: ...
-Maximum: ...
+Total: 205
+Minimum: 2
+Maximum: 45
 ```
+
+The worker lines may appear in a different order, but the three partial sums and the final totals should match these values.
 
 ## What To Check
 

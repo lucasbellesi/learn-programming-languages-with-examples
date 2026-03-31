@@ -174,12 +174,31 @@
         },
         {
           "program": "languages/python/assessments/04-expert/main.py"
+          ,
+          "required_stdout_contains": [
+            "Worker 0 partial sum: 48",
+            "Worker 1 partial sum: 97",
+            "Worker 2 partial sum: 60",
+            "Final summary:",
+            "Total: 205",
+            "Minimum: 2",
+            "Maximum: 45"
+          ]
         },
         {
           "program": "languages/python/projects/03-advanced/main.py"
         },
         {
           "program": "languages/python/projects/04-expert/main.py"
+          ,
+          "required_stdout_contains": [
+            "Running 3 jobs through 2 steps...",
+            "Step load processed 3 jobs",
+            "Step transform processed 3 jobs"
+          ],
+          "required_stdout_patterns": [
+            "Elapsed \\(microseconds\\): \\d+"
+          ]
         },
         {
           "working_dir": "languages/python/projects/02-core",
@@ -237,12 +256,31 @@
         },
         {
           "program": "languages/go/assessments/04-expert/main.go"
+          ,
+          "required_stdout_contains": [
+            "Worker 0 partial sum: 48",
+            "Worker 1 partial sum: 97",
+            "Worker 2 partial sum: 60",
+            "Final summary:",
+            "Total: 205",
+            "Minimum: 2",
+            "Maximum: 45"
+          ]
         },
         {
           "program": "languages/go/projects/03-advanced/main.go"
         },
         {
           "program": "languages/go/projects/04-expert/main.go"
+          ,
+          "required_stdout_contains": [
+            "Running 3 jobs through 2 steps...",
+            "Step load processed 3 jobs",
+            "Step transform processed 3 jobs"
+          ],
+          "required_stdout_patterns": [
+            "Elapsed \\(microseconds\\): \\d+"
+          ]
         },
         {
           "working_dir": "languages/go/projects/02-core",
@@ -300,12 +338,31 @@
         },
         {
           "project": "languages/csharp/assessments/04-expert/assessment-04-expert.csproj"
+          ,
+          "required_stdout_contains": [
+            "Worker 0 partial sum: 48",
+            "Worker 1 partial sum: 97",
+            "Worker 2 partial sum: 60",
+            "Final summary:",
+            "Total: 205",
+            "Minimum: 2",
+            "Maximum: 45"
+          ]
         },
         {
           "project": "languages/csharp/projects/03-advanced/advanced-project.csproj"
         },
         {
           "project": "languages/csharp/projects/04-expert/expert-project.csproj"
+          ,
+          "required_stdout_contains": [
+            "Running 3 jobs through 2 steps...",
+            "Step load processed 3 jobs",
+            "Step transform processed 3 jobs"
+          ],
+          "required_stdout_patterns": [
+            "Elapsed \\(microseconds\\): \\d+"
+          ]
         },
         {
           "working_dir": "languages/csharp/projects/02-core",

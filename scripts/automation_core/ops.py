@@ -228,16 +228,23 @@ def run_command(
     cwd: Path | None = None,
     input_text: str | None = None,
     quiet_stdout: bool = False,
+    capture_stdout: bool = False,
     action: str | None = None,
     timeout_seconds: float | None = None,
 ) -> subprocess.CompletedProcess[str]:
     try:
+        stdout_target: int | None = None
+        if capture_stdout:
+            stdout_target = subprocess.PIPE
+        elif quiet_stdout:
+            stdout_target = subprocess.DEVNULL
+
         completed = subprocess.run(
             command,
             cwd=str(cwd) if cwd else None,
             input=input_text,
             text=True,
-            stdout=subprocess.DEVNULL if quiet_stdout else None,
+            stdout=stdout_target,
             stderr=None,
             check=False,
             timeout=timeout_seconds,
@@ -818,14 +825,33 @@ def smoke_runtime_job(
         elif "input_file" in job:
             input_text = str((working_dir / job["input_file"]).resolve()) + "\n"
 
-        run_command(
+        capture_stdout = bool(
+            job.get("required_stdout_contains") or job.get("required_stdout_patterns")
+        )
+
+        completed = run_command(
             command_builder(job, working_dir),
             cwd=working_dir,
             input_text=input_text,
-            quiet_stdout=True,
+            quiet_stdout=not capture_stdout,
+            capture_stdout=capture_stdout,
             action=label,
             timeout_seconds=timeout_seconds,
         )
+
+        if capture_stdout:
+            output = completed.stdout or ""
+            for expected in job.get("required_stdout_contains", []):
+                if expected not in output:
+                    raise AutomationError(
+                        f"{label} did not print expected text: {expected}\nActual output:\n{output}"
+                    )
+            for pattern in job.get("required_stdout_patterns", []):
+                if not re.search(pattern, output, re.MULTILINE):
+                    raise AutomationError(
+                        f"{label} did not match expected pattern: "
+                        f"{pattern}\nActual output:\n{output}"
+                    )
 
         for output_name in job.get("required_outputs", []):
             if not (working_dir / output_name).exists():

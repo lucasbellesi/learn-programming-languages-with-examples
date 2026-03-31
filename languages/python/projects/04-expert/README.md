@@ -17,14 +17,16 @@ python main.py
 - Measure pipeline duration with `time.perf_counter`.
 - Print per-step execution summary.
 
-## Sample Output
+## Expected Output
 
 ```text
 Running 3 jobs through 2 steps...
 Step load processed 3 jobs
 Step transform processed 3 jobs
-Elapsed (microseconds): 42
+Elapsed (microseconds): <positive integer>
 ```
+
+The first three lines should stay exact. Only the measured microsecond value should vary.
 
 ## Extension Ideas
 
