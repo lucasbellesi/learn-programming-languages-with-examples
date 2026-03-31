@@ -3,7 +3,7 @@
 This matrix tracks module and checkpoint parity across C++, C#, Go, Python, and TypeScript.
 
 - Canonical order is defined by the C++ track.
-- Module and checkpoint parity now reach `04-expert` across all active tracks.
+- C++, C#, Go, and Python now reach module and checkpoint parity through `04-expert`.
 - TypeScript is the newest incremental track with `01-foundations` implemented first.
 - Status labels:
   - `Done`: module implemented with example, exercises, and README.

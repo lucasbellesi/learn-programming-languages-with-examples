@@ -32,7 +32,7 @@ node build/typescript/01-foundations/types-and-io/example/main.js
 ## Exercise Focus
 
 - exercises/01.ts: read N numbers and print sum, average, minimum, and maximum.
-- exercises/02.ts: parse product price quantity and print a formatted invoice line.
+- exercises/02.ts: parse product name, price, and quantity and print a formatted invoice line.
 
 ### Exercise Specs
 
@@ -42,7 +42,7 @@ node build/typescript/01-foundations/types-and-io/example/main.js
 - Edge cases: N <= 0 should print an error; decimal input should still work.
 
 2. exercises/02.ts
-- Input: one line with product price quantity.
+- Input: one line with product name, price, and quantity.
 - Output: product name, quantity, price, and total.
 - Edge cases: quantity 0 should produce total 0; invalid price should print an error.
 

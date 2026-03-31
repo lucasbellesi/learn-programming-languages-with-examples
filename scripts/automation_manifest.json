@@ -170,7 +170,7 @@
       "path": "LANGUAGE_PARITY_MATRIX.md",
       "markers": [
         "- Canonical order is defined by the C++ track.",
-        "- Module and checkpoint parity now reach `04-expert` across all active tracks.",
+        "- C++, C#, Go, and Python now reach module and checkpoint parity through `04-expert`.",
         "- TypeScript is the newest incremental track with `01-foundations` implemented first.",
         "`04-expert` projects and assessments are now implemented across C#, Go, and Python.",
         "| types-and-io | Done | Done | Done | Done | Done |",
