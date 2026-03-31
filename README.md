@@ -6,9 +6,25 @@ This repository teaches programming through small runnable examples and focused 
 
 - Five active language tracks: C++, C#, Go, Python, and TypeScript.
 - Shared concept naming across tracks for easier comparison.
+- Each module follows the same shape: `README.md`, `example/main.*`, and two exercises.
+- Each implemented level ends with a project and an assessment checkpoint.
 - VS Code-first workflow, with scripts for Windows PowerShell and Bash.
 
+## Repo Prerequisites
+
+For the full local pipeline, install:
+
+- Python 3
+- a C++17-capable `g++`
+- Go
+- .NET 8 SDK
+- Node LTS with `npm`
+
+If you only want to learn one track, follow that track README first because language-specific prerequisites differ.
+
 ## Start Here
+
+### Learning Path
 
 1. Choose your language guide:
    - [C++ Guide](languages/cpp/README.md)
@@ -16,10 +32,19 @@ This repository teaches programming through small runnable examples and focused 
    - [Go Guide](languages/go/README.md)
    - [Python Guide](languages/python/README.md)
    - [TypeScript Guide](languages/typescript/README.md)
-2. Open the `01-foundations` roadmap for your selected language.
+2. Start at the first roadmap for that track:
+   - C++: [00-setup](languages/cpp/00-setup/README.md), then `01-foundations`
+   - C#, Go, Python, TypeScript: `01-foundations`
 3. Run one module example.
 4. Solve `exercises/01` and `exercises/02` in that module.
 5. Mark progress in the language checklist.
+
+### Contributor Path
+
+1. Read [CONTRIBUTING.md](CONTRIBUTING.md).
+2. Install the repo prerequisites listed above.
+3. Run `./scripts/verify-repo.ps1` or `bash ./scripts/verify-repo.sh`.
+4. Run `./scripts/lint.ps1` or `bash ./scripts/lint.sh` before opening a pull request.
 
 ## Language Status
 
@@ -105,7 +130,7 @@ A standardized `## Learning Metadata` block is required before `## Quick Run` fo
 Checkpoint artifacts under `languages/<language>/projects/*` and `languages/<language>/assessments/*` should mirror the corresponding C++ checkpoint style:
 
 - `README.md`
-- runnable entrypoint (`main.cs` + `.csproj`, `main.go`, `main.py`, or `main.ts`)
+- runnable entrypoint (`main.cpp` in C++, `main.cs` + `.csproj` in C#, `main.go` in Go, `main.py` in Python, or `main.ts` in TypeScript)
 - same learner goal, input/output shape, and acceptance expectations as the C++ version
 
 ## Example Commenting Standard
