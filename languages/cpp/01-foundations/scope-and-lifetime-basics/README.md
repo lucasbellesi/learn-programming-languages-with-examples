@@ -2,6 +2,13 @@
 
 This module explains where variables are visible and how long they live.
 
+## Learning Metadata
+
+- Difficulty: Beginner.
+- Estimated Time: 20-35 minutes.
+- Prerequisites: `01-foundations/functions`, `01-foundations/control-flow`.
+- Cross-Language Lens: Compare block scope everywhere, then contrast deterministic destruction in C++ with garbage-collected lifetime in the other tracks.
+
 ## Quick Run
 
 ```bash

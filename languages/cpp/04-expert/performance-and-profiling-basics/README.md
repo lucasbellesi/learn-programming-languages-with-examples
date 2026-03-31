@@ -4,10 +4,11 @@ This module introduces simple measurement and optimization patterns.
 
 ## Learning Metadata
 
-- Difficulty: Expert.
-- Estimated Time: 35-50 minutes.
-- Prerequisites: `02-core/algorithms-basics`, `01-foundations/arrays-and-vectors`.
-- Cross-Language Lens: Compare timing APIs, allocation behavior, and why micro-benchmarks can mislead in different runtimes.
+- Difficulty: Advanced.
+- Estimated Time: 45-60 minutes.
+- Prerequisites: `02-core/algorithms-basics`, `03-advanced/structs-and-classes`.
+- Cross-Language Lens: Compare timing tools, allocation costs, and how each runtime changes the meaning of fast enough.
+
 ## Quick Run
 
 ```bash

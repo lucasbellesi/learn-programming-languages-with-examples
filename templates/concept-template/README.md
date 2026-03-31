@@ -1,7 +1,7 @@
 # Concept Template (Language-Agnostic)
 
 Use this template when creating a new concept module in any track.
-All section headings below are required by repository validation scripts.
+All section headings below are required by repository validation scripts, including `Learning Metadata`.
 
 When writing `example/main.*`, add intent-first comments before meaningful logic blocks so new developers can follow program flow quickly.
 

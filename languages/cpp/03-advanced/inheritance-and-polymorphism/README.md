@@ -2,6 +2,13 @@
 
 This module models behavior variation with virtual functions.
 
+## Learning Metadata
+
+- Difficulty: Intermediate.
+- Estimated Time: 35-50 minutes.
+- Prerequisites: `03-advanced/structs-and-classes`, `03-advanced/constructors-and-invariants`.
+- Cross-Language Lens: Compare virtual dispatch, interfaces, and duck-typed behavior to see how polymorphism changes by language.
+
 ## Quick Run
 
 ```bash

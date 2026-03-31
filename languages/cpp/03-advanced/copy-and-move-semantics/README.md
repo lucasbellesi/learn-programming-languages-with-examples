@@ -2,6 +2,13 @@
 
 This module introduces value copying and ownership transfer through moves.
 
+## Learning Metadata
+
+- Difficulty: Intermediate.
+- Estimated Time: 35-50 minutes.
+- Prerequisites: `03-advanced/structs-and-classes`, `03-advanced/constructors-and-invariants`.
+- Cross-Language Lens: Use this module to contrast C++ ownership transfer with reference-heavy behavior in C#, Go, and Python.
+
 ## Quick Run
 
 ```bash

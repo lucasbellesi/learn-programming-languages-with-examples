@@ -15,6 +15,13 @@ Write a program that reads integer values until `-1`, then:
 - `0-9`, `10-19`, ..., `90-100`
 5. Saves the same report to `core_assessment_report.txt`.
 
+## Learning Metadata
+
+- Difficulty: Intermediate.
+- Estimated Time: 45-60 minutes.
+- Prerequisites: All `02-core` modules, especially `input-validation`, `maps-and-frequency-counting`, and `error-handling-and-defensive-programming`.
+- Learning Focus: Prove validation, aggregation, defensive handling, and report generation under mixed-quality input.
+
 ## Quick Run
 
 ```bash
@@ -32,3 +39,9 @@ dotnet run --project assessment-02-core.csproj
 - `105` and `-3` are ignored.
 - Only values in `0..100` are used for statistics and frequency table.
 - If no valid values are entered, print a friendly message and still create the report file.
+
+## What To Check
+
+- out-of-range or malformed values do not pollute the valid-score summary
+- frequency buckets match the accepted scores exactly
+- the generated report contains the same summary shape promised by the README

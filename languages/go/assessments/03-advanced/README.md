@@ -14,6 +14,13 @@ Write a program that:
 4. Uses a generic helper to print any numeric slice.
 5. Prints min and max area values.
 
+## Learning Metadata
+
+- Difficulty: Intermediate.
+- Estimated Time: 45-60 minutes.
+- Prerequisites: All `03-advanced` modules, especially `structs-and-classes`, `inheritance-and-polymorphism`, and `templates-basics`.
+- Learning Focus: Prove you can model abstractions, use reusable helpers, and summarize derived values correctly.
+
 ## Quick Run
 
 ```bash
@@ -33,6 +40,6 @@ Maximum area: ...
 
 ## What To Check
 
-- Dynamic dispatch happens through the interface slice.
-- Shape implementations stay focused on their own area logic.
-- Generic helper works for both `[]int` and `[]float64`.
+- abstraction or polymorphism is exercised through the language-appropriate shared interface
+- derived numeric summaries come from computed values rather than hardcoded text
+- the reusable helper works across more than one compatible input shape

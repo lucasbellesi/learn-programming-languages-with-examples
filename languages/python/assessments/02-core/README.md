@@ -19,6 +19,13 @@ Write a program that:
 - frequency table by tens (`0-9`, `10-19`, ..., `90-100`)
 5. Writes the same report to `core_assessment_report.txt`.
 
+## Learning Metadata
+
+- Difficulty: Intermediate.
+- Estimated Time: 45-60 minutes.
+- Prerequisites: All `02-core` modules, especially `input-validation`, `maps-and-frequency-counting`, and `error-handling-and-defensive-programming`.
+- Learning Focus: Prove validation, aggregation, defensive handling, and report generation under mixed-quality input.
+
 ## Quick Run
 
 ```bash
@@ -56,3 +63,9 @@ Frequency:
 - 90-100: 1
 Report written to core_assessment_report.txt
 ```
+
+## What To Check
+
+- out-of-range or malformed values do not pollute the valid-score summary
+- frequency buckets match the accepted scores exactly
+- the generated report contains the same summary shape promised by the README

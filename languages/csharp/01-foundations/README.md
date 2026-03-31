@@ -1,6 +1,13 @@
-﻿# C# 01 Foundations
+# C# 01 Foundations
 
 This level introduces input/output, flow control, and basic functions in C#.
+
+## Learning Metadata
+
+- Difficulty: Beginner.
+- Estimated Time: 3-5 hours across modules, project, and assessment.
+- Prerequisites: None; this is the entry level for each active track.
+- Study Strategy: Work in module order, run every example, solve both exercises in each module, then finish the matching project and assessment.
 
 ## Module Order
 

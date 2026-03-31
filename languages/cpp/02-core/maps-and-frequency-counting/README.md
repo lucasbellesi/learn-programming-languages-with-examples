@@ -2,6 +2,13 @@
 
 This module introduces associative containers for counting/grouping data.
 
+## Learning Metadata
+
+- Difficulty: Intermediate.
+- Estimated Time: 30-45 minutes.
+- Prerequisites: `01-foundations/arrays-and-vectors`, `01-foundations/strings`.
+- Cross-Language Lens: Compare hash map ergonomics, missing-key behavior, and default-value patterns across the four languages.
+
 ## Quick Run
 
 ```bash

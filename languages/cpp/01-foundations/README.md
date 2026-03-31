@@ -2,6 +2,13 @@
 
 This level builds the beginner mental model for writing small C++ programs.
 
+## Learning Metadata
+
+- Difficulty: Beginner.
+- Estimated Time: 3-5 hours across modules, project, and assessment.
+- Prerequisites: None; this is the entry level for each active track.
+- Study Strategy: Work in module order, run every example, solve both exercises in each module, then finish the matching project and assessment.
+
 ## Module Order
 
 1. [types-and-io](./types-and-io/README.md)

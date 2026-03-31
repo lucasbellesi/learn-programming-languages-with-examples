@@ -17,6 +17,13 @@ Write a program that:
 - lowest score with student name
 - pass count (`score >= 60`)
 
+## Learning Metadata
+
+- Difficulty: Beginner.
+- Estimated Time: 30-45 minutes.
+- Prerequisites: All `01-foundations` modules, especially `types-and-io`, `control-flow`, and `strings`.
+- Learning Focus: Prove you can read structured input, preserve names, and compute accurate summaries without step-by-step scaffolding.
+
 ## Quick Run
 
 ```bash
@@ -47,3 +54,9 @@ Highest: Ana Smith (91)
 Lowest: Bob Lee (55)
 Passed: 2/3
 ```
+
+## What To Check
+
+- full names are preserved exactly as entered
+- highest and lowest records match the actual dataset
+- pass counts and averages use the required scoring rules

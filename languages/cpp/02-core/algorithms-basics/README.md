@@ -2,6 +2,13 @@
 
 This module introduces common algorithmic patterns over vectors.
 
+## Learning Metadata
+
+- Difficulty: Intermediate.
+- Estimated Time: 30-45 minutes.
+- Prerequisites: `01-foundations/arrays-and-vectors`, `01-foundations/functions`.
+- Cross-Language Lens: Compare hand-written loops with library helpers and see when explicit iteration stays clearer for beginners.
+
 ## Quick Run
 
 ```bash

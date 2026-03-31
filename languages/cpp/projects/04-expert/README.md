@@ -6,10 +6,18 @@ Build a small pipeline simulator using RAII-style ownership and timing metrics.
 
 ## Learning Metadata
 
-- Difficulty: Expert Capstone.
-- Estimated Time: 60-90 minutes.
-- Prerequisites: all `04-expert` modules, especially `concurrency-basics` and `performance-and-profiling-basics`.
-- Learning Focus: integrate reusable step objects, pipeline orchestration, and timing into one cohesive program.
+- Difficulty: Advanced.
+- Estimated Time: 75-105 minutes.
+- Prerequisites: All `04-expert` modules, especially `concurrency-basics`, `performance-and-profiling-basics`, and `modularization-and-build-structure`.
+- Learning Focus: Integrate reusable components, runtime measurements, and multi-step coordination into one cohesive capstone.
+
+## Quick Run
+
+```bash
+g++ -std=c++17 -Wall -Wextra -pedantic -pthread main.cpp -o expert_capstone
+./expert_capstone
+```
+
 ## Requirements
 
 - Represent processing steps as objects owned by `std::unique_ptr`.
@@ -25,6 +33,12 @@ Step load processed 3 jobs
 Step transform processed 3 jobs
 Elapsed (microseconds): 42
 ```
+
+## What To Check
+
+- every job passes through each step in the intended order
+- per-step summary counts match the processed workload
+- elapsed timing is reported and remains a positive measurement
 
 ## Extension Ideas
 

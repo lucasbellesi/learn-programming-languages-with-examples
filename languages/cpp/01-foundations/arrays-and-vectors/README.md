@@ -2,6 +2,13 @@
 
 This module introduces fixed-size and dynamic collections in C++.
 
+## Learning Metadata
+
+- Difficulty: Beginner.
+- Estimated Time: 20-35 minutes.
+- Prerequisites: `01-foundations/control-flow`, `01-foundations/functions`.
+- Cross-Language Lens: Compare `vector`, `List<T>`, slices, and Python lists as different tradeoffs for dynamic sequence handling.
+
 ## Quick Run
 
 ```bash

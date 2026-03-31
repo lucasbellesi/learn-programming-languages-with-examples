@@ -2,6 +2,13 @@
 
 This module introduces generic programming with type hints and reusable classes.
 
+## Learning Metadata
+
+- Difficulty: Intermediate.
+- Estimated Time: 35-50 minutes.
+- Prerequisites: `01-foundations/functions`, `03-advanced/structs-and-classes`.
+- Cross-Language Lens: Compare C++ templates with C# generics, Go type parameters, and Python's runtime flexibility.
+
 ## Quick Run
 
 ~~~bash

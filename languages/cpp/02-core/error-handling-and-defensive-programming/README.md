@@ -2,6 +2,13 @@
 
 This module teaches robust error checks and safe failure behavior.
 
+## Learning Metadata
+
+- Difficulty: Intermediate.
+- Estimated Time: 30-45 minutes.
+- Prerequisites: `02-core/input-validation`, `02-core/file-io-basics`.
+- Cross-Language Lens: Compare exceptions, error returns, and guard-style validation as different ways to keep programs safe.
+
 ## Quick Run
 
 ```bash

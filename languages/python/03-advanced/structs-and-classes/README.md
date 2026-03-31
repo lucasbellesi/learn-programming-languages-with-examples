@@ -2,6 +2,13 @@
 
 This module introduces object modeling with dataclass-style structures and classes.
 
+## Learning Metadata
+
+- Difficulty: Intermediate.
+- Estimated Time: 35-50 minutes.
+- Prerequisites: `01-foundations/functions`, `01-foundations/scope-and-lifetime-basics`.
+- Cross-Language Lens: Compare lightweight records, full classes, and method receivers to see how each language models data plus behavior.
+
 ## Quick Run
 
 ~~~bash

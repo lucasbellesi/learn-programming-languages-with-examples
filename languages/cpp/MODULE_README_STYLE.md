@@ -20,7 +20,7 @@ This structure is required for all implemented concept modules.
 
 ## Section Rules
 
-- `Learning Metadata` (recommended): include difficulty, estimated time, prerequisites, and a short cross-language lens before `Quick Run`.
+- `Learning Metadata` (required): include `Difficulty`, `Estimated Time`, `Prerequisites`, and `Cross-Language Lens` before `Quick Run`.
 - `Quick Run`: include one runnable command for `example/main.*` (or equivalent entry project).
 - `Topics Covered`: concise bullets of concepts practiced in the module.
 - `Common Pitfalls`: practical mistakes beginners frequently make.

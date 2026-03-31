@@ -2,6 +2,13 @@
 
 This module shows how constructors enforce valid object state.
 
+## Learning Metadata
+
+- Difficulty: Intermediate.
+- Estimated Time: 35-50 minutes.
+- Prerequisites: `03-advanced/structs-and-classes`.
+- Cross-Language Lens: Compare constructor rules, validation points, and object setup guarantees in each track.
+
 ## Quick Run
 
 ```bash

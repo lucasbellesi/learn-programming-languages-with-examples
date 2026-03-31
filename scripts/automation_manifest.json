@@ -11,6 +11,26 @@
     "projects",
     "assessments"
   ],
+  "learning_metadata": {
+    "module": [
+      "Difficulty",
+      "Estimated Time",
+      "Prerequisites",
+      "Cross-Language Lens"
+    ],
+    "checkpoint": [
+      "Difficulty",
+      "Estimated Time",
+      "Prerequisites",
+      "Learning Focus"
+    ],
+    "level": [
+      "Difficulty",
+      "Estimated Time",
+      "Prerequisites",
+      "Study Strategy"
+    ]
+  },
   "module_order": {
     "01-foundations": [
       "types-and-io",

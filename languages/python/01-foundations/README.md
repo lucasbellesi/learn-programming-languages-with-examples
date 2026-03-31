@@ -1,6 +1,13 @@
-﻿# Python 01 Foundations
+# Python 01 Foundations
 
 This level mirrors C++ foundations modules for easy cross-language comparison.
+
+## Learning Metadata
+
+- Difficulty: Beginner.
+- Estimated Time: 3-5 hours across modules, project, and assessment.
+- Prerequisites: None; this is the entry level for each active track.
+- Study Strategy: Work in module order, run every example, solve both exercises in each module, then finish the matching project and assessment.
 
 ## Module Order
 

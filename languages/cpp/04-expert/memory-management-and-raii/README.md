@@ -4,10 +4,11 @@ This module introduces ownership and deterministic cleanup in C++.
 
 ## Learning Metadata
 
-- Difficulty: Expert.
-- Estimated Time: 35-50 minutes.
-- Prerequisites: `03-advanced/constructors-and-invariants`, `03-advanced/copy-and-move-semantics`.
-- Cross-Language Lens: Compare deterministic cleanup in C++ with `IDisposable`, `defer`, and context managers in the other tracks.
+- Difficulty: Advanced.
+- Estimated Time: 45-60 minutes.
+- Prerequisites: `01-foundations/scope-and-lifetime-basics`, `03-advanced/structs-and-classes`.
+- Cross-Language Lens: Contrast deterministic cleanup in C++ with `IDisposable`, `defer`, and context-manager style resource handling.
+
 ## Quick Run
 
 ```bash

@@ -2,6 +2,13 @@
 
 This level introduces object-oriented design, generic programming, and value semantics.
 
+## Learning Metadata
+
+- Difficulty: Intermediate.
+- Estimated Time: 4-6 hours across modules, project, and assessment.
+- Prerequisites: Completion of `01-foundations` and `02-core`, including at least one checkpoint per level.
+- Study Strategy: Compare abstraction patterns across languages as you go, trace object state changes by hand, then use the project and assessment to confirm the model sticks.
+
 ## Module Order
 
 1. [structs-and-classes](./structs-and-classes/README.md)

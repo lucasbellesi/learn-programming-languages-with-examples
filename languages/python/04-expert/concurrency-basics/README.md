@@ -4,10 +4,11 @@ This module introduces thread-based coordination with locks and queues in Python
 
 ## Learning Metadata
 
-- Difficulty: Expert.
+- Difficulty: Advanced.
 - Estimated Time: 45-60 minutes.
 - Prerequisites: `01-foundations/control-flow`, `03-advanced/structs-and-classes`.
-- Cross-Language Lens: Compare `std::thread`, `Task` plus `lock`, goroutines, and Python threads as different concurrency models.
+- Cross-Language Lens: Compare `std::thread`, `Task`, goroutines, and Python threads as different concurrency building blocks.
+
 ## Quick Run
 
 ~~~bash

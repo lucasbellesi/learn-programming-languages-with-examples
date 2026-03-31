@@ -19,10 +19,11 @@ Write a program that:
 
 ## Learning Metadata
 
-- Difficulty: Expert Assessment.
+- Difficulty: Advanced.
 - Estimated Time: 45-60 minutes.
-- Prerequisites: `04-expert/concurrency-basics`, `04-expert/memory-management-and-raii`, `04-expert/smart-pointers-in-depth`.
-- Learning Focus: prove you can coordinate concurrent workers, protect shared aggregation, and reason about ownership boundaries without step-by-step scaffolding.
+- Prerequisites: All `04-expert` modules, especially `memory-management-and-raii`, `smart-pointers-in-depth`, and `concurrency-basics`.
+- Learning Focus: Prove you can coordinate work safely, choose the right ownership model for the track, and aggregate results under expert-level constraints.
+
 ## Quick Run
 
 ```bash
@@ -46,6 +47,6 @@ The worker lines may appear in a different order, but the three partial sums and
 
 ## What To Check
 
-- Shared updates happen only inside the `lock`.
-- Each worker computes its own partial result before merging it.
-- All tasks finish before the final summary is printed.
+- work is split across multiple workers without inconsistent shared state
+- partial results combine into a correct final summary
+- ownership or resource-lifetime decisions are explicit and safe for the chosen language track

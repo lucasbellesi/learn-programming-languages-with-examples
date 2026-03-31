@@ -180,6 +180,97 @@ def require_markdown_headings(path: Path, headings: list[str]) -> list[str]:
     return failures
 
 
+def markdown_sections(path: Path) -> list[tuple[str, int, int]]:
+    lines = path.read_text(encoding="utf-8").splitlines()
+    sections: list[tuple[str, int, int]] = []
+    in_fence = False
+    current_heading: str | None = None
+    current_start: int | None = None
+
+    for index, raw_line in enumerate(lines, start=1):
+        stripped = raw_line.lstrip()
+        if re.match(r"^(```|~~~)", stripped):
+            in_fence = not in_fence
+            continue
+        if in_fence:
+            continue
+
+        match = re.match(r"^(#{1,6})\s+(.+?)\s*$", raw_line)
+        if not match:
+            continue
+
+        heading = f"{match.group(1)} {match.group(2)}"
+        if current_heading is not None and current_start is not None:
+            sections.append((current_heading, current_start, index - 1))
+        current_heading = heading
+        current_start = index
+
+    if current_heading is not None and current_start is not None:
+        sections.append((current_heading, current_start, len(lines)))
+
+    return sections
+
+
+def get_section_details(path: Path, heading: str) -> tuple[int, int, list[str]] | None:
+    lines = path.read_text(encoding="utf-8").splitlines()
+    for current_heading, start_line, end_line in markdown_sections(path):
+        if current_heading == heading:
+            body_end = min(end_line, len(lines))
+            body = lines[start_line:body_end]
+            return start_line, end_line, body
+    return None
+
+
+def validate_learning_metadata(
+    path: Path,
+    expected_fields: list[str],
+    *,
+    before_heading: str,
+) -> list[str]:
+    failures: list[str] = []
+    sections = {heading: (start, end) for heading, start, end in markdown_sections(path)}
+    metadata_heading = "## Learning Metadata"
+
+    if metadata_heading not in sections:
+        return [f"{path}: missing -> {metadata_heading}"]
+
+    if before_heading not in sections:
+        return [f"{path}: missing -> {before_heading}"]
+
+    metadata_start = sections[metadata_heading][0]
+    if metadata_start > sections[before_heading][0]:
+        failures.append(f"{path}: {metadata_heading} must appear before {before_heading}.")
+
+    details = get_section_details(path, metadata_heading)
+    if details is None:
+        failures.append(f"{path}: unable to read {metadata_heading} section.")
+        return failures
+
+    _, _, body_lines = details
+    field_positions: dict[str, int] = {}
+    for index, line in enumerate(body_lines):
+        for field in expected_fields:
+            if field not in field_positions and re.match(
+                rf"^- {re.escape(field)}:\s+\S", line.strip()
+            ):
+                field_positions[field] = index
+
+    missing_fields = [field for field in expected_fields if field not in field_positions]
+    if missing_fields:
+        failures.append(f"{path}: {metadata_heading} missing fields -> {', '.join(missing_fields)}")
+        return failures
+
+    last_position = -1
+    for field in expected_fields:
+        position = field_positions[field]
+        if position < last_position:
+            failures.append(f"{path}: {metadata_heading} fields are out of order.")
+            break
+        last_position = position
+
+    return failures
+
+
 def find_python_command() -> str:
     if sys.executable:
         return sys.executable
@@ -438,6 +529,13 @@ def check_readme_structure(ctx: RepoContext) -> None:
     failures: list[str] = []
     for readme in readmes:
         failures.extend(require_markdown_headings(readme, ctx.manifest.required_readme_headings))
+        failures.extend(
+            validate_learning_metadata(
+                readme,
+                ctx.manifest.learning_metadata["module"],
+                before_heading="## Quick Run",
+            )
+        )
 
     if failures:
         print("README structure validation failed:")
@@ -502,6 +600,14 @@ def check_module_completeness(ctx: RepoContext) -> None:
                 for failure in heading_failures:
                     suffix = failure.split(": ", 1)[1] if ": " in failure else failure
                     failures.append(f"{module_dir}: README {suffix}")
+                metadata_failures = validate_learning_metadata(
+                    readme_path,
+                    ctx.manifest.learning_metadata["module"],
+                    before_heading="## Quick Run",
+                )
+                for failure in metadata_failures:
+                    suffix = failure.split(": ", 1)[1] if ": " in failure else failure
+                    failures.append(f"{module_dir}: README {suffix}")
 
     if module_count == 0:
         raise AutomationError("No module directories found for completeness validation.")
@@ -546,6 +652,15 @@ def check_checkpoint_completeness(ctx: RepoContext) -> None:
 
                 if not readme_path.is_file():
                     failures.append(f"{checkpoint_dir}: missing README.md")
+                else:
+                    metadata_failures = validate_learning_metadata(
+                        readme_path,
+                        ctx.manifest.learning_metadata["checkpoint"],
+                        before_heading="## Quick Run",
+                    )
+                    for failure in metadata_failures:
+                        suffix = failure.split(": ", 1)[1] if ": " in failure else failure
+                        failures.append(f"{checkpoint_dir}: README {suffix}")
 
                 checkpoint_main = config.get("checkpoint_main")
                 if checkpoint_main and not (checkpoint_dir / checkpoint_main).is_file():
@@ -587,6 +702,19 @@ def check_doc_sync(ctx: RepoContext) -> None:
         status_row = config.get("root_status_row")
         if status_row and status_row not in root_readme_text:
             failures.append(f"{root_readme_path}: missing status row for {language}")
+
+        for level in config.get("module_levels", []):
+            level_readme_path = ctx.root / "languages" / language / level / "README.md"
+            if not level_readme_path.is_file():
+                failures.append(f"{level_readme_path}: missing README.md")
+                continue
+            failures.extend(
+                validate_learning_metadata(
+                    level_readme_path,
+                    ctx.manifest.learning_metadata["level"],
+                    before_heading="## Module Order",
+                )
+            )
 
     parity_path = repo_path(ctx, ctx.manifest.docs["parity_matrix"]["path"])
     parity_text = ensure_text_file(parity_path)

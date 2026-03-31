@@ -2,6 +2,13 @@
 
 This module practices table-style output, alignment, and precision control.
 
+## Learning Metadata
+
+- Difficulty: Beginner.
+- Estimated Time: 20-35 minutes.
+- Prerequisites: `01-foundations/types-and-io`, `01-foundations/operators-and-expressions`.
+- Cross-Language Lens: Compare stream manipulators, format strings, `fmt`, and Python formatting for the same reporting task.
+
 ## Quick Run
 
 ~~~bash

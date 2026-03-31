@@ -19,6 +19,10 @@ class Manifest:
         return list(self.data["checkpoint_kinds"])
 
     @property
+    def learning_metadata(self) -> dict[str, list[str]]:
+        return {key: list(value) for key, value in self.data["learning_metadata"].items()}
+
+    @property
     def module_order(self) -> dict[str, list[str]]:
         return {key: list(value) for key, value in self.data["module_order"].items()}
 

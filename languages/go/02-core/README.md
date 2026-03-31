@@ -2,6 +2,13 @@
 
 This level starts the core track with defensive programming patterns.
 
+## Learning Metadata
+
+- Difficulty: Intermediate.
+- Estimated Time: 4-6 hours across modules, project, and assessment.
+- Prerequisites: Completion of `01-foundations` plus either `projects/01-foundations` or `assessments/01-foundations`.
+- Study Strategy: Keep notes on validation and file handling patterns, revisit earlier modules when parsing issues stack up, then close the level with the checkpoint pair.
+
 ## Module Order
 
 1. [input-validation](./input-validation/README.md)

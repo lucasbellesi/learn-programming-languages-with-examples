@@ -4,10 +4,11 @@ This module adapts smart pointer ideas to Go pointers, nil-safe ownership slots,
 
 ## Learning Metadata
 
-- Difficulty: Expert.
-- Estimated Time: 40-55 minutes.
-- Prerequisites: `04-expert/memory-management-and-raii`, `03-advanced/copy-and-move-semantics`.
-- Cross-Language Lens: Compare explicit ownership in C++ with managed references, pointers, and weak observers in the other tracks.
+- Difficulty: Advanced.
+- Estimated Time: 45-60 minutes.
+- Prerequisites: `04-expert/memory-management-and-raii`.
+- Cross-Language Lens: Compare explicit ownership tools in C++ with managed references, pointer conventions, and weak-reference patterns elsewhere.
+
 ## Quick Run
 
 ~~~bash

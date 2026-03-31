@@ -2,6 +2,13 @@
 
 This module introduces basic sorting and searching techniques.
 
+## Learning Metadata
+
+- Difficulty: Intermediate.
+- Estimated Time: 30-45 minutes.
+- Prerequisites: `02-core/algorithms-basics`, `01-foundations/arrays-and-vectors`.
+- Cross-Language Lens: Compare built-in sort and search helpers and the stability guarantees each standard library makes.
+
 ## Quick Run
 
 ~~~bash

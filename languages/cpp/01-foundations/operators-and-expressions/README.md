@@ -2,6 +2,13 @@
 
 This module covers arithmetic, relational, and logical expressions in C++.
 
+## Learning Metadata
+
+- Difficulty: Beginner.
+- Estimated Time: 20-35 minutes.
+- Prerequisites: `01-foundations/types-and-io`.
+- Cross-Language Lens: Compare integer division, boolean logic, and truthiness rules before assuming the same expression means the same thing in every language.
+
 ## Quick Run
 
 ```bash

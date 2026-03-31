@@ -14,6 +14,13 @@ Write a program that:
 4. Uses a template helper to print any numeric vector.
 5. Prints min and max area values.
 
+## Learning Metadata
+
+- Difficulty: Intermediate.
+- Estimated Time: 45-60 minutes.
+- Prerequisites: All `03-advanced` modules, especially `structs-and-classes`, `inheritance-and-polymorphism`, and `templates-basics`.
+- Learning Focus: Prove you can model abstractions, use reusable helpers, and summarize derived values correctly.
+
 ## Quick Run
 
 ```bash
@@ -34,6 +41,6 @@ Maximum area: ...
 
 ## What To Check
 
-- Polymorphic calls happen through base pointers.
-- No raw owning pointers are used.
-- Template helper works for both `vector<int>` and `vector<double>`.
+- abstraction or polymorphism is exercised through the language-appropriate shared interface
+- derived numeric summaries come from computed values rather than hardcoded text
+- the reusable helper works across more than one compatible input shape

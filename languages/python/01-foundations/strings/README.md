@@ -2,6 +2,13 @@
 
 This module practices splitting text, normalizing characters, and basic text analysis.
 
+## Learning Metadata
+
+- Difficulty: Beginner.
+- Estimated Time: 20-35 minutes.
+- Prerequisites: `01-foundations/types-and-io`, `01-foundations/control-flow`.
+- Cross-Language Lens: Compare immutable string handling, indexing rules, and tokenization helpers in each language.
+
 ## Quick Run
 
 ~~~bash

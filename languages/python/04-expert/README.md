@@ -4,10 +4,11 @@ This level extends the Python track into context management, references, concurr
 
 ## Learning Metadata
 
-- Difficulty: Expert Level.
-- Estimated Time: 4-6 hours across all modules, project, and assessment.
-- Prerequisites: completion of `03-advanced` plus its project or assessment checkpoint.
-- Study Strategy: finish the modules in order, then the `projects/04-expert` capstone, then the `assessments/04-expert` checkpoint.
+- Difficulty: Advanced.
+- Estimated Time: 4-6 hours across modules, project, and assessment.
+- Prerequisites: Completion of `03-advanced` plus its project or assessment checkpoint.
+- Study Strategy: Finish the modules in order, then the capstone, then the assessment, and explicitly compare runtime, ownership, and scaling tradeoffs across languages.
+
 ## Module Order
 
 1. [memory-management-and-raii](./memory-management-and-raii/README.md)

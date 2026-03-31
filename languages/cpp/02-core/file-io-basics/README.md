@@ -2,6 +2,13 @@
 
 This module teaches safe text-file reading and writing with streams.
 
+## Learning Metadata
+
+- Difficulty: Intermediate.
+- Estimated Time: 30-45 minutes.
+- Prerequisites: `01-foundations/types-and-io`, `01-foundations/strings`.
+- Cross-Language Lens: Compare text-file APIs, line parsing, and error handling styles while keeping the workflow conceptually identical.
+
 ## Quick Run
 
 ```bash

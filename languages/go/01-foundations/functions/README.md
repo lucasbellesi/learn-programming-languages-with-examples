@@ -2,6 +2,13 @@
 
 This module practices extracting reusable logic and calling helper functions.
 
+## Learning Metadata
+
+- Difficulty: Beginner.
+- Estimated Time: 20-35 minutes.
+- Prerequisites: `01-foundations/control-flow`, `01-foundations/operators-and-expressions`.
+- Cross-Language Lens: Compare helper-function design, argument passing defaults, and overloading support across the four tracks.
+
 ## Quick Run
 
 ~~~bash

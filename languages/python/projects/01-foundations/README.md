@@ -4,6 +4,13 @@
 
 Build a console program that reads student names and scores, then prints summary statistics.
 
+## Learning Metadata
+
+- Difficulty: Beginner.
+- Estimated Time: 45-75 minutes.
+- Prerequisites: All `01-foundations` modules, especially `types-and-io`, `control-flow`, and `arrays-and-vectors`.
+- Learning Focus: Integrate validated input, record storage, and summary statistics in one small end-to-end program.
+
 ## Quick Run
 
 ```bash
@@ -54,6 +61,12 @@ Maximum: 91
 - Accepting empty names.
 - Accepting invalid scores without retrying.
 - Dividing by zero when no students are provided.
+
+## What To Check
+
+- invalid score input is rejected or retried without corrupting later reads
+- names with spaces stay intact from input to output
+- reported average, minimum, and maximum match the entered records
 
 ## Extension Ideas
 

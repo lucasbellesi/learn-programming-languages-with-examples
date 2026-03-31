@@ -2,6 +2,13 @@
 
 This module practices branching, looping, and sentinel-driven iteration.
 
+## Learning Metadata
+
+- Difficulty: Beginner.
+- Estimated Time: 20-35 minutes.
+- Prerequisites: `01-foundations/types-and-io`, `01-foundations/operators-and-expressions`.
+- Cross-Language Lens: Compare braces-and-loops in C++, C#, and Go with Python indentation while keeping the underlying branching logic identical.
+
 ## Quick Run
 
 ~~~bash

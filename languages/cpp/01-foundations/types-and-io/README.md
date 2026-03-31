@@ -2,6 +2,13 @@
 
 This module covers basic data types and console input/output in C++.
 
+## Learning Metadata
+
+- Difficulty: Beginner.
+- Estimated Time: 20-35 minutes.
+- Prerequisites: None; this is the entry module for the track.
+- Cross-Language Lens: Compare strongly typed console input in C++ and C# with explicit parsing in Go and Python's more dynamic input model.
+
 ## Quick Run
 
 ```bash
