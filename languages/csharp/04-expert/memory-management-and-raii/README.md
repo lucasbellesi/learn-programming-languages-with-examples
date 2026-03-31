@@ -2,6 +2,12 @@
 
 This module introduces deterministic cleanup patterns in managed C# code.
 
+## Learning Metadata
+
+- Difficulty: Expert.
+- Estimated Time: 35-50 minutes.
+- Prerequisites: `03-advanced/constructors-and-invariants`, `03-advanced/copy-and-move-semantics`.
+- Cross-Language Lens: Compare deterministic cleanup in C++ with `IDisposable`, `defer`, and context managers in the other tracks.
 ## Quick Run
 
 ~~~bash

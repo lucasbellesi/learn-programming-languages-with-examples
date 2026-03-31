@@ -5,6 +5,13 @@ All section headings below are required by repository validation scripts.
 
 When writing `example/main.*`, add intent-first comments before meaningful logic blocks so new developers can follow program flow quickly.
 
+## Learning Metadata
+
+- Difficulty:
+- Estimated Time:
+- Prerequisites:
+- Cross-Language Lens:
+
 ## Quick Run
 
 Include one command that runs the module example.

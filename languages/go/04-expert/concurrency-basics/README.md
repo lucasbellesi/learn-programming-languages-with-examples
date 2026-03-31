@@ -2,6 +2,12 @@
 
 This module introduces goroutines, mutexes, and channels for safe concurrent coordination.
 
+## Learning Metadata
+
+- Difficulty: Expert.
+- Estimated Time: 45-60 minutes.
+- Prerequisites: `01-foundations/control-flow`, `03-advanced/structs-and-classes`.
+- Cross-Language Lens: Compare `std::thread`, `Task` plus `lock`, goroutines, and Python threads as different concurrency models.
 ## Quick Run
 
 ~~~bash

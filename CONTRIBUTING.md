@@ -70,6 +70,7 @@ The public PowerShell and Bash scripts are thin wrappers over the shared Python 
 
 - New concept modules should follow the existing folder layout.
 - Every concept README in implemented levels should include:
+  - recommended `## Learning Metadata` before `## Quick Run` with difficulty, estimated time, prerequisites, and cross-language guidance
   - `## Quick Run`
   - `## Topics Covered`
   - `## Common Pitfalls`
@@ -80,6 +81,7 @@ The public PowerShell and Bash scripts are thin wrappers over the shared Python 
   - `README.md`
   - runnable entrypoint (`main.cs` + `.csproj`, `main.go`, or `main.py`)
   - the same learner goal, input/output shape, and acceptance expectations as the corresponding C++ checkpoint
+  - recommended `## Learning Metadata` with difficulty, estimated time, prerequisites, and checkpoint focus
 - Checkpoint README structure should mirror the matching C++ checkpoint style, not the module README contract.
 - Every `example/main.*` file should include intent-first comments for:
   - program flow,

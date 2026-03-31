@@ -2,6 +2,12 @@
 
 This module adapts smart pointer ideas to managed references, ownership transfer, and weak observation in C#.
 
+## Learning Metadata
+
+- Difficulty: Expert.
+- Estimated Time: 40-55 minutes.
+- Prerequisites: `04-expert/memory-management-and-raii`, `03-advanced/copy-and-move-semantics`.
+- Cross-Language Lens: Compare explicit ownership in C++ with managed references, pointers, and weak observers in the other tracks.
 ## Quick Run
 
 ~~~bash

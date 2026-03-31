@@ -2,6 +2,12 @@
 
 This module introduces multi-file organization and project references in C#.
 
+## Learning Metadata
+
+- Difficulty: Expert.
+- Estimated Time: 30-45 minutes.
+- Prerequisites: `02-core/file-io-basics`, `03-advanced/structs-and-classes`.
+- Cross-Language Lens: Compare headers and source files, project references, packages, and Python modules as ways to separate responsibilities.
 ## Quick Run
 
 ~~~bash

@@ -17,6 +17,12 @@ Write a program that:
 - maximum value
 5. Prints per-worker partial sums and final summary.
 
+## Learning Metadata
+
+- Difficulty: Expert Assessment.
+- Estimated Time: 45-60 minutes.
+- Prerequisites: `04-expert/concurrency-basics`, `04-expert/memory-management-and-raii`, `04-expert/smart-pointers-in-depth`.
+- Learning Focus: prove you can coordinate concurrent workers, protect shared aggregation, and reason about ownership boundaries without step-by-step scaffolding.
 ## Quick Run
 
 ```bash

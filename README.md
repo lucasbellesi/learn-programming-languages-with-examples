@@ -86,6 +86,13 @@ All concept module README files under `languages/<language>/<level>/<module>/REA
 
 Reference: [Module README Style](languages/cpp/MODULE_README_STYLE.md)
 
+A standardized `## Learning Metadata` block is also recommended before `## Quick Run` for modules and major checkpoints. Use it to record:
+
+- difficulty
+- estimated time
+- prerequisites
+- cross-language comparison guidance
+
 Checkpoint artifacts under `languages/<language>/projects/*` and `languages/<language>/assessments/*` should mirror the corresponding C++ checkpoint style:
 
 - `README.md`

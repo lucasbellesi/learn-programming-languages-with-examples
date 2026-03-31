@@ -4,6 +4,12 @@
 
 Build a small pipeline simulator using RAII-style ownership and timing metrics.
 
+## Learning Metadata
+
+- Difficulty: Expert Capstone.
+- Estimated Time: 60-90 minutes.
+- Prerequisites: all `04-expert` modules, especially `concurrency-basics` and `performance-and-profiling-basics`.
+- Learning Focus: integrate reusable step objects, pipeline orchestration, and timing into one cohesive program.
 ## Requirements
 
 - Represent processing steps as objects owned by `std::unique_ptr`.

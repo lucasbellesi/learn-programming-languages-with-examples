@@ -2,6 +2,12 @@
 
 This level is now fully implemented in C#.
 
+## Learning Metadata
+
+- Difficulty: Expert Level.
+- Estimated Time: 4-6 hours across all modules, project, and assessment.
+- Prerequisites: completion of `03-advanced` plus its project or assessment checkpoint.
+- Study Strategy: finish the modules in order, then the `projects/04-expert` capstone, then the `assessments/04-expert` checkpoint.
 ## Module Order
 
 1. [memory-management-and-raii](./memory-management-and-raii/README.md)
