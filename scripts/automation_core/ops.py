@@ -871,15 +871,14 @@ def lint_repo(ctx: RepoContext) -> None:
     )
 
     print("[5/5] TypeScript formatting and type check...")
-    ts_files = enumerate_source_files(
-        ctx,
-        roots=lint_config["typescript"]["roots"],
-        extensions=lint_config["typescript"]["extensions"],
-        exclude_dirs=lint_config["typescript"].get("exclude_dirs", []),
-    )
     npm = ensure_typescript_tooling(ctx)
+    prettier_patterns = [
+        f"{root}/**/*{extension}"
+        for root in lint_config["typescript"]["roots"]
+        for extension in lint_config["typescript"]["extensions"]
+    ]
     run_command(
-        [npm, "exec", "--", "prettier", "--check", *[str(path) for path in ts_files]],
+        [npm, "exec", "--", "prettier", "--check", *prettier_patterns],
         cwd=ctx.root,
         action="TypeScript formatting check",
         timeout_seconds=300,

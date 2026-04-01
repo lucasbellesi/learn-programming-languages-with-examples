@@ -20,15 +20,25 @@
 - [ ] Complete `02-core/maps-and-frequency-counting`.
 - [ ] Complete `02-core/error-handling-and-defensive-programming`.
 
+## 03-advanced
+
+- [ ] Complete `03-advanced/structs-and-classes`.
+- [ ] Complete `03-advanced/constructors-and-invariants`.
+- [ ] Complete `03-advanced/copy-and-move-semantics`.
+- [ ] Complete `03-advanced/inheritance-and-polymorphism`.
+- [ ] Complete `03-advanced/templates-basics`.
+
 ## Projects
 
 - [ ] Complete `projects/01-foundations`.
 - [ ] Complete `projects/02-core`.
+- [ ] Complete `projects/03-advanced`.
 
 ## Assessments
 
 - [ ] Complete `assessments/01-foundations`.
 - [ ] Complete `assessments/02-core`.
+- [ ] Complete `assessments/03-advanced`.
 
 ## Parity Goals
 

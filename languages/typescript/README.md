@@ -2,14 +2,15 @@
 
 ## Scope and Status
 
-This track currently covers `01-foundations`, `02-core`, and the first two checkpoint pairs.
+This track currently covers `01-foundations`, `02-core`, `03-advanced`, and the first three checkpoint pairs.
 
 - 8/8 foundations modules implemented.
 - 6/6 core modules implemented (`input-validation`, `algorithms-basics`, `file-io-basics`, `sorting-and-searching`, `maps-and-frequency-counting`, `error-handling-and-defensive-programming`).
-- 2/4 projects implemented (`01-foundations`, `02-core`).
-- 2/4 assessments implemented (`01-foundations`, `02-core`).
+- 5/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, `templates-basics`).
+- 3/4 projects implemented (`01-foundations`, `02-core`, `03-advanced`).
+- 3/4 assessments implemented (`01-foundations`, `02-core`, `03-advanced`).
 - Same module naming as C++, C#, Go, and Python for parity.
-- `03-advanced` and `04-expert` are planned next.
+- `04-expert` is planned next.
 
 ## Prerequisites
 
@@ -54,12 +55,20 @@ node build/typescript/01-foundations/types-and-io/example/main.js
   - [sorting-and-searching](./02-core/sorting-and-searching/README.md)
   - [maps-and-frequency-counting](./02-core/maps-and-frequency-counting/README.md)
   - [error-handling-and-defensive-programming](./02-core/error-handling-and-defensive-programming/README.md)
+- [03-advanced](./03-advanced/README.md)
+  - [structs-and-classes](./03-advanced/structs-and-classes/README.md)
+  - [constructors-and-invariants](./03-advanced/constructors-and-invariants/README.md)
+  - [copy-and-move-semantics](./03-advanced/copy-and-move-semantics/README.md)
+  - [inheritance-and-polymorphism](./03-advanced/inheritance-and-polymorphism/README.md)
+  - [templates-basics](./03-advanced/templates-basics/README.md)
 - [projects](./projects/README.md)
   - [01-foundations](./projects/01-foundations/README.md)
   - [02-core](./projects/02-core/README.md)
+  - [03-advanced](./projects/03-advanced/README.md)
 - [assessments](./assessments/README.md)
   - [01-foundations](./assessments/01-foundations/README.md)
   - [02-core](./assessments/02-core/README.md)
+  - [03-advanced](./assessments/03-advanced/README.md)
 
 ## Progress Tracking
 

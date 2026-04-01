@@ -4,7 +4,7 @@ This matrix tracks module and checkpoint parity across C++, C#, Go, Python, and 
 
 - Canonical order is defined by the C++ track.
 - C++, C#, Go, and Python now reach module and checkpoint parity through `04-expert`.
-- TypeScript is the newest incremental track with `01-foundations` and `02-core` implemented first.
+- TypeScript is the newest incremental track with `01-foundations`, `02-core`, and `03-advanced` implemented first.
 - Status labels:
   - `Done`: module implemented with example, exercises, and README.
   - `Planned`: module not implemented yet, already queued in order.
@@ -47,17 +47,17 @@ Current parity progress in non-C++ tracks:
 - C#: `5/5` modules complete in `03-advanced`, `5/5` in `04-expert`
 - Go: `5/5` modules complete in `03-advanced`, `5/5` in `04-expert`
 - Python: `5/5` modules complete in `03-advanced`, `5/5` in `04-expert`
-- TypeScript: `03-advanced` and `04-expert` planned after foundations and core
+- TypeScript: `5/5` modules complete in `03-advanced`; `04-expert` planned next
 
 ### Advanced (`03-advanced`) - Current Expansion Queue
 
 | Order | Module | C++ | C# | Go | Python | TypeScript |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | structs-and-classes | Done | Done | Done | Done | Planned |
-| 2 | constructors-and-invariants | Done | Done | Done | Done | Planned |
-| 3 | copy-and-move-semantics | Done | Done | Done | Done | Planned |
-| 4 | inheritance-and-polymorphism | Done | Done | Done | Done | Planned |
-| 5 | templates-basics | Done | Done | Done | Done | Planned |
+| 1 | structs-and-classes | Done | Done | Done | Done | Done |
+| 2 | constructors-and-invariants | Done | Done | Done | Done | Done |
+| 3 | copy-and-move-semantics | Done | Done | Done | Done | Done |
+| 4 | inheritance-and-polymorphism | Done | Done | Done | Done | Done |
+| 5 | templates-basics | Done | Done | Done | Done | Done |
 
 `04-expert` projects and assessments are now implemented across C#, Go, and Python.
 
@@ -84,7 +84,7 @@ Status labels:
 | --- | --- | --- | --- | --- | --- |
 | 01-foundations | Done | Done | Done | Done | Done |
 | 02-core | Done | Done | Done | Done | Done |
-| 03-advanced | Done | Done | Done | Done | Planned |
+| 03-advanced | Done | Done | Done | Done | Done |
 | 04-expert | Done | Done | Done | Done | Planned |
 
 ### Assessments
@@ -93,5 +93,5 @@ Status labels:
 | --- | --- | --- | --- | --- | --- |
 | 01-foundations | Done | Done | Done | Done | Done |
 | 02-core | Done | Done | Done | Done | Done |
-| 03-advanced | Done | Done | Done | Done | Planned |
+| 03-advanced | Done | Done | Done | Done | Done |
 | 04-expert | Done | Done | Done | Done | Planned |

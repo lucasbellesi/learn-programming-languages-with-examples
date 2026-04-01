@@ -144,22 +144,23 @@
     },
     "typescript": {
       "extension": "ts",
-      "levels": ["01-foundations", "02-core"],
-      "module_levels": ["01-foundations", "02-core"],
+      "levels": ["01-foundations", "02-core", "03-advanced"],
+      "module_levels": ["01-foundations", "02-core", "03-advanced"],
       "checkpoints": {
-        "projects": ["01-foundations", "02-core"],
-        "assessments": ["01-foundations", "02-core"]
+        "projects": ["01-foundations", "02-core", "03-advanced"],
+        "assessments": ["01-foundations", "02-core", "03-advanced"]
       },
       "checkpoint_main": "main.ts",
       "track_readme": "languages/typescript/README.md",
       "track_readme_markers": [
         "- 8/8 foundations modules implemented.",
         "- 6/6 core modules implemented (`input-validation`, `algorithms-basics`, `file-io-basics`, `sorting-and-searching`, `maps-and-frequency-counting`, `error-handling-and-defensive-programming`).",
-        "- 2/4 projects implemented (`01-foundations`, `02-core`).",
-        "- 2/4 assessments implemented (`01-foundations`, `02-core`).",
-        "- `03-advanced` and `04-expert` are planned next."
+        "- 5/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, `templates-basics`).",
+        "- 3/4 projects implemented (`01-foundations`, `02-core`, `03-advanced`).",
+        "- 3/4 assessments implemented (`01-foundations`, `02-core`, `03-advanced`).",
+        "- `04-expert` is planned next."
       ],
-      "root_status_row": "| TypeScript | 01-foundations, 02-core | 8/8 foundations modules, 6/6 core modules, 2/4 projects, 2/4 assessments | Foundations and core complete; advanced and above planned |"
+      "root_status_row": "| TypeScript | 01-foundations, 02-core, 03-advanced | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 3/4 projects, 3/4 assessments | Foundations, core, and advanced complete; expert planned |"
     }
   },
   "docs": {
@@ -172,10 +173,11 @@
       "markers": [
         "- Canonical order is defined by the C++ track.",
         "- C++, C#, Go, and Python now reach module and checkpoint parity through `04-expert`.",
-        "- TypeScript is the newest incremental track with `01-foundations` and `02-core` implemented first.",
+        "- TypeScript is the newest incremental track with `01-foundations`, `02-core`, and `03-advanced` implemented first.",
         "`04-expert` projects and assessments are now implemented across C#, Go, and Python.",
         "| types-and-io | Done | Done | Done | Done | Done |",
         "| 02-core | Done | Done | Done | Done | Done |",
+        "| 03-advanced | Done | Done | Done | Done | Done |",
         "| 04-expert | Done | Done | Done | Done | Planned |"
       ]
     }
@@ -436,7 +438,10 @@
         "languages/typescript/02-core/algorithms-basics/example/main.ts",
         "languages/typescript/02-core/sorting-and-searching/example/main.ts",
         "languages/typescript/02-core/maps-and-frequency-counting/example/main.ts",
-        "languages/typescript/02-core/error-handling-and-defensive-programming/example/main.ts"
+        "languages/typescript/02-core/error-handling-and-defensive-programming/example/main.ts",
+        "languages/typescript/03-advanced/structs-and-classes/example/main.ts",
+        "languages/typescript/03-advanced/inheritance-and-polymorphism/example/main.ts",
+        "languages/typescript/03-advanced/templates-basics/example/main.ts"
       ],
       "stdin_runs": [
         {
@@ -470,6 +475,14 @@
           "required_stdout_contains": ["Valid count:", "Frequency table:", "Report saved to core_assessment_report.txt"],
           "required_outputs": ["core_assessment_report.txt"],
           "cleanup_paths": ["core_assessment_report.txt"]
+        },
+        {
+          "program": "languages/typescript/projects/03-advanced/main.ts",
+          "required_stdout_contains": ["Course: TypeScriptBasics | 2/2 enrolled", "Course: Algorithms | 1/3 enrolled"]
+        },
+        {
+          "program": "languages/typescript/assessments/03-advanced/main.ts",
+          "required_stdout_contains": ["Shape areas:", "Total area:", "Minimum area:", "Maximum area:", "Sample counts:", "Computed areas:"]
         }
       ]
     }
