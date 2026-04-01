@@ -4,7 +4,7 @@ This matrix tracks module and checkpoint parity across C++, C#, Go, Python, and 
 
 - Canonical order is defined by the C++ track.
 - C++, C#, Go, and Python now reach module and checkpoint parity through `04-expert`.
-- TypeScript is the newest incremental track with `01-foundations` implemented first.
+- TypeScript is the newest incremental track with `01-foundations` and `02-core` implemented first.
 - Status labels:
   - `Done`: module implemented with example, exercises, and README.
   - `Planned`: module not implemented yet, already queued in order.
@@ -29,16 +29,16 @@ Current parity progress in non-C++ tracks:
 - C#: `6/6` modules complete
 - Go: `6/6` modules complete
 - Python: `6/6` modules complete
-- TypeScript: `0/6` modules complete, foundations delivered first
+- TypeScript: `6/6` modules complete
 
 | Order | Module | C++ | C# | Go | Python | TypeScript |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | input-validation | Done | Done | Done | Done | Planned |
-| 2 | algorithms-basics | Done | Done | Done | Done | Planned |
-| 3 | file-io-basics | Done | Done | Done | Done | Planned |
-| 4 | sorting-and-searching | Done | Done | Done | Done | Planned |
-| 5 | maps-and-frequency-counting | Done | Done | Done | Done | Planned |
-| 6 | error-handling-and-defensive-programming | Done | Done | Done | Done | Planned |
+| 1 | input-validation | Done | Done | Done | Done | Done |
+| 2 | algorithms-basics | Done | Done | Done | Done | Done |
+| 3 | file-io-basics | Done | Done | Done | Done | Done |
+| 4 | sorting-and-searching | Done | Done | Done | Done | Done |
+| 5 | maps-and-frequency-counting | Done | Done | Done | Done | Done |
+| 6 | error-handling-and-defensive-programming | Done | Done | Done | Done | Done |
 
 ## Advanced and Expert
 
@@ -83,7 +83,7 @@ Status labels:
 | Checkpoint | C++ | C# | Go | Python | TypeScript |
 | --- | --- | --- | --- | --- | --- |
 | 01-foundations | Done | Done | Done | Done | Done |
-| 02-core | Done | Done | Done | Done | Planned |
+| 02-core | Done | Done | Done | Done | Done |
 | 03-advanced | Done | Done | Done | Done | Planned |
 | 04-expert | Done | Done | Done | Done | Planned |
 
@@ -92,6 +92,6 @@ Status labels:
 | Checkpoint | C++ | C# | Go | Python | TypeScript |
 | --- | --- | --- | --- | --- | --- |
 | 01-foundations | Done | Done | Done | Done | Done |
-| 02-core | Done | Done | Done | Done | Planned |
+| 02-core | Done | Done | Done | Done | Done |
 | 03-advanced | Done | Done | Done | Done | Planned |
 | 04-expert | Done | Done | Done | Done | Planned |

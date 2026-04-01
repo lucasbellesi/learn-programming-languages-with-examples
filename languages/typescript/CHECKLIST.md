@@ -11,13 +11,24 @@
 - [ ] Complete `01-foundations/scope-and-lifetime-basics`.
 - [ ] Complete `01-foundations/formatted-output-and-iomanip`.
 
+## 02-core
+
+- [ ] Complete `02-core/input-validation`.
+- [ ] Complete `02-core/algorithms-basics`.
+- [ ] Complete `02-core/file-io-basics`.
+- [ ] Complete `02-core/sorting-and-searching`.
+- [ ] Complete `02-core/maps-and-frequency-counting`.
+- [ ] Complete `02-core/error-handling-and-defensive-programming`.
+
 ## Projects
 
 - [ ] Complete `projects/01-foundations`.
+- [ ] Complete `projects/02-core`.
 
 ## Assessments
 
 - [ ] Complete `assessments/01-foundations`.
+- [ ] Complete `assessments/02-core`.
 
 ## Parity Goals
 

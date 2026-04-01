@@ -5,7 +5,8 @@ This directory contains level-end tasks that check understanding without step-by
 ## Available Assessments
 
 1. [01-foundations](./01-foundations/README.md)
+2. [02-core](./02-core/README.md)
 
 ## Next Gap
 
-`02-core`, `03-advanced`, and `04-expert` assessments are planned next.
+`03-advanced` and `04-expert` assessments are planned next.

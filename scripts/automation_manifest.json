@@ -144,21 +144,22 @@
     },
     "typescript": {
       "extension": "ts",
-      "levels": ["01-foundations"],
-      "module_levels": ["01-foundations"],
+      "levels": ["01-foundations", "02-core"],
+      "module_levels": ["01-foundations", "02-core"],
       "checkpoints": {
-        "projects": ["01-foundations"],
-        "assessments": ["01-foundations"]
+        "projects": ["01-foundations", "02-core"],
+        "assessments": ["01-foundations", "02-core"]
       },
       "checkpoint_main": "main.ts",
       "track_readme": "languages/typescript/README.md",
       "track_readme_markers": [
         "- 8/8 foundations modules implemented.",
-        "- 1/4 projects implemented (`01-foundations`).",
-        "- 1/4 assessments implemented (`01-foundations`).",
-        "- `02-core`, `03-advanced`, and `04-expert` are planned next."
+        "- 6/6 core modules implemented (`input-validation`, `algorithms-basics`, `file-io-basics`, `sorting-and-searching`, `maps-and-frequency-counting`, `error-handling-and-defensive-programming`).",
+        "- 2/4 projects implemented (`01-foundations`, `02-core`).",
+        "- 2/4 assessments implemented (`01-foundations`, `02-core`).",
+        "- `03-advanced` and `04-expert` are planned next."
       ],
-      "root_status_row": "| TypeScript | 01-foundations | 8/8 foundations modules, 1/4 projects, 1/4 assessments | Foundations launched; core and above planned |"
+      "root_status_row": "| TypeScript | 01-foundations, 02-core | 8/8 foundations modules, 6/6 core modules, 2/4 projects, 2/4 assessments | Foundations and core complete; advanced and above planned |"
     }
   },
   "docs": {
@@ -171,10 +172,10 @@
       "markers": [
         "- Canonical order is defined by the C++ track.",
         "- C++, C#, Go, and Python now reach module and checkpoint parity through `04-expert`.",
-        "- TypeScript is the newest incremental track with `01-foundations` implemented first.",
+        "- TypeScript is the newest incremental track with `01-foundations` and `02-core` implemented first.",
         "`04-expert` projects and assessments are now implemented across C#, Go, and Python.",
         "| types-and-io | Done | Done | Done | Done | Done |",
-        "| 02-core | Done | Done | Done | Done | Planned |",
+        "| 02-core | Done | Done | Done | Done | Done |",
         "| 04-expert | Done | Done | Done | Done | Planned |"
       ]
     }
@@ -431,7 +432,11 @@
         "languages/typescript/01-foundations/types-and-io/example/main.ts",
         "languages/typescript/01-foundations/arrays-and-vectors/example/main.ts",
         "languages/typescript/01-foundations/functions/example/main.ts",
-        "languages/typescript/01-foundations/formatted-output-and-iomanip/example/main.ts"
+        "languages/typescript/01-foundations/formatted-output-and-iomanip/example/main.ts",
+        "languages/typescript/02-core/algorithms-basics/example/main.ts",
+        "languages/typescript/02-core/sorting-and-searching/example/main.ts",
+        "languages/typescript/02-core/maps-and-frequency-counting/example/main.ts",
+        "languages/typescript/02-core/error-handling-and-defensive-programming/example/main.ts"
       ],
       "stdin_runs": [
         {
@@ -443,6 +448,28 @@
           "program": "languages/typescript/assessments/01-foundations/main.ts",
           "input_lines": ["3", "Ana Smith", "91", "Bob Lee", "55", "Carla Mendez", "88"],
           "required_stdout_contains": ["Students:", "Average:", "Highest:", "Lowest:", "Passed:"]
+        },
+        {
+          "working_dir": "languages/typescript/projects/02-core",
+          "program": "main.ts",
+          "setup_files": [
+            {
+              "path": "smoke-input.txt",
+              "lines": ["Ana Smith 91", "Bob Lee 77", "InvalidRow", "Carla Mendez 88"]
+            }
+          ],
+          "input_file": "smoke-input.txt",
+          "required_stdout_contains": ["Valid records:", "Invalid rows skipped:", "Report written to report.txt"],
+          "required_outputs": ["report.txt"],
+          "cleanup_paths": ["smoke-input.txt", "report.txt"]
+        },
+        {
+          "working_dir": "languages/typescript/assessments/02-core",
+          "program": "main.ts",
+          "input_lines": ["12 17 31 77 91 105 64 -3 88 -1"],
+          "required_stdout_contains": ["Valid count:", "Frequency table:", "Report saved to core_assessment_report.txt"],
+          "required_outputs": ["core_assessment_report.txt"],
+          "cleanup_paths": ["core_assessment_report.txt"]
         }
       ]
     }

@@ -2,13 +2,14 @@
 
 ## Scope and Status
 
-This track currently covers `01-foundations`, plus the first `projects` and `assessments` checkpoint for that level.
+This track currently covers `01-foundations`, `02-core`, and the first two checkpoint pairs.
 
 - 8/8 foundations modules implemented.
-- 1/4 projects implemented (`01-foundations`).
-- 1/4 assessments implemented (`01-foundations`).
+- 6/6 core modules implemented (`input-validation`, `algorithms-basics`, `file-io-basics`, `sorting-and-searching`, `maps-and-frequency-counting`, `error-handling-and-defensive-programming`).
+- 2/4 projects implemented (`01-foundations`, `02-core`).
+- 2/4 assessments implemented (`01-foundations`, `02-core`).
 - Same module naming as C++, C#, Go, and Python for parity.
-- `02-core`, `03-advanced`, and `04-expert` are planned next.
+- `03-advanced` and `04-expert` are planned next.
 
 ## Prerequisites
 
@@ -46,10 +47,19 @@ node build/typescript/01-foundations/types-and-io/example/main.js
   - [strings](./01-foundations/strings/README.md)
   - [scope-and-lifetime-basics](./01-foundations/scope-and-lifetime-basics/README.md)
   - [formatted-output-and-iomanip](./01-foundations/formatted-output-and-iomanip/README.md)
+- [02-core](./02-core/README.md)
+  - [input-validation](./02-core/input-validation/README.md)
+  - [algorithms-basics](./02-core/algorithms-basics/README.md)
+  - [file-io-basics](./02-core/file-io-basics/README.md)
+  - [sorting-and-searching](./02-core/sorting-and-searching/README.md)
+  - [maps-and-frequency-counting](./02-core/maps-and-frequency-counting/README.md)
+  - [error-handling-and-defensive-programming](./02-core/error-handling-and-defensive-programming/README.md)
 - [projects](./projects/README.md)
   - [01-foundations](./projects/01-foundations/README.md)
+  - [02-core](./projects/02-core/README.md)
 - [assessments](./assessments/README.md)
   - [01-foundations](./assessments/01-foundations/README.md)
+  - [02-core](./assessments/02-core/README.md)
 
 ## Progress Tracking
 
