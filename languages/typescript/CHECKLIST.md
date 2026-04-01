@@ -28,17 +28,27 @@
 - [ ] Complete `03-advanced/inheritance-and-polymorphism`.
 - [ ] Complete `03-advanced/templates-basics`.
 
+## 04-expert
+
+- [ ] Complete `04-expert/memory-management-and-raii`.
+- [ ] Complete `04-expert/smart-pointers-in-depth`.
+- [ ] Complete `04-expert/concurrency-basics`.
+- [ ] Complete `04-expert/performance-and-profiling-basics`.
+- [ ] Complete `04-expert/modularization-and-build-structure`.
+
 ## Projects
 
 - [ ] Complete `projects/01-foundations`.
 - [ ] Complete `projects/02-core`.
 - [ ] Complete `projects/03-advanced`.
+- [ ] Complete `projects/04-expert`.
 
 ## Assessments
 
 - [ ] Complete `assessments/01-foundations`.
 - [ ] Complete `assessments/02-core`.
 - [ ] Complete `assessments/03-advanced`.
+- [ ] Complete `assessments/04-expert`.
 
 ## Parity Goals
 

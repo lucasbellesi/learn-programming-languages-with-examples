@@ -3,8 +3,7 @@
 This matrix tracks module and checkpoint parity across C++, C#, Go, Python, and TypeScript.
 
 - Canonical order is defined by the C++ track.
-- C++, C#, Go, and Python now reach module and checkpoint parity through `04-expert`.
-- TypeScript is the newest incremental track with `01-foundations`, `02-core`, and `03-advanced` implemented first.
+- C++, C#, Go, Python, and TypeScript now reach module and checkpoint parity through `04-expert`.
 - Status labels:
   - `Done`: module implemented with example, exercises, and README.
   - `Planned`: module not implemented yet, already queued in order.
@@ -47,7 +46,7 @@ Current parity progress in non-C++ tracks:
 - C#: `5/5` modules complete in `03-advanced`, `5/5` in `04-expert`
 - Go: `5/5` modules complete in `03-advanced`, `5/5` in `04-expert`
 - Python: `5/5` modules complete in `03-advanced`, `5/5` in `04-expert`
-- TypeScript: `5/5` modules complete in `03-advanced`; `04-expert` planned next
+- TypeScript: `5/5` modules complete in `03-advanced`, `5/5` in `04-expert`
 
 ### Advanced (`03-advanced`) - Current Expansion Queue
 
@@ -59,17 +58,17 @@ Current parity progress in non-C++ tracks:
 | 4 | inheritance-and-polymorphism | Done | Done | Done | Done | Done |
 | 5 | templates-basics | Done | Done | Done | Done | Done |
 
-`04-expert` projects and assessments are now implemented across C#, Go, and Python.
+`04-expert` projects and assessments are now implemented across all active non-C++ tracks.
 
 ### Expert (`04-expert`)
 
 | Order | Module | C++ | C# | Go | Python | TypeScript |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | memory-management-and-raii | Done | Done | Done | Done | Planned |
-| 2 | smart-pointers-in-depth | Done | Done | Done | Done | Planned |
-| 3 | concurrency-basics | Done | Done | Done | Done | Planned |
-| 4 | performance-and-profiling-basics | Done | Done | Done | Done | Planned |
-| 5 | modularization-and-build-structure | Done | Done | Done | Done | Planned |
+| 1 | memory-management-and-raii | Done | Done | Done | Done | Done |
+| 2 | smart-pointers-in-depth | Done | Done | Done | Done | Done |
+| 3 | concurrency-basics | Done | Done | Done | Done | Done |
+| 4 | performance-and-profiling-basics | Done | Done | Done | Done | Done |
+| 5 | modularization-and-build-structure | Done | Done | Done | Done | Done |
 
 ## Checkpoint Parity
 
@@ -85,7 +84,7 @@ Status labels:
 | 01-foundations | Done | Done | Done | Done | Done |
 | 02-core | Done | Done | Done | Done | Done |
 | 03-advanced | Done | Done | Done | Done | Done |
-| 04-expert | Done | Done | Done | Done | Planned |
+| 04-expert | Done | Done | Done | Done | Done |
 
 ### Assessments
 
@@ -94,4 +93,4 @@ Status labels:
 | 01-foundations | Done | Done | Done | Done | Done |
 | 02-core | Done | Done | Done | Done | Done |
 | 03-advanced | Done | Done | Done | Done | Done |
-| 04-expert | Done | Done | Done | Done | Planned |
+| 04-expert | Done | Done | Done | Done | Done |

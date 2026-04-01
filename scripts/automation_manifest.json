@@ -144,11 +144,11 @@
     },
     "typescript": {
       "extension": "ts",
-      "levels": ["01-foundations", "02-core", "03-advanced"],
-      "module_levels": ["01-foundations", "02-core", "03-advanced"],
+      "levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
+      "module_levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
       "checkpoints": {
-        "projects": ["01-foundations", "02-core", "03-advanced"],
-        "assessments": ["01-foundations", "02-core", "03-advanced"]
+        "projects": ["01-foundations", "02-core", "03-advanced", "04-expert"],
+        "assessments": ["01-foundations", "02-core", "03-advanced", "04-expert"]
       },
       "checkpoint_main": "main.ts",
       "track_readme": "languages/typescript/README.md",
@@ -156,11 +156,12 @@
         "- 8/8 foundations modules implemented.",
         "- 6/6 core modules implemented (`input-validation`, `algorithms-basics`, `file-io-basics`, `sorting-and-searching`, `maps-and-frequency-counting`, `error-handling-and-defensive-programming`).",
         "- 5/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, `templates-basics`).",
-        "- 3/4 projects implemented (`01-foundations`, `02-core`, `03-advanced`).",
-        "- 3/4 assessments implemented (`01-foundations`, `02-core`, `03-advanced`).",
-        "- `04-expert` is planned next."
+        "- 5/5 expert modules implemented (`memory-management-and-raii`, `smart-pointers-in-depth`, `concurrency-basics`, `performance-and-profiling-basics`, `modularization-and-build-structure`).",
+        "- 4/4 projects implemented (`01-foundations`, `02-core`, `03-advanced`, `04-expert`).",
+        "- 4/4 assessments implemented (`01-foundations`, `02-core`, `03-advanced`, `04-expert`).",
+        "- Module and checkpoint parity complete through `04-expert`."
       ],
-      "root_status_row": "| TypeScript | 01-foundations, 02-core, 03-advanced | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 3/4 projects, 3/4 assessments | Foundations, core, and advanced complete; expert planned |"
+      "root_status_row": "| TypeScript | 01-foundations, 02-core, 03-advanced, 04-expert | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 5/5 expert modules, 4/4 projects, 4/4 assessments | Module and checkpoint parity complete through expert |"
     }
   },
   "docs": {
@@ -172,13 +173,12 @@
       "path": "LANGUAGE_PARITY_MATRIX.md",
       "markers": [
         "- Canonical order is defined by the C++ track.",
-        "- C++, C#, Go, and Python now reach module and checkpoint parity through `04-expert`.",
-        "- TypeScript is the newest incremental track with `01-foundations`, `02-core`, and `03-advanced` implemented first.",
-        "`04-expert` projects and assessments are now implemented across C#, Go, and Python.",
+        "- C++, C#, Go, Python, and TypeScript now reach module and checkpoint parity through `04-expert`.",
+        "`04-expert` projects and assessments are now implemented across all active non-C++ tracks.",
         "| types-and-io | Done | Done | Done | Done | Done |",
         "| 02-core | Done | Done | Done | Done | Done |",
         "| 03-advanced | Done | Done | Done | Done | Done |",
-        "| 04-expert | Done | Done | Done | Done | Planned |"
+        "| 04-expert | Done | Done | Done | Done | Done |"
       ]
     }
   },
@@ -441,7 +441,12 @@
         "languages/typescript/02-core/error-handling-and-defensive-programming/example/main.ts",
         "languages/typescript/03-advanced/structs-and-classes/example/main.ts",
         "languages/typescript/03-advanced/inheritance-and-polymorphism/example/main.ts",
-        "languages/typescript/03-advanced/templates-basics/example/main.ts"
+        "languages/typescript/03-advanced/templates-basics/example/main.ts",
+        "languages/typescript/04-expert/memory-management-and-raii/example/main.ts",
+        "languages/typescript/04-expert/smart-pointers-in-depth/example/main.ts",
+        "languages/typescript/04-expert/concurrency-basics/example/main.ts",
+        "languages/typescript/04-expert/performance-and-profiling-basics/example/main.ts",
+        "languages/typescript/04-expert/modularization-and-build-structure/example/main.ts"
       ],
       "stdin_runs": [
         {
@@ -483,6 +488,14 @@
         {
           "program": "languages/typescript/assessments/03-advanced/main.ts",
           "required_stdout_contains": ["Shape areas:", "Total area:", "Minimum area:", "Maximum area:", "Sample counts:", "Computed areas:"]
+        },
+        {
+          "program": "languages/typescript/projects/04-expert/main.ts",
+          "required_stdout_contains": ["Running 3 jobs through 2 steps...", "Step load processed 3 jobs", "Step transform processed 3 jobs", "Elapsed (ms):", "Report closed: true"]
+        },
+        {
+          "program": "languages/typescript/assessments/04-expert/main.ts",
+          "required_stdout_contains": ["Worker 0 partial sum: 48", "Worker 1 partial sum: 97", "Worker 2 partial sum: 60", "Final summary:", "Total: 205", "Minimum: 2", "Maximum: 45"]
         }
       ]
     }
