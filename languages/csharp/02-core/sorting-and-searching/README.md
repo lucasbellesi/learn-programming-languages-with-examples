@@ -28,6 +28,12 @@ dotnet run --project example/sorting-and-searching-example.csproj
 - Off-by-one errors in `left` and `right` boundaries.
 - Forgetting to return `-1` when a target is missing.
 
+## Cross-Language Notes
+
+- Compared with C++, the other tracks keep the same ordering and lookup ideas but differ in how visible comparator design is.
+- Relative to Python and TypeScript, Go and C# ask for more explicit decisions around helper functions and ordering rules.
+- The key comparison is not the algorithm itself, but how much control each language exposes around sorting behavior.
+
 ## Exercise Focus
 
 - exercises/01.cs: implement selection sort.

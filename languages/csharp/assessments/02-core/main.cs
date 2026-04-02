@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 
 class Program
@@ -90,7 +91,7 @@ class Program
         WriteLineBoth(report, $"Valid count: {values.Count}");
         WriteLineBoth(report, $"Minimum: {minValue}");
         WriteLineBoth(report, $"Maximum: {maxValue}");
-        WriteLineBoth(report, $"Average: {average}");
+        WriteLineBoth(report, $"Average: {average.ToString(CultureInfo.InvariantCulture)}");
         WriteLineBoth(report, "Frequency table:");
 
         for (int index = 0; index < 10; index++)

@@ -216,7 +216,17 @@
       "stdin_runs": [
         {
           "program": "languages/python/projects/01-foundations/main.py",
-          "input_lines": ["0", "2", "Ana Smith", "101", "91", "Bob Lee", "77"]
+          "input_lines": ["0", "2", "Ana Smith", "101", "91", "Bob Lee", "77"],
+          "required_stdout_contains": [
+            "Please enter a number greater than zero.",
+            "Score must be between 0 and 100.",
+            "Students:",
+            "- Ana Smith: 91",
+            "- Bob Lee: 77",
+            "Average: 84.00",
+            "Minimum: 77",
+            "Maximum: 91"
+          ]
         },
         {
           "program": "languages/python/assessments/01-foundations/main.py",
@@ -299,7 +309,35 @@
           "working_dir": "languages/python/assessments/02-core",
           "program": "main.py",
           "input_lines": ["91", "88", "72", "105", "60", "-1"],
+          "required_stdout_contains": [
+            "Score ignored because it is outside 0-100.",
+            "Valid scores: 4",
+            "Average: 77.75",
+            "Minimum: 60",
+            "Maximum: 91",
+            "Frequency:",
+            "- 60-69: 1",
+            "- 70-79: 1",
+            "- 80-89: 1",
+            "- 90-100: 1",
+            "Report written to core_assessment_report.txt"
+          ],
           "required_outputs": ["core_assessment_report.txt"],
+          "required_output_contains": [
+            {
+              "path": "core_assessment_report.txt",
+              "contains": [
+                "Valid scores: 4",
+                "Average: 77.75",
+                "Minimum: 60",
+                "Maximum: 91",
+                "- 60-69: 1",
+                "- 70-79: 1",
+                "- 80-89: 1",
+                "- 90-100: 1"
+              ]
+            }
+          ],
           "cleanup_paths": ["core_assessment_report.txt"]
         }
       ]
@@ -327,7 +365,17 @@
       "stdin_runs": [
         {
           "program": "languages/go/projects/01-foundations/main.go",
-          "input_lines": ["0", "2", "Ana Smith", "101", "91", "Bob Lee", "77"]
+          "input_lines": ["0", "2", "Ana Smith", "101", "91", "Bob Lee", "77"],
+          "required_stdout_contains": [
+            "Please enter a positive number.",
+            "Score out of range. Enter a value from 0 to 100.",
+            "Students:",
+            "- Ana Smith: 91",
+            "- Bob Lee: 77",
+            "Average: 84",
+            "Minimum: 77",
+            "Maximum: 91"
+          ]
         },
         {
           "program": "languages/go/assessments/01-foundations/main.go",
@@ -405,7 +453,37 @@
           "working_dir": "languages/go/assessments/02-core",
           "program": "main.go",
           "input_lines": ["12 17 31 77 91 105 64 -3 88 -1"],
+          "required_stdout_contains": [
+            "Ignoring out-of-range value: 105",
+            "Ignoring out-of-range value: -3",
+            "Valid count: 7",
+            "Minimum: 12",
+            "Maximum: 91",
+            "Average: 54.285714285714285",
+            "Frequency table:",
+            "10-19: 2",
+            "90-100: 1",
+            "Report saved to core_assessment_report.txt"
+          ],
           "required_outputs": ["core_assessment_report.txt"],
+          "required_output_contains": [
+            {
+              "path": "core_assessment_report.txt",
+              "contains": [
+                "Valid count: 7",
+                "Minimum: 12",
+                "Maximum: 91",
+                "Average: 54.285714285714285",
+                "10-19: 2",
+                "30-39: 1",
+                "60-69: 1",
+                "70-79: 1",
+                "80-89: 1",
+                "90-100: 1",
+                "Report saved to core_assessment_report.txt"
+              ]
+            }
+          ],
           "cleanup_paths": ["core_assessment_report.txt"]
         }
       ]
@@ -433,7 +511,17 @@
       "stdin_runs": [
         {
           "project": "languages/csharp/projects/01-foundations/foundations-project.csproj",
-          "input_lines": ["0", "2", "Ana Smith", "101", "91", "Bob Lee", "77"]
+          "input_lines": ["0", "2", "Ana Smith", "101", "91", "Bob Lee", "77"],
+          "required_stdout_contains": [
+            "Please enter a positive number.",
+            "Score out of range. Enter a value from 0 to 100.",
+            "Students:",
+            "- Ana Smith: 91",
+            "- Bob Lee: 77",
+            "Average: 84",
+            "Minimum: 77",
+            "Maximum: 91"
+          ]
         },
         {
           "project": "languages/csharp/assessments/01-foundations/assessment-01-foundations.csproj",
@@ -511,7 +599,37 @@
           "working_dir": "languages/csharp/assessments/02-core",
           "project": "assessment-02-core.csproj",
           "input_lines": ["12 17 31 77 91 105 64 -3 88 -1"],
+          "required_stdout_contains": [
+            "Ignoring out-of-range value: 105",
+            "Ignoring out-of-range value: -3",
+            "Valid count: 7",
+            "Minimum: 12",
+            "Maximum: 91",
+            "Average: 54.285714285714285",
+            "Frequency table:",
+            "10-19: 2",
+            "90-100: 1",
+            "Report saved to core_assessment_report.txt"
+          ],
           "required_outputs": ["core_assessment_report.txt"],
+          "required_output_contains": [
+            {
+              "path": "core_assessment_report.txt",
+              "contains": [
+                "Valid count: 7",
+                "Minimum: 12",
+                "Maximum: 91",
+                "Average: 54.285714285714285",
+                "10-19: 2",
+                "30-39: 1",
+                "60-69: 1",
+                "70-79: 1",
+                "80-89: 1",
+                "90-100: 1",
+                "Report saved to core_assessment_report.txt"
+              ]
+            }
+          ],
           "cleanup_paths": ["core_assessment_report.txt"]
         }
       ]
@@ -539,7 +657,16 @@
         {
           "program": "languages/typescript/projects/01-foundations/main.ts",
           "input_lines": ["0", "2", "Ana Smith", "101", "91", "Bob Lee", "77"],
-          "required_stdout_contains": ["Students:", "Average:", "Minimum:", "Maximum:"]
+          "required_stdout_contains": [
+            "Invalid student count. Enter a positive integer.",
+            "Invalid score for Ana Smith. Enter a value between 0 and 100.",
+            "Students:",
+            "- Ana Smith: 91",
+            "- Bob Lee: 77",
+            "Average: 84.00",
+            "Minimum: 77",
+            "Maximum: 91"
+          ]
         },
         {
           "program": "languages/typescript/assessments/01-foundations/main.ts",
@@ -578,8 +705,37 @@
           "working_dir": "languages/typescript/assessments/02-core",
           "program": "main.ts",
           "input_lines": ["12 17 31 77 91 105 64 -3 88 -1"],
-          "required_stdout_contains": ["Valid count:", "Frequency table:", "Report saved to core_assessment_report.txt"],
+          "required_stdout_contains": [
+            "Ignoring out-of-range value: 105",
+            "Ignoring out-of-range value: -3",
+            "Valid count: 7",
+            "Minimum: 12",
+            "Maximum: 91",
+            "Average: 54.285714285714285",
+            "Frequency table:",
+            "10-19: 2",
+            "90-100: 1",
+            "Report saved to core_assessment_report.txt"
+          ],
           "required_outputs": ["core_assessment_report.txt"],
+          "required_output_contains": [
+            {
+              "path": "core_assessment_report.txt",
+              "contains": [
+                "Valid count: 7",
+                "Minimum: 12",
+                "Maximum: 91",
+                "Average: 54.285714285714285",
+                "10-19: 2",
+                "30-39: 1",
+                "60-69: 1",
+                "70-79: 1",
+                "80-89: 1",
+                "90-100: 1",
+                "Report saved to core_assessment_report.txt"
+              ]
+            }
+          ],
           "cleanup_paths": ["core_assessment_report.txt"]
         },
         {

@@ -38,6 +38,12 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/generic-print-and-sum.cpp -o temp
 - Assuming all types support required operators.
 - Confusing template type deduction behavior.
 
+## Cross-Language Notes
+
+- Compared with C++, this concept broadens from templates into each language's own reusable generic abstraction model.
+- Relative to Go and C#, TypeScript generics stay expressive without runtime specialization, while Python treats the same idea more informally.
+- The useful comparison is how each language generalizes logic without abandoning type clarity.
+
 ## Exercise Focus
 
 - `exercises/01.cpp`: template swap function.

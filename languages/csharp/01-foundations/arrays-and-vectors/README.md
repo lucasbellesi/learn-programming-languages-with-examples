@@ -28,6 +28,12 @@ dotnet run --project example/arrays-and-vectors-example.csproj
 - Off-by-one errors while reading N elements.
 - Not handling empty input in frequency tasks.
 
+## Cross-Language Notes
+
+- Compared with the C++ version, each track solves the same sequence problems with a different default dynamic-array model.
+- The key comparison is where bounds safety, resizing behavior, and iteration ergonomics come from in each language.
+- This module is most useful when you notice how similar tasks feel different under `vector`, `List<T>`, slices, Python lists, and TypeScript arrays.
+
 ## Exercise Focus
 
 - exercises/01.cs: read N integers, store them, and print them in reverse order.

@@ -28,6 +28,12 @@ dotnet run --project example/templates-basics-example.csproj
 - Using `object` instead of generics and losing type safety.
 - Hiding constraints until compile errors become confusing.
 
+## Cross-Language Notes
+
+- Compared with C++, this concept broadens from templates into each language's own reusable generic abstraction model.
+- Relative to Go and C#, TypeScript generics stay expressive without runtime specialization, while Python treats the same idea more informally.
+- The useful comparison is how each language generalizes logic without abandoning type clarity.
+
 ## Exercise Focus
 
 - exercises/01.cs: generic swap function.

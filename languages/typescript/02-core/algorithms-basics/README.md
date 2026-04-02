@@ -29,6 +29,12 @@ node build/typescript/02-core/algorithms-basics/example/main.js
 - Using multiple passes when one traversal is enough.
 - Hiding simple logic inside clever but unreadable helpers.
 
+## Cross-Language Notes
+
+- Compared with the C++ baseline, the same traversal and aggregation ideas are expressed with different defaults for loops, collections, and helper functions.
+- Relative to Python, the statically typed tracks make intermediate state and accumulator types more explicit.
+- The useful comparison is algorithm shape staying constant while the surrounding syntax and safety rails change.
+
 ## Exercise Focus
 
 - exercises/01.ts: find the first index of a target value.

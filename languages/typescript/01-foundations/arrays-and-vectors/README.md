@@ -29,6 +29,12 @@ node build/typescript/01-foundations/arrays-and-vectors/example/main.js
 - Forgetting that arrays are mutable by default.
 - Skipping empty-list checks before accessing index 0.
 
+## Cross-Language Notes
+
+- Compared with the C++ version, each track solves the same sequence problems with a different default dynamic-array model.
+- The key comparison is where bounds safety, resizing behavior, and iteration ergonomics come from in each language.
+- This module is most useful when you notice how similar tasks feel different under `vector`, `List<T>`, slices, Python lists, and TypeScript arrays.
+
 ## Exercise Focus
 
 - exercises/01.ts: read integers and print them in reverse order.

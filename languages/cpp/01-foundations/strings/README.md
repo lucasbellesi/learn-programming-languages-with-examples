@@ -38,6 +38,12 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/string-clean-and-tokenize.cpp -o 
 - Using string indexes without boundary checks.
 - Not checking for `std::string::npos` after `find`.
 
+## Cross-Language Notes
+
+- Compared with C++, the other tracks usually hide more of the low-level string-management cost while keeping the same parsing goals.
+- Relative to Python and TypeScript, C# and Go keep more explicit API choices around splitting, trimming, and rebuilding text.
+- The main comparison is text-processing convenience versus how visible allocation and mutation remain.
+
 ## Exercise Focus
 
 - `exercises/01.cpp`: count words in a sentence.

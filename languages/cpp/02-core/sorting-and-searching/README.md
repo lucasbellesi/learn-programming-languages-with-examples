@@ -38,6 +38,12 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/stable-vs-unstable-sort.cpp -o so
 - Off-by-one index errors.
 - Forgetting to return `-1` when target is missing.
 
+## Cross-Language Notes
+
+- Compared with C++, the other tracks keep the same ordering and lookup ideas but differ in how visible comparator design is.
+- Relative to Python and TypeScript, Go and C# ask for more explicit decisions around helper functions and ordering rules.
+- The key comparison is not the algorithm itself, but how much control each language exposes around sorting behavior.
+
 ## Exercise Focus
 
 - `exercises/01.cpp`: implement selection sort.

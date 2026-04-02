@@ -28,6 +28,12 @@ dotnet run --project example/strings-example.csproj
 - Comparing palindromes before removing punctuation and case differences.
 - Failing to handle inputs without alphabetic characters.
 
+## Cross-Language Notes
+
+- Compared with C++, the other tracks usually hide more of the low-level string-management cost while keeping the same parsing goals.
+- Relative to Python and TypeScript, C# and Go keep more explicit API choices around splitting, trimming, and rebuilding text.
+- The main comparison is text-processing convenience versus how visible allocation and mutation remain.
+
 ## Exercise Focus
 
 - exercises/01.cs: count words in an input line using robust whitespace handling.

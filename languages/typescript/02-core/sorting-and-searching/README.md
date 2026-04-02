@@ -29,6 +29,12 @@ node build/typescript/02-core/sorting-and-searching/example/main.js
 - Running binary search on unsorted input.
 - Returning the wrong boundary when a target is missing.
 
+## Cross-Language Notes
+
+- Compared with C++, the other tracks keep the same ordering and lookup ideas but differ in how visible comparator design is.
+- Relative to Python and TypeScript, Go and C# ask for more explicit decisions around helper functions and ordering rules.
+- The key comparison is not the algorithm itself, but how much control each language exposes around sorting behavior.
+
 ## Exercise Focus
 
 - exercises/01.ts: sort integers ascending.

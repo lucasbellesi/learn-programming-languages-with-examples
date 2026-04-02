@@ -28,6 +28,12 @@ go run example/main.go
 - Initializing min/max with invalid defaults.
 - Running extra loops when a single pass is enough.
 
+## Cross-Language Notes
+
+- Compared with the C++ baseline, the same traversal and aggregation ideas are expressed with different defaults for loops, collections, and helper functions.
+- Relative to Python, the statically typed tracks make intermediate state and accumulator types more explicit.
+- The useful comparison is algorithm shape staying constant while the surrounding syntax and safety rails change.
+
 ## Exercise Focus
 
 - exercises/01.go: linear search and first index.

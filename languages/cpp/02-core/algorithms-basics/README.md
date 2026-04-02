@@ -34,6 +34,12 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o algorithms_basics_exa
 - Initializing min/max incorrectly.
 - Running multiple passes when one pass is enough.
 
+## Cross-Language Notes
+
+- Compared with the C++ baseline, the same traversal and aggregation ideas are expressed with different defaults for loops, collections, and helper functions.
+- Relative to Python, the statically typed tracks make intermediate state and accumulator types more explicit.
+- The useful comparison is algorithm shape staying constant while the surrounding syntax and safety rails change.
+
 ## Exercise Focus
 
 - `exercises/01.cpp`: linear search and first index.

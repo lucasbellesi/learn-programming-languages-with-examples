@@ -29,6 +29,12 @@ node build/typescript/03-advanced/templates-basics/example/main.js
 - Forgetting that generic code still needs readable names and behavior.
 - Over-constraining a type parameter too early.
 
+## Cross-Language Notes
+
+- Compared with C++, this concept broadens from templates into each language's own reusable generic abstraction model.
+- Relative to Go and C#, TypeScript generics stay expressive without runtime specialization, while Python treats the same idea more informally.
+- The useful comparison is how each language generalizes logic without abandoning type clarity.
+
 ## Exercise Focus
 
 - exercises/01.ts: write a generic first-element helper.

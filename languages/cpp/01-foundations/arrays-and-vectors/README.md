@@ -38,6 +38,12 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/vector-filter.cpp -o arrays_and_v
 - Mixing signed and unsigned indexes carelessly.
 - Forgetting to validate `n` before reading values.
 
+## Cross-Language Notes
+
+- Compared with the C++ version, each track solves the same sequence problems with a different default dynamic-array model.
+- The key comparison is where bounds safety, resizing behavior, and iteration ergonomics come from in each language.
+- This module is most useful when you notice how similar tasks feel different under `vector`, `List<T>`, slices, Python lists, and TypeScript arrays.
+
 ## Exercise Focus
 
 - `exercises/01.cpp`: print user-provided integers in reverse order.
