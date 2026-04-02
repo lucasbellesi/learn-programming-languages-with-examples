@@ -1,10 +1,12 @@
+// This helper example focuses on focusing on the frequency summary without repeating the full program flow.
+
 // This extra example extends maps-and-frequency-counting with ranked frequency output.
-// Example purpose: count repeated words, then sort by frequency and name.
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 class Program
 {
     static void Main()

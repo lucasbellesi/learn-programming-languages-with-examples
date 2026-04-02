@@ -1,3 +1,6 @@
+// This helper example focuses on isolating string cleanup before the main example combines the
+// steps.
+
 #include <cctype>
 #include <iostream>
 #include <string>

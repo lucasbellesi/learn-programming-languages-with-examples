@@ -1,3 +1,6 @@
+// This helper example focuses on isolating one polymorphic dispatch path so the common interface
+// stays clear.
+
 #include <iostream>
 #include <memory>
 #include <vector>

@@ -1,11 +1,12 @@
-# This example demonstrates scope and lifetime basics concepts.
-# Example purpose: show the module flow with clear, beginner-friendly steps.
+# This example shows how names stay visible only inside the blocks that own them.
+# In Python, the example favors direct readable steps while keeping validation visible.
 
+# Run one direct scenario at the top level so the printed result is easy to verify.
 PASSING_SCORE = 60
 
 
+# Define the reusable pieces first so the later top-level flow stays easy to read.
 def classify(score):
-    # Intent: guard invalid or edge-case paths before the main path continues.
     if score >= 90:
         return "A"
     if score >= 80:
@@ -17,10 +18,9 @@ def classify(score):
     return "F"
 
 
-# Intent: gather typed input first so later operations are predictable.
 value = int(input("Enter score: "))
 grade = classify(value)
 
-# Intent: print intermediate or final output for quick behavior verification.
+# Print the observed state here so learners can match the code path to the result.
 print(f"Grade: {grade}")
 print(f"Passed: {value >= PASSING_SCORE}")

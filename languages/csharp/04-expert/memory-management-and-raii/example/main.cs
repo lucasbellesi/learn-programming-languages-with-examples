@@ -1,7 +1,9 @@
-// Example purpose: show deterministic cleanup with IDisposable and using scopes.
+// This example shows tying resource cleanup to object lifetime so cleanup stays predictable.
+// In C#, the example uses the standard library and static types to keep the workflow structured.
 
 using System;
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 sealed class BufferLease : IDisposable
 {
     private int[]? values;
@@ -82,9 +84,11 @@ sealed class BufferLease : IDisposable
 
 class Program
 {
+    // Run one deterministic scenario so the console output makes tying resource cleanup to object lifetime so cleanup stays predictable easy to verify.
     static void Main()
     {
-        // Program flow: enter scoped leases, do work, and watch cleanup happen deterministically.
+        // Build the sample state first, then let the later output confirm the behavior step by step.
+        // Print the observed state here so learners can connect the code path to a concrete result.
         Console.WriteLine($"Active leases before scope: {BufferLease.ActiveLeases}");
 
         using (BufferLease scores = new BufferLease("scores", 5))
@@ -102,7 +106,6 @@ class Program
             Console.WriteLine($"Active leases inside scope: {BufferLease.ActiveLeases}");
         }
 
-        // Intent: final state confirms that cleanup happened at the end of the using scope.
         Console.WriteLine($"Active leases after scope: {BufferLease.ActiveLeases}");
     }
 }

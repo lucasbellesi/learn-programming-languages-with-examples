@@ -1,10 +1,12 @@
+// This helper example focuses on isolating one pass over the data so the main example can explain the result clearly.
+
 // This extra example extends algorithms basics with a best-streak scan.
-// Example purpose: track the longest rising streak with one pass.
 
 package main
 
 import "fmt"
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 func longestRisingStreak(values []int) (int, []int) {
 	if len(values) == 0 {
 		return 0, []int{}

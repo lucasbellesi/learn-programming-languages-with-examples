@@ -1,10 +1,12 @@
+// This helper example focuses on isolating the arithmetic so the learner can verify each pricing step.
+
 // This extra example extends operators and expressions with an invoice breakdown.
-// Example purpose: combine arithmetic operations in a realistic pricing flow.
 
 package main
 
 import "fmt"
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 func main() {
 	subtotal := 84.50
 	discountPercent := 12.0

@@ -1,3 +1,7 @@
+// This example shows tying resource cleanup to object lifetime so cleanup stays predictable.
+// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 class FakeFile {
     private closed = false;
 
@@ -39,8 +43,9 @@ function usingResource<T extends { close(): void }, TResult>(
     }
 }
 
+// Run one deterministic scenario so the console output makes tying resource cleanup to object lifetime so cleanup stays predictable easy to verify.
 function main(): void {
-    // Intent: make cleanup explicit even though the language has garbage collection.
+    // Build the sample state first, then let the later output confirm the behavior step by step.
     const report = new FakeFile("report.txt");
 
     usingResource(report, (handle) => {
@@ -48,6 +53,7 @@ function main(): void {
         handle.writeLine("totals");
     });
 
+    // Print the observed state here so learners can connect the code path to a concrete result.
     console.log(`Closed after scope: ${report.isClosed()}`);
 }
 

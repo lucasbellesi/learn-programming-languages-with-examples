@@ -1,8 +1,10 @@
+// This helper example focuses on isolating the guard logic that accepts only valid menu choices.
+
 // This extra example extends input validation with a menu choice validator.
-// Example purpose: keep prompting until the user enters a valid option and quantity.
 
 using System;
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 class Program
 {
     static string ReadMenuChoice()

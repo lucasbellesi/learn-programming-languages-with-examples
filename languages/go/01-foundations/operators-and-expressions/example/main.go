@@ -1,15 +1,16 @@
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows combining values through expressions and readable calculations.
+// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
 
 package main
 
 import "fmt"
 
+// Run one deterministic scenario so the console output makes combining values through expressions and readable calculations easy to verify.
 func main() {
-	// Program flow: collect input, apply core logic, then print a verifiable result.
+	// Build the sample state first, then let the later output confirm the behavior step by step.
 	var totalSeconds int
-	// Intent: print intermediate or final output for quick behavior verification.
+	// Print the observed state here so learners can connect the code path to a concrete result.
 	fmt.Print("Enter total seconds: ")
-	// Intent: gather typed input first so later operations are predictable.
 	fmt.Scanln(&totalSeconds)
 
 	hours := totalSeconds / 3600
@@ -28,7 +29,6 @@ func main() {
 	fmt.Printf("Difference: %.4f\n", a-b)
 	fmt.Printf("Product: %.4f\n", a*b)
 
-	// Intent: guard invalid or edge-case paths before the main path continues.
 	if b != 0 {
 		fmt.Printf("Division: %.4f\n", a/b)
 	} else {

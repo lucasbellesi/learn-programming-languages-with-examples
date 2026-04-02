@@ -1,4 +1,5 @@
-# Example purpose: show threads, locks, and queues in one small runnable flow.
+# This example shows starting multiple units of work and combining their results safely.
+# In Python, the example favors direct readable steps while keeping validation visible.
 
 from __future__ import annotations
 
@@ -6,8 +7,10 @@ import queue
 import threading
 
 
+# Run one deterministic scenario so the console output makes starting multiple units of work and
+# combining their results safely easy to verify.
 def main() -> None:
-    # Program flow: first protect a shared counter, then coordinate producer-consumer work.
+    # Build the sample state first, then let the later output confirm the behavior step by step.
     worker_count = 4
     increments_per_worker = 10_000
     counter = 0
@@ -56,7 +59,6 @@ def main() -> None:
     producer_thread.join()
     consumer_thread.join()
 
-    # Intent: final output verifies the total collected by the consumer thread.
     print(f"Consumed total: {consumed_total}")
 
 

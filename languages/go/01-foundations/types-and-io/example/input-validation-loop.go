@@ -1,5 +1,6 @@
+// This helper example focuses on focusing on the retry loop so invalid input handling is easy to trace.
+
 // This extra example extends types-and-io with a validation loop.
-// Example purpose: show how line input and numeric checks work together.
 
 package main
 
@@ -11,6 +12,7 @@ import (
 	"strings"
 )
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 func main() {
 	reader := bufio.NewReader(os.Stdin)
 

@@ -1,10 +1,12 @@
+// This helper example focuses on isolating the reusable generic behavior before the example wires it together.
+
 // This extra example extends templates-basics with reusable typed helpers.
-// Example purpose: print sequences and sum numeric values with one shared implementation.
 
 using System;
 using System.Collections.Generic;
 using System.Numerics;
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 class Program
 {
     static void PrintList<T>(IReadOnlyList<T> values, string label)

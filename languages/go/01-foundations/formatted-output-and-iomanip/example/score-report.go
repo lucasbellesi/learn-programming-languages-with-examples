@@ -1,10 +1,12 @@
+// This helper example focuses on focusing on formatted output so alignment rules are easy to compare.
+
 // This extra example extends formatted output with a compact score report.
-// Example purpose: align labels, numbers, and a final summary row.
 
 package main
 
 import "fmt"
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 type studentRow struct {
 	name  string
 	score int

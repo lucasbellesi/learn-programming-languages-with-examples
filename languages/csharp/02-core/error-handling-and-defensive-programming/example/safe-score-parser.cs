@@ -1,9 +1,11 @@
+// This helper example focuses on isolating the parsing guard so invalid text never silently becomes a score.
+
 // This extra example extends defensive programming with safe score parsing.
-// Example purpose: reject malformed or out-of-range rows without stopping the program.
 
 using System;
 using System.Collections.Generic;
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 class Program
 {
     static bool TryParseRow(string row, out string name, out int score)

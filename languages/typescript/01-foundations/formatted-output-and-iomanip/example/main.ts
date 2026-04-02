@@ -1,3 +1,6 @@
+// This example shows formatting values so output is easier to read and compare.
+// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+
 function formatRow(label: string, value: number): string {
     return `${label.padEnd(12, " ")} | ${value.toFixed(2).padStart(8, " ")}`;
 }

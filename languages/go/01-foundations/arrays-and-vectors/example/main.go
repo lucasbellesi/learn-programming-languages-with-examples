@@ -1,28 +1,27 @@
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows storing related values in ordered collections and iterating safely.
+// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
 
 package main
 
 import "fmt"
 
+// Run one deterministic scenario so the console output makes storing related values in ordered collections and iterating safely easy to verify.
 func main() {
-	// Program flow: collect input, apply core logic, then print a verifiable result.
+	// Build the sample state first, then let the later output confirm the behavior step by step.
 	fixedScores := [3]int{72, 88, 95}
-	// Intent: print intermediate or final output for quick behavior verification.
+	// Print the observed state here so learners can connect the code path to a concrete result.
 	fmt.Printf("Fixed array values: %d, %d, %d\n", fixedScores[0], fixedScores[1], fixedScores[2])
 
 	var count int
 	fmt.Print("How many temperatures do you want to enter? ")
-	// Intent: gather typed input first so later operations are predictable.
 	fmt.Scanln(&count)
 
-	// Intent: guard invalid or edge-case paths before the main path continues.
 	if count <= 0 {
 		fmt.Println("Nothing to process.")
 		return
 	}
 
 	temperatures := make([]float64, 0, count)
-	// Intent: iterate through data in a clear and deterministic order.
 	for i := 0; i < count; i++ {
 		var value float64
 		fmt.Printf("Temperature %d: ", i+1)

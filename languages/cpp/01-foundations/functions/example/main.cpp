@@ -1,10 +1,11 @@
-// This example demonstrates functions concepts.
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows breaking behavior into reusable functions with clear inputs and outputs.
+// In C++, the example keeps value flow, references, and explicit control visible.
 
 #include <iostream>
 #include <vector>
 using namespace std;
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 int sum(int a, int b) { return a + b; }
 
 void swapByReference(int& left, int& right) {
@@ -14,12 +15,9 @@ void swapByReference(int& left, int& right) {
 }
 
 void printVector(const vector<int>& values) {
-    // Intent: print intermediate or final output for quick behavior verification.
     cout << "[";
-    // Intent: iterate through data in a clear and deterministic order.
     for (size_t i = 0; i < values.size(); ++i) {
         cout << values[i];
-        // Intent: guard invalid or edge-case paths before the main path continues.
         if (i + 1 < values.size()) {
             cout << ", ";
         }
@@ -37,8 +35,11 @@ void incrementByReference(int& number) {
     cout << "Inside incrementByReference: " << number << '\n';
 }
 
+// Run one deterministic scenario so the console output makes breaking behavior into reusable
+// functions with clear inputs and outputs easy to verify.
 int main() {
-    // Program flow: collect input, apply core logic, then print a verifiable result.
+    // Build the sample state first, then let the later output confirm the behavior step by step.
+    // Print the observed state here so learners can connect the code path to a concrete result.
     cout << "sum(4, 6) = " << sum(4, 6) << '\n';
 
     int first = 10;

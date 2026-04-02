@@ -1,12 +1,15 @@
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows formatting values so output is easier to read and compare.
+// In C#, the example uses the standard library and static types to keep the workflow structured.
 
 using System;
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 class Program
 {
+    // Run one deterministic scenario so the console output makes formatting values so output is easier to read and compare easy to verify.
     static void Main()
     {
-        // Program flow: collect input, apply core logic, then print a verifiable result.
+        // Build the sample state first, then let the later output confirm the behavior step by step.
         (string Name, int Quantity, double UnitPrice)[] items =
         {
             ("Notebook", 2, 3.5),
@@ -14,12 +17,11 @@ class Program
             ("Backpack", 1, 29.99),
         };
 
-        // Intent: print intermediate or final output for quick behavior verification.
+        // Print the observed state here so learners can connect the code path to a concrete result.
         Console.WriteLine($"{"Item", -12}{"Qty", 6}{"Unit", 10}{"Total", 10}");
         Console.WriteLine(new string('-', 38));
 
         double grandTotal = 0;
-        // Intent: iterate through data in a clear and deterministic order.
         foreach (var item in items)
         {
             double total = item.Quantity * item.UnitPrice;

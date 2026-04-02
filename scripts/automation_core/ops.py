@@ -582,6 +582,25 @@ def iter_module_directories(ctx: RepoContext) -> list[tuple[str, str, Path]]:
     return directories
 
 
+def iter_example_code_files(ctx: RepoContext) -> list[Path]:
+    files: list[Path] = []
+    excluded_dirs = {"obj", "bin", "build"}
+    extensions = {".cpp", ".cs", ".go", ".py", ".ts"}
+
+    for path in (ctx.root / "languages").rglob("*"):
+        if not path.is_file():
+            continue
+        if path.suffix not in extensions:
+            continue
+        if "example" not in path.parts:
+            continue
+        if excluded_dirs.intersection(path.parts):
+            continue
+        files.append(path)
+
+    return sorted(set(files))
+
+
 def expected_modules_for_language_level(ctx: RepoContext, language: str, level: str) -> list[str]:
     config = ctx.manifest.languages[language]
     module_overrides = config.get("module_overrides", {})
@@ -836,6 +855,27 @@ def check_doc_sync(ctx: RepoContext) -> None:
         raise AutomationError("Documentation sync validation failed.")
 
     print("Documentation sync validation passed.")
+
+
+def check_example_comments(ctx: RepoContext) -> None:
+    example_files = iter_example_code_files(ctx)
+    if not example_files:
+        raise AutomationError("No example code files found for comment validation.")
+
+    failures: list[str] = []
+    for path in example_files:
+        text = path.read_text(encoding="utf-8")
+        comment_pattern = r"(?m)^\s*#" if path.suffix == ".py" else r"(?m)^\s*//"
+        if not re.search(comment_pattern, text):
+            failures.append(f"{path}: missing example comments")
+
+    if failures:
+        print("Example comment validation failed:")
+        for failure in failures:
+            print(f" - {failure}")
+        raise AutomationError("Example comment validation failed.")
+
+    print(f"Example comment validation passed for {len(example_files)} files.")
 
 
 def lint_repo(ctx: RepoContext) -> None:
@@ -1337,22 +1377,25 @@ def smoke_languages(ctx: RepoContext) -> None:
 def verify_repo(ctx: RepoContext) -> None:
     python_cmd = find_python_command()
 
-    print("[1/6] Checking markdown links...")
+    print("[1/7] Checking markdown links...")
     run_command([python_cmd, str(ctx.scripts_dir / "check-links.py")], action="Markdown link check")
 
-    print("[2/6] Checking README structure...")
+    print("[2/7] Checking README structure...")
     check_readme_structure(ctx)
 
-    print("[3/6] Checking module completeness...")
+    print("[3/7] Checking module completeness...")
     check_module_completeness(ctx)
 
-    print("[4/6] Checking checkpoint completeness...")
+    print("[4/7] Checking checkpoint completeness...")
     check_checkpoint_completeness(ctx)
 
-    print("[5/6] Checking documentation sync...")
+    print("[5/7] Checking documentation sync...")
     check_doc_sync(ctx)
 
-    print("[6/6] Compiling compiled-language tracks...")
+    print("[6/7] Checking example comments...")
+    check_example_comments(ctx)
+
+    print("[7/7] Compiling compiled-language tracks...")
     build_all(ctx)
 
     print("Repository verification completed successfully.")

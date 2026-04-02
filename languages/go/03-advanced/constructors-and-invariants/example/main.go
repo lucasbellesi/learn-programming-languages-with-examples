@@ -1,15 +1,16 @@
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows building objects that start valid and stay valid through guarded updates.
+// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
 
 package main
 
 import "fmt"
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 type Temperature struct {
 	celsius float64
 }
 
 func NewTemperature(celsiusValue float64) *Temperature {
-	// Intent: enforce the invariant at construction time.
 	if celsiusValue < -273.15 {
 		celsiusValue = -273.15
 	}
@@ -30,9 +31,11 @@ func (t *Temperature) Celsius() float64 {
 	return t.celsius
 }
 
+// Run one deterministic scenario so the console output makes building objects that start valid and stay valid through guarded updates easy to verify.
 func main() {
-	// Program flow: construct with invalid input, then apply valid and invalid updates.
+	// Build the sample state first, then let the later output confirm the behavior step by step.
 	temperature := NewTemperature(-500.0)
+	// Print the observed state here so learners can connect the code path to a concrete result.
 	fmt.Printf("Initial value (clamped): %.2f C\n", temperature.Celsius())
 
 	updated := temperature.SetCelsius(25.0)
@@ -42,6 +45,5 @@ func main() {
 	rejected := temperature.SetCelsius(-300.0)
 	fmt.Printf("Set to -300.0 success: %v\n", rejected)
 
-	// Intent: final state confirms that invariant was preserved.
 	fmt.Printf("Current value: %.2f C\n", temperature.Celsius())
 }

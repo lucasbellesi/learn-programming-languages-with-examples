@@ -1,9 +1,11 @@
+// This helper example focuses on isolating one polymorphic dispatch path so the common interface stays clear.
+
 // This extra example extends inheritance-and-polymorphism with a polymorphic menu.
-// Example purpose: collect different shapes behind one shared interface.
 
 using System;
 using System.Collections.Generic;
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 abstract class Shape
 {
     public abstract double Area();

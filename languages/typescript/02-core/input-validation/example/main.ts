@@ -1,3 +1,6 @@
+// This example shows rejecting invalid input before the main workflow continues.
+// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+
 type ValidationResult =
     | { ok: true; value: number }
     | { ok: false; error: string };

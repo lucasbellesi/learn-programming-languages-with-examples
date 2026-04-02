@@ -1,10 +1,12 @@
+// This helper example focuses on contrasting two sorting behaviors without extra setup noise.
+
 // This extra example extends sorting-and-searching with tie-order comparisons.
-// Example purpose: compare a non-stable in-place sort with a stable LINQ sort.
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 class Record
 {
     public int Score { get; init; }

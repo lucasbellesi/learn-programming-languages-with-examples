@@ -1,10 +1,12 @@
+// This helper example focuses on isolating the reusable generic behavior before the example wires it together.
+
 // This extra example extends templates-basics with reusable typed helpers.
-// Example purpose: print slices and sum numeric values with one shared implementation.
 
 package main
 
 import "fmt"
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 type number interface {
 	~int | ~float64
 }

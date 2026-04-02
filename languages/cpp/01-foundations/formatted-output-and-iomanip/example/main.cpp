@@ -1,12 +1,14 @@
-// This example demonstrates formatted output and iomanip concepts.
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows formatting values so output is easier to read and compare.
+// In C++, the example keeps value flow, references, and explicit control visible.
 
 #include <iomanip>
 #include <iostream>
 using namespace std;
 
+// Run one deterministic scenario so the console output makes formatting values so output is easier
+// to read and compare easy to verify.
 int main() {
-    // Program flow: collect input, apply core logic, then print a verifiable result.
+    // Build the sample state first, then let the later output confirm the behavior step by step.
     const char* item1 = "Notebook";
     const char* item2 = "Pen";
     const char* item3 = "Backpack";
@@ -15,7 +17,7 @@ int main() {
     const double p2 = 1.2;
     const double p3 = 30.0;
 
-    // Intent: print intermediate or final output for quick behavior verification.
+    // Print the observed state here so learners can connect the code path to a concrete result.
     cout << left << setw(12) << "Item" << right << setw(10) << "Price" << '\n';
     cout << "----------------------\n";
 

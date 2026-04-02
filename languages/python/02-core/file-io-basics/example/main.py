@@ -1,13 +1,14 @@
-# Example purpose: show the module flow with clear, beginner-friendly steps.
+# This example shows reading plain-text files, parsing rows, and writing clear results.
+# In Python, the example favors direct readable steps while keeping validation visible.
 
 from pathlib import Path
 import tempfile
 
 
+# Define the reusable pieces first so the main flow can focus on one observable scenario.
 def parse_score_row(line):
-    # Intent: isolate row parsing so the main flow stays focused on file operations.
+    # Build the sample state first, then let the later output confirm the behavior step by step.
     parts = line.strip().split()
-    # Intent: guard malformed rows before attempting numeric conversion.
     if len(parts) != 2:
         return None
 
@@ -19,8 +20,9 @@ def parse_score_row(line):
     return parts[0], score
 
 
+# Run one deterministic scenario so the console output makes reading plain-text files, parsing rows,
+# and writing clear results easy to verify.
 def main():
-    # Program flow: prepare input, parse rows, then generate a summary file.
     base_dir = Path(tempfile.gettempdir()) / "learn-lang-file-io-python"
     base_dir.mkdir(parents=True, exist_ok=True)
     input_path = base_dir / "scores.txt"
@@ -33,7 +35,6 @@ def main():
     score_sum = 0
 
     with input_path.open("r", encoding="utf-8") as source:
-        # Intent: iterate through file rows in a deterministic order.
         for raw_line in source:
             parsed = parse_score_row(raw_line)
             if parsed is None:
@@ -42,7 +43,6 @@ def main():
             name, score = parsed
             valid_rows += 1
             score_sum += score
-            # Intent: print parsed rows so learners can verify intermediate state.
             print(f"{name} -> {score}")
 
     if valid_rows == 0:

@@ -1,5 +1,6 @@
+// This helper example focuses on contrasting two sorting behaviors without extra setup noise.
+
 // This extra example extends sorting-and-searching with tie-order comparisons.
-// Example purpose: compare an unstable sort with a stable one.
 
 package main
 
@@ -8,6 +9,7 @@ import (
 	"sort"
 )
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 type record struct {
 	score int
 	name  string

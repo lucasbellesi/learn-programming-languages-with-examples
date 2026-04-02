@@ -1,21 +1,23 @@
-// This example demonstrates modularization and build structure concepts.
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows splitting responsibilities so entrypoints and helpers stay focused.
+// In C++, the example keeps value flow, references, and explicit control visible.
 
 #include <iostream>
 using namespace std;
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 int add(int left, int right) { return left + right; }
 
 int multiply(int left, int right) { return left * right; }
 
 void printReport(int a, int b) {
-    // Intent: print intermediate or final output for quick behavior verification.
     cout << "Add: " << add(a, b) << '\n';
     cout << "Multiply: " << multiply(a, b) << '\n';
 }
 
+// Run one deterministic scenario so the console output makes splitting responsibilities so
+// entrypoints and helpers stay focused easy to verify.
 int main() {
-    // Program flow: collect input, apply core logic, then print a verifiable result.
+    // Build the sample state first, then let the later output confirm the behavior step by step.
     printReport(3, 7);
     return 0;
 }

@@ -1,16 +1,17 @@
-// This example demonstrates types and io concepts.
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows reading typed input carefully and turning raw text into values.
+// In C#, the example uses the standard library and static types to keep the workflow structured.
 
 using System;
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 class Program
 {
+    // Run one deterministic scenario so the console output makes reading typed input carefully and turning raw text into values easy to verify.
     static void Main()
     {
-        // Program flow: collect input, apply core logic, then print a verifiable result.
-        // Intent: print intermediate or final output for quick behavior verification.
+        // Build the sample state first, then let the later output confirm the behavior step by step.
+        // Print the observed state here so learners can connect the code path to a concrete result.
         Console.Write("Enter your full name: ");
-        // Intent: gather typed input first so later operations are predictable.
         string fullName = Console.ReadLine() ?? "";
 
         Console.Write("Enter your age: ");

@@ -1,21 +1,21 @@
-# Example purpose: show the module flow with clear, beginner-friendly steps.
+# This example shows how copying, sharing, or transferring state changes later behavior.
+# In Python, the example favors direct readable steps while keeping validation visible.
 
-
+# Define the reusable pieces first so the main flow can focus on one observable scenario.
 class Buffer:
     def __init__(self, size: int) -> None:
+        # Build the sample state first, then let the later output confirm the behavior step by step.
         safe_size = max(0, size)
         self._values = [0] * safe_size
         print(f"Constructed (size={len(self._values)})")
 
     def clone(self) -> "Buffer":
-        # Intent: deep copy isolates future changes between instances.
         cloned = Buffer.__new__(Buffer)
         cloned._values = self._values.copy()
         print("Cloned")
         return cloned
 
     def transfer(self) -> "Buffer":
-        # Intent: transfer operation hands over current data and resets source.
         moved_values = self._values
         self._values = []
         transferred = Buffer.__new__(Buffer)
@@ -28,8 +28,9 @@ class Buffer:
         return len(self._values)
 
 
+# Run one deterministic scenario so the console output makes how copying, sharing, or transferring
+# state changes later behavior easy to verify.
 def main() -> None:
-    # Program flow: create, clone, transfer, then inspect resulting states.
     first = Buffer(3)
     second = first.clone()
     third = second.transfer()

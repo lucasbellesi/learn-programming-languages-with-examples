@@ -1,9 +1,10 @@
-# Example purpose: show the module flow with clear, beginner-friendly steps.
+# This example shows building objects that start valid and stay valid through guarded updates.
+# In Python, the example favors direct readable steps while keeping validation visible.
 
-
+# Define the reusable pieces first so the main flow can focus on one observable scenario.
 class Temperature:
     def __init__(self, celsius_value: float) -> None:
-        # Intent: enforce the invariant at construction time.
+        # Build the sample state first, then let the later output confirm the behavior step by step.
         self._celsius = max(-273.15, celsius_value)
 
     def set_celsius(self, new_value: float) -> bool:
@@ -18,8 +19,9 @@ class Temperature:
         return self._celsius
 
 
+# Run one deterministic scenario so the console output makes building objects that start valid and
+# stay valid through guarded updates easy to verify.
 def main() -> None:
-    # Program flow: construct with invalid input, then apply valid and invalid updates.
     temperature = Temperature(-500.0)
     print(f"Initial value (clamped): {temperature.celsius:.2f} C")
 
@@ -30,7 +32,6 @@ def main() -> None:
     rejected = temperature.set_celsius(-300.0)
     print(f"Set to -300.0 success: {rejected}")
 
-    # Intent: final state confirms that invariant was preserved.
     print(f"Current value: {temperature.celsius:.2f} C")
 
 

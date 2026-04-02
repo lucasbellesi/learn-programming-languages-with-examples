@@ -1,3 +1,6 @@
+// This example shows counting repeated values and summarizing them through keyed lookups.
+// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+
 const text = "go fast go far learn fast";
 const words = text.split(/\s+/);
 const frequencies = new Map<string, number>();

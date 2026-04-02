@@ -1,8 +1,10 @@
+// This helper example focuses on isolating one scope-sensitive helper so lifetime differences stay visible.
+
 // This extra example extends scope and lifetime basics with a session summary.
-// Example purpose: keep temporary variables local to helper functions.
 
 using System;
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 class Program
 {
     const int BonusPoints = 5;

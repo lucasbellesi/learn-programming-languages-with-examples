@@ -1,9 +1,11 @@
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows modeling related data and behavior with structured types.
+// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
 
 package main
 
 import "fmt"
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 type Coordinate struct {
 	X int
 	Y int
@@ -60,12 +62,13 @@ func (w *Wallet) Balance() float64 {
 	return w.balance
 }
 
+// Run one deterministic scenario so the console output makes modeling related data and behavior with structured types easy to verify.
 func main() {
-	// Program flow: inspect struct values, then apply class-like state transitions with methods.
+	// Build the sample state first, then let the later output confirm the behavior step by step.
 	route := []Coordinate{{X: 2, Y: 3}, {X: -1, Y: 4}, {X: 5, Y: -2}}
 
+	// Print the observed state here so learners can connect the code path to a concrete result.
 	fmt.Println("Coordinates (struct example):")
-	// Intent: deterministic iteration helps beginners verify output quickly.
 	for _, point := range route {
 		fmt.Printf("Point (%d, %d), Manhattan distance = %d\n", point.X, point.Y, point.ManhattanDistanceFromOrigin())
 	}
@@ -74,7 +77,6 @@ func main() {
 	wallet.Deposit(35)
 	wallet.Withdraw(40)
 
-	// Intent: report final state after guarded operations.
 	fmt.Println("\nWallet (class-style example):")
 	fmt.Printf("Owner: %s\n", wallet.Owner())
 	fmt.Printf("Balance: %.2f\n", wallet.Balance())

@@ -1,5 +1,5 @@
-// This example demonstrates constructors and invariants concepts.
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows building objects that start valid and stay valid through guarded updates.
+// In C++, the example keeps value flow, references, and explicit control visible.
 
 #include <iostream>
 #include <string>
@@ -8,7 +8,6 @@ using namespace std;
 class Temperature {
   public:
     explicit Temperature(double celsiusValue) : celsius(celsiusValue) {
-        // Intent: guard invalid or edge-case paths before the main path continues.
         if (celsius < -273.15) {
             celsius = -273.15;
         }
@@ -28,10 +27,12 @@ class Temperature {
     double celsius;
 };
 
+// Run one deterministic scenario so the console output makes building objects that start valid and
+// stay valid through guarded updates easy to verify.
 int main() {
-    // Program flow: collect input, apply core logic, then print a verifiable result.
+    // Build the sample state first, then let the later output confirm the behavior step by step.
     Temperature temp(-500.0);
-    // Intent: print intermediate or final output for quick behavior verification.
+    // Print the observed state here so learners can connect the code path to a concrete result.
     cout << "Initial value (clamped): " << temp.getCelsius() << " C\n";
 
     const bool ok = temp.setCelsius(25.0);

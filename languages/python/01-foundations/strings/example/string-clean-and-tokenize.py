@@ -1,5 +1,7 @@
+# This helper example focuses on isolating string cleanup before the main example combines the
+# steps.
+
 # This extra example extends strings with text normalization and token extraction.
-# Example purpose: separate character cleanup from token building.
 
 line = input("Enter a sentence: ")
 

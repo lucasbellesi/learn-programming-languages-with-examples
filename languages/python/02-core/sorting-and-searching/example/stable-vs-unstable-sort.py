@@ -1,7 +1,8 @@
+# This helper example focuses on contrasting two sorting behaviors without extra setup noise.
+
 # This extra example extends sorting-and-searching with tie-order comparisons.
-# Example purpose: show that Python sorting is stable, while explicit tie-breakers can reorder ties.
 
-
+# Keep this helper separate so the main example can focus on the larger idea without extra noise.
 def print_records(records, title):
     print(title)
     for record in records:

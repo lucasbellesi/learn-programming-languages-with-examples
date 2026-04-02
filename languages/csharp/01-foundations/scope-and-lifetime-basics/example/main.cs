@@ -1,14 +1,15 @@
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows how names stay visible only inside the blocks that own them.
+// In C#, the example uses the standard library and static types to keep the workflow structured.
 
 using System;
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 class Program
 {
     const int PassingScore = 60;
 
     static string Classify(int score)
     {
-        // Intent: guard invalid or edge-case paths before the main path continues.
         if (score >= 90)
             return "A";
         if (score >= 80)
@@ -20,12 +21,12 @@ class Program
         return "F";
     }
 
+    // Run one deterministic scenario so the console output makes how names stay visible only inside the blocks that own them easy to verify.
     static void Main()
     {
-        // Program flow: collect input, apply core logic, then print a verifiable result.
-        // Intent: print intermediate or final output for quick behavior verification.
+        // Build the sample state first, then let the later output confirm the behavior step by step.
+        // Print the observed state here so learners can connect the code path to a concrete result.
         Console.Write("Enter score: ");
-        // Intent: gather typed input first so later operations are predictable.
         int score = int.Parse(Console.ReadLine() ?? "0");
 
         string grade = Classify(score);

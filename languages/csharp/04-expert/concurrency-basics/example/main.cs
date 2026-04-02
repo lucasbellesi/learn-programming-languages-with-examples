@@ -1,10 +1,12 @@
-// Example purpose: show task-based concurrency with shared-state protection and queue signaling.
+// This example shows starting multiple units of work and combining their results safely.
+// In C#, the example uses the standard library and static types to keep the workflow structured.
 
 using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 sealed class WorkQueue
 {
     private readonly Queue<int> items = new Queue<int>();
@@ -51,9 +53,10 @@ sealed class WorkQueue
 
 class Program
 {
+    // Run one deterministic scenario so the console output makes starting multiple units of work and combining their results safely easy to verify.
     static void Main()
     {
-        // Program flow: first protect a shared counter, then coordinate producer-consumer work.
+        // Build the sample state first, then let the later output confirm the behavior step by step.
         const int workerCount = 4;
         const int incrementsPerWorker = 10000;
 
@@ -76,6 +79,7 @@ class Program
         }
 
         Task.WaitAll(workers);
+        // Print the observed state here so learners can connect the code path to a concrete result.
         Console.WriteLine($"Expected counter: {workerCount * incrementsPerWorker}");
         Console.WriteLine($"Actual counter: {counter}");
 

@@ -1,4 +1,5 @@
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows modeling related data and behavior with structured types.
+// In C#, the example uses the standard library and static types to keep the workflow structured.
 
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ readonly struct Coordinate
     }
 }
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 class Wallet
 {
     private readonly string owner;
@@ -34,7 +36,6 @@ class Wallet
     {
         owner = string.IsNullOrWhiteSpace(ownerName) ? "Unknown" : ownerName.Trim();
 
-        // Intent: normalize invalid starting values to preserve class invariants.
         balance = initialBalance < 0m ? 0m : initialBalance;
     }
 
@@ -66,9 +67,10 @@ class Wallet
 
 class Program
 {
+    // Run one deterministic scenario so the console output makes modeling related data and behavior with structured types easy to verify.
     static void Main()
     {
-        // Program flow: inspect value-type objects, then apply class-based state changes.
+        // Build the sample state first, then let the later output confirm the behavior step by step.
         List<Coordinate> route = new List<Coordinate>
         {
             new Coordinate(2, 3),
@@ -76,8 +78,8 @@ class Program
             new Coordinate(5, -2),
         };
 
+        // Print the observed state here so learners can connect the code path to a concrete result.
         Console.WriteLine("Coordinates (struct example):");
-        // Intent: deterministic iteration helps beginners verify output quickly.
         foreach (Coordinate point in route)
         {
             Console.WriteLine(
@@ -89,7 +91,6 @@ class Program
         wallet.Deposit(35m);
         wallet.Withdraw(40m);
 
-        // Intent: report final state after guarded operations.
         Console.WriteLine("\nWallet (class example):");
         Console.WriteLine($"Owner: {wallet.Owner}");
         Console.WriteLine($"Balance: {wallet.Balance}");

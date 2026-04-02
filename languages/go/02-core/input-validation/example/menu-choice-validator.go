@@ -1,5 +1,6 @@
+// This helper example focuses on isolating the guard logic that accepts only valid menu choices.
+
 // This extra example extends input validation with a menu choice validator.
-// Example purpose: keep prompting until the user enters a valid option and quantity.
 
 package main
 
@@ -11,6 +12,7 @@ import (
 	"strings"
 )
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 func readMenuChoice(reader *bufio.Reader) string {
 	for {
 		fmt.Print("Choose [1] Add, [2] Remove, [3] Exit: ")

@@ -1,3 +1,6 @@
+// This example shows reading plain-text files, parsing rows, and writing clear results.
+// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";

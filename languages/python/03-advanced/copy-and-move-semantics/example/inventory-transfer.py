@@ -1,7 +1,8 @@
+# This helper example focuses on how one operation changes later ownership or shared state.
+
 # This extra example extends copy-and-move semantics with inventory transfer.
-# Example purpose: contrast aliasing, cloning, and ownership-like transfer.
 
-
+# Keep this helper separate so the main example can focus on the larger idea without extra noise.
 class Inventory:
     def __init__(self, items):
         self._items = list(items)

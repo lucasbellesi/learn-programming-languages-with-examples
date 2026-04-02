@@ -1,3 +1,6 @@
+// This helper example focuses on isolating one collection transformation so the filtering rule
+// stands out.
+
 #include <iostream>
 #include <vector>
 

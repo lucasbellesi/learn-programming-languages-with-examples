@@ -1,5 +1,5 @@
-// This example demonstrates inheritance and polymorphism concepts.
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows treating different concrete types through one common interface.
+// In C++, the example keeps value flow, references, and explicit control visible.
 
 #include <iostream>
 #include <memory>
@@ -33,15 +33,16 @@ class Circle : public Shape {
     double radius;
 };
 
+// Run one deterministic scenario so the console output makes treating different concrete types
+// through one common interface easy to verify.
 int main() {
-    // Program flow: collect input, apply core logic, then print a verifiable result.
+    // Build the sample state first, then let the later output confirm the behavior step by step.
     vector<unique_ptr<Shape>> shapes;
     shapes.push_back(unique_ptr<Shape>(new Rectangle(3.0, 4.0)));
     shapes.push_back(unique_ptr<Shape>(new Circle(2.0)));
 
-    // Intent: iterate through data in a clear and deterministic order.
     for (const auto& shape : shapes) {
-        // Intent: print intermediate or final output for quick behavior verification.
+        // Print the observed state here so learners can connect the code path to a concrete result.
         cout << "Area: " << shape->area() << '\n';
     }
 

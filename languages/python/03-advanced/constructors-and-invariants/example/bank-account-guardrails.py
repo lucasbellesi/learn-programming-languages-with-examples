@@ -1,7 +1,9 @@
+# This helper example focuses on showing how helper methods preserve invariants around deposits and
+# withdrawals.
+
 # This extra example extends constructors and invariants with a bank account.
-# Example purpose: reject invalid state both at construction and update time.
 
-
+# Keep this helper separate so the main example can focus on the larger idea without extra noise.
 class BankAccount:
     def __init__(self, owner, initial_balance):
         self._owner = owner.strip() or "Unknown"

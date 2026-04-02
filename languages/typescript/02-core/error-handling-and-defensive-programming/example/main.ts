@@ -1,3 +1,6 @@
+// This example shows guarding risky inputs so failures stay explicit and controlled.
+// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+
 type ScoreRecord = {
     name: string;
     score: number;

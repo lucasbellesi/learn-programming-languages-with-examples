@@ -1,3 +1,6 @@
+// This example shows how copying, sharing, or transferring state changes later behavior.
+// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+
 type InventoryRecord = {
     name: string;
     counts: {

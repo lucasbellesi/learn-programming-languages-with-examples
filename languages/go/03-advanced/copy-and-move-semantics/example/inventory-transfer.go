@@ -1,10 +1,12 @@
+// This helper example focuses on focusing on how one operation changes later ownership or shared state.
+
 // This extra example extends copy-and-move semantics with inventory transfer.
-// Example purpose: contrast aliasing, cloning, and ownership-like transfer.
 
 package main
 
 import "fmt"
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 type Inventory struct {
 	items []string
 }

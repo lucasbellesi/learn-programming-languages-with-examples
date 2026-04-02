@@ -1,3 +1,6 @@
+// This example shows combining values through expressions and readable calculations.
+// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+
 const subtotal = 120;
 const couponPercent = 10;
 const isLoyalCustomer = true;

@@ -1,5 +1,7 @@
+# This helper example focuses on isolating one collection transformation so the filtering rule
+# stands out.
+
 # This extra example extends arrays-and-vectors with a focused filtering task.
-# Example purpose: isolate list building and threshold-based filtering.
 
 raw_count = input("How many numbers? ").strip()
 try:

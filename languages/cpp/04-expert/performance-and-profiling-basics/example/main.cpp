@@ -1,15 +1,14 @@
-// This example demonstrates performance and profiling basics concepts.
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows measuring hot paths before changing code for speed.
+// In C++, the example keeps value flow, references, and explicit control visible.
 
 #include <chrono>
 #include <iostream>
 #include <vector>
 using namespace std;
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 int linearSearch(const vector<int>& values, int target) {
-    // Intent: iterate through data in a clear and deterministic order.
     for (size_t i = 0; i < values.size(); ++i) {
-        // Intent: guard invalid or edge-case paths before the main path continues.
         if (values[i] == target) {
             return static_cast<int>(i);
         }
@@ -17,8 +16,10 @@ int linearSearch(const vector<int>& values, int target) {
     return -1;
 }
 
+// Run one deterministic scenario so the console output makes measuring hot paths before changing
+// code for speed easy to verify.
 int main() {
-    // Program flow: collect input, apply core logic, then print a verifiable result.
+    // Build the sample state first, then let the later output confirm the behavior step by step.
     vector<int> values;
     values.reserve(100000);
     for (int i = 0; i < 100000; ++i) {
@@ -30,7 +31,7 @@ int main() {
     const auto end = chrono::high_resolution_clock::now();
 
     const auto elapsed = chrono::duration_cast<chrono::microseconds>(end - start);
-    // Intent: print intermediate or final output for quick behavior verification.
+    // Print the observed state here so learners can connect the code path to a concrete result.
     cout << "Index: " << index << '\n';
     cout << "Elapsed (microseconds): " << elapsed.count() << '\n';
 

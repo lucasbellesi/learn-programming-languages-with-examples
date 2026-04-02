@@ -138,11 +138,13 @@ Checkpoint artifacts under `languages/<language>/projects/*` and `languages/<lan
 
 ## Example Commenting Standard
 
-Example files (`example/main.*`) should use intent-first comments to help new developers read code quickly:
+Hand-written example code files under `languages/*/*/*/example/` should use intent-first comments to help new developers read code quickly:
 
-- Explain purpose, intent, and edge-case handling.
-- Place comments before meaningful logic blocks (not every single line).
+- Start each file with a short header comment that explains what the example teaches.
+- Place comments before meaningful logic blocks, validation paths, and output/verification sections.
+- Use comments to explain concepts, tradeoffs, and language-specific adaptations, not obvious syntax.
 - Keep comments short, practical, and in English.
+- Avoid empty scaffolding comments such as `Intent:` or line-by-line narration.
 
 ## Validation and CI
 

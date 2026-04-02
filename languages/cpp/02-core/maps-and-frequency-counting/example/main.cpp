@@ -1,26 +1,26 @@
-// This example demonstrates maps and frequency counting concepts.
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows counting repeated values and summarizing them through keyed lookups.
+// In C++, the example keeps value flow, references, and explicit control visible.
 
 #include <iostream>
 #include <map>
 #include <string>
 using namespace std;
 
+// Run one deterministic scenario so the console output makes counting repeated values and
+// summarizing them through keyed lookups easy to verify.
 int main() {
-    // Program flow: collect input, apply core logic, then print a verifiable result.
+    // Build the sample state first, then let the later output confirm the behavior step by step.
     string text = "banana bandana";
     map<char, int> frequencies;
 
-    // Intent: iterate through data in a clear and deterministic order.
     for (char ch : text) {
-        // Intent: guard invalid or edge-case paths before the main path continues.
         if (ch == ' ') {
             continue;
         }
         ++frequencies[ch];
     }
 
-    // Intent: print intermediate or final output for quick behavior verification.
+    // Print the observed state here so learners can connect the code path to a concrete result.
     cout << "Character frequencies:\n";
     for (const auto& entry : frequencies) {
         cout << entry.first << " -> " << entry.second << '\n';

@@ -1,5 +1,6 @@
+// This helper example focuses on separating row parsing from the higher-level file workflow.
+
 // This extra example extends file-io-basics with line parsing and validation.
-// Example purpose: read simple name,score rows from a text file.
 
 package main
 
@@ -11,6 +12,7 @@ import (
 	"strings"
 )
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 type studentScore struct {
 	name  string
 	score int

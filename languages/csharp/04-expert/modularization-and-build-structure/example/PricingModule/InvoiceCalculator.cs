@@ -1,8 +1,11 @@
+// This helper example focuses on isolating pricing math so the entrypoint can focus on wiring modules together.
+
 using System;
 using System.Collections.Generic;
 
 namespace ModularizationAndBuildStructureExample.Pricing;
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 public static class InvoiceCalculator
 {
     public static InvoiceSummary BuildSummary(

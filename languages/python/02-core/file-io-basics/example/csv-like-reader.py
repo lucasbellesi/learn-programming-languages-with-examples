@@ -1,5 +1,6 @@
+# This helper example focuses on separating row parsing from the higher-level file workflow.
+
 # This extra example extends file-io-basics with line parsing and validation.
-# Example purpose: read simple name,score rows from a text file.
 
 path = input("CSV-like input file path (name,score): ").strip()
 

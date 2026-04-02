@@ -1,19 +1,20 @@
-# Example purpose: show the module flow with clear, beginner-friendly steps.
+# This example shows guarding risky inputs so failures stay explicit and controlled.
+# In Python, the example favors direct readable steps while keeping validation visible.
 
-
+# Define the reusable pieces first so the main flow can focus on one observable scenario.
 def safe_divide(left, right):
-    # Intent: block invalid operations before performing division.
+    # Build the sample state first, then let the later output confirm the behavior step by step.
     if right == 0.0:
         return None
     return left / right
 
 
+# Run one deterministic scenario so the console output makes guarding risky inputs so failures stay
+# explicit and controlled easy to verify.
 def main():
-    # Program flow: run fixed scenarios to show both valid and invalid paths.
     scenarios = [(42.0, 6.0), (10.0, 0.0)]
 
     for left, right in scenarios:
-        # Intent: print scenario input so behavior is easy to verify.
         print(f"Input: {left} {right}")
 
         quotient = safe_divide(left, right)
@@ -21,7 +22,6 @@ def main():
             print("Cannot divide by zero.")
             continue
 
-        # Intent: print deterministic final output for behavior verification.
         print(f"Result: {quotient}")
 
 

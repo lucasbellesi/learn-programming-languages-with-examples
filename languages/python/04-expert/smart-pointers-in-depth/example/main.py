@@ -1,4 +1,6 @@
-# Example purpose: adapt smart-pointer ideas to ownership transfer and weak references in Python.
+# This example shows tracking ownership and lifetime when multiple references can observe the same
+# value.
+# In Python, the example favors direct readable steps while keeping validation visible.
 
 from __future__ import annotations
 
@@ -6,8 +8,10 @@ import gc
 import weakref
 
 
+# Define the reusable pieces first so the main flow can focus on one observable scenario.
 class Report:
     def __init__(self, title: str) -> None:
+        # Build the sample state first, then let the later output confirm the behavior step by step.
         self.title = title
         print(f"Created report: {title}")
 
@@ -60,8 +64,9 @@ def create_preview_session() -> tuple[PreviewPane, PreviewSession]:
     return PreviewPane(current), session
 
 
+# Run one deterministic scenario so the console output makes tracking ownership and lifetime when
+# multiple references can observe the same value easy to verify.
 def main() -> None:
-    # Program flow: move one strongly-owned reference, then release a temporary strong owner.
     inbox = ReportOwner("Inbox", Report("Quarterly Summary"))
     archive = ReportOwner("Archive", None)
 
@@ -74,7 +79,6 @@ def main() -> None:
     preview, session = create_preview_session()
     preview.describe()
 
-    # Intent: dropping the last strong owner makes the weak observer expire on the next collection.
     session.release()
     gc.collect()
     preview.describe()

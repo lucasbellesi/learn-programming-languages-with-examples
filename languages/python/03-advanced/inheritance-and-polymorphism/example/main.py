@@ -1,10 +1,13 @@
-# Example purpose: show the module flow with clear, beginner-friendly steps.
+# This example shows treating different concrete types through one common interface.
+# In Python, the example favors direct readable steps while keeping validation visible.
 
 from abc import ABC, abstractmethod
 from math import pi
 
 
+# Define the reusable pieces first so the main flow can focus on one observable scenario.
 class Shape(ABC):
+    # Build the sample state first, then let the later output confirm the behavior step by step.
     @abstractmethod
     def area(self) -> float:
         pass
@@ -40,11 +43,11 @@ class Circle(Shape):
         return "Circle"
 
 
+# Run one deterministic scenario so the console output makes treating different concrete types
+# through one common interface easy to verify.
 def main() -> None:
-    # Program flow: create mixed shapes and evaluate them through one base contract.
     shapes: list[Shape] = [Rectangle(3.0, 4.0), Circle(2.0)]
 
-    # Intent: polymorphic iteration keeps logic independent from concrete classes.
     for shape in shapes:
         print(f"{shape.name} area: {shape.area():.2f}")
 

@@ -1,16 +1,16 @@
-# Example purpose: show the module flow with clear, beginner-friendly steps.
+# This example shows reordering data and locating values with deliberate search logic.
+# In Python, the example favors direct readable steps while keeping validation visible.
 
-
+# Define the reusable pieces first so the main flow can focus on one observable scenario.
 def binary_search(values, target):
+    # Build the sample state first, then let the later output confirm the behavior step by step.
     left = 0
     right = len(values) - 1
 
-    # Intent: reduce the search interval based on sorted ordering.
     while left <= right:
         mid = left + (right - left) // 2
         mid_value = values[mid]
 
-        # Intent: return immediately when the target value is found.
         if mid_value == target:
             return mid
 
@@ -22,18 +22,17 @@ def binary_search(values, target):
     return -1
 
 
+# Run one deterministic scenario so the console output makes reordering data and locating values
+# with deliberate search logic easy to verify.
 def main():
-    # Program flow: sort values first, then search on the sorted list.
     values = [7, 2, 9, 4, 2, 8]
     values.sort()
 
-    # Intent: print sorted data to verify the binary-search precondition.
     print(f"Sorted: {' '.join(str(value) for value in values)}")
 
     target = 4
     index = binary_search(values, target)
 
-    # Intent: guard the not-found case explicitly.
     if index >= 0:
         print(f"Found {target} at index {index}")
     else:

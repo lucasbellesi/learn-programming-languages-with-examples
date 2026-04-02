@@ -1,12 +1,13 @@
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows guarding risky inputs so failures stay explicit and controlled.
+// In C#, the example uses the standard library and static types to keep the workflow structured.
 
 using System;
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 class Program
 {
     static bool TrySafeDivide(double left, double right, out double result)
     {
-        // Intent: block invalid operations early before the main logic continues.
         if (right == 0.0)
         {
             result = 0.0;
@@ -17,14 +18,15 @@ class Program
         return true;
     }
 
+    // Run one deterministic scenario so the console output makes guarding risky inputs so failures stay explicit and controlled easy to verify.
     static void Main()
     {
-        // Program flow: run a fixed set of cases to show both safe and unsafe paths.
+        // Build the sample state first, then let the later output confirm the behavior step by step.
         (double left, double right)[] scenarios = new[] { (42.0, 6.0), (10.0, 0.0) };
 
         foreach ((double left, double right) in scenarios)
         {
-            // Intent: print scenario input so behavior is easy to verify.
+            // Print the observed state here so learners can connect the code path to a concrete result.
             Console.WriteLine($"Input: {left} {right}");
 
             if (!TrySafeDivide(left, right, out double quotient))
@@ -33,7 +35,6 @@ class Program
                 continue;
             }
 
-            // Intent: print deterministic final output for quick verification.
             Console.WriteLine($"Result: {quotient}");
         }
     }

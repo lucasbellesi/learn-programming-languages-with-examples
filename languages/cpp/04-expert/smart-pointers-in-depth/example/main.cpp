@@ -1,5 +1,5 @@
-// This example demonstrates smart pointers in depth concepts.
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows tracking ownership and lifetime when multiple references can observe the same
+// value. In C++, the example keeps value flow, references, and explicit control visible.
 
 #include <iostream>
 #include <memory>
@@ -9,7 +9,6 @@ using namespace std;
 class Document {
   public:
     explicit Document(const string& nameValue) : name(nameValue) {
-        // Intent: print intermediate or final output for quick behavior verification.
         cout << "Created: " << name << '\n';
     }
 
@@ -19,17 +18,19 @@ class Document {
     string name;
 };
 
+// Run one deterministic scenario so the console output makes tracking ownership and lifetime when
+// multiple references can observe the same value easy to verify.
 int main() {
-    // Program flow: collect input, apply core logic, then print a verifiable result.
+    // Build the sample state first, then let the later output confirm the behavior step by step.
     unique_ptr<Document> owner(new Document("DesignDoc"));
 
     shared_ptr<Document> teamA(new Document("SharedSpec"));
     shared_ptr<Document> teamB = teamA;
     weak_ptr<Document> observer = teamA;
 
+    // Print the observed state here so learners can connect the code path to a concrete result.
     cout << "Shared use count: " << teamA.use_count() << '\n';
 
-    // Intent: guard invalid or edge-case paths before the main path continues.
     if (shared_ptr<Document> locked = observer.lock()) {
         cout << "Observer can access shared document.\n";
         (void)locked;

@@ -1,9 +1,11 @@
+// This helper example focuses on isolating one collection transformation so the filtering rule stands out.
+
 // This extra example extends arrays-and-vectors with a focused filtering task.
-// Example purpose: isolate list building and threshold-based filtering.
 
 using System;
 using System.Collections.Generic;
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 class Program
 {
     static void Main()

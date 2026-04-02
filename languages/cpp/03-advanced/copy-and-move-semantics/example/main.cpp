@@ -1,5 +1,5 @@
-// This example demonstrates copy and move semantics concepts.
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows how copying, sharing, or transferring state changes later behavior.
+// In C++, the example keeps value flow, references, and explicit control visible.
 
 #include <iostream>
 #include <utility>
@@ -8,17 +8,13 @@ using namespace std;
 
 class Buffer {
   public:
-    explicit Buffer(size_t size) : data(size, 0) {
-        // Intent: print intermediate or final output for quick behavior verification.
-        cout << "Constructed\n";
-    }
+    explicit Buffer(size_t size) : data(size, 0) { cout << "Constructed\n"; }
 
     Buffer(const Buffer& other) : data(other.data) { cout << "Copied\n"; }
 
     Buffer(Buffer&& other) noexcept : data(move(other.data)) { cout << "Moved\n"; }
 
     Buffer& operator=(const Buffer& other) {
-        // Intent: guard invalid or edge-case paths before the main path continues.
         if (this != &other) {
             data = other.data;
             cout << "Copy-assigned\n";
@@ -40,19 +36,23 @@ class Buffer {
     vector<int> data;
 };
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 Buffer makeBuffer() {
     Buffer b(5);
     return b;
 }
 
+// Run one deterministic scenario so the console output makes how copying, sharing, or transferring
+// state changes later behavior easy to verify.
 int main() {
-    // Program flow: collect input, apply core logic, then print a verifiable result.
+    // Build the sample state first, then let the later output confirm the behavior step by step.
     Buffer first(3);
     Buffer second = first;
     Buffer third = makeBuffer();
 
     second = move(third);
 
+    // Print the observed state here so learners can connect the code path to a concrete result.
     cout << "second size: " << second.size() << '\n';
     return 0;
 }

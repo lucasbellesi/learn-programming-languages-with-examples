@@ -1,5 +1,6 @@
+// This helper example focuses on keeping validation close to the type that owns the data.
+
 // This extra example extends structs-and-classes with validated object state.
-// Example purpose: keep invariants inside constructor-style helpers and methods.
 
 package main
 
@@ -8,6 +9,7 @@ import (
 	"fmt"
 )
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 type bankAccount struct {
 	owner   string
 	balance float64

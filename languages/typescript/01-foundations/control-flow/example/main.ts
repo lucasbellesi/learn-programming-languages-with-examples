@@ -1,3 +1,6 @@
+// This example shows choosing between branches and repeating work with predictable control flow.
+// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+
 const scores = [92, 74, 58];
 for (const score of scores) {
     let label = "Needs support";

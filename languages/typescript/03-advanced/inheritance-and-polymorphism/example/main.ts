@@ -1,3 +1,6 @@
+// This example shows treating different concrete types through one common interface.
+// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+
 abstract class Shape {
     abstract name(): string;
     abstract area(): number;

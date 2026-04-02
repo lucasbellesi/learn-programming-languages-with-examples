@@ -1,20 +1,21 @@
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows counting repeated values and summarizing them through keyed lookups.
+// In C#, the example uses the standard library and static types to keep the workflow structured.
 
 using System;
 using System.Collections.Generic;
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 class Program
 {
+    // Run one deterministic scenario so the console output makes counting repeated values and summarizing them through keyed lookups easy to verify.
     static void Main()
     {
-        // Program flow: iterate input text, count symbols, then print a frequency table.
+        // Build the sample state first, then let the later output confirm the behavior step by step.
         string text = "banana bandana";
         SortedDictionary<char, int> frequencies = new SortedDictionary<char, int>();
 
-        // Intent: process characters in a deterministic sequence from the source text.
         foreach (char ch in text)
         {
-            // Intent: skip separators so counts represent meaningful symbols.
             if (ch == ' ')
             {
                 continue;
@@ -28,7 +29,7 @@ class Program
             frequencies[ch]++;
         }
 
-        // Intent: print final frequency results in sorted key order.
+        // Print the observed state here so learners can connect the code path to a concrete result.
         Console.WriteLine("Character frequencies:");
         foreach (KeyValuePair<char, int> entry in frequencies)
         {

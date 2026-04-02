@@ -1,7 +1,10 @@
+// This helper example focuses on keeping the aggregated result shape explicit before the entrypoint prints it.
+
 using System.Collections.Generic;
 
 namespace ModularizationAndBuildStructureExample.Pricing;
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 public sealed class InvoiceSummary
 {
     public InvoiceSummary(

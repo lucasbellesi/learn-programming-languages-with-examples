@@ -1,19 +1,19 @@
-// This example demonstrates types and io concepts.
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows reading typed input carefully and turning raw text into values.
+// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
 
 package main
 
 import "fmt"
 
+// Run one deterministic scenario so the console output makes reading typed input carefully and turning raw text into values easy to verify.
 func main() {
-	// Program flow: collect input, apply core logic, then print a verifiable result.
+	// Build the sample state first, then let the later output confirm the behavior step by step.
 	var fullName string
 	var age int
 	var gpa float64
 
-	// Intent: print intermediate or final output for quick behavior verification.
+	// Print the observed state here so learners can connect the code path to a concrete result.
 	fmt.Print("Enter your first name: ")
-	// Intent: gather typed input first so later operations are predictable.
 	fmt.Scanln(&fullName)
 
 	fmt.Print("Enter your age: ")

@@ -1,3 +1,5 @@
+// This helper example focuses on keeping validation close to the type that owns the data.
+
 #include <iostream>
 #include <stdexcept>
 #include <string>

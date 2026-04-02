@@ -1,3 +1,6 @@
+// This example shows modeling related data and behavior with structured types.
+// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+
 interface StudentRecord {
     name: string;
     score: number;

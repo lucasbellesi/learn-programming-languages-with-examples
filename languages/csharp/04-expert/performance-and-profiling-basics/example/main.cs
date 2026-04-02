@@ -1,18 +1,21 @@
-// Example purpose: compare a couple of small optimization choices with Stopwatch.
+// This example shows measuring hot paths before changing code for speed.
+// In C#, the example uses the standard library and static types to keep the workflow structured.
 
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 class Program
 {
     static string retainedText = string.Empty;
     static List<int> retainedValues = new List<int>();
 
+    // Run one deterministic scenario so the console output makes measuring hot paths before changing code for speed easy to verify.
     static void Main()
     {
-        // Program flow: measure two paired implementations on the same workload size.
+        // Build the sample state first, then let the later output confirm the behavior step by step.
         const int lineCount = 4000;
         const int repetitions = 12;
         long concatTicks = MeasureAverage(
@@ -24,6 +27,7 @@ class Program
             repetitions
         );
 
+        // Print the observed state here so learners can connect the code path to a concrete result.
         Console.WriteLine(
             $"Average string concatenation ticks ({repetitions} runs): {concatTicks}"
         );
@@ -39,7 +43,6 @@ class Program
             repetitions
         );
 
-        // Intent: final output keeps the comparison direct and easy to verify.
         Console.WriteLine(
             $"Average list fill without capacity ticks ({repetitions} runs): {noCapacityTicks}"
         );

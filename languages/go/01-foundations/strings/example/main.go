@@ -1,4 +1,5 @@
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows cleaning and combining text while preserving readable string logic.
+// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
 
 package main
 
@@ -10,18 +11,16 @@ import (
 	"unicode"
 )
 
+// Run one deterministic scenario so the console output makes cleaning and combining text while preserving readable string logic easy to verify.
 func main() {
-	// Program flow: collect input, apply core logic, then print a verifiable result.
+	// Build the sample state first, then let the later output confirm the behavior step by step.
 	reader := bufio.NewReader(os.Stdin)
-	// Intent: print intermediate or final output for quick behavior verification.
+	// Print the observed state here so learners can connect the code path to a concrete result.
 	fmt.Print("Enter a sentence: ")
-	// Intent: gather typed input first so later operations are predictable.
 	line, _ := reader.ReadString('\n')
 
 	var builder strings.Builder
-	// Intent: iterate through data in a clear and deterministic order.
 	for _, ch := range line {
-		// Intent: guard invalid or edge-case paths before the main path continues.
 		if unicode.IsLetter(ch) || unicode.IsDigit(ch) {
 			builder.WriteRune(unicode.ToLower(ch))
 		} else {

@@ -1,9 +1,12 @@
-# Example purpose: show the module flow with clear, beginner-friendly steps.
+# This example shows modeling related data and behavior with structured types.
+# In Python, the example favors direct readable steps while keeping validation visible.
 
 from dataclasses import dataclass
 
 
+# Build the sample state first, then let the later output confirm the behavior step by step.
 @dataclass(frozen=True)
+# Define the reusable pieces first so the main flow can focus on one observable scenario.
 class Coordinate:
     x: int
     y: int
@@ -16,7 +19,6 @@ class Wallet:
     def __init__(self, owner: str, initial_balance: float) -> None:
         clean_owner = owner.strip() if owner.strip() else "Unknown"
 
-        # Intent: normalize invalid starting values to preserve class invariants.
         self._owner = clean_owner
         self._balance = max(0.0, initial_balance)
 
@@ -43,12 +45,12 @@ class Wallet:
         return self._balance
 
 
+# Run one deterministic scenario so the console output makes modeling related data and behavior with
+# structured types easy to verify.
 def main() -> None:
-    # Program flow: inspect value-like objects, then apply class-based state changes.
     route = [Coordinate(2, 3), Coordinate(-1, 4), Coordinate(5, -2)]
 
     print("Coordinates (dataclass example):")
-    # Intent: deterministic iteration helps beginners verify output quickly.
     for point in route:
         print(
             f"Point ({point.x}, {point.y}), "
@@ -59,7 +61,6 @@ def main() -> None:
     wallet.deposit(35.0)
     wallet.withdraw(40.0)
 
-    # Intent: report final state after guarded operations.
     print("\nWallet (class example):")
     print(f"Owner: {wallet.owner}")
     print(f"Balance: {wallet.balance:.2f}")

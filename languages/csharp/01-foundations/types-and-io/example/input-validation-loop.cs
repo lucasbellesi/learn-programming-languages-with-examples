@@ -1,8 +1,10 @@
+// This helper example focuses on focusing on the retry loop so invalid input handling is easy to trace.
+
 // This extra example extends types-and-io with a validation loop.
-// Example purpose: show how string input and numeric checks work together.
 
 using System;
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 class Program
 {
     static void Main()

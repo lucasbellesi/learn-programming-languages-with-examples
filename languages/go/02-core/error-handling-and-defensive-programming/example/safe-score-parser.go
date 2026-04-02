@@ -1,5 +1,6 @@
+// This helper example focuses on isolating the parsing guard so invalid text never silently becomes a score.
+
 // This extra example extends defensive programming with safe score parsing.
-// Example purpose: reject malformed or out-of-range rows without stopping the program.
 
 package main
 
@@ -9,6 +10,7 @@ import (
 	"strings"
 )
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 func tryParseRow(row string) (string, int, bool) {
 	parts := strings.Split(row, ":")
 	if len(parts) != 2 {

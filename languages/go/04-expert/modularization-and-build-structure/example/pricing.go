@@ -1,5 +1,8 @@
+// This helper example focuses on keeping pricing logic separate from orchestration and output code.
+
 package main
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 type lineItem struct {
 	name      string
 	quantity  int

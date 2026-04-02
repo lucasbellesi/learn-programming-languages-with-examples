@@ -1,4 +1,5 @@
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows rejecting invalid input before the main workflow continues.
+// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
 
 package main
 
@@ -10,14 +11,11 @@ import (
 	"strings"
 )
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 func readIntInRange(reader *bufio.Reader, prompt string, minValue int, maxValue int) int {
-	// Intent: iterate through data in a clear and deterministic order.
 	for {
-		// Intent: print intermediate or final output for quick behavior verification.
 		fmt.Print(prompt)
-		// Intent: gather typed input first so later operations are predictable.
 		line, err := reader.ReadString('\n')
-		// Intent: guard invalid or edge-case paths before the main path continues.
 		if err != nil && len(line) == 0 {
 			fmt.Println("Input error. Please try again.")
 			continue
@@ -62,13 +60,15 @@ func readFloatInRange(reader *bufio.Reader, prompt string, minValue float64, max
 	}
 }
 
+// Run one deterministic scenario so the console output makes rejecting invalid input before the main workflow continues easy to verify.
 func main() {
-	// Program flow: collect input, apply core logic, then print a verifiable result.
+	// Build the sample state first, then let the later output confirm the behavior step by step.
 	reader := bufio.NewReader(os.Stdin)
 
 	age := readIntInRange(reader, "Enter your age (1-120): ", 1, 120)
 	gpa := readFloatInRange(reader, "Enter your GPA (0.0-4.0): ", 0.0, 4.0)
 
+	// Print the observed state here so learners can connect the code path to a concrete result.
 	fmt.Println("\nValidated input summary:")
 	fmt.Printf("Age: %d\n", age)
 	fmt.Printf("GPA: %.2f\n", gpa)

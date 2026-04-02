@@ -1,7 +1,10 @@
+// This helper example focuses on isolating presentation rules so formatting decisions stay out of the calculator.
+
 using System.Text;
 
 namespace ModularizationAndBuildStructureExample.Pricing;
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 public static class InvoiceFormatter
 {
     public static string Render(InvoiceSummary summary)

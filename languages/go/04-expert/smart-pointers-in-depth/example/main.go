@@ -1,9 +1,11 @@
-// Example purpose: adapt smart-pointer ideas to explicit pointer ownership and sharing in Go.
+// This example shows tracking ownership and lifetime when multiple references can observe the same value.
+// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
 
 package main
 
 import "fmt"
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 type report struct {
 	title string
 }
@@ -31,8 +33,9 @@ func (o *reportOwner) print() {
 	fmt.Printf("%s: %s\n", o.name, o.report.title)
 }
 
+// Run one deterministic scenario so the console output makes tracking ownership and lifetime when multiple references can observe the same value easy to verify.
 func main() {
-	// Program flow: move one owned pointer, then show explicit shared mutation through aliases.
+	// Build the sample state first, then let the later output confirm the behavior step by step.
 	inbox := reportOwner{name: "Inbox", report: &report{title: "Quarterly Summary"}}
 	archive := reportOwner{name: "Archive"}
 
@@ -47,6 +50,6 @@ func main() {
 	observer := primary
 	*observer += 5
 
-	// Intent: final output shows that shared pointer aliases mutate the same value.
+	// Print the observed state here so learners can connect the code path to a concrete result.
 	fmt.Printf("Shared score after alias update: %d\n", score)
 }

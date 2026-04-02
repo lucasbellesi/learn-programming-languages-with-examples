@@ -1,13 +1,13 @@
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows walking data step by step to compute summaries and decisions.
+// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
 
 package main
 
 import "fmt"
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 func linearSearch(values []int, target int) int {
-	// Intent: iterate through data in a clear and deterministic order.
 	for index, value := range values {
-		// Intent: guard invalid or edge-case paths before the main path continues.
 		if value == target {
 			return index
 		}
@@ -44,13 +44,14 @@ func minMax(values []int) (int, int, bool) {
 	return minValue, maxValue, true
 }
 
+// Run one deterministic scenario so the console output makes walking data step by step to compute summaries and decisions easy to verify.
 func main() {
-	// Program flow: collect input, apply core logic, then print a verifiable result.
+	// Build the sample state first, then let the later output confirm the behavior step by step.
 	values := []int{4, 7, 4, 1, 9, 4, 2}
 	target := 4
 
 	firstIndex := linearSearch(values, target)
-	// Intent: print intermediate or final output for quick behavior verification.
+	// Print the observed state here so learners can connect the code path to a concrete result.
 	fmt.Printf("First index of %d: %d\n", target, firstIndex)
 	fmt.Printf("Occurrences of %d: %d\n", target, countOccurrences(values, target))
 

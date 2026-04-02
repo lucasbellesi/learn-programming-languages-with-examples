@@ -1,5 +1,6 @@
+# This helper example focuses on the frequency summary without repeating the full program flow.
+
 # This extra example extends maps-and-frequency-counting with ranked frequency output.
-# Example purpose: count repeated words, then sort by frequency and name.
 
 raw_count = input("How many words? ").strip()
 try:

@@ -1,3 +1,6 @@
+// This example shows walking data step by step to compute summaries and decisions.
+// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+
 function firstIndexOf(values: number[], target: number): number {
     for (let index = 0; index < values.length; index += 1) {
         if (values[index] === target) {

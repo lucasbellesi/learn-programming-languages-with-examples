@@ -1,8 +1,10 @@
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows reordering data and locating values with deliberate search logic.
+// In C#, the example uses the standard library and static types to keep the workflow structured.
 
 using System;
 using System.Collections.Generic;
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 class Program
 {
     static int BinarySearch(List<int> values, int target)
@@ -10,13 +12,11 @@ class Program
         int left = 0;
         int right = values.Count - 1;
 
-        // Intent: narrow the search window deterministically based on sorted order.
         while (left <= right)
         {
             int mid = left + (right - left) / 2;
             int midValue = values[mid];
 
-            // Intent: return immediately when the exact match is found.
             if (midValue == target)
             {
                 return mid;
@@ -35,19 +35,19 @@ class Program
         return -1;
     }
 
+    // Run one deterministic scenario so the console output makes reordering data and locating values with deliberate search logic easy to verify.
     static void Main()
     {
-        // Program flow: sort values first, then search on the sorted collection.
+        // Build the sample state first, then let the later output confirm the behavior step by step.
         List<int> values = new List<int> { 7, 2, 9, 4, 2, 8 };
         values.Sort();
 
-        // Intent: print sorted data so learners can verify search preconditions.
+        // Print the observed state here so learners can connect the code path to a concrete result.
         Console.WriteLine($"Sorted: {string.Join(" ", values)}");
 
         int target = 4;
         int index = BinarySearch(values, target);
 
-        // Intent: guard the not-found case explicitly instead of assuming success.
         if (index >= 0)
         {
             Console.WriteLine($"Found {target} at index {index}");

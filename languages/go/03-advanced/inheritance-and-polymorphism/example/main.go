@@ -1,4 +1,5 @@
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows treating different concrete types through one common interface.
+// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
 
 package main
 
@@ -7,6 +8,7 @@ import (
 	"math"
 )
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 type Shape interface {
 	Area() float64
 	Name() string
@@ -37,15 +39,16 @@ func (c Circle) Name() string {
 	return "Circle"
 }
 
+// Run one deterministic scenario so the console output makes treating different concrete types through one common interface easy to verify.
 func main() {
-	// Program flow: create mixed shapes and evaluate them through one interface.
+	// Build the sample state first, then let the later output confirm the behavior step by step.
 	shapes := []Shape{
 		Rectangle{width: 3.0, height: 4.0},
 		Circle{radius: 2.0},
 	}
 
-	// Intent: polymorphic iteration keeps logic independent from concrete structs.
 	for _, shape := range shapes {
+		// Print the observed state here so learners can connect the code path to a concrete result.
 		fmt.Printf("%s area: %.2f\n", shape.Name(), shape.Area())
 	}
 }

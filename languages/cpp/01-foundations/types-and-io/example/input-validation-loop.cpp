@@ -1,3 +1,6 @@
+// This helper example focuses on focusing on the retry loop so invalid input handling is easy to
+// trace.
+
 #include <iostream>
 #include <limits>
 #include <string>

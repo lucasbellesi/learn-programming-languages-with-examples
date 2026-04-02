@@ -1,5 +1,5 @@
-// This example demonstrates concurrency basics concepts.
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows starting multiple units of work and combining their results safely.
+// In C++, the example keeps value flow, references, and explicit control visible.
 
 #include <iostream>
 #include <mutex>
@@ -7,8 +7,10 @@
 #include <vector>
 using namespace std;
 
+// Run one deterministic scenario so the console output makes starting multiple units of work and
+// combining their results safely easy to verify.
 int main() {
-    // Program flow: collect input, apply core logic, then print a verifiable result.
+    // Build the sample state first, then let the later output confirm the behavior step by step.
     const int threadCount = 4;
     const int incrementsPerThread = 50000;
 
@@ -16,7 +18,6 @@ int main() {
     mutex counterMutex;
 
     auto worker = [&counter, &counterMutex, incrementsPerThread]() {
-        // Intent: iterate through data in a clear and deterministic order.
         for (int i = 0; i < incrementsPerThread; ++i) {
             lock_guard<mutex> lock(counterMutex);
             ++counter;
@@ -35,7 +36,7 @@ int main() {
     }
 
     const int expected = threadCount * incrementsPerThread;
-    // Intent: print intermediate or final output for quick behavior verification.
+    // Print the observed state here so learners can connect the code path to a concrete result.
     cout << "Expected: " << expected << '\n';
     cout << "Actual: " << counter << '\n';
 

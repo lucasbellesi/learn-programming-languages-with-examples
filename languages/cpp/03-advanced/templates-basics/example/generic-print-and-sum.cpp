@@ -1,9 +1,13 @@
+// This helper example focuses on isolating the reusable generic behavior before the example wires
+// it together.
+
 #include <iostream>
 #include <string>
 #include <vector>
 
 using namespace std;
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 template <typename T> void printVector(const vector<T>& values, const string& label) {
     cout << label << ": [";
     for (size_t i = 0; i < values.size(); ++i) {

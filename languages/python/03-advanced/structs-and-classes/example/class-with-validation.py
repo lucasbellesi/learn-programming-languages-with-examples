@@ -1,7 +1,8 @@
+# This helper example focuses on keeping validation close to the type that owns the data.
+
 # This extra example extends structs-and-classes with validated object state.
-# Example purpose: keep class invariants inside the constructor and methods.
 
-
+# Keep this helper separate so the main example can focus on the larger idea without extra noise.
 class BankAccount:
     def __init__(self, owner, initial_balance):
         if not owner:

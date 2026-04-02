@@ -1,19 +1,17 @@
-// This example demonstrates input validation concepts.
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows rejecting invalid input before the main workflow continues.
+// In C++, the example keeps value flow, references, and explicit control visible.
 
 #include <iostream>
 #include <limits>
 #include <string>
 using namespace std;
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 int readIntInRange(const string& label, int minValue, int maxValue) {
     int value = 0;
 
-    // Intent: iterate through data in a clear and deterministic order.
     while (true) {
-        // Intent: print intermediate or final output for quick behavior verification.
         cout << label;
-        // Intent: gather typed input first so later operations are predictable.
         if (!(cin >> value)) {
             cout << "Invalid input type. Please enter an integer.\n";
             cin.clear();
@@ -55,11 +53,14 @@ double readDoubleInRange(const string& label, double minValue, double maxValue) 
     }
 }
 
+// Run one deterministic scenario so the console output makes rejecting invalid input before the
+// main workflow continues easy to verify.
 int main() {
-    // Program flow: collect input, apply core logic, then print a verifiable result.
+    // Build the sample state first, then let the later output confirm the behavior step by step.
     const int age = readIntInRange("Enter your age (1-120): ", 1, 120);
     const double gpa = readDoubleInRange("Enter your GPA (0.0-4.0): ", 0.0, 4.0);
 
+    // Print the observed state here so learners can connect the code path to a concrete result.
     cout << "\nValidated input summary:\n";
     cout << "Age: " << age << '\n';
     cout << "GPA: " << gpa << '\n';

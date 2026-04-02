@@ -1,18 +1,18 @@
-// This example demonstrates control flow concepts.
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows choosing between branches and repeating work with predictable control flow.
+// In C++, the example keeps value flow, references, and explicit control visible.
 
 #include <iostream>
 using namespace std;
 
+// Run one deterministic scenario so the console output makes choosing between branches and
+// repeating work with predictable control flow easy to verify.
 int main() {
-    // Program flow: collect input, apply core logic, then print a verifiable result.
+    // Build the sample state first, then let the later output confirm the behavior step by step.
     int value = 0;
-    // Intent: print intermediate or final output for quick behavior verification.
+    // Print the observed state here so learners can connect the code path to a concrete result.
     cout << "Enter an integer: ";
-    // Intent: gather typed input first so later operations are predictable.
     cin >> value;
 
-    // Intent: guard invalid or edge-case paths before the main path continues.
     if (value > 0) {
         cout << value << " is positive.\n";
     } else if (value < 0) {
@@ -29,7 +29,6 @@ int main() {
         cout << "Factorial is not defined for negative integers.\n";
     } else {
         unsigned long long factorial = 1;
-        // Intent: iterate through data in a clear and deterministic order.
         for (int i = 1; i <= n; ++i) {
             factorial *= static_cast<unsigned long long>(i);
         }

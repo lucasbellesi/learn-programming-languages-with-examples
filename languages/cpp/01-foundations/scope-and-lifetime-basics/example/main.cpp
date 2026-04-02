@@ -1,22 +1,24 @@
-// This example demonstrates scope and lifetime basics concepts.
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows how names stay visible only inside the blocks that own them.
+// In C++, the example keeps value flow, references, and explicit control visible.
 
 #include <iostream>
 using namespace std;
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 void printRangeSum(int from, int to) {
     int sum = 0;
-    // Intent: iterate through data in a clear and deterministic order.
     for (int value = from; value <= to; ++value) {
         sum += value;
     }
-    // Intent: print intermediate or final output for quick behavior verification.
     cout << "Sum from " << from << " to " << to << " = " << sum << '\n';
 }
 
+// Run one deterministic scenario so the console output makes how names stay visible only inside the
+// blocks that own them easy to verify.
 int main() {
-    // Program flow: collect input, apply core logic, then print a verifiable result.
+    // Build the sample state first, then let the later output confirm the behavior step by step.
     int value = 10;
+    // Print the observed state here so learners can connect the code path to a concrete result.
     cout << "Outer value: " << value << '\n';
 
     {

@@ -1,13 +1,15 @@
-# Example purpose: compare a couple of small optimization choices with simple timings.
+# This example shows measuring hot paths before changing code for speed.
+# In Python, the example favors direct readable steps while keeping validation visible.
 
 from __future__ import annotations
 
 import time
 
-
+# Build the sample state first, then let the later output confirm the behavior step by step.
 retained_object: object | None = None
 
 
+# Define the reusable pieces first so the main flow can focus on one observable scenario.
 def measure_average(action, repetitions: int) -> float:
     action()
 
@@ -45,8 +47,9 @@ def fill_with_presize(item_count: int) -> list[int]:
     return values
 
 
+# Run one deterministic scenario so the console output makes measuring hot paths before changing
+# code for speed easy to verify.
 def main() -> None:
-    # Program flow: measure two paired implementations on the same workload size.
     line_count = 4_000
     repetitions = 12
 
@@ -76,7 +79,6 @@ def main() -> None:
         repetitions,
     )
 
-    # Intent: final output keeps the comparison direct and easy to verify.
     print(f"Average list fill without pre-size ({repetitions} runs): {no_presize:.6f}s")
     print(f"Average list fill with pre-size ({repetitions} runs): {with_presize:.6f}s")
 

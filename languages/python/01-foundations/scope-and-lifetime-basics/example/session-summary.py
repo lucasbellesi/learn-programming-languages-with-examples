@@ -1,10 +1,13 @@
+# This helper example focuses on isolating one scope-sensitive helper so lifetime differences stay
+# visible.
+
 # This extra example extends scope and lifetime basics with a session summary.
-# Example purpose: keep temporary variables local to helper functions.
 
 BONUS_POINTS = 5
 PASSING_SCORE = 70
 
 
+# Keep this helper separate so the main example can focus on the larger idea without extra noise.
 def summarize_attempt(name, score):
     effective_score = score + BONUS_POINTS
     passed = effective_score >= PASSING_SCORE

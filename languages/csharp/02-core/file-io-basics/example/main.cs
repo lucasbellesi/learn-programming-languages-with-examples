@@ -1,8 +1,10 @@
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows reading plain-text files, parsing rows, and writing clear results.
+// In C#, the example uses the standard library and static types to keep the workflow structured.
 
 using System;
 using System.IO;
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 class Program
 {
     static bool TryParseScoreRow(string line, out string name, out int score)
@@ -10,9 +12,7 @@ class Program
         name = string.Empty;
         score = 0;
 
-        // Intent: normalize row parsing so the main flow can stay focused on I/O steps.
         string[] parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-        // Intent: guard malformed rows before numeric parsing logic runs.
         if (parts.Length != 2 || !int.TryParse(parts[1], out score))
         {
             return false;
@@ -22,9 +22,10 @@ class Program
         return true;
     }
 
+    // Run one deterministic scenario so the console output makes reading plain-text files, parsing rows, and writing clear results easy to verify.
     static void Main()
     {
-        // Program flow: prepare input, parse rows, then generate a summary file.
+        // Build the sample state first, then let the later output confirm the behavior step by step.
         string runDirectory = Path.Combine(Path.GetTempPath(), "learn-lang-file-io-csharp");
         Directory.CreateDirectory(runDirectory);
         string inputPath = Path.Combine(runDirectory, "scores.txt");
@@ -41,7 +42,6 @@ class Program
         using (StreamReader reader = new StreamReader(inputPath))
         {
             string? line;
-            // Intent: iterate through file rows in a deterministic order.
             while ((line = reader.ReadLine()) is not null)
             {
                 if (!TryParseScoreRow(line, out string name, out int score))
@@ -51,7 +51,7 @@ class Program
 
                 validRows++;
                 sum += score;
-                // Intent: print parsed rows so learners can verify intermediate state.
+                // Print the observed state here so learners can connect the code path to a concrete result.
                 Console.WriteLine($"{name} -> {score}");
             }
         }

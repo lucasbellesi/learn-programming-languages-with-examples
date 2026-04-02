@@ -1,9 +1,12 @@
-# Example purpose: show deterministic cleanup with a context manager.
+# This example shows tying resource cleanup to object lifetime so cleanup stays predictable.
+# In Python, the example favors direct readable steps while keeping validation visible.
 
 from __future__ import annotations
 
 
+# Define the reusable pieces first so the main flow can focus on one observable scenario.
 class BufferLease:
+    # Build the sample state first, then let the later output confirm the behavior step by step.
     active_leases = 0
 
     def __init__(self, name: str, size: int) -> None:
@@ -45,8 +48,9 @@ class BufferLease:
             raise RuntimeError("buffer already closed")
 
 
+# Run one deterministic scenario so the console output makes tying resource cleanup to object
+# lifetime so cleanup stays predictable easy to verify.
 def main() -> None:
-    # Program flow: create scoped buffers, do work, and rely on context-manager cleanup.
     print(f"Active before scope: {BufferLease.active_leases}")
 
     with BufferLease("scores", 5) as scores:
@@ -59,7 +63,6 @@ def main() -> None:
             print(f"Scratch: {scratch.describe()}")
             print(f"Active inside scope: {BufferLease.active_leases}")
 
-    # Intent: final state confirms that cleanup happened at scope exit.
     print(f"Active after scope: {BufferLease.active_leases}")
 
 

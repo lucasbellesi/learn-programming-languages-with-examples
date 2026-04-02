@@ -1,3 +1,5 @@
+// This helper example focuses on keeping presentation rules separate from calculations and program startup.
+
 import type { InvoiceSummary, LineItem } from "./pricing";
 
 export function renderSummary(

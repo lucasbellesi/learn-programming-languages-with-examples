@@ -1,5 +1,7 @@
+# This helper example focuses on isolating the reusable generic behavior before the example wires it
+# together.
+
 # This extra example extends templates-basics with reusable typed helpers.
-# Example purpose: print sequences and sum numeric values with one shared implementation.
 
 from typing import TypeVar
 
@@ -7,6 +9,7 @@ T = TypeVar("T")
 N = TypeVar("N", int, float)
 
 
+# Keep this helper separate so the main example can focus on the larger idea without extra noise.
 def print_list(values: list[T], label: str) -> None:
     print(f"{label}: [{', '.join(str(value) for value in values)}]")
 

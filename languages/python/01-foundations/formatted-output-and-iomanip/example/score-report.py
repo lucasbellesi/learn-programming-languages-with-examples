@@ -1,5 +1,6 @@
+# This helper example focuses on formatted output so alignment rules are easy to compare.
+
 # This extra example extends formatted output with a compact score report.
-# Example purpose: align labels, numbers, and a final summary row.
 
 students = [
     ("Ana", 91, 4),

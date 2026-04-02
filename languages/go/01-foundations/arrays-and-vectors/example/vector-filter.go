@@ -1,10 +1,12 @@
+// This helper example focuses on isolating one collection transformation so the filtering rule stands out.
+
 // This extra example extends arrays-and-vectors with a focused filtering task.
-// Example purpose: isolate slice building and threshold-based filtering.
 
 package main
 
 import "fmt"
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 func main() {
 	var count int
 	fmt.Print("How many numbers? ")

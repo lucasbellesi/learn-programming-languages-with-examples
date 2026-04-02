@@ -1,11 +1,14 @@
-# Example purpose: show a modular structure by separating pricing, formatting, and orchestration.
+# This example shows splitting responsibilities so entrypoints and helpers stay focused.
+# In Python, the example favors direct readable steps while keeping validation visible.
 
 from formatting import render_summary
 from pricing import build_summary
 
 
+# Run one deterministic scenario so the console output makes splitting responsibilities so
+# entrypoints and helpers stay focused easy to verify.
 def main() -> None:
-    # Program flow: define input data, delegate calculations, then format a report.
+    # Build the sample state first, then let the later output confirm the behavior step by step.
     items = [
         {"name": "Notebook", "quantity": 2, "unit_price": 3.50},
         {"name": "Pencil", "quantity": 5, "unit_price": 0.80},
@@ -14,7 +17,6 @@ def main() -> None:
 
     summary = build_summary(items, 10.0, 7.5)
 
-    # Intent: keep console output in the entrypoint while reusable logic stays in helpers.
     print(render_summary(summary))
 
 

@@ -1,3 +1,6 @@
+// This example shows reordering data and locating values with deliberate search logic.
+// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+
 function binarySearch(values: number[], target: number): number {
     let left = 0;
     let right = values.length - 1;

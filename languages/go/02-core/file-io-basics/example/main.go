@@ -1,4 +1,5 @@
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows reading plain-text files, parsing rows, and writing clear results.
+// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
 
 package main
 
@@ -11,10 +12,9 @@ import (
 	"strings"
 )
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 func parseScoreRow(line string) (string, int, bool) {
-	// Intent: keep row parsing logic isolated so the main flow is easy to follow.
 	parts := strings.Fields(line)
-	// Intent: guard malformed rows before attempting integer conversion.
 	if len(parts) != 2 {
 		return "", 0, false
 	}
@@ -27,10 +27,12 @@ func parseScoreRow(line string) (string, int, bool) {
 	return parts[0], score, true
 }
 
+// Run one deterministic scenario so the console output makes reading plain-text files, parsing rows, and writing clear results easy to verify.
 func main() {
-	// Program flow: prepare input, parse rows, then generate a summary file.
+	// Build the sample state first, then let the later output confirm the behavior step by step.
 	runDirectory := filepath.Clean(filepath.Join(os.TempDir(), "learn-lang-file-io-go"))
 	if err := os.MkdirAll(runDirectory, 0o755); err != nil {
+		// Print the observed state here so learners can connect the code path to a concrete result.
 		fmt.Println("Could not create temp directory.")
 		return
 	}
@@ -57,7 +59,6 @@ func main() {
 	sum := 0
 	scanner := bufio.NewScanner(file)
 
-	// Intent: iterate through file rows in a deterministic order.
 	for scanner.Scan() {
 		line := scanner.Text()
 		name, score, ok := parseScoreRow(line)
@@ -67,7 +68,6 @@ func main() {
 
 		validRows++
 		sum += score
-		// Intent: print parsed rows so learners can verify intermediate state.
 		fmt.Printf("%s -> %d\n", name, score)
 	}
 

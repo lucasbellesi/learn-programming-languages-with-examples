@@ -1,9 +1,11 @@
+// This helper example focuses on isolating string cleanup before the main example combines the steps.
+
 // This extra example extends strings with text normalization and token extraction.
-// Example purpose: separate character cleanup from token building.
 
 using System;
 using System.Collections.Generic;
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 class Program
 {
     static void Main()

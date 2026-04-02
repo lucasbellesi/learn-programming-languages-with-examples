@@ -1,3 +1,6 @@
+// This helper example focuses on focusing on the frequency summary without repeating the full
+// program flow.
+
 #include <algorithm>
 #include <iostream>
 #include <map>

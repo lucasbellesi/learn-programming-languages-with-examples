@@ -1,7 +1,9 @@
+# This helper example focuses on isolating one pass over the data so the main example can explain
+# the result clearly.
+
 # This extra example extends algorithms basics with a best-streak scan.
-# Example purpose: track the longest rising streak with one pass.
 
-
+# Keep this helper separate so the main example can focus on the larger idea without extra noise.
 def longest_rising_streak(values):
     if not values:
         return 0, []

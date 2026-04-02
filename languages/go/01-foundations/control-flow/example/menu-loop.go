@@ -1,10 +1,12 @@
+// This helper example focuses on focusing on the repeated menu interaction without distracting setup code.
+
 // This extra example extends control-flow with a menu-driven loop.
-// Example purpose: show repeated branching and state updates.
 
 package main
 
 import "fmt"
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 func main() {
 	currentSum := 0
 

@@ -1,3 +1,7 @@
+// This example shows tracking ownership and lifetime when multiple references can observe the same value.
+// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 type Note = {
     id: string;
     body: string;
@@ -29,7 +33,9 @@ class NoteOwner {
     }
 }
 
+// Run one deterministic scenario so the console output makes tracking ownership and lifetime when multiple references can observe the same value easy to verify.
 function main(): void {
+    // Build the sample state first, then let the later output confirm the behavior step by step.
     const originalNote: Note = {
         id: "note-101",
         body: "Review release checklist",
@@ -38,10 +44,10 @@ function main(): void {
     const inbox = new NoteOwner("inbox", originalNote);
     const archive = new NoteOwner("archive", null);
 
+    // Print the observed state here so learners can connect the code path to a concrete result.
     console.log(inbox.describe());
     console.log(archive.describe());
 
-    // Intent: model a move by handing over the reference and clearing the old owner.
     inbox.transferTo(archive);
 
     console.log(inbox.describe());

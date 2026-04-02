@@ -1,3 +1,5 @@
+// This helper example focuses on contrasting two sorting behaviors without extra setup noise.
+
 #include <algorithm>
 #include <iostream>
 #include <string>
@@ -10,6 +12,7 @@ struct Record {
     string name;
 };
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 void printRecords(const vector<Record>& records, const string& title) {
     cout << title << '\n';
     for (const Record& record : records) {

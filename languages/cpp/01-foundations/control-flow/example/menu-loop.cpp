@@ -1,3 +1,6 @@
+// This helper example focuses on focusing on the repeated menu interaction without distracting
+// setup code.
+
 #include <iostream>
 
 using namespace std;

@@ -1,12 +1,12 @@
-// This example demonstrates error handling and defensive programming concepts.
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows guarding risky inputs so failures stay explicit and controlled.
+// In C++, the example keeps value flow, references, and explicit control visible.
 
 #include <iostream>
 #include <limits>
 using namespace std;
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 bool safeDivide(double left, double right, double& result) {
-    // Intent: guard invalid or edge-case paths before the main path continues.
     if (right == 0.0) {
         return false;
     }
@@ -14,14 +14,15 @@ bool safeDivide(double left, double right, double& result) {
     return true;
 }
 
+// Run one deterministic scenario so the console output makes guarding risky inputs so failures stay
+// explicit and controlled easy to verify.
 int main() {
-    // Program flow: collect input, apply core logic, then print a verifiable result.
+    // Build the sample state first, then let the later output confirm the behavior step by step.
     double a = 0.0;
     double b = 0.0;
 
-    // Intent: print intermediate or final output for quick behavior verification.
+    // Print the observed state here so learners can connect the code path to a concrete result.
     cout << "Enter two numbers: ";
-    // Intent: gather typed input first so later operations are predictable.
     if (!(cin >> a >> b)) {
         cout << "Invalid numeric input.\n";
         return 0;

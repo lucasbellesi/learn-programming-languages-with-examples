@@ -1,3 +1,6 @@
+// This example shows how names stay visible only inside the blocks that own them.
+// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+
 function makeCounter(start: number): () => number {
     let current = start;
     return () => {

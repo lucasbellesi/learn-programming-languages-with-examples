@@ -1,6 +1,9 @@
+# This helper example focuses on keeping pricing logic separate from orchestration and output code.
+
 from __future__ import annotations
 
 
+# Keep this helper separate so the main example can focus on the larger idea without extra noise.
 def build_summary(
     items: list[dict[str, float]], discount_percent: float, tax_percent: float
 ) -> dict[str, float]:

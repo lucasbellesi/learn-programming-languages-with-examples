@@ -1,13 +1,11 @@
-# This example demonstrates strings concepts.
-# Example purpose: show the module flow with clear, beginner-friendly steps.
+# This example shows cleaning and combining text while preserving readable string logic.
+# In Python, the example favors direct readable steps while keeping validation visible.
 
-# Intent: gather typed input first so later operations are predictable.
+# Run one direct scenario at the top level so the printed result is easy to verify.
 line = input("Enter a sentence: ")
 
 cleaned_chars = []
-# Intent: iterate through data in a clear and deterministic order.
 for char in line:
-    # Intent: guard invalid or edge-case paths before the main path continues.
     if char.isalnum():
         cleaned_chars.append(char.lower())
     else:
@@ -16,7 +14,7 @@ for char in line:
 cleaned = "".join(cleaned_chars)
 words = [word for word in cleaned.split() if word]
 
-# Intent: print intermediate or final output for quick behavior verification.
+# Print the observed state here so learners can match the code path to the result.
 print(f"Normalized text: {cleaned}")
 print(f"Tokens ({len(words)}):")
 for word in words:

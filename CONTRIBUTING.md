@@ -88,12 +88,11 @@ The public PowerShell and Bash scripts are thin wrappers over the shared Python 
   - recommended `## Cross-Language Notes` before `## What To Check`
 - Every implemented level README should include required `## Learning Metadata` before `## Module Order` with `Difficulty`, `Estimated Time`, `Prerequisites`, and `Study Strategy`.
 - Checkpoint README structure should mirror the matching C++ checkpoint style, not the module README contract.
-- Every `example/main.*` file should include intent-first comments for:
-  - program flow,
-  - input/validation blocks,
-  - core algorithm or transformation blocks,
-  - important branching decisions,
-  - output/verification sections.
+- Every hand-written code file under `example/` should include intent-first comments:
+  - a short file header comment that explains what the example teaches
+  - comments before program flow, validation, core transformation, branching, or output blocks when those blocks are non-trivial
+  - language-specific notes when the example is an adaptation rather than a direct translation of the C++ concept
+  - no empty scaffolding comments such as `Intent:` and no line-by-line narration of obvious syntax
 - Every exercise file must contain complete, runnable content.
 - Avoid external dependencies and test frameworks for C++ modules.
 - Avoid external dependencies and test frameworks for non-C++ checkpoints.

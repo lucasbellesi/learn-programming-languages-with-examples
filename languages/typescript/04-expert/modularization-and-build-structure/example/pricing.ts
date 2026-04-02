@@ -1,3 +1,5 @@
+// This helper example focuses on keeping pricing logic separate from orchestration and output code.
+
 export type LineItem = {
     name: string;
     quantity: number;

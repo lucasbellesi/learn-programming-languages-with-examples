@@ -1,3 +1,6 @@
+// This example shows writing generic code that stays useful across multiple data types.
+// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+
 function firstOrNull<T>(values: T[]): T | null {
     return values.length === 0 ? null : values[0]!;
 }

@@ -1,7 +1,9 @@
-// Example purpose: adapt smart-pointer ideas to ownership transfer and weak observation in C#.
+// This example shows tracking ownership and lifetime when multiple references can observe the same value.
+// In C#, the example uses the standard library and static types to keep the workflow structured.
 
 using System;
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 sealed class Report
 {
     public Report(string title)
@@ -67,9 +69,10 @@ sealed class PreviewPane
 
 class Program
 {
+    // Run one deterministic scenario so the console output makes tracking ownership and lifetime when multiple references can observe the same value easy to verify.
     static void Main()
     {
-        // Program flow: move one strongly-owned reference, then observe a weak reference expire.
+        // Build the sample state first, then let the later output confirm the behavior step by step.
         ReportOwner inbox = new ReportOwner("Inbox", new Report("Quarterly Summary"));
         ReportOwner archive = new ReportOwner("Archive", null);
 
@@ -82,7 +85,6 @@ class Program
         PreviewPane preview = CreatePreview();
         preview.Describe();
 
-        // Intent: the helper method released the last strong owner before we force collection.
         GC.Collect();
         GC.WaitForPendingFinalizers();
         GC.Collect();

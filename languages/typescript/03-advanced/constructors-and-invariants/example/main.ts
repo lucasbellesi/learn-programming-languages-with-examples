@@ -1,3 +1,6 @@
+// This example shows building objects that start valid and stay valid through guarded updates.
+// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+
 class BankAccount {
     #balance: number;
 

@@ -1,10 +1,12 @@
+// This helper example focuses on showing one focused overload or helper so the main example stays easy to scan.
+
 // This extra example extends functions with runtime-type dispatch.
-// Example purpose: mirror overload-style behavior in a language without function overloading.
 
 package main
 
 import "fmt"
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 func printValue(value any) {
 	switch typed := value.(type) {
 	case int:

@@ -1,15 +1,16 @@
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows how copying, sharing, or transferring state changes later behavior.
+// In C#, the example uses the standard library and static types to keep the workflow structured.
 
 using System;
 using System.Collections.Generic;
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 class Buffer
 {
     private List<int> values;
 
     public Buffer(int size)
     {
-        // Intent: normalize invalid sizes so state stays predictable.
         int safeSize = size < 0 ? 0 : size;
         values = new List<int>(new int[safeSize]);
         Console.WriteLine($"Constructed (size={values.Count})");
@@ -22,7 +23,6 @@ class Buffer
 
     public Buffer Clone()
     {
-        // Intent: deep copy isolates future changes between instances.
         Buffer copy = new Buffer(new List<int>(values));
         Console.WriteLine("Cloned");
         return copy;
@@ -30,7 +30,6 @@ class Buffer
 
     public Buffer Transfer()
     {
-        // Intent: transfer operation moves internal ownership-like responsibility.
         List<int> movedValues = values;
         values = new List<int>();
         Buffer transferred = new Buffer(movedValues);
@@ -43,13 +42,15 @@ class Buffer
 
 class Program
 {
+    // Run one deterministic scenario so the console output makes how copying, sharing, or transferring state changes later behavior easy to verify.
     static void Main()
     {
-        // Program flow: create, clone, transfer, then inspect resulting states.
+        // Build the sample state first, then let the later output confirm the behavior step by step.
         Buffer first = new Buffer(3);
         Buffer second = first.Clone();
         Buffer third = second.Transfer();
 
+        // Print the observed state here so learners can connect the code path to a concrete result.
         Console.WriteLine($"first size: {first.Size}");
         Console.WriteLine($"second size (after transfer): {second.Size}");
         Console.WriteLine($"third size: {third.Size}");

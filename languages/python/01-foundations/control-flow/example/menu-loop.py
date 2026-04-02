@@ -1,5 +1,6 @@
+# This helper example focuses on the repeated menu interaction without distracting setup code.
+
 # This extra example extends control-flow with a menu-driven loop.
-# Example purpose: show repeated branching and state updates.
 
 current_sum = 0
 

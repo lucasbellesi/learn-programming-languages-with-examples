@@ -1,7 +1,9 @@
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows writing generic code that stays useful across multiple data types.
+// In C#, the example uses the standard library and static types to keep the workflow structured.
 
 using System;
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 static class Helpers
 {
     public static T MaxValue<T>(T left, T right)
@@ -24,16 +26,17 @@ class Pair<T>
 
     public void Print()
     {
-        // Intent: print final state from a generic container in one predictable format.
         Console.WriteLine($"({first}, {second})");
     }
 }
 
 class Program
 {
+    // Run one deterministic scenario so the console output makes writing generic code that stays useful across multiple data types easy to verify.
     static void Main()
     {
-        // Program flow: call one generic method, then inspect one generic class instance.
+        // Build the sample state first, then let the later output confirm the behavior step by step.
+        // Print the observed state here so learners can connect the code path to a concrete result.
         Console.WriteLine($"MaxValue(4, 7) = {Helpers.MaxValue(4, 7)}");
         Console.WriteLine($"MaxValue(2.5, 1.2) = {Helpers.MaxValue(2.5, 1.2)}");
 

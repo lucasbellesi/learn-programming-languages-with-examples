@@ -1,4 +1,5 @@
-// Example purpose: show goroutines, mutexes, and channels in one small runnable flow.
+// This example shows starting multiple units of work and combining their results safely.
+// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
 
 package main
 
@@ -7,8 +8,9 @@ import (
 	"sync"
 )
 
+// Run one deterministic scenario so the console output makes starting multiple units of work and combining their results safely easy to verify.
 func main() {
-	// Program flow: first protect a shared counter, then coordinate producer-consumer work.
+	// Build the sample state first, then let the later output confirm the behavior step by step.
 	const workerCount = 4
 	const incrementsPerWorker = 10000
 
@@ -29,6 +31,7 @@ func main() {
 	}
 
 	wg.Wait()
+	// Print the observed state here so learners can connect the code path to a concrete result.
 	fmt.Printf("Expected counter: %d\n", workerCount*incrementsPerWorker)
 	fmt.Printf("Actual counter: %d\n", counter)
 
@@ -51,6 +54,5 @@ func main() {
 	}
 	close(jobs)
 
-	// Intent: final output verifies the total collected by the consumer goroutine.
 	fmt.Printf("Consumed total: %d\n", <-totals)
 }

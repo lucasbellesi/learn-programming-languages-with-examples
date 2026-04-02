@@ -1,19 +1,17 @@
-# Example purpose: show the module flow with clear, beginner-friendly steps.
+# This example shows rejecting invalid input before the main workflow continues.
+# In Python, the example favors direct readable steps while keeping validation visible.
 
-
+# Define the reusable pieces first so the main flow can focus on one observable scenario.
 def read_int_in_range(prompt, min_value, max_value):
-    # Intent: iterate through data in a clear and deterministic order.
+    # Build the sample state first, then let the later output confirm the behavior step by step.
     while True:
-        # Intent: gather typed input first so later operations are predictable.
         raw = input(prompt).strip()
         try:
             value = int(raw)
         except ValueError:
-            # Intent: print intermediate or final output for quick behavior verification.
             print("Invalid input type. Please enter an integer.")
             continue
 
-        # Intent: guard invalid or edge-case paths before the main path continues.
         if value < min_value or value > max_value:
             print(f"Value must be between {min_value} and {max_value}.")
             continue
@@ -37,6 +35,8 @@ def read_float_in_range(prompt, min_value, max_value):
         return value
 
 
+# Run one deterministic scenario so the console output makes rejecting invalid input before the main
+# workflow continues easy to verify.
 def main():
     age = read_int_in_range("Enter your age (1-120): ", 1, 120)
     gpa = read_float_in_range("Enter your GPA (0.0-4.0): ", 0.0, 4.0)

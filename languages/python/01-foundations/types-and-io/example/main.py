@@ -1,12 +1,12 @@
-# This example demonstrates types and io concepts.
-# Example purpose: show the module flow with clear, beginner-friendly steps.
+# This example shows reading typed input carefully and turning raw text into values.
+# In Python, the example favors direct readable steps while keeping validation visible.
 
-# Intent: gather typed input first so later operations are predictable.
+# Run one direct scenario at the top level so the printed result is easy to verify.
 full_name = input("Enter your full name: ")
 age = int(input("Enter your age: "))
 gpa = float(input("Enter your GPA: "))
 
-# Intent: print intermediate or final output for quick behavior verification.
+# Print the observed state here so learners can match the code path to the result.
 print("\n--- Student Summary ---")
 print(f"Name: {full_name}")
 print(f"Age: {age}")

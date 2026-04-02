@@ -1,8 +1,9 @@
-// This example demonstrates functions concepts.
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows breaking behavior into reusable functions with clear inputs and outputs.
+// In C#, the example uses the standard library and static types to keep the workflow structured.
 
 using System;
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 class Program
 {
     static int Add(int a, int b)
@@ -19,13 +20,14 @@ class Program
 
     static void PrintArray(int[] values)
     {
-        // Intent: print intermediate or final output for quick behavior verification.
         Console.WriteLine("[" + string.Join(", ", values) + "]");
     }
 
+    // Run one deterministic scenario so the console output makes breaking behavior into reusable functions with clear inputs and outputs easy to verify.
     static void Main()
     {
-        // Program flow: collect input, apply core logic, then print a verifiable result.
+        // Build the sample state first, then let the later output confirm the behavior step by step.
+        // Print the observed state here so learners can connect the code path to a concrete result.
         Console.WriteLine(Add(4, 6));
 
         int[] numbers = { 10, 20, 30 };

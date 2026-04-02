@@ -1,5 +1,6 @@
+# This helper example focuses on the retry loop so invalid input handling is easy to trace.
+
 # This extra example extends types-and-io with a validation loop.
-# Example purpose: show how string input and numeric checks work together.
 
 full_name = input("Enter your full name: ").strip()
 

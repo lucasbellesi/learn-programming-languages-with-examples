@@ -1,3 +1,5 @@
+// This helper example focuses on separating row parsing from the higher-level file workflow.
+
 #include <fstream>
 #include <iostream>
 #include <sstream>

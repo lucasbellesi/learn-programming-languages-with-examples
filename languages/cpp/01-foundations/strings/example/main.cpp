@@ -1,4 +1,5 @@
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows cleaning and combining text while preserving readable string logic.
+// In C++, the example keeps value flow, references, and explicit control visible.
 
 #include <cctype>
 #include <iostream>
@@ -6,15 +7,16 @@
 #include <string>
 using namespace std;
 
+// Run one deterministic scenario so the console output makes cleaning and combining text while
+// preserving readable string logic easy to verify.
 int main() {
-    // Program flow: collect input, apply core logic, then print a verifiable result.
+    // Build the sample state first, then let the later output confirm the behavior step by step.
     int year = 0;
     string fullName;
     string sentence;
 
-    // Intent: print intermediate or final output for quick behavior verification.
+    // Print the observed state here so learners can connect the code path to a concrete result.
     cout << "Enter your birth year: ";
-    // Intent: gather typed input first so later operations are predictable.
     cin >> year;
 
     // Clear leftover newline before getline.
@@ -32,7 +34,6 @@ int main() {
     cout << "Sentence length: " << sentence.size() << '\n';
 
     const size_t spacePos = sentence.find(' ');
-    // Intent: guard invalid or edge-case paths before the main path continues.
     if (spacePos != string::npos) {
         const string firstWord = sentence.substr(0, spacePos);
         cout << "First word: " << firstWord << '\n';
@@ -41,7 +42,6 @@ int main() {
     }
 
     int vowelCount = 0;
-    // Intent: iterate through data in a clear and deterministic order.
     for (char ch : sentence) {
         const char lower = static_cast<char>(tolower(static_cast<unsigned char>(ch)));
         if (lower == 'a' || lower == 'e' || lower == 'i' || lower == 'o' || lower == 'u') {

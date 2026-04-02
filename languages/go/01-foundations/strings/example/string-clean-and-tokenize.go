@@ -1,5 +1,6 @@
+// This helper example focuses on isolating string cleanup before the main example combines the steps.
+
 // This extra example extends strings with text normalization and token extraction.
-// Example purpose: separate character cleanup from token building.
 
 package main
 
@@ -11,6 +12,7 @@ import (
 	"unicode"
 )
 
+// Keep this helper separate so the main example can focus on the larger idea without extra noise.
 func main() {
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Print("Enter a sentence: ")

@@ -1,8 +1,10 @@
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows treating different concrete types through one common interface.
+// In C#, the example uses the standard library and static types to keep the workflow structured.
 
 using System;
 using System.Collections.Generic;
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 abstract class Shape
 {
     public abstract double Area();
@@ -47,14 +49,15 @@ class Circle : Shape
 
 class Program
 {
+    // Run one deterministic scenario so the console output makes treating different concrete types through one common interface easy to verify.
     static void Main()
     {
-        // Program flow: create mixed shapes and evaluate them through one base type.
+        // Build the sample state first, then let the later output confirm the behavior step by step.
         List<Shape> shapes = new List<Shape> { new Rectangle(3.0, 4.0), new Circle(2.0) };
 
-        // Intent: polymorphic iteration keeps caller logic independent from concrete classes.
         foreach (Shape shape in shapes)
         {
+            // Print the observed state here so learners can connect the code path to a concrete result.
             Console.WriteLine($"{shape.Name} area: {shape.Area():F2}");
         }
     }

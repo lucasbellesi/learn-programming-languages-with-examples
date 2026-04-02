@@ -1,19 +1,20 @@
-// This example demonstrates file io basics concepts.
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows reading plain-text files, parsing rows, and writing clear results.
+// In C++, the example keeps value flow, references, and explicit control visible.
 
 #include <fstream>
 #include <iostream>
 #include <string>
 using namespace std;
 
+// Run one deterministic scenario so the console output makes reading plain-text files, parsing
+// rows, and writing clear results easy to verify.
 int main() {
-    // Program flow: collect input, apply core logic, then print a verifiable result.
+    // Build the sample state first, then let the later output confirm the behavior step by step.
     const string inputPath = "scores.txt";
     ifstream input(inputPath);
 
-    // Intent: guard invalid or edge-case paths before the main path continues.
     if (!input) {
-        // Intent: print intermediate or final output for quick behavior verification.
+        // Print the observed state here so learners can connect the code path to a concrete result.
         cout << "Could not open " << inputPath << "\n";
         cout << "Create a file named scores.txt with lines like: name score\n";
         return 0;
@@ -24,7 +25,6 @@ int main() {
     int count = 0;
     int sum = 0;
 
-    // Intent: iterate through data in a clear and deterministic order.
     while (input >> name >> score) {
         cout << name << " -> " << score << '\n';
         sum += score;

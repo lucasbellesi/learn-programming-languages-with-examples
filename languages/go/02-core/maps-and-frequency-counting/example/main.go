@@ -1,4 +1,5 @@
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows counting repeated values and summarizing them through keyed lookups.
+// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
 
 package main
 
@@ -7,14 +8,13 @@ import (
 	"sort"
 )
 
+// Run one deterministic scenario so the console output makes counting repeated values and summarizing them through keyed lookups easy to verify.
 func main() {
-	// Program flow: iterate text, count characters, then print a frequency table.
+	// Build the sample state first, then let the later output confirm the behavior step by step.
 	text := "banana bandana"
 	frequencies := make(map[rune]int)
 
-	// Intent: process characters in deterministic input order before aggregation.
 	for _, ch := range text {
-		// Intent: skip separators so counts focus on meaningful symbols.
 		if ch == ' ' {
 			continue
 		}
@@ -27,7 +27,7 @@ func main() {
 	}
 	sort.Slice(keys, func(i int, j int) bool { return keys[i] < keys[j] })
 
-	// Intent: print aggregated frequencies in sorted key order.
+	// Print the observed state here so learners can connect the code path to a concrete result.
 	fmt.Println("Character frequencies:")
 	for _, key := range keys {
 		fmt.Printf("%c -> %d\n", key, frequencies[key])

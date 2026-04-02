@@ -1,20 +1,22 @@
-// Example purpose: show the module flow with clear, beginner-friendly steps.
+// This example shows reading typed input carefully and turning raw text into values.
+// In C++, the example keeps value flow, references, and explicit control visible.
 
 #include <iostream>
 #include <limits>
 #include <string>
 using namespace std;
 
+// Run one deterministic scenario so the console output makes reading typed input carefully and
+// turning raw text into values easy to verify.
 int main() {
-    // Program flow: collect input, apply core logic, then print a verifiable result.
+    // Build the sample state first, then let the later output confirm the behavior step by step.
     string fullName;
     int age = 0;
     double gpa = 0.0;
     char enrolledAnswer = 'n';
 
-    // Intent: print intermediate or final output for quick behavior verification.
+    // Print the observed state here so learners can connect the code path to a concrete result.
     cout << "Enter your full name: ";
-    // Intent: gather typed input first so later operations are predictable.
     getline(cin, fullName);
 
     cout << "Enter your age: ";

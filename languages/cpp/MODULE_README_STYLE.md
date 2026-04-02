@@ -35,3 +35,5 @@ This structure is required for all implemented concept modules.
 - Align language with beginner readability.
 - Keep content in English.
 - Use folder names exactly as they appear in paths.
+- Hand-written files under `example/` should use medium-density, intent-first comments: one short header comment plus comments before meaningful logic or validation blocks.
+- Comments should explain concepts, tradeoffs, or observable behavior, not narrate syntax line by line.

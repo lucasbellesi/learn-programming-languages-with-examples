@@ -1,9 +1,11 @@
-// Example purpose: show deterministic cleanup with Close and defer in Go.
+// This example shows tying resource cleanup to object lifetime so cleanup stays predictable.
+// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
 
 package main
 
 import "fmt"
 
+// Define the reusable pieces first so the main flow can focus on one observable scenario.
 type trackedBuffer struct {
 	name   string
 	values []int
@@ -54,9 +56,11 @@ func (b *trackedBuffer) ensureOpen() {
 	}
 }
 
+// Run one deterministic scenario so the console output makes tying resource cleanup to object lifetime so cleanup stays predictable easy to verify.
 func main() {
-	// Program flow: create scoped buffers, do work, and rely on deferred cleanup.
+	// Build the sample state first, then let the later output confirm the behavior step by step.
 	active := 0
+	// Print the observed state here so learners can connect the code path to a concrete result.
 	fmt.Printf("Active before scope: %d\n", active)
 
 	func() {
@@ -73,6 +77,5 @@ func main() {
 		fmt.Printf("Active inside scope: %d\n", active)
 	}()
 
-	// Intent: final state confirms that deferred cleanup ran at scope exit.
 	fmt.Printf("Active after scope: %d\n", active)
 }
