@@ -29,6 +29,12 @@ node build/typescript/03-advanced/copy-and-move-semantics/example/main.js
 - Mutating an alias and expecting the original to stay unchanged.
 - Cloning blindly without understanding the data shape.
 
+## Cross-Language Notes
+
+- TypeScript adapts this topic through reference identity, shallow copies, and explicit clone helpers instead of real move operations.
+- Compared with Python, static types help describe object shape, but assignment still shares runtime identity by default.
+- The key comparison is how aliasing behaves in a typed JavaScript runtime versus a native ownership model.
+
 ## Exercise Focus
 
 - exercises/01.ts: show shallow copy behavior on a nested object.

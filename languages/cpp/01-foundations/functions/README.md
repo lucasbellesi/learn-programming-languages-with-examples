@@ -38,6 +38,12 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/function-overload-basics.cpp -o f
 - Missing `const` in read-only reference parameters.
 - Missing return values in non-`void` functions.
 
+## Cross-Language Notes
+
+- C++ is the baseline for overloads, parameter passing choices, and return-type declarations as distinct language features.
+- Compared with Python, Go, and TypeScript, function signatures carry more control over value and reference behavior.
+- The main comparison is how much semantic weight each language puts on a function declaration.
+
 ## Exercise Focus
 
 - `exercises/01.cpp`: return max of three integers.

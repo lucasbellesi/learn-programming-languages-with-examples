@@ -28,6 +28,12 @@ dotnet run --project example/functions-example.csproj
 - Not validating expected input shape before function calls.
 - Ignoring case normalization when counting vowels.
 
+## Cross-Language Notes
+
+- C# stays close to the C++ idea of strong signatures and overloads, but with a more uniform object model and runtime library.
+- Compared with Go, Python, and TypeScript, overload intent remains clearer at the declaration site.
+- The useful comparison is expressive signatures with runtime support versus deliberately simpler function systems.
+
 ## Exercise Focus
 
 - exercises/01.cs: implement maxOfThree and print the maximum of three integers.

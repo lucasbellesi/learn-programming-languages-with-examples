@@ -28,6 +28,12 @@ go run example/main.go
 - Not validating expected input shape before function calls.
 - Ignoring case normalization when counting vowels.
 
+## Cross-Language Notes
+
+- Go keeps functions simple on purpose: no traditional overloading, direct parameter lists, and clear return-value conventions.
+- Compared with C++ and C#, the language chooses less syntax in exchange for fewer abstraction tricks.
+- The key comparison is simplicity and readability versus richer signature-level expressiveness.
+
 ## Exercise Focus
 
 - exercises/01.go: implement maxOfThree and print the maximum of three integers.

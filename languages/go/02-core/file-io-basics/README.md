@@ -28,6 +28,12 @@ go run example/main.go
 - Trusting every row format before validating token count.
 - Ignoring parse errors from numeric conversion.
 
+## Cross-Language Notes
+
+- Go file I/O emphasizes small building blocks: open a file, scan lines, parse carefully, and handle returned errors.
+- Compared with Python and TypeScript, it asks for more explicit control flow, but less framework-like machinery than C#.
+- The useful comparison is straightforward error returns versus exception-style or looser scripting flows.
+
 ## Exercise Focus
 
 - exercises/01.go: copy lines from one file to another with line numbers.

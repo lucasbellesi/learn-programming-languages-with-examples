@@ -28,6 +28,12 @@ dotnet run --project example/file-io-basics-example.csproj
 - Parsing rows without checking token count first.
 - Stopping at the first malformed line instead of skipping it safely.
 
+## Cross-Language Notes
+
+- C# keeps file work explicit but wraps it in a richer standard library than the C++ stream model.
+- Compared with Go, Python, and TypeScript, the APIs often feel more feature-rich while staying strongly typed.
+- The main comparison is convenience APIs without losing the need for validation and malformed-row handling.
+
 ## Exercise Focus
 
 - exercises/01.cs: copy lines from one file to another with line numbers.

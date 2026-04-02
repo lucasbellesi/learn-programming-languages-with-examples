@@ -40,6 +40,12 @@ dotnet run --project assessment-02-core.csproj
 - Only values in `0..100` are used for statistics and frequency table.
 - If no valid values are entered, print a friendly message and still create the report file.
 
+## Cross-Language Notes
+
+- Compared with the C++ assessment, this version keeps the same validation target with a richer standard library and a managed runtime.
+- Relative to Python and TypeScript, the report pipeline still benefits from static typing all the way through.
+- The useful comparison is convenience without weakening defensive logic.
+
 ## What To Check
 
 - out-of-range or malformed values do not pollute the valid-score summary

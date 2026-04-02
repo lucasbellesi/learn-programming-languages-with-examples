@@ -36,7 +36,14 @@ Shape areas:
 Total area: ...
 Minimum area: ...
 Maximum area: ...
+Sample counts: [...]
+Computed areas: [...]
 ```
+## Cross-Language Notes
+
+- Compared with the C++ assessment, this version preserves the same abstraction goal with much lighter syntax and weaker compile-time enforcement.
+- Relative to C#, Go, and TypeScript, the shared contract is carried more by design intent than by the type system.
+- The comparison to watch is expressive modeling versus static guarantees.
 
 ## What To Check
 

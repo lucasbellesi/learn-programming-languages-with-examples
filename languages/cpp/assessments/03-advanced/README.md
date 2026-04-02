@@ -37,7 +37,14 @@ Shape areas:
 Total area: ...
 Minimum area: ...
 Maximum area: ...
+Sample counts: [...]
+Computed areas: [...]
 ```
+## Cross-Language Notes
+
+- This is the canonical advanced assessment for abstraction, polymorphism, and generic reuse in one program.
+- Compared with the other tracks, it ties those ideas most directly to explicit ownership and compile-time templates.
+- Use it as the baseline when comparing what advanced abstraction looks like in each language.
 
 ## What To Check
 

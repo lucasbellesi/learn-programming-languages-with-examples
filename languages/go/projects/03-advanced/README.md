@@ -31,6 +31,12 @@ Course: GoBasics | 2/2 enrolled
 Course: Algorithms | 1/3 enrolled
 ```
 
+## Cross-Language Notes
+
+- Compared with the C++ capstone, this version usually reaches the same design goal with lighter structs and interfaces.
+- Relative to C# and TypeScript, it prefers simpler composition over deeper object ceremony.
+- The useful comparison is how much structure is necessary before the design becomes readable.
+
 ## What To Check
 
 - object or struct state changes respect capacity and invariant rules

@@ -28,6 +28,12 @@ go run example/main.go
 - Accepting non-positive counts when statistics require at least one value.
 - Mixing integer and floating-point arithmetic incorrectly.
 
+## Cross-Language Notes
+
+- Go makes input and conversion explicit, usually with scanned strings plus parse helpers and returned errors.
+- Compared with C# and Python, there is less hidden convenience and more emphasis on simple control flow after parsing.
+- The useful comparison is direct error-return handling versus exceptions or looser dynamic conversion.
+
 ## Exercise Focus
 
 - exercises/01.go: read N numeric values and print sum, average, minimum, and maximum.

@@ -28,6 +28,12 @@ dotnet run --project example/copy-and-move-semantics-example.csproj
 - Mutating data through one reference and surprising another caller.
 - Forgetting to clear or invalidate source state after transfer operations.
 
+## Cross-Language Notes
+
+- C# keeps the comparison close to C++ conceptually, but the runtime turns many ownership questions into reference-versus-copy decisions instead of move semantics.
+- Compared with Go, Python, and TypeScript, the object model still makes it natural to discuss explicit clone patterns.
+- The important comparison is when copying is value-like and when references keep sharing the same state.
+
 ## Exercise Focus
 
 - exercises/01.cs: resource-like buffer with clone and transfer operations.

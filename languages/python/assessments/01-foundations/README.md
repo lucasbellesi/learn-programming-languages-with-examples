@@ -55,6 +55,12 @@ Lowest: Bob Lee (55)
 Passed: 2/3
 ```
 
+## Cross-Language Notes
+
+- Compared with the C++ assessment, this version reaches the same summary goal with much less syntax and more runtime flexibility.
+- Relative to C#, Go, and TypeScript, fewer mistakes are caught before execution.
+- The comparison to watch is how much structure the learner must impose manually.
+
 ## What To Check
 
 - full names are preserved exactly as entered

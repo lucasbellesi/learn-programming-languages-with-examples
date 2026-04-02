@@ -44,6 +44,12 @@ Minimum: 77
 Maximum: 91
 ```
 
+## Cross-Language Notes
+
+- This is the canonical file-processing checkpoint: parse rows, reject malformed input, and write a report deterministically.
+- Compared with higher-level tracks, C++ exposes more of the mechanics of streams and parse loops.
+- The useful cross-language question is how much library convenience changes the same defensive workflow.
+
 ## What To Check
 
 - malformed rows are skipped or counted without crashing the program

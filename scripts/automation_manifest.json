@@ -224,6 +224,15 @@
         },
         {
           "program": "languages/python/assessments/03-advanced/main.py"
+          ,
+          "required_stdout_contains": [
+            "Shape areas:",
+            "Total area:",
+            "Minimum area:",
+            "Maximum area:",
+            "Sample counts:",
+            "Computed areas:"
+          ]
         },
         {
           "program": "languages/python/assessments/04-expert/main.py"
@@ -263,7 +272,27 @@
             }
           ],
           "input_file": "smoke-input.txt",
+          "required_stdout_contains": [
+            "Valid records: 3",
+            "Invalid rows skipped: 1",
+            "Average: 85.33",
+            "Report written to report.txt"
+          ],
           "required_outputs": ["report.txt"],
+          "required_output_contains": [
+            {
+              "path": "report.txt",
+              "contains": [
+                "Grade Report",
+                "Valid records: 3",
+                "Invalid rows skipped: 1",
+                "Average: 85.33",
+                "- Ana Smith: 91",
+                "- Bob Lee: 77",
+                "- Carla Mendez: 88"
+              ]
+            }
+          ],
           "cleanup_paths": ["smoke-input.txt", "report.txt"]
         },
         {
@@ -306,6 +335,15 @@
         },
         {
           "program": "languages/go/assessments/03-advanced/main.go"
+          ,
+          "required_stdout_contains": [
+            "Shape areas:",
+            "Total area:",
+            "Minimum area:",
+            "Maximum area:",
+            "Sample counts:",
+            "Computed areas:"
+          ]
         },
         {
           "program": "languages/go/assessments/04-expert/main.go"
@@ -345,7 +383,22 @@
             }
           ],
           "input_file": "smoke-input.txt",
+          "required_stdout_contains": [
+            "Report generated: report.txt"
+          ],
           "required_outputs": ["report.txt"],
+          "required_output_contains": [
+            {
+              "path": "report.txt",
+              "contains": [
+                "Valid rows: 3",
+                "Invalid rows: 1",
+                "Average: 85.33333333333333",
+                "Minimum: 77",
+                "Maximum: 91"
+              ]
+            }
+          ],
           "cleanup_paths": ["smoke-input.txt", "report.txt"]
         },
         {
@@ -388,6 +441,15 @@
         },
         {
           "project": "languages/csharp/assessments/03-advanced/assessment-03-advanced.csproj"
+          ,
+          "required_stdout_contains": [
+            "Shape areas:",
+            "Total area:",
+            "Minimum area:",
+            "Maximum area:",
+            "Sample counts:",
+            "Computed areas:"
+          ]
         },
         {
           "project": "languages/csharp/assessments/04-expert/assessment-04-expert.csproj"
@@ -427,7 +489,22 @@
             }
           ],
           "input_file": "smoke-input.txt",
+          "required_stdout_contains": [
+            "Report generated: report.txt"
+          ],
           "required_outputs": ["report.txt"],
+          "required_output_contains": [
+            {
+              "path": "report.txt",
+              "contains": [
+                "Valid rows: 3",
+                "Invalid rows: 1",
+                "Average: 85.33333333333333",
+                "Minimum: 77",
+                "Maximum: 91"
+              ]
+            }
+          ],
           "cleanup_paths": ["smoke-input.txt", "report.txt"]
         },
         {
@@ -481,6 +558,20 @@
           "input_file": "smoke-input.txt",
           "required_stdout_contains": ["Valid records:", "Invalid rows skipped:", "Report written to report.txt"],
           "required_outputs": ["report.txt"],
+          "required_output_contains": [
+            {
+              "path": "report.txt",
+              "contains": [
+                "Grade Report",
+                "Valid records: 3",
+                "Invalid rows skipped: 1",
+                "Average: 85.33",
+                "- Ana Smith: 91",
+                "- Bob Lee: 77",
+                "- Carla Mendez: 88"
+              ]
+            }
+          ],
           "cleanup_paths": ["smoke-input.txt", "report.txt"]
         },
         {

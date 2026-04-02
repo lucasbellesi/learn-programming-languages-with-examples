@@ -28,6 +28,12 @@ dotnet run --project example/types-and-io-example.csproj
 - Accepting non-positive counts when statistics require at least one value.
 - Mixing integer and floating-point arithmetic incorrectly.
 
+## Cross-Language Notes
+
+- C# keeps the same string-first console model as Python and TypeScript, but parsing still lands in a statically typed program.
+- Compared with C++, stream handling feels higher-level, but failed conversions still need explicit decisions.
+- The key comparison is how much safety comes from the runtime library versus the language itself.
+
 ## Exercise Focus
 
 - exercises/01.cs: read N numeric values and print sum, average, minimum, and maximum.

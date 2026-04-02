@@ -31,6 +31,12 @@ Course: PythonBasics | 2/2 enrolled
 Course: Algorithms | 1/3 enrolled
 ```
 
+## Cross-Language Notes
+
+- Compared with the C++ capstone, this version emphasizes clarity of behavior and modeling over compile-time enforcement.
+- Relative to C#, Go, and TypeScript, dynamic typing makes the abstraction boundaries more social than enforced.
+- The key comparison is readable design intent versus statically checked structure.
+
 ## What To Check
 
 - object or struct state changes respect capacity and invariant rules

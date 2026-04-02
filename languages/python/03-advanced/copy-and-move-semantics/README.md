@@ -28,6 +28,12 @@ python example/main.py
 - Mutating data through one name and surprising another caller.
 - Forgetting to clear source state after transfer operations.
 
+## Cross-Language Notes
+
+- Python adapts the topic through aliasing, shallow copies, deep copies, and mutation boundaries rather than move semantics.
+- Compared with C++ or Go, ownership is much less encoded in syntax and much more visible in object identity and shared state.
+- The core comparison is accidental sharing versus deliberate copying.
+
 ## Exercise Focus
 
 - exercises/01.py: resource-like buffer with clone and transfer operations.

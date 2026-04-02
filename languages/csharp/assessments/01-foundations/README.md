@@ -55,6 +55,12 @@ Lowest: Bob Lee (55)
 Passed: 2/3
 ```
 
+## Cross-Language Notes
+
+- Compared with the C++ assessment, the same beginner goals are tested with less console-API friction.
+- Relative to Python and TypeScript, the type system still makes the target structure more explicit.
+- The useful comparison is easier surface syntax without changing the summary rules.
+
 ## What To Check
 
 - full names are preserved exactly as entered

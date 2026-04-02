@@ -32,6 +32,12 @@ Course: TypeScriptBasics | 2/2 enrolled
 Course: Algorithms | 1/3 enrolled
 ```
 
+## Cross-Language Notes
+
+- Compared with the C++ capstone, this version maps the same advanced modeling goal onto classes plus a structural type system.
+- Relative to C# and Python, it sits between strict object modeling and scripting-level flexibility.
+- The important comparison is which abstraction boundaries are checked at compile time and which remain runtime conventions.
+
 ## What To Check
 
 - object state changes respect capacity and invariant rules

@@ -38,6 +38,12 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/csv-like-reader.cpp -o file_io_cs
 - Not handling malformed lines.
 - Forgetting to close output files (or relying on scope without understanding it).
 
+## Cross-Language Notes
+
+- C++ is the baseline for stream-oriented file I/O and manual parse loops over text lines.
+- Compared with Python and TypeScript, the file APIs are less compact but make the flow of reading and writing more explicit.
+- The key comparison is low-level control versus concise file-processing ergonomics.
+
 ## Exercise Focus
 
 - `exercises/01.cpp`: copy lines with line numbers.

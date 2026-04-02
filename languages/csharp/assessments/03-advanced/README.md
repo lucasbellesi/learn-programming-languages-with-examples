@@ -36,7 +36,14 @@ Shape areas:
 Total area: ...
 Minimum area: ...
 Maximum area: ...
+Sample counts: [...]
+Computed areas: [...]
 ```
+## Cross-Language Notes
+
+- Compared with the C++ assessment, this version keeps the same abstraction target with a smoother managed object model and generics.
+- Relative to Go and TypeScript, class-based polymorphism stays the most direct here.
+- The useful comparison is advanced design with less ownership ceremony but similar conceptual weight.
 
 ## What To Check
 

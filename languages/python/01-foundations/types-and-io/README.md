@@ -28,6 +28,12 @@ python example/main.py
 - Accepting non-positive counts when statistics require at least one value.
 - Mixing integer and floating-point arithmetic incorrectly.
 
+## Cross-Language Notes
+
+- Python starts with strings too, but dynamic values make early experiments feel lighter than in the statically typed tracks.
+- Compared with C++ or Go, most mistakes show up at runtime rather than during compilation.
+- The key comparison is fast experimentation versus the stronger guardrails of explicit typed input pipelines.
+
 ## Exercise Focus
 
 - exercises/01.py: read N numeric values and print sum, average, minimum, and maximum.

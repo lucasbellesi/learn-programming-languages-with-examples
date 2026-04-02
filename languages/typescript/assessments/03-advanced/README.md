@@ -37,7 +37,14 @@ Shape areas:
 Total area: ...
 Minimum area: ...
 Maximum area: ...
+Sample counts: [...]
+Computed areas: [...]
 ```
+## Cross-Language Notes
+
+- Compared with the C++ assessment, this version maps the same advanced abstraction challenge onto classes plus structural typing and generics.
+- Relative to Python, more of the shared contract is visible before runtime; relative to C#, less is tied to a strictly nominal class system.
+- The useful comparison is how a typed JavaScript language balances flexibility and abstraction discipline.
 
 ## What To Check
 

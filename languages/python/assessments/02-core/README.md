@@ -64,6 +64,12 @@ Frequency:
 Report written to core_assessment_report.txt
 ```
 
+## Cross-Language Notes
+
+- Compared with the C++ assessment, this version shortens the mechanics of filtering and counting while keeping the same correctness bar.
+- Relative to C#, Go, and TypeScript, more trust is placed in disciplined runtime checks than in compile-time structure.
+- The comparison to watch is concise code versus explicit static guarantees.
+
 ## What To Check
 
 - out-of-range or malformed values do not pollute the valid-score summary

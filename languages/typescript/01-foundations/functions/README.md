@@ -29,6 +29,12 @@ node build/typescript/01-foundations/functions/example/main.js
 - Forgetting to declare the return type when the function deserves one.
 - Using overloads when a union type would be simpler.
 
+## Cross-Language Notes
+
+- TypeScript sits between Python and C#: functions feel lightweight, but overload signatures and typed returns still shape the API.
+- Compared with Go, the language offers richer declaration-time modeling without going fully C++-style.
+- The main comparison is how type annotations add structure while the JavaScript runtime keeps calls flexible.
+
 ## Exercise Focus
 
 - exercises/01.ts: return the maximum of three integers.

@@ -28,6 +28,12 @@ python example/main.py
 - Parsing rows without checking token count first.
 - Letting one malformed row terminate the full run.
 
+## Cross-Language Notes
+
+- Python makes file processing compact, so the comparison with C++ and Go highlights how little ceremony is required to read and transform text.
+- Compared with C#, the code often becomes shorter, but validation discipline matters just as much.
+- The key lesson is that concise I/O does not remove the need for defensive parsing.
+
 ## Exercise Focus
 
 - exercises/01.py: copy lines from one file to another with line numbers.

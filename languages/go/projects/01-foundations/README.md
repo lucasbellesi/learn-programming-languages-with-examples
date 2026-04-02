@@ -62,6 +62,12 @@ Maximum: 91
 - Forgetting that student names may contain spaces.
 - Dividing by zero when no students are provided.
 
+## Cross-Language Notes
+
+- Compared with the C++ capstone, this version reduces syntax and object machinery while keeping input discipline explicit.
+- Relative to Python and TypeScript, it still makes parsing and validation choices visible rather than implicit.
+- The key comparison is simple control flow with strong typing but minimal abstraction.
+
 ## What To Check
 
 - invalid score input is rejected or retried without corrupting later reads

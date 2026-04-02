@@ -60,6 +60,12 @@ Frequency table:
 Report saved to core_assessment_report.txt
 ```
 
+## Cross-Language Notes
+
+- Compared with the C++ assessment, this version performs the same defensive-counting task through Node input parsing and typed arrays.
+- Relative to Python, compile-time checking helps keep the frequency-table logic organized.
+- The main comparison is script-like ingestion with a stronger static model of the report pipeline.
+
 ## What To Check
 
 - malformed and out-of-range values do not pollute valid statistics

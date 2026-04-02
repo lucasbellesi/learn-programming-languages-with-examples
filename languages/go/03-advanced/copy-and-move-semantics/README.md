@@ -28,6 +28,12 @@ go run example/main.go
 - Mutating a shared backing array by accident.
 - Forgetting to reset source state after transfer operations.
 
+## Cross-Language Notes
+
+- Go reframes this topic around values, pointers, and assignment behavior instead of true move semantics.
+- Compared with C++ and C#, there is less special syntax and more emphasis on choosing simple data ownership conventions.
+- The useful comparison is explicit pointer and value tradeoffs versus richer language-level transfer rules.
+
 ## Exercise Focus
 
 - exercises/01.go: resource-like buffer with clone and transfer operations.

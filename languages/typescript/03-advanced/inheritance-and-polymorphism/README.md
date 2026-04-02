@@ -29,6 +29,12 @@ node build/typescript/03-advanced/inheritance-and-polymorphism/example/main.js
 - Forgetting that polymorphism only helps when callers use the shared interface.
 - Storing subtype-specific assumptions in base-type code.
 
+## Cross-Language Notes
+
+- TypeScript combines class inheritance with interface-style contracts, so it sits between C# object models and Go-style behavior thinking.
+- Compared with Python, the static type layer makes the shared contract more visible before runtime.
+- The useful comparison is how much of polymorphism is carried by classes versus by typed structural contracts.
+
 ## Exercise Focus
 
 - exercises/01.ts: implement a polymorphic item hierarchy.

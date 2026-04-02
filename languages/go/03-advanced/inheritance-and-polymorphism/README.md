@@ -28,6 +28,12 @@ go run example/main.go
 - Forgetting one required method and not satisfying the interface.
 - Leaking concrete-type assumptions into generic iteration code.
 
+## Cross-Language Notes
+
+- Go adapts polymorphism through interfaces and method sets instead of inheritance-heavy class hierarchies.
+- Compared with C++ and C#, the same abstraction goal is reached with less explicit inheritance syntax.
+- The main comparison is behavior-oriented design versus class-tree-oriented design.
+
 ## Exercise Focus
 
 - exercises/01.go: extend shape model with `Triangle`.

@@ -29,6 +29,12 @@ node build/typescript/02-core/file-io-basics/example/main.js
 - Forgetting to normalize line endings.
 - Mixing parsing logic directly into I/O calls.
 
+## Cross-Language Notes
+
+- TypeScript file I/O on Node feels scripting-friendly like Python, but explicit types still help structure parsed data.
+- Compared with C++ and Go, the mechanics of opening and reading files are less central than the parse-and-validate loop.
+- The important comparison is lightweight runtime APIs combined with compile-time data-shape discipline.
+
 ## Exercise Focus
 
 - exercises/01.ts: read a file path and count non-empty lines.

@@ -28,6 +28,12 @@ dotnet run --project example/inheritance-and-polymorphism-example.csproj
 - Calling derived-only members through base references.
 - Duplicating behavior instead of relying on polymorphic dispatch.
 
+## Cross-Language Notes
+
+- C# stays close to the canonical object-oriented version, with inheritance and virtual dispatch feeling more uniform than in C++.
+- Compared with Go and TypeScript, class hierarchies remain a more natural first-class teaching tool here.
+- The useful comparison is how a managed runtime simplifies polymorphic object use without removing design tradeoffs.
+
 ## Exercise Focus
 
 - exercises/01.cs: extend shape hierarchy with `Triangle`.

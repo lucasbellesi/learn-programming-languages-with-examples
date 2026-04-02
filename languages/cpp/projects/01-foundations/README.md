@@ -63,6 +63,12 @@ Maximum: 91
 - Accepting invalid scores without retrying.
 - Dividing by zero when no students are provided.
 
+## Cross-Language Notes
+
+- This capstone is the canonical first integration point for validated input, record storage, and summary statistics.
+- Compared with the scripting-friendly tracks, C++ makes mixed text and numeric input plus container handling more explicit.
+- Use it as the baseline for how the same learner goal looks under stricter compile-time control.
+
 ## What To Check
 
 - invalid score input is rejected or retried without corrupting later reads

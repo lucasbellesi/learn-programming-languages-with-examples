@@ -36,7 +36,14 @@ Shape areas:
 Total area: ...
 Minimum area: ...
 Maximum area: ...
+Sample counts: [...]
+Computed areas: [...]
 ```
+## Cross-Language Notes
+
+- Compared with the C++ assessment, this version reaches the same abstraction goal through interfaces and generics rather than class-heavy design.
+- Relative to C# and TypeScript, the language asks for fewer structural declarations around the same idea.
+- The key comparison is interface-oriented modeling versus inheritance-oriented modeling.
 
 ## What To Check
 

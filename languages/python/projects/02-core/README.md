@@ -56,6 +56,12 @@ Report written to report.txt
 - Accepting scores outside `0..100`.
 - Overwriting the report without making it clear to the user.
 
+## Cross-Language Notes
+
+- Compared with the C++ checkpoint, this version makes the file-processing pipeline more compact but not conceptually different.
+- Relative to Go and C#, validation still has to be designed carefully even when the code gets shorter.
+- The important comparison is concise I/O syntax versus stricter compile-time structure.
+
 ## What To Check
 
 - malformed rows are skipped or counted without crashing the program

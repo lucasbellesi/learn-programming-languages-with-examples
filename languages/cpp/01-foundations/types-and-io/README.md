@@ -38,6 +38,12 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/input-validation-loop.cpp -o type
 - Assuming numeric input always succeeds.
 - Forgetting to check ranges for user input.
 
+## Cross-Language Notes
+
+- C++ is the canonical baseline here: types are explicit and stream state matters immediately when input goes wrong.
+- Compared with Python and TypeScript, this track forces you to think earlier about conversion failures and mixed text and numeric reads.
+- The recurring comparison is compile-time type safety versus runtime parsing flexibility.
+
 ## Exercise Focus
 
 - `exercises/01.cpp`: read `N` numbers and compute sum, average, min, max.

@@ -28,6 +28,12 @@ python example/main.py
 - Accessing subclass-only state from generic iteration code.
 - Replacing polymorphism with `if type(...)` checks.
 
+## Cross-Language Notes
+
+- Python supports inheritance directly, but its runtime makes polymorphism feel more flexible and less rigid than the compiled tracks.
+- Compared with Go, the comparison is nominal inheritance versus interface-style behavior; compared with C++, it is less ceremony and less compile-time checking.
+- The key lesson is that polymorphism is a design idea first, not just a language feature.
+
 ## Exercise Focus
 
 - exercises/01.py: extend shape model with `Triangle`.

@@ -43,6 +43,12 @@ Minimum: 77
 Maximum: 91
 ```
 
+## Cross-Language Notes
+
+- Compared with the C++ checkpoint, this version expresses the same file-validation workflow with smaller primitives and explicit error returns.
+- Relative to Python and TypeScript, less is hidden by the runtime and more is stated directly in control flow.
+- The key comparison is simplicity and explicit error handling versus terser file-processing code.
+
 ## What To Check
 
 - malformed rows are skipped or counted without crashing the program

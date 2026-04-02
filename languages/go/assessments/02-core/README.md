@@ -40,6 +40,12 @@ go run main.go
 - Only values in `0..100` are used for statistics and frequency table.
 - If no valid values are entered, print a friendly message and still create the report file.
 
+## Cross-Language Notes
+
+- Compared with the C++ assessment, this version expresses the same counting and reporting task with simpler syntax and explicit error paths.
+- Relative to Python and TypeScript, the runtime leaves less ambiguity about control flow after bad input.
+- The key comparison is plain data processing with minimal abstraction overhead.
+
 ## What To Check
 
 - out-of-range or malformed values do not pollute the valid-score summary

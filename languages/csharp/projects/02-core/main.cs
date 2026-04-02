@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.IO;
 
 class Program
@@ -76,7 +77,7 @@ class Program
         if (validRows > 0)
         {
             double average = (double)sum / validRows;
-            report.WriteLine($"Average: {average}");
+            report.WriteLine($"Average: {average.ToString(CultureInfo.InvariantCulture)}");
             report.WriteLine($"Minimum: {minScore}");
             report.WriteLine($"Maximum: {maxScore}");
         }

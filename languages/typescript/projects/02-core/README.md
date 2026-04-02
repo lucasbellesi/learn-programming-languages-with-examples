@@ -57,6 +57,12 @@ Report written to report.txt
 - Accepting scores outside `0..100`.
 - Writing the report without making its location explicit.
 
+## Cross-Language Notes
+
+- Compared with the C++ checkpoint, this version shifts the same parsing and reporting job onto Node file APIs and typed objects.
+- Relative to Python, the compile-time type layer helps keep parsed record handling organized.
+- The useful comparison is script-like I/O with stronger data-shape discipline.
+
 ## What To Check
 
 - malformed rows are skipped without stopping valid processing

@@ -29,6 +29,12 @@ node build/typescript/01-foundations/types-and-io/example/main.js
 - Treating NaN as a valid number.
 - Using Number() without explaining what invalid input does.
 
+## Cross-Language Notes
+
+- TypeScript also starts from strings, but Node console programs make parsing feel closer to Python than to C++ stream extraction.
+- Compared with Python, compile-time types help organize downstream logic even though the runtime values still need explicit conversion.
+- The comparison to watch is typed program structure versus JavaScript-style runtime input handling.
+
 ## Exercise Focus
 
 - exercises/01.ts: read N numbers and print sum, average, minimum, and maximum.

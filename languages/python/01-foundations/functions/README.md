@@ -28,6 +28,12 @@ python example/main.py
 - Not validating expected input shape before function calls.
 - Ignoring case normalization when counting vowels.
 
+## Cross-Language Notes
+
+- Python functions are flexible and lightweight, but they rely less on compile-time structure than the statically typed tracks.
+- Compared with C++ or C#, overloads are usually expressed by convention or branching instead of distinct signatures.
+- The important comparison is readability through convention versus readability through type structure.
+
 ## Exercise Focus
 
 - exercises/01.py: implement maxOfThree and print the maximum of three integers.

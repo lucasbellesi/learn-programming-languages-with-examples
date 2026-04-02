@@ -38,6 +38,12 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/polymorphic-menu.cpp -o inheritan
 - Calling derived-only APIs through base interfaces.
 - Object slicing with pass-by-value base types.
 
+## Cross-Language Notes
+
+- C++ is the baseline for virtual dispatch, abstract interfaces, and explicit ownership of polymorphic objects.
+- Other tracks keep the same idea of common behavior through a shared contract, but often reduce the amount of machinery required.
+- The comparison to watch is how each language balances power, safety, and ceremony in polymorphic design.
+
 ## Exercise Focus
 
 - `exercises/01.cpp`: extend shape hierarchy with `Triangle`.

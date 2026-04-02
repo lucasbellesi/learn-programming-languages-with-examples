@@ -55,6 +55,12 @@ Lowest: Bob Lee (55)
 Passed: 2/3
 ```
 
+## Cross-Language Notes
+
+- Compared with the C++ assessment, this version keeps the same scoring logic with simpler building blocks and explicit parse flow.
+- Relative to Python and TypeScript, the runtime hides less and asks for more deliberate validation code.
+- The key comparison is low ceremony with strong control over input handling.
+
 ## What To Check
 
 - full names are preserved exactly as entered

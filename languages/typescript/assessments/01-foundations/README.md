@@ -56,6 +56,12 @@ Lowest: Bob Lee (55)
 Passed: 2/3
 ```
 
+## Cross-Language Notes
+
+- Compared with the C++ assessment, this version keeps the same input-and-summary challenge in a Node console setting.
+- Relative to Python, static types give more guidance for records and aggregates without changing the runtime parsing model.
+- The main comparison is typed beginner architecture over a scripting-style execution environment.
+
 ## What To Check
 
 - full names are preserved exactly as entered

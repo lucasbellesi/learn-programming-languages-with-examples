@@ -63,6 +63,12 @@ Maximum: 91
 - Accepting invalid scores without retrying.
 - Dividing by zero when no students are provided.
 
+## Cross-Language Notes
+
+- Compared with the C++ capstone, this version keeps the same learner goal but routes everything through Node string parsing.
+- Relative to Python, the type layer gives more structure to records and summary calculations.
+- The main comparison is beginner console programming with static guidance on top of a scripting runtime.
+
 ## What To Check
 
 - invalid score input is rejected or retried without corrupting later reads

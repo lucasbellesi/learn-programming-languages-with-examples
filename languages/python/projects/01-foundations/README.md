@@ -62,6 +62,12 @@ Maximum: 91
 - Accepting invalid scores without retrying.
 - Dividing by zero when no students are provided.
 
+## Cross-Language Notes
+
+- Compared with the C++ capstone, this version optimizes for quick readable progress while keeping the same summary goal.
+- Relative to C#, Go, and TypeScript, dynamic values make the first complete program feel lighter but less guarded.
+- The comparison to watch is fast iteration versus compile-time protection.
+
 ## What To Check
 
 - invalid score input is rejected or retried without corrupting later reads

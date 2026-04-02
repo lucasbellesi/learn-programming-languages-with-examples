@@ -56,6 +56,12 @@ Lowest: Bob Lee (55)
 Passed: 2/3
 ```
 
+## Cross-Language Notes
+
+- This is the canonical first assessment for structured input, storage, and summary accuracy.
+- Compared with other tracks, it exposes the most detail around basic console handling and value management.
+- Use it as the baseline for comparing beginner-level discipline across runtimes.
+
 ## What To Check
 
 - full names are preserved exactly as entered

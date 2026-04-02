@@ -31,6 +31,12 @@ Course: CSharpBasics | 2/2 enrolled
 Course: Algorithms | 1/3 enrolled
 ```
 
+## Cross-Language Notes
+
+- Compared with the C++ capstone, this version preserves the object-oriented learner goal with less manual ownership overhead.
+- Relative to Go and TypeScript, class-based design remains the most direct path here.
+- The main comparison is expressive object modeling under a managed runtime.
+
 ## What To Check
 
 - object or struct state changes respect capacity and invariant rules

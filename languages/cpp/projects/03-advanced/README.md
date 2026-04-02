@@ -32,6 +32,12 @@ Course: CppBasics | 2/2 enrolled
 Course: Algorithms | 1/3 enrolled
 ```
 
+## Cross-Language Notes
+
+- This capstone is the canonical object-model integration point for the advanced level.
+- Compared with the other tracks, it keeps the strongest link between object design, ownership, and compile-time structure.
+- Use it as the baseline when comparing how advanced abstractions feel in different runtimes.
+
 ## What To Check
 
 - object or struct state changes respect capacity and invariant rules

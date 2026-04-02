@@ -41,6 +41,12 @@ g++ -std=c++17 -Wall -Wextra -pedantic main.cpp -o assessment_02_core
 - Only values in `0..100` are used for statistics and frequency table.
 - If no valid values are entered, print a friendly message and still create the report file.
 
+## Cross-Language Notes
+
+- This is the canonical validation-and-counting assessment for the core level.
+- Compared with the other tracks, it keeps the most explicit control over parse flow, ranges, and report generation.
+- Use it to compare how each runtime expresses the same defensive-programming goal.
+
 ## What To Check
 
 - out-of-range or malformed values do not pollute the valid-score summary

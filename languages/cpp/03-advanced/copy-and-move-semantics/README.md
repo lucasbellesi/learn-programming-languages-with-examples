@@ -34,6 +34,12 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o copy_move_example
 - Implementing custom resource types without rule-of-five awareness.
 - Accidental copies in performance-sensitive paths.
 
+## Cross-Language Notes
+
+- C++ is the canonical version: copy and move are real language-level semantics with direct performance and ownership consequences.
+- Other tracks adapt this topic because most of them do not have true move semantics in the same sense.
+- Use this module as the anchor for every later comparison about aliasing and transfer.
+
 ## Exercise Focus
 
 - `exercises/01.cpp`: resource-owning buffer with copy and move.

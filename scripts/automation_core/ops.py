@@ -1148,6 +1148,19 @@ def smoke_runtime_job(
         for output_name in job.get("required_outputs", []):
             if not (working_dir / output_name).exists():
                 raise AutomationError(f"{label} did not create {output_name}")
+
+        for output_spec in job.get("required_output_contains", []):
+            output_path = working_dir / output_spec["path"]
+            if not output_path.exists():
+                raise AutomationError(f"{label} did not create {output_spec['path']}")
+
+            output_text = output_path.read_text(encoding="utf-8")
+            for expected in output_spec.get("contains", []):
+                if expected not in output_text:
+                    raise AutomationError(
+                        f"{label} output {output_spec['path']} did not contain expected text: "
+                        f"{expected}\nActual output:\n{output_text}"
+                    )
     finally:
         remove_paths(working_dir, cleanup_paths)
 
