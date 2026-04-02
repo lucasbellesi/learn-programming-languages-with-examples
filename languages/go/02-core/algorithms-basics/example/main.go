@@ -1,11 +1,11 @@
-// This example shows walking data step by step to compute summaries and decisions.
-// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
+// Module focus: Walking data step by step to compute summaries and decisions.
+// Why it matters: practicing algorithms basics patterns makes exercises and checkpoints easier to reason about.
 
 package main
 
 import "fmt"
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for algorithms basics; this keeps the walkthrough readable.
 func linearSearch(values []int, target int) int {
 	for index, value := range values {
 		if value == target {
@@ -44,14 +44,14 @@ func minMax(values []int) (int, int, bool) {
 	return minValue, maxValue, true
 }
 
-// Run one deterministic scenario so the console output makes walking data step by step to compute summaries and decisions easy to verify.
+// Walk through one fixed scenario so algorithms basics behavior stays repeatable.
 func main() {
-	// Build the sample state first, then let the later output confirm the behavior step by step.
+	// Prepare sample inputs that exercise the key algorithms basics path.
 	values := []int{4, 7, 4, 1, 9, 4, 2}
 	target := 4
 
 	firstIndex := linearSearch(values, target)
-	// Print the observed state here so learners can connect the code path to a concrete result.
+	// Report values so learners can verify the algorithms basics outcome.
 	fmt.Printf("First index of %d: %d\n", target, firstIndex)
 	fmt.Printf("Occurrences of %d: %d\n", target, countOccurrences(values, target))
 

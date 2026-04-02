@@ -1,7 +1,7 @@
-// This example shows tying resource cleanup to object lifetime so cleanup stays predictable.
-// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+// Module focus: Tying resource cleanup to object lifetime so cleanup stays predictable.
+// Why it matters: practicing memory management and raii patterns makes exercises and checkpoints easier to reason about.
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for memory management and raii; this keeps the walkthrough readable.
 class FakeFile {
     private closed = false;
 
@@ -43,9 +43,9 @@ function usingResource<T extends { close(): void }, TResult>(
     }
 }
 
-// Run one deterministic scenario so the console output makes tying resource cleanup to object lifetime so cleanup stays predictable easy to verify.
+// Walk through one fixed scenario so memory management and raii behavior stays repeatable.
 function main(): void {
-    // Build the sample state first, then let the later output confirm the behavior step by step.
+    // Prepare sample inputs that exercise the key memory management and raii path.
     const report = new FakeFile("report.txt");
 
     usingResource(report, (handle) => {
@@ -53,7 +53,7 @@ function main(): void {
         handle.writeLine("totals");
     });
 
-    // Print the observed state here so learners can connect the code path to a concrete result.
+    // Report values so learners can verify the memory management and raii outcome.
     console.log(`Closed after scope: ${report.isClosed()}`);
 }
 

@@ -1,10 +1,10 @@
-// This example shows reordering data and locating values with deliberate search logic.
-// In C#, the example uses the standard library and static types to keep the workflow structured.
+// Module focus: Reordering data and locating values with deliberate search logic.
+// Why it matters: practicing sorting and searching patterns makes exercises and checkpoints easier to reason about.
 
 using System;
 using System.Collections.Generic;
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for sorting and searching; this keeps the walkthrough readable.
 class Program
 {
     static int BinarySearch(List<int> values, int target)
@@ -35,14 +35,14 @@ class Program
         return -1;
     }
 
-    // Run one deterministic scenario so the console output makes reordering data and locating values with deliberate search logic easy to verify.
+    // Walk through one fixed scenario so sorting and searching behavior stays repeatable.
     static void Main()
     {
-        // Build the sample state first, then let the later output confirm the behavior step by step.
+        // Prepare sample inputs that exercise the key sorting and searching path.
         List<int> values = new List<int> { 7, 2, 9, 4, 2, 8 };
         values.Sort();
 
-        // Print the observed state here so learners can connect the code path to a concrete result.
+        // Report values so learners can verify the sorting and searching outcome.
         Console.WriteLine($"Sorted: {string.Join(" ", values)}");
 
         int target = 4;

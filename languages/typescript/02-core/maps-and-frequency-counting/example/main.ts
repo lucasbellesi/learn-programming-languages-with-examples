@@ -1,5 +1,5 @@
-// This example shows counting repeated values and summarizing them through keyed lookups.
-// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+// Module focus: Counting repeated values and summarizing them through keyed lookups.
+// Why it matters: practicing maps and frequency counting patterns makes exercises and checkpoints easier to reason about.
 
 const text = "go fast go far learn fast";
 const words = text.split(/\s+/);
@@ -16,6 +16,7 @@ const sortedEntries = [...frequencies.entries()].sort((left, right) => {
     return left[0].localeCompare(right[0]);
 });
 
+// Report output values so learners can verify the maps and frequency counting result.
 console.log(`Text: ${text}`);
 for (const [word, count] of sortedEntries) {
     console.log(`${word}: ${count}`);

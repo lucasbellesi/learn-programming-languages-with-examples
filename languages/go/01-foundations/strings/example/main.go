@@ -1,5 +1,5 @@
-// This example shows cleaning and combining text while preserving readable string logic.
-// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
+// Module focus: Cleaning and combining text while preserving readable string logic.
+// Why it matters: practicing strings patterns makes exercises and checkpoints easier to reason about.
 
 package main
 
@@ -11,11 +11,11 @@ import (
 	"unicode"
 )
 
-// Run one deterministic scenario so the console output makes cleaning and combining text while preserving readable string logic easy to verify.
+// Walk through one fixed scenario so strings behavior stays repeatable.
 func main() {
-	// Build the sample state first, then let the later output confirm the behavior step by step.
+	// Prepare sample inputs that exercise the key strings path.
 	reader := bufio.NewReader(os.Stdin)
-	// Print the observed state here so learners can connect the code path to a concrete result.
+	// Report values so learners can verify the strings outcome.
 	fmt.Print("Enter a sentence: ")
 	line, _ := reader.ReadString('\n')
 

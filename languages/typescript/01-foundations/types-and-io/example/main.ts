@@ -1,5 +1,5 @@
-// This example shows reading typed input carefully and turning raw text into values.
-// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+// Module focus: Reading typed input carefully and turning raw text into values.
+// Why it matters: practicing types and io patterns makes exercises and checkpoints easier to reason about.
 
 // Show how TypeScript starts from raw text and turns it into typed values on purpose.
 const rawAge = "27";
@@ -9,6 +9,7 @@ const age = Number.parseInt(rawAge, 10);
 const price = Number.parseFloat(rawPrice);
 const isMember = rawMemberFlag === "true";
 if (Number.isNaN(age) || Number.isNaN(price)) {
+    // Report output values so learners can verify the types and io result.
     console.log("Invalid sample input.");
 } else {
     const finalPrice = isMember ? price * 0.9 : price;

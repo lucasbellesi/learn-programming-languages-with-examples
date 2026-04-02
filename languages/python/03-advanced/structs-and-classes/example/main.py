@@ -1,12 +1,13 @@
-# This example shows modeling related data and behavior with structured types.
-# In Python, the example favors direct readable steps while keeping validation visible.
+# Module focus: Modeling related data and behavior with structured types.
+# Why it matters: practicing structs and classes patterns makes exercises and checkpoints easier to
+# reason about.
 
 from dataclasses import dataclass
 
 
-# Build the sample state first, then let the later output confirm the behavior step by step.
+# Prepare sample inputs that exercise the key structs and classes path.
 @dataclass(frozen=True)
-# Define the reusable pieces first so the main flow can focus on one observable scenario.
+# Helper setup for structs and classes; this keeps the walkthrough readable.
 class Coordinate:
     x: int
     y: int
@@ -45,11 +46,11 @@ class Wallet:
         return self._balance
 
 
-# Run one deterministic scenario so the console output makes modeling related data and behavior with
-# structured types easy to verify.
+# Walk through one fixed scenario so structs and classes behavior stays repeatable.
 def main() -> None:
     route = [Coordinate(2, 3), Coordinate(-1, 4), Coordinate(5, -2)]
 
+    # Report output values so learners can verify the structs and classes outcome.
     print("Coordinates (dataclass example):")
     for point in route:
         print(

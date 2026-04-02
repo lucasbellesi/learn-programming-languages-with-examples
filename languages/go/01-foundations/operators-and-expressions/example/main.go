@@ -1,15 +1,15 @@
-// This example shows combining values through expressions and readable calculations.
-// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
+// Module focus: Combining values through expressions and readable calculations.
+// Why it matters: practicing operators and expressions patterns makes exercises and checkpoints easier to reason about.
 
 package main
 
 import "fmt"
 
-// Run one deterministic scenario so the console output makes combining values through expressions and readable calculations easy to verify.
+// Walk through one fixed scenario so operators and expressions behavior stays repeatable.
 func main() {
-	// Build the sample state first, then let the later output confirm the behavior step by step.
+	// Prepare sample inputs that exercise the key operators and expressions path.
 	var totalSeconds int
-	// Print the observed state here so learners can connect the code path to a concrete result.
+	// Report values so learners can verify the operators and expressions outcome.
 	fmt.Print("Enter total seconds: ")
 	fmt.Scanln(&totalSeconds)
 

@@ -1,9 +1,9 @@
-// This example shows guarding risky inputs so failures stay explicit and controlled.
-// In C#, the example uses the standard library and static types to keep the workflow structured.
+// Module focus: Guarding risky inputs so failures stay explicit and controlled.
+// Why it matters: practicing error handling and defensive programming patterns makes exercises and checkpoints easier to reason about.
 
 using System;
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for error handling and defensive programming; this keeps the walkthrough readable.
 class Program
 {
     static bool TrySafeDivide(double left, double right, out double result)
@@ -18,15 +18,15 @@ class Program
         return true;
     }
 
-    // Run one deterministic scenario so the console output makes guarding risky inputs so failures stay explicit and controlled easy to verify.
+    // Walk through one fixed scenario so error handling and defensive programming behavior stays repeatable.
     static void Main()
     {
-        // Build the sample state first, then let the later output confirm the behavior step by step.
+        // Prepare sample inputs that exercise the key error handling and defensive programming path.
         (double left, double right)[] scenarios = new[] { (42.0, 6.0), (10.0, 0.0) };
 
         foreach ((double left, double right) in scenarios)
         {
-            // Print the observed state here so learners can connect the code path to a concrete result.
+            // Report values so learners can verify the error handling and defensive programming outcome.
             Console.WriteLine($"Input: {left} {right}");
 
             if (!TrySafeDivide(left, right, out double quotient))

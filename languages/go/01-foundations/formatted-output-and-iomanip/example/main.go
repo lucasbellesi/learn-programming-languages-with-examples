@@ -1,27 +1,27 @@
-// This example shows formatting values so output is easier to read and compare.
-// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
+// Module focus: Formatting values so output is easier to read and compare.
+// Why it matters: practicing formatted output and iomanip patterns makes exercises and checkpoints easier to reason about.
 
 package main
 
 import "fmt"
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for formatted output and iomanip; this keeps the walkthrough readable.
 type Item struct {
 	Name      string
 	Quantity  int
 	UnitPrice float64
 }
 
-// Run one deterministic scenario so the console output makes formatting values so output is easier to read and compare easy to verify.
+// Walk through one fixed scenario so formatted output and iomanip behavior stays repeatable.
 func main() {
-	// Build the sample state first, then let the later output confirm the behavior step by step.
+	// Prepare sample inputs that exercise the key formatted output and iomanip path.
 	items := []Item{
 		{"Notebook", 2, 3.5},
 		{"Pencil", 5, 0.8},
 		{"Backpack", 1, 29.99},
 	}
 
-	// Print the observed state here so learners can connect the code path to a concrete result.
+	// Report values so learners can verify the formatted output and iomanip outcome.
 	fmt.Printf("%-12s%6s%10s%10s\n", "Item", "Qty", "Unit", "Total")
 	fmt.Println("--------------------------------------")
 

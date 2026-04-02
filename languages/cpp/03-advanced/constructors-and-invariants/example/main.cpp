@@ -1,5 +1,6 @@
-// This example shows building objects that start valid and stay valid through guarded updates.
-// In C++, the example keeps value flow, references, and explicit control visible.
+// Module focus: Building objects that start valid and stay valid through guarded updates.
+// Why it matters: practicing constructors and invariants patterns makes exercises and checkpoints
+// easier to reason about.
 
 #include <iostream>
 #include <string>
@@ -27,12 +28,11 @@ class Temperature {
     double celsius;
 };
 
-// Run one deterministic scenario so the console output makes building objects that start valid and
-// stay valid through guarded updates easy to verify.
+// Walk through one fixed scenario so constructors and invariants behavior stays repeatable.
 int main() {
-    // Build the sample state first, then let the later output confirm the behavior step by step.
+    // Prepare sample inputs that exercise the key constructors and invariants path.
     Temperature temp(-500.0);
-    // Print the observed state here so learners can connect the code path to a concrete result.
+    // Report values so learners can verify the constructors and invariants outcome.
     cout << "Initial value (clamped): " << temp.getCelsius() << " C\n";
 
     const bool ok = temp.setCelsius(25.0);

@@ -1,11 +1,11 @@
-// This example shows how copying, sharing, or transferring state changes later behavior.
-// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
+// Module focus: How copying, sharing, or transferring state changes later behavior.
+// Why it matters: practicing copy and move semantics patterns makes exercises and checkpoints easier to reason about.
 
 package main
 
 import "fmt"
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for copy and move semantics; this keeps the walkthrough readable.
 type Buffer struct {
 	values []int
 }
@@ -39,14 +39,14 @@ func (b *Buffer) Size() int {
 	return len(b.values)
 }
 
-// Run one deterministic scenario so the console output makes how copying, sharing, or transferring state changes later behavior easy to verify.
+// Walk through one fixed scenario so copy and move semantics behavior stays repeatable.
 func main() {
-	// Build the sample state first, then let the later output confirm the behavior step by step.
+	// Prepare sample inputs that exercise the key copy and move semantics path.
 	first := NewBuffer(3)
 	second := first.Clone()
 	third := second.Transfer()
 
-	// Print the observed state here so learners can connect the code path to a concrete result.
+	// Report values so learners can verify the copy and move semantics outcome.
 	fmt.Printf("first size: %d\n", first.Size())
 	fmt.Printf("second size (after transfer): %d\n", second.Size())
 	fmt.Printf("third size: %d\n", third.Size())

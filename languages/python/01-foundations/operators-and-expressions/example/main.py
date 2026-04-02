@@ -1,14 +1,15 @@
-# This example shows combining values through expressions and readable calculations.
-# In Python, the example favors direct readable steps while keeping validation visible.
+# Module focus: Combining values through expressions and readable calculations.
+# Why it matters: practicing operators and expressions patterns makes exercises and checkpoints
+# easier to reason about.
 
-# Run one direct scenario at the top level so the printed result is easy to verify.
+# Walk through one fixed scenario so operators and expressions behavior stays repeatable.
 total_seconds = int(input("Enter total seconds: "))
 
 hours = total_seconds // 3600
 minutes = (total_seconds % 3600) // 60
 seconds = total_seconds % 60
 
-# Print the observed state here so learners can match the code path to the result.
+# Report values so learners can verify the operators and expressions outcome.
 print(f"Time: {hours}:{minutes:02d}:{seconds:02d}")
 
 value_a = float(input("Enter first number: "))

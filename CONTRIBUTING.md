@@ -60,10 +60,17 @@ Run language lint checks with:
 - `./scripts/lint.ps1` (PowerShell)
 - `bash ./scripts/lint.sh` (Bash)
 
+Run the non-blocking education quality audit with:
+
+- `./scripts/audit-education-quality.ps1` (PowerShell)
+- `bash ./scripts/audit-education-quality.sh` (Bash)
+
 These smoke checks also compile standalone C# exercises by generating temporary validation projects during the check.
 TypeScript checks restore Node dependencies from `package-lock.json`, compile with `tsc`, and execute the emitted JavaScript with `node`.
 
 The public PowerShell and Bash scripts are thin wrappers over the shared Python automation core in `scripts/automation.py`. Curriculum validation and smoke target metadata live in `scripts/automation_manifest.json`.
+
+Use [EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md](EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md) when reviewing `example/main.*` files for teaching clarity and parity.
 
 4. Update related README files when behavior or structure changes.
 5. Open a pull request with a clear description of what changed and why.

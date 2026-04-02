@@ -1,5 +1,5 @@
-// This example shows starting multiple units of work and combining their results safely.
-// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
+// Module focus: Starting multiple units of work and combining their results safely.
+// Why it matters: practicing concurrency basics patterns makes exercises and checkpoints easier to reason about.
 
 package main
 
@@ -8,9 +8,9 @@ import (
 	"sync"
 )
 
-// Run one deterministic scenario so the console output makes starting multiple units of work and combining their results safely easy to verify.
+// Walk through one fixed scenario so concurrency basics behavior stays repeatable.
 func main() {
-	// Build the sample state first, then let the later output confirm the behavior step by step.
+	// Prepare sample inputs that exercise the key concurrency basics path.
 	const workerCount = 4
 	const incrementsPerWorker = 10000
 
@@ -31,7 +31,7 @@ func main() {
 	}
 
 	wg.Wait()
-	// Print the observed state here so learners can connect the code path to a concrete result.
+	// Report values so learners can verify the concurrency basics outcome.
 	fmt.Printf("Expected counter: %d\n", workerCount*incrementsPerWorker)
 	fmt.Printf("Actual counter: %d\n", counter)
 

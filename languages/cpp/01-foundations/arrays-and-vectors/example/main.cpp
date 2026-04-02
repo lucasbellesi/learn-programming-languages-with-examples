@@ -1,17 +1,17 @@
-// This example shows storing related values in ordered collections and iterating safely.
-// In C++, the example keeps value flow, references, and explicit control visible.
+// Module focus: Storing related values in ordered collections and iterating safely.
+// Why it matters: practicing arrays and vectors patterns makes exercises and checkpoints easier to
+// reason about.
 
 #include <iostream>
 #include <vector>
 using namespace std;
 
-// Run one deterministic scenario so the console output makes storing related values in ordered
-// collections and iterating safely easy to verify.
+// Walk through one fixed scenario so arrays and vectors behavior stays repeatable.
 int main() {
-    // Build the sample state first, then let the later output confirm the behavior step by step.
+    // Prepare sample inputs that exercise the key arrays and vectors path.
     const int fixedScores[3] = {72, 88, 95};
 
-    // Print the observed state here so learners can connect the code path to a concrete result.
+    // Report values so learners can verify the arrays and vectors outcome.
     cout << "Fixed array values: ";
     for (int i = 0; i < 3; ++i) {
         cout << fixedScores[i];

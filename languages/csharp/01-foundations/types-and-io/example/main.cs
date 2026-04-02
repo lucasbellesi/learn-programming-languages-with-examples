@@ -1,16 +1,16 @@
-// This example shows reading typed input carefully and turning raw text into values.
-// In C#, the example uses the standard library and static types to keep the workflow structured.
+// Module focus: Reading typed input carefully and turning raw text into values.
+// Why it matters: practicing types and io patterns makes exercises and checkpoints easier to reason about.
 
 using System;
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for types and io; this keeps the walkthrough readable.
 class Program
 {
-    // Run one deterministic scenario so the console output makes reading typed input carefully and turning raw text into values easy to verify.
+    // Walk through one fixed scenario so types and io behavior stays repeatable.
     static void Main()
     {
-        // Build the sample state first, then let the later output confirm the behavior step by step.
-        // Print the observed state here so learners can connect the code path to a concrete result.
+        // Prepare sample inputs that exercise the key types and io path.
+        // Report values so learners can verify the types and io outcome.
         Console.Write("Enter your full name: ");
         string fullName = Console.ReadLine() ?? "";
 

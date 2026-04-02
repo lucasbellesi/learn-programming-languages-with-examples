@@ -1,13 +1,14 @@
-# This example shows reading plain-text files, parsing rows, and writing clear results.
-# In Python, the example favors direct readable steps while keeping validation visible.
+# Module focus: Reading plain-text files, parsing rows, and writing clear results.
+# Why it matters: practicing file io basics patterns makes exercises and checkpoints easier to
+# reason about.
 
 from pathlib import Path
 import tempfile
 
 
-# Define the reusable pieces first so the main flow can focus on one observable scenario.
+# Helper setup for file io basics; this keeps the walkthrough readable.
 def parse_score_row(line):
-    # Build the sample state first, then let the later output confirm the behavior step by step.
+    # Prepare sample inputs that exercise the key file io basics path.
     parts = line.strip().split()
     if len(parts) != 2:
         return None
@@ -20,8 +21,7 @@ def parse_score_row(line):
     return parts[0], score
 
 
-# Run one deterministic scenario so the console output makes reading plain-text files, parsing rows,
-# and writing clear results easy to verify.
+# Walk through one fixed scenario so file io basics behavior stays repeatable.
 def main():
     base_dir = Path(tempfile.gettempdir()) / "learn-lang-file-io-python"
     base_dir.mkdir(parents=True, exist_ok=True)
@@ -43,6 +43,7 @@ def main():
             name, score = parsed
             valid_rows += 1
             score_sum += score
+            # Report output values so learners can verify the file io basics outcome.
             print(f"{name} -> {score}")
 
     if valid_rows == 0:

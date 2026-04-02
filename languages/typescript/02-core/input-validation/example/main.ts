@@ -1,5 +1,5 @@
-// This example shows rejecting invalid input before the main workflow continues.
-// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+// Module focus: Rejecting invalid input before the main workflow continues.
+// Why it matters: practicing input validation patterns makes exercises and checkpoints easier to reason about.
 
 type ValidationResult =
     | { ok: true; value: number }
@@ -24,6 +24,7 @@ const attempts = ["hello", "105", "42"];
 for (const attempt of attempts) {
     const result = parseIntegerInRange(attempt, 1, 100);
     if (!result.ok) {
+        // Report output values so learners can verify the input validation result.
         console.log(
             `Rejected ${JSON.stringify(attempt)} because it is ${result.error}.`,
         );

@@ -1,7 +1,8 @@
-# This example shows choosing between branches and repeating work with predictable control flow.
-# In Python, the example favors direct readable steps while keeping validation visible.
+# Module focus: Choosing between branches and repeating work with predictable control flow.
+# Why it matters: practicing control flow patterns makes exercises and checkpoints easier to reason
+# about.
 
-# Run one direct scenario at the top level so the printed result is easy to verify.
+# Walk through one fixed scenario so control flow behavior stays repeatable.
 value = int(input("Enter an integer: "))
 
 if value > 0:
@@ -17,7 +18,7 @@ factorial = 1
 for i in range(1, n + 1):
     factorial *= i
 
-# Print the observed state here so learners can match the code path to the result.
+# Report values so learners can verify the control flow outcome.
 print(f"factorial({n}) = {factorial}")
 print("Numbers 1..N:")
 for i in range(1, n + 1):

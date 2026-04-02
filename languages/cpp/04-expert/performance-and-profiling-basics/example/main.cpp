@@ -1,12 +1,13 @@
-// This example shows measuring hot paths before changing code for speed.
-// In C++, the example keeps value flow, references, and explicit control visible.
+// Module focus: Measuring hot paths before changing code for speed.
+// Why it matters: practicing performance and profiling basics patterns makes exercises and
+// checkpoints easier to reason about.
 
 #include <chrono>
 #include <iostream>
 #include <vector>
 using namespace std;
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for performance and profiling basics; this keeps the walkthrough readable.
 int linearSearch(const vector<int>& values, int target) {
     for (size_t i = 0; i < values.size(); ++i) {
         if (values[i] == target) {
@@ -16,10 +17,9 @@ int linearSearch(const vector<int>& values, int target) {
     return -1;
 }
 
-// Run one deterministic scenario so the console output makes measuring hot paths before changing
-// code for speed easy to verify.
+// Walk through one fixed scenario so performance and profiling basics behavior stays repeatable.
 int main() {
-    // Build the sample state first, then let the later output confirm the behavior step by step.
+    // Prepare sample inputs that exercise the key performance and profiling basics path.
     vector<int> values;
     values.reserve(100000);
     for (int i = 0; i < 100000; ++i) {
@@ -31,7 +31,7 @@ int main() {
     const auto end = chrono::high_resolution_clock::now();
 
     const auto elapsed = chrono::duration_cast<chrono::microseconds>(end - start);
-    // Print the observed state here so learners can connect the code path to a concrete result.
+    // Report values so learners can verify the performance and profiling basics outcome.
     cout << "Index: " << index << '\n';
     cout << "Elapsed (microseconds): " << elapsed.count() << '\n';
 

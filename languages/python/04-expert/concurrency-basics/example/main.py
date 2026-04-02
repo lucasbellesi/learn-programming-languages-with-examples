@@ -1,5 +1,6 @@
-# This example shows starting multiple units of work and combining their results safely.
-# In Python, the example favors direct readable steps while keeping validation visible.
+# Module focus: Starting multiple units of work and combining their results safely.
+# Why it matters: practicing concurrency basics patterns makes exercises and checkpoints easier to
+# reason about.
 
 from __future__ import annotations
 
@@ -7,10 +8,9 @@ import queue
 import threading
 
 
-# Run one deterministic scenario so the console output makes starting multiple units of work and
-# combining their results safely easy to verify.
+# Walk through one fixed scenario so concurrency basics behavior stays repeatable.
 def main() -> None:
-    # Build the sample state first, then let the later output confirm the behavior step by step.
+    # Prepare sample inputs that exercise the key concurrency basics path.
     worker_count = 4
     increments_per_worker = 10_000
     counter = 0
@@ -28,6 +28,7 @@ def main() -> None:
     for thread in threads:
         thread.join()
 
+    # Report output values so learners can verify the concurrency basics outcome.
     print(f"Expected counter: {worker_count * increments_per_worker}")
     print(f"Actual counter: {counter}")
 

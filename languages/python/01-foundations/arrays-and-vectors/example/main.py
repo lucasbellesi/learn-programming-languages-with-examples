@@ -1,9 +1,10 @@
-# This example shows storing related values in ordered collections and iterating safely.
-# In Python, the example favors direct readable steps while keeping validation visible.
+# Module focus: Storing related values in ordered collections and iterating safely.
+# Why it matters: practicing arrays and vectors patterns makes exercises and checkpoints easier to
+# reason about.
 
-# Run one direct scenario at the top level so the printed result is easy to verify.
+# Walk through one fixed scenario so arrays and vectors behavior stays repeatable.
 fixed_scores = [72, 88, 95]
-# Print the observed state here so learners can match the code path to the result.
+# Report values so learners can verify the arrays and vectors outcome.
 print("Fixed list values:", ", ".join(str(score) for score in fixed_scores))
 
 count = int(input("How many temperatures do you want to enter? "))

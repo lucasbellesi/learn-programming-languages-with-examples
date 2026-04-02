@@ -1,9 +1,9 @@
-// This example shows breaking behavior into reusable functions with clear inputs and outputs.
-// In C#, the example uses the standard library and static types to keep the workflow structured.
+// Module focus: Breaking behavior into reusable functions with clear inputs and outputs.
+// Why it matters: practicing functions patterns makes exercises and checkpoints easier to reason about.
 
 using System;
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for functions; this keeps the walkthrough readable.
 class Program
 {
     static int Add(int a, int b)
@@ -23,11 +23,11 @@ class Program
         Console.WriteLine("[" + string.Join(", ", values) + "]");
     }
 
-    // Run one deterministic scenario so the console output makes breaking behavior into reusable functions with clear inputs and outputs easy to verify.
+    // Walk through one fixed scenario so functions behavior stays repeatable.
     static void Main()
     {
-        // Build the sample state first, then let the later output confirm the behavior step by step.
-        // Print the observed state here so learners can connect the code path to a concrete result.
+        // Prepare sample inputs that exercise the key functions path.
+        // Report values so learners can verify the functions outcome.
         Console.WriteLine(Add(4, 6));
 
         int[] numbers = { 10, 20, 30 };

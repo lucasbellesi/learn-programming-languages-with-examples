@@ -1,7 +1,8 @@
-# This example shows cleaning and combining text while preserving readable string logic.
-# In Python, the example favors direct readable steps while keeping validation visible.
+# Module focus: Cleaning and combining text while preserving readable string logic.
+# Why it matters: practicing strings patterns makes exercises and checkpoints easier to reason
+# about.
 
-# Run one direct scenario at the top level so the printed result is easy to verify.
+# Walk through one fixed scenario so strings behavior stays repeatable.
 line = input("Enter a sentence: ")
 
 cleaned_chars = []
@@ -14,7 +15,7 @@ for char in line:
 cleaned = "".join(cleaned_chars)
 words = [word for word in cleaned.split() if word]
 
-# Print the observed state here so learners can match the code path to the result.
+# Report values so learners can verify the strings outcome.
 print(f"Normalized text: {cleaned}")
 print(f"Tokens ({len(words)}):")
 for word in words:

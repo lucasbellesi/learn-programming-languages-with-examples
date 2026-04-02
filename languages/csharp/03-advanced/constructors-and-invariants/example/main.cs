@@ -1,9 +1,9 @@
-// This example shows building objects that start valid and stay valid through guarded updates.
-// In C#, the example uses the standard library and static types to keep the workflow structured.
+// Module focus: Building objects that start valid and stay valid through guarded updates.
+// Why it matters: practicing constructors and invariants patterns makes exercises and checkpoints easier to reason about.
 
 using System;
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for constructors and invariants; this keeps the walkthrough readable.
 class Temperature
 {
     private double celsius;
@@ -29,12 +29,12 @@ class Temperature
 
 class Program
 {
-    // Run one deterministic scenario so the console output makes building objects that start valid and stay valid through guarded updates easy to verify.
+    // Walk through one fixed scenario so constructors and invariants behavior stays repeatable.
     static void Main()
     {
-        // Build the sample state first, then let the later output confirm the behavior step by step.
+        // Prepare sample inputs that exercise the key constructors and invariants path.
         Temperature temperature = new Temperature(-500.0);
-        // Print the observed state here so learners can connect the code path to a concrete result.
+        // Report values so learners can verify the constructors and invariants outcome.
         Console.WriteLine($"Initial value (clamped): {temperature.Celsius} C");
 
         bool updated = temperature.SetCelsius(25.0);

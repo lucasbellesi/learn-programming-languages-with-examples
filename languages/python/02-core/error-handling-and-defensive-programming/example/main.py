@@ -1,20 +1,23 @@
-# This example shows guarding risky inputs so failures stay explicit and controlled.
-# In Python, the example favors direct readable steps while keeping validation visible.
+# Module focus: Guarding risky inputs so failures stay explicit and controlled.
+# Why it matters: practicing error handling and defensive programming patterns makes exercises and
+# checkpoints easier to reason about.
 
-# Define the reusable pieces first so the main flow can focus on one observable scenario.
+# Helper setup for error handling and defensive programming; this keeps the walkthrough readable.
 def safe_divide(left, right):
-    # Build the sample state first, then let the later output confirm the behavior step by step.
+    # Prepare sample inputs that exercise the key error handling and defensive programming path.
     if right == 0.0:
         return None
     return left / right
 
 
-# Run one deterministic scenario so the console output makes guarding risky inputs so failures stay
-# explicit and controlled easy to verify.
+# Walk through one fixed scenario so error handling and defensive programming behavior stays
+# repeatable.
 def main():
     scenarios = [(42.0, 6.0), (10.0, 0.0)]
 
     for left, right in scenarios:
+        # Report output values so learners can verify the error handling and defensive programming
+        # outcome.
         print(f"Input: {left} {right}")
 
         quotient = safe_divide(left, right)

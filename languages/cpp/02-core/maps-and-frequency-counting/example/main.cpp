@@ -1,15 +1,15 @@
-// This example shows counting repeated values and summarizing them through keyed lookups.
-// In C++, the example keeps value flow, references, and explicit control visible.
+// Module focus: Counting repeated values and summarizing them through keyed lookups.
+// Why it matters: practicing maps and frequency counting patterns makes exercises and checkpoints
+// easier to reason about.
 
 #include <iostream>
 #include <map>
 #include <string>
 using namespace std;
 
-// Run one deterministic scenario so the console output makes counting repeated values and
-// summarizing them through keyed lookups easy to verify.
+// Walk through one fixed scenario so maps and frequency counting behavior stays repeatable.
 int main() {
-    // Build the sample state first, then let the later output confirm the behavior step by step.
+    // Prepare sample inputs that exercise the key maps and frequency counting path.
     string text = "banana bandana";
     map<char, int> frequencies;
 
@@ -20,7 +20,7 @@ int main() {
         ++frequencies[ch];
     }
 
-    // Print the observed state here so learners can connect the code path to a concrete result.
+    // Report values so learners can verify the maps and frequency counting outcome.
     cout << "Character frequencies:\n";
     for (const auto& entry : frequencies) {
         cout << entry.first << " -> " << entry.second << '\n';

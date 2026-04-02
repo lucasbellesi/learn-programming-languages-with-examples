@@ -1,11 +1,11 @@
-// This example shows tying resource cleanup to object lifetime so cleanup stays predictable.
-// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
+// Module focus: Tying resource cleanup to object lifetime so cleanup stays predictable.
+// Why it matters: practicing memory management and raii patterns makes exercises and checkpoints easier to reason about.
 
 package main
 
 import "fmt"
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for memory management and raii; this keeps the walkthrough readable.
 type trackedBuffer struct {
 	name   string
 	values []int
@@ -56,11 +56,11 @@ func (b *trackedBuffer) ensureOpen() {
 	}
 }
 
-// Run one deterministic scenario so the console output makes tying resource cleanup to object lifetime so cleanup stays predictable easy to verify.
+// Walk through one fixed scenario so memory management and raii behavior stays repeatable.
 func main() {
-	// Build the sample state first, then let the later output confirm the behavior step by step.
+	// Prepare sample inputs that exercise the key memory management and raii path.
 	active := 0
-	// Print the observed state here so learners can connect the code path to a concrete result.
+	// Report values so learners can verify the memory management and raii outcome.
 	fmt.Printf("Active before scope: %d\n", active)
 
 	func() {

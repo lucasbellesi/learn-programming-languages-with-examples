@@ -1,11 +1,11 @@
-// This example shows how names stay visible only inside the blocks that own them.
-// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
+// Module focus: How names stay visible only inside the blocks that own them.
+// Why it matters: practicing scope and lifetime basics patterns makes exercises and checkpoints easier to reason about.
 
 package main
 
 import "fmt"
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for scope and lifetime basics; this keeps the walkthrough readable.
 const PassingScore = 60
 
 func classify(score int) string {
@@ -23,11 +23,11 @@ func classify(score int) string {
 	}
 }
 
-// Run one deterministic scenario so the console output makes how names stay visible only inside the blocks that own them easy to verify.
+// Walk through one fixed scenario so scope and lifetime basics behavior stays repeatable.
 func main() {
-	// Build the sample state first, then let the later output confirm the behavior step by step.
+	// Prepare sample inputs that exercise the key scope and lifetime basics path.
 	var score int
-	// Print the observed state here so learners can connect the code path to a concrete result.
+	// Report values so learners can verify the scope and lifetime basics outcome.
 	fmt.Print("Enter score: ")
 	fmt.Scanln(&score)
 

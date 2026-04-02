@@ -1,16 +1,16 @@
-// This example shows choosing between branches and repeating work with predictable control flow.
-// In C#, the example uses the standard library and static types to keep the workflow structured.
+// Module focus: Choosing between branches and repeating work with predictable control flow.
+// Why it matters: practicing control flow patterns makes exercises and checkpoints easier to reason about.
 
 using System;
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for control flow; this keeps the walkthrough readable.
 class Program
 {
-    // Run one deterministic scenario so the console output makes choosing between branches and repeating work with predictable control flow easy to verify.
+    // Walk through one fixed scenario so control flow behavior stays repeatable.
     static void Main()
     {
-        // Build the sample state first, then let the later output confirm the behavior step by step.
-        // Print the observed state here so learners can connect the code path to a concrete result.
+        // Prepare sample inputs that exercise the key control flow path.
+        // Report values so learners can verify the control flow outcome.
         Console.Write("Enter an integer: ");
         int value = int.Parse(Console.ReadLine() ?? "0");
 

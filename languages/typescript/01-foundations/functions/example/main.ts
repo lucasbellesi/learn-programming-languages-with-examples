@@ -1,5 +1,5 @@
-// This example shows breaking behavior into reusable functions with clear inputs and outputs.
-// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+// Module focus: Breaking behavior into reusable functions with clear inputs and outputs.
+// Why it matters: practicing functions patterns makes exercises and checkpoints easier to reason about.
 
 function formatLabel(value: number): string;
 function formatLabel(value: string): string;

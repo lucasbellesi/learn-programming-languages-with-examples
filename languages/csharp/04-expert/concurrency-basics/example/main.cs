@@ -1,12 +1,12 @@
-// This example shows starting multiple units of work and combining their results safely.
-// In C#, the example uses the standard library and static types to keep the workflow structured.
+// Module focus: Starting multiple units of work and combining their results safely.
+// Why it matters: practicing concurrency basics patterns makes exercises and checkpoints easier to reason about.
 
 using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for concurrency basics; this keeps the walkthrough readable.
 sealed class WorkQueue
 {
     private readonly Queue<int> items = new Queue<int>();
@@ -53,10 +53,10 @@ sealed class WorkQueue
 
 class Program
 {
-    // Run one deterministic scenario so the console output makes starting multiple units of work and combining their results safely easy to verify.
+    // Walk through one fixed scenario so concurrency basics behavior stays repeatable.
     static void Main()
     {
-        // Build the sample state first, then let the later output confirm the behavior step by step.
+        // Prepare sample inputs that exercise the key concurrency basics path.
         const int workerCount = 4;
         const int incrementsPerWorker = 10000;
 
@@ -79,7 +79,7 @@ class Program
         }
 
         Task.WaitAll(workers);
-        // Print the observed state here so learners can connect the code path to a concrete result.
+        // Report values so learners can verify the concurrency basics outcome.
         Console.WriteLine($"Expected counter: {workerCount * incrementsPerWorker}");
         Console.WriteLine($"Actual counter: {counter}");
 

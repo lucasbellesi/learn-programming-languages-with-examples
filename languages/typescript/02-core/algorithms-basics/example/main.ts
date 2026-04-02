@@ -1,5 +1,5 @@
-// This example shows walking data step by step to compute summaries and decisions.
-// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+// Module focus: Walking data step by step to compute summaries and decisions.
+// Why it matters: practicing algorithms basics patterns makes exercises and checkpoints easier to reason about.
 
 function firstIndexOf(values: number[], target: number): number {
     for (let index = 0; index < values.length; index += 1) {
@@ -36,6 +36,7 @@ function summarize(values: number[]): {
 
 const values = [14, 7, 22, 14, 9, 18];
 const summary = summarize(values);
+// Report output values so learners can verify the algorithms basics result.
 console.log(`Values: ${values.join(", ")}`);
 console.log(`First index of 14: ${firstIndexOf(values, 14)}`);
 console.log(`Minimum: ${summary.minimum}`);

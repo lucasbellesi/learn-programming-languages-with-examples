@@ -1,11 +1,11 @@
-// This example shows building objects that start valid and stay valid through guarded updates.
-// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
+// Module focus: Building objects that start valid and stay valid through guarded updates.
+// Why it matters: practicing constructors and invariants patterns makes exercises and checkpoints easier to reason about.
 
 package main
 
 import "fmt"
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for constructors and invariants; this keeps the walkthrough readable.
 type Temperature struct {
 	celsius float64
 }
@@ -31,11 +31,11 @@ func (t *Temperature) Celsius() float64 {
 	return t.celsius
 }
 
-// Run one deterministic scenario so the console output makes building objects that start valid and stay valid through guarded updates easy to verify.
+// Walk through one fixed scenario so constructors and invariants behavior stays repeatable.
 func main() {
-	// Build the sample state first, then let the later output confirm the behavior step by step.
+	// Prepare sample inputs that exercise the key constructors and invariants path.
 	temperature := NewTemperature(-500.0)
-	// Print the observed state here so learners can connect the code path to a concrete result.
+	// Report values so learners can verify the constructors and invariants outcome.
 	fmt.Printf("Initial value (clamped): %.2f C\n", temperature.Celsius())
 
 	updated := temperature.SetCelsius(25.0)

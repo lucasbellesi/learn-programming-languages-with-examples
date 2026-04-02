@@ -1,10 +1,10 @@
-// This example shows how copying, sharing, or transferring state changes later behavior.
-// In C#, the example uses the standard library and static types to keep the workflow structured.
+// Module focus: How copying, sharing, or transferring state changes later behavior.
+// Why it matters: practicing copy and move semantics patterns makes exercises and checkpoints easier to reason about.
 
 using System;
 using System.Collections.Generic;
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for copy and move semantics; this keeps the walkthrough readable.
 class Buffer
 {
     private List<int> values;
@@ -42,15 +42,15 @@ class Buffer
 
 class Program
 {
-    // Run one deterministic scenario so the console output makes how copying, sharing, or transferring state changes later behavior easy to verify.
+    // Walk through one fixed scenario so copy and move semantics behavior stays repeatable.
     static void Main()
     {
-        // Build the sample state first, then let the later output confirm the behavior step by step.
+        // Prepare sample inputs that exercise the key copy and move semantics path.
         Buffer first = new Buffer(3);
         Buffer second = first.Clone();
         Buffer third = second.Transfer();
 
-        // Print the observed state here so learners can connect the code path to a concrete result.
+        // Report values so learners can verify the copy and move semantics outcome.
         Console.WriteLine($"first size: {first.Size}");
         Console.WriteLine($"second size (after transfer): {second.Size}");
         Console.WriteLine($"third size: {third.Size}");

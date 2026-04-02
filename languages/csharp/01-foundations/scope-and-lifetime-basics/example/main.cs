@@ -1,9 +1,9 @@
-// This example shows how names stay visible only inside the blocks that own them.
-// In C#, the example uses the standard library and static types to keep the workflow structured.
+// Module focus: How names stay visible only inside the blocks that own them.
+// Why it matters: practicing scope and lifetime basics patterns makes exercises and checkpoints easier to reason about.
 
 using System;
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for scope and lifetime basics; this keeps the walkthrough readable.
 class Program
 {
     const int PassingScore = 60;
@@ -21,11 +21,11 @@ class Program
         return "F";
     }
 
-    // Run one deterministic scenario so the console output makes how names stay visible only inside the blocks that own them easy to verify.
+    // Walk through one fixed scenario so scope and lifetime basics behavior stays repeatable.
     static void Main()
     {
-        // Build the sample state first, then let the later output confirm the behavior step by step.
-        // Print the observed state here so learners can connect the code path to a concrete result.
+        // Prepare sample inputs that exercise the key scope and lifetime basics path.
+        // Report values so learners can verify the scope and lifetime basics outcome.
         Console.Write("Enter score: ");
         int score = int.Parse(Console.ReadLine() ?? "0");
 

@@ -1,5 +1,5 @@
-// This example shows treating different concrete types through one common interface.
-// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
+// Module focus: Treating different concrete types through one common interface.
+// Why it matters: practicing inheritance and polymorphism patterns makes exercises and checkpoints easier to reason about.
 
 package main
 
@@ -8,7 +8,7 @@ import (
 	"math"
 )
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for inheritance and polymorphism; this keeps the walkthrough readable.
 type Shape interface {
 	Area() float64
 	Name() string
@@ -39,16 +39,16 @@ func (c Circle) Name() string {
 	return "Circle"
 }
 
-// Run one deterministic scenario so the console output makes treating different concrete types through one common interface easy to verify.
+// Walk through one fixed scenario so inheritance and polymorphism behavior stays repeatable.
 func main() {
-	// Build the sample state first, then let the later output confirm the behavior step by step.
+	// Prepare sample inputs that exercise the key inheritance and polymorphism path.
 	shapes := []Shape{
 		Rectangle{width: 3.0, height: 4.0},
 		Circle{radius: 2.0},
 	}
 
 	for _, shape := range shapes {
-		// Print the observed state here so learners can connect the code path to a concrete result.
+		// Report values so learners can verify the inheritance and polymorphism outcome.
 		fmt.Printf("%s area: %.2f\n", shape.Name(), shape.Area())
 	}
 }

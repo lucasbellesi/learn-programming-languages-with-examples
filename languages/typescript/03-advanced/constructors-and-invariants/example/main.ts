@@ -1,5 +1,5 @@
-// This example shows building objects that start valid and stay valid through guarded updates.
-// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+// Module focus: Building objects that start valid and stay valid through guarded updates.
+// Why it matters: practicing constructors and invariants patterns makes exercises and checkpoints easier to reason about.
 
 class BankAccount {
     #balance: number;
@@ -33,6 +33,7 @@ class BankAccount {
     }
 
     printStatus(): void {
+        // Report output values so learners can verify the constructors and invariants result.
         console.log(`${this.owner}: ${this.#balance.toFixed(2)}`);
     }
 }

@@ -1,5 +1,5 @@
-// This example shows guarding risky inputs so failures stay explicit and controlled.
-// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
+// Module focus: Guarding risky inputs so failures stay explicit and controlled.
+// Why it matters: practicing error handling and defensive programming patterns makes exercises and checkpoints easier to reason about.
 
 package main
 
@@ -7,7 +7,7 @@ import (
 	"fmt"
 )
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for error handling and defensive programming; this keeps the walkthrough readable.
 func safeDivide(left float64, right float64) (float64, bool) {
 	if right == 0.0 {
 		return 0.0, false
@@ -15,9 +15,9 @@ func safeDivide(left float64, right float64) (float64, bool) {
 	return left / right, true
 }
 
-// Run one deterministic scenario so the console output makes guarding risky inputs so failures stay explicit and controlled easy to verify.
+// Walk through one fixed scenario so error handling and defensive programming behavior stays repeatable.
 func main() {
-	// Build the sample state first, then let the later output confirm the behavior step by step.
+	// Prepare sample inputs that exercise the key error handling and defensive programming path.
 	scenarios := [][2]float64{
 		{42.0, 6.0},
 		{10.0, 0.0},
@@ -27,7 +27,7 @@ func main() {
 		left := scenario[0]
 		right := scenario[1]
 
-		// Print the observed state here so learners can connect the code path to a concrete result.
+		// Report values so learners can verify the error handling and defensive programming outcome.
 		fmt.Printf("Input: %v %v\n", left, right)
 
 		quotient, ok := safeDivide(left, right)

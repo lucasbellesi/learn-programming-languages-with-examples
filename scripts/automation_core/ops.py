@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import re
 import shlex
@@ -8,7 +9,9 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from collections import defaultdict
 from dataclasses import dataclass
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -59,6 +62,7 @@ def build_parser() -> argparse.ArgumentParser:
     add_simple_command(
         subparsers, "check-checkpoint-completeness", handle_check_checkpoint_completeness
     )
+    add_simple_command(subparsers, "audit-education-quality", handle_audit_education_quality)
     add_simple_command(subparsers, "check-doc-sync", handle_check_doc_sync)
     add_simple_command(subparsers, "lint", handle_lint)
     add_simple_command(subparsers, "smoke-languages", handle_smoke_languages)
@@ -103,6 +107,11 @@ def handle_check_module_completeness(ctx: RepoContext, _: argparse.Namespace) ->
 
 def handle_check_checkpoint_completeness(ctx: RepoContext, _: argparse.Namespace) -> int:
     check_checkpoint_completeness(ctx)
+    return 0
+
+
+def handle_audit_education_quality(ctx: RepoContext, _: argparse.Namespace) -> int:
+    audit_education_quality(ctx)
     return 0
 
 
@@ -876,6 +885,234 @@ def check_example_comments(ctx: RepoContext) -> None:
         raise AutomationError("Example comment validation failed.")
 
     print(f"Example comment validation passed for {len(example_files)} files.")
+
+
+def module_example_main_files(ctx: RepoContext) -> list[tuple[str, str, str, Path]]:
+    files: list[tuple[str, str, str, Path]] = []
+    for language, level, module_dir in iter_module_directories(ctx):
+        extension = ctx.manifest.languages[language]["extension"]
+        main_file = module_dir / "example" / f"main.{extension}"
+        if not main_file.is_file():
+            continue
+        files.append((language, level, module_dir.name, main_file))
+    return sorted(files, key=lambda item: (item[0], item[1], item[2]))
+
+
+def percentile(values: list[int], fraction: float) -> float:
+    if not values:
+        return 0.0
+    ordered = sorted(values)
+    if len(ordered) == 1:
+        return float(ordered[0])
+    position = (len(ordered) - 1) * fraction
+    lower = int(position)
+    upper = min(lower + 1, len(ordered) - 1)
+    weight = position - lower
+    return ordered[lower] * (1.0 - weight) + ordered[upper] * weight
+
+
+def output_pattern_for_file(path: Path) -> re.Pattern[str]:
+    suffix = path.suffix
+    if suffix == ".py":
+        return re.compile(r"^\s*print\(", re.IGNORECASE)
+    if suffix == ".go":
+        return re.compile(r"\bfmt\.(Print|Printf|Println)\s*\(")
+    if suffix == ".cs":
+        return re.compile(r"\bConsole\.(Write|WriteLine)\s*\(")
+    if suffix == ".cpp":
+        return re.compile(r"\bcout\s*<<")
+    return re.compile(r"\bconsole\.(log|error|warn)\s*\(", re.IGNORECASE)
+
+
+def comment_pattern_for_file(path: Path) -> re.Pattern[str]:
+    return re.compile(r"^\s*#") if path.suffix == ".py" else re.compile(r"^\s*//")
+
+
+def audit_education_quality(ctx: RepoContext) -> None:
+    module_examples = module_example_main_files(ctx)
+    if not module_examples:
+        raise AutomationError("No module example main files were found for education audit.")
+
+    boilerplate_patterns = [
+        re.compile(r"Define the reusable pieces first so", re.IGNORECASE),
+        re.compile(r"Run one deterministic scenario so", re.IGNORECASE),
+        re.compile(r"Run one direct scenario at the top level so", re.IGNORECASE),
+        re.compile(r"Build the sample state first, then", re.IGNORECASE),
+        re.compile(
+            r"Print the observed state here so learners can (connect|match)",
+            re.IGNORECASE,
+        ),
+    ]
+    output_marker_pattern = re.compile(
+        r"(print|output|report|expected|actual|verify|summary|observed)",
+        re.IGNORECASE,
+    )
+
+    file_rows: list[dict[str, Any]] = []
+    level_line_counts: dict[str, list[int]] = defaultdict(list)
+
+    for language, level, module, path in module_examples:
+        text = path.read_text(encoding="utf-8")
+        lines = text.splitlines()
+        non_blank_lines = [line for line in lines if line.strip()]
+        comment_pattern = comment_pattern_for_file(path)
+        output_pattern = output_pattern_for_file(path)
+
+        comment_lines = [line for line in lines if comment_pattern.match(line)]
+        has_output = any(output_pattern.search(line) for line in lines)
+        has_output_marker = any(
+            comment_pattern.match(line) and output_marker_pattern.search(line) for line in lines
+        )
+        boilerplate_hits = [
+            line.strip()
+            for line in lines
+            if comment_pattern.match(line)
+            and any(pattern.search(line) for pattern in boilerplate_patterns)
+        ]
+
+        non_blank_count = len(non_blank_lines)
+        comment_count = len(comment_lines)
+        comment_ratio = 0.0 if non_blank_count == 0 else comment_count / non_blank_count
+        level_line_counts[level].append(non_blank_count)
+
+        relative_path = str(path.relative_to(ctx.root)).replace("\\", "/")
+        file_rows.append(
+            {
+                "path": relative_path,
+                "language": language,
+                "level": level,
+                "module": module,
+                "non_blank_lines": non_blank_count,
+                "comment_lines": comment_count,
+                "comment_ratio": round(comment_ratio, 3),
+                "boilerplate_hits": boilerplate_hits,
+                "boilerplate_hit_count": len(boilerplate_hits),
+                "has_output_statements": has_output,
+                "has_observable_output_marker": has_output_marker,
+                "missing_observable_output_marker": bool(has_output and not has_output_marker),
+            }
+        )
+
+    level_thresholds: dict[str, dict[str, float]] = {}
+    for level, values in level_line_counts.items():
+        median = percentile(values, 0.5)
+        p75 = percentile(values, 0.75)
+        oversized_threshold = max(p75 + 10.0, median * 1.35)
+        level_thresholds[level] = {
+            "median_non_blank_lines": round(median, 2),
+            "p75_non_blank_lines": round(p75, 2),
+            "oversized_threshold": round(oversized_threshold, 2),
+        }
+
+    oversized_count = 0
+    low_comment_ratio_count = 0
+    missing_output_marker_count = 0
+    boilerplate_file_count = 0
+
+    for row in file_rows:
+        threshold = level_thresholds[row["level"]]["oversized_threshold"]
+        row["oversized_for_level"] = bool(row["non_blank_lines"] > threshold)
+        if row["oversized_for_level"]:
+            oversized_count += 1
+        if row["comment_ratio"] < 0.12:
+            low_comment_ratio_count += 1
+        if row["missing_observable_output_marker"]:
+            missing_output_marker_count += 1
+        if row["boilerplate_hit_count"] > 0:
+            boilerplate_file_count += 1
+
+    timestamp = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    reports_dir = ctx.root / "build" / "reports"
+    reports_dir.mkdir(parents=True, exist_ok=True)
+    markdown_path = reports_dir / "education-quality-report.md"
+    json_path = reports_dir / "education-quality-report.json"
+
+    summary = {
+        "generated_at_utc": timestamp,
+        "total_files": len(file_rows),
+        "files_with_boilerplate_hits": boilerplate_file_count,
+        "files_missing_observable_output_marker": missing_output_marker_count,
+        "files_low_comment_ratio": low_comment_ratio_count,
+        "files_oversized_for_level": oversized_count,
+        "low_comment_ratio_threshold": 0.12,
+        "level_thresholds": level_thresholds,
+    }
+
+    json_path.write_text(
+        json.dumps({"summary": summary, "files": file_rows}, indent=2),
+        encoding="utf-8",
+    )
+
+    lines: list[str] = []
+    lines.append("# Education Quality Audit Report")
+    lines.append("")
+    lines.append(f"Generated (UTC): {timestamp}")
+    lines.append("")
+    lines.append("## Summary")
+    lines.append("")
+    lines.append(f"- Total module example entry files: {summary['total_files']}")
+    lines.append(f"- Files with boilerplate comment hits: {summary['files_with_boilerplate_hits']}")
+    lines.append(
+        "- Files missing observable output explanation markers: "
+        f"{summary['files_missing_observable_output_marker']}"
+    )
+    lines.append(
+        f"- Files below comment ratio threshold ({summary['low_comment_ratio_threshold']:.2f}): "
+        f"{summary['files_low_comment_ratio']}"
+    )
+    lines.append(f"- Files oversized for level norms: {summary['files_oversized_for_level']}")
+    lines.append("")
+    lines.append("## Level Size Thresholds")
+    lines.append("")
+    lines.append("| Level | Median | P75 | Oversized Threshold |")
+    lines.append("| --- | ---: | ---: | ---: |")
+    for level in sorted(level_thresholds):
+        values = level_thresholds[level]
+        lines.append(
+            f"| {level} | {values['median_non_blank_lines']:.2f} | "
+            f"{values['p75_non_blank_lines']:.2f} | {values['oversized_threshold']:.2f} |"
+        )
+    lines.append("")
+    lines.append("## Priority Findings")
+    lines.append("")
+    lines.append("| Path | Comment Ratio | Boilerplate Hits | Missing Output Marker | Oversized |")
+    lines.append("| --- | ---: | ---: | ---: | ---: |")
+    findings = [
+        row
+        for row in file_rows
+        if row["boilerplate_hit_count"] > 0
+        or row["missing_observable_output_marker"]
+        or row["comment_ratio"] < 0.12
+        or row["oversized_for_level"]
+    ]
+    findings.sort(
+        key=lambda row: (
+            not row["missing_observable_output_marker"],
+            row["comment_ratio"],
+            -row["boilerplate_hit_count"],
+            -row["non_blank_lines"],
+        )
+    )
+    for row in findings[:80]:
+        lines.append(
+            f"| {row['path']} | {row['comment_ratio']:.3f} | {row['boilerplate_hit_count']} | "
+            f"{'yes' if row['missing_observable_output_marker'] else 'no'} | "
+            f"{'yes' if row['oversized_for_level'] else 'no'} |"
+        )
+    if not findings:
+        lines.append("| _No findings_ | - | - | - | - |")
+    lines.append("")
+    lines.append("## Output")
+    lines.append("")
+    lines.append(f"- JSON: `{json_path.relative_to(ctx.root).as_posix()}`")
+    lines.append(f"- Markdown: `{markdown_path.relative_to(ctx.root).as_posix()}`")
+    lines.append("- This command is advisory and does not fail CI.")
+    lines.append("")
+
+    markdown_path.write_text("\n".join(lines), encoding="utf-8")
+    print(f"Education quality audit completed for {len(file_rows)} module examples.")
+    print(f"Report (markdown): {markdown_path.relative_to(ctx.root).as_posix()}")
+    print(f"Report (json): {json_path.relative_to(ctx.root).as_posix()}")
 
 
 def lint_repo(ctx: RepoContext) -> None:

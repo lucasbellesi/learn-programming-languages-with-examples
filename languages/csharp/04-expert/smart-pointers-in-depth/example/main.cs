@@ -1,14 +1,15 @@
-// This example shows tracking ownership and lifetime when multiple references can observe the same value.
-// In C#, the example uses the standard library and static types to keep the workflow structured.
+// Module focus: Tracking ownership and lifetime when multiple references can observe the same value.
+// Why it matters: practicing smart pointers in depth patterns makes exercises and checkpoints easier to reason about.
 
 using System;
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for smart pointers in depth; this keeps the walkthrough readable.
 sealed class Report
 {
     public Report(string title)
     {
         Title = title;
+        // Report output values so learners can verify the smart pointers in depth result.
         Console.WriteLine($"Created report: {title}");
     }
 
@@ -69,10 +70,10 @@ sealed class PreviewPane
 
 class Program
 {
-    // Run one deterministic scenario so the console output makes tracking ownership and lifetime when multiple references can observe the same value easy to verify.
+    // Walk through one fixed scenario so smart pointers in depth behavior stays repeatable.
     static void Main()
     {
-        // Build the sample state first, then let the later output confirm the behavior step by step.
+        // Prepare sample inputs that exercise the key smart pointers in depth path.
         ReportOwner inbox = new ReportOwner("Inbox", new Report("Quarterly Summary"));
         ReportOwner archive = new ReportOwner("Archive", null);
 

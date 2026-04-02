@@ -1,11 +1,11 @@
-// This example shows modeling related data and behavior with structured types.
-// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
+// Module focus: Modeling related data and behavior with structured types.
+// Why it matters: practicing structs and classes patterns makes exercises and checkpoints easier to reason about.
 
 package main
 
 import "fmt"
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for structs and classes; this keeps the walkthrough readable.
 type Coordinate struct {
 	X int
 	Y int
@@ -62,12 +62,12 @@ func (w *Wallet) Balance() float64 {
 	return w.balance
 }
 
-// Run one deterministic scenario so the console output makes modeling related data and behavior with structured types easy to verify.
+// Walk through one fixed scenario so structs and classes behavior stays repeatable.
 func main() {
-	// Build the sample state first, then let the later output confirm the behavior step by step.
+	// Prepare sample inputs that exercise the key structs and classes path.
 	route := []Coordinate{{X: 2, Y: 3}, {X: -1, Y: 4}, {X: 5, Y: -2}}
 
-	// Print the observed state here so learners can connect the code path to a concrete result.
+	// Report values so learners can verify the structs and classes outcome.
 	fmt.Println("Coordinates (struct example):")
 	for _, point := range route {
 		fmt.Printf("Point (%d, %d), Manhattan distance = %d\n", point.X, point.Y, point.ManhattanDistanceFromOrigin())

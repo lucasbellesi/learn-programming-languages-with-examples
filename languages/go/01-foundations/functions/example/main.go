@@ -1,11 +1,11 @@
-// This example shows breaking behavior into reusable functions with clear inputs and outputs.
-// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
+// Module focus: Breaking behavior into reusable functions with clear inputs and outputs.
+// Why it matters: practicing functions patterns makes exercises and checkpoints easier to reason about.
 
 package main
 
 import "fmt"
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for functions; this keeps the walkthrough readable.
 func add(a int, b int) int {
 	return a + b
 }
@@ -18,10 +18,10 @@ func printSlice(values []int) {
 	fmt.Println(values)
 }
 
-// Run one deterministic scenario so the console output makes breaking behavior into reusable functions with clear inputs and outputs easy to verify.
+// Walk through one fixed scenario so functions behavior stays repeatable.
 func main() {
-	// Build the sample state first, then let the later output confirm the behavior step by step.
-	// Print the observed state here so learners can connect the code path to a concrete result.
+	// Prepare sample inputs that exercise the key functions path.
+	// Report values so learners can verify the functions outcome.
 	fmt.Println(add(4, 6))
 
 	numbers := []int{10, 20, 30}

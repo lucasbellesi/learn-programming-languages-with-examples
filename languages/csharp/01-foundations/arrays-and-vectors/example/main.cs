@@ -1,18 +1,18 @@
-// This example shows storing related values in ordered collections and iterating safely.
-// In C#, the example uses the standard library and static types to keep the workflow structured.
+// Module focus: Storing related values in ordered collections and iterating safely.
+// Why it matters: practicing arrays and vectors patterns makes exercises and checkpoints easier to reason about.
 
 using System;
 using System.Collections.Generic;
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for arrays and vectors; this keeps the walkthrough readable.
 class Program
 {
-    // Run one deterministic scenario so the console output makes storing related values in ordered collections and iterating safely easy to verify.
+    // Walk through one fixed scenario so arrays and vectors behavior stays repeatable.
     static void Main()
     {
-        // Build the sample state first, then let the later output confirm the behavior step by step.
+        // Prepare sample inputs that exercise the key arrays and vectors path.
         int[] fixedScores = { 72, 88, 95 };
-        // Print the observed state here so learners can connect the code path to a concrete result.
+        // Report values so learners can verify the arrays and vectors outcome.
         Console.WriteLine($"Fixed array values: {string.Join(", ", fixedScores)}");
 
         Console.Write("How many temperatures do you want to enter? ");

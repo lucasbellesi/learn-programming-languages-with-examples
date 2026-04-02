@@ -1,14 +1,15 @@
-# This example shows formatting values so output is easier to read and compare.
-# In Python, the example favors direct readable steps while keeping validation visible.
+# Module focus: Formatting values so output is easier to read and compare.
+# Why it matters: practicing formatted output and iomanip patterns makes exercises and checkpoints
+# easier to reason about.
 
-# Run one direct scenario at the top level so the printed result is easy to verify.
+# Walk through one fixed scenario so formatted output and iomanip behavior stays repeatable.
 items = [
     ("Notebook", 2, 3.5),
     ("Pencil", 5, 0.8),
     ("Backpack", 1, 29.99),
 ]
 
-# Print the observed state here so learners can match the code path to the result.
+# Report values so learners can verify the formatted output and iomanip outcome.
 print(f"{'Item':<12}{'Qty':>6}{'Unit':>10}{'Total':>10}")
 print("-" * 38)
 

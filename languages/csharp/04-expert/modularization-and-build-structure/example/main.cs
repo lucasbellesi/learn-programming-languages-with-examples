@@ -1,16 +1,16 @@
-// This example shows splitting responsibilities so entrypoints and helpers stay focused.
-// In C#, the example uses the standard library and static types to keep the workflow structured.
+// Module focus: Splitting responsibilities so entrypoints and helpers stay focused.
+// Why it matters: practicing modularization and build structure patterns makes exercises and checkpoints easier to reason about.
 
 using System;
 using ModularizationAndBuildStructureExample.Pricing;
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for modularization and build structure; this keeps the walkthrough readable.
 class Program
 {
-    // Run one deterministic scenario so the console output makes splitting responsibilities so entrypoints and helpers stay focused easy to verify.
+    // Walk through one fixed scenario so modularization and build structure behavior stays repeatable.
     static void Main()
     {
-        // Build the sample state first, then let the later output confirm the behavior step by step.
+        // Prepare sample inputs that exercise the key modularization and build structure path.
         LineItem[] items =
         {
             new LineItem("Notebook", 2, 3.50m),
@@ -20,7 +20,7 @@ class Program
 
         InvoiceSummary summary = InvoiceCalculator.BuildSummary(items, 10.0m, 7.50m);
 
-        // Print the observed state here so learners can connect the code path to a concrete result.
+        // Report values so learners can verify the modularization and build structure outcome.
         Console.WriteLine(InvoiceFormatter.Render(summary));
     }
 }

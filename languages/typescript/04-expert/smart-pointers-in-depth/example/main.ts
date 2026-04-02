@@ -1,7 +1,7 @@
-// This example shows tracking ownership and lifetime when multiple references can observe the same value.
-// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+// Module focus: Tracking ownership and lifetime when multiple references can observe the same value.
+// Why it matters: practicing smart pointers in depth patterns makes exercises and checkpoints easier to reason about.
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for smart pointers in depth; this keeps the walkthrough readable.
 type Note = {
     id: string;
     body: string;
@@ -33,9 +33,9 @@ class NoteOwner {
     }
 }
 
-// Run one deterministic scenario so the console output makes tracking ownership and lifetime when multiple references can observe the same value easy to verify.
+// Walk through one fixed scenario so smart pointers in depth behavior stays repeatable.
 function main(): void {
-    // Build the sample state first, then let the later output confirm the behavior step by step.
+    // Prepare sample inputs that exercise the key smart pointers in depth path.
     const originalNote: Note = {
         id: "note-101",
         body: "Review release checklist",
@@ -44,7 +44,7 @@ function main(): void {
     const inbox = new NoteOwner("inbox", originalNote);
     const archive = new NoteOwner("archive", null);
 
-    // Print the observed state here so learners can connect the code path to a concrete result.
+    // Report values so learners can verify the smart pointers in depth outcome.
     console.log(inbox.describe());
     console.log(archive.describe());
 

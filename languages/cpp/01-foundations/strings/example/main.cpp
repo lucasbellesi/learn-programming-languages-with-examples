@@ -1,5 +1,6 @@
-// This example shows cleaning and combining text while preserving readable string logic.
-// In C++, the example keeps value flow, references, and explicit control visible.
+// Module focus: Cleaning and combining text while preserving readable string logic.
+// Why it matters: practicing strings patterns makes exercises and checkpoints easier to reason
+// about.
 
 #include <cctype>
 #include <iostream>
@@ -7,15 +8,14 @@
 #include <string>
 using namespace std;
 
-// Run one deterministic scenario so the console output makes cleaning and combining text while
-// preserving readable string logic easy to verify.
+// Walk through one fixed scenario so strings behavior stays repeatable.
 int main() {
-    // Build the sample state first, then let the later output confirm the behavior step by step.
+    // Prepare sample inputs that exercise the key strings path.
     int year = 0;
     string fullName;
     string sentence;
 
-    // Print the observed state here so learners can connect the code path to a concrete result.
+    // Report values so learners can verify the strings outcome.
     cout << "Enter your birth year: ";
     cin >> year;
 

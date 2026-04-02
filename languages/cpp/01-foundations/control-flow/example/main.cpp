@@ -1,15 +1,15 @@
-// This example shows choosing between branches and repeating work with predictable control flow.
-// In C++, the example keeps value flow, references, and explicit control visible.
+// Module focus: Choosing between branches and repeating work with predictable control flow.
+// Why it matters: practicing control flow patterns makes exercises and checkpoints easier to reason
+// about.
 
 #include <iostream>
 using namespace std;
 
-// Run one deterministic scenario so the console output makes choosing between branches and
-// repeating work with predictable control flow easy to verify.
+// Walk through one fixed scenario so control flow behavior stays repeatable.
 int main() {
-    // Build the sample state first, then let the later output confirm the behavior step by step.
+    // Prepare sample inputs that exercise the key control flow path.
     int value = 0;
-    // Print the observed state here so learners can connect the code path to a concrete result.
+    // Report values so learners can verify the control flow outcome.
     cout << "Enter an integer: ";
     cin >> value;
 

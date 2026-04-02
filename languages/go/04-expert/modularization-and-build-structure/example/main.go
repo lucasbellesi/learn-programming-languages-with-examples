@@ -1,13 +1,13 @@
-// This example shows splitting responsibilities so entrypoints and helpers stay focused.
-// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
+// Module focus: Splitting responsibilities so entrypoints and helpers stay focused.
+// Why it matters: practicing modularization and build structure patterns makes exercises and checkpoints easier to reason about.
 
 package main
 
 import "fmt"
 
-// Run one deterministic scenario so the console output makes splitting responsibilities so entrypoints and helpers stay focused easy to verify.
+// Walk through one fixed scenario so modularization and build structure behavior stays repeatable.
 func main() {
-	// Build the sample state first, then let the later output confirm the behavior step by step.
+	// Prepare sample inputs that exercise the key modularization and build structure path.
 	items := []lineItem{
 		{name: "Notebook", quantity: 2, unitPrice: 3.50},
 		{name: "Pencil", quantity: 5, unitPrice: 0.80},
@@ -16,6 +16,6 @@ func main() {
 
 	summary := buildSummary(items, 10.0, 7.5)
 
-	// Print the observed state here so learners can connect the code path to a concrete result.
+	// Report values so learners can verify the modularization and build structure outcome.
 	fmt.Println(renderSummary(summary))
 }

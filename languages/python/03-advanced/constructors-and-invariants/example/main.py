@@ -1,10 +1,11 @@
-# This example shows building objects that start valid and stay valid through guarded updates.
-# In Python, the example favors direct readable steps while keeping validation visible.
+# Module focus: Building objects that start valid and stay valid through guarded updates.
+# Why it matters: practicing constructors and invariants patterns makes exercises and checkpoints
+# easier to reason about.
 
-# Define the reusable pieces first so the main flow can focus on one observable scenario.
+# Helper setup for constructors and invariants; this keeps the walkthrough readable.
 class Temperature:
     def __init__(self, celsius_value: float) -> None:
-        # Build the sample state first, then let the later output confirm the behavior step by step.
+        # Prepare sample inputs that exercise the key constructors and invariants path.
         self._celsius = max(-273.15, celsius_value)
 
     def set_celsius(self, new_value: float) -> bool:
@@ -19,10 +20,10 @@ class Temperature:
         return self._celsius
 
 
-# Run one deterministic scenario so the console output makes building objects that start valid and
-# stay valid through guarded updates easy to verify.
+# Walk through one fixed scenario so constructors and invariants behavior stays repeatable.
 def main() -> None:
     temperature = Temperature(-500.0)
+    # Report output values so learners can verify the constructors and invariants outcome.
     print(f"Initial value (clamped): {temperature.celsius:.2f} C")
 
     updated = temperature.set_celsius(25.0)

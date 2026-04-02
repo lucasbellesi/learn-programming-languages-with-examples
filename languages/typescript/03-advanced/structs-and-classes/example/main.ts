@@ -1,5 +1,5 @@
-// This example shows modeling related data and behavior with structured types.
-// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+// Module focus: Modeling related data and behavior with structured types.
+// Why it matters: practicing structs and classes patterns makes exercises and checkpoints easier to reason about.
 
 interface StudentRecord {
     name: string;
@@ -21,6 +21,7 @@ class CourseSummary {
     }
 
     printSummary(): void {
+        // Report output values so learners can verify the structs and classes result.
         console.log(`Course: ${this.title}`);
         for (const student of this.students) {
             console.log(`- ${student.name}: ${student.score}`);

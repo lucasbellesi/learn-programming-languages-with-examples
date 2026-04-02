@@ -1,5 +1,5 @@
-// This example shows modeling related data and behavior with structured types.
-// In C#, the example uses the standard library and static types to keep the workflow structured.
+// Module focus: Modeling related data and behavior with structured types.
+// Why it matters: practicing structs and classes patterns makes exercises and checkpoints easier to reason about.
 
 using System;
 using System.Collections.Generic;
@@ -26,7 +26,7 @@ readonly struct Coordinate
     }
 }
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for structs and classes; this keeps the walkthrough readable.
 class Wallet
 {
     private readonly string owner;
@@ -67,10 +67,10 @@ class Wallet
 
 class Program
 {
-    // Run one deterministic scenario so the console output makes modeling related data and behavior with structured types easy to verify.
+    // Walk through one fixed scenario so structs and classes behavior stays repeatable.
     static void Main()
     {
-        // Build the sample state first, then let the later output confirm the behavior step by step.
+        // Prepare sample inputs that exercise the key structs and classes path.
         List<Coordinate> route = new List<Coordinate>
         {
             new Coordinate(2, 3),
@@ -78,7 +78,7 @@ class Program
             new Coordinate(5, -2),
         };
 
-        // Print the observed state here so learners can connect the code path to a concrete result.
+        // Report values so learners can verify the structs and classes outcome.
         Console.WriteLine("Coordinates (struct example):");
         foreach (Coordinate point in route)
         {

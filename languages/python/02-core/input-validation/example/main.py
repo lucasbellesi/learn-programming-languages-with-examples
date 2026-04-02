@@ -1,14 +1,16 @@
-# This example shows rejecting invalid input before the main workflow continues.
-# In Python, the example favors direct readable steps while keeping validation visible.
+# Module focus: Rejecting invalid input before the main workflow continues.
+# Why it matters: practicing input validation patterns makes exercises and checkpoints easier to
+# reason about.
 
-# Define the reusable pieces first so the main flow can focus on one observable scenario.
+# Helper setup for input validation; this keeps the walkthrough readable.
 def read_int_in_range(prompt, min_value, max_value):
-    # Build the sample state first, then let the later output confirm the behavior step by step.
+    # Prepare sample inputs that exercise the key input validation path.
     while True:
         raw = input(prompt).strip()
         try:
             value = int(raw)
         except ValueError:
+            # Report output values so learners can verify the input validation outcome.
             print("Invalid input type. Please enter an integer.")
             continue
 
@@ -35,8 +37,7 @@ def read_float_in_range(prompt, min_value, max_value):
         return value
 
 
-# Run one deterministic scenario so the console output makes rejecting invalid input before the main
-# workflow continues easy to verify.
+# Walk through one fixed scenario so input validation behavior stays repeatable.
 def main():
     age = read_int_in_range("Enter your age (1-120): ", 1, 120)
     gpa = read_float_in_range("Enter your GPA (0.0-4.0): ", 0.0, 4.0)

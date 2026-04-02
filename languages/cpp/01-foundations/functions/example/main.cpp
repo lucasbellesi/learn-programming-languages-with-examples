@@ -1,11 +1,12 @@
-// This example shows breaking behavior into reusable functions with clear inputs and outputs.
-// In C++, the example keeps value flow, references, and explicit control visible.
+// Module focus: Breaking behavior into reusable functions with clear inputs and outputs.
+// Why it matters: practicing functions patterns makes exercises and checkpoints easier to reason
+// about.
 
 #include <iostream>
 #include <vector>
 using namespace std;
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for functions; this keeps the walkthrough readable.
 int sum(int a, int b) { return a + b; }
 
 void swapByReference(int& left, int& right) {
@@ -35,11 +36,10 @@ void incrementByReference(int& number) {
     cout << "Inside incrementByReference: " << number << '\n';
 }
 
-// Run one deterministic scenario so the console output makes breaking behavior into reusable
-// functions with clear inputs and outputs easy to verify.
+// Walk through one fixed scenario so functions behavior stays repeatable.
 int main() {
-    // Build the sample state first, then let the later output confirm the behavior step by step.
-    // Print the observed state here so learners can connect the code path to a concrete result.
+    // Prepare sample inputs that exercise the key functions path.
+    // Report values so learners can verify the functions outcome.
     cout << "sum(4, 6) = " << sum(4, 6) << '\n';
 
     int first = 10;

@@ -1,5 +1,5 @@
-// This example shows reordering data and locating values with deliberate search logic.
-// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
+// Module focus: Reordering data and locating values with deliberate search logic.
+// Why it matters: practicing sorting and searching patterns makes exercises and checkpoints easier to reason about.
 
 package main
 
@@ -8,7 +8,7 @@ import (
 	"sort"
 )
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for sorting and searching; this keeps the walkthrough readable.
 func binarySearch(values []int, target int) int {
 	left := 0
 	right := len(values) - 1
@@ -31,13 +31,13 @@ func binarySearch(values []int, target int) int {
 	return -1
 }
 
-// Run one deterministic scenario so the console output makes reordering data and locating values with deliberate search logic easy to verify.
+// Walk through one fixed scenario so sorting and searching behavior stays repeatable.
 func main() {
-	// Build the sample state first, then let the later output confirm the behavior step by step.
+	// Prepare sample inputs that exercise the key sorting and searching path.
 	values := []int{7, 2, 9, 4, 2, 8}
 	sort.Ints(values)
 
-	// Print the observed state here so learners can connect the code path to a concrete result.
+	// Report values so learners can verify the sorting and searching outcome.
 	fmt.Printf("Sorted: %v\n", values)
 
 	target := 4

@@ -1,5 +1,5 @@
-// This example shows measuring hot paths before changing code for speed.
-// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
+// Module focus: Measuring hot paths before changing code for speed.
+// Why it matters: practicing performance and profiling basics patterns makes exercises and checkpoints easier to reason about.
 
 package main
 
@@ -9,21 +9,21 @@ import (
 	"time"
 )
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for performance and profiling basics; this keeps the walkthrough readable.
 var (
 	retainedText   string
 	retainedValues []int
 )
 
-// Run one deterministic scenario so the console output makes measuring hot paths before changing code for speed easy to verify.
+// Walk through one fixed scenario so performance and profiling basics behavior stays repeatable.
 func main() {
-	// Build the sample state first, then let the later output confirm the behavior step by step.
+	// Prepare sample inputs that exercise the key performance and profiling basics path.
 	const lineCount = 4000
 	const repetitions = 12
 	concatDuration := measureAverage(func() { retainedText = buildWithConcatenation(lineCount) }, repetitions)
 	builderDuration := measureAverage(func() { retainedText = buildWithBuilder(lineCount) }, repetitions)
 
-	// Print the observed state here so learners can connect the code path to a concrete result.
+	// Report values so learners can verify the performance and profiling basics outcome.
 	fmt.Printf("Average string concatenation (%d runs): %v\n", repetitions, concatDuration)
 	fmt.Printf("Average strings.Builder (%d runs): %v\n", repetitions, builderDuration)
 

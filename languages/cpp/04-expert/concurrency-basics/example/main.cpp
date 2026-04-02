@@ -1,5 +1,6 @@
-// This example shows starting multiple units of work and combining their results safely.
-// In C++, the example keeps value flow, references, and explicit control visible.
+// Module focus: Starting multiple units of work and combining their results safely.
+// Why it matters: practicing concurrency basics patterns makes exercises and checkpoints easier to
+// reason about.
 
 #include <iostream>
 #include <mutex>
@@ -7,10 +8,9 @@
 #include <vector>
 using namespace std;
 
-// Run one deterministic scenario so the console output makes starting multiple units of work and
-// combining their results safely easy to verify.
+// Walk through one fixed scenario so concurrency basics behavior stays repeatable.
 int main() {
-    // Build the sample state first, then let the later output confirm the behavior step by step.
+    // Prepare sample inputs that exercise the key concurrency basics path.
     const int threadCount = 4;
     const int incrementsPerThread = 50000;
 
@@ -36,7 +36,7 @@ int main() {
     }
 
     const int expected = threadCount * incrementsPerThread;
-    // Print the observed state here so learners can connect the code path to a concrete result.
+    // Report values so learners can verify the concurrency basics outcome.
     cout << "Expected: " << expected << '\n';
     cout << "Actual: " << counter << '\n';
 

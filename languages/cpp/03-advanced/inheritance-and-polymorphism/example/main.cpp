@@ -1,5 +1,6 @@
-// This example shows treating different concrete types through one common interface.
-// In C++, the example keeps value flow, references, and explicit control visible.
+// Module focus: Treating different concrete types through one common interface.
+// Why it matters: practicing inheritance and polymorphism patterns makes exercises and checkpoints
+// easier to reason about.
 
 #include <iostream>
 #include <memory>
@@ -33,16 +34,15 @@ class Circle : public Shape {
     double radius;
 };
 
-// Run one deterministic scenario so the console output makes treating different concrete types
-// through one common interface easy to verify.
+// Walk through one fixed scenario so inheritance and polymorphism behavior stays repeatable.
 int main() {
-    // Build the sample state first, then let the later output confirm the behavior step by step.
+    // Prepare sample inputs that exercise the key inheritance and polymorphism path.
     vector<unique_ptr<Shape>> shapes;
     shapes.push_back(unique_ptr<Shape>(new Rectangle(3.0, 4.0)));
     shapes.push_back(unique_ptr<Shape>(new Circle(2.0)));
 
     for (const auto& shape : shapes) {
-        // Print the observed state here so learners can connect the code path to a concrete result.
+        // Report values so learners can verify the inheritance and polymorphism outcome.
         cout << "Area: " << shape->area() << '\n';
     }
 

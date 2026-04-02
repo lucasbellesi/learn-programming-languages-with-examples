@@ -1,10 +1,10 @@
-// This example shows treating different concrete types through one common interface.
-// In C#, the example uses the standard library and static types to keep the workflow structured.
+// Module focus: Treating different concrete types through one common interface.
+// Why it matters: practicing inheritance and polymorphism patterns makes exercises and checkpoints easier to reason about.
 
 using System;
 using System.Collections.Generic;
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for inheritance and polymorphism; this keeps the walkthrough readable.
 abstract class Shape
 {
     public abstract double Area();
@@ -49,15 +49,15 @@ class Circle : Shape
 
 class Program
 {
-    // Run one deterministic scenario so the console output makes treating different concrete types through one common interface easy to verify.
+    // Walk through one fixed scenario so inheritance and polymorphism behavior stays repeatable.
     static void Main()
     {
-        // Build the sample state first, then let the later output confirm the behavior step by step.
+        // Prepare sample inputs that exercise the key inheritance and polymorphism path.
         List<Shape> shapes = new List<Shape> { new Rectangle(3.0, 4.0), new Circle(2.0) };
 
         foreach (Shape shape in shapes)
         {
-            // Print the observed state here so learners can connect the code path to a concrete result.
+            // Report values so learners can verify the inheritance and polymorphism outcome.
             Console.WriteLine($"{shape.Name} area: {shape.Area():F2}");
         }
     }

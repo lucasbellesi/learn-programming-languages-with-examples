@@ -1,10 +1,11 @@
-// This example shows how names stay visible only inside the blocks that own them.
-// In C++, the example keeps value flow, references, and explicit control visible.
+// Module focus: How names stay visible only inside the blocks that own them.
+// Why it matters: practicing scope and lifetime basics patterns makes exercises and checkpoints
+// easier to reason about.
 
 #include <iostream>
 using namespace std;
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for scope and lifetime basics; this keeps the walkthrough readable.
 void printRangeSum(int from, int to) {
     int sum = 0;
     for (int value = from; value <= to; ++value) {
@@ -13,12 +14,11 @@ void printRangeSum(int from, int to) {
     cout << "Sum from " << from << " to " << to << " = " << sum << '\n';
 }
 
-// Run one deterministic scenario so the console output makes how names stay visible only inside the
-// blocks that own them easy to verify.
+// Walk through one fixed scenario so scope and lifetime basics behavior stays repeatable.
 int main() {
-    // Build the sample state first, then let the later output confirm the behavior step by step.
+    // Prepare sample inputs that exercise the key scope and lifetime basics path.
     int value = 10;
-    // Print the observed state here so learners can connect the code path to a concrete result.
+    // Report values so learners can verify the scope and lifetime basics outcome.
     cout << "Outer value: " << value << '\n';
 
     {

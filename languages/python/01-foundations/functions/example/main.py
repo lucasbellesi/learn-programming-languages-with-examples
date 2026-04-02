@@ -1,8 +1,8 @@
-# This example shows breaking behavior into reusable functions with clear inputs and outputs.
-# In Python, the example favors direct readable steps while keeping validation visible.
+# Module focus: Breaking behavior into reusable functions with clear inputs and outputs.
+# Why it matters: practicing functions patterns makes exercises and checkpoints easier to reason
+# about.
 
-
-# Define the reusable pieces first so the later top-level flow stays easy to read.
+# Helper setup for functions; this keeps the walkthrough readable.
 def add(a, b):
     return a + b
 
@@ -15,8 +15,8 @@ def print_list(values):
     print(values)
 
 
-# Run one direct scenario at the top level so the printed result is easy to verify.
-# Print the observed state here so learners can match the code path to the result.
+# Walk through one fixed scenario so functions behavior stays repeatable.
+# Report values so learners can verify the functions outcome.
 print(add(4, 6))
 
 numbers = [10, 20, 30]

@@ -1,12 +1,14 @@
-# This example shows how copying, sharing, or transferring state changes later behavior.
-# In Python, the example favors direct readable steps while keeping validation visible.
+# Module focus: How copying, sharing, or transferring state changes later behavior.
+# Why it matters: practicing copy and move semantics patterns makes exercises and checkpoints easier
+# to reason about.
 
-# Define the reusable pieces first so the main flow can focus on one observable scenario.
+# Helper setup for copy and move semantics; this keeps the walkthrough readable.
 class Buffer:
     def __init__(self, size: int) -> None:
-        # Build the sample state first, then let the later output confirm the behavior step by step.
+        # Prepare sample inputs that exercise the key copy and move semantics path.
         safe_size = max(0, size)
         self._values = [0] * safe_size
+        # Report output values so learners can verify the copy and move semantics outcome.
         print(f"Constructed (size={len(self._values)})")
 
     def clone(self) -> "Buffer":
@@ -28,8 +30,7 @@ class Buffer:
         return len(self._values)
 
 
-# Run one deterministic scenario so the console output makes how copying, sharing, or transferring
-# state changes later behavior easy to verify.
+# Walk through one fixed scenario so copy and move semantics behavior stays repeatable.
 def main() -> None:
     first = Buffer(3)
     second = first.clone()

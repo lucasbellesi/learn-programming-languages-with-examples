@@ -1,13 +1,14 @@
-# This example shows treating different concrete types through one common interface.
-# In Python, the example favors direct readable steps while keeping validation visible.
+# Module focus: Treating different concrete types through one common interface.
+# Why it matters: practicing inheritance and polymorphism patterns makes exercises and checkpoints
+# easier to reason about.
 
 from abc import ABC, abstractmethod
 from math import pi
 
 
-# Define the reusable pieces first so the main flow can focus on one observable scenario.
+# Helper setup for inheritance and polymorphism; this keeps the walkthrough readable.
 class Shape(ABC):
-    # Build the sample state first, then let the later output confirm the behavior step by step.
+    # Prepare sample inputs that exercise the key inheritance and polymorphism path.
     @abstractmethod
     def area(self) -> float:
         pass
@@ -43,12 +44,12 @@ class Circle(Shape):
         return "Circle"
 
 
-# Run one deterministic scenario so the console output makes treating different concrete types
-# through one common interface easy to verify.
+# Walk through one fixed scenario so inheritance and polymorphism behavior stays repeatable.
 def main() -> None:
     shapes: list[Shape] = [Rectangle(3.0, 4.0), Circle(2.0)]
 
     for shape in shapes:
+        # Report output values so learners can verify the inheritance and polymorphism outcome.
         print(f"{shape.name} area: {shape.area():.2f}")
 
 

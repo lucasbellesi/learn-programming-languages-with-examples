@@ -1,5 +1,5 @@
-// This example shows rejecting invalid input before the main workflow continues.
-// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
+// Module focus: Rejecting invalid input before the main workflow continues.
+// Why it matters: practicing input validation patterns makes exercises and checkpoints easier to reason about.
 
 package main
 
@@ -11,7 +11,7 @@ import (
 	"strings"
 )
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for input validation; this keeps the walkthrough readable.
 func readIntInRange(reader *bufio.Reader, prompt string, minValue int, maxValue int) int {
 	for {
 		fmt.Print(prompt)
@@ -60,15 +60,15 @@ func readFloatInRange(reader *bufio.Reader, prompt string, minValue float64, max
 	}
 }
 
-// Run one deterministic scenario so the console output makes rejecting invalid input before the main workflow continues easy to verify.
+// Walk through one fixed scenario so input validation behavior stays repeatable.
 func main() {
-	// Build the sample state first, then let the later output confirm the behavior step by step.
+	// Prepare sample inputs that exercise the key input validation path.
 	reader := bufio.NewReader(os.Stdin)
 
 	age := readIntInRange(reader, "Enter your age (1-120): ", 1, 120)
 	gpa := readFloatInRange(reader, "Enter your GPA (0.0-4.0): ", 0.0, 4.0)
 
-	// Print the observed state here so learners can connect the code path to a concrete result.
+	// Report values so learners can verify the input validation outcome.
 	fmt.Println("\nValidated input summary:")
 	fmt.Printf("Age: %d\n", age)
 	fmt.Printf("GPA: %.2f\n", gpa)

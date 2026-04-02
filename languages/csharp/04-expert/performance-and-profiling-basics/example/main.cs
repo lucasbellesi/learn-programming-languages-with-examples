@@ -1,21 +1,21 @@
-// This example shows measuring hot paths before changing code for speed.
-// In C#, the example uses the standard library and static types to keep the workflow structured.
+// Module focus: Measuring hot paths before changing code for speed.
+// Why it matters: practicing performance and profiling basics patterns makes exercises and checkpoints easier to reason about.
 
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for performance and profiling basics; this keeps the walkthrough readable.
 class Program
 {
     static string retainedText = string.Empty;
     static List<int> retainedValues = new List<int>();
 
-    // Run one deterministic scenario so the console output makes measuring hot paths before changing code for speed easy to verify.
+    // Walk through one fixed scenario so performance and profiling basics behavior stays repeatable.
     static void Main()
     {
-        // Build the sample state first, then let the later output confirm the behavior step by step.
+        // Prepare sample inputs that exercise the key performance and profiling basics path.
         const int lineCount = 4000;
         const int repetitions = 12;
         long concatTicks = MeasureAverage(
@@ -27,7 +27,7 @@ class Program
             repetitions
         );
 
-        // Print the observed state here so learners can connect the code path to a concrete result.
+        // Report values so learners can verify the performance and profiling basics outcome.
         Console.WriteLine(
             $"Average string concatenation ticks ({repetitions} runs): {concatTicks}"
         );

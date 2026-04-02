@@ -1,5 +1,5 @@
-// This example shows treating different concrete types through one common interface.
-// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+// Module focus: Treating different concrete types through one common interface.
+// Why it matters: practicing inheritance and polymorphism patterns makes exercises and checkpoints easier to reason about.
 
 abstract class Shape {
     abstract name(): string;
@@ -39,6 +39,7 @@ class Rectangle extends Shape {
 
 const shapes: Shape[] = [new Circle(2), new Rectangle(3, 4)];
 for (const shape of shapes) {
+    // Report output values so learners can verify the inheritance and polymorphism result.
     console.log(`${shape.name()}: ${shape.area().toFixed(2)}`);
 }
 

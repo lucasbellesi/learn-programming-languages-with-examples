@@ -1,5 +1,5 @@
-// This example shows reading plain-text files, parsing rows, and writing clear results.
-// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+// Module focus: Reading plain-text files, parsing rows, and writing clear results.
+// Why it matters: practicing file io basics patterns makes exercises and checkpoints easier to reason about.
 
 import * as fs from "node:fs";
 import * as os from "node:os";
@@ -28,6 +28,7 @@ try {
 
     fs.writeFileSync(reportPath, report + "\n", "utf8");
 
+    // Report output values so learners can verify the file io basics result.
     console.log(`Source file: ${sourcePath}`);
     console.log(`Report file: ${reportPath}`);
     console.log(report);

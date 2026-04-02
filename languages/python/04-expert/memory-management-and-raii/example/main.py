@@ -1,12 +1,13 @@
-# This example shows tying resource cleanup to object lifetime so cleanup stays predictable.
-# In Python, the example favors direct readable steps while keeping validation visible.
+# Module focus: Tying resource cleanup to object lifetime so cleanup stays predictable.
+# Why it matters: practicing memory management and raii patterns makes exercises and checkpoints
+# easier to reason about.
 
 from __future__ import annotations
 
 
-# Define the reusable pieces first so the main flow can focus on one observable scenario.
+# Helper setup for memory management and raii; this keeps the walkthrough readable.
 class BufferLease:
-    # Build the sample state first, then let the later output confirm the behavior step by step.
+    # Prepare sample inputs that exercise the key memory management and raii path.
     active_leases = 0
 
     def __init__(self, name: str, size: int) -> None:
@@ -16,6 +17,7 @@ class BufferLease:
 
     def __enter__(self) -> "BufferLease":
         BufferLease.active_leases += 1
+        # Report output values so learners can verify the memory management and raii outcome.
         print(f"[acquire] {self._name} size={len(self._values)} active={BufferLease.active_leases}")
         return self
 
@@ -48,8 +50,7 @@ class BufferLease:
             raise RuntimeError("buffer already closed")
 
 
-# Run one deterministic scenario so the console output makes tying resource cleanup to object
-# lifetime so cleanup stays predictable easy to verify.
+# Walk through one fixed scenario so memory management and raii behavior stays repeatable.
 def main() -> None:
     print(f"Active before scope: {BufferLease.active_leases}")
 

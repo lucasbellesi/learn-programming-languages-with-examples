@@ -1,9 +1,9 @@
-// This example shows tying resource cleanup to object lifetime so cleanup stays predictable.
-// In C#, the example uses the standard library and static types to keep the workflow structured.
+// Module focus: Tying resource cleanup to object lifetime so cleanup stays predictable.
+// Why it matters: practicing memory management and raii patterns makes exercises and checkpoints easier to reason about.
 
 using System;
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for memory management and raii; this keeps the walkthrough readable.
 sealed class BufferLease : IDisposable
 {
     private int[]? values;
@@ -84,11 +84,11 @@ sealed class BufferLease : IDisposable
 
 class Program
 {
-    // Run one deterministic scenario so the console output makes tying resource cleanup to object lifetime so cleanup stays predictable easy to verify.
+    // Walk through one fixed scenario so memory management and raii behavior stays repeatable.
     static void Main()
     {
-        // Build the sample state first, then let the later output confirm the behavior step by step.
-        // Print the observed state here so learners can connect the code path to a concrete result.
+        // Prepare sample inputs that exercise the key memory management and raii path.
+        // Report values so learners can verify the memory management and raii outcome.
         Console.WriteLine($"Active leases before scope: {BufferLease.ActiveLeases}");
 
         using (BufferLease scores = new BufferLease("scores", 5))

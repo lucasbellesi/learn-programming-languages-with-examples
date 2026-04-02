@@ -1,6 +1,9 @@
+# Module focus: Smart pointers in depth.
+# Why it matters: practicing smart pointers in depth patterns makes exercises and checkpoints easier
+# to reason about.
+
 # This example shows tracking ownership and lifetime when multiple references can observe the same
 # value.
-# In Python, the example favors direct readable steps while keeping validation visible.
 
 from __future__ import annotations
 
@@ -8,11 +11,12 @@ import gc
 import weakref
 
 
-# Define the reusable pieces first so the main flow can focus on one observable scenario.
+# Helper setup for smart pointers in depth; this keeps the walkthrough readable.
 class Report:
     def __init__(self, title: str) -> None:
-        # Build the sample state first, then let the later output confirm the behavior step by step.
+        # Prepare sample inputs that exercise the key smart pointers in depth path.
         self.title = title
+        # Report output values so learners can verify the smart pointers in depth outcome.
         print(f"Created report: {title}")
 
 
@@ -64,8 +68,7 @@ def create_preview_session() -> tuple[PreviewPane, PreviewSession]:
     return PreviewPane(current), session
 
 
-# Run one deterministic scenario so the console output makes tracking ownership and lifetime when
-# multiple references can observe the same value easy to verify.
+# Walk through one fixed scenario so smart pointers in depth behavior stays repeatable.
 def main() -> None:
     inbox = ReportOwner("Inbox", Report("Quarterly Summary"))
     archive = ReportOwner("Archive", None)

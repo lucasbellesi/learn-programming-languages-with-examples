@@ -1,15 +1,15 @@
-// This example shows storing related values in ordered collections and iterating safely.
-// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
+// Module focus: Storing related values in ordered collections and iterating safely.
+// Why it matters: practicing arrays and vectors patterns makes exercises and checkpoints easier to reason about.
 
 package main
 
 import "fmt"
 
-// Run one deterministic scenario so the console output makes storing related values in ordered collections and iterating safely easy to verify.
+// Walk through one fixed scenario so arrays and vectors behavior stays repeatable.
 func main() {
-	// Build the sample state first, then let the later output confirm the behavior step by step.
+	// Prepare sample inputs that exercise the key arrays and vectors path.
 	fixedScores := [3]int{72, 88, 95}
-	// Print the observed state here so learners can connect the code path to a concrete result.
+	// Report values so learners can verify the arrays and vectors outcome.
 	fmt.Printf("Fixed array values: %d, %d, %d\n", fixedScores[0], fixedScores[1], fixedScores[2])
 
 	var count int

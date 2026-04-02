@@ -1,8 +1,8 @@
-# This example shows walking data step by step to compute summaries and decisions.
-# In Python, the example favors direct readable steps while keeping validation visible.
+# Module focus: Walking data step by step to compute summaries and decisions.
+# Why it matters: practicing algorithms basics patterns makes exercises and checkpoints easier to
+# reason about.
 
-
-# Define the reusable pieces first so the later top-level flow stays easy to read.
+# Helper setup for algorithms basics; this keeps the walkthrough readable.
 def linear_search(values, target):
     for index, value in enumerate(values):
         if value == target:
@@ -33,12 +33,12 @@ def get_min_max(values):
     return min_value, max_value
 
 
-# Run one direct scenario at the top level so the printed result is easy to verify.
+# Walk through one fixed scenario so algorithms basics behavior stays repeatable.
 values = [4, 7, 4, 1, 9, 4, 2]
 target = 4
 
 first_index = linear_search(values, target)
-# Print the observed state here so learners can match the code path to the result.
+# Report values so learners can verify the algorithms basics outcome.
 print(f"First index of {target}: {first_index}")
 print(f"Occurrences of {target}: {count_occurrences(values, target)}")
 

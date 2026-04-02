@@ -1,5 +1,5 @@
-// This example shows reordering data and locating values with deliberate search logic.
-// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+// Module focus: Reordering data and locating values with deliberate search logic.
+// Why it matters: practicing sorting and searching patterns makes exercises and checkpoints easier to reason about.
 
 function binarySearch(values: number[], target: number): number {
     let left = 0;
@@ -25,6 +25,7 @@ function binarySearch(values: number[], target: number): number {
 const scores = [91, 77, 88, 64, 77, 95];
 const ascending = [...scores].sort((left, right) => left - right);
 
+// Report output values so learners can verify the sorting and searching result.
 console.log(`Original: ${scores.join(", ")}`);
 console.log(`Sorted: ${ascending.join(", ")}`);
 console.log(`Index of 88: ${binarySearch(ascending, 88)}`);

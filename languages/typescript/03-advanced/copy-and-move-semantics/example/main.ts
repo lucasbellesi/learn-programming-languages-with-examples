@@ -1,5 +1,5 @@
-// This example shows how copying, sharing, or transferring state changes later behavior.
-// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+// Module focus: How copying, sharing, or transferring state changes later behavior.
+// Why it matters: practicing copy and move semantics patterns makes exercises and checkpoints easier to reason about.
 
 type InventoryRecord = {
     name: string;
@@ -32,6 +32,7 @@ alias.counts.inStock -= 1;
 shallowCopy.counts.reserved += 3;
 deepCopy.counts.inStock += 5;
 
+// Report output values so learners can verify the copy and move semantics result.
 console.log(`Original: ${original.counts.inStock}/${original.counts.reserved}`);
 console.log(
     `Shallow copy: ${shallowCopy.counts.inStock}/${shallowCopy.counts.reserved}`,

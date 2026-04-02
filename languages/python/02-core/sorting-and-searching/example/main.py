@@ -1,9 +1,10 @@
-# This example shows reordering data and locating values with deliberate search logic.
-# In Python, the example favors direct readable steps while keeping validation visible.
+# Module focus: Reordering data and locating values with deliberate search logic.
+# Why it matters: practicing sorting and searching patterns makes exercises and checkpoints easier
+# to reason about.
 
-# Define the reusable pieces first so the main flow can focus on one observable scenario.
+# Helper setup for sorting and searching; this keeps the walkthrough readable.
 def binary_search(values, target):
-    # Build the sample state first, then let the later output confirm the behavior step by step.
+    # Prepare sample inputs that exercise the key sorting and searching path.
     left = 0
     right = len(values) - 1
 
@@ -22,12 +23,12 @@ def binary_search(values, target):
     return -1
 
 
-# Run one deterministic scenario so the console output makes reordering data and locating values
-# with deliberate search logic easy to verify.
+# Walk through one fixed scenario so sorting and searching behavior stays repeatable.
 def main():
     values = [7, 2, 9, 4, 2, 8]
     values.sort()
 
+    # Report output values so learners can verify the sorting and searching outcome.
     print(f"Sorted: {' '.join(str(value) for value in values)}")
 
     target = 4

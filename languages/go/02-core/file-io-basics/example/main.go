@@ -1,5 +1,5 @@
-// This example shows reading plain-text files, parsing rows, and writing clear results.
-// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
+// Module focus: Reading plain-text files, parsing rows, and writing clear results.
+// Why it matters: practicing file io basics patterns makes exercises and checkpoints easier to reason about.
 
 package main
 
@@ -12,7 +12,7 @@ import (
 	"strings"
 )
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for file io basics; this keeps the walkthrough readable.
 func parseScoreRow(line string) (string, int, bool) {
 	parts := strings.Fields(line)
 	if len(parts) != 2 {
@@ -27,12 +27,12 @@ func parseScoreRow(line string) (string, int, bool) {
 	return parts[0], score, true
 }
 
-// Run one deterministic scenario so the console output makes reading plain-text files, parsing rows, and writing clear results easy to verify.
+// Walk through one fixed scenario so file io basics behavior stays repeatable.
 func main() {
-	// Build the sample state first, then let the later output confirm the behavior step by step.
+	// Prepare sample inputs that exercise the key file io basics path.
 	runDirectory := filepath.Clean(filepath.Join(os.TempDir(), "learn-lang-file-io-go"))
 	if err := os.MkdirAll(runDirectory, 0o755); err != nil {
-		// Print the observed state here so learners can connect the code path to a concrete result.
+		// Report values so learners can verify the file io basics outcome.
 		fmt.Println("Could not create temp directory.")
 		return
 	}

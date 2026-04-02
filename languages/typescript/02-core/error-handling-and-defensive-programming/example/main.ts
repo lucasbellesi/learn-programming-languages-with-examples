@@ -1,5 +1,5 @@
-// This example shows guarding risky inputs so failures stay explicit and controlled.
-// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+// Module focus: Guarding risky inputs so failures stay explicit and controlled.
+// Why it matters: practicing error handling and defensive programming patterns makes exercises and checkpoints easier to reason about.
 
 type ScoreRecord = {
     name: string;
@@ -36,6 +36,7 @@ const accepted: ScoreRecord[] = [];
 for (const row of rows) {
     const record = parseRecord(row);
     if (record === null) {
+        // Report output values so learners can verify the error handling and defensive programming result.
         console.log(`Skipped invalid row: ${row}`);
         continue;
     }

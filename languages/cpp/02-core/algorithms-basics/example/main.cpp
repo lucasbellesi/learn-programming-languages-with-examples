@@ -1,11 +1,12 @@
-// This example shows walking data step by step to compute summaries and decisions.
-// In C++, the example keeps value flow, references, and explicit control visible.
+// Module focus: Walking data step by step to compute summaries and decisions.
+// Why it matters: practicing algorithms basics patterns makes exercises and checkpoints easier to
+// reason about.
 
 #include <iostream>
 #include <vector>
 using namespace std;
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for algorithms basics; this keeps the walkthrough readable.
 int linearSearch(const vector<int>& values, int target) {
     for (size_t i = 0; i < values.size(); ++i) {
         if (values[i] == target) {
@@ -46,15 +47,14 @@ void printMinMax(const vector<int>& values) {
     cout << "Maximum: " << maxValue << '\n';
 }
 
-// Run one deterministic scenario so the console output makes walking data step by step to compute
-// summaries and decisions easy to verify.
+// Walk through one fixed scenario so algorithms basics behavior stays repeatable.
 int main() {
-    // Build the sample state first, then let the later output confirm the behavior step by step.
+    // Prepare sample inputs that exercise the key algorithms basics path.
     const vector<int> values{4, 7, 4, 1, 9, 4, 2};
     const int target = 4;
 
     const int firstIndex = linearSearch(values, target);
-    // Print the observed state here so learners can connect the code path to a concrete result.
+    // Report values so learners can verify the algorithms basics outcome.
     cout << "First index of " << target << ": " << firstIndex << '\n';
     cout << "Occurrences of " << target << ": " << countOccurrences(values, target) << '\n';
 

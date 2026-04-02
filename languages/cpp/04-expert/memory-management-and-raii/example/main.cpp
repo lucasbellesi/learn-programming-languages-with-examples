@@ -1,5 +1,6 @@
-// This example shows tying resource cleanup to object lifetime so cleanup stays predictable.
-// In C++, the example keeps value flow, references, and explicit control visible.
+// Module focus: Tying resource cleanup to object lifetime so cleanup stays predictable.
+// Why it matters: practicing memory management and raii patterns makes exercises and checkpoints
+// easier to reason about.
 
 #include <cstddef>
 #include <iostream>
@@ -19,7 +20,7 @@ class ScopedMessage {
     string label;
 };
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for memory management and raii; this keeps the walkthrough readable.
 unique_ptr<int[]> makeSequence(size_t size) {
     unique_ptr<int[]> data(new int[size]);
     for (size_t i = 0; i < size; ++i) {
@@ -39,11 +40,10 @@ void printSequence(const unique_ptr<int[]>& data, size_t size) {
     cout << '\n';
 }
 
-// Run one deterministic scenario so the console output makes tying resource cleanup to object
-// lifetime so cleanup stays predictable easy to verify.
+// Walk through one fixed scenario so memory management and raii behavior stays repeatable.
 int main() {
-    // Build the sample state first, then let the later output confirm the behavior step by step.
-    // Print the observed state here so learners can connect the code path to a concrete result.
+    // Prepare sample inputs that exercise the key memory management and raii path.
+    // Report values so learners can verify the memory management and raii outcome.
     cout << "RAII scope demo:\n";
     {
         ScopedMessage scoped("temporary operation");

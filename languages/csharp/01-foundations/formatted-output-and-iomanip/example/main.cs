@@ -1,15 +1,15 @@
-// This example shows formatting values so output is easier to read and compare.
-// In C#, the example uses the standard library and static types to keep the workflow structured.
+// Module focus: Formatting values so output is easier to read and compare.
+// Why it matters: practicing formatted output and iomanip patterns makes exercises and checkpoints easier to reason about.
 
 using System;
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for formatted output and iomanip; this keeps the walkthrough readable.
 class Program
 {
-    // Run one deterministic scenario so the console output makes formatting values so output is easier to read and compare easy to verify.
+    // Walk through one fixed scenario so formatted output and iomanip behavior stays repeatable.
     static void Main()
     {
-        // Build the sample state first, then let the later output confirm the behavior step by step.
+        // Prepare sample inputs that exercise the key formatted output and iomanip path.
         (string Name, int Quantity, double UnitPrice)[] items =
         {
             ("Notebook", 2, 3.5),
@@ -17,7 +17,7 @@ class Program
             ("Backpack", 1, 29.99),
         };
 
-        // Print the observed state here so learners can connect the code path to a concrete result.
+        // Report values so learners can verify the formatted output and iomanip outcome.
         Console.WriteLine($"{"Item", -12}{"Qty", 6}{"Unit", 10}{"Total", 10}");
         Console.WriteLine(new string('-', 38));
 

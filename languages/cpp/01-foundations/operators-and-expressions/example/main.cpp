@@ -1,17 +1,17 @@
-// This example shows combining values through expressions and readable calculations.
-// In C++, the example keeps value flow, references, and explicit control visible.
+// Module focus: Combining values through expressions and readable calculations.
+// Why it matters: practicing operators and expressions patterns makes exercises and checkpoints
+// easier to reason about.
 
 #include <iostream>
 using namespace std;
 
-// Run one deterministic scenario so the console output makes combining values through expressions
-// and readable calculations easy to verify.
+// Walk through one fixed scenario so operators and expressions behavior stays repeatable.
 int main() {
-    // Build the sample state first, then let the later output confirm the behavior step by step.
+    // Prepare sample inputs that exercise the key operators and expressions path.
     const int a = 17;
     const int b = 5;
 
-    // Print the observed state here so learners can connect the code path to a concrete result.
+    // Report values so learners can verify the operators and expressions outcome.
     cout << "a = " << a << ", b = " << b << "\n\n";
     cout << "a + b = " << (a + b) << '\n';
     cout << "a - b = " << (a - b) << '\n';

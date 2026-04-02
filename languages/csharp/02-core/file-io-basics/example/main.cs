@@ -1,10 +1,10 @@
-// This example shows reading plain-text files, parsing rows, and writing clear results.
-// In C#, the example uses the standard library and static types to keep the workflow structured.
+// Module focus: Reading plain-text files, parsing rows, and writing clear results.
+// Why it matters: practicing file io basics patterns makes exercises and checkpoints easier to reason about.
 
 using System;
 using System.IO;
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for file io basics; this keeps the walkthrough readable.
 class Program
 {
     static bool TryParseScoreRow(string line, out string name, out int score)
@@ -22,10 +22,10 @@ class Program
         return true;
     }
 
-    // Run one deterministic scenario so the console output makes reading plain-text files, parsing rows, and writing clear results easy to verify.
+    // Walk through one fixed scenario so file io basics behavior stays repeatable.
     static void Main()
     {
-        // Build the sample state first, then let the later output confirm the behavior step by step.
+        // Prepare sample inputs that exercise the key file io basics path.
         string runDirectory = Path.Combine(Path.GetTempPath(), "learn-lang-file-io-csharp");
         Directory.CreateDirectory(runDirectory);
         string inputPath = Path.Combine(runDirectory, "scores.txt");
@@ -51,7 +51,7 @@ class Program
 
                 validRows++;
                 sum += score;
-                // Print the observed state here so learners can connect the code path to a concrete result.
+                // Report values so learners can verify the file io basics outcome.
                 Console.WriteLine($"{name} -> {score}");
             }
         }

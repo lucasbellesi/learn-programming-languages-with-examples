@@ -1,10 +1,10 @@
-// This example shows walking data step by step to compute summaries and decisions.
-// In C#, the example uses the standard library and static types to keep the workflow structured.
+// Module focus: Walking data step by step to compute summaries and decisions.
+// Why it matters: practicing algorithms basics patterns makes exercises and checkpoints easier to reason about.
 
 using System;
 using System.Collections.Generic;
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for algorithms basics; this keeps the walkthrough readable.
 class Program
 {
     static int LinearSearch(List<int> values, int target)
@@ -63,15 +63,15 @@ class Program
         return true;
     }
 
-    // Run one deterministic scenario so the console output makes walking data step by step to compute summaries and decisions easy to verify.
+    // Walk through one fixed scenario so algorithms basics behavior stays repeatable.
     static void Main()
     {
-        // Build the sample state first, then let the later output confirm the behavior step by step.
+        // Prepare sample inputs that exercise the key algorithms basics path.
         List<int> values = new List<int> { 4, 7, 4, 1, 9, 4, 2 };
         int target = 4;
 
         int firstIndex = LinearSearch(values, target);
-        // Print the observed state here so learners can connect the code path to a concrete result.
+        // Report values so learners can verify the algorithms basics outcome.
         Console.WriteLine($"First index of {target}: {firstIndex}");
         Console.WriteLine($"Occurrences of {target}: {CountOccurrences(values, target)}");
 

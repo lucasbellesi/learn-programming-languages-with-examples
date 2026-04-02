@@ -1,9 +1,9 @@
-// This example shows rejecting invalid input before the main workflow continues.
-// In C#, the example uses the standard library and static types to keep the workflow structured.
+// Module focus: Rejecting invalid input before the main workflow continues.
+// Why it matters: practicing input validation patterns makes exercises and checkpoints easier to reason about.
 
 using System;
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for input validation; this keeps the walkthrough readable.
 class Program
 {
     static int ReadIntInRange(string prompt, int minValue, int maxValue)
@@ -50,14 +50,14 @@ class Program
         }
     }
 
-    // Run one deterministic scenario so the console output makes rejecting invalid input before the main workflow continues easy to verify.
+    // Walk through one fixed scenario so input validation behavior stays repeatable.
     static void Main()
     {
-        // Build the sample state first, then let the later output confirm the behavior step by step.
+        // Prepare sample inputs that exercise the key input validation path.
         int age = ReadIntInRange("Enter your age (1-120): ", 1, 120);
         double gpa = ReadDoubleInRange("Enter your GPA (0.0-4.0): ", 0.0, 4.0);
 
-        // Print the observed state here so learners can connect the code path to a concrete result.
+        // Report values so learners can verify the input validation outcome.
         Console.WriteLine();
         Console.WriteLine("Validated input summary:");
         Console.WriteLine($"Age: {age}");

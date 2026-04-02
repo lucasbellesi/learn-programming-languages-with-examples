@@ -1,12 +1,13 @@
-// This example shows rejecting invalid input before the main workflow continues.
-// In C++, the example keeps value flow, references, and explicit control visible.
+// Module focus: Rejecting invalid input before the main workflow continues.
+// Why it matters: practicing input validation patterns makes exercises and checkpoints easier to
+// reason about.
 
 #include <iostream>
 #include <limits>
 #include <string>
 using namespace std;
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for input validation; this keeps the walkthrough readable.
 int readIntInRange(const string& label, int minValue, int maxValue) {
     int value = 0;
 
@@ -53,14 +54,13 @@ double readDoubleInRange(const string& label, double minValue, double maxValue) 
     }
 }
 
-// Run one deterministic scenario so the console output makes rejecting invalid input before the
-// main workflow continues easy to verify.
+// Walk through one fixed scenario so input validation behavior stays repeatable.
 int main() {
-    // Build the sample state first, then let the later output confirm the behavior step by step.
+    // Prepare sample inputs that exercise the key input validation path.
     const int age = readIntInRange("Enter your age (1-120): ", 1, 120);
     const double gpa = readDoubleInRange("Enter your GPA (0.0-4.0): ", 0.0, 4.0);
 
-    // Print the observed state here so learners can connect the code path to a concrete result.
+    // Report values so learners can verify the input validation outcome.
     cout << "\nValidated input summary:\n";
     cout << "Age: " << age << '\n';
     cout << "GPA: " << gpa << '\n';

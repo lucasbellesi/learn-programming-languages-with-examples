@@ -1,20 +1,20 @@
-// This example shows reading plain-text files, parsing rows, and writing clear results.
-// In C++, the example keeps value flow, references, and explicit control visible.
+// Module focus: Reading plain-text files, parsing rows, and writing clear results.
+// Why it matters: practicing file io basics patterns makes exercises and checkpoints easier to
+// reason about.
 
 #include <fstream>
 #include <iostream>
 #include <string>
 using namespace std;
 
-// Run one deterministic scenario so the console output makes reading plain-text files, parsing
-// rows, and writing clear results easy to verify.
+// Walk through one fixed scenario so file io basics behavior stays repeatable.
 int main() {
-    // Build the sample state first, then let the later output confirm the behavior step by step.
+    // Prepare sample inputs that exercise the key file io basics path.
     const string inputPath = "scores.txt";
     ifstream input(inputPath);
 
     if (!input) {
-        // Print the observed state here so learners can connect the code path to a concrete result.
+        // Report values so learners can verify the file io basics outcome.
         cout << "Could not open " << inputPath << "\n";
         cout << "Create a file named scores.txt with lines like: name score\n";
         return 0;

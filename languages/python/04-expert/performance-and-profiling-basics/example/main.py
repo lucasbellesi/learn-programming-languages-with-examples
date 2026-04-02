@@ -1,15 +1,16 @@
-# This example shows measuring hot paths before changing code for speed.
-# In Python, the example favors direct readable steps while keeping validation visible.
+# Module focus: Measuring hot paths before changing code for speed.
+# Why it matters: practicing performance and profiling basics patterns makes exercises and
+# checkpoints easier to reason about.
 
 from __future__ import annotations
 
 import time
 
-# Build the sample state first, then let the later output confirm the behavior step by step.
+# Prepare sample inputs that exercise the key performance and profiling basics path.
 retained_object: object | None = None
 
 
-# Define the reusable pieces first so the main flow can focus on one observable scenario.
+# Helper setup for performance and profiling basics; this keeps the walkthrough readable.
 def measure_average(action, repetitions: int) -> float:
     action()
 
@@ -47,8 +48,7 @@ def fill_with_presize(item_count: int) -> list[int]:
     return values
 
 
-# Run one deterministic scenario so the console output makes measuring hot paths before changing
-# code for speed easy to verify.
+# Walk through one fixed scenario so performance and profiling basics behavior stays repeatable.
 def main() -> None:
     line_count = 4_000
     repetitions = 12
@@ -66,6 +66,7 @@ def main() -> None:
         repetitions,
     )
 
+    # Report output values so learners can verify the performance and profiling basics outcome.
     print(f"Average string concatenation ({repetitions} runs): {concat_duration:.6f}s")
     print(f"Average str.join ({repetitions} runs): {join_duration:.6f}s")
 

@@ -1,11 +1,11 @@
-// This example shows tracking ownership and lifetime when multiple references can observe the same value.
-// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
+// Module focus: Tracking ownership and lifetime when multiple references can observe the same value.
+// Why it matters: practicing smart pointers in depth patterns makes exercises and checkpoints easier to reason about.
 
 package main
 
 import "fmt"
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for smart pointers in depth; this keeps the walkthrough readable.
 type report struct {
 	title string
 }
@@ -33,9 +33,9 @@ func (o *reportOwner) print() {
 	fmt.Printf("%s: %s\n", o.name, o.report.title)
 }
 
-// Run one deterministic scenario so the console output makes tracking ownership and lifetime when multiple references can observe the same value easy to verify.
+// Walk through one fixed scenario so smart pointers in depth behavior stays repeatable.
 func main() {
-	// Build the sample state first, then let the later output confirm the behavior step by step.
+	// Prepare sample inputs that exercise the key smart pointers in depth path.
 	inbox := reportOwner{name: "Inbox", report: &report{title: "Quarterly Summary"}}
 	archive := reportOwner{name: "Archive"}
 
@@ -50,6 +50,6 @@ func main() {
 	observer := primary
 	*observer += 5
 
-	// Print the observed state here so learners can connect the code path to a concrete result.
+	// Report values so learners can verify the smart pointers in depth outcome.
 	fmt.Printf("Shared score after alias update: %d\n", score)
 }

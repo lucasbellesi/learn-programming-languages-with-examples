@@ -1,20 +1,20 @@
-// This example shows reordering data and locating values with deliberate search logic.
-// In C++, the example keeps value flow, references, and explicit control visible.
+// Module focus: Reordering data and locating values with deliberate search logic.
+// Why it matters: practicing sorting and searching patterns makes exercises and checkpoints easier
+// to reason about.
 
 #include <algorithm>
 #include <iostream>
 #include <vector>
 using namespace std;
 
-// Run one deterministic scenario so the console output makes reordering data and locating values
-// with deliberate search logic easy to verify.
+// Walk through one fixed scenario so sorting and searching behavior stays repeatable.
 int main() {
-    // Build the sample state first, then let the later output confirm the behavior step by step.
+    // Prepare sample inputs that exercise the key sorting and searching path.
     vector<int> values{7, 2, 9, 4, 2, 8};
 
     sort(values.begin(), values.end());
 
-    // Print the observed state here so learners can connect the code path to a concrete result.
+    // Report values so learners can verify the sorting and searching outcome.
     cout << "Sorted: ";
     for (int value : values) {
         cout << value << ' ';

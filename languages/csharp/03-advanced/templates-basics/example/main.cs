@@ -1,9 +1,9 @@
-// This example shows writing generic code that stays useful across multiple data types.
-// In C#, the example uses the standard library and static types to keep the workflow structured.
+// Module focus: Writing generic code that stays useful across multiple data types.
+// Why it matters: practicing templates basics patterns makes exercises and checkpoints easier to reason about.
 
 using System;
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for templates basics; this keeps the walkthrough readable.
 static class Helpers
 {
     public static T MaxValue<T>(T left, T right)
@@ -32,11 +32,11 @@ class Pair<T>
 
 class Program
 {
-    // Run one deterministic scenario so the console output makes writing generic code that stays useful across multiple data types easy to verify.
+    // Walk through one fixed scenario so templates basics behavior stays repeatable.
     static void Main()
     {
-        // Build the sample state first, then let the later output confirm the behavior step by step.
-        // Print the observed state here so learners can connect the code path to a concrete result.
+        // Prepare sample inputs that exercise the key templates basics path.
+        // Report values so learners can verify the templates basics outcome.
         Console.WriteLine($"MaxValue(4, 7) = {Helpers.MaxValue(4, 7)}");
         Console.WriteLine($"MaxValue(2.5, 1.2) = {Helpers.MaxValue(2.5, 1.2)}");
 

@@ -155,6 +155,7 @@ Run checks locally:
 ./scripts/check-readme-structure.ps1
 ./scripts/check-module-completeness.ps1
 ./scripts/check-checkpoint-completeness.ps1
+./scripts/audit-education-quality.ps1
 ./scripts/lint.ps1
 ./scripts/smoke-languages.ps1
 ./scripts/build-all.ps1
@@ -166,6 +167,7 @@ bash ./scripts/check-links.sh
 bash ./scripts/check-readme-structure.sh
 bash ./scripts/check-module-completeness.sh
 bash ./scripts/check-checkpoint-completeness.sh
+bash ./scripts/audit-education-quality.sh
 bash ./scripts/lint.sh
 bash ./scripts/smoke-languages.sh
 bash ./scripts/build-all.sh
@@ -177,6 +179,8 @@ GitHub Actions validates links, README structure, module completeness, checkpoin
 The public PowerShell and Bash scripts remain the supported entrypoints, but they now delegate to a shared Python automation core under `scripts/automation.py` backed by `scripts/automation_manifest.json`.
 
 The multi-language smoke scripts also compile standalone C# exercises by generating temporary validation projects during the check and compile TypeScript programs before executing their smoke targets.
+
+Use [EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md](EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md) to keep entry examples pedagogically consistent during reviews. The education audit command is advisory and writes markdown/json findings without failing CI.
 
 Documentation sync also validates that [CONCEPT_INDEX.md](CONCEPT_INDEX.md) covers every implemented module and checkpoint path listed in the automation manifest.
 

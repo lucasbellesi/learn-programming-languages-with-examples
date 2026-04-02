@@ -1,5 +1,5 @@
-// This example shows writing generic code that stays useful across multiple data types.
-// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
+// Module focus: Writing generic code that stays useful across multiple data types.
+// Why it matters: practicing templates basics patterns makes exercises and checkpoints easier to reason about.
 
 package main
 
@@ -8,7 +8,7 @@ import (
 	"fmt"
 )
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for templates basics; this keeps the walkthrough readable.
 func MaxValue[T cmp.Ordered](left T, right T) T {
 	if left > right {
 		return left
@@ -25,10 +25,10 @@ func (p Pair[T]) Print() {
 	fmt.Printf("(%v, %v)\n", p.First, p.Second)
 }
 
-// Run one deterministic scenario so the console output makes writing generic code that stays useful across multiple data types easy to verify.
+// Walk through one fixed scenario so templates basics behavior stays repeatable.
 func main() {
-	// Build the sample state first, then let the later output confirm the behavior step by step.
-	// Print the observed state here so learners can connect the code path to a concrete result.
+	// Prepare sample inputs that exercise the key templates basics path.
+	// Report values so learners can verify the templates basics outcome.
 	fmt.Printf("MaxValue(4, 7) = %v\n", MaxValue(4, 7))
 	fmt.Printf("MaxValue(2.5, 1.2) = %v\n", MaxValue(2.5, 1.2))
 

@@ -1,14 +1,14 @@
-// This example shows formatting values so output is easier to read and compare.
-// In C++, the example keeps value flow, references, and explicit control visible.
+// Module focus: Formatting values so output is easier to read and compare.
+// Why it matters: practicing formatted output and iomanip patterns makes exercises and checkpoints
+// easier to reason about.
 
 #include <iomanip>
 #include <iostream>
 using namespace std;
 
-// Run one deterministic scenario so the console output makes formatting values so output is easier
-// to read and compare easy to verify.
+// Walk through one fixed scenario so formatted output and iomanip behavior stays repeatable.
 int main() {
-    // Build the sample state first, then let the later output confirm the behavior step by step.
+    // Prepare sample inputs that exercise the key formatted output and iomanip path.
     const char* item1 = "Notebook";
     const char* item2 = "Pen";
     const char* item3 = "Backpack";
@@ -17,7 +17,7 @@ int main() {
     const double p2 = 1.2;
     const double p3 = 30.0;
 
-    // Print the observed state here so learners can connect the code path to a concrete result.
+    // Report values so learners can verify the formatted output and iomanip outcome.
     cout << left << setw(12) << "Item" << right << setw(10) << "Price" << '\n';
     cout << "----------------------\n";
 

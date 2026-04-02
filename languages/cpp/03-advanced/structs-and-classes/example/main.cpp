@@ -1,5 +1,6 @@
-// This example shows modeling related data and behavior with structured types.
-// In C++, the example keeps value flow, references, and explicit control visible.
+// Module focus: Modeling related data and behavior with structured types.
+// Why it matters: practicing structs and classes patterns makes exercises and checkpoints easier to
+// reason about.
 
 #include <iostream>
 #include <string>
@@ -50,13 +51,12 @@ class BankAccount {
     double balance;
 };
 
-// Run one deterministic scenario so the console output makes modeling related data and behavior
-// with structured types easy to verify.
+// Walk through one fixed scenario so structs and classes behavior stays repeatable.
 int main() {
-    // Build the sample state first, then let the later output confirm the behavior step by step.
+    // Prepare sample inputs that exercise the key structs and classes path.
     vector<Student> students{{"Alex Johnson", 19, 8.7}, {"Maya Patel", 20, 9.1}};
 
-    // Print the observed state here so learners can connect the code path to a concrete result.
+    // Report values so learners can verify the structs and classes outcome.
     cout << "Students (struct example):\n";
     for (const Student& student : students) {
         student.print();

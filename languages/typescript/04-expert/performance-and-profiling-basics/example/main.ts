@@ -1,9 +1,9 @@
-// This example shows measuring hot paths before changing code for speed.
-// In TypeScript, the example pairs Node runtime behavior with type annotations where they clarify the flow.
+// Module focus: Measuring hot paths before changing code for speed.
+// Why it matters: practicing performance and profiling basics patterns makes exercises and checkpoints easier to reason about.
 
 import { performance } from "node:perf_hooks";
 
-// Define the reusable pieces first so the main flow can focus on one observable scenario.
+// Helper setup for performance and profiling basics; this keeps the walkthrough readable.
 function buildWithConcat(values: string[]): string {
     let output = "";
     for (const value of values) {
@@ -25,9 +25,9 @@ function averageDuration(runs: number, work: () => void): number {
     return (performance.now() - start) / runs;
 }
 
-// Run one deterministic scenario so the console output makes measuring hot paths before changing code for speed easy to verify.
+// Walk through one fixed scenario so performance and profiling basics behavior stays repeatable.
 function main(): void {
-    // Build the sample state first, then let the later output confirm the behavior step by step.
+    // Prepare sample inputs that exercise the key performance and profiling basics path.
     const values = Array.from({ length: 8_000 }, (_, index) => `item-${index}`);
     const runs = 12;
 
@@ -38,7 +38,7 @@ function main(): void {
         void buildWithJoin(values).length;
     });
 
-    // Print the observed state here so learners can connect the code path to a concrete result.
+    // Report values so learners can verify the performance and profiling basics outcome.
     console.log(
         `Concat average (ms): ${concatAverage.toFixed(3)} over ${runs} runs`,
     );

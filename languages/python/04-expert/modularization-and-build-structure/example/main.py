@@ -1,14 +1,14 @@
-# This example shows splitting responsibilities so entrypoints and helpers stay focused.
-# In Python, the example favors direct readable steps while keeping validation visible.
+# Module focus: Splitting responsibilities so entrypoints and helpers stay focused.
+# Why it matters: practicing modularization and build structure patterns makes exercises and
+# checkpoints easier to reason about.
 
 from formatting import render_summary
 from pricing import build_summary
 
 
-# Run one deterministic scenario so the console output makes splitting responsibilities so
-# entrypoints and helpers stay focused easy to verify.
+# Walk through one fixed scenario so modularization and build structure behavior stays repeatable.
 def main() -> None:
-    # Build the sample state first, then let the later output confirm the behavior step by step.
+    # Prepare sample inputs that exercise the key modularization and build structure path.
     items = [
         {"name": "Notebook", "quantity": 2, "unit_price": 3.50},
         {"name": "Pencil", "quantity": 5, "unit_price": 0.80},
@@ -17,6 +17,7 @@ def main() -> None:
 
     summary = build_summary(items, 10.0, 7.5)
 
+    # Report output values so learners can verify the modularization and build structure outcome.
     print(render_summary(summary))
 
 

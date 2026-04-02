@@ -1,5 +1,5 @@
-// This example shows counting repeated values and summarizing them through keyed lookups.
-// In Go, the example keeps the flow explicit through small functions, interfaces, and concrete data.
+// Module focus: Counting repeated values and summarizing them through keyed lookups.
+// Why it matters: practicing maps and frequency counting patterns makes exercises and checkpoints easier to reason about.
 
 package main
 
@@ -8,9 +8,9 @@ import (
 	"sort"
 )
 
-// Run one deterministic scenario so the console output makes counting repeated values and summarizing them through keyed lookups easy to verify.
+// Walk through one fixed scenario so maps and frequency counting behavior stays repeatable.
 func main() {
-	// Build the sample state first, then let the later output confirm the behavior step by step.
+	// Prepare sample inputs that exercise the key maps and frequency counting path.
 	text := "banana bandana"
 	frequencies := make(map[rune]int)
 
@@ -27,7 +27,7 @@ func main() {
 	}
 	sort.Slice(keys, func(i int, j int) bool { return keys[i] < keys[j] })
 
-	// Print the observed state here so learners can connect the code path to a concrete result.
+	// Report values so learners can verify the maps and frequency counting outcome.
 	fmt.Println("Character frequencies:")
 	for _, key := range keys {
 		fmt.Printf("%c -> %d\n", key, frequencies[key])

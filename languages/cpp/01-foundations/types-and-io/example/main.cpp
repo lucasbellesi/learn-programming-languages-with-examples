@@ -1,21 +1,21 @@
-// This example shows reading typed input carefully and turning raw text into values.
-// In C++, the example keeps value flow, references, and explicit control visible.
+// Module focus: Reading typed input carefully and turning raw text into values.
+// Why it matters: practicing types and io patterns makes exercises and checkpoints easier to reason
+// about.
 
 #include <iostream>
 #include <limits>
 #include <string>
 using namespace std;
 
-// Run one deterministic scenario so the console output makes reading typed input carefully and
-// turning raw text into values easy to verify.
+// Walk through one fixed scenario so types and io behavior stays repeatable.
 int main() {
-    // Build the sample state first, then let the later output confirm the behavior step by step.
+    // Prepare sample inputs that exercise the key types and io path.
     string fullName;
     int age = 0;
     double gpa = 0.0;
     char enrolledAnswer = 'n';
 
-    // Print the observed state here so learners can connect the code path to a concrete result.
+    // Report values so learners can verify the types and io outcome.
     cout << "Enter your full name: ";
     getline(cin, fullName);
 
