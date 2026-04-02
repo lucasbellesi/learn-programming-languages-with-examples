@@ -29,6 +29,12 @@ go run example/main.go example/pricing.go example/formatting.go
 - Designing helpers with hidden side effects.
 - Treating module structure as an afterthought.
 
+## Cross-Language Notes
+
+- Go makes modularity feel lighter than C++ or C#, but package and file boundaries still encode real design choices.
+- Compared with Python or TypeScript, build and import rules are simpler but more opinionated.
+- The useful comparison is how much ceremony each language needs before reuse becomes natural.
+
 ## Exercise Focus
 
 - exercises/01.go: separate invoice calculations into focused helpers.
@@ -53,3 +59,4 @@ go run example/main.go example/pricing.go example/formatting.go
 - [ ] I can keep `main` focused on flow, not every implementation detail.
 - [ ] I completed exercises/01.go.
 - [ ] I completed exercises/02.go.
+

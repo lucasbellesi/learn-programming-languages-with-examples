@@ -24,6 +24,7 @@ This structure is required for all implemented concept modules.
 - `Quick Run`: include one runnable command for `example/main.*` (or equivalent entry project).
 - `Topics Covered`: concise bullets of concepts practiced in the module.
 - `Common Pitfalls`: practical mistakes beginners frequently make.
+- `Cross-Language Notes` (recommended): place after `Common Pitfalls` and before `Exercise Focus`; keep it to 3-5 concrete bullets.
 - `Exercise Focus`: one bullet per exercise with a clear task summary.
 - `Exercise Specs`: for each exercise define input, output, and at least two edge cases.
 - `Checkpoint`: 3-5 measurable outcomes as checkboxes.

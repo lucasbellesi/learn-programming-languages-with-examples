@@ -57,6 +57,7 @@ If you only want to learn one track, follow that track README first because lang
 | TypeScript | 01-foundations, 02-core, 03-advanced, 04-expert | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 5/5 expert modules, 4/4 projects, 4/4 assessments | Module and checkpoint parity complete through expert |
 
 Parity planning reference: [LANGUAGE_PARITY_MATRIX.md](LANGUAGE_PARITY_MATRIX.md)
+Browse by concept: [CONCEPT_INDEX.md](CONCEPT_INDEX.md)
 
 ## Run One Example Per Language
 
@@ -127,6 +128,8 @@ A standardized `## Learning Metadata` block is required before `## Quick Run` fo
 - checkpoints: difficulty, estimated time, prerequisites, learning focus
 - level READMEs: difficulty, estimated time, prerequisites, study strategy
 
+`## Cross-Language Notes` is the recommended comparison section for new or substantially updated modules and checkpoints. Keep it short, concrete, and honest about where concepts do not map one-to-one.
+
 Checkpoint artifacts under `languages/<language>/projects/*` and `languages/<language>/assessments/*` should mirror the corresponding C++ checkpoint style:
 
 - `README.md`
@@ -172,6 +175,8 @@ GitHub Actions validates links, README structure, module completeness, checkpoin
 The public PowerShell and Bash scripts remain the supported entrypoints, but they now delegate to a shared Python automation core under `scripts/automation.py` backed by `scripts/automation_manifest.json`.
 
 The multi-language smoke scripts also compile standalone C# exercises by generating temporary validation projects during the check and compile TypeScript programs before executing their smoke targets.
+
+Documentation sync also validates that [CONCEPT_INDEX.md](CONCEPT_INDEX.md) covers every implemented module and checkpoint path listed in the automation manifest.
 
 ## Contributing
 

@@ -35,6 +35,12 @@ Elapsed (microseconds): <positive integer>
 
 The first three lines should stay exact. Only the measured microsecond value should vary.
 
+## Cross-Language Notes
+
+- Compared with the C++ capstone, this project expresses the same coordination idea with lighter runtime primitives and simpler packaging.
+- Relative to C# and TypeScript, it keeps concurrency very explicit without requiring a heavy object model.
+- The main comparison is how much design clarity you get from small primitives and conventions.
+
 ## What To Check
 
 - every job passes through each step in the intended order
@@ -45,3 +51,4 @@ The first three lines should stay exact. Only the measured microsecond value sho
 
 - Add optional logging levels.
 - Add configurable step costs.
+

@@ -36,6 +36,12 @@ On Linux, `-pthread` is required for thread support.
 - Forgetting to join threads before program exit.
 - Waiting on condition variables without a predicate.
 
+## Cross-Language Notes
+
+- This version is the thread-and-mutex baseline for the repo.
+- Other tracks keep the same coordination goals but use very different runtime primitives such as goroutines, tasks, threads under the GIL, or promises.
+- Compare the cost of explicit synchronization here with the safer defaults in higher-level runtimes.
+
 ## Exercise Focus
 
 - `exercises/01.cpp`: parallel chunk sum with worker threads.
@@ -59,3 +65,4 @@ On Linux, `-pthread` is required for thread support.
 - [ ] I can protect critical sections with a mutex.
 - [ ] I can coordinate producers and consumers correctly.
 - [ ] I completed both exercises.
+

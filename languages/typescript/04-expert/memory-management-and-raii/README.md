@@ -30,6 +30,12 @@ node build/typescript/04-expert/memory-management-and-raii/example/main.js
 - Reusing a closed resource because the object reference still exists.
 - Mixing cleanup logic into unrelated application code.
 
+## Cross-Language Notes
+
+- TypeScript has garbage collection, but it does not automatically close files, sockets, or logical sessions for you.
+- Compared with C++, this module shifts RAII into explicit `close` plus `try/finally` patterns.
+- The important comparison is deterministic cleanup versus eventual memory reclamation.
+
 ## Exercise Focus
 
 - exercises/01.ts: use `try/finally` to close a temporary resource safely.
@@ -54,3 +60,4 @@ node build/typescript/04-expert/memory-management-and-raii/example/main.js
 - [ ] I can guard a resource from use-after-close mistakes.
 - [ ] I completed exercises/01.ts.
 - [ ] I completed exercises/02.ts.
+

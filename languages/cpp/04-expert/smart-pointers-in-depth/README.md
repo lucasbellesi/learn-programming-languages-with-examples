@@ -34,6 +34,12 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o smart_pointers_exampl
 - Forgetting to break cycles.
 - Using raw pointers for owned lifetime-sensitive resources.
 
+## Cross-Language Notes
+
+- This is the canonical smart-pointer track: ownership, borrowing, and shared lifetime are explicit language tools here.
+- Other tracks adapt the idea with references, nil checks, weak references, or clone helpers instead of true smart pointers.
+- Use this module as the baseline when comparing what "ownership" means elsewhere.
+
 ## Exercise Focus
 
 - `exercises/01.cpp`: refactor raw-owner object to `unique_ptr`.
@@ -57,3 +63,4 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o smart_pointers_exampl
 - [ ] I can use `weak_ptr` for non-owning links.
 - [ ] I can prevent ownership cycles.
 - [ ] I completed both exercises.
+

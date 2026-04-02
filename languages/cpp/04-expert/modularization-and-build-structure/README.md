@@ -34,6 +34,12 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o modularization_exampl
 - Circular includes.
 - Missing declarations for used symbols.
 
+## Cross-Language Notes
+
+- C++ is the canonical header/source split, so it anchors how the repo thinks about multi-file structure.
+- Other tracks keep the same separation goals but express them with imports, packages, projects, or namespaces.
+- The comparison to watch is not syntax, but where each language chooses to expose public boundaries.
+
 ## Exercise Focus
 
 - `exercises/01.cpp`: refactor procedural code into module-like sections.
@@ -57,3 +63,4 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o modularization_exampl
 - [ ] I can design reusable helper utilities.
 - [ ] I can explain how multi-file builds are assembled.
 - [ ] I completed both exercises.
+

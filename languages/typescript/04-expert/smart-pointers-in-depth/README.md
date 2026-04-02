@@ -30,6 +30,12 @@ node build/typescript/04-expert/smart-pointers-in-depth/example/main.js
 - Updating nested state through an alias without realizing it is shared.
 - Cloning blindly when a simpler ownership rule would work.
 
+## Cross-Language Notes
+
+- TypeScript adapts smart-pointer ideas through object references, nullable ownership slots, and explicit clone helpers.
+- Compared with C++, assignment never means deep ownership transfer by itself, so aliasing deserves more attention.
+- The comparison is most useful when deciding whether to share, move by convention, or clone.
+
 ## Exercise Focus
 
 - exercises/01.ts: transfer an owned task between holders.
@@ -54,3 +60,4 @@ node build/typescript/04-expert/smart-pointers-in-depth/example/main.js
 - [ ] I can decide when to transfer, share, or clone.
 - [ ] I completed exercises/01.ts.
 - [ ] I completed exercises/02.ts.
+

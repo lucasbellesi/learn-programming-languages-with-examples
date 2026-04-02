@@ -45,8 +45,15 @@ Minimum: ...
 Maximum: ...
 ```
 
+## Cross-Language Notes
+
+- This is the canonical expert assessment for coordination, aggregation, and deterministic reasoning under concurrency pressure.
+- Other tracks keep the same final outputs but adapt worker execution to their own runtime model.
+- Compare how much explicit synchronization each language demands to reach the same summary.
+
 ## What To Check
 
 - work is split across multiple workers without inconsistent shared state
 - partial results combine into a correct final summary
 - ownership or resource-lifetime decisions are explicit and safe for the chosen language track
+

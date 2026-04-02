@@ -29,6 +29,12 @@ go run example/main.go
 - Sending on a channel after it has been closed.
 - Assuming channel order solves every synchronization problem.
 
+## Cross-Language Notes
+
+- Go reframes concurrency around goroutines and communication-friendly patterns rather than C++-style thread management.
+- Compared with C#, Python, and TypeScript, it usually takes less ceremony to launch overlapping work.
+- The key comparison is lightweight task structure versus explicit locking discipline.
+
 ## Exercise Focus
 
 - exercises/01.go: parallel chunk sum with worker goroutines.
@@ -53,3 +59,4 @@ go run example/main.go
 - [ ] I can use channels to coordinate producers and consumers.
 - [ ] I completed exercises/01.go.
 - [ ] I completed exercises/02.go.
+

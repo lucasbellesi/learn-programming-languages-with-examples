@@ -29,6 +29,12 @@ python example/main.py
 - Reusing an object after it has already been closed.
 - Using `__del__` as the primary cleanup strategy.
 
+## Cross-Language Notes
+
+- Python maps this idea to context managers, `try/finally`, and explicit `close` methods rather than destructor-based RAII.
+- Compared with C++, object lifetime and resource cleanup are related but not identical concerns.
+- The learner goal is to make release points obvious and reliable.
+
 ## Exercise Focus
 
 - exercises/01.py: owned integer buffer with deterministic cleanup.
@@ -53,3 +59,4 @@ python example/main.py
 - [ ] I can prevent work on a closed resource.
 - [ ] I completed exercises/01.py.
 - [ ] I completed exercises/02.py.
+

@@ -29,6 +29,12 @@ dotnet run --project example/modularization-and-build-structure-example.csproj
 - Forgetting to include files explicitly when default compile items are disabled.
 - Treating project layout as an afterthought instead of part of design.
 
+## Cross-Language Notes
+
+- C# shifts the comparison from header/source files toward projects, namespaces, and references between build units.
+- Compared with Go or TypeScript, the tooling model is heavier but the boundaries are often more explicit.
+- The important cross-language question is how much structure the build tool enforces for you.
+
 ## Exercise Focus
 
 - exercises/01.cs: separate invoice calculations into focused helper types.
@@ -53,3 +59,4 @@ dotnet run --project example/modularization-and-build-structure-example.csproj
 - [ ] I can describe how `ProjectReference` affects a build.
 - [ ] I completed exercises/01.cs.
 - [ ] I completed exercises/02.cs.
+

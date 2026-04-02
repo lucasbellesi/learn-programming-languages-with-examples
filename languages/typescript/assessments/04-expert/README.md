@@ -44,8 +44,15 @@ Minimum: 2
 Maximum: 45
 ```
 
+## Cross-Language Notes
+
+- Compared with the C++ assessment, this version turns worker coordination into async job orchestration instead of shared-memory threading.
+- Relative to Go, C#, and Python, deterministic output order matters more because completion order can differ under the event loop.
+- The core comparison is stable aggregation logic across radically different concurrency primitives.
+
 ## What To Check
 
 - worker jobs return correct partial summaries
 - final totals come from the returned worker data, not hardcoded output
 - the final report stays deterministic even though work is scheduled asynchronously
+

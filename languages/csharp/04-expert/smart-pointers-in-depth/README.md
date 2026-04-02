@@ -29,6 +29,12 @@ dotnet run --project example/smart-pointers-in-depth-example.csproj
 - Using `WeakReference<T>` where a normal strong dependency is simpler.
 - Forgetting to clear the old owner after a transfer.
 
+## Cross-Language Notes
+
+- C# does not expose C++-style smart pointers, so the comparison moves to references, `IDisposable`, and `WeakReference`.
+- Compared with C++, ownership is often social or API-level rather than encoded in the type alone.
+- This module teaches how to make aliasing and lifetime choices visible even in a managed runtime.
+
 ## Exercise Focus
 
 - exercises/01.cs: move an owned document reference between holders.
@@ -53,3 +59,4 @@ dotnet run --project example/smart-pointers-in-depth-example.csproj
 - [ ] I can choose when a weak observer is appropriate.
 - [ ] I completed exercises/01.cs.
 - [ ] I completed exercises/02.cs.
+

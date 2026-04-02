@@ -29,6 +29,12 @@ python example/main.py
 - Dereferencing optional references without checking for `None`.
 - Keeping accidental strong references in caches or observers.
 
+## Cross-Language Notes
+
+- Python treats references as the default, so this module compares C++ smart pointers with aliasing, cloning, and `weakref`.
+- Compared with C++, ownership is far less encoded in syntax and much more about disciplined object relationships.
+- The main teaching goal is to notice when sharing is intentional and when it is accidental.
+
 ## Exercise Focus
 
 - exercises/01.py: move an owned note between holders.
@@ -53,3 +59,4 @@ python example/main.py
 - [ ] I can choose when a weak observer is appropriate.
 - [ ] I completed exercises/01.py.
 - [ ] I completed exercises/02.py.
+

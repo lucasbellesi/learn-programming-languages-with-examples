@@ -35,6 +35,12 @@ Elapsed (microseconds): <positive integer>
 
 The first three lines should stay exact. Only the measured microsecond value should vary.
 
+## Cross-Language Notes
+
+- Compared with the C++ capstone, this version keeps the same systems mindset while leaning on `Task`, `Stopwatch`, and managed cleanup patterns.
+- Relative to Go and TypeScript, it still feels structurally close to the thread-and-object model of the canonical track.
+- The useful comparison is how much runtime support reduces incidental complexity without changing the learner goal.
+
 ## What To Check
 
 - every job passes through each step in the intended order
@@ -45,3 +51,4 @@ The first three lines should stay exact. Only the measured microsecond value sho
 
 - Add optional logging levels.
 - Add configurable step costs.
+

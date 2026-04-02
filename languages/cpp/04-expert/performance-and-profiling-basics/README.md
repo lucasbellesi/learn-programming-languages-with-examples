@@ -34,6 +34,12 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o performance_profiling
 - Drawing conclusions from one run.
 - Ignoring algorithmic complexity.
 
+## Cross-Language Notes
+
+- C++ is the lowest-level performance baseline in the repo, so its examples map most directly to memory layout and native execution costs.
+- Other tracks keep the same measurement discipline but add runtime effects such as garbage collection, interpreter overhead, or JIT behavior.
+- Use this module as the reference point for what later tracks are abstracting away.
+
 ## Exercise Focus
 
 - `exercises/01.cpp`: compare pass-by-value vs const-reference.
@@ -57,3 +63,4 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o performance_profiling
 - [ ] I can compare two implementations fairly.
 - [ ] I can justify simple optimization choices.
 - [ ] I completed both exercises.
+

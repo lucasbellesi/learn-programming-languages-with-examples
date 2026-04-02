@@ -73,6 +73,7 @@ The public PowerShell and Bash scripts are thin wrappers over the shared Python 
 - New concept modules should follow the existing folder layout.
 - Every concept README in implemented levels should include:
   - required `## Learning Metadata` before `## Quick Run` with `Difficulty`, `Estimated Time`, `Prerequisites`, and `Cross-Language Lens`
+  - recommended `## Cross-Language Notes` after `## Common Pitfalls` and before `## Exercise Focus`
   - `## Quick Run`
   - `## Topics Covered`
   - `## Common Pitfalls`
@@ -84,6 +85,7 @@ The public PowerShell and Bash scripts are thin wrappers over the shared Python 
   - runnable entrypoint (`main.cs` + `.csproj`, `main.go`, `main.py`, or `main.ts`)
   - the same learner goal, input/output shape, and acceptance expectations as the corresponding C++ checkpoint
   - required `## Learning Metadata` before `## Quick Run` with `Difficulty`, `Estimated Time`, `Prerequisites`, and `Learning Focus`
+  - recommended `## Cross-Language Notes` before `## What To Check`
 - Every implemented level README should include required `## Learning Metadata` before `## Module Order` with `Difficulty`, `Estimated Time`, `Prerequisites`, and `Study Strategy`.
 - Checkpoint README structure should mirror the matching C++ checkpoint style, not the module README contract.
 - Every `example/main.*` file should include intent-first comments for:
@@ -100,6 +102,7 @@ The public PowerShell and Bash scripts are thin wrappers over the shared Python 
 - Keep documentation in English and keep path names consistent with folder names.
 - Keep parity planning updated in `LANGUAGE_PARITY_MATRIX.md` when adding modules or checkpoints to non-C++ tracks.
 - Keep root and language README status sections aligned with project and assessment coverage when those directories change.
+- Keep [CONCEPT_INDEX.md](CONCEPT_INDEX.md) aligned with any new or renamed module/checkpoint paths.
 
 ## Commit Messages
 

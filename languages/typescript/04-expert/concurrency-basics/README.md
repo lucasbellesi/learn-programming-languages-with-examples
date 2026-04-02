@@ -30,6 +30,12 @@ node build/typescript/04-expert/concurrency-basics/example/main.js
 - Mutating shared arrays in confusing ways instead of returning results.
 - Ignoring task failures inside a larger concurrent batch.
 
+## Cross-Language Notes
+
+- TypeScript uses event-loop concurrency, so the comparison is with threads, tasks, and goroutines rather than shared-memory workers by default.
+- Compared with C++ or C#, overlapping async work is cheaper to express but weaker for CPU-bound parallelism.
+- This module is most valuable when you compare completion order, result order, and true parallel execution.
+
 ## Exercise Focus
 
 - exercises/01.ts: fetch several async results and preserve display order.
@@ -54,3 +60,4 @@ node build/typescript/04-expert/concurrency-basics/example/main.js
 - [ ] I can limit concurrency without rewriting the task itself.
 - [ ] I completed exercises/01.ts.
 - [ ] I completed exercises/02.ts.
+

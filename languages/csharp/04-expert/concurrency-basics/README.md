@@ -29,6 +29,12 @@ dotnet run --project example/concurrency-basics-example.csproj
 - Waiting on a monitor without re-checking the queue condition.
 - Forgetting to notify waiting consumers when production is complete.
 
+## Cross-Language Notes
+
+- C# keeps real multithreading, but the comparison with C++ shifts from raw threads toward `Task`, `lock`, and runtime-managed coordination.
+- Compared with Go and TypeScript, this track still shares the thread-based mental model more directly.
+- The useful cross-language question is which runtime gives you the strongest safety default for concurrent work.
+
 ## Exercise Focus
 
 - exercises/01.cs: parallel chunk sum with worker tasks.
@@ -53,3 +59,4 @@ dotnet run --project example/concurrency-basics-example.csproj
 - [ ] I can coordinate a producer and consumer with monitor signaling.
 - [ ] I completed exercises/01.cs.
 - [ ] I completed exercises/02.cs.
+

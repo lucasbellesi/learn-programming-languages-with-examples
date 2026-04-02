@@ -29,6 +29,12 @@ go run example/main.go
 - Reusing a resource after it has been closed.
 - Returning early without releasing an owned handle.
 
+## Cross-Language Notes
+
+- Go replaces RAII with explicit cleanup plus `defer`, so release timing is scheduled by code rather than object destruction.
+- Compared with C++, the ownership idea stays useful even though the cleanup mechanism changes completely.
+- This module is really about disciplined release paths, not about emulating destructors.
+
 ## Exercise Focus
 
 - exercises/01.go: owned integer buffer with deterministic cleanup.
@@ -53,3 +59,4 @@ go run example/main.go
 - [ ] I can avoid using a resource after cleanup.
 - [ ] I completed exercises/01.go.
 - [ ] I completed exercises/02.go.
+

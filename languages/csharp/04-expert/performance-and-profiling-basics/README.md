@@ -29,6 +29,12 @@ dotnet run --project example/performance-and-profiling-basics-example.csproj
 - Treating a single faster run as a final truth.
 - Optimizing without understanding algorithmic cost first.
 
+## Cross-Language Notes
+
+- C# keeps strong timing tools, but the comparison with C++ adds JIT warm-up, allocations, and garbage collection effects.
+- Compared with Python or TypeScript, it usually lands closer to native performance while still exposing managed-runtime tradeoffs.
+- The important comparison is not just speed, but what the runtime makes easier to measure and harder to predict.
+
 ## Exercise Focus
 
 - exercises/01.cs: compare string concatenation with `StringBuilder`.
@@ -53,3 +59,4 @@ dotnet run --project example/performance-and-profiling-basics-example.csproj
 - [ ] I can explain why pre-sizing or reducing allocations can help.
 - [ ] I completed exercises/01.cs.
 - [ ] I completed exercises/02.cs.
+

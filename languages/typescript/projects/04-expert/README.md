@@ -38,6 +38,12 @@ Report closed: true
 
 The step counts and the final closed-state line should stay exact. Only the measured time will vary.
 
+## Cross-Language Notes
+
+- Compared with the C++ capstone, this version translates the same expert goal into async coordination, explicit cleanup, and import-based structure.
+- Relative to Go and C#, it trades true shared-memory threading for event-loop orchestration.
+- The key comparison is how much of expert-level design survives even when the runtime primitives are completely different.
+
 ## What To Check
 
 - every job passes through each step in the intended order
@@ -49,3 +55,4 @@ The step counts and the final closed-state line should stay exact. Only the meas
 
 - Add configurable worker counts.
 - Persist the audit log to disk.
+

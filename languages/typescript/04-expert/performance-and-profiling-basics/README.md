@@ -30,6 +30,12 @@ node build/typescript/04-expert/performance-and-profiling-basics/example/main.js
 - Drawing conclusions from a single run.
 - Optimizing before checking algorithmic cost first.
 
+## Cross-Language Notes
+
+- TypeScript on Node adds JIT and runtime warm-up effects, so comparisons with C++ and Go are useful but never one-to-one.
+- Compared with Python, this track often behaves more like a managed compiled runtime once the engine is warm.
+- The key lesson is to compare repeated averaged runs instead of trusting a single timing number.
+
 ## Exercise Focus
 
 - exercises/01.ts: compare repeated array scans with `Map` lookups.
@@ -54,3 +60,4 @@ node build/typescript/04-expert/performance-and-profiling-basics/example/main.js
 - [ ] I can explain how allocation patterns affect runtime.
 - [ ] I completed exercises/01.ts.
 - [ ] I completed exercises/02.ts.
+

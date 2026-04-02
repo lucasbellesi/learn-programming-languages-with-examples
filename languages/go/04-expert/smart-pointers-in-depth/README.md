@@ -29,6 +29,12 @@ go run example/main.go
 - Dereferencing optional pointers without checking for nil.
 - Hiding shared mutation behind too many aliases.
 
+## Cross-Language Notes
+
+- Go adapts this topic through values, pointers, nil checks, and explicit transfer conventions instead of smart-pointer classes.
+- Compared with C++, the language gives fewer ownership tools, so clarity comes from simple conventions and APIs.
+- The useful comparison is explicit mutation boundaries, not one-to-one pointer vocabulary.
+
 ## Exercise Focus
 
 - exercises/01.go: move an owned note between holders.
@@ -53,3 +59,4 @@ go run example/main.go
 - [ ] I can write nil-safe code around optional references.
 - [ ] I completed exercises/01.go.
 - [ ] I completed exercises/02.go.
+

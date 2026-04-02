@@ -29,6 +29,12 @@ python example/main.py
 - Creating helper modules with hidden side effects at import time.
 - Treating file structure as irrelevant to maintainability.
 
+## Cross-Language Notes
+
+- Python keeps modularization flexible, so the comparison with C++ and C# highlights how little compile-time structure is enforced.
+- Compared with Go or TypeScript, imports are lightweight but discipline matters more because the runtime lets you stay loose for longer.
+- This module is best read as a design-boundary lesson, not just an import-syntax lesson.
+
 ## Exercise Focus
 
 - exercises/01.py: separate invoice calculations into focused helpers.
@@ -53,3 +59,4 @@ python example/main.py
 - [ ] I can keep `main.py` focused on flow rather than every detail.
 - [ ] I completed exercises/01.py.
 - [ ] I completed exercises/02.py.
+

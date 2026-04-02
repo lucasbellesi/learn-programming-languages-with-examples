@@ -34,6 +34,12 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o memory_raii_example
 - Attempting to copy `unique_ptr`.
 - Mixing ownership and non-ownership pointers incorrectly.
 
+## Cross-Language Notes
+
+- This is the canonical RAII version: cleanup is tied to scope exit through destructors.
+- Compare this with C#, Python, Go, and TypeScript, where resource cleanup is explicit even when memory is managed.
+- The transferable idea is lifetime discipline, not the exact destructor syntax.
+
 ## Exercise Focus
 
 - `exercises/01.cpp`: dynamic array with `std::unique_ptr<int[]>`.
@@ -57,3 +63,4 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o memory_raii_example
 - [ ] I can use `unique_ptr` for owned dynamic memory.
 - [ ] I can design classes with cleanup in destructors.
 - [ ] I completed both exercises.
+

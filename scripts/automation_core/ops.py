@@ -795,6 +795,40 @@ def check_doc_sync(ctx: RepoContext) -> None:
         if marker not in parity_text:
             failures.append(f"{parity_path}: missing marker -> {marker}")
 
+    concept_index_config = ctx.manifest.docs.get("concept_index")
+    if concept_index_config:
+        concept_index_path = repo_path(ctx, concept_index_config["path"])
+        concept_index_text = ensure_text_file(concept_index_path)
+
+        for marker in concept_index_config.get("markers", []):
+            if marker not in concept_index_text:
+                failures.append(f"{concept_index_path}: missing marker -> {marker}")
+
+        for level, modules in ctx.manifest.module_order.items():
+            for module in modules:
+                row_marker = f"| {module} |"
+                if row_marker not in concept_index_text:
+                    failures.append(f"{concept_index_path}: missing concept row -> {module}")
+
+                for language, config in ctx.manifest.languages.items():
+                    if level not in config.get("module_levels", []):
+                        continue
+
+                    expected_path = f"languages/{language}/{level}/{module}/README.md"
+                    if expected_path not in concept_index_text:
+                        failures.append(
+                            f"{concept_index_path}: missing module link -> {expected_path}"
+                        )
+
+        for kind in ctx.manifest.checkpoint_kinds:
+            for language, config in ctx.manifest.languages.items():
+                for level in config.get("checkpoints", {}).get(kind, []):
+                    expected_path = f"languages/{language}/{kind}/{level}/README.md"
+                    if expected_path not in concept_index_text:
+                        failures.append(
+                            f"{concept_index_path}: missing checkpoint link -> {expected_path}"
+                        )
+
     if failures:
         print("Documentation sync validation failed:")
         for failure in failures:

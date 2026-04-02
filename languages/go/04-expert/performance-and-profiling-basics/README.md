@@ -29,6 +29,12 @@ go run example/main.go
 - Assuming one faster run is enough evidence.
 - Optimizing before checking algorithmic complexity first.
 
+## Cross-Language Notes
+
+- Go performance sits between native control and managed-runtime convenience, so comparisons with C++ and C# are especially useful here.
+- Compared with Python or TypeScript, allocation behavior is often easier to reason about, but still less explicit than C++.
+- The teaching goal is to compare measurement discipline before debating which runtime is fastest.
+
 ## Exercise Focus
 
 - exercises/01.go: compare string concatenation with `strings.Builder`.
@@ -53,3 +59,4 @@ go run example/main.go
 - [ ] I can explain why builders or slice capacity can reduce allocations.
 - [ ] I completed exercises/01.go.
 - [ ] I completed exercises/02.go.
+

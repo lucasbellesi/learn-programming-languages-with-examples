@@ -42,6 +42,12 @@ dotnet run --project example/<module>-example.csproj
 - Pitfall 1
 - Pitfall 2
 
+## Cross-Language Notes
+
+- Comparison point 1
+- Comparison point 2
+- Comparison point 3
+
 ## Exercise Focus
 
 - exercises/01.<ext>: short task summary.

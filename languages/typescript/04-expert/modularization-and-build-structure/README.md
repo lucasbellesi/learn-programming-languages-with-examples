@@ -30,6 +30,12 @@ node build/typescript/04-expert/modularization-and-build-structure/example/main.
 - Hiding useful shared types inside one file instead of exporting them.
 - Mixing formatting code with calculation code.
 
+## Cross-Language Notes
+
+- TypeScript modularization centers on imports, exports, and shared types rather than header/source or package-only layouts.
+- Compared with C#, Go, and Python, it sits in the middle: lighter than project-based structure, stricter than ad-hoc scripting.
+- The main comparison is how type visibility and build tooling shape reusable module boundaries.
+
 ## Exercise Focus
 
 - exercises/01.ts: extract validation and reporting helpers for a config summary.
@@ -54,3 +60,4 @@ node build/typescript/04-expert/modularization-and-build-structure/example/main.
 - [ ] I can keep `main` focused on orchestration instead of business logic.
 - [ ] I completed exercises/01.ts.
 - [ ] I completed exercises/02.ts.
+

@@ -167,8 +167,18 @@
   "docs": {
     "root_readme": "README.md",
     "root_readme_markers": [
-      "Parity planning reference: [LANGUAGE_PARITY_MATRIX.md](LANGUAGE_PARITY_MATRIX.md)"
+      "Parity planning reference: [LANGUAGE_PARITY_MATRIX.md](LANGUAGE_PARITY_MATRIX.md)",
+      "Browse by concept: [CONCEPT_INDEX.md](CONCEPT_INDEX.md)"
     ],
+    "concept_index": {
+      "path": "CONCEPT_INDEX.md",
+      "markers": [
+        "## Concepts by Level",
+        "## Checkpoints by Level",
+        "### Projects",
+        "### Assessments"
+      ]
+    },
     "parity_matrix": {
       "path": "LANGUAGE_PARITY_MATRIX.md",
       "markers": [

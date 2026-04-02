@@ -45,8 +45,15 @@ Maximum: 45
 
 The worker lines may appear in a different order, but the three partial sums and the final totals should match these values.
 
+## Cross-Language Notes
+
+- Compared with the C++ assessment, this version still uses real multithreaded thinking but with safer runtime helpers and clearer object boundaries.
+- Relative to Go, Python, and TypeScript, it stays closer to the canonical shared-state model.
+- The important comparison is how the runtime changes ceremony without changing the correctness target.
+
 ## What To Check
 
 - work is split across multiple workers without inconsistent shared state
 - partial results combine into a correct final summary
 - ownership or resource-lifetime decisions are explicit and safe for the chosen language track
+

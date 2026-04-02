@@ -29,6 +29,12 @@ python example/main.py
 - Forgetting to join worker threads before reading final results.
 - Leaving consumer threads blocked without a completion signal.
 
+## Cross-Language Notes
+
+- Python can express concurrency clearly, but the runtime model differs from C++ and C# because of the GIL and its effect on CPU-bound work.
+- Compared with Go or TypeScript, this track makes it easier to discuss why concurrency goals and parallel speedups are not the same thing.
+- The main comparison is orchestration clarity versus actual parallel execution.
+
 ## Exercise Focus
 
 - exercises/01.py: parallel chunk sum with worker threads.
@@ -53,3 +59,4 @@ python example/main.py
 - [ ] I can use a queue to coordinate a producer and consumer.
 - [ ] I completed exercises/01.py.
 - [ ] I completed exercises/02.py.
+

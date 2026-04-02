@@ -34,6 +34,12 @@ Step transform processed 3 jobs
 Elapsed (microseconds): 42
 ```
 
+## Cross-Language Notes
+
+- This capstone is the canonical expert integration point for ownership, synchronization, timing, and multi-file structure.
+- Other tracks keep the same learner goal but adapt the runtime model to their own concurrency and cleanup primitives.
+- Use this project as the baseline when comparing how expert-level design changes across languages.
+
 ## What To Check
 
 - every job passes through each step in the intended order
@@ -44,3 +50,4 @@ Elapsed (microseconds): 42
 
 - Add optional logging levels.
 - Add configurable step costs.
+

@@ -29,6 +29,12 @@ dotnet run --project example/memory-management-and-raii-example.csproj
 - Using finalizers as the primary cleanup mechanism.
 - Treating managed memory and unmanaged resources as the same lifetime problem.
 
+## Cross-Language Notes
+
+- Compare C++ destructor-driven cleanup with `IDisposable` and `using`: the intent is similar, but ordinary objects are not scope-cleaned automatically.
+- This track keeps cleanup explicit so learners can see where the ownership boundary really lives.
+- The key lesson is to separate managed memory from unmanaged resource lifetime.
+
 ## Exercise Focus
 
 - exercises/01.cs: owned integer buffer with deterministic cleanup.
@@ -53,3 +59,4 @@ dotnet run --project example/memory-management-and-raii-example.csproj
 - [ ] I can prevent work on an already disposed object.
 - [ ] I completed exercises/01.cs.
 - [ ] I completed exercises/02.cs.
+

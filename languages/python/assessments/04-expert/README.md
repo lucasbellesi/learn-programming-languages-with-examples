@@ -45,8 +45,15 @@ Maximum: 45
 
 The worker lines may appear in a different order, but the three partial sums and the final totals should match these values.
 
+## Cross-Language Notes
+
+- Compared with the C++ assessment, this version foregrounds correctness and aggregation clarity over low-level thread control.
+- Relative to Go and C#, the runtime model changes what "parallel" really means, but not what the final summary must prove.
+- The comparison to keep in mind is deterministic reporting despite different worker mechanisms.
+
 ## What To Check
 
 - work is split across multiple workers without inconsistent shared state
 - partial results combine into a correct final summary
 - ownership or resource-lifetime decisions are explicit and safe for the chosen language track
+

@@ -29,6 +29,12 @@ python example/main.py
 - Drawing conclusions from one noisy run.
 - Optimizing before understanding the dominant cost.
 
+## Cross-Language Notes
+
+- Python makes performance differences easier to observe at a high level, but lower-level costs are hidden compared with C++ or Go.
+- Compared with C# and TypeScript, small code-shape changes can matter less than algorithmic choice and object overhead.
+- The cross-language lesson is to measure honestly before assuming a slower runtime makes an idea unimportant.
+
 ## Exercise Focus
 
 - exercises/01.py: compare string concatenation with `str.join`.
@@ -53,3 +59,4 @@ python example/main.py
 - [ ] I can explain why fewer allocations can help.
 - [ ] I completed exercises/01.py.
 - [ ] I completed exercises/02.py.
+
