@@ -192,6 +192,12 @@ Use [EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md](EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md)
 
 Documentation sync also validates that [CONCEPT_INDEX.md](CONCEPT_INDEX.md) covers every implemented module and checkpoint path listed in the automation manifest. Cross-language parity checks now validate module focus/teaching headers across tracks, exercise parity checks validate `exercises/01` and `exercises/02` alignment across tracks, and example plus exercise output contracts validate stable learner-visible output for smoke-targeted programs.
 
+For long exercise-contract runs, you can scope by language:
+
+~~~bash
+python scripts/automation.py check-exercise-output-contracts --language typescript
+~~~
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution workflow and documentation requirements.

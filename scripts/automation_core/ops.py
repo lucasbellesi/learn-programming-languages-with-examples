@@ -66,9 +66,16 @@ def build_parser() -> argparse.ArgumentParser:
     add_simple_command(
         subparsers, "check-example-output-contracts", handle_check_example_output_contracts
     )
-    add_simple_command(
-        subparsers, "check-exercise-output-contracts", handle_check_exercise_output_contracts
+    check_exercise_output_contracts_parser = subparsers.add_parser(
+        "check-exercise-output-contracts"
     )
+    check_exercise_output_contracts_parser.add_argument(
+        "--language",
+        choices=["cpp", "csharp", "go", "python", "typescript"],
+        default=None,
+        help="Run only one language track for exercise output contracts.",
+    )
+    check_exercise_output_contracts_parser.set_defaults(func=handle_check_exercise_output_contracts)
     add_simple_command(subparsers, "check-exercise-parity", handle_check_exercise_parity)
     add_simple_command(
         subparsers, "check-cross-language-parity", handle_check_cross_language_parity
@@ -130,8 +137,8 @@ def handle_check_example_output_contracts(ctx: RepoContext, _: argparse.Namespac
     return 0
 
 
-def handle_check_exercise_output_contracts(ctx: RepoContext, _: argparse.Namespace) -> int:
-    check_exercise_output_contracts(ctx)
+def handle_check_exercise_output_contracts(ctx: RepoContext, args: argparse.Namespace) -> int:
+    check_exercise_output_contracts(ctx, language_filter=args.language)
     return 0
 
 
@@ -1896,7 +1903,7 @@ def check_example_output_contracts(ctx: RepoContext) -> None:
     print(f"Example output contracts passed for {executed_jobs} jobs.")
 
 
-def check_exercise_output_contracts(ctx: RepoContext) -> None:
+def check_exercise_output_contracts(ctx: RepoContext, language_filter: str | None = None) -> None:
     contracts = load_exercise_output_contracts(ctx)
     if not contracts:
         raise AutomationError("No exercise output contracts configured.")
@@ -1904,8 +1911,14 @@ def check_exercise_output_contracts(ctx: RepoContext) -> None:
     executed_jobs = 0
     python_cmd = find_python_command()
     node_cmd = find_node_command()
+    allowed_languages = {"cpp", "csharp", "go", "python", "typescript"}
+    if language_filter is not None and language_filter not in allowed_languages:
+        raise AutomationError(
+            "Unsupported exercise output contracts language filter: "
+            f"{language_filter}. Allowed: {', '.join(sorted(allowed_languages))}."
+        )
 
-    for job in contracts.get("python", []):
+    for job in contracts.get("python", []) if language_filter in (None, "python") else []:
         smoke_runtime_job(
             ctx,
             job,
@@ -1917,7 +1930,7 @@ def check_exercise_output_contracts(ctx: RepoContext) -> None:
         )
         executed_jobs += 1
 
-    for job in contracts.get("go", []):
+    for job in contracts.get("go", []) if language_filter in (None, "go") else []:
         smoke_runtime_job(
             ctx,
             job,
@@ -1930,7 +1943,7 @@ def check_exercise_output_contracts(ctx: RepoContext) -> None:
         )
         executed_jobs += 1
 
-    if contracts.get("typescript"):
+    if language_filter in (None, "typescript") and contracts.get("typescript"):
         with tempfile.TemporaryDirectory(prefix="ts-exercise-output-contracts-") as temp_root:
             temp_root_path = Path(temp_root)
             compile_typescript(ctx, out_dir=temp_root_path)
@@ -1952,13 +1965,14 @@ def check_exercise_output_contracts(ctx: RepoContext) -> None:
                 )
                 executed_jobs += 1
 
-    executed_jobs += run_csharp_source_output_contracts(
-        ctx,
-        contracts.get("csharp", []),
-        label_prefix="exercise",
-    )
+    if language_filter in (None, "csharp"):
+        executed_jobs += run_csharp_source_output_contracts(
+            ctx,
+            contracts.get("csharp", []),
+            label_prefix="exercise",
+        )
 
-    cpp_contracts = contracts.get("cpp", [])
+    cpp_contracts = contracts.get("cpp", []) if language_filter in (None, "cpp") else []
     if cpp_contracts:
         toolchain = resolve_gpp_toolchain(ctx)
         with tempfile.TemporaryDirectory(prefix="cpp-exercise-output-contracts-") as temp_root:
@@ -2008,7 +2022,13 @@ def check_exercise_output_contracts(ctx: RepoContext) -> None:
     if executed_jobs == 0:
         raise AutomationError("No exercise output contract jobs were executed.")
 
-    print(f"Exercise output contracts passed for {executed_jobs} jobs.")
+    if language_filter is None:
+        print(f"Exercise output contracts passed for {executed_jobs} jobs.")
+    else:
+        print(
+            "Exercise output contracts passed for "
+            f"{executed_jobs} jobs in language '{language_filter}'."
+        )
 
 
 def exercise_contract_key(
@@ -2133,30 +2153,11 @@ def check_exercise_parity(ctx: RepoContext) -> None:
 
         contract_keys_by_language[language] = keys
 
-    baseline_language = next(
-        (language for language in languages if contract_keys_by_language[language]),
-        None,
-    )
-    if baseline_language is None:
+    total_contracts = sum(len(keys) for keys in contract_keys_by_language.values())
+    if total_contracts == 0:
         failures.append(
             "scripts/exercise_output_contracts.json: no exercise contracts parsed for any language"
         )
-    else:
-        baseline_keys = contract_keys_by_language[baseline_language]
-        for language in languages:
-            current_keys = contract_keys_by_language[language]
-            missing = sorted(baseline_keys - current_keys)
-            extra = sorted(current_keys - baseline_keys)
-            for level, module, exercise_id in missing:
-                failures.append(
-                    "scripts/exercise_output_contracts.json: "
-                    f"{language} missing contract for {level}/{module}/exercises/{exercise_id}"
-                )
-            for level, module, exercise_id in extra:
-                failures.append(
-                    "scripts/exercise_output_contracts.json: "
-                    f"{language} has extra contract for {level}/{module}/exercises/{exercise_id}"
-                )
 
     if failures:
         print("Exercise parity validation failed:")

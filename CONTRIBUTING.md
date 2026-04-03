@@ -65,6 +65,14 @@ Validate exercise output contracts with:
 - `./scripts/check-exercise-output-contracts.ps1` (PowerShell)
 - `bash ./scripts/check-exercise-output-contracts.sh` (Bash)
 
+For large changes, you can run one language at a time before the full check:
+
+- `python scripts/automation.py check-exercise-output-contracts --language python`
+- `python scripts/automation.py check-exercise-output-contracts --language go`
+- `python scripts/automation.py check-exercise-output-contracts --language typescript`
+- `python scripts/automation.py check-exercise-output-contracts --language cpp`
+- `python scripts/automation.py check-exercise-output-contracts --language csharp`
+
 Run full repository checks with:
 
 - `./scripts/verify-repo.ps1` (PowerShell)

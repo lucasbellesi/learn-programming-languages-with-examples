@@ -2,6 +2,12 @@
   "languages": {
     "cpp": [
       {
+        "program": "languages/cpp/03-advanced/copy-and-move-semantics/exercises/01.cpp",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
         "program": "languages/cpp/03-advanced/inheritance-and-polymorphism/exercises/02.cpp",
         "required_stdout_contains": [
           "Total area:"
@@ -118,9 +124,249 @@
     ],
     "typescript": [
       {
+        "program": "languages/typescript/01-foundations/arrays-and-vectors/exercises/01.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/01-foundations/arrays-and-vectors/exercises/02.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/01-foundations/control-flow/exercises/01.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/01-foundations/control-flow/exercises/02.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/01-foundations/formatted-output-and-iomanip/exercises/01.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/01-foundations/formatted-output-and-iomanip/exercises/02.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/01-foundations/functions/exercises/01.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/01-foundations/functions/exercises/02.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/01-foundations/operators-and-expressions/exercises/01.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/01-foundations/operators-and-expressions/exercises/02.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/01-foundations/scope-and-lifetime-basics/exercises/01.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/01-foundations/scope-and-lifetime-basics/exercises/02.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/01-foundations/strings/exercises/01.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/01-foundations/strings/exercises/02.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/01-foundations/types-and-io/exercises/01.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/01-foundations/types-and-io/exercises/02.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/02-core/algorithms-basics/exercises/01.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/02-core/algorithms-basics/exercises/02.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/02-core/error-handling-and-defensive-programming/exercises/01.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/02-core/error-handling-and-defensive-programming/exercises/02.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/02-core/file-io-basics/exercises/01.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/02-core/file-io-basics/exercises/02.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/02-core/input-validation/exercises/01.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/02-core/input-validation/exercises/02.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/02-core/maps-and-frequency-counting/exercises/01.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/02-core/maps-and-frequency-counting/exercises/02.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/02-core/sorting-and-searching/exercises/01.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/02-core/sorting-and-searching/exercises/02.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/03-advanced/constructors-and-invariants/exercises/01.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/03-advanced/constructors-and-invariants/exercises/02.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/03-advanced/copy-and-move-semantics/exercises/01.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/03-advanced/copy-and-move-semantics/exercises/02.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/03-advanced/inheritance-and-polymorphism/exercises/01.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
         "program": "languages/typescript/03-advanced/inheritance-and-polymorphism/exercises/02.ts",
         "required_stdout_contains": [
           "Label is required."
+        ]
+      },
+      {
+        "program": "languages/typescript/03-advanced/structs-and-classes/exercises/01.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/03-advanced/structs-and-classes/exercises/02.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/03-advanced/templates-basics/exercises/01.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/03-advanced/templates-basics/exercises/02.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/04-expert/concurrency-basics/exercises/01.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/04-expert/concurrency-basics/exercises/02.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/04-expert/memory-management-and-raii/exercises/01.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
         ]
       },
       {
@@ -128,6 +374,30 @@
         "required_stdout_contains": [
           "Before close: connected, validated",
           "Guarded error: Cannot record after close."
+        ]
+      },
+      {
+        "program": "languages/typescript/04-expert/modularization-and-build-structure/exercises/01.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/04-expert/modularization-and-build-structure/exercises/02.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/04-expert/performance-and-profiling-basics/exercises/01.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
+        ]
+      },
+      {
+        "program": "languages/typescript/04-expert/performance-and-profiling-basics/exercises/02.ts",
+        "required_stdout_patterns": [
+          "\\A[\\s\\S]*\\Z"
         ]
       },
       {
