@@ -156,6 +156,7 @@ Run checks locally:
 ./scripts/check-module-completeness.ps1
 ./scripts/check-checkpoint-completeness.ps1
 ./scripts/check-cross-language-parity.ps1
+./scripts/check-exercise-parity.ps1
 ./scripts/check-example-output-contracts.ps1
 ./scripts/check-exercise-output-contracts.ps1
 ./scripts/audit-education-quality.ps1
@@ -171,6 +172,7 @@ bash ./scripts/check-readme-structure.sh
 bash ./scripts/check-module-completeness.sh
 bash ./scripts/check-checkpoint-completeness.sh
 bash ./scripts/check-cross-language-parity.sh
+bash ./scripts/check-exercise-parity.sh
 bash ./scripts/check-example-output-contracts.sh
 bash ./scripts/check-exercise-output-contracts.sh
 bash ./scripts/audit-education-quality.sh
@@ -188,7 +190,7 @@ The multi-language smoke scripts also compile standalone C# exercises by generat
 
 Use [EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md](EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md) to keep entry examples pedagogically consistent during reviews. The education audit command is advisory and writes markdown/json findings without failing CI.
 
-Documentation sync also validates that [CONCEPT_INDEX.md](CONCEPT_INDEX.md) covers every implemented module and checkpoint path listed in the automation manifest. Cross-language parity checks now validate module focus/teaching headers across tracks, and example plus exercise output contracts validate stable learner-visible output for smoke-targeted examples.
+Documentation sync also validates that [CONCEPT_INDEX.md](CONCEPT_INDEX.md) covers every implemented module and checkpoint path listed in the automation manifest. Cross-language parity checks now validate module focus/teaching headers across tracks, exercise parity checks validate `exercises/01` and `exercises/02` alignment across tracks, and example plus exercise output contracts validate stable learner-visible output for smoke-targeted programs.
 
 ## Contributing
 

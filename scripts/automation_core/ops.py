@@ -69,6 +69,7 @@ def build_parser() -> argparse.ArgumentParser:
     add_simple_command(
         subparsers, "check-exercise-output-contracts", handle_check_exercise_output_contracts
     )
+    add_simple_command(subparsers, "check-exercise-parity", handle_check_exercise_parity)
     add_simple_command(
         subparsers, "check-cross-language-parity", handle_check_cross_language_parity
     )
@@ -131,6 +132,11 @@ def handle_check_example_output_contracts(ctx: RepoContext, _: argparse.Namespac
 
 def handle_check_exercise_output_contracts(ctx: RepoContext, _: argparse.Namespace) -> int:
     check_exercise_output_contracts(ctx)
+    return 0
+
+
+def handle_check_exercise_parity(ctx: RepoContext, _: argparse.Namespace) -> int:
+    check_exercise_parity(ctx)
     return 0
 
 
@@ -2005,6 +2011,162 @@ def check_exercise_output_contracts(ctx: RepoContext) -> None:
     print(f"Exercise output contracts passed for {executed_jobs} jobs.")
 
 
+def exercise_contract_key(
+    target: str, *, language: str, extension: str
+) -> tuple[str, str, str] | None:
+    normalized = target.replace("\\", "/")
+    pattern = (
+        rf"^languages/{re.escape(language)}/([^/]+)/([^/]+)/exercises/(0[12])\."
+        rf"{re.escape(extension)}$"
+    )
+    match = re.match(pattern, normalized)
+    if not match:
+        return None
+    return match.group(1), match.group(2), match.group(3)
+
+
+def check_exercise_parity(ctx: RepoContext) -> None:
+    failures: list[str] = []
+    languages = ["cpp", "csharp", "go", "python", "typescript"]
+    extension_map = {
+        language: ctx.manifest.languages[language]["extension"] for language in languages
+    }
+
+    for level, modules in ctx.manifest.module_order.items():
+        for module in modules:
+            for language in languages:
+                if level not in ctx.manifest.languages[language].get("module_levels", []):
+                    continue
+                extension = extension_map[language]
+                for exercise_id in ("01", "02"):
+                    exercise_path = (
+                        ctx.root
+                        / "languages"
+                        / language
+                        / level
+                        / module
+                        / "exercises"
+                        / f"{exercise_id}.{extension}"
+                    )
+                    if not exercise_path.is_file():
+                        failures.append(f"{exercise_path}: missing exercise file for parity check")
+
+    contracts = load_exercise_output_contracts(ctx)
+    expected_levels = set(ctx.manifest.module_order.keys())
+    expected_modules = {
+        (level, module)
+        for level, modules in ctx.manifest.module_order.items()
+        for module in modules
+    }
+    contract_keys_by_language: dict[str, set[tuple[str, str, str]]] = {}
+
+    unknown_languages = sorted(language for language in contracts if language not in languages)
+    for language in unknown_languages:
+        failures.append(
+            f"scripts/exercise_output_contracts.json: unexpected language key '{language}'"
+        )
+
+    for language in languages:
+        jobs = contracts.get(language, [])
+        if not jobs:
+            failures.append(
+                f"scripts/exercise_output_contracts.json: no contracts configured for {language}"
+            )
+            contract_keys_by_language[language] = set()
+            continue
+
+        extension = extension_map[language]
+        keys: set[tuple[str, str, str]] = set()
+        for job in jobs:
+            target = job.get("program")
+            if not target:
+                failures.append(
+                    "scripts/exercise_output_contracts.json: "
+                    f"{language} contract missing 'program' field"
+                )
+                continue
+
+            target_path = repo_path(ctx, target)
+            if not target_path.is_file():
+                failures.append(
+                    "scripts/exercise_output_contracts.json: "
+                    f"{language} contract target does not exist -> {target}"
+                )
+
+            key = exercise_contract_key(target, language=language, extension=extension)
+            if key is None:
+                failures.append(
+                    "scripts/exercise_output_contracts.json: "
+                    f"{language} contract target must be an exercises/01|02 file -> {target}"
+                )
+                continue
+
+            level, module, exercise_id = key
+            if level not in expected_levels:
+                failures.append(
+                    "scripts/exercise_output_contracts.json: "
+                    f"{language} contract uses unknown level '{level}' -> {target}"
+                )
+            if (level, module) not in expected_modules:
+                failures.append(
+                    "scripts/exercise_output_contracts.json: "
+                    f"{language} contract uses unknown module '{module}' in level '{level}' -> "
+                    f"{target}"
+                )
+            if exercise_id not in {"01", "02"}:
+                failures.append(
+                    "scripts/exercise_output_contracts.json: "
+                    f"{language} contract exercise id must be 01 or 02 -> {target}"
+                )
+            if key in keys:
+                failures.append(
+                    "scripts/exercise_output_contracts.json: "
+                    f"duplicate {language} contract key {level}/{module}/exercises/{exercise_id}"
+                )
+            keys.add(key)
+
+            if not job.get("required_stdout_contains") and not job.get("required_stdout_patterns"):
+                failures.append(
+                    "scripts/exercise_output_contracts.json: "
+                    f"{language} contract has no stdout expectations -> {target}"
+                )
+
+        contract_keys_by_language[language] = keys
+
+    baseline_language = next(
+        (language for language in languages if contract_keys_by_language[language]),
+        None,
+    )
+    if baseline_language is None:
+        failures.append(
+            "scripts/exercise_output_contracts.json: no exercise contracts parsed for any language"
+        )
+    else:
+        baseline_keys = contract_keys_by_language[baseline_language]
+        for language in languages:
+            current_keys = contract_keys_by_language[language]
+            missing = sorted(baseline_keys - current_keys)
+            extra = sorted(current_keys - baseline_keys)
+            for level, module, exercise_id in missing:
+                failures.append(
+                    "scripts/exercise_output_contracts.json: "
+                    f"{language} missing contract for {level}/{module}/exercises/{exercise_id}"
+                )
+            for level, module, exercise_id in extra:
+                failures.append(
+                    "scripts/exercise_output_contracts.json: "
+                    f"{language} has extra contract for {level}/{module}/exercises/{exercise_id}"
+                )
+
+    if failures:
+        print("Exercise parity validation failed:")
+        for failure in failures:
+            print(f" - {failure}")
+        raise AutomationError("Exercise parity validation failed.")
+
+    print("Exercise parity validation passed.")
+
+
 def module_focus_comment(path: Path) -> tuple[str | None, str | None]:
     lines = path.read_text(encoding="utf-8").splitlines()
     header_comment_lines: list[str] = []
@@ -2155,34 +2317,37 @@ def check_cross_language_parity(ctx: RepoContext) -> None:
 def verify_repo(ctx: RepoContext) -> None:
     python_cmd = find_python_command()
 
-    print("[1/10] Checking markdown links...")
+    print("[1/11] Checking markdown links...")
     run_command([python_cmd, str(ctx.scripts_dir / "check-links.py")], action="Markdown link check")
 
-    print("[2/10] Checking README structure...")
+    print("[2/11] Checking README structure...")
     check_readme_structure(ctx)
 
-    print("[3/10] Checking module completeness...")
+    print("[3/11] Checking module completeness...")
     check_module_completeness(ctx)
 
-    print("[4/10] Checking checkpoint completeness...")
+    print("[4/11] Checking checkpoint completeness...")
     check_checkpoint_completeness(ctx)
 
-    print("[5/10] Checking documentation sync...")
+    print("[5/11] Checking documentation sync...")
     check_doc_sync(ctx)
 
-    print("[6/10] Checking example comments...")
+    print("[6/11] Checking example comments...")
     check_example_comments(ctx)
 
-    print("[7/10] Checking cross-language parity...")
+    print("[7/11] Checking cross-language parity...")
     check_cross_language_parity(ctx)
 
-    print("[8/10] Checking example output contracts...")
+    print("[8/11] Checking exercise parity...")
+    check_exercise_parity(ctx)
+
+    print("[9/11] Checking example output contracts...")
     check_example_output_contracts(ctx)
 
-    print("[9/10] Checking exercise output contracts...")
+    print("[10/11] Checking exercise output contracts...")
     check_exercise_output_contracts(ctx)
 
-    print("[10/10] Compiling compiled-language tracks...")
+    print("[11/11] Compiling compiled-language tracks...")
     build_all(ctx)
 
     print("Repository verification completed successfully.")

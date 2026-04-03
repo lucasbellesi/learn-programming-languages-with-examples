@@ -50,6 +50,11 @@ Validate cross-language parity with:
 - `./scripts/check-cross-language-parity.ps1` (PowerShell)
 - `bash ./scripts/check-cross-language-parity.sh` (Bash)
 
+Validate exercise parity with:
+
+- `./scripts/check-exercise-parity.ps1` (PowerShell)
+- `bash ./scripts/check-exercise-parity.sh` (Bash)
+
 Validate example output contracts with:
 
 - `./scripts/check-example-output-contracts.ps1` (PowerShell)
