@@ -67,6 +67,9 @@ def build_parser() -> argparse.ArgumentParser:
         subparsers, "check-example-output-contracts", handle_check_example_output_contracts
     )
     add_simple_command(
+        subparsers, "check-exercise-output-contracts", handle_check_exercise_output_contracts
+    )
+    add_simple_command(
         subparsers, "check-cross-language-parity", handle_check_cross_language_parity
     )
     add_simple_command(subparsers, "check-doc-sync", handle_check_doc_sync)
@@ -123,6 +126,11 @@ def handle_audit_education_quality(ctx: RepoContext, _: argparse.Namespace) -> i
 
 def handle_check_example_output_contracts(ctx: RepoContext, _: argparse.Namespace) -> int:
     check_example_output_contracts(ctx)
+    return 0
+
+
+def handle_check_exercise_output_contracts(ctx: RepoContext, _: argparse.Namespace) -> int:
+    check_exercise_output_contracts(ctx)
     return 0
 
 
@@ -1629,16 +1637,19 @@ def smoke_languages(ctx: RepoContext) -> None:
     print("Multi-language smoke checks passed.")
 
 
-def load_example_output_contracts(ctx: RepoContext) -> dict[str, list[dict[str, Any]]]:
-    contracts_path = ctx.scripts_dir / "example_output_contracts.json"
+def load_output_contracts(
+    ctx: RepoContext, contracts_file: str, description: str
+) -> dict[str, list[dict[str, Any]]]:
+    contracts_path = ctx.scripts_dir / contracts_file
     if not contracts_path.is_file():
-        raise AutomationError(f"Missing output contracts file: {contracts_path}")
+        raise AutomationError(f"Missing {description} output contracts file: {contracts_path}")
 
     payload = json.loads(contracts_path.read_text(encoding="utf-8"))
     languages = payload.get("languages")
     if not isinstance(languages, dict):
         raise AutomationError(
-            f"{contracts_path}: expected top-level object with 'languages' mapping."
+            f"{contracts_path}: expected top-level object with 'languages' mapping "
+            f"for {description} contracts."
         )
     result: dict[str, list[dict[str, Any]]] = {}
     for language, jobs in languages.items():
@@ -1648,6 +1659,92 @@ def load_example_output_contracts(ctx: RepoContext) -> dict[str, list[dict[str, 
             )
         result[language] = [dict(job) for job in jobs]
     return result
+
+
+def load_example_output_contracts(ctx: RepoContext) -> dict[str, list[dict[str, Any]]]:
+    return load_output_contracts(ctx, "example_output_contracts.json", "example")
+
+
+def load_exercise_output_contracts(ctx: RepoContext) -> dict[str, list[dict[str, Any]]]:
+    return load_output_contracts(ctx, "exercise_output_contracts.json", "exercise")
+
+
+def run_csharp_source_output_contracts(
+    ctx: RepoContext,
+    jobs: list[dict[str, Any]],
+    *,
+    label_prefix: str,
+) -> int:
+    executed_jobs = 0
+    if not jobs:
+        return executed_jobs
+
+    with tempfile.TemporaryDirectory(prefix="csharp-source-output-contracts-") as temp_root:
+        temp_root_path = Path(temp_root)
+        for index, job in enumerate(jobs):
+            source_path = repo_path(ctx, job["program"])
+            if not source_path.is_file():
+                raise AutomationError(f"Missing C# contract source: {source_path}")
+
+            project_dir = temp_root_path / f"exercise-{index}"
+            project_dir.mkdir(parents=True, exist_ok=True)
+            project_path = project_dir / "exercise-check.csproj"
+            escaped_source = xml_escape(str(source_path.resolve()))
+            project_path.write_text(
+                "\n".join(
+                    [
+                        '<Project Sdk="Microsoft.NET.Sdk">',
+                        "  <PropertyGroup>",
+                        "    <OutputType>Exe</OutputType>",
+                        "    <TargetFramework>net8.0</TargetFramework>",
+                        "    <ImplicitUsings>disable</ImplicitUsings>",
+                        "    <Nullable>disable</Nullable>",
+                        "    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>",
+                        "  </PropertyGroup>",
+                        "  <ItemGroup>",
+                        f'    <Compile Include="{escaped_source}" Link="Program.cs" />',
+                        "  </ItemGroup>",
+                        "</Project>",
+                        "",
+                    ]
+                ),
+                encoding="utf-8",
+            )
+            run_command(
+                [
+                    "dotnet",
+                    "build",
+                    str(project_path),
+                    "--nologo",
+                    "--verbosity",
+                    "quiet",
+                    "-p:UseAppHost=false",
+                ],
+                quiet_stdout=True,
+                action=f"C# build for {label_prefix} output contract {job['program']}",
+                timeout_seconds=180,
+            )
+
+            run_target = project_dir / "bin" / "Debug" / "net8.0" / "exercise-check.dll"
+            capture_stdout = bool(
+                job.get("required_stdout_contains") or job.get("required_stdout_patterns")
+            )
+            completed = run_command(
+                ["dotnet", str(run_target)],
+                capture_stdout=capture_stdout,
+                quiet_stdout=not capture_stdout,
+                action=f"C# execution for {label_prefix} output contract {job['program']}",
+                timeout_seconds=30,
+            )
+            if capture_stdout:
+                assert_output_contract(
+                    completed.stdout or "",
+                    job,
+                    f"C# {label_prefix} output contract for {job['program']}",
+                )
+            executed_jobs += 1
+
+    return executed_jobs
 
 
 def check_example_output_contracts(ctx: RepoContext) -> None:
@@ -1791,6 +1888,121 @@ def check_example_output_contracts(ctx: RepoContext) -> None:
         raise AutomationError("No example output contract jobs were executed.")
 
     print(f"Example output contracts passed for {executed_jobs} jobs.")
+
+
+def check_exercise_output_contracts(ctx: RepoContext) -> None:
+    contracts = load_exercise_output_contracts(ctx)
+    if not contracts:
+        raise AutomationError("No exercise output contracts configured.")
+
+    executed_jobs = 0
+    python_cmd = find_python_command()
+    node_cmd = find_node_command()
+
+    for job in contracts.get("python", []):
+        smoke_runtime_job(
+            ctx,
+            job,
+            command_builder=lambda current_job, working_dir: [
+                python_cmd,
+                str(resolve_job_path(ctx, working_dir, current_job["program"])),
+            ],
+            label=f"Python exercise output contract for {job['program']}",
+        )
+        executed_jobs += 1
+
+    for job in contracts.get("go", []):
+        smoke_runtime_job(
+            ctx,
+            job,
+            command_builder=lambda current_job, working_dir: [
+                "go",
+                "run",
+                *go_target_arguments(resolve_job_path(ctx, working_dir, current_job["program"])),
+            ],
+            label=f"Go exercise output contract for {job['program']}",
+        )
+        executed_jobs += 1
+
+    if contracts.get("typescript"):
+        with tempfile.TemporaryDirectory(prefix="ts-exercise-output-contracts-") as temp_root:
+            temp_root_path = Path(temp_root)
+            compile_typescript(ctx, out_dir=temp_root_path)
+            for job in contracts.get("typescript", []):
+                smoke_runtime_job(
+                    ctx,
+                    job,
+                    command_builder=lambda current_job, working_dir: [
+                        node_cmd,
+                        str(
+                            typescript_output_path(
+                                ctx,
+                                temp_root_path,
+                                resolve_job_path(ctx, working_dir, current_job["program"]),
+                            )
+                        ),
+                    ],
+                    label=f"TypeScript exercise output contract for {job['program']}",
+                )
+                executed_jobs += 1
+
+    executed_jobs += run_csharp_source_output_contracts(
+        ctx,
+        contracts.get("csharp", []),
+        label_prefix="exercise",
+    )
+
+    cpp_contracts = contracts.get("cpp", [])
+    if cpp_contracts:
+        toolchain = resolve_gpp_toolchain(ctx)
+        with tempfile.TemporaryDirectory(prefix="cpp-exercise-output-contracts-") as temp_root:
+            temp_root_path = Path(temp_root)
+            for index, job in enumerate(cpp_contracts):
+                source_path = repo_path(ctx, job["program"])
+                if not source_path.is_file():
+                    raise AutomationError(f"Missing C++ contract source: {source_path}")
+
+                output_path = temp_root_path / f"cpp_exercise_contract_{index}"
+                compile_command = cpp_compile_command(ctx, toolchain, source_path, output_path)
+                compile_action = f"C++ compilation for exercise output contract {job['program']}"
+                if toolchain.mode == "wsl":
+                    compile_action = (
+                        f"C++ WSL compilation for exercise output contract {job['program']}"
+                    )
+                run_command(compile_command, action=compile_action, timeout_seconds=120)
+
+                input_text = None
+                if "input_lines" in job:
+                    input_text = "\n".join(job["input_lines"]) + "\n"
+
+                if toolchain.mode == "wsl":
+                    binary_command = [
+                        "wsl",
+                        "bash",
+                        "-lc",
+                        shlex.quote(to_wsl_path(output_path)),
+                    ]
+                else:
+                    binary_command = [str(compiled_binary_path(ctx, output_path))]
+
+                completed = run_command(
+                    binary_command,
+                    input_text=input_text,
+                    capture_stdout=True,
+                    action=f"C++ execution for exercise output contract {job['program']}",
+                    timeout_seconds=30,
+                )
+                assert_output_contract(
+                    completed.stdout or "",
+                    job,
+                    f"C++ exercise output contract for {job['program']}",
+                )
+                executed_jobs += 1
+
+    if executed_jobs == 0:
+        raise AutomationError("No exercise output contract jobs were executed.")
+
+    print(f"Exercise output contracts passed for {executed_jobs} jobs.")
 
 
 def module_focus_comment(path: Path) -> tuple[str | None, str | None]:
@@ -1943,31 +2155,34 @@ def check_cross_language_parity(ctx: RepoContext) -> None:
 def verify_repo(ctx: RepoContext) -> None:
     python_cmd = find_python_command()
 
-    print("[1/9] Checking markdown links...")
+    print("[1/10] Checking markdown links...")
     run_command([python_cmd, str(ctx.scripts_dir / "check-links.py")], action="Markdown link check")
 
-    print("[2/9] Checking README structure...")
+    print("[2/10] Checking README structure...")
     check_readme_structure(ctx)
 
-    print("[3/9] Checking module completeness...")
+    print("[3/10] Checking module completeness...")
     check_module_completeness(ctx)
 
-    print("[4/9] Checking checkpoint completeness...")
+    print("[4/10] Checking checkpoint completeness...")
     check_checkpoint_completeness(ctx)
 
-    print("[5/9] Checking documentation sync...")
+    print("[5/10] Checking documentation sync...")
     check_doc_sync(ctx)
 
-    print("[6/9] Checking example comments...")
+    print("[6/10] Checking example comments...")
     check_example_comments(ctx)
 
-    print("[7/9] Checking cross-language parity...")
+    print("[7/10] Checking cross-language parity...")
     check_cross_language_parity(ctx)
 
-    print("[8/9] Checking example output contracts...")
+    print("[8/10] Checking example output contracts...")
     check_example_output_contracts(ctx)
 
-    print("[9/9] Compiling compiled-language tracks...")
+    print("[9/10] Checking exercise output contracts...")
+    check_exercise_output_contracts(ctx)
+
+    print("[10/10] Compiling compiled-language tracks...")
     build_all(ctx)
 
     print("Repository verification completed successfully.")

@@ -55,6 +55,11 @@ Validate example output contracts with:
 - `./scripts/check-example-output-contracts.ps1` (PowerShell)
 - `bash ./scripts/check-example-output-contracts.sh` (Bash)
 
+Validate exercise output contracts with:
+
+- `./scripts/check-exercise-output-contracts.ps1` (PowerShell)
+- `bash ./scripts/check-exercise-output-contracts.sh` (Bash)
+
 Run full repository checks with:
 
 - `./scripts/verify-repo.ps1` (PowerShell)

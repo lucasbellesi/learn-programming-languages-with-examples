@@ -1,0 +1,149 @@
+{
+  "languages": {
+    "cpp": [
+      {
+        "program": "languages/cpp/03-advanced/inheritance-and-polymorphism/exercises/02.cpp",
+        "required_stdout_contains": [
+          "Total area:"
+        ]
+      },
+      {
+        "program": "languages/cpp/04-expert/memory-management-and-raii/exercises/02.cpp",
+        "required_stdout_contains": [
+          "Starting scope demo.",
+          "Final active guards: 0"
+        ]
+      },
+      {
+        "program": "languages/cpp/04-expert/smart-pointers-in-depth/exercises/01.cpp",
+        "required_stdout_contains": [
+          "Ownership moved successfully.",
+          "Moved owner is active."
+        ]
+      },
+      {
+        "program": "languages/cpp/04-expert/smart-pointers-in-depth/exercises/02.cpp",
+        "required_stdout_contains": [
+          "Parent is still alive.",
+          "Parent no longer exists."
+        ]
+      }
+    ],
+    "csharp": [
+      {
+        "program": "languages/csharp/03-advanced/inheritance-and-polymorphism/exercises/02.cs",
+        "required_stdout_contains": [
+          "Total area:"
+        ]
+      },
+      {
+        "program": "languages/csharp/04-expert/memory-management-and-raii/exercises/02.cs",
+        "required_stdout_contains": [
+          "Active before scopes: 0",
+          "Active after scopes: 0"
+        ]
+      },
+      {
+        "program": "languages/csharp/04-expert/smart-pointers-in-depth/exercises/01.cs",
+        "required_stdout_contains": [
+          "Active moves Roadmap to Backup.",
+          "Empty is empty."
+        ]
+      },
+      {
+        "program": "languages/csharp/04-expert/smart-pointers-in-depth/exercises/02.cs",
+        "required_stdout_contains": [
+          "temp: alive -> Short lived",
+          "missing: missing"
+        ]
+      }
+    ],
+    "go": [
+      {
+        "program": "languages/go/03-advanced/inheritance-and-polymorphism/exercises/02.go",
+        "required_stdout_contains": [
+          "Total area:"
+        ]
+      },
+      {
+        "program": "languages/go/04-expert/memory-management-and-raii/exercises/02.go",
+        "required_stdout_contains": [
+          "Active before scopes: 0",
+          "Active after scopes: 0"
+        ]
+      },
+      {
+        "program": "languages/go/04-expert/smart-pointers-in-depth/exercises/01.go",
+        "required_stdout_contains": [
+          "Active moves Roadmap to Backup.",
+          "Empty is empty."
+        ]
+      },
+      {
+        "program": "languages/go/04-expert/smart-pointers-in-depth/exercises/02.go",
+        "required_stdout_contains": [
+          "Child name: child",
+          "Parent has no child."
+        ]
+      }
+    ],
+    "python": [
+      {
+        "program": "languages/python/03-advanced/inheritance-and-polymorphism/exercises/02.py",
+        "required_stdout_contains": [
+          "Total area:"
+        ]
+      },
+      {
+        "program": "languages/python/04-expert/memory-management-and-raii/exercises/02.py",
+        "required_stdout_contains": [
+          "Active before scopes: 0",
+          "Active after scopes: 0"
+        ]
+      },
+      {
+        "program": "languages/python/04-expert/smart-pointers-in-depth/exercises/01.py",
+        "required_stdout_contains": [
+          "Active moves Roadmap to Backup.",
+          "Empty is empty."
+        ]
+      },
+      {
+        "program": "languages/python/04-expert/smart-pointers-in-depth/exercises/02.py",
+        "required_stdout_contains": [
+          "temp: expired",
+          "missing: missing"
+        ]
+      }
+    ],
+    "typescript": [
+      {
+        "program": "languages/typescript/03-advanced/inheritance-and-polymorphism/exercises/02.ts",
+        "required_stdout_contains": [
+          "Label is required."
+        ]
+      },
+      {
+        "program": "languages/typescript/04-expert/memory-management-and-raii/exercises/02.ts",
+        "required_stdout_contains": [
+          "Before close: connected, validated",
+          "Guarded error: Cannot record after close."
+        ]
+      },
+      {
+        "program": "languages/typescript/04-expert/smart-pointers-in-depth/exercises/01.ts",
+        "required_stdout_contains": [
+          "north: PKG-204 (12kg)",
+          "south: PKG-204 (12kg)"
+        ]
+      },
+      {
+        "program": "languages/typescript/04-expert/smart-pointers-in-depth/exercises/02.ts",
+        "required_stdout_contains": [
+          "Clone theme: dark",
+          "Clone shortcuts: save, search, preview"
+        ]
+      }
+    ]
+  }
+}
