@@ -45,6 +45,16 @@ Validate checkpoint completeness with:
 - `./scripts/check-checkpoint-completeness.ps1` (PowerShell)
 - `bash ./scripts/check-checkpoint-completeness.sh` (Bash)
 
+Validate cross-language parity with:
+
+- `./scripts/check-cross-language-parity.ps1` (PowerShell)
+- `bash ./scripts/check-cross-language-parity.sh` (Bash)
+
+Validate example output contracts with:
+
+- `./scripts/check-example-output-contracts.ps1` (PowerShell)
+- `bash ./scripts/check-example-output-contracts.sh` (Bash)
+
 Run full repository checks with:
 
 - `./scripts/verify-repo.ps1` (PowerShell)

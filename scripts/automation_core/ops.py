@@ -63,6 +63,12 @@ def build_parser() -> argparse.ArgumentParser:
         subparsers, "check-checkpoint-completeness", handle_check_checkpoint_completeness
     )
     add_simple_command(subparsers, "audit-education-quality", handle_audit_education_quality)
+    add_simple_command(
+        subparsers, "check-example-output-contracts", handle_check_example_output_contracts
+    )
+    add_simple_command(
+        subparsers, "check-cross-language-parity", handle_check_cross_language_parity
+    )
     add_simple_command(subparsers, "check-doc-sync", handle_check_doc_sync)
     add_simple_command(subparsers, "lint", handle_lint)
     add_simple_command(subparsers, "smoke-languages", handle_smoke_languages)
@@ -112,6 +118,16 @@ def handle_check_checkpoint_completeness(ctx: RepoContext, _: argparse.Namespace
 
 def handle_audit_education_quality(ctx: RepoContext, _: argparse.Namespace) -> int:
     audit_education_quality(ctx)
+    return 0
+
+
+def handle_check_example_output_contracts(ctx: RepoContext, _: argparse.Namespace) -> int:
+    check_example_output_contracts(ctx)
+    return 0
+
+
+def handle_check_cross_language_parity(ctx: RepoContext, _: argparse.Namespace) -> int:
+    check_cross_language_parity(ctx)
     return 0
 
 
@@ -1371,6 +1387,19 @@ def build_csharp_exercises(ctx: RepoContext) -> None:
             )
 
 
+def assert_output_contract(output: str, job: dict[str, Any], label: str) -> None:
+    for expected in job.get("required_stdout_contains", []):
+        if expected not in output:
+            raise AutomationError(
+                f"{label} did not print expected text: {expected}\nActual output:\n{output}"
+            )
+    for pattern in job.get("required_stdout_patterns", []):
+        if not re.search(pattern, output, re.MULTILINE):
+            raise AutomationError(
+                f"{label} did not match expected pattern: {pattern}\nActual output:\n{output}"
+            )
+
+
 def smoke_runtime_job(
     ctx: RepoContext,
     job: dict[str, Any],
@@ -1409,18 +1438,7 @@ def smoke_runtime_job(
         )
 
         if capture_stdout:
-            output = completed.stdout or ""
-            for expected in job.get("required_stdout_contains", []):
-                if expected not in output:
-                    raise AutomationError(
-                        f"{label} did not print expected text: {expected}\nActual output:\n{output}"
-                    )
-            for pattern in job.get("required_stdout_patterns", []):
-                if not re.search(pattern, output, re.MULTILINE):
-                    raise AutomationError(
-                        f"{label} did not match expected pattern: "
-                        f"{pattern}\nActual output:\n{output}"
-                    )
+            assert_output_contract(completed.stdout or "", job, label)
 
         for output_name in job.get("required_outputs", []):
             if not (working_dir / output_name).exists():
@@ -1611,28 +1629,345 @@ def smoke_languages(ctx: RepoContext) -> None:
     print("Multi-language smoke checks passed.")
 
 
+def load_example_output_contracts(ctx: RepoContext) -> dict[str, list[dict[str, Any]]]:
+    contracts_path = ctx.scripts_dir / "example_output_contracts.json"
+    if not contracts_path.is_file():
+        raise AutomationError(f"Missing output contracts file: {contracts_path}")
+
+    payload = json.loads(contracts_path.read_text(encoding="utf-8"))
+    languages = payload.get("languages")
+    if not isinstance(languages, dict):
+        raise AutomationError(
+            f"{contracts_path}: expected top-level object with 'languages' mapping."
+        )
+    result: dict[str, list[dict[str, Any]]] = {}
+    for language, jobs in languages.items():
+        if not isinstance(jobs, list):
+            raise AutomationError(
+                f"{contracts_path}: language '{language}' must map to a list of jobs."
+            )
+        result[language] = [dict(job) for job in jobs]
+    return result
+
+
+def check_example_output_contracts(ctx: RepoContext) -> None:
+    contracts = load_example_output_contracts(ctx)
+    if not contracts:
+        raise AutomationError("No example output contracts configured.")
+
+    executed_jobs = 0
+    python_cmd = find_python_command()
+    node_cmd = find_node_command()
+
+    for job in contracts.get("python", []):
+        smoke_runtime_job(
+            ctx,
+            job,
+            command_builder=lambda current_job, working_dir: [
+                python_cmd,
+                str(resolve_job_path(ctx, working_dir, current_job["program"])),
+            ],
+            label=f"Python example output contract for {job['program']}",
+        )
+        executed_jobs += 1
+
+    for job in contracts.get("go", []):
+        smoke_runtime_job(
+            ctx,
+            job,
+            command_builder=lambda current_job, working_dir: [
+                "go",
+                "run",
+                *go_target_arguments(resolve_job_path(ctx, working_dir, current_job["program"])),
+            ],
+            label=f"Go example output contract for {job['program']}",
+        )
+        executed_jobs += 1
+
+    if contracts.get("typescript"):
+        with tempfile.TemporaryDirectory(prefix="ts-output-contracts-") as temp_root:
+            temp_root_path = Path(temp_root)
+            compile_typescript(ctx, out_dir=temp_root_path)
+            for job in contracts.get("typescript", []):
+                smoke_runtime_job(
+                    ctx,
+                    job,
+                    command_builder=lambda current_job, working_dir: [
+                        node_cmd,
+                        str(
+                            typescript_output_path(
+                                ctx,
+                                temp_root_path,
+                                resolve_job_path(ctx, working_dir, current_job["program"]),
+                            )
+                        ),
+                    ],
+                    label=f"TypeScript example output contract for {job['program']}",
+                )
+                executed_jobs += 1
+
+    csharp_contracts = contracts.get("csharp", [])
+    if csharp_contracts:
+        built_projects = sorted({job["project"] for job in csharp_contracts})
+        for project in built_projects:
+            project_path = repo_path(ctx, project)
+            run_command(
+                [
+                    "dotnet",
+                    "build",
+                    str(project_path),
+                    "--nologo",
+                    "--verbosity",
+                    "quiet",
+                    "-p:UseAppHost=false",
+                ],
+                quiet_stdout=True,
+                action=f"C# build for output contract {project}",
+                timeout_seconds=180,
+            )
+        for job in csharp_contracts:
+            smoke_runtime_job(
+                ctx,
+                job,
+                command_builder=lambda current_job, working_dir: [
+                    "dotnet",
+                    str(
+                        csharp_output_dll(
+                            resolve_job_path(ctx, working_dir, current_job["project"])
+                        )
+                    ),
+                ],
+                label=f"C# example output contract for {job['project']}",
+                timeout_seconds=30,
+            )
+            executed_jobs += 1
+
+    cpp_contracts = contracts.get("cpp", [])
+    if cpp_contracts:
+        toolchain = resolve_gpp_toolchain(ctx)
+        with tempfile.TemporaryDirectory(prefix="cpp-output-contracts-") as temp_root:
+            temp_root_path = Path(temp_root)
+            for index, job in enumerate(cpp_contracts):
+                source_path = repo_path(ctx, job["program"])
+                if not source_path.is_file():
+                    raise AutomationError(f"Missing C++ contract source: {source_path}")
+
+                output_path = temp_root_path / f"cpp_contract_{index}"
+                compile_command = cpp_compile_command(ctx, toolchain, source_path, output_path)
+                compile_action = f"C++ compilation for output contract {job['program']}"
+                if toolchain.mode == "wsl":
+                    compile_action = f"C++ WSL compilation for output contract {job['program']}"
+                run_command(compile_command, action=compile_action, timeout_seconds=120)
+
+                input_text = None
+                if "input_lines" in job:
+                    input_text = "\n".join(job["input_lines"]) + "\n"
+
+                if toolchain.mode == "wsl":
+                    binary_command = [
+                        "wsl",
+                        "bash",
+                        "-lc",
+                        shlex.quote(to_wsl_path(output_path)),
+                    ]
+                else:
+                    binary_command = [str(compiled_binary_path(ctx, output_path))]
+
+                completed = run_command(
+                    binary_command,
+                    input_text=input_text,
+                    capture_stdout=True,
+                    action=f"C++ execution for output contract {job['program']}",
+                    timeout_seconds=30,
+                )
+                assert_output_contract(
+                    completed.stdout or "",
+                    job,
+                    f"C++ example output contract for {job['program']}",
+                )
+                executed_jobs += 1
+
+    if executed_jobs == 0:
+        raise AutomationError("No example output contract jobs were executed.")
+
+    print(f"Example output contracts passed for {executed_jobs} jobs.")
+
+
+def module_focus_comment(path: Path) -> tuple[str | None, str | None]:
+    lines = path.read_text(encoding="utf-8").splitlines()
+    header_comment_lines: list[str] = []
+    comment_pattern = (
+        re.compile(r"^\s*#\s*(.*)$") if path.suffix == ".py" else re.compile(r"^\s*//\s*(.*)$")
+    )
+
+    for line in lines[:10]:
+        if not line.strip():
+            if header_comment_lines:
+                continue
+            continue
+        comment_match = comment_pattern.match(line)
+        if comment_match:
+            header_comment_lines.append(comment_match.group(1).strip())
+            continue
+        break
+
+    if not header_comment_lines:
+        return None, None
+
+    merged = " ".join(part for part in header_comment_lines if part).strip()
+    focus_match = re.search(r"Module focus:\s*(.+?)(?=\s+Why it matters:|$)", merged)
+    why_match = re.search(r"Why it matters:\s*(.+?\.)", merged)
+    focus = focus_match.group(1).strip() if focus_match else None
+    why = why_match.group(1).strip() if why_match else None
+    return focus, why
+
+
+def check_cross_language_parity(ctx: RepoContext) -> None:
+    failures: list[str] = []
+    languages = ["cpp", "csharp", "go", "python", "typescript"]
+    extension_map = {
+        language: ctx.manifest.languages[language]["extension"] for language in languages
+    }
+
+    for level, modules in ctx.manifest.module_order.items():
+        for module in modules:
+            focuses: dict[str, str] = {}
+            why_lines: dict[str, str] = {}
+            for language in languages:
+                if level not in ctx.manifest.languages[language].get("module_levels", []):
+                    continue
+
+                example_path = (
+                    ctx.root
+                    / "languages"
+                    / language
+                    / level
+                    / module
+                    / "example"
+                    / f"main.{extension_map[language]}"
+                )
+                if not example_path.is_file():
+                    failures.append(f"{example_path}: missing example entrypoint for parity check")
+                    continue
+
+                focus, why = module_focus_comment(example_path)
+                if not focus:
+                    failures.append(f"{example_path}: missing 'Module focus' header comment")
+                else:
+                    focuses[language] = focus
+                if not why:
+                    failures.append(f"{example_path}: missing 'Why it matters' header comment")
+                else:
+                    why_lines[language] = why
+
+            focus_values = sorted(set(focuses.values()))
+            if len(focus_values) > 1:
+                details = ", ".join(
+                    f"{language}={value}" for language, value in sorted(focuses.items())
+                )
+                failures.append(
+                    "languages/*/"
+                    f"{level}/{module}/example/main.*: "
+                    f"module focus mismatch across tracks -> {details}"
+                )
+
+            why_values = sorted(set(why_lines.values()))
+            if len(why_values) > 1:
+                details = ", ".join(
+                    f"{language}={value}" for language, value in sorted(why_lines.items())
+                )
+                failures.append(
+                    "languages/*/"
+                    f"{level}/{module}/example/main.*: "
+                    f"'Why it matters' mismatch across tracks -> {details}"
+                )
+
+    contracts = load_example_output_contracts(ctx)
+    smoke = ctx.manifest.smoke
+
+    for language, config in smoke.items():
+        contract_jobs = contracts.get(language, [])
+        if language == "csharp":
+            contract_targets = {job.get("project") for job in contract_jobs}
+            expected_targets = set(config.get("example_projects", []))
+            missing = sorted(
+                target for target in expected_targets if target not in contract_targets
+            )
+            for target in missing:
+                failures.append(
+                    f"scripts/example_output_contracts.json: missing csharp contract for {target}"
+                )
+        else:
+            contract_targets = {job.get("program") for job in contract_jobs}
+            expected_targets = set(config.get("example_paths", []))
+            missing = sorted(
+                target for target in expected_targets if target not in contract_targets
+            )
+            for target in missing:
+                failures.append(
+                    "scripts/example_output_contracts.json: "
+                    f"missing {language} contract for {target}"
+                )
+
+    for language, jobs in contracts.items():
+        for job in jobs:
+            key = "project" if language == "csharp" else "program"
+            target = job.get(key)
+            if not target:
+                failures.append(
+                    "scripts/example_output_contracts.json: "
+                    f"{language} contract missing '{key}' field"
+                )
+                continue
+            target_path = repo_path(ctx, target)
+            if not target_path.exists():
+                failures.append(
+                    "scripts/example_output_contracts.json: "
+                    f"contract target does not exist -> {target}"
+                )
+            if not job.get("required_stdout_contains") and not job.get("required_stdout_patterns"):
+                failures.append(
+                    "scripts/example_output_contracts.json: "
+                    f"{language} contract has no stdout expectations -> {target}"
+                )
+
+    if failures:
+        print("Cross-language parity validation failed:")
+        for failure in failures:
+            print(f" - {failure}")
+        raise AutomationError("Cross-language parity validation failed.")
+
+    print("Cross-language parity validation passed.")
+
+
 def verify_repo(ctx: RepoContext) -> None:
     python_cmd = find_python_command()
 
-    print("[1/7] Checking markdown links...")
+    print("[1/9] Checking markdown links...")
     run_command([python_cmd, str(ctx.scripts_dir / "check-links.py")], action="Markdown link check")
 
-    print("[2/7] Checking README structure...")
+    print("[2/9] Checking README structure...")
     check_readme_structure(ctx)
 
-    print("[3/7] Checking module completeness...")
+    print("[3/9] Checking module completeness...")
     check_module_completeness(ctx)
 
-    print("[4/7] Checking checkpoint completeness...")
+    print("[4/9] Checking checkpoint completeness...")
     check_checkpoint_completeness(ctx)
 
-    print("[5/7] Checking documentation sync...")
+    print("[5/9] Checking documentation sync...")
     check_doc_sync(ctx)
 
-    print("[6/7] Checking example comments...")
+    print("[6/9] Checking example comments...")
     check_example_comments(ctx)
 
-    print("[7/7] Compiling compiled-language tracks...")
+    print("[7/9] Checking cross-language parity...")
+    check_cross_language_parity(ctx)
+
+    print("[8/9] Checking example output contracts...")
+    check_example_output_contracts(ctx)
+
+    print("[9/9] Compiling compiled-language tracks...")
     build_all(ctx)
 
     print("Repository verification completed successfully.")

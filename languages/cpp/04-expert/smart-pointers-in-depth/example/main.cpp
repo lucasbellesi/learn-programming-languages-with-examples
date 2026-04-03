@@ -1,6 +1,6 @@
-// Module focus: Smart pointers in depth.
-// Why it matters: practicing smart pointers in depth patterns makes exercises and checkpoints
-// easier to reason about.
+// Module focus: Tracking ownership and lifetime when multiple references can observe the same
+// value. Why it matters: practicing smart pointers in depth patterns makes exercises and
+// checkpoints easier to reason about.
 
 // This example shows tracking ownership and lifetime when multiple references can observe the same
 // value. In C++, the example keeps value flow, references, and explicit control visible.

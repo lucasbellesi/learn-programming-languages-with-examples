@@ -1,4 +1,4 @@
-# Module focus: Smart pointers in depth.
+# Module focus: Tracking ownership and lifetime when multiple references can observe the same value.
 # Why it matters: practicing smart pointers in depth patterns makes exercises and checkpoints easier
 # to reason about.
 

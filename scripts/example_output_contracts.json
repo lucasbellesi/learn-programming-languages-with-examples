@@ -1,0 +1,581 @@
+{
+  "languages": {
+    "cpp": [
+      {
+        "program": "languages/cpp/01-foundations/functions/example/main.cpp",
+        "required_stdout_contains": [
+          "sum(4, 6) = 10",
+          "After swap:  first=20, second=10"
+        ]
+      },
+      {
+        "program": "languages/cpp/01-foundations/formatted-output-and-iomanip/example/main.cpp",
+        "required_stdout_contains": [
+          "Item             Price",
+          "Notebook          2.50"
+        ]
+      },
+      {
+        "program": "languages/cpp/02-core/algorithms-basics/example/main.cpp",
+        "required_stdout_contains": [
+          "First index of 4: 0",
+          "Occurrences of 4: 3"
+        ]
+      },
+      {
+        "program": "languages/cpp/02-core/sorting-and-searching/example/main.cpp",
+        "required_stdout_contains": [
+          "Sorted: 2 2 4 7 8 9",
+          "Found 4 at index 2"
+        ]
+      },
+      {
+        "program": "languages/cpp/02-core/maps-and-frequency-counting/example/main.cpp",
+        "required_stdout_contains": [
+          "Character frequencies:",
+          "n -> 4"
+        ]
+      },
+      {
+        "program": "languages/cpp/02-core/error-handling-and-defensive-programming/example/main.cpp",
+        "input_lines": [
+          "42 6"
+        ],
+        "required_stdout_contains": [
+          "Enter two numbers: Result: 7"
+        ]
+      },
+      {
+        "program": "languages/cpp/03-advanced/structs-and-classes/example/main.cpp",
+        "required_stdout_contains": [
+          "Students (struct example):",
+          "Bank account (class example):"
+        ]
+      },
+      {
+        "program": "languages/cpp/03-advanced/constructors-and-invariants/example/main.cpp",
+        "required_stdout_contains": [
+          "Initial value (clamped): -273.15 C",
+          "Set to -300.0 success: false"
+        ]
+      },
+      {
+        "program": "languages/cpp/03-advanced/copy-and-move-semantics/example/main.cpp",
+        "required_stdout_contains": [
+          "Move-assigned",
+          "second size: 5"
+        ]
+      },
+      {
+        "program": "languages/cpp/03-advanced/inheritance-and-polymorphism/example/main.cpp",
+        "required_stdout_contains": [
+          "Area: 12",
+          "Area: 12.5664"
+        ]
+      },
+      {
+        "program": "languages/cpp/03-advanced/templates-basics/example/main.cpp",
+        "required_stdout_contains": [
+          "maxValue(4, 7) = 7",
+          "(left, right)"
+        ]
+      },
+      {
+        "program": "languages/cpp/04-expert/memory-management-and-raii/example/main.cpp",
+        "required_stdout_contains": [
+          "RAII scope demo:",
+          "[release] temporary operation"
+        ]
+      },
+      {
+        "program": "languages/cpp/04-expert/smart-pointers-in-depth/example/main.cpp",
+        "required_stdout_contains": [
+          "Shared use count: 2",
+          "Observer is expired after shared owners released."
+        ]
+      },
+      {
+        "program": "languages/cpp/04-expert/concurrency-basics/example/main.cpp",
+        "required_stdout_contains": [
+          "Expected: 200000",
+          "Actual: 200000"
+        ]
+      },
+      {
+        "program": "languages/cpp/04-expert/performance-and-profiling-basics/example/main.cpp",
+        "required_stdout_contains": [
+          "Index: 99999"
+        ],
+        "required_stdout_patterns": [
+          "Elapsed \\(microseconds\\): \\d+"
+        ]
+      },
+      {
+        "program": "languages/cpp/04-expert/modularization-and-build-structure/example/main.cpp",
+        "required_stdout_contains": [
+          "Add: 10",
+          "Multiply: 21"
+        ]
+      }
+    ],
+    "python": [
+      {
+        "program": "languages/python/01-foundations/functions/example/main.py",
+        "required_stdout_contains": [
+          "10",
+          "[20, 10, 30]"
+        ]
+      },
+      {
+        "program": "languages/python/01-foundations/formatted-output-and-iomanip/example/main.py",
+        "required_stdout_contains": [
+          "Item           Qty      Unit     Total",
+          "Grand total                      40.99"
+        ]
+      },
+      {
+        "program": "languages/python/02-core/algorithms-basics/example/main.py",
+        "required_stdout_contains": [
+          "First index of 4: 0",
+          "Occurrences of 4: 3"
+        ]
+      },
+      {
+        "program": "languages/python/02-core/sorting-and-searching/example/main.py",
+        "required_stdout_contains": [
+          "Sorted: 2 2 4 7 8 9",
+          "Found 4 at index 2"
+        ]
+      },
+      {
+        "program": "languages/python/02-core/maps-and-frequency-counting/example/main.py",
+        "required_stdout_contains": [
+          "Character frequencies:",
+          "n -> 4"
+        ]
+      },
+      {
+        "program": "languages/python/02-core/error-handling-and-defensive-programming/example/main.py",
+        "required_stdout_contains": [
+          "Input: 42.0 6.0",
+          "Cannot divide by zero."
+        ]
+      },
+      {
+        "program": "languages/python/03-advanced/structs-and-classes/example/main.py",
+        "required_stdout_contains": [
+          "Coordinates (dataclass example):",
+          "Wallet (class example):"
+        ]
+      },
+      {
+        "program": "languages/python/03-advanced/constructors-and-invariants/example/main.py",
+        "required_stdout_contains": [
+          "Initial value (clamped): -273.15 C",
+          "Set to -300.0 success: False"
+        ]
+      },
+      {
+        "program": "languages/python/03-advanced/copy-and-move-semantics/example/main.py",
+        "required_stdout_contains": [
+          "Constructed (size=3)",
+          "second size (after transfer): 0"
+        ]
+      },
+      {
+        "program": "languages/python/03-advanced/inheritance-and-polymorphism/example/main.py",
+        "required_stdout_contains": [
+          "Rectangle area: 12.00",
+          "Circle area: 12.57"
+        ]
+      },
+      {
+        "program": "languages/python/03-advanced/templates-basics/example/main.py",
+        "required_stdout_contains": [
+          "max_value(4, 7) = 7",
+          "(left, right)"
+        ]
+      },
+      {
+        "program": "languages/python/04-expert/memory-management-and-raii/example/main.py",
+        "required_stdout_contains": [
+          "Active before scope: 0",
+          "[close] scores active=0",
+          "Active after scope: 0"
+        ]
+      },
+      {
+        "program": "languages/python/04-expert/smart-pointers-in-depth/example/main.py",
+        "required_stdout_contains": [
+          "Inbox transfers Quarterly Summary to Archive.",
+          "Preview target expired."
+        ]
+      },
+      {
+        "program": "languages/python/04-expert/concurrency-basics/example/main.py",
+        "required_stdout_contains": [
+          "Expected counter: 40000",
+          "Consumed total: 100"
+        ]
+      },
+      {
+        "program": "languages/python/04-expert/performance-and-profiling-basics/example/main.py",
+        "required_stdout_contains": [
+          "Average string concatenation (12 runs):",
+          "Average list fill with pre-size (12 runs):"
+        ]
+      },
+      {
+        "program": "languages/python/04-expert/modularization-and-build-structure/example/main.py",
+        "required_stdout_contains": [
+          "Subtotal: 40.99",
+          "Total: 39.66"
+        ]
+      }
+    ],
+    "go": [
+      {
+        "program": "languages/go/01-foundations/functions/example/main.go",
+        "required_stdout_contains": [
+          "10",
+          "[20 10 30]"
+        ]
+      },
+      {
+        "program": "languages/go/01-foundations/formatted-output-and-iomanip/example/main.go",
+        "required_stdout_contains": [
+          "Item           Qty      Unit     Total",
+          "Grand total                      40.99"
+        ]
+      },
+      {
+        "program": "languages/go/02-core/algorithms-basics/example/main.go",
+        "required_stdout_contains": [
+          "First index of 4: 0",
+          "Occurrences of 4: 3"
+        ]
+      },
+      {
+        "program": "languages/go/02-core/sorting-and-searching/example/main.go",
+        "required_stdout_contains": [
+          "Sorted: [2 2 4 7 8 9]",
+          "Found 4 at index 2"
+        ]
+      },
+      {
+        "program": "languages/go/02-core/maps-and-frequency-counting/example/main.go",
+        "required_stdout_contains": [
+          "Character frequencies:",
+          "n -> 4"
+        ]
+      },
+      {
+        "program": "languages/go/02-core/error-handling-and-defensive-programming/example/main.go",
+        "required_stdout_contains": [
+          "Input: 42 6",
+          "Cannot divide by zero."
+        ]
+      },
+      {
+        "program": "languages/go/03-advanced/structs-and-classes/example/main.go",
+        "required_stdout_contains": [
+          "Coordinates (struct example):",
+          "Wallet (class-style example):"
+        ]
+      },
+      {
+        "program": "languages/go/03-advanced/constructors-and-invariants/example/main.go",
+        "required_stdout_contains": [
+          "Set to 25.0 success: true",
+          "Set to -300.0 success: false"
+        ]
+      },
+      {
+        "program": "languages/go/03-advanced/copy-and-move-semantics/example/main.go",
+        "required_stdout_contains": [
+          "Constructed (size=3)",
+          "second size (after transfer): 0"
+        ]
+      },
+      {
+        "program": "languages/go/03-advanced/inheritance-and-polymorphism/example/main.go",
+        "required_stdout_contains": [
+          "Rectangle area: 12.00",
+          "Circle area: 12.57"
+        ]
+      },
+      {
+        "program": "languages/go/03-advanced/templates-basics/example/main.go",
+        "required_stdout_contains": [
+          "MaxValue(4, 7) = 7",
+          "(left, right)"
+        ]
+      },
+      {
+        "program": "languages/go/04-expert/memory-management-and-raii/example/main.go",
+        "required_stdout_contains": [
+          "Active before scope: 0",
+          "[close] scores active=0",
+          "Active after scope: 0"
+        ]
+      },
+      {
+        "program": "languages/go/04-expert/smart-pointers-in-depth/example/main.go",
+        "required_stdout_contains": [
+          "Inbox transfers Quarterly Summary to Archive.",
+          "Shared score after alias update: 95"
+        ]
+      },
+      {
+        "program": "languages/go/04-expert/concurrency-basics/example/main.go",
+        "required_stdout_contains": [
+          "Expected counter: 40000",
+          "Consumed total: 100"
+        ]
+      },
+      {
+        "program": "languages/go/04-expert/performance-and-profiling-basics/example/main.go",
+        "required_stdout_contains": [
+          "Average string concatenation (12 runs):",
+          "Average slice fill with capacity (12 runs):"
+        ]
+      },
+      {
+        "program": "languages/go/04-expert/modularization-and-build-structure/example",
+        "required_stdout_contains": [
+          "Subtotal: 40.99",
+          "Total: 39.66"
+        ]
+      }
+    ],
+    "csharp": [
+      {
+        "project": "languages/csharp/01-foundations/functions/example/functions-example.csproj",
+        "required_stdout_contains": [
+          "10",
+          "[20, 10, 30]"
+        ]
+      },
+      {
+        "project": "languages/csharp/01-foundations/formatted-output-and-iomanip/example/formatted-output-and-iomanip-example.csproj",
+        "required_stdout_contains": [
+          "Item           Qty      Unit     Total",
+          "Grand total                      40,99"
+        ]
+      },
+      {
+        "project": "languages/csharp/02-core/algorithms-basics/example/algorithms-basics-example.csproj",
+        "required_stdout_contains": [
+          "First index of 4: 0",
+          "Occurrences of 4: 3"
+        ]
+      },
+      {
+        "project": "languages/csharp/02-core/sorting-and-searching/example/sorting-and-searching-example.csproj",
+        "required_stdout_contains": [
+          "Sorted: 2 2 4 7 8 9",
+          "Found 4 at index 2"
+        ]
+      },
+      {
+        "project": "languages/csharp/02-core/maps-and-frequency-counting/example/maps-and-frequency-counting-example.csproj",
+        "required_stdout_contains": [
+          "Character frequencies:",
+          "n -> 4"
+        ]
+      },
+      {
+        "project": "languages/csharp/02-core/error-handling-and-defensive-programming/example/error-handling-and-defensive-programming-example.csproj",
+        "required_stdout_contains": [
+          "Input: 42 6",
+          "Cannot divide by zero."
+        ]
+      },
+      {
+        "project": "languages/csharp/03-advanced/structs-and-classes/example/structs-and-classes-example.csproj",
+        "required_stdout_contains": [
+          "Coordinates (struct example):",
+          "Wallet (class example):"
+        ]
+      },
+      {
+        "project": "languages/csharp/03-advanced/constructors-and-invariants/example/constructors-and-invariants-example.csproj",
+        "required_stdout_contains": [
+          "Initial value (clamped): -273,15 C",
+          "Set to -300.0 success: False"
+        ]
+      },
+      {
+        "project": "languages/csharp/03-advanced/copy-and-move-semantics/example/copy-and-move-semantics-example.csproj",
+        "required_stdout_contains": [
+          "Constructed (size=3)",
+          "second size (after transfer): 0"
+        ]
+      },
+      {
+        "project": "languages/csharp/03-advanced/inheritance-and-polymorphism/example/inheritance-and-polymorphism-example.csproj",
+        "required_stdout_contains": [
+          "Rectangle area: 12,00",
+          "Circle area: 12,57"
+        ]
+      },
+      {
+        "project": "languages/csharp/03-advanced/templates-basics/example/templates-basics-example.csproj",
+        "required_stdout_contains": [
+          "MaxValue(4, 7) = 7",
+          "(left, right)"
+        ]
+      },
+      {
+        "project": "languages/csharp/04-expert/memory-management-and-raii/example/memory-management-and-raii-example.csproj",
+        "required_stdout_contains": [
+          "Active leases before scope: 0",
+          "[dispose] scores active=0",
+          "Active leases after scope: 0"
+        ]
+      },
+      {
+        "project": "languages/csharp/04-expert/concurrency-basics/example/concurrency-basics-example.csproj",
+        "required_stdout_contains": [
+          "Expected counter: 40000",
+          "Consumed total: 100"
+        ]
+      },
+      {
+        "project": "languages/csharp/04-expert/smart-pointers-in-depth/example/smart-pointers-in-depth-example.csproj",
+        "required_stdout_contains": [
+          "Inbox transfers Quarterly Summary to Archive.",
+          "Preview target expired."
+        ]
+      },
+      {
+        "project": "languages/csharp/04-expert/performance-and-profiling-basics/example/performance-and-profiling-basics-example.csproj",
+        "required_stdout_contains": [
+          "Average string concatenation ticks (12 runs):",
+          "Average list fill with capacity ticks (12 runs):"
+        ]
+      },
+      {
+        "project": "languages/csharp/04-expert/modularization-and-build-structure/example/modularization-and-build-structure-example.csproj",
+        "required_stdout_contains": [
+          "Invoice summary",
+          "Final total: 44,39"
+        ]
+      }
+    ],
+    "typescript": [
+      {
+        "program": "languages/typescript/01-foundations/types-and-io/example/main.ts",
+        "required_stdout_contains": [
+          "Age: 27",
+          "Final price: 13.05"
+        ]
+      },
+      {
+        "program": "languages/typescript/01-foundations/arrays-and-vectors/example/main.ts",
+        "required_stdout_contains": [
+          "Scores: 91, 77, 88, 64",
+          "Average: 80.00"
+        ]
+      },
+      {
+        "program": "languages/typescript/01-foundations/functions/example/main.ts",
+        "required_stdout_contains": [
+          "Name: Ana",
+          "Average: 85.33"
+        ]
+      },
+      {
+        "program": "languages/typescript/01-foundations/formatted-output-and-iomanip/example/main.ts",
+        "required_stdout_contains": [
+          "Metric       |    Value",
+          "Maximum      |    97.00"
+        ]
+      },
+      {
+        "program": "languages/typescript/02-core/algorithms-basics/example/main.ts",
+        "required_stdout_contains": [
+          "First index of 14: 0",
+          "Even count: 4"
+        ]
+      },
+      {
+        "program": "languages/typescript/02-core/sorting-and-searching/example/main.ts",
+        "required_stdout_contains": [
+          "Sorted: 64, 77, 77, 88, 91, 95",
+          "Index of 70: -1"
+        ]
+      },
+      {
+        "program": "languages/typescript/02-core/maps-and-frequency-counting/example/main.ts",
+        "required_stdout_contains": [
+          "fast: 2",
+          "learn: 1"
+        ]
+      },
+      {
+        "program": "languages/typescript/02-core/error-handling-and-defensive-programming/example/main.ts",
+        "required_stdout_contains": [
+          "Skipped invalid row: InvalidRow",
+          "Accepted rows: 2"
+        ]
+      },
+      {
+        "program": "languages/typescript/03-advanced/structs-and-classes/example/main.ts",
+        "required_stdout_contains": [
+          "Course: TypeScript Core",
+          "Average: 85.33"
+        ]
+      },
+      {
+        "program": "languages/typescript/03-advanced/inheritance-and-polymorphism/example/main.ts",
+        "required_stdout_contains": [
+          "Circle: 12.57",
+          "Rectangle: 12.00"
+        ]
+      },
+      {
+        "program": "languages/typescript/03-advanced/templates-basics/example/main.ts",
+        "required_stdout_contains": [
+          "Box(91)",
+          "Box(Ana)"
+        ]
+      },
+      {
+        "program": "languages/typescript/04-expert/memory-management-and-raii/example/main.ts",
+        "required_stdout_contains": [
+          "Opening report.txt",
+          "Closed after scope: true"
+        ]
+      },
+      {
+        "program": "languages/typescript/04-expert/smart-pointers-in-depth/example/main.ts",
+        "required_stdout_contains": [
+          "archive owns note-101",
+          "Alias sees:"
+        ]
+      },
+      {
+        "program": "languages/typescript/04-expert/concurrency-basics/example/main.ts",
+        "required_stdout_contains": [
+          "Completed 3 concurrent jobs.",
+          "Total value: 12"
+        ]
+      },
+      {
+        "program": "languages/typescript/04-expert/performance-and-profiling-basics/example/main.ts",
+        "required_stdout_contains": [
+          "Concat average (ms):",
+          "Join average (ms):"
+        ]
+      },
+      {
+        "program": "languages/typescript/04-expert/modularization-and-build-structure/example/main.ts",
+        "required_stdout_contains": [
+          "Invoice Summary",
+          "Total: 39.66"
+        ]
+      }
+    ]
+  }
+}
