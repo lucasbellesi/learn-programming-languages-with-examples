@@ -189,6 +189,7 @@ The public PowerShell and Bash scripts remain the supported entrypoints, but the
 The multi-language smoke scripts also compile standalone C# exercises by generating temporary validation projects during the check and compile TypeScript programs before executing their smoke targets.
 
 Use [EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md](EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md) to keep entry examples pedagogically consistent during reviews. The education audit command is advisory and writes markdown/json findings without failing CI.
+Use [EDUCATIONAL_ANTI_PATTERN_BACKLOG.md](EDUCATIONAL_ANTI_PATTERN_BACKLOG.md) for the prioritized anti-pattern vs corrected-example expansion plan.
 
 Documentation sync also validates that [CONCEPT_INDEX.md](CONCEPT_INDEX.md) covers every implemented module and checkpoint path listed in the automation manifest. Cross-language parity checks now validate module focus/teaching headers across tracks, exercise parity checks validate `exercises/01` and `exercises/02` alignment across tracks, and example plus exercise output contracts validate stable learner-visible output for smoke-targeted programs.
 
