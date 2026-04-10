@@ -360,7 +360,7 @@
         "project": "languages/csharp/01-foundations/formatted-output-and-iomanip/example/formatted-output-and-iomanip-example.csproj",
         "required_stdout_contains": [
           "Item           Qty      Unit     Total",
-          "Grand total                      40,99"
+          "Grand total                      40.99"
         ]
       },
       {
@@ -401,7 +401,7 @@
       {
         "project": "languages/csharp/03-advanced/constructors-and-invariants/example/constructors-and-invariants-example.csproj",
         "required_stdout_contains": [
-          "Initial value (clamped): -273,15 C",
+          "Initial value (clamped): -273.15 C",
           "Set to -300.0 success: False"
         ]
       },
@@ -415,8 +415,8 @@
       {
         "project": "languages/csharp/03-advanced/inheritance-and-polymorphism/example/inheritance-and-polymorphism-example.csproj",
         "required_stdout_contains": [
-          "Rectangle area: 12,00",
-          "Circle area: 12,57"
+          "Rectangle area: 12.00",
+          "Circle area: 12.57"
         ]
       },
       {
@@ -459,7 +459,7 @@
         "project": "languages/csharp/04-expert/modularization-and-build-structure/example/modularization-and-build-structure-example.csproj",
         "required_stdout_contains": [
           "Invoice summary",
-          "Final total: 44,39"
+          "Final total: 44.39"
         ]
       }
     ],
