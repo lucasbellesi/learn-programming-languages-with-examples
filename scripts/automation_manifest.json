@@ -93,6 +93,7 @@
       "checkpoint_main": "main.cs",
       "track_readme": "languages/csharp/README.md",
       "track_readme_markers": [
+        "This track currently covers `01-foundations`, `02-core`, `03-advanced`, and `04-expert`, plus all project and assessment checkpoints through `04-expert`.",
         "- 8/8 foundations modules implemented.",
         "- 6/6 core modules implemented (`input-validation`, `algorithms-basics`, `file-io-basics`, `sorting-and-searching`, `maps-and-frequency-counting`, `error-handling-and-defensive-programming`).",
         "- 5/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, `templates-basics`).",
@@ -113,6 +114,7 @@
       "checkpoint_main": "main.go",
       "track_readme": "languages/go/README.md",
       "track_readme_markers": [
+        "This track currently covers `01-foundations`, `02-core`, `03-advanced`, and `04-expert`, plus all project and assessment checkpoints through `04-expert`.",
         "- 8/8 foundations modules implemented.",
         "- 6/6 core modules implemented (`input-validation`, `algorithms-basics`, `file-io-basics`, `sorting-and-searching`, `maps-and-frequency-counting`, `error-handling-and-defensive-programming`).",
         "- 5/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, `templates-basics`).",
@@ -133,6 +135,7 @@
       "checkpoint_main": "main.py",
       "track_readme": "languages/python/README.md",
       "track_readme_markers": [
+        "This track currently covers `01-foundations`, `02-core`, `03-advanced`, and `04-expert`, plus all project and assessment checkpoints through `04-expert`.",
         "- 8/8 foundations modules implemented.",
         "- 6/6 core modules implemented (`input-validation`, `algorithms-basics`, `file-io-basics`, `sorting-and-searching`, `maps-and-frequency-counting`, `error-handling-and-defensive-programming`).",
         "- 5/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, `templates-basics`).",

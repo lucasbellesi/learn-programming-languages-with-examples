@@ -3,7 +3,7 @@
 Use this template when creating a new concept module in any track.
 All section headings below are required by repository validation scripts, including `Learning Metadata`.
 
-When writing `example/main.*`, add intent-first comments before meaningful logic blocks so new developers can follow program flow quickly.
+When writing `example/main.*`, start with a short header comment that states the module focus and why it matters, then add intent-first comments before meaningful logic blocks so new developers can follow program flow quickly.
 
 ## Learning Metadata
 
@@ -29,6 +29,10 @@ go run example/main.go
 
 # C#
 dotnet run --project example/<module>-example.csproj
+
+# TypeScript
+npm run build:typescript
+node build/typescript/<level>/<module>/example/main.js
 ~~~
 
 ## Topics Covered

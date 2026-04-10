@@ -43,8 +43,8 @@ If you only want to learn one track, follow that track README first because lang
 
 1. Read [CONTRIBUTING.md](CONTRIBUTING.md).
 2. Install the repo prerequisites listed above.
-3. Run `./scripts/verify-repo.ps1` or `bash ./scripts/verify-repo.sh`.
-4. Run `./scripts/lint.ps1` or `bash ./scripts/lint.sh` before opening a pull request.
+3. Run `./scripts/verify-repo.ps1` or `bash ./scripts/verify-repo.sh` as the default pre-PR check.
+4. Use a narrower script only when you want a faster loop on one part of the repo.
 
 ## Language Status
 
@@ -148,7 +148,17 @@ Hand-written example code files under `languages/*/*/*/example/` should use inte
 
 ## Validation and CI
 
-Run checks locally:
+Use the full repository check by default:
+
+~~~powershell
+./scripts/verify-repo.ps1
+~~~
+
+~~~bash
+bash ./scripts/verify-repo.sh
+~~~
+
+Use narrower commands only when you want a faster loop on one area:
 
 ~~~powershell
 ./scripts/check-links.ps1

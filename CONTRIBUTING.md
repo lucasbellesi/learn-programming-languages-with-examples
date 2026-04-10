@@ -14,56 +14,36 @@ Thank you for contributing to this repository.
 
 1. Fork the repository and create a branch for your change.
 2. Make focused updates (one topic per pull request when possible).
-3. Verify C++ code compiles with:
+3. Run the full repository check first:
+
+```powershell
+./scripts/verify-repo.ps1
+```
+
+```bash
+bash ./scripts/verify-repo.sh
+```
+
+For a faster loop while you are iterating, use a narrower command on the area you changed:
+
+- Links: `./scripts/check-links.ps1` or `bash ./scripts/check-links.sh`
+- Module README structure: `./scripts/check-readme-structure.ps1` or `bash ./scripts/check-readme-structure.sh`
+- Module completeness: `./scripts/check-module-completeness.ps1` or `bash ./scripts/check-module-completeness.sh`
+- Checkpoint completeness: `./scripts/check-checkpoint-completeness.ps1` or `bash ./scripts/check-checkpoint-completeness.sh`
+- Cross-language parity: `./scripts/check-cross-language-parity.ps1` or `bash ./scripts/check-cross-language-parity.sh`
+- Exercise parity: `./scripts/check-exercise-parity.ps1` or `bash ./scripts/check-exercise-parity.sh`
+- Example output contracts: `./scripts/check-example-output-contracts.ps1` or `bash ./scripts/check-example-output-contracts.sh`
+- Exercise output contracts: `./scripts/check-exercise-output-contracts.ps1` or `bash ./scripts/check-exercise-output-contracts.sh`
+- Education audit: `./scripts/audit-education-quality.ps1` or `bash ./scripts/audit-education-quality.sh`
+- Lint: `./scripts/lint.ps1` or `bash ./scripts/lint.sh`
+- Smoke checks: `./scripts/smoke-languages.ps1` or `bash ./scripts/smoke-languages.sh`
+- Compiled-language builds: `./scripts/build-all.ps1` or `bash ./scripts/build-all.sh`
+
+If you are changing one C++ file and want a local spot check before the full pass, you can still compile it directly with:
 
 ```bash
 g++ -std=c++17 -Wall -Wextra -pedantic <file>.cpp -o <output>
 ```
-
-You can also validate all C++ files with:
-
-- `./scripts/build-all.ps1` (PowerShell)
-- `bash ./scripts/build-all.sh` (Bash)
-
-Validate markdown links with:
-
-- `./scripts/check-links.ps1` (PowerShell)
-- `bash ./scripts/check-links.sh` (Bash)
-
-Validate README structure with:
-
-- `./scripts/check-readme-structure.ps1` (PowerShell)
-- `bash ./scripts/check-readme-structure.sh` (Bash)
-
-Validate module completeness with:
-
-- `./scripts/check-module-completeness.ps1` (PowerShell)
-- `bash ./scripts/check-module-completeness.sh` (Bash)
-
-Validate checkpoint completeness with:
-
-- `./scripts/check-checkpoint-completeness.ps1` (PowerShell)
-- `bash ./scripts/check-checkpoint-completeness.sh` (Bash)
-
-Validate cross-language parity with:
-
-- `./scripts/check-cross-language-parity.ps1` (PowerShell)
-- `bash ./scripts/check-cross-language-parity.sh` (Bash)
-
-Validate exercise parity with:
-
-- `./scripts/check-exercise-parity.ps1` (PowerShell)
-- `bash ./scripts/check-exercise-parity.sh` (Bash)
-
-Validate example output contracts with:
-
-- `./scripts/check-example-output-contracts.ps1` (PowerShell)
-- `bash ./scripts/check-example-output-contracts.sh` (Bash)
-
-Validate exercise output contracts with:
-
-- `./scripts/check-exercise-output-contracts.ps1` (PowerShell)
-- `bash ./scripts/check-exercise-output-contracts.sh` (Bash)
 
 For large changes, you can run one language at a time before the full check:
 
@@ -72,26 +52,6 @@ For large changes, you can run one language at a time before the full check:
 - `python scripts/automation.py check-exercise-output-contracts --language typescript`
 - `python scripts/automation.py check-exercise-output-contracts --language cpp`
 - `python scripts/automation.py check-exercise-output-contracts --language csharp`
-
-Run full repository checks with:
-
-- `./scripts/verify-repo.ps1` (PowerShell)
-- `bash ./scripts/verify-repo.sh` (Bash)
-
-Run multi-language smoke checks with:
-
-- `./scripts/smoke-languages.ps1` (PowerShell)
-- `bash ./scripts/smoke-languages.sh` (Bash)
-
-Run language lint checks with:
-
-- `./scripts/lint.ps1` (PowerShell)
-- `bash ./scripts/lint.sh` (Bash)
-
-Run the non-blocking education quality audit with:
-
-- `./scripts/audit-education-quality.ps1` (PowerShell)
-- `bash ./scripts/audit-education-quality.sh` (Bash)
 
 These smoke checks also compile standalone C# exercises by generating temporary validation projects during the check.
 TypeScript checks restore Node dependencies from `package-lock.json`, compile with `tsc`, and execute the emitted JavaScript with `node`.

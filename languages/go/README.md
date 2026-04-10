@@ -2,7 +2,7 @@
 
 ## Scope and Status
 
-This track currently covers `01-foundations`, `02-core`, `03-advanced`, and `04-expert`, plus the first checkpoint layer in `projects` and `assessments`.
+This track currently covers `01-foundations`, `02-core`, `03-advanced`, and `04-expert`, plus all project and assessment checkpoints through `04-expert`.
 
 - 8/8 foundations modules implemented.
 - 6/6 core modules implemented (`input-validation`, `algorithms-basics`, `file-io-basics`, `sorting-and-searching`, `maps-and-frequency-counting`, `error-handling-and-defensive-programming`).
