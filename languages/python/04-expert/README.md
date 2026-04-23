@@ -19,6 +19,20 @@ This level extends the Python track into context management, references, concurr
 
 Track progress in [../CHECKLIST.md](../CHECKLIST.md).
 
+## Level Outcomes
+
+- Use context managers and explicit close patterns for predictable cleanup.
+- Reason about references, weak references, and ownership-style transfer examples.
+- Build concurrent examples with synchronized shared data.
+- Measure simple hot paths and organize larger programs across modules and files.
+
+## Done When
+
+- [ ] You completed every module in this level.
+- [ ] You solved all exercises (`01.py` and `02.py`) for each module.
+- [ ] You can explain cleanup, concurrency, and performance tradeoffs.
+- [ ] You completed project `languages/python/projects/04-expert`.
+
 ## Study Tip
 
 Use this level to compare Python's context managers, weak references, threads, and module layout with the expert tracks in C++, Go, and C#.

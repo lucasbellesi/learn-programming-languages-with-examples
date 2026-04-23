@@ -20,6 +20,20 @@ This level extends the TypeScript track with validation, file handling, aggregat
 
 Track progress in [../CHECKLIST.md](../CHECKLIST.md).
 
+## Level Outcomes
+
+- Validate user input and recover from invalid states.
+- Implement search, counting, sorting, and aggregation patterns confidently.
+- Read and write structured text files with Node file APIs.
+- Build defensive programs that handle edge cases explicitly.
+
+## Done When
+
+- [ ] You completed every module in this level.
+- [ ] You solved all exercises (`01.ts` and `02.ts`) for each module.
+- [ ] You can explain at least one edge case for every exercise.
+- [ ] You completed project `languages/typescript/projects/02-core`.
+
 ## Study Tip
 
 Use `file-io-basics` and `error-handling-and-defensive-programming` together when you want to understand how real console tools keep working even when input gets messy.

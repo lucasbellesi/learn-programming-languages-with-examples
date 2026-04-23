@@ -438,7 +438,8 @@
         "project": "languages/csharp/04-expert/concurrency-basics/example/concurrency-basics-example.csproj",
         "required_stdout_contains": [
           "Expected counter: 40000",
-          "Consumed total: 100"
+          "Actual counter: 40000",
+          "Counter is correct: True"
         ]
       },
       {
@@ -519,6 +520,30 @@
           "Skipped invalid row: InvalidRow",
           "Accepted rows: 2"
         ]
+      },
+      {
+        "program": "languages/typescript/02-core/file-io-basics/example/main.ts",
+        "required_stdout_contains": [
+          "Report file:",
+          "Valid records: 3",
+          "Invalid rows skipped: 1",
+          "Average: 85.33"
+        ],
+        "required_outputs": ["report.txt"],
+        "required_output_contains": [
+          {
+            "path": "report.txt",
+            "contains": [
+              "Grade Report",
+              "Valid records: 3",
+              "Invalid rows skipped: 1",
+              "- Ana Smith: 91",
+              "- Bob Lee: 77",
+              "- Carla Mendez: 88"
+            ]
+          }
+        ],
+        "cleanup_paths": ["scores.txt", "report.txt"]
       },
       {
         "program": "languages/typescript/03-advanced/structs-and-classes/example/main.ts",

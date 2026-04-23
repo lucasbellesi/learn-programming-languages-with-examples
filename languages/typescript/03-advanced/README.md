@@ -19,6 +19,20 @@ This level moves the TypeScript track into object modeling, invariants, reusable
 
 Track progress in [../CHECKLIST.md](../CHECKLIST.md).
 
+## Level Outcomes
+
+- Model domain entities with object types, classes, and clear invariants.
+- Explain how references, copies, and mutation affect object state.
+- Apply interfaces and class hierarchies for behavior variation.
+- Use generics for small reusable abstractions.
+
+## Done When
+
+- [ ] You completed every module in this level.
+- [ ] You solved all exercises (`01.ts` and `02.ts`) for each module.
+- [ ] You can explain where constructors, interfaces, and reference semantics matter.
+- [ ] You completed project `languages/typescript/projects/03-advanced`.
+
 ## Study Tip
 
 Use `templates-basics` last so the generic helpers feel like a cleanup of earlier advanced modules instead of a brand-new topic.

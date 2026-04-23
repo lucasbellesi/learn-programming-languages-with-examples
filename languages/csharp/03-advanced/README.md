@@ -19,6 +19,20 @@ This level starts advanced object modeling and type design.
 
 Track progress in [../CHECKLIST.md](../CHECKLIST.md).
 
+## Level Outcomes
+
+- Model domain entities with structs, classes, and clear invariants.
+- Explain how references and copies affect object state.
+- Apply inheritance and polymorphism for behavior variation.
+- Use generic methods and types for small reusable abstractions.
+
+## Done When
+
+- [ ] You completed every module in this level.
+- [ ] You solved all exercises (`01.cs` and `02.cs`) for each module.
+- [ ] You can explain where constructors, encapsulation, and reference semantics matter.
+- [ ] You completed project `languages/csharp/projects/03-advanced`.
+
 ## Study Tip
 
 Use `templates-basics` last to generalize what you already modeled with concrete types and inheritance.

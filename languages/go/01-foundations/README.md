@@ -21,3 +21,17 @@ This level introduces input/output, flow control, and basic functions in Go.
 8. [formatted-output-and-iomanip](./formatted-output-and-iomanip/README.md)
 
 Track progress in [../CHECKLIST.md](../CHECKLIST.md).
+
+## Level Outcomes
+
+- Read console input safely and print clear formatted output.
+- Build programs with conditions, loops, and reusable functions.
+- Process slices, arrays, strings, and simple formatted reports.
+- Explain variable scope and package-level program flow in small Go programs.
+
+## Done When
+
+- [ ] You completed every module in this level.
+- [ ] You solved all exercises (`01.go` and `02.go`) for each module.
+- [ ] You can build and run the examples you changed.
+- [ ] You completed project `languages/go/projects/01-foundations`.

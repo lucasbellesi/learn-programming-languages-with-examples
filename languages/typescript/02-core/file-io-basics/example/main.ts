@@ -2,36 +2,70 @@
 // Why it matters: practicing file io basics patterns makes exercises and checkpoints easier to reason about.
 
 import * as fs from "node:fs";
-import * as os from "node:os";
 import * as path from "node:path";
 
-const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "ts-file-io-"));
-const sourcePath = path.join(tempDir, "scores.txt");
-const reportPath = path.join(tempDir, "report.txt");
+type ScoreRecord = {
+    name: string;
+    score: number;
+};
 
-try {
-    fs.writeFileSync(sourcePath, "Ana 91\nBob 77\nCarla 88\n", "utf8");
+function parseScoreRow(line: string): ScoreRecord | null {
+    const parts = line.trim().split(/\s+/);
+    if (parts.length < 2) {
+        return null;
+    }
 
-    const scores = fs
-        .readFileSync(sourcePath, "utf8")
-        .split(/\r?\n/)
-        .filter((line) => line.trim().length > 0)
-        .map((line) => Number.parseInt(line.split(/\s+/).at(-1) ?? "", 10))
-        .filter((score) => Number.isInteger(score));
+    const score = Number.parseInt(parts.at(-1) ?? "", 10);
+    if (!Number.isInteger(score)) {
+        return null;
+    }
 
-    const average =
-        scores.reduce((sum, score) => sum + score, 0) / scores.length;
-    const report = [
-        `Records: ${scores.length}`,
-        `Average: ${average.toFixed(2)}`,
-    ].join("\n");
-
-    fs.writeFileSync(reportPath, report + "\n", "utf8");
-
-    // Report output values so learners can verify the file io basics result.
-    console.log(`Source file: ${sourcePath}`);
-    console.log(`Report file: ${reportPath}`);
-    console.log(report);
-} finally {
-    fs.rmSync(tempDir, { recursive: true, force: true });
+    const name = parts.slice(0, -1).join(" ");
+    return name ? { name, score } : null;
 }
+
+const sourcePath = path.join(process.cwd(), "scores.txt");
+const reportPath = path.join(process.cwd(), "report.txt");
+
+if (!fs.existsSync(sourcePath)) {
+    fs.writeFileSync(
+        sourcePath,
+        "Ana Smith 91\nBob Lee 77\nInvalidRow\nCarla Mendez 88\n",
+        "utf8",
+    );
+}
+
+const records: ScoreRecord[] = [];
+let invalidRows = 0;
+
+// Read the file the same way a checkpoint program would read a learner-provided path.
+for (const line of fs.readFileSync(sourcePath, "utf8").split(/\r?\n/)) {
+    if (line.trim().length === 0) {
+        continue;
+    }
+
+    const record = parseScoreRow(line);
+    if (record === null) {
+        invalidRows++;
+        continue;
+    }
+
+    records.push(record);
+}
+
+const total = records.reduce((sum, record) => sum + record.score, 0);
+const average = records.length === 0 ? 0 : total / records.length;
+const report = [
+    "Grade Report",
+    `Valid records: ${records.length}`,
+    `Invalid rows skipped: ${invalidRows}`,
+    `Average: ${average.toFixed(2)}`,
+    ...records.map((record) => `- ${record.name}: ${record.score}`),
+].join("\n");
+
+fs.writeFileSync(reportPath, report + "\n", "utf8");
+
+// Report output values so learners can inspect the file that was written.
+console.log(`Source file: ${sourcePath}`);
+console.log(`Report file: ${reportPath}`);
+console.log(report);

@@ -20,6 +20,20 @@ This level starts the core track with defensive programming patterns.
 
 Track progress in [../CHECKLIST.md](../CHECKLIST.md).
 
+## Level Outcomes
+
+- Validate user input and recover from invalid states.
+- Implement search, counting, sorting, and aggregation patterns confidently.
+- Read and write structured text files with Python file APIs.
+- Build defensive programs that handle edge cases explicitly.
+
+## Done When
+
+- [ ] You completed every module in this level.
+- [ ] You solved all exercises (`01.py` and `02.py`) for each module.
+- [ ] You can explain at least one edge case for every exercise.
+- [ ] You completed project `languages/python/projects/02-core`.
+
 ## Study Tip
 
 Use `error-handling-and-defensive-programming` last to consolidate validation and guard-style thinking across all core modules.

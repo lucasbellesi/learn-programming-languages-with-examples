@@ -19,6 +19,20 @@ This level is now fully implemented in C#.
 
 Track progress in [../CHECKLIST.md](../CHECKLIST.md).
 
+## Level Outcomes
+
+- Use `IDisposable` and lifetime-aware patterns for predictable cleanup.
+- Reason about shared references, weak references, and ownership transfer examples.
+- Build thread-safe examples with synchronized shared data.
+- Measure simple hot paths and organize larger programs across projects and files.
+
+## Done When
+
+- [ ] You completed every module in this level.
+- [ ] You solved all exercises (`01.cs` and `02.cs`) for each module.
+- [ ] You can explain cleanup, thread-safety, and performance tradeoffs.
+- [ ] You completed project `languages/csharp/projects/04-expert`.
+
 ## Study Tip
 
 Use this level to move from deterministic cleanup into ownership modeling, concurrent coordination, performance measurement, and modular project structure.

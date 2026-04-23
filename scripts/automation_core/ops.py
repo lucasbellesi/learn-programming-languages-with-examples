@@ -675,13 +675,38 @@ def check_readme_structure(ctx: RepoContext) -> None:
             )
         )
 
+    level_readmes: list[Path] = []
+    for language, config in ctx.manifest.languages.items():
+        for level in config.get("module_levels", []):
+            readme = ctx.root / "languages" / language / level / "README.md"
+            if readme.is_file():
+                level_readmes.append(readme)
+
+    for readme in level_readmes:
+        failures.extend(
+            require_markdown_headings(
+                readme,
+                ["## Learning Metadata", "## Module Order", "## Level Outcomes", "## Done When"],
+            )
+        )
+        failures.extend(
+            validate_learning_metadata(
+                readme,
+                ctx.manifest.learning_metadata["level"],
+                before_heading="## Module Order",
+            )
+        )
+
     if failures:
         print("README structure validation failed:")
         for failure in failures:
             print(f" - {failure}")
         raise AutomationError("README structure validation failed.")
 
-    print(f"README structure validation passed for {len(readmes)} module files.")
+    print(
+        "README structure validation passed for "
+        f"{len(readmes)} module files and {len(level_readmes)} level files."
+    )
 
 
 def check_module_completeness(ctx: RepoContext) -> None:

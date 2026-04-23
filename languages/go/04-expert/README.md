@@ -19,6 +19,20 @@ This level extends the Go track into resource cleanup, pointers, concurrency, pe
 
 Track progress in [../CHECKLIST.md](../CHECKLIST.md).
 
+## Level Outcomes
+
+- Use `defer` and explicit close patterns for predictable cleanup.
+- Reason about pointers, aliases, and ownership-style transfer examples.
+- Build concurrent examples with goroutines, channels, and protected shared data.
+- Measure simple hot paths and organize larger programs across packages and files.
+
+## Done When
+
+- [ ] You completed every module in this level.
+- [ ] You solved all exercises (`01.go` and `02.go`) for each module.
+- [ ] You can explain cleanup, concurrency, and performance tradeoffs.
+- [ ] You completed project `languages/go/projects/04-expert`.
+
 ## Study Tip
 
 Use this level to compare Go's `defer`, pointers, goroutines, and package-oriented design with the more object-heavy expert tracks in C++ and C#.

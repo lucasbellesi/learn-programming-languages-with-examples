@@ -19,6 +19,20 @@ This level starts advanced object modeling and type design.
 
 Track progress in [../CHECKLIST.md](../CHECKLIST.md).
 
+## Level Outcomes
+
+- Model domain entities with structs, methods, and clear invariants.
+- Explain how values, pointers, and copies affect program state.
+- Apply interfaces for behavior variation across related types.
+- Use generic functions and types for small reusable abstractions.
+
+## Done When
+
+- [ ] You completed every module in this level.
+- [ ] You solved all exercises (`01.go` and `02.go`) for each module.
+- [ ] You can explain where constructors, interfaces, and pointer semantics matter.
+- [ ] You completed project `languages/go/projects/03-advanced`.
+
 ## Study Tip
 
 Use `templates-basics` last to generalize previous patterns with Go type parameters and constraints.

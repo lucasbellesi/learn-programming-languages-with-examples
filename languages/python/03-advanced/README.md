@@ -19,6 +19,20 @@ This level starts advanced object modeling and type design.
 
 Track progress in [../CHECKLIST.md](../CHECKLIST.md).
 
+## Level Outcomes
+
+- Model domain entities with dataclasses, classes, and clear invariants.
+- Explain how references, copies, and mutation affect object state.
+- Apply inheritance and polymorphism for behavior variation.
+- Use typed helpers and generic-style patterns for small reusable abstractions.
+
+## Done When
+
+- [ ] You completed every module in this level.
+- [ ] You solved all exercises (`01.py` and `02.py`) for each module.
+- [ ] You can explain where constructors, encapsulation, and reference semantics matter.
+- [ ] You completed project `languages/python/projects/03-advanced`.
+
 ## Study Tip
 
 Use `templates-basics` last to generalize earlier examples with reusable typed helpers and classes.

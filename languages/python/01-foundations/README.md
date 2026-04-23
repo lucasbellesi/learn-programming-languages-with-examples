@@ -22,6 +22,20 @@ This level mirrors C++ foundations modules for easy cross-language comparison.
 
 Track progress in [../CHECKLIST.md](../CHECKLIST.md).
 
+## Level Outcomes
+
+- Read console input safely and print clear formatted output.
+- Build programs with conditions, loops, and reusable functions.
+- Process lists, strings, and simple formatted reports.
+- Explain variable scope and program flow in small Python scripts.
+
+## Done When
+
+- [ ] You completed every module in this level.
+- [ ] You solved all exercises (`01.py` and `02.py`) for each module.
+- [ ] You can run the examples you changed.
+- [ ] You completed project `languages/python/projects/01-foundations`.
+
 ## Study Tip
 
 Solve the same topic in C++ and Python back to back to compare syntax and design choices.

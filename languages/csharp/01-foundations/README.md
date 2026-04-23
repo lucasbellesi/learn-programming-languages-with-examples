@@ -21,3 +21,17 @@ This level introduces input/output, flow control, and basic functions in C#.
 8. [formatted-output-and-iomanip](./formatted-output-and-iomanip/README.md)
 
 Track progress in [../CHECKLIST.md](../CHECKLIST.md).
+
+## Level Outcomes
+
+- Read console input safely and print clear formatted output.
+- Build programs with conditions, loops, and reusable methods.
+- Process arrays, lists, strings, and simple formatted reports.
+- Explain variable scope and lifetime in small C# console programs.
+
+## Done When
+
+- [ ] You completed every module in this level.
+- [ ] You solved all exercises (`01.cs` and `02.cs`) for each module.
+- [ ] You can build and run the examples you changed.
+- [ ] You completed project `languages/csharp/projects/01-foundations`.
