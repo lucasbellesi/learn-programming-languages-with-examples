@@ -28,7 +28,7 @@ python example/main.py
 go run example/main.go
 
 # C#
-dotnet run --project example/<module>-example.csproj
+dotnet run --project example/concept-template-example.csproj
 
 # TypeScript
 npm run build:typescript
