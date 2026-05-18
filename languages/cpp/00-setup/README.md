@@ -5,6 +5,13 @@ This setup supports:
 - Windows with MSYS2 + MinGW g++
 - Linux with g++
 
+## Setup Goals
+
+- Install or confirm a C++17-capable `g++` toolchain.
+- Compile one small program with the same warning flags used throughout this track.
+- Run the compiled program from the terminal.
+- Confirm VS Code can build and run the currently open C++ file.
+
 ## Verify Compiler
 
 Run:
@@ -82,3 +89,13 @@ Bash:
 ```bash
 bash ./scripts/build-all.sh
 ```
+
+## Ready When
+
+- [ ] `g++ --version` prints an installed compiler.
+- [ ] You can compile with `-std=c++17 -Wall -Wextra -pedantic`.
+- [ ] You can run the generated binary from your terminal.
+- [ ] VS Code uses the recommended extensions and tasks for build/run loops.
+- [ ] `build-all` starts successfully from the repository root.
+
+After setup is working, continue with [01-foundations](../01-foundations/README.md).
