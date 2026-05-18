@@ -12,10 +12,10 @@ class Program
     static string retainedText = string.Empty;
     static List<int> retainedValues = new List<int>();
 
-    // Walk through one fixed scenario so performance and profiling basics behavior stays repeatable.
+    // Walk through two fixed comparisons so the timing output stays repeatable.
     static void Main()
     {
-        // Prepare sample inputs that exercise the key performance and profiling basics path.
+        // First compare string building strategies on the same workload.
         const int lineCount = 4000;
         const int repetitions = 12;
         long concatTicks = MeasureAverage(
@@ -33,6 +33,7 @@ class Program
         );
         Console.WriteLine($"Average StringBuilder ticks ({repetitions} runs): {builderTicks}");
 
+        // Then compare list growth with and without pre-allocated capacity.
         const int itemCount = 200000;
         long noCapacityTicks = MeasureAverage(
             () => retainedValues = FillWithoutCapacity(itemCount),
@@ -53,8 +54,10 @@ class Program
 
     static long MeasureAverage(Action action, int repetitions)
     {
+        // Warm up once so setup and JIT effects are less likely to dominate the average.
         action();
 
+        // Time the exact same action repeatedly because one run can be noisy.
         long totalTicks = 0;
         for (int iteration = 0; iteration < repetitions; iteration++)
         {
@@ -69,6 +72,7 @@ class Program
 
     static string BuildWithConcatenation(int lineCount)
     {
+        // Repeated string concatenation allocates new strings as the result grows.
         string result = string.Empty;
         for (int index = 0; index < lineCount; index++)
         {
@@ -80,6 +84,7 @@ class Program
 
     static string BuildWithStringBuilder(int lineCount)
     {
+        // StringBuilder keeps one growing buffer, which usually reduces allocation pressure.
         StringBuilder builder = new StringBuilder(lineCount * 8);
         for (int index = 0; index < lineCount; index++)
         {
@@ -93,6 +98,7 @@ class Program
 
     static List<int> FillWithoutCapacity(int itemCount)
     {
+        // This version lets the list resize itself as more items are appended.
         List<int> values = new List<int>();
         for (int index = 0; index < itemCount; index++)
         {
@@ -104,6 +110,7 @@ class Program
 
     static List<int> FillWithCapacity(int itemCount)
     {
+        // This version reserves enough space up front for the known workload size.
         List<int> values = new List<int>(itemCount);
         for (int index = 0; index < itemCount; index++)
         {
