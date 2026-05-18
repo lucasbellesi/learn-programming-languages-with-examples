@@ -20,6 +20,7 @@ sealed class ReportOwner
 {
     public ReportOwner(string name, Report? current)
     {
+        // A nullable field models an owner that may or may not currently hold a report.
         Name = name;
         Current = current;
     }
@@ -30,6 +31,7 @@ sealed class ReportOwner
 
     public void TransferTo(ReportOwner destination)
     {
+        // Empty owners cannot transfer ownership, so make that state explicit.
         if (Current is null)
         {
             Console.WriteLine($"{Name} has nothing to transfer.");
@@ -37,6 +39,7 @@ sealed class ReportOwner
         }
 
         Console.WriteLine($"{Name} transfers {Current.Title} to {destination.Name}.");
+        // Move the reference by assigning the destination and clearing the source.
         destination.Current = Current;
         Current = null;
     }
@@ -53,11 +56,13 @@ sealed class PreviewPane
 
     public PreviewPane(Report report)
     {
+        // A weak reference observes the report without claiming ownership.
         currentReport = new WeakReference<Report>(report);
     }
 
     public void Describe()
     {
+        // Weak observers must check whether the target is still alive.
         if (currentReport.TryGetTarget(out Report? report))
         {
             Console.WriteLine($"Preview can still see: {report.Title}");
@@ -70,13 +75,14 @@ sealed class PreviewPane
 
 class Program
 {
-    // Walk through one fixed scenario so smart pointers in depth behavior stays repeatable.
+    // Walk through ownership transfer and weak observation in one fixed scenario.
     static void Main()
     {
-        // Prepare sample inputs that exercise the key smart pointers in depth path.
+        // Start with one owner holding the report and one empty destination.
         ReportOwner inbox = new ReportOwner("Inbox", new Report("Quarterly Summary"));
         ReportOwner archive = new ReportOwner("Archive", null);
 
+        // After transfer, the source is empty and the destination owns the same report.
         inbox.Describe();
         archive.Describe();
         inbox.TransferTo(archive);
@@ -86,6 +92,7 @@ class Program
         PreviewPane preview = CreatePreview();
         preview.Describe();
 
+        // Force collection so the weak-reference branch is visible in this tiny example.
         GC.Collect();
         GC.WaitForPendingFinalizers();
         GC.Collect();
@@ -95,6 +102,7 @@ class Program
 
     static PreviewPane CreatePreview()
     {
+        // The preview does not keep this transient report alive after the method returns.
         Report transient = new Report("Transient Draft");
         return new PreviewPane(transient);
     }
