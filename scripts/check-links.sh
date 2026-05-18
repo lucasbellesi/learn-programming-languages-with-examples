@@ -13,4 +13,4 @@ else
   exit 1
 fi
 
-"$PYTHON_BIN" ./scripts/check-links.py
+"$PYTHON_BIN" ./scripts/automation.py check-links

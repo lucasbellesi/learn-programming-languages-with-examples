@@ -13,7 +13,7 @@ if (-not $pythonCmd) {
     exit 1
 }
 
-& $pythonCmd.Path "$PSScriptRoot\check-links.py"
+& $pythonCmd.Path "$PSScriptRoot\automation.py" check-links
 if ($LASTEXITCODE -ne 0) {
     exit $LASTEXITCODE
 }

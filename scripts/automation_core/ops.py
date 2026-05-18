@@ -15,6 +15,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from .links import check_markdown_links
 from .manifest import Manifest, load_manifest
 
 
@@ -57,6 +58,7 @@ def build_parser() -> argparse.ArgumentParser:
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     add_simple_command(subparsers, "build-all", handle_build_all)
+    add_simple_command(subparsers, "check-links", handle_check_links)
     add_simple_command(subparsers, "check-readme-structure", handle_check_readme_structure)
     add_simple_command(subparsers, "check-module-completeness", handle_check_module_completeness)
     add_simple_command(
@@ -109,6 +111,11 @@ def create_context() -> RepoContext:
 
 def handle_build_all(ctx: RepoContext, _: argparse.Namespace) -> int:
     build_all(ctx)
+    return 0
+
+
+def handle_check_links(ctx: RepoContext, _: argparse.Namespace) -> int:
+    check_links(ctx)
     return 0
 
 
@@ -179,6 +186,17 @@ def handle_run_module(ctx: RepoContext, args: argparse.Namespace) -> int:
 
 def repo_path(ctx: RepoContext, relative_path: str) -> Path:
     return ctx.root / Path(relative_path)
+
+
+def check_links(ctx: RepoContext) -> None:
+    broken_links = check_markdown_links(ctx.root)
+    if broken_links:
+        print("Broken markdown links found:")
+        for failure in broken_links:
+            print(f" - {failure}")
+        raise AutomationError("Markdown link validation failed.")
+
+    print("No broken markdown links found.")
 
 
 def ensure_text_file(path: Path) -> str:
