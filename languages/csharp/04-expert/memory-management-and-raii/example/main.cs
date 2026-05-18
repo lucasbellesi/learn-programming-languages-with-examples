@@ -13,6 +13,7 @@ sealed class BufferLease : IDisposable
 
     public BufferLease(string name, int length)
     {
+        // Acquiring the lease simulates taking ownership of a resource.
         this.name = name;
         values = new int[length];
         activeLeases++;
@@ -23,6 +24,7 @@ sealed class BufferLease : IDisposable
 
     public void FillSequence(int start, int step)
     {
+        // Guard every public operation so use-after-dispose fails loudly.
         EnsureNotDisposed();
 
         for (int i = 0; i < values!.Length; i++)
@@ -33,6 +35,7 @@ sealed class BufferLease : IDisposable
 
     public int Sum()
     {
+        // Reading from the buffer is only valid while the lease is active.
         EnsureNotDisposed();
 
         int total = 0;
@@ -52,6 +55,7 @@ sealed class BufferLease : IDisposable
 
     public void Dispose()
     {
+        // Dispose may be called more than once, so cleanup must be idempotent.
         if (disposed)
         {
             return;
@@ -66,6 +70,7 @@ sealed class BufferLease : IDisposable
 
     ~BufferLease()
     {
+        // The finalizer is a last-resort safety net, not the normal cleanup path.
         if (!disposed)
         {
             activeLeases--;
@@ -84,28 +89,31 @@ sealed class BufferLease : IDisposable
 
 class Program
 {
-    // Walk through one fixed scenario so memory management and raii behavior stays repeatable.
+    // Walk through one fixed scope so resource lifetime is easy to inspect.
     static void Main()
     {
-        // Prepare sample inputs that exercise the key memory management and raii path.
-        // Report values so learners can verify the memory management and raii outcome.
+        // Start outside the ownership scope so learners can see the baseline count.
         Console.WriteLine($"Active leases before scope: {BufferLease.ActiveLeases}");
 
+        // The using block calls Dispose automatically when the scope exits.
         using (BufferLease scores = new BufferLease("scores", 5))
         {
             int threshold = 25;
             scores.FillSequence(10, 5);
 
+            // Report buffer state while the lease is still valid.
             Console.WriteLine($"Scores: {scores.Describe()}");
             Console.WriteLine($"Sum: {scores.Sum()}");
             Console.WriteLine($"Threshold for review: {threshold}");
 
+            // A nested using declaration owns a second resource until the outer scope ends.
             using BufferLease scratch = new BufferLease("scratch", 3);
             scratch.FillSequence(1, 1);
             Console.WriteLine($"Scratch buffer: {scratch.Describe()}");
             Console.WriteLine($"Active leases inside scope: {BufferLease.ActiveLeases}");
         }
 
+        // After scope exit, both leases have been disposed and the count returns to zero.
         Console.WriteLine($"Active leases after scope: {BufferLease.ActiveLeases}");
     }
 }
