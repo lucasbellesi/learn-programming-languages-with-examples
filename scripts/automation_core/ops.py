@@ -1740,6 +1740,14 @@ def load_exercise_output_contracts(ctx: RepoContext) -> dict[str, list[dict[str,
     return load_output_contracts(ctx, "exercise_output_contracts.json", "exercise")
 
 
+def is_vacuous_stdout_pattern(pattern: str) -> bool:
+    try:
+        compiled = re.compile(pattern, re.MULTILINE)
+    except re.error:
+        return False
+    return all(compiled.search(sample) for sample in ["", "x", "not expected output\n"])
+
+
 def run_csharp_source_output_contracts(
     ctx: RepoContext,
     jobs: list[dict[str, Any]],
@@ -2208,6 +2216,12 @@ def check_exercise_parity(ctx: RepoContext) -> None:
                     "scripts/exercise_output_contracts.json: "
                     f"{language} contract has no stdout expectations -> {target}"
                 )
+            for pattern in job.get("required_stdout_patterns", []):
+                if is_vacuous_stdout_pattern(pattern):
+                    failures.append(
+                        "scripts/exercise_output_contracts.json: "
+                        f"{language} contract has a vacuous stdout pattern -> {target}"
+                    )
 
         contract_keys_by_language[language] = keys
 
@@ -2363,6 +2377,12 @@ def check_cross_language_parity(ctx: RepoContext) -> None:
                     "scripts/example_output_contracts.json: "
                     f"{language} contract has no stdout expectations -> {target}"
                 )
+            for pattern in job.get("required_stdout_patterns", []):
+                if is_vacuous_stdout_pattern(pattern):
+                    failures.append(
+                        "scripts/example_output_contracts.json: "
+                        f"{language} contract has a vacuous stdout pattern -> {target}"
+                    )
 
     if failures:
         print("Cross-language parity validation failed:")
