@@ -59,6 +59,7 @@ TypeScript checks restore Node dependencies from `package-lock.json`, compile wi
 The public PowerShell and Bash scripts are thin wrappers over the shared Python automation core in `scripts/automation.py`. Curriculum validation and smoke target metadata live in `scripts/automation_manifest.json`.
 
 Use [EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md](EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md) when reviewing `example/main.*` files for teaching clarity and parity.
+During focused cleanup work, run `python scripts/automation.py audit-education-quality --fail-on-findings` to make learner-quality findings fail locally instead of only writing the advisory report.
 
 4. Update related README files when behavior or structure changes.
 5. Open a pull request with a clear description of what changed and why.

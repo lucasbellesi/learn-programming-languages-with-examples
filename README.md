@@ -201,6 +201,12 @@ The multi-language smoke scripts also compile standalone C# exercises by generat
 Use [EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md](EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md) to keep entry examples pedagogically consistent during reviews. The education audit command is advisory and writes markdown/json findings without failing CI.
 Use [EDUCATIONAL_ANTI_PATTERN_BACKLOG.md](EDUCATIONAL_ANTI_PATTERN_BACKLOG.md) for the prioritized anti-pattern vs corrected-example expansion plan.
 
+When you want to enforce the education audit during focused cleanup work, run:
+
+~~~bash
+python scripts/automation.py audit-education-quality --fail-on-findings
+~~~
+
 Documentation sync also validates that [CONCEPT_INDEX.md](CONCEPT_INDEX.md) covers every implemented module and checkpoint path listed in the automation manifest. Cross-language parity checks now validate module focus/teaching headers across tracks, exercise parity checks validate `exercises/01` and `exercises/02` alignment across tracks, and example plus exercise output contracts validate stable learner-visible output for smoke-targeted programs.
 
 For long exercise-contract runs, you can scope by language:

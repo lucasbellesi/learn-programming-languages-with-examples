@@ -64,7 +64,13 @@ def build_parser() -> argparse.ArgumentParser:
     add_simple_command(
         subparsers, "check-checkpoint-completeness", handle_check_checkpoint_completeness
     )
-    add_simple_command(subparsers, "audit-education-quality", handle_audit_education_quality)
+    audit_education_quality_parser = subparsers.add_parser("audit-education-quality")
+    audit_education_quality_parser.add_argument(
+        "--fail-on-findings",
+        action="store_true",
+        help="Exit non-zero when the audit finds any learner-quality findings.",
+    )
+    audit_education_quality_parser.set_defaults(func=handle_audit_education_quality)
     add_simple_command(
         subparsers, "check-example-output-contracts", handle_check_example_output_contracts
     )
@@ -134,8 +140,8 @@ def handle_check_checkpoint_completeness(ctx: RepoContext, _: argparse.Namespace
     return 0
 
 
-def handle_audit_education_quality(ctx: RepoContext, _: argparse.Namespace) -> int:
-    audit_education_quality(ctx)
+def handle_audit_education_quality(ctx: RepoContext, args: argparse.Namespace) -> int:
+    audit_education_quality(ctx, fail_on_findings=args.fail_on_findings)
     return 0
 
 
@@ -1008,7 +1014,7 @@ def comment_pattern_for_file(path: Path) -> re.Pattern[str]:
     return re.compile(r"^\s*#") if path.suffix == ".py" else re.compile(r"^\s*//")
 
 
-def audit_education_quality(ctx: RepoContext) -> None:
+def audit_education_quality(ctx: RepoContext, *, fail_on_findings: bool = False) -> None:
     module_examples = module_example_main_files(ctx)
     if not module_examples:
         raise AutomationError("No module example main files were found for education audit.")
@@ -1186,13 +1192,22 @@ def audit_education_quality(ctx: RepoContext) -> None:
     lines.append("")
     lines.append(f"- JSON: `{json_path.relative_to(ctx.root).as_posix()}`")
     lines.append(f"- Markdown: `{markdown_path.relative_to(ctx.root).as_posix()}`")
-    lines.append("- This command is advisory and does not fail CI.")
+    lines.append(
+        "- This command is advisory by default. Use `--fail-on-findings` to make findings fail."
+    )
     lines.append("")
 
     markdown_path.write_text("\n".join(lines), encoding="utf-8")
     print(f"Education quality audit completed for {len(file_rows)} module examples.")
     print(f"Report (markdown): {markdown_path.relative_to(ctx.root).as_posix()}")
     print(f"Report (json): {json_path.relative_to(ctx.root).as_posix()}")
+
+    if fail_on_findings and findings:
+        raise AutomationError(
+            "Education quality audit found "
+            f"{len(findings)} file(s) with learner-quality findings. "
+            f"See {markdown_path.relative_to(ctx.root).as_posix()}."
+        )
 
 
 def lint_repo(ctx: RepoContext) -> None:
