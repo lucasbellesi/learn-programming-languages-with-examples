@@ -43,7 +43,7 @@ If you only want to learn one track, follow that track README first because lang
 
 1. Read [CONTRIBUTING.md](CONTRIBUTING.md).
 2. Install the repo prerequisites listed above.
-3. Run `./scripts/verify-repo.ps1` or `bash ./scripts/verify-repo.sh` as the default pre-PR check.
+3. Run `./scripts/verify-repo.ps1` plus `./scripts/lint.ps1`, or the Bash equivalents, as the default pre-PR check.
 4. Use a narrower script only when you want a faster loop on one part of the repo.
 
 ## Language Status
@@ -148,15 +148,19 @@ Hand-written example code files under `languages/*/*/*/example/` should use inte
 
 ## Validation and CI
 
-Use the full repository check by default:
+Use the full repository validation and lint checks before opening a PR:
 
 ~~~powershell
 ./scripts/verify-repo.ps1
+./scripts/lint.ps1
 ~~~
 
 ~~~bash
 bash ./scripts/verify-repo.sh
+bash ./scripts/lint.sh
 ~~~
+
+`verify-repo` validates curriculum structure, output contracts, and compiled-language builds. `lint` validates formatting and static checks for C++, Python, Go, C#, and TypeScript.
 
 Use narrower commands only when you want a faster loop on one area:
 

@@ -14,14 +14,16 @@ Thank you for contributing to this repository.
 
 1. Fork the repository and create a branch for your change.
 2. Make focused updates (one topic per pull request when possible).
-3. Run the full repository check first:
+3. Run the full repository validation and lint checks first:
 
 ```powershell
 ./scripts/verify-repo.ps1
+./scripts/lint.ps1
 ```
 
 ```bash
 bash ./scripts/verify-repo.sh
+bash ./scripts/lint.sh
 ```
 
 For a faster loop while you are iterating, use a narrower command on the area you changed:
