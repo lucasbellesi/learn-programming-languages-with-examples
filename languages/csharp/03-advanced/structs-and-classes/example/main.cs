@@ -4,67 +4,6 @@
 using System;
 using System.Collections.Generic;
 
-readonly struct Coordinate
-{
-    public Coordinate(int x, int y)
-    {
-        X = x;
-        Y = y;
-    }
-
-    public int X { get; }
-    public int Y { get; }
-
-    public int ManhattanDistanceFromOrigin()
-    {
-        return Math.Abs(X) + Math.Abs(Y);
-    }
-
-    public override string ToString()
-    {
-        return $"({X}, {Y})";
-    }
-}
-
-// Helper setup for structs and classes; this keeps the walkthrough readable.
-class Wallet
-{
-    private readonly string owner;
-    private decimal balance;
-
-    public Wallet(string ownerName, decimal initialBalance)
-    {
-        owner = string.IsNullOrWhiteSpace(ownerName) ? "Unknown" : ownerName.Trim();
-
-        balance = initialBalance < 0m ? 0m : initialBalance;
-    }
-
-    public bool Deposit(decimal amount)
-    {
-        if (amount <= 0m)
-        {
-            return false;
-        }
-
-        balance += amount;
-        return true;
-    }
-
-    public bool Withdraw(decimal amount)
-    {
-        if (amount <= 0m || amount > balance)
-        {
-            return false;
-        }
-
-        balance -= amount;
-        return true;
-    }
-
-    public string Owner => owner;
-    public decimal Balance => balance;
-}
-
 class Program
 {
     // Walk through one fixed scenario so structs and classes behavior stays repeatable.
