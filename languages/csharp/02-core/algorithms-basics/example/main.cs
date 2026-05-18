@@ -16,7 +16,9 @@ class Program
         int firstIndex = AlgorithmTools.LinearSearch(values, target);
         // Report values so learners can verify the algorithms basics outcome.
         Console.WriteLine($"First index of {target}: {firstIndex}");
-        Console.WriteLine($"Occurrences of {target}: {AlgorithmTools.CountOccurrences(values, target)}");
+        Console.WriteLine(
+            $"Occurrences of {target}: {AlgorithmTools.CountOccurrences(values, target)}"
+        );
 
         if (!AlgorithmTools.TryGetMinMax(values, out int minValue, out int maxValue))
         {
