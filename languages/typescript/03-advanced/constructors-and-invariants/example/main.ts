@@ -8,6 +8,7 @@ class BankAccount {
         readonly owner: string,
         openingBalance: number,
     ) {
+        // Reject invalid construction so no BankAccount starts in a broken state.
         if (!owner.trim()) {
             throw new Error("Owner name is required.");
         }
@@ -18,6 +19,7 @@ class BankAccount {
     }
 
     deposit(amount: number): void {
+        // Guard every state-changing method, not only the constructor.
         if (amount <= 0) {
             throw new Error("Deposit amount must be positive.");
         }
@@ -38,6 +40,7 @@ class BankAccount {
     }
 }
 
+// The valid scenario shows normal updates after the invariant checks pass.
 const account = new BankAccount("Ana", 120);
 account.deposit(30);
 account.withdraw(50);
