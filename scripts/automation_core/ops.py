@@ -1792,6 +1792,10 @@ def load_exercise_output_contracts(ctx: RepoContext) -> dict[str, list[dict[str,
 
 
 def is_vacuous_stdout_pattern(pattern: str) -> bool:
+    normalized = pattern.strip()
+    if normalized in {r"\S", r".+", r"[\s\S]+", r"(?s).+"}:
+        return True
+
     try:
         compiled = re.compile(pattern, re.MULTILINE)
     except re.error:

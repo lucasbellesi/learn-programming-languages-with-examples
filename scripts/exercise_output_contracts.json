@@ -3,8 +3,12 @@
     "cpp": [
       {
         "program": "languages/cpp/03-advanced/copy-and-move-semantics/exercises/01.cpp",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Constructed IntBuffer",
+          "Copied IntBuffer",
+          "Moved IntBuffer",
+          "Copy-assigned IntBuffer",
+          "Move-assigned IntBuffer"
         ]
       },
       {
@@ -125,200 +129,222 @@
     "typescript": [
       {
         "program": "languages/typescript/01-foundations/arrays-and-vectors/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Count must be a positive integer.",
+          "Missing or invalid integer values."
         ]
       },
       {
         "program": "languages/typescript/01-foundations/arrays-and-vectors/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected at least one word."
         ]
       },
       {
         "program": "languages/typescript/01-foundations/control-flow/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected one integer option.",
+          "Unknown option"
         ]
       },
       {
         "program": "languages/typescript/01-foundations/control-flow/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected a non-negative integer.",
+          "Countdown complete."
         ]
       },
       {
         "program": "languages/typescript/01-foundations/formatted-output-and-iomanip/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected: item quantity unitPrice",
+          "Invalid invoice data."
         ]
       },
       {
         "program": "languages/typescript/01-foundations/formatted-output-and-iomanip/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected pairs of name and score."
         ]
       },
       {
         "program": "languages/typescript/01-foundations/functions/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected three integers."
         ]
       },
       {
         "program": "languages/typescript/01-foundations/functions/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "0"
         ]
       },
       {
         "program": "languages/typescript/01-foundations/operators-and-expressions/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected two integers and a non-zero divisor.",
+          "Quotient: NaN",
+          "Remainder: NaN",
+          "Left is even: false"
         ]
       },
       {
         "program": "languages/typescript/01-foundations/operators-and-expressions/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected: subtotal loyaltyFlag",
+          "Final price: NaN"
         ]
       },
       {
         "program": "languages/typescript/01-foundations/scope-and-lifetime-basics/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected: start callCount"
         ]
       },
       {
         "program": "languages/typescript/01-foundations/scope-and-lifetime-basics/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected: outerWord innerWord",
+          "Outer before block:",
+          "Inner block: undefined",
+          "Outer after block:"
         ]
       },
       {
         "program": "languages/typescript/01-foundations/strings/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "0"
         ]
       },
       {
         "program": "languages/typescript/01-foundations/strings/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected a token shaped like name@domain.",
+          "@***"
         ]
       },
       {
         "program": "languages/typescript/01-foundations/types-and-io/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected an integer count followed by values.",
+          "Count must be a positive integer.",
+          "Missing or invalid numeric values.",
+          "Sum: 0",
+          "Average: NaN",
+          "Minimum: Infinity",
+          "Maximum: -Infinity"
         ]
       },
       {
         "program": "languages/typescript/01-foundations/types-and-io/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected: product price quantity",
+          "Invalid invoice data.",
+          "Quantity: NaN",
+          "Price: NaN",
+          "Total: NaN"
         ]
       },
       {
         "program": "languages/typescript/02-core/algorithms-basics/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Count must be a positive integer."
         ]
       },
       {
         "program": "languages/typescript/02-core/algorithms-basics/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Count must be a positive integer."
         ]
       },
       {
         "program": "languages/typescript/02-core/error-handling-and-defensive-programming/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected: Full Name Score"
         ]
       },
       {
         "program": "languages/typescript/02-core/error-handling-and-defensive-programming/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "No valid integers found."
         ]
       },
       {
         "program": "languages/typescript/02-core/file-io-basics/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected a file path."
         ]
       },
       {
         "program": "languages/typescript/02-core/file-io-basics/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected source and destination paths."
         ]
       },
       {
         "program": "languages/typescript/02-core/input-validation/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected one integer."
         ]
       },
       {
         "program": "languages/typescript/02-core/input-validation/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Score count must be an integer in range 1..50."
         ]
       },
       {
         "program": "languages/typescript/02-core/maps-and-frequency-counting/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected at least one word."
         ]
       },
       {
         "program": "languages/typescript/02-core/maps-and-frequency-counting/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected at least one word."
         ]
       },
       {
         "program": "languages/typescript/02-core/sorting-and-searching/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Count must be a positive integer."
         ]
       },
       {
         "program": "languages/typescript/02-core/sorting-and-searching/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Count must be a positive integer."
         ]
       },
       {
         "program": "languages/typescript/03-advanced/constructors-and-invariants/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Owner name is required."
         ]
       },
       {
         "program": "languages/typescript/03-advanced/constructors-and-invariants/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected numeric temperatures."
         ]
       },
       {
         "program": "languages/typescript/03-advanced/copy-and-move-semantics/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected: name nonNegativeQuantity"
         ]
       },
       {
         "program": "languages/typescript/03-advanced/copy-and-move-semantics/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected: name inStock reserved"
         ]
       },
       {
         "program": "languages/typescript/03-advanced/inheritance-and-polymorphism/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected: kind price"
         ]
       },
       {
@@ -329,44 +355,53 @@
       },
       {
         "program": "languages/typescript/03-advanced/structs-and-classes/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Count must be a positive integer."
         ]
       },
       {
         "program": "languages/typescript/03-advanced/structs-and-classes/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected: label quantity unitPrice"
         ]
       },
       {
         "program": "languages/typescript/03-advanced/templates-basics/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected at least one value."
         ]
       },
       {
         "program": "languages/typescript/03-advanced/templates-basics/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected two values."
         ]
       },
       {
         "program": "languages/typescript/04-expert/concurrency-basics/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "alpha ready",
+          "beta ready",
+          "gamma ready"
         ]
       },
       {
         "program": "languages/typescript/04-expert/concurrency-basics/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "finished 30",
+          "finished 10",
+          "finished 20",
+          "finished 5"
         ]
       },
       {
         "program": "languages/typescript/04-expert/memory-management-and-raii/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Acquire session-cache",
+          "Append header",
+          "Append payload",
+          "Caught: Simulated failure after work",
+          "Release session-cache"
         ]
       },
       {
@@ -378,26 +413,31 @@
       },
       {
         "program": "languages/typescript/04-expert/modularization-and-build-structure/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Service: notifications",
+          "Retries: 3"
         ]
       },
       {
         "program": "languages/typescript/04-expert/modularization-and-build-structure/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "login: 2",
+          "purchase: 2",
+          "logout: 1"
         ]
       },
       {
         "program": "languages/typescript/04-expert/performance-and-profiling-basics/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Scan average (ms):",
+          "Map average (ms):"
         ]
       },
       {
         "program": "languages/typescript/04-expert/performance-and-profiling-basics/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Concat average (ms):",
+          "Buffered average (ms):"
         ]
       },
       {
