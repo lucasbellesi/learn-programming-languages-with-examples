@@ -40,6 +40,7 @@ For a faster loop while you are iterating, use a narrower command on the area yo
 - Lint: `./scripts/lint.ps1` or `bash ./scripts/lint.sh`
 - Smoke checks: `./scripts/smoke-languages.ps1` or `bash ./scripts/smoke-languages.sh`
 - Compiled-language builds: `./scripts/build-all.ps1` or `bash ./scripts/build-all.sh`
+- Generated artifact cleanup: `./scripts/clean-artifacts.ps1` or `bash ./scripts/clean-artifacts.sh`
 
 If you are changing one C++ file and want a local spot check before the full pass, you can still compile it directly with:
 
@@ -59,6 +60,7 @@ These smoke checks also compile standalone C# exercises by generating temporary 
 TypeScript checks restore Node dependencies from `package-lock.json`, compile with `tsc`, and execute the emitted JavaScript with `node`.
 
 The public PowerShell and Bash scripts are thin wrappers over the shared Python automation core in `scripts/automation.py`. Curriculum validation and smoke target metadata live in `scripts/automation_manifest.json`.
+The artifact cleanup command removes generated build outputs, reports, temporary binaries, and exercise report files while keeping restored dependencies such as `node_modules`.
 
 Use [EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md](EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md) when reviewing `example/main.*` files for teaching clarity and parity.
 During focused cleanup work, run `python scripts/automation.py audit-education-quality --fail-on-findings` to make learner-quality findings fail locally instead of only writing the advisory report.

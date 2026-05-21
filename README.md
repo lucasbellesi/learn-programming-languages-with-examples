@@ -177,6 +177,7 @@ Use narrower commands only when you want a faster loop on one area:
 ./scripts/lint.ps1
 ./scripts/smoke-languages.ps1
 ./scripts/build-all.ps1
+./scripts/clean-artifacts.ps1
 ./scripts/verify-repo.ps1
 ~~~
 
@@ -193,12 +194,15 @@ bash ./scripts/audit-education-quality.sh
 bash ./scripts/lint.sh
 bash ./scripts/smoke-languages.sh
 bash ./scripts/build-all.sh
+bash ./scripts/clean-artifacts.sh
 bash ./scripts/verify-repo.sh
 ~~~
 
 GitHub Actions validates links, README structure, module completeness, checkpoint completeness, documentation sync, compiled-language builds, multi-language smoke checks, and Linux lint checks for C++, Python, Go, C#, and TypeScript.
 
 The public PowerShell and Bash scripts remain the supported entrypoints, but they now delegate to a shared Python automation core under `scripts/automation.py` backed by `scripts/automation_manifest.json`.
+
+Use `clean-artifacts` when you want to remove generated build outputs, reports, temporary binaries, and exercise report files without removing dependencies such as `node_modules`.
 
 The multi-language smoke scripts also compile standalone C# exercises by generating temporary validation projects during the check and compile TypeScript programs before executing their smoke targets.
 

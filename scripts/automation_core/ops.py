@@ -58,6 +58,7 @@ def build_parser() -> argparse.ArgumentParser:
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     add_simple_command(subparsers, "build-all", handle_build_all)
+    add_simple_command(subparsers, "clean-artifacts", handle_clean_artifacts)
     add_simple_command(subparsers, "check-links", handle_check_links)
     add_simple_command(subparsers, "check-readme-structure", handle_check_readme_structure)
     add_simple_command(subparsers, "check-module-completeness", handle_check_module_completeness)
@@ -117,6 +118,11 @@ def create_context() -> RepoContext:
 
 def handle_build_all(ctx: RepoContext, _: argparse.Namespace) -> int:
     build_all(ctx)
+    return 0
+
+
+def handle_clean_artifacts(ctx: RepoContext, _: argparse.Namespace) -> int:
+    clean_artifacts(ctx)
     return 0
 
 
@@ -578,6 +584,51 @@ def remove_paths(base_dir: Path, relative_paths: list[str]) -> None:
             shutil.rmtree(candidate, ignore_errors=True)
         elif candidate.exists():
             candidate.unlink(missing_ok=True)
+
+
+def clean_artifacts(ctx: RepoContext) -> None:
+    removed: list[Path] = []
+
+    def remove_candidate(path: Path) -> None:
+        resolved = path.resolve()
+        try:
+            resolved.relative_to(ctx.root.resolve())
+        except ValueError as error:
+            raise AutomationError(
+                f"Refusing to remove path outside repository: {resolved}"
+            ) from error
+
+        if resolved.is_dir():
+            shutil.rmtree(resolved)
+            removed.append(resolved)
+        elif resolved.exists():
+            resolved.unlink()
+            removed.append(resolved)
+
+    direct_paths = [
+        ctx.root / "build",
+        ctx.root / ".ruff_cache",
+        ctx.root / "compiled_files.txt",
+        ctx.root / "compile_errors.txt",
+        ctx.root / "core_assessment_report.txt",
+    ]
+    for direct_path in direct_paths:
+        remove_candidate(direct_path)
+
+    for pattern in ("*.exe", "*.out", "*.o", "*.obj", "report.txt", "core_assessment_report.txt"):
+        for path in ctx.root.rglob(pattern):
+            if "node_modules" not in path.parts and ".git" not in path.parts:
+                remove_candidate(path)
+
+    for directory_name in ("bin", "obj", "__pycache__"):
+        for path in ctx.root.rglob(directory_name):
+            if path.is_dir() and "node_modules" not in path.parts and ".git" not in path.parts:
+                remove_candidate(path)
+
+    if removed:
+        print(f"Removed {len(removed)} generated artifact path(s).")
+    else:
+        print("No generated artifact paths found.")
 
 
 def resolve_job_path(ctx: RepoContext, working_dir: Path, raw_path: str) -> Path:
