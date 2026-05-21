@@ -2,6 +2,7 @@
 // Why it matters: practicing algorithms basics patterns makes exercises and checkpoints easier to reason about.
 
 function firstIndexOf(values: number[], target: number): number {
+    // A linear scan is the simplest search when the data is not sorted.
     for (let index = 0; index < values.length; index += 1) {
         if (values[index] === target) {
             return index;
@@ -15,10 +16,12 @@ function summarize(values: number[]): {
     maximum: number;
     evenCount: number;
 } {
+    // Seed summary values from real data so the loop handles negative values too.
     let minimum = values[0]!;
     let maximum = values[0]!;
     let evenCount = 0;
 
+    // Keep one pass over the data and update each summary as evidence appears.
     for (const value of values) {
         if (value < minimum) {
             minimum = value;
