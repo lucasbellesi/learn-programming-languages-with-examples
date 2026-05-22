@@ -529,7 +529,9 @@
           "Invalid rows skipped: 1",
           "Average: 85.33"
         ],
-        "required_outputs": ["report.txt"],
+        "required_outputs": [
+          "report.txt"
+        ],
         "required_output_contains": [
           {
             "path": "report.txt",
@@ -543,7 +545,10 @@
             ]
           }
         ],
-        "cleanup_paths": ["scores.txt", "report.txt"]
+        "cleanup_paths": [
+          "scores.txt",
+          "report.txt"
+        ]
       },
       {
         "program": "languages/typescript/03-advanced/structs-and-classes/example/main.ts",
@@ -599,6 +604,70 @@
         "required_stdout_contains": [
           "Invoice Summary",
           "Total: 39.66"
+        ]
+      }
+    ],
+    "java": [
+      {
+        "program": "languages/java/01-foundations/types-and-io/example/Main.java",
+        "required_stdout_contains": [
+          "Students: 3",
+          "Total: 256.00",
+          "Average: 85.33"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/operators-and-expressions/example/Main.java",
+        "required_stdout_contains": [
+          "Discount: 18.00",
+          "Tax: 8.16",
+          "Total: 110.16"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/control-flow/example/Main.java",
+        "required_stdout_contains": [
+          "Passing: 3",
+          "Needs review: 1"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/functions/example/Main.java",
+        "required_stdout_contains": [
+          "Average: 85.33",
+          "Status: on track"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/arrays-and-vectors/example/Main.java",
+        "required_stdout_contains": [
+          "Scores: 4",
+          "Total: 333",
+          "Scores equal to 77: 2"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/strings/example/Main.java",
+        "required_stdout_contains": [
+          "Name: Ana Maria",
+          "City: Buenos Aires",
+          "Slug: ana-maria"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/scope-and-lifetime-basics/example/Main.java",
+        "required_stdout_contains": [
+          "Original: 80",
+          "Adjusted: 85",
+          "Calls: 1"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/formatted-output-and-iomanip/example/Main.java",
+        "required_stdout_contains": [
+          "Product",
+          "Notebook",
+          "37.50"
         ]
       }
     ]

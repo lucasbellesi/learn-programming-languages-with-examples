@@ -1394,6 +1394,197 @@
           "Clone shortcuts: save, search, preview"
         ]
       }
+    ],
+    "java": [
+      {
+        "program": "languages/java/01-foundations/types-and-io/exercises/Exercise01.java",
+        "input_lines": [
+          "3",
+          "10",
+          "20",
+          "30"
+        ],
+        "required_stdout_contains": [
+          "Sum: 60.00",
+          "Average: 20.00",
+          "Minimum: 10.00",
+          "Maximum: 30.00"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/types-and-io/exercises/Exercise02.java",
+        "input_lines": [
+          "Notebook 12.50 3"
+        ],
+        "required_stdout_contains": [
+          "Product: Notebook",
+          "Quantity: 3",
+          "Total: 37.50"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/operators-and-expressions/exercises/Exercise01.java",
+        "input_lines": [
+          "9 4"
+        ],
+        "required_stdout_contains": [
+          "Sum: 13.00",
+          "Difference: 5.00",
+          "Product: 36.00",
+          "Quotient: 2.25"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/operators-and-expressions/exercises/Exercise02.java",
+        "input_lines": [
+          "120 0.15 0.08"
+        ],
+        "required_stdout_contains": [
+          "Discount: 18.00",
+          "Tax: 8.16",
+          "Total: 110.16"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/control-flow/exercises/Exercise01.java",
+        "input_lines": [
+          "87"
+        ],
+        "required_stdout_contains": [
+          "Grade: B"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/control-flow/exercises/Exercise02.java",
+        "input_lines": [
+          "5",
+          "3",
+          "-1",
+          "0",
+          "8",
+          "-2"
+        ],
+        "required_stdout_contains": [
+          "Positive: 2",
+          "Negative: 2",
+          "Zero: 1"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/functions/exercises/Exercise01.java",
+        "input_lines": [
+          "3"
+        ],
+        "required_stdout_contains": [
+          "Area: 28.27",
+          "Circumference: 18.85"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/functions/exercises/Exercise02.java",
+        "input_lines": [
+          "8 3 10"
+        ],
+        "required_stdout_contains": [
+          "Minimum: 3",
+          "Maximum: 10"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/arrays-and-vectors/exercises/Exercise01.java",
+        "input_lines": [
+          "4",
+          "9",
+          "2",
+          "7",
+          "2"
+        ],
+        "required_stdout_contains": [
+          "Sum: 20",
+          "Average: 5.00",
+          "Minimum: 2",
+          "Maximum: 9"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/arrays-and-vectors/exercises/Exercise02.java",
+        "input_lines": [
+          "5",
+          "8",
+          "3",
+          "8",
+          "1",
+          "8",
+          "8"
+        ],
+        "required_stdout_contains": [
+          "Target: 8",
+          "Occurrences: 3"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/strings/exercises/Exercise01.java",
+        "input_lines": [
+          "  Hello Java  "
+        ],
+        "required_stdout_contains": [
+          "Cleaned: Hello Java",
+          "Lowercase: hello java",
+          "Length: 10"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/strings/exercises/Exercise02.java",
+        "input_lines": [
+          "Java strings are useful"
+        ],
+        "required_stdout_contains": [
+          "Words: 4",
+          "Non-space characters: 20"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/scope-and-lifetime-basics/exercises/Exercise01.java",
+        "input_lines": [
+          "12"
+        ],
+        "required_stdout_contains": [
+          "Outer before block: 12",
+          "Inner value: 17",
+          "Outer after block: 12"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/scope-and-lifetime-basics/exercises/Exercise02.java",
+        "input_lines": [
+          "4"
+        ],
+        "required_stdout_contains": [
+          "Calls recorded: 4"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/formatted-output-and-iomanip/exercises/Exercise01.java",
+        "input_lines": [
+          "Notebook 12.5 3"
+        ],
+        "required_stdout_contains": [
+          "Product",
+          "Notebook",
+          "37.50"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/formatted-output-and-iomanip/exercises/Exercise02.java",
+        "input_lines": [
+          "1000 0.05 2"
+        ],
+        "required_stdout_contains": [
+          "Principal: 1000.00",
+          "Interest: 100.00",
+          "Final amount: 1100.00"
+        ]
+      }
     ]
   }
 }
