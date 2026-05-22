@@ -160,7 +160,7 @@ bash ./scripts/verify-repo.sh
 bash ./scripts/lint.sh
 ~~~
 
-`verify-repo` validates curriculum structure, output contracts, and compiled-language builds. `lint` validates formatting and static checks for C++, Python, Go, C#, and TypeScript.
+`verify-repo` validates curriculum structure, the blocking education-quality gate, output contracts, and compiled-language builds. `lint` validates formatting and static checks for C++, Python, Go, C#, and TypeScript.
 
 Use narrower commands only when you want a faster loop on one area:
 
@@ -209,7 +209,7 @@ The multi-language smoke scripts also compile standalone C# exercises by generat
 Use [EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md](EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md) to keep entry examples pedagogically consistent during reviews. The education audit command is advisory and writes markdown/json findings without failing CI.
 Use [EDUCATIONAL_ANTI_PATTERN_BACKLOG.md](EDUCATIONAL_ANTI_PATTERN_BACKLOG.md) for the prioritized anti-pattern vs corrected-example expansion plan.
 
-When you want to enforce the education audit during focused cleanup work, run:
+`verify-repo` now fails on blocking education-quality findings: low example-comment ratio, missing output explanation markers, or boilerplate comments. Oversized example findings remain advisory. When you want the stricter local cleanup mode that also fails on oversized examples, run:
 
 ~~~bash
 python scripts/automation.py audit-education-quality --fail-on-findings

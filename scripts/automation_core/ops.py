@@ -71,6 +71,14 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Exit non-zero when the audit finds any learner-quality findings.",
     )
+    audit_education_quality_parser.add_argument(
+        "--fail-on-blocking-findings",
+        action="store_true",
+        help=(
+            "Exit non-zero for blocking findings: boilerplate comments, missing output "
+            "markers, or low comment ratio. Oversized files remain advisory."
+        ),
+    )
     audit_education_quality_parser.set_defaults(func=handle_audit_education_quality)
     add_simple_command(
         subparsers, "check-example-output-contracts", handle_check_example_output_contracts
@@ -147,7 +155,11 @@ def handle_check_checkpoint_completeness(ctx: RepoContext, _: argparse.Namespace
 
 
 def handle_audit_education_quality(ctx: RepoContext, args: argparse.Namespace) -> int:
-    audit_education_quality(ctx, fail_on_findings=args.fail_on_findings)
+    audit_education_quality(
+        ctx,
+        fail_on_findings=args.fail_on_findings,
+        fail_on_blocking_findings=args.fail_on_blocking_findings,
+    )
     return 0
 
 
@@ -1065,7 +1077,12 @@ def comment_pattern_for_file(path: Path) -> re.Pattern[str]:
     return re.compile(r"^\s*#") if path.suffix == ".py" else re.compile(r"^\s*//")
 
 
-def audit_education_quality(ctx: RepoContext, *, fail_on_findings: bool = False) -> None:
+def audit_education_quality(
+    ctx: RepoContext,
+    *,
+    fail_on_findings: bool = False,
+    fail_on_blocking_findings: bool = False,
+) -> None:
     module_examples = module_example_main_files(ctx)
     if not module_examples:
         raise AutomationError("No module example main files were found for education audit.")
@@ -1222,6 +1239,13 @@ def audit_education_quality(ctx: RepoContext, *, fail_on_findings: bool = False)
         or row["comment_ratio"] < 0.12
         or row["oversized_for_level"]
     ]
+    blocking_findings = [
+        row
+        for row in file_rows
+        if row["boilerplate_hit_count"] > 0
+        or row["missing_observable_output_marker"]
+        or row["comment_ratio"] < 0.12
+    ]
     findings.sort(
         key=lambda row: (
             not row["missing_observable_output_marker"],
@@ -1244,7 +1268,9 @@ def audit_education_quality(ctx: RepoContext, *, fail_on_findings: bool = False)
     lines.append(f"- JSON: `{json_path.relative_to(ctx.root).as_posix()}`")
     lines.append(f"- Markdown: `{markdown_path.relative_to(ctx.root).as_posix()}`")
     lines.append(
-        "- This command is advisory by default. Use `--fail-on-findings` to make findings fail."
+        "- This command is advisory by default. Use `--fail-on-blocking-findings` "
+        "to fail on low-comment, missing-output-marker, or boilerplate findings. "
+        "Use `--fail-on-findings` to make every finding fail."
     )
     lines.append("")
 
@@ -1257,6 +1283,12 @@ def audit_education_quality(ctx: RepoContext, *, fail_on_findings: bool = False)
         raise AutomationError(
             "Education quality audit found "
             f"{len(findings)} file(s) with learner-quality findings. "
+            f"See {markdown_path.relative_to(ctx.root).as_posix()}."
+        )
+    if fail_on_blocking_findings and blocking_findings:
+        raise AutomationError(
+            "Education quality audit found "
+            f"{len(blocking_findings)} blocking learner-quality finding(s). "
             f"See {markdown_path.relative_to(ctx.root).as_posix()}."
         )
 
@@ -2451,37 +2483,40 @@ def check_cross_language_parity(ctx: RepoContext) -> None:
 def verify_repo(ctx: RepoContext) -> None:
     python_cmd = find_python_command()
 
-    print("[1/11] Checking markdown links...")
+    print("[1/12] Checking markdown links...")
     run_command([python_cmd, str(ctx.scripts_dir / "check-links.py")], action="Markdown link check")
 
-    print("[2/11] Checking README structure...")
+    print("[2/12] Checking README structure...")
     check_readme_structure(ctx)
 
-    print("[3/11] Checking module completeness...")
+    print("[3/12] Checking module completeness...")
     check_module_completeness(ctx)
 
-    print("[4/11] Checking checkpoint completeness...")
+    print("[4/12] Checking checkpoint completeness...")
     check_checkpoint_completeness(ctx)
 
-    print("[5/11] Checking documentation sync...")
+    print("[5/12] Checking documentation sync...")
     check_doc_sync(ctx)
 
-    print("[6/11] Checking example comments...")
+    print("[6/12] Checking example comments...")
     check_example_comments(ctx)
 
-    print("[7/11] Checking cross-language parity...")
+    print("[7/12] Checking education quality gate...")
+    audit_education_quality(ctx, fail_on_blocking_findings=True)
+
+    print("[8/12] Checking cross-language parity...")
     check_cross_language_parity(ctx)
 
-    print("[8/11] Checking exercise parity...")
+    print("[9/12] Checking exercise parity...")
     check_exercise_parity(ctx)
 
-    print("[9/11] Checking example output contracts...")
+    print("[10/12] Checking example output contracts...")
     check_example_output_contracts(ctx)
 
-    print("[10/11] Checking exercise output contracts...")
+    print("[11/12] Checking exercise output contracts...")
     check_exercise_output_contracts(ctx)
 
-    print("[11/11] Compiling compiled-language tracks...")
+    print("[12/12] Compiling compiled-language tracks...")
     build_all(ctx)
 
     print("Repository verification completed successfully.")

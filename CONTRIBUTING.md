@@ -63,7 +63,7 @@ The public PowerShell and Bash scripts are thin wrappers over the shared Python 
 The artifact cleanup command removes generated build outputs, reports, temporary binaries, and exercise report files while keeping restored dependencies such as `node_modules`.
 
 Use [EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md](EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md) when reviewing `example/main.*` files for teaching clarity and parity.
-During focused cleanup work, run `python scripts/automation.py audit-education-quality --fail-on-findings` to make learner-quality findings fail locally instead of only writing the advisory report.
+`verify-repo` fails on blocking education-quality findings: low example-comment ratio, missing output explanation markers, or boilerplate comments. Oversized example findings remain advisory. During focused cleanup work, run `python scripts/automation.py audit-education-quality --fail-on-findings` to make every learner-quality finding fail locally.
 
 4. Update related README files when behavior or structure changes.
 5. Open a pull request with a clear description of what changed and why.
