@@ -70,6 +70,209 @@
     ],
     "go": [
       {
+        "program": "languages/go/02-core/input-validation/exercises/01.go",
+        "input_lines": [
+          "abc",
+          "150",
+          "12"
+        ],
+        "required_stdout_contains": [
+          "Invalid input. Please enter an integer.",
+          "Out of range. Try again.",
+          "Square: 144"
+        ]
+      },
+      {
+        "program": "languages/go/02-core/input-validation/exercises/02.go",
+        "input_lines": [
+          "0",
+          "3",
+          "101",
+          "90",
+          "80",
+          "70"
+        ],
+        "required_stdout_contains": [
+          "Value must be between 1 and 50.",
+          "Value must be between 0.0 and 100.0.",
+          "Average score: 80.00"
+        ]
+      },
+      {
+        "program": "languages/go/02-core/algorithms-basics/exercises/01.go",
+        "input_lines": [
+          "5",
+          "8",
+          "3",
+          "8",
+          "1",
+          "8",
+          "8"
+        ],
+        "required_stdout_contains": [
+          "First index: 0"
+        ]
+      },
+      {
+        "program": "languages/go/02-core/algorithms-basics/exercises/02.go",
+        "input_lines": [
+          "5",
+          "8",
+          "3",
+          "10",
+          "1",
+          "4"
+        ],
+        "required_stdout_contains": [
+          "Minimum: 1",
+          "Maximum: 10",
+          "Even numbers: 3"
+        ]
+      },
+      {
+        "program": "languages/go/02-core/file-io-basics/exercises/01.go",
+        "working_dir": "languages/go/02-core/file-io-basics",
+        "setup_files": [
+          {
+            "path": "contract-input.txt",
+            "lines": [
+              "alpha",
+              "beta",
+              "gamma"
+            ]
+          }
+        ],
+        "input_lines": [
+          "contract-input.txt",
+          "contract-output.txt"
+        ],
+        "required_stdout_contains": [
+          "Copied 3 lines."
+        ],
+        "required_outputs": [
+          "contract-output.txt"
+        ],
+        "required_output_contains": [
+          {
+            "path": "contract-output.txt",
+            "contains": [
+              "1: alpha",
+              "2: beta",
+              "3: gamma"
+            ]
+          }
+        ],
+        "cleanup_paths": [
+          "contract-input.txt",
+          "contract-output.txt"
+        ]
+      },
+      {
+        "program": "languages/go/02-core/file-io-basics/exercises/02.go",
+        "working_dir": "languages/go/02-core/file-io-basics",
+        "setup_files": [
+          {
+            "path": "scores-contract.txt",
+            "lines": [
+              "Ana 91",
+              "InvalidRow",
+              "Bob 77",
+              "Carla xx"
+            ]
+          }
+        ],
+        "input_lines": [
+          "scores-contract.txt"
+        ],
+        "required_stdout_contains": [
+          "Valid rows: 2",
+          "Invalid rows: 2",
+          "Average score: 84.00"
+        ],
+        "cleanup_paths": [
+          "scores-contract.txt"
+        ]
+      },
+      {
+        "program": "languages/go/02-core/sorting-and-searching/exercises/01.go",
+        "input_lines": [
+          "5",
+          "9",
+          "2",
+          "7",
+          "2",
+          "4"
+        ],
+        "required_stdout_contains": [
+          "2 2 4 7 9"
+        ]
+      },
+      {
+        "program": "languages/go/02-core/sorting-and-searching/exercises/02.go",
+        "input_lines": [
+          "5",
+          "2",
+          "4",
+          "7",
+          "9",
+          "11",
+          "7"
+        ],
+        "required_stdout_contains": [
+          "Index: 2"
+        ]
+      },
+      {
+        "program": "languages/go/02-core/maps-and-frequency-counting/exercises/01.go",
+        "input_lines": [
+          "6",
+          "1",
+          "2",
+          "9",
+          "12",
+          "2",
+          "9"
+        ],
+        "required_stdout_contains": [
+          "1 -> 1",
+          "2 -> 2",
+          "9 -> 2"
+        ]
+      },
+      {
+        "program": "languages/go/02-core/maps-and-frequency-counting/exercises/02.go",
+        "input_lines": [
+          "swiss"
+        ],
+        "required_stdout_contains": [
+          "First non-repeating character: w"
+        ]
+      },
+      {
+        "program": "languages/go/02-core/error-handling-and-defensive-programming/exercises/01.go",
+        "input_lines": [
+          "Ana,31,Paris"
+        ],
+        "required_stdout_contains": [
+          "Name: Ana",
+          "Age: 31",
+          "City: Paris"
+        ]
+      },
+      {
+        "program": "languages/go/02-core/error-handling-and-defensive-programming/exercises/02.go",
+        "input_lines": [
+          "4 0",
+          "word 2",
+          "9 3"
+        ],
+        "required_stdout_contains": [
+          "Divisor cannot be zero. Try again.",
+          "Invalid input type. Try again.",
+          "Result: 3"
+        ]
+      },
+      {
         "program": "languages/go/03-advanced/inheritance-and-polymorphism/exercises/02.go",
         "required_stdout_contains": [
           "Total area:"
