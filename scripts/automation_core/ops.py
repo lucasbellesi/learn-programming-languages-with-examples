@@ -2177,33 +2177,63 @@ def check_exercise_output_contracts(ctx: RepoContext, language_filter: str | Non
                     )
                 run_command(compile_command, action=compile_action, timeout_seconds=120)
 
-                input_text = None
-                if "input_lines" in job:
-                    input_text = "\n".join(job["input_lines"]) + "\n"
-
-                if toolchain.mode == "wsl":
-                    binary_command = [
-                        "wsl",
-                        "bash",
-                        "-lc",
-                        shlex.quote(to_wsl_path(output_path)),
-                    ]
-                else:
-                    binary_command = [str(compiled_binary_path(ctx, output_path))]
-
-                completed = run_command(
-                    binary_command,
-                    input_text=input_text,
-                    capture_stdout=True,
-                    action=f"C++ execution for exercise output contract {job['program']}",
-                    timeout_seconds=30,
+                working_dir = (
+                    repo_path(ctx, job["working_dir"]) if "working_dir" in job else ctx.root
                 )
-                assert_output_contract(
-                    completed.stdout or "",
-                    job,
-                    f"C++ exercise output contract for {job['program']}",
-                )
-                executed_jobs += 1
+                setup_files = job.get("setup_files", [])
+                cleanup_paths = list(job.get("cleanup_paths", []))
+
+                try:
+                    for file_spec in setup_files:
+                        target = working_dir / file_spec["path"]
+                        target.write_text("\n".join(file_spec["lines"]) + "\n", encoding="utf-8")
+
+                    input_text = None
+                    if "input_lines" in job:
+                        input_text = "\n".join(job["input_lines"]) + "\n"
+                    elif "input_file" in job:
+                        input_text = str((working_dir / job["input_file"]).resolve()) + "\n"
+
+                    if toolchain.mode == "wsl":
+                        binary_command = [
+                            "wsl",
+                            "bash",
+                            "-lc",
+                            shlex.quote(to_wsl_path(output_path)),
+                        ]
+                    else:
+                        binary_command = [str(compiled_binary_path(ctx, output_path))]
+
+                    label = f"C++ exercise output contract for {job['program']}"
+                    completed = run_command(
+                        binary_command,
+                        cwd=working_dir,
+                        input_text=input_text,
+                        capture_stdout=True,
+                        action=f"C++ execution for exercise output contract {job['program']}",
+                        timeout_seconds=30,
+                    )
+                    assert_output_contract(completed.stdout or "", job, label)
+
+                    for output_name in job.get("required_outputs", []):
+                        if not (working_dir / output_name).exists():
+                            raise AutomationError(f"{label} did not create {output_name}")
+
+                    for output_spec in job.get("required_output_contains", []):
+                        output_path = working_dir / output_spec["path"]
+                        if not output_path.exists():
+                            raise AutomationError(f"{label} did not create {output_spec['path']}")
+
+                        output_text = output_path.read_text(encoding="utf-8")
+                        for expected in output_spec.get("contains", []):
+                            if expected not in output_text:
+                                raise AutomationError(
+                                    f"{label} output {output_spec['path']} did not contain "
+                                    f"expected text: {expected}\nActual output:\n{output_text}"
+                                )
+                    executed_jobs += 1
+                finally:
+                    remove_paths(working_dir, cleanup_paths)
 
     if executed_jobs == 0:
         raise AutomationError("No exercise output contract jobs were executed.")
