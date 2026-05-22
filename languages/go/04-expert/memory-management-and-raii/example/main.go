@@ -14,6 +14,7 @@ type trackedBuffer struct {
 }
 
 func newTrackedBuffer(name string, size int, active *int) *trackedBuffer {
+	// Acquisition updates shared state immediately so cleanup can be verified later.
 	*active += 1
 	fmt.Printf("[acquire] %s size=%d active=%d\n", name, size, *active)
 	return &trackedBuffer{name: name, values: make([]int, size), active: active}
@@ -41,6 +42,7 @@ func (b *trackedBuffer) describe() string {
 }
 
 func (b *trackedBuffer) Close() {
+	// Close is idempotent so deferred cleanup is safe even if called manually first.
 	if b.closed {
 		return
 	}
@@ -65,12 +67,14 @@ func main() {
 
 	func() {
 		scores := newTrackedBuffer("scores", 5, &active)
+		// defer mirrors RAII-style cleanup at the end of this local scope.
 		defer scores.Close()
 		scores.fillSequence(10, 5)
 		fmt.Printf("Scores: %s\n", scores.describe())
 		fmt.Printf("Sum: %d\n", scores.sum())
 
 		scratch := newTrackedBuffer("scratch", 3, &active)
+		// Multiple deferred cleanups run even when the scope has several resources.
 		defer scratch.Close()
 		scratch.fillSequence(1, 1)
 		fmt.Printf("Scratch: %s\n", scratch.describe())

@@ -20,6 +20,7 @@ func main() {
 	// Prepare sample inputs that exercise the key performance and profiling basics path.
 	const lineCount = 4000
 	const repetitions = 12
+	// Measure two implementations of the same string-building task.
 	concatDuration := measureAverage(func() { retainedText = buildWithConcatenation(lineCount) }, repetitions)
 	builderDuration := measureAverage(func() { retainedText = buildWithBuilder(lineCount) }, repetitions)
 
@@ -28,6 +29,7 @@ func main() {
 	fmt.Printf("Average strings.Builder (%d runs): %v\n", repetitions, builderDuration)
 
 	const itemCount = 200000
+	// Repeat the measurement pattern for slice growth with and without preallocation.
 	noCapacity := measureAverage(func() { retainedValues = fillWithoutCapacity(itemCount) }, repetitions)
 	withCapacity := measureAverage(func() { retainedValues = fillWithCapacity(itemCount) }, repetitions)
 
@@ -36,6 +38,7 @@ func main() {
 }
 
 func measureAverage(action func(), repetitions int) time.Duration {
+	// Warm up once so setup cost is less likely to dominate the repeated samples.
 	action()
 
 	var total time.Duration
@@ -57,6 +60,7 @@ func buildWithConcatenation(lineCount int) string {
 
 func buildWithBuilder(lineCount int) string {
 	var builder strings.Builder
+	// Grow communicates expected size and reduces repeated allocation work.
 	builder.Grow(lineCount * 8)
 	for index := 0; index < lineCount; index++ {
 		fmt.Fprintf(&builder, "row-%d;", index)

@@ -7,6 +7,7 @@ import "fmt"
 
 // Helper setup for algorithms basics; this keeps the walkthrough readable.
 func linearSearch(values []int, target int) int {
+	// A linear search is the direct choice when values are not sorted.
 	for index, value := range values {
 		if value == target {
 			return index
@@ -17,6 +18,7 @@ func linearSearch(values []int, target int) int {
 
 func countOccurrences(values []int, target int) int {
 	count := 0
+	// Counting is a separate pass here so learners can inspect one purpose at a time.
 	for _, value := range values {
 		if value == target {
 			count++
@@ -30,6 +32,7 @@ func minMax(values []int) (int, int, bool) {
 		return 0, 0, false
 	}
 
+	// Seed from the first element so negative-only data is handled correctly.
 	minValue := values[0]
 	maxValue := values[0]
 	for _, value := range values {
