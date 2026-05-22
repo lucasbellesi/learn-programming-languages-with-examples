@@ -1063,74 +1063,198 @@
       },
       {
         "program": "languages/typescript/02-core/algorithms-basics/exercises/01.ts",
+        "input_lines": [
+          "5",
+          "8",
+          "3",
+          "8",
+          "1",
+          "8",
+          "8"
+        ],
         "required_stdout_contains": [
-          "Count must be a positive integer."
+          "First index: 0"
         ]
       },
       {
         "program": "languages/typescript/02-core/algorithms-basics/exercises/02.ts",
+        "input_lines": [
+          "5",
+          "8",
+          "3",
+          "10",
+          "1",
+          "4"
+        ],
         "required_stdout_contains": [
-          "Count must be a positive integer."
+          "Minimum: 1",
+          "Maximum: 10",
+          "Even count: 3"
         ]
       },
       {
         "program": "languages/typescript/02-core/error-handling-and-defensive-programming/exercises/01.ts",
+        "input_lines": [
+          "Ana Maria 91"
+        ],
         "required_stdout_contains": [
-          "Expected: Full Name Score"
+          "Accepted: Ana Maria (91)"
         ]
       },
       {
         "program": "languages/typescript/02-core/error-handling-and-defensive-programming/exercises/02.ts",
+        "input_lines": [
+          "10",
+          "skip",
+          "20",
+          "bad",
+          "30"
+        ],
         "required_stdout_contains": [
-          "No valid integers found."
+          "Valid count: 3",
+          "Average: 20.00"
         ]
       },
       {
         "program": "languages/typescript/02-core/file-io-basics/exercises/01.ts",
+        "working_dir": "languages/typescript/02-core/file-io-basics",
+        "setup_files": [
+          {
+            "path": "contract-input.txt",
+            "lines": [
+              "alpha",
+              "",
+              "beta",
+              "   ",
+              "gamma"
+            ]
+          }
+        ],
+        "input_lines": [
+          "contract-input.txt"
+        ],
         "required_stdout_contains": [
-          "Expected a file path."
+          "Non-empty lines: 3"
+        ],
+        "cleanup_paths": [
+          "contract-input.txt"
         ]
       },
       {
         "program": "languages/typescript/02-core/file-io-basics/exercises/02.ts",
+        "working_dir": "languages/typescript/02-core/file-io-basics",
+        "setup_files": [
+          {
+            "path": "contract-source.txt",
+            "lines": [
+              "alpha",
+              "Beta"
+            ]
+          }
+        ],
+        "input_lines": [
+          "contract-source.txt",
+          "contract-destination.txt"
+        ],
         "required_stdout_contains": [
-          "Expected source and destination paths."
+          "Wrote uppercase copy to contract-destination.txt"
+        ],
+        "required_outputs": [
+          "contract-destination.txt"
+        ],
+        "required_output_contains": [
+          {
+            "path": "contract-destination.txt",
+            "contains": [
+              "ALPHA",
+              "BETA"
+            ]
+          }
+        ],
+        "cleanup_paths": [
+          "contract-source.txt",
+          "contract-destination.txt"
         ]
       },
       {
         "program": "languages/typescript/02-core/input-validation/exercises/01.ts",
+        "input_lines": [
+          "12"
+        ],
         "required_stdout_contains": [
-          "Expected one integer."
+          "Square: 144"
         ]
       },
       {
         "program": "languages/typescript/02-core/input-validation/exercises/02.ts",
+        "input_lines": [
+          "3",
+          "90",
+          "80",
+          "70"
+        ],
         "required_stdout_contains": [
-          "Score count must be an integer in range 1..50."
+          "Average: 80.00"
         ]
       },
       {
         "program": "languages/typescript/02-core/maps-and-frequency-counting/exercises/01.ts",
+        "input_lines": [
+          "red",
+          "blue",
+          "red",
+          "green",
+          "blue",
+          "red"
+        ],
         "required_stdout_contains": [
-          "Expected at least one word."
+          "red: 3",
+          "blue: 2",
+          "green: 1"
         ]
       },
       {
         "program": "languages/typescript/02-core/maps-and-frequency-counting/exercises/02.ts",
+        "input_lines": [
+          "alpha",
+          "beta",
+          "alpha",
+          "gamma",
+          "beta",
+          "alpha"
+        ],
         "required_stdout_contains": [
-          "Expected at least one word."
+          "Most frequent: alpha",
+          "Count: 3"
         ]
       },
       {
         "program": "languages/typescript/02-core/sorting-and-searching/exercises/01.ts",
+        "input_lines": [
+          "5",
+          "9",
+          "2",
+          "7",
+          "2",
+          "4"
+        ],
         "required_stdout_contains": [
-          "Count must be a positive integer."
+          "2 2 4 7 9"
         ]
       },
       {
         "program": "languages/typescript/02-core/sorting-and-searching/exercises/02.ts",
+        "input_lines": [
+          "5",
+          "2",
+          "4",
+          "7",
+          "9",
+          "11",
+          "7"
+        ],
         "required_stdout_contains": [
-          "Count must be a positive integer."
+          "Index: 2"
         ]
       },
       {
