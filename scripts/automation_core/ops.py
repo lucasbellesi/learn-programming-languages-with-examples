@@ -1892,23 +1892,56 @@ def run_csharp_source_output_contracts(
             )
 
             run_target = project_dir / "bin" / "Debug" / "net8.0" / "exercise-check.dll"
+            working_dir = repo_path(ctx, job["working_dir"]) if "working_dir" in job else ctx.root
+            setup_files = job.get("setup_files", [])
+            cleanup_paths = list(job.get("cleanup_paths", []))
             capture_stdout = bool(
                 job.get("required_stdout_contains") or job.get("required_stdout_patterns")
             )
-            completed = run_command(
-                ["dotnet", str(run_target)],
-                capture_stdout=capture_stdout,
-                quiet_stdout=not capture_stdout,
-                action=f"C# execution for {label_prefix} output contract {job['program']}",
-                timeout_seconds=30,
-            )
-            if capture_stdout:
-                assert_output_contract(
-                    completed.stdout or "",
-                    job,
-                    f"C# {label_prefix} output contract for {job['program']}",
+
+            try:
+                for file_spec in setup_files:
+                    target = working_dir / file_spec["path"]
+                    target.write_text("\n".join(file_spec["lines"]) + "\n", encoding="utf-8")
+
+                input_text = None
+                if "input_lines" in job:
+                    input_text = "\n".join(job["input_lines"]) + "\n"
+                elif "input_file" in job:
+                    input_text = str((working_dir / job["input_file"]).resolve()) + "\n"
+
+                label = f"C# {label_prefix} output contract for {job['program']}"
+                completed = run_command(
+                    ["dotnet", str(run_target)],
+                    cwd=working_dir,
+                    input_text=input_text,
+                    capture_stdout=capture_stdout,
+                    quiet_stdout=not capture_stdout,
+                    action=f"C# execution for {label_prefix} output contract {job['program']}",
+                    timeout_seconds=30,
                 )
-            executed_jobs += 1
+                if capture_stdout:
+                    assert_output_contract(completed.stdout or "", job, label)
+
+                for output_name in job.get("required_outputs", []):
+                    if not (working_dir / output_name).exists():
+                        raise AutomationError(f"{label} did not create {output_name}")
+
+                for output_spec in job.get("required_output_contains", []):
+                    output_path = working_dir / output_spec["path"]
+                    if not output_path.exists():
+                        raise AutomationError(f"{label} did not create {output_spec['path']}")
+
+                    output_text = output_path.read_text(encoding="utf-8")
+                    for expected in output_spec.get("contains", []):
+                        if expected not in output_text:
+                            raise AutomationError(
+                                f"{label} output {output_spec['path']} did not contain "
+                                f"expected text: {expected}\nActual output:\n{output_text}"
+                            )
+                executed_jobs += 1
+            finally:
+                remove_paths(working_dir, cleanup_paths)
 
     return executed_jobs
 
