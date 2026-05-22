@@ -2,9 +2,216 @@
   "languages": {
     "cpp": [
       {
+        "program": "languages/cpp/02-core/input-validation/exercises/01.cpp",
+        "input_lines": [
+          "abc",
+          "150",
+          "12"
+        ],
+        "required_stdout_contains": [
+          "Invalid input. Please enter an integer.",
+          "Out of range. Try again.",
+          "Square: 144"
+        ]
+      },
+      {
+        "program": "languages/cpp/02-core/input-validation/exercises/02.cpp",
+        "input_lines": [
+          "0",
+          "3",
+          "101",
+          "90",
+          "80",
+          "70"
+        ],
+        "required_stdout_contains": [
+          "Count must be between 1 and 50.",
+          "Score must be between 0 and 100.",
+          "Average score: 80"
+        ]
+      },
+      {
+        "program": "languages/cpp/02-core/algorithms-basics/exercises/01.cpp",
+        "input_lines": [
+          "5",
+          "8",
+          "3",
+          "8",
+          "1",
+          "8",
+          "8"
+        ],
+        "required_stdout_contains": [
+          "First index: 0"
+        ]
+      },
+      {
+        "program": "languages/cpp/02-core/algorithms-basics/exercises/02.cpp",
+        "input_lines": [
+          "5",
+          "8",
+          "3",
+          "10",
+          "1",
+          "4"
+        ],
+        "required_stdout_contains": [
+          "Minimum: 1",
+          "Maximum: 10",
+          "Even numbers: 3"
+        ]
+      },
+      {
+        "program": "languages/cpp/02-core/file-io-basics/exercises/01.cpp",
+        "working_dir": "languages/cpp/02-core/file-io-basics",
+        "setup_files": [
+          {
+            "path": "contract-input.txt",
+            "lines": [
+              "alpha",
+              "beta",
+              "gamma"
+            ]
+          }
+        ],
+        "input_lines": [
+          "contract-input.txt",
+          "contract-output.txt"
+        ],
+        "required_stdout_contains": [
+          "Copied 3 lines."
+        ],
+        "required_outputs": [
+          "contract-output.txt"
+        ],
+        "required_output_contains": [
+          {
+            "path": "contract-output.txt",
+            "contains": [
+              "1: alpha",
+              "2: beta",
+              "3: gamma"
+            ]
+          }
+        ],
+        "cleanup_paths": [
+          "contract-input.txt",
+          "contract-output.txt"
+        ]
+      },
+      {
+        "program": "languages/cpp/02-core/file-io-basics/exercises/02.cpp",
+        "working_dir": "languages/cpp/02-core/file-io-basics",
+        "setup_files": [
+          {
+            "path": "scores-contract.txt",
+            "lines": [
+              "Ana 91",
+              "Bob 77",
+              "Carla xx",
+              "Dana yy"
+            ]
+          }
+        ],
+        "input_lines": [
+          "scores-contract.txt"
+        ],
+        "required_stdout_contains": [
+          "Valid rows: 2",
+          "Invalid rows: 2",
+          "Average score: 84"
+        ],
+        "cleanup_paths": [
+          "scores-contract.txt"
+        ]
+      },
+      {
+        "program": "languages/cpp/02-core/sorting-and-searching/exercises/01.cpp",
+        "input_lines": [
+          "5",
+          "9",
+          "2",
+          "7",
+          "2",
+          "4"
+        ],
+        "required_stdout_contains": [
+          "2 2 4 7 9"
+        ]
+      },
+      {
+        "program": "languages/cpp/02-core/sorting-and-searching/exercises/02.cpp",
+        "input_lines": [
+          "5",
+          "2",
+          "4",
+          "7",
+          "9",
+          "11",
+          "7"
+        ],
+        "required_stdout_contains": [
+          "Index: 2"
+        ]
+      },
+      {
+        "program": "languages/cpp/02-core/maps-and-frequency-counting/exercises/01.cpp",
+        "input_lines": [
+          "6",
+          "1",
+          "2",
+          "9",
+          "12",
+          "2",
+          "9"
+        ],
+        "required_stdout_contains": [
+          "1 -> 1",
+          "2 -> 2",
+          "9 -> 2"
+        ]
+      },
+      {
+        "program": "languages/cpp/02-core/maps-and-frequency-counting/exercises/02.cpp",
+        "input_lines": [
+          "swiss"
+        ],
+        "required_stdout_contains": [
+          "First non-repeating character: w"
+        ]
+      },
+      {
+        "program": "languages/cpp/02-core/error-handling-and-defensive-programming/exercises/01.cpp",
+        "input_lines": [
+          "Ana,31,Paris"
+        ],
+        "required_stdout_contains": [
+          "Name: Ana",
+          "Age: 31",
+          "City: Paris"
+        ]
+      },
+      {
+        "program": "languages/cpp/02-core/error-handling-and-defensive-programming/exercises/02.cpp",
+        "input_lines": [
+          "4 0",
+          "word 2",
+          "9 3"
+        ],
+        "required_stdout_contains": [
+          "Divisor cannot be zero. Try again.",
+          "Invalid input type. Try again.",
+          "Result: 3"
+        ]
+      },
+      {
         "program": "languages/cpp/03-advanced/copy-and-move-semantics/exercises/01.cpp",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Constructed IntBuffer",
+          "Copied IntBuffer",
+          "Moved IntBuffer",
+          "Copy-assigned IntBuffer",
+          "Move-assigned IntBuffer"
         ]
       },
       {
@@ -37,6 +244,213 @@
     ],
     "csharp": [
       {
+        "program": "languages/csharp/02-core/input-validation/exercises/01.cs",
+        "input_lines": [
+          "abc",
+          "150",
+          "12"
+        ],
+        "required_stdout_contains": [
+          "Invalid input. Please enter an integer.",
+          "Out of range. Try again.",
+          "Square: 144"
+        ]
+      },
+      {
+        "program": "languages/csharp/02-core/input-validation/exercises/02.cs",
+        "input_lines": [
+          "0",
+          "3",
+          "101",
+          "90",
+          "80",
+          "70"
+        ],
+        "required_stdout_contains": [
+          "Value must be between 1 and 50."
+        ],
+        "required_stdout_patterns": [
+          "Value must be between 0[,.]0 and 100[,.]0\\.",
+          "Average score: 80[,.]00"
+        ]
+      },
+      {
+        "program": "languages/csharp/02-core/algorithms-basics/exercises/01.cs",
+        "input_lines": [
+          "5",
+          "8",
+          "3",
+          "8",
+          "1",
+          "8",
+          "8"
+        ],
+        "required_stdout_contains": [
+          "First index: 0"
+        ]
+      },
+      {
+        "program": "languages/csharp/02-core/algorithms-basics/exercises/02.cs",
+        "input_lines": [
+          "5",
+          "8",
+          "3",
+          "10",
+          "1",
+          "4"
+        ],
+        "required_stdout_contains": [
+          "Minimum: 1",
+          "Maximum: 10",
+          "Even numbers: 3"
+        ]
+      },
+      {
+        "program": "languages/csharp/02-core/file-io-basics/exercises/01.cs",
+        "working_dir": "languages/csharp/02-core/file-io-basics",
+        "setup_files": [
+          {
+            "path": "contract-input.txt",
+            "lines": [
+              "alpha",
+              "beta",
+              "gamma"
+            ]
+          }
+        ],
+        "input_lines": [
+          "contract-input.txt",
+          "contract-output.txt"
+        ],
+        "required_stdout_contains": [
+          "Copied 3 lines."
+        ],
+        "required_outputs": [
+          "contract-output.txt"
+        ],
+        "required_output_contains": [
+          {
+            "path": "contract-output.txt",
+            "contains": [
+              "1: alpha",
+              "2: beta",
+              "3: gamma"
+            ]
+          }
+        ],
+        "cleanup_paths": [
+          "contract-input.txt",
+          "contract-output.txt"
+        ]
+      },
+      {
+        "program": "languages/csharp/02-core/file-io-basics/exercises/02.cs",
+        "working_dir": "languages/csharp/02-core/file-io-basics",
+        "setup_files": [
+          {
+            "path": "scores-contract.txt",
+            "lines": [
+              "Ana 91",
+              "InvalidRow",
+              "Bob 77",
+              "Carla xx"
+            ]
+          }
+        ],
+        "input_lines": [
+          "scores-contract.txt"
+        ],
+        "required_stdout_contains": [
+          "Valid rows: 2",
+          "Invalid rows: 2"
+        ],
+        "required_stdout_patterns": [
+          "Average score: 84[,.]00"
+        ],
+        "cleanup_paths": [
+          "scores-contract.txt"
+        ]
+      },
+      {
+        "program": "languages/csharp/02-core/sorting-and-searching/exercises/01.cs",
+        "input_lines": [
+          "5",
+          "9",
+          "2",
+          "7",
+          "2",
+          "4"
+        ],
+        "required_stdout_contains": [
+          "2 2 4 7 9"
+        ]
+      },
+      {
+        "program": "languages/csharp/02-core/sorting-and-searching/exercises/02.cs",
+        "input_lines": [
+          "5",
+          "2",
+          "4",
+          "7",
+          "9",
+          "11",
+          "7"
+        ],
+        "required_stdout_contains": [
+          "Index: 2"
+        ]
+      },
+      {
+        "program": "languages/csharp/02-core/maps-and-frequency-counting/exercises/01.cs",
+        "input_lines": [
+          "6",
+          "1",
+          "2",
+          "9",
+          "12",
+          "2",
+          "9"
+        ],
+        "required_stdout_contains": [
+          "1 -> 1",
+          "2 -> 2",
+          "9 -> 2"
+        ]
+      },
+      {
+        "program": "languages/csharp/02-core/maps-and-frequency-counting/exercises/02.cs",
+        "input_lines": [
+          "swiss"
+        ],
+        "required_stdout_contains": [
+          "First non-repeating character: w"
+        ]
+      },
+      {
+        "program": "languages/csharp/02-core/error-handling-and-defensive-programming/exercises/01.cs",
+        "input_lines": [
+          "Ana,31,Paris"
+        ],
+        "required_stdout_contains": [
+          "Name: Ana",
+          "Age: 31",
+          "City: Paris"
+        ]
+      },
+      {
+        "program": "languages/csharp/02-core/error-handling-and-defensive-programming/exercises/02.cs",
+        "input_lines": [
+          "4 0",
+          "word 2",
+          "9 3"
+        ],
+        "required_stdout_contains": [
+          "Divisor cannot be zero. Try again.",
+          "Invalid input type. Try again.",
+          "Result: 3"
+        ]
+      },
+      {
         "program": "languages/csharp/03-advanced/inheritance-and-polymorphism/exercises/02.cs",
         "required_stdout_contains": [
           "Total area:"
@@ -66,6 +480,209 @@
     ],
     "go": [
       {
+        "program": "languages/go/02-core/input-validation/exercises/01.go",
+        "input_lines": [
+          "abc",
+          "150",
+          "12"
+        ],
+        "required_stdout_contains": [
+          "Invalid input. Please enter an integer.",
+          "Out of range. Try again.",
+          "Square: 144"
+        ]
+      },
+      {
+        "program": "languages/go/02-core/input-validation/exercises/02.go",
+        "input_lines": [
+          "0",
+          "3",
+          "101",
+          "90",
+          "80",
+          "70"
+        ],
+        "required_stdout_contains": [
+          "Value must be between 1 and 50.",
+          "Value must be between 0.0 and 100.0.",
+          "Average score: 80.00"
+        ]
+      },
+      {
+        "program": "languages/go/02-core/algorithms-basics/exercises/01.go",
+        "input_lines": [
+          "5",
+          "8",
+          "3",
+          "8",
+          "1",
+          "8",
+          "8"
+        ],
+        "required_stdout_contains": [
+          "First index: 0"
+        ]
+      },
+      {
+        "program": "languages/go/02-core/algorithms-basics/exercises/02.go",
+        "input_lines": [
+          "5",
+          "8",
+          "3",
+          "10",
+          "1",
+          "4"
+        ],
+        "required_stdout_contains": [
+          "Minimum: 1",
+          "Maximum: 10",
+          "Even numbers: 3"
+        ]
+      },
+      {
+        "program": "languages/go/02-core/file-io-basics/exercises/01.go",
+        "working_dir": "languages/go/02-core/file-io-basics",
+        "setup_files": [
+          {
+            "path": "contract-input.txt",
+            "lines": [
+              "alpha",
+              "beta",
+              "gamma"
+            ]
+          }
+        ],
+        "input_lines": [
+          "contract-input.txt",
+          "contract-output.txt"
+        ],
+        "required_stdout_contains": [
+          "Copied 3 lines."
+        ],
+        "required_outputs": [
+          "contract-output.txt"
+        ],
+        "required_output_contains": [
+          {
+            "path": "contract-output.txt",
+            "contains": [
+              "1: alpha",
+              "2: beta",
+              "3: gamma"
+            ]
+          }
+        ],
+        "cleanup_paths": [
+          "contract-input.txt",
+          "contract-output.txt"
+        ]
+      },
+      {
+        "program": "languages/go/02-core/file-io-basics/exercises/02.go",
+        "working_dir": "languages/go/02-core/file-io-basics",
+        "setup_files": [
+          {
+            "path": "scores-contract.txt",
+            "lines": [
+              "Ana 91",
+              "InvalidRow",
+              "Bob 77",
+              "Carla xx"
+            ]
+          }
+        ],
+        "input_lines": [
+          "scores-contract.txt"
+        ],
+        "required_stdout_contains": [
+          "Valid rows: 2",
+          "Invalid rows: 2",
+          "Average score: 84.00"
+        ],
+        "cleanup_paths": [
+          "scores-contract.txt"
+        ]
+      },
+      {
+        "program": "languages/go/02-core/sorting-and-searching/exercises/01.go",
+        "input_lines": [
+          "5",
+          "9",
+          "2",
+          "7",
+          "2",
+          "4"
+        ],
+        "required_stdout_contains": [
+          "2 2 4 7 9"
+        ]
+      },
+      {
+        "program": "languages/go/02-core/sorting-and-searching/exercises/02.go",
+        "input_lines": [
+          "5",
+          "2",
+          "4",
+          "7",
+          "9",
+          "11",
+          "7"
+        ],
+        "required_stdout_contains": [
+          "Index: 2"
+        ]
+      },
+      {
+        "program": "languages/go/02-core/maps-and-frequency-counting/exercises/01.go",
+        "input_lines": [
+          "6",
+          "1",
+          "2",
+          "9",
+          "12",
+          "2",
+          "9"
+        ],
+        "required_stdout_contains": [
+          "1 -> 1",
+          "2 -> 2",
+          "9 -> 2"
+        ]
+      },
+      {
+        "program": "languages/go/02-core/maps-and-frequency-counting/exercises/02.go",
+        "input_lines": [
+          "swiss"
+        ],
+        "required_stdout_contains": [
+          "First non-repeating character: w"
+        ]
+      },
+      {
+        "program": "languages/go/02-core/error-handling-and-defensive-programming/exercises/01.go",
+        "input_lines": [
+          "Ana,31,Paris"
+        ],
+        "required_stdout_contains": [
+          "Name: Ana",
+          "Age: 31",
+          "City: Paris"
+        ]
+      },
+      {
+        "program": "languages/go/02-core/error-handling-and-defensive-programming/exercises/02.go",
+        "input_lines": [
+          "4 0",
+          "word 2",
+          "9 3"
+        ],
+        "required_stdout_contains": [
+          "Divisor cannot be zero. Try again.",
+          "Invalid input type. Try again.",
+          "Result: 3"
+        ]
+      },
+      {
         "program": "languages/go/03-advanced/inheritance-and-polymorphism/exercises/02.go",
         "required_stdout_contains": [
           "Total area:"
@@ -94,6 +711,209 @@
       }
     ],
     "python": [
+      {
+        "program": "languages/python/02-core/input-validation/exercises/01.py",
+        "input_lines": [
+          "abc",
+          "150",
+          "12"
+        ],
+        "required_stdout_contains": [
+          "Invalid input. Please enter an integer.",
+          "Out of range. Try again.",
+          "Square: 144"
+        ]
+      },
+      {
+        "program": "languages/python/02-core/input-validation/exercises/02.py",
+        "input_lines": [
+          "0",
+          "3",
+          "101",
+          "90",
+          "80",
+          "70"
+        ],
+        "required_stdout_contains": [
+          "Value must be between 1 and 50.",
+          "Value must be between 0.0 and 100.0.",
+          "Average score: 80.0"
+        ]
+      },
+      {
+        "program": "languages/python/02-core/algorithms-basics/exercises/01.py",
+        "input_lines": [
+          "5",
+          "8",
+          "3",
+          "8",
+          "1",
+          "8",
+          "8"
+        ],
+        "required_stdout_contains": [
+          "First index: 0"
+        ]
+      },
+      {
+        "program": "languages/python/02-core/algorithms-basics/exercises/02.py",
+        "input_lines": [
+          "5",
+          "8",
+          "3",
+          "10",
+          "1",
+          "4"
+        ],
+        "required_stdout_contains": [
+          "Minimum: 1",
+          "Maximum: 10",
+          "Even numbers: 3"
+        ]
+      },
+      {
+        "program": "languages/python/02-core/file-io-basics/exercises/01.py",
+        "working_dir": "languages/python/02-core/file-io-basics",
+        "setup_files": [
+          {
+            "path": "contract-input.txt",
+            "lines": [
+              "alpha",
+              "beta",
+              "gamma"
+            ]
+          }
+        ],
+        "input_lines": [
+          "contract-input.txt",
+          "contract-output.txt"
+        ],
+        "required_stdout_contains": [
+          "Copied 3 lines."
+        ],
+        "required_outputs": [
+          "contract-output.txt"
+        ],
+        "required_output_contains": [
+          {
+            "path": "contract-output.txt",
+            "contains": [
+              "1: alpha",
+              "2: beta",
+              "3: gamma"
+            ]
+          }
+        ],
+        "cleanup_paths": [
+          "contract-input.txt",
+          "contract-output.txt"
+        ]
+      },
+      {
+        "program": "languages/python/02-core/file-io-basics/exercises/02.py",
+        "working_dir": "languages/python/02-core/file-io-basics",
+        "setup_files": [
+          {
+            "path": "scores-contract.txt",
+            "lines": [
+              "Ana 91",
+              "InvalidRow",
+              "Bob 77",
+              "Carla xx"
+            ]
+          }
+        ],
+        "input_lines": [
+          "scores-contract.txt"
+        ],
+        "required_stdout_contains": [
+          "Valid rows: 2",
+          "Invalid rows: 2",
+          "Average score: 84.00"
+        ],
+        "cleanup_paths": [
+          "scores-contract.txt"
+        ]
+      },
+      {
+        "program": "languages/python/02-core/sorting-and-searching/exercises/01.py",
+        "input_lines": [
+          "5",
+          "9",
+          "2",
+          "7",
+          "2",
+          "4"
+        ],
+        "required_stdout_contains": [
+          "2 2 4 7 9"
+        ]
+      },
+      {
+        "program": "languages/python/02-core/sorting-and-searching/exercises/02.py",
+        "input_lines": [
+          "5",
+          "2",
+          "4",
+          "7",
+          "9",
+          "11",
+          "7"
+        ],
+        "required_stdout_contains": [
+          "Index: 2"
+        ]
+      },
+      {
+        "program": "languages/python/02-core/maps-and-frequency-counting/exercises/01.py",
+        "input_lines": [
+          "6",
+          "1",
+          "2",
+          "9",
+          "12",
+          "2",
+          "9"
+        ],
+        "required_stdout_contains": [
+          "1 -> 1",
+          "2 -> 2",
+          "9 -> 2"
+        ]
+      },
+      {
+        "program": "languages/python/02-core/maps-and-frequency-counting/exercises/02.py",
+        "input_lines": [
+          "swiss"
+        ],
+        "required_stdout_contains": [
+          "First non-repeating character: w"
+        ]
+      },
+      {
+        "program": "languages/python/02-core/error-handling-and-defensive-programming/exercises/01.py",
+        "input_lines": [
+          "Ana,31,Paris"
+        ],
+        "required_stdout_contains": [
+          "Name: Ana",
+          "Age: 31",
+          "City: Paris"
+        ]
+      },
+      {
+        "program": "languages/python/02-core/error-handling-and-defensive-programming/exercises/02.py",
+        "input_lines": [
+          "4 0",
+          "word 2",
+          "9 3"
+        ],
+        "required_stdout_contains": [
+          "Divisor cannot be zero. Try again.",
+          "Invalid input type. Try again.",
+          "Result: 3.0"
+        ]
+      },
       {
         "program": "languages/python/03-advanced/inheritance-and-polymorphism/exercises/02.py",
         "required_stdout_contains": [
@@ -125,200 +945,346 @@
     "typescript": [
       {
         "program": "languages/typescript/01-foundations/arrays-and-vectors/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Count must be a positive integer.",
+          "Missing or invalid integer values."
         ]
       },
       {
         "program": "languages/typescript/01-foundations/arrays-and-vectors/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected at least one word."
         ]
       },
       {
         "program": "languages/typescript/01-foundations/control-flow/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected one integer option.",
+          "Unknown option"
         ]
       },
       {
         "program": "languages/typescript/01-foundations/control-flow/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected a non-negative integer.",
+          "Countdown complete."
         ]
       },
       {
         "program": "languages/typescript/01-foundations/formatted-output-and-iomanip/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected: item quantity unitPrice",
+          "Invalid invoice data."
         ]
       },
       {
         "program": "languages/typescript/01-foundations/formatted-output-and-iomanip/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected pairs of name and score."
         ]
       },
       {
         "program": "languages/typescript/01-foundations/functions/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected three integers."
         ]
       },
       {
         "program": "languages/typescript/01-foundations/functions/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "0"
         ]
       },
       {
         "program": "languages/typescript/01-foundations/operators-and-expressions/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected two integers and a non-zero divisor.",
+          "Quotient: NaN",
+          "Remainder: NaN",
+          "Left is even: false"
         ]
       },
       {
         "program": "languages/typescript/01-foundations/operators-and-expressions/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected: subtotal loyaltyFlag",
+          "Final price: NaN"
         ]
       },
       {
         "program": "languages/typescript/01-foundations/scope-and-lifetime-basics/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected: start callCount"
         ]
       },
       {
         "program": "languages/typescript/01-foundations/scope-and-lifetime-basics/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected: outerWord innerWord",
+          "Outer before block:",
+          "Inner block: undefined",
+          "Outer after block:"
         ]
       },
       {
         "program": "languages/typescript/01-foundations/strings/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "0"
         ]
       },
       {
         "program": "languages/typescript/01-foundations/strings/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected a token shaped like name@domain.",
+          "@***"
         ]
       },
       {
         "program": "languages/typescript/01-foundations/types-and-io/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected an integer count followed by values.",
+          "Count must be a positive integer.",
+          "Missing or invalid numeric values.",
+          "Sum: 0",
+          "Average: NaN",
+          "Minimum: Infinity",
+          "Maximum: -Infinity"
         ]
       },
       {
         "program": "languages/typescript/01-foundations/types-and-io/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected: product price quantity",
+          "Invalid invoice data.",
+          "Quantity: NaN",
+          "Price: NaN",
+          "Total: NaN"
         ]
       },
       {
         "program": "languages/typescript/02-core/algorithms-basics/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "input_lines": [
+          "5",
+          "8",
+          "3",
+          "8",
+          "1",
+          "8",
+          "8"
+        ],
+        "required_stdout_contains": [
+          "First index: 0"
         ]
       },
       {
         "program": "languages/typescript/02-core/algorithms-basics/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "input_lines": [
+          "5",
+          "8",
+          "3",
+          "10",
+          "1",
+          "4"
+        ],
+        "required_stdout_contains": [
+          "Minimum: 1",
+          "Maximum: 10",
+          "Even count: 3"
         ]
       },
       {
         "program": "languages/typescript/02-core/error-handling-and-defensive-programming/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "input_lines": [
+          "Ana Maria 91"
+        ],
+        "required_stdout_contains": [
+          "Accepted: Ana Maria (91)"
         ]
       },
       {
         "program": "languages/typescript/02-core/error-handling-and-defensive-programming/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "input_lines": [
+          "10",
+          "skip",
+          "20",
+          "bad",
+          "30"
+        ],
+        "required_stdout_contains": [
+          "Valid count: 3",
+          "Average: 20.00"
         ]
       },
       {
         "program": "languages/typescript/02-core/file-io-basics/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "working_dir": "languages/typescript/02-core/file-io-basics",
+        "setup_files": [
+          {
+            "path": "contract-input.txt",
+            "lines": [
+              "alpha",
+              "",
+              "beta",
+              "   ",
+              "gamma"
+            ]
+          }
+        ],
+        "input_lines": [
+          "contract-input.txt"
+        ],
+        "required_stdout_contains": [
+          "Non-empty lines: 3"
+        ],
+        "cleanup_paths": [
+          "contract-input.txt"
         ]
       },
       {
         "program": "languages/typescript/02-core/file-io-basics/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "working_dir": "languages/typescript/02-core/file-io-basics",
+        "setup_files": [
+          {
+            "path": "contract-source.txt",
+            "lines": [
+              "alpha",
+              "Beta"
+            ]
+          }
+        ],
+        "input_lines": [
+          "contract-source.txt",
+          "contract-destination.txt"
+        ],
+        "required_stdout_contains": [
+          "Wrote uppercase copy to contract-destination.txt"
+        ],
+        "required_outputs": [
+          "contract-destination.txt"
+        ],
+        "required_output_contains": [
+          {
+            "path": "contract-destination.txt",
+            "contains": [
+              "ALPHA",
+              "BETA"
+            ]
+          }
+        ],
+        "cleanup_paths": [
+          "contract-source.txt",
+          "contract-destination.txt"
         ]
       },
       {
         "program": "languages/typescript/02-core/input-validation/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "input_lines": [
+          "12"
+        ],
+        "required_stdout_contains": [
+          "Square: 144"
         ]
       },
       {
         "program": "languages/typescript/02-core/input-validation/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "input_lines": [
+          "3",
+          "90",
+          "80",
+          "70"
+        ],
+        "required_stdout_contains": [
+          "Average: 80.00"
         ]
       },
       {
         "program": "languages/typescript/02-core/maps-and-frequency-counting/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "input_lines": [
+          "red",
+          "blue",
+          "red",
+          "green",
+          "blue",
+          "red"
+        ],
+        "required_stdout_contains": [
+          "red: 3",
+          "blue: 2",
+          "green: 1"
         ]
       },
       {
         "program": "languages/typescript/02-core/maps-and-frequency-counting/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "input_lines": [
+          "alpha",
+          "beta",
+          "alpha",
+          "gamma",
+          "beta",
+          "alpha"
+        ],
+        "required_stdout_contains": [
+          "Most frequent: alpha",
+          "Count: 3"
         ]
       },
       {
         "program": "languages/typescript/02-core/sorting-and-searching/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "input_lines": [
+          "5",
+          "9",
+          "2",
+          "7",
+          "2",
+          "4"
+        ],
+        "required_stdout_contains": [
+          "2 2 4 7 9"
         ]
       },
       {
         "program": "languages/typescript/02-core/sorting-and-searching/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "input_lines": [
+          "5",
+          "2",
+          "4",
+          "7",
+          "9",
+          "11",
+          "7"
+        ],
+        "required_stdout_contains": [
+          "Index: 2"
         ]
       },
       {
         "program": "languages/typescript/03-advanced/constructors-and-invariants/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Owner name is required."
         ]
       },
       {
         "program": "languages/typescript/03-advanced/constructors-and-invariants/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected numeric temperatures."
         ]
       },
       {
         "program": "languages/typescript/03-advanced/copy-and-move-semantics/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected: name nonNegativeQuantity"
         ]
       },
       {
         "program": "languages/typescript/03-advanced/copy-and-move-semantics/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected: name inStock reserved"
         ]
       },
       {
         "program": "languages/typescript/03-advanced/inheritance-and-polymorphism/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected: kind price"
         ]
       },
       {
@@ -329,44 +1295,53 @@
       },
       {
         "program": "languages/typescript/03-advanced/structs-and-classes/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Count must be a positive integer."
         ]
       },
       {
         "program": "languages/typescript/03-advanced/structs-and-classes/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected: label quantity unitPrice"
         ]
       },
       {
         "program": "languages/typescript/03-advanced/templates-basics/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected at least one value."
         ]
       },
       {
         "program": "languages/typescript/03-advanced/templates-basics/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Expected two values."
         ]
       },
       {
         "program": "languages/typescript/04-expert/concurrency-basics/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "alpha ready",
+          "beta ready",
+          "gamma ready"
         ]
       },
       {
         "program": "languages/typescript/04-expert/concurrency-basics/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "finished 30",
+          "finished 10",
+          "finished 20",
+          "finished 5"
         ]
       },
       {
         "program": "languages/typescript/04-expert/memory-management-and-raii/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Acquire session-cache",
+          "Append header",
+          "Append payload",
+          "Caught: Simulated failure after work",
+          "Release session-cache"
         ]
       },
       {
@@ -378,26 +1353,31 @@
       },
       {
         "program": "languages/typescript/04-expert/modularization-and-build-structure/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Service: notifications",
+          "Retries: 3"
         ]
       },
       {
         "program": "languages/typescript/04-expert/modularization-and-build-structure/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "login: 2",
+          "purchase: 2",
+          "logout: 1"
         ]
       },
       {
         "program": "languages/typescript/04-expert/performance-and-profiling-basics/exercises/01.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Scan average (ms):",
+          "Map average (ms):"
         ]
       },
       {
         "program": "languages/typescript/04-expert/performance-and-profiling-basics/exercises/02.ts",
-        "required_stdout_patterns": [
-          "\\S"
+        "required_stdout_contains": [
+          "Concat average (ms):",
+          "Buffered average (ms):"
         ]
       },
       {

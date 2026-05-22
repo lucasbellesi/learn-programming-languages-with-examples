@@ -160,7 +160,7 @@ bash ./scripts/verify-repo.sh
 bash ./scripts/lint.sh
 ~~~
 
-`verify-repo` validates curriculum structure, output contracts, and compiled-language builds. `lint` validates formatting and static checks for C++, Python, Go, C#, and TypeScript.
+`verify-repo` validates curriculum structure, the blocking education-quality gate, output contracts, and compiled-language builds. `lint` validates formatting and static checks for C++, Python, Go, C#, and TypeScript.
 
 Use narrower commands only when you want a faster loop on one area:
 
@@ -177,6 +177,7 @@ Use narrower commands only when you want a faster loop on one area:
 ./scripts/lint.ps1
 ./scripts/smoke-languages.ps1
 ./scripts/build-all.ps1
+./scripts/clean-artifacts.ps1
 ./scripts/verify-repo.ps1
 ~~~
 
@@ -193,6 +194,7 @@ bash ./scripts/audit-education-quality.sh
 bash ./scripts/lint.sh
 bash ./scripts/smoke-languages.sh
 bash ./scripts/build-all.sh
+bash ./scripts/clean-artifacts.sh
 bash ./scripts/verify-repo.sh
 ~~~
 
@@ -200,12 +202,14 @@ GitHub Actions validates links, README structure, module completeness, checkpoin
 
 The public PowerShell and Bash scripts remain the supported entrypoints, but they now delegate to a shared Python automation core under `scripts/automation.py` backed by `scripts/automation_manifest.json`.
 
+Use `clean-artifacts` when you want to remove generated build outputs, reports, temporary binaries, and exercise report files without removing dependencies such as `node_modules`.
+
 The multi-language smoke scripts also compile standalone C# exercises by generating temporary validation projects during the check and compile TypeScript programs before executing their smoke targets.
 
 Use [EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md](EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md) to keep entry examples pedagogically consistent during reviews. The education audit command is advisory and writes markdown/json findings without failing CI.
 Use [EDUCATIONAL_ANTI_PATTERN_BACKLOG.md](EDUCATIONAL_ANTI_PATTERN_BACKLOG.md) for the prioritized anti-pattern vs corrected-example expansion plan.
 
-When you want to enforce the education audit during focused cleanup work, run:
+`verify-repo` now fails on blocking education-quality findings: low example-comment ratio, missing output explanation markers, or boilerplate comments. Oversized example findings remain advisory. When you want the stricter local cleanup mode that also fails on oversized examples, run:
 
 ~~~bash
 python scripts/automation.py audit-education-quality --fail-on-findings

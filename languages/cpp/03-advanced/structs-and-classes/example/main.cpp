@@ -4,47 +4,29 @@
 
 #include <iostream>
 #include <string>
-#include <vector>
 using namespace std;
 
 struct Student {
+    // A struct is a good fit for simple public data.
     string name;
-    int age;
     double grade;
-
-    void print() const {
-        cout << "Student{name=\"" << name << "\", age=" << age << ", grade=" << grade << "}\n";
-    }
 };
 
 class BankAccount {
   public:
     BankAccount(const string& ownerName, double initialBalance)
-        : owner(ownerName), balance(initialBalance) {
-        if (balance < 0.0) {
-            balance = 0.0;
-        }
-    }
+        : owner(ownerName), balance(initialBalance < 0.0 ? 0.0 : initialBalance) {}
 
-    bool deposit(double amount) {
-        if (amount <= 0.0) {
+    bool applyTransaction(double amount) {
+        // A class can guard updates before private state changes.
+        if (balance + amount < 0.0) {
             return false;
         }
         balance += amount;
         return true;
     }
 
-    bool withdraw(double amount) {
-        if (amount <= 0.0 || amount > balance) {
-            return false;
-        }
-        balance -= amount;
-        return true;
-    }
-
-    const string& getOwner() const { return owner; }
-
-    double getBalance() const { return balance; }
+    void print() const { cout << "Owner: " << owner << "\nBalance: " << balance << '\n'; }
 
   private:
     string owner;
@@ -54,21 +36,20 @@ class BankAccount {
 // Walk through one fixed scenario so structs and classes behavior stays repeatable.
 int main() {
     // Prepare sample inputs that exercise the key structs and classes path.
-    vector<Student> students{{"Alex Johnson", 19, 8.7}, {"Maya Patel", 20, 9.1}};
+    Student first{"Alex Johnson", 8.7};
+    Student second{"Maya Patel", 9.1};
 
     // Report values so learners can verify the structs and classes outcome.
     cout << "Students (struct example):\n";
-    for (const Student& student : students) {
-        student.print();
-    }
+    cout << "Student{name=\"" << first.name << "\", grade=" << first.grade << "}\n";
+    cout << "Student{name=\"" << second.name << "\", grade=" << second.grade << "}\n";
 
     BankAccount account("Alex Johnson", 100.0);
-    account.deposit(40.0);
-    account.withdraw(25.0);
+    account.applyTransaction(40.0);
+    account.applyTransaction(-25.0);
 
     cout << "\nBank account (class example):\n";
-    cout << "Owner: " << account.getOwner() << '\n';
-    cout << "Balance: " << account.getBalance() << '\n';
+    account.print();
 
     return 0;
 }

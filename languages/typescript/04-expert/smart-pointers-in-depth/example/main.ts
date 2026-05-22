@@ -14,6 +14,7 @@ class NoteOwner {
     ) {}
 
     transferTo(other: NoteOwner): void {
+        // Moving ownership leaves the source empty and makes the destination responsible.
         if (this.note === null) {
             return;
         }
@@ -23,6 +24,7 @@ class NoteOwner {
     }
 
     currentNote(): Note | null {
+        // Returning the object shows that aliases can still observe shared mutable state.
         return this.note;
     }
 
@@ -44,6 +46,7 @@ function main(): void {
     const inbox = new NoteOwner("inbox", originalNote);
     const archive = new NoteOwner("archive", null);
 
+    // Print ownership before and after transfer so the lifetime change is visible.
     // Report values so learners can verify the smart pointers in depth outcome.
     console.log(inbox.describe());
     console.log(archive.describe());

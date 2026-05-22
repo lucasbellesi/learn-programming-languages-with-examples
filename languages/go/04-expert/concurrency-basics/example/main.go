@@ -23,6 +23,7 @@ func main() {
 		go func() {
 			defer wg.Done()
 			for step := 0; step < incrementsPerWorker; step++ {
+				// Protect the shared counter so each increment is applied completely.
 				counterMu.Lock()
 				counter++
 				counterMu.Unlock()
@@ -36,12 +37,14 @@ func main() {
 	fmt.Printf("Actual counter: %d\n", counter)
 
 	fmt.Println("Producer-consumer demo:")
+	// Channels pass ownership of each job value from producer to consumer.
 	jobs := make(chan int)
 	totals := make(chan int, 1)
 
 	go func() {
 		total := 0
 		for value := range jobs {
+			// The consumer owns aggregation, so no extra lock is needed for total.
 			fmt.Printf("Consumed %d\n", value)
 			total += value
 		}

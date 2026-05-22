@@ -12,54 +12,29 @@ type Coordinate struct {
 }
 
 func (c Coordinate) ManhattanDistanceFromOrigin() int {
-	return abs(c.X) + abs(c.Y)
-}
-
-func abs(value int) int {
-	if value < 0 {
-		return -value
+	// Value-style methods can compute from fields without changing the struct.
+	x, y := c.X, c.Y
+	if x < 0 {
+		x = -x
 	}
-	return value
+	if y < 0 {
+		y = -y
+	}
+	return x + y
 }
 
 type Wallet struct {
-	owner   string
-	balance float64
+	Owner   string
+	Balance float64
 }
 
-func NewWallet(owner string, initialBalance float64) *Wallet {
-	if owner == "" {
-		owner = "Unknown"
-	}
-	if initialBalance < 0 {
-		initialBalance = 0
-	}
-
-	return &Wallet{owner: owner, balance: initialBalance}
-}
-
-func (w *Wallet) Deposit(amount float64) bool {
-	if amount <= 0 {
+func (w *Wallet) Apply(amount float64) bool {
+	// Pointer-style methods update state while protecting the invariant.
+	if w.Balance+amount < 0 {
 		return false
 	}
-	w.balance += amount
+	w.Balance += amount
 	return true
-}
-
-func (w *Wallet) Withdraw(amount float64) bool {
-	if amount <= 0 || amount > w.balance {
-		return false
-	}
-	w.balance -= amount
-	return true
-}
-
-func (w *Wallet) Owner() string {
-	return w.owner
-}
-
-func (w *Wallet) Balance() float64 {
-	return w.balance
 }
 
 // Walk through one fixed scenario so structs and classes behavior stays repeatable.
@@ -73,11 +48,11 @@ func main() {
 		fmt.Printf("Point (%d, %d), Manhattan distance = %d\n", point.X, point.Y, point.ManhattanDistanceFromOrigin())
 	}
 
-	wallet := NewWallet("Maya", 120)
-	wallet.Deposit(35)
-	wallet.Withdraw(40)
+	wallet := Wallet{Owner: "Maya", Balance: 120}
+	wallet.Apply(35)
+	wallet.Apply(-40)
 
 	fmt.Println("\nWallet (class-style example):")
-	fmt.Printf("Owner: %s\n", wallet.Owner())
-	fmt.Printf("Balance: %.2f\n", wallet.Balance())
+	fmt.Printf("Owner: %s\n", wallet.Owner)
+	fmt.Printf("Balance: %.2f\n", wallet.Balance)
 }

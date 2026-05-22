@@ -12,16 +12,22 @@ import (
 )
 
 // Helper setup for input validation; this keeps the walkthrough readable.
-func readIntInRange(reader *bufio.Reader, prompt string, minValue int, maxValue int) int {
+func readRequiredLine(reader *bufio.Reader, prompt string) string {
 	for {
 		fmt.Print(prompt)
 		line, err := reader.ReadString('\n')
-		if err != nil && len(line) == 0 {
-			fmt.Println("Input error. Please try again.")
-			continue
+		if err == nil || len(line) > 0 {
+			return strings.TrimSpace(line)
 		}
 
-		value, parseErr := strconv.Atoi(strings.TrimSpace(line))
+		fmt.Println("Input error. Please try again.")
+	}
+}
+
+func readIntInRange(reader *bufio.Reader, prompt string, minValue int, maxValue int) int {
+	for {
+		// Parse first, then validate the numeric range.
+		value, parseErr := strconv.Atoi(readRequiredLine(reader, prompt))
 		if parseErr != nil {
 			fmt.Println("Invalid input type. Please enter an integer.")
 			continue
@@ -38,14 +44,8 @@ func readIntInRange(reader *bufio.Reader, prompt string, minValue int, maxValue 
 
 func readFloatInRange(reader *bufio.Reader, prompt string, minValue float64, maxValue float64) float64 {
 	for {
-		fmt.Print(prompt)
-		line, err := reader.ReadString('\n')
-		if err != nil && len(line) == 0 {
-			fmt.Println("Input error. Please try again.")
-			continue
-		}
-
-		value, parseErr := strconv.ParseFloat(strings.TrimSpace(line), 64)
+		// The same validation shape works for decimal input too.
+		value, parseErr := strconv.ParseFloat(readRequiredLine(reader, prompt), 64)
 		if parseErr != nil {
 			fmt.Println("Invalid input type. Please enter a decimal number.")
 			continue

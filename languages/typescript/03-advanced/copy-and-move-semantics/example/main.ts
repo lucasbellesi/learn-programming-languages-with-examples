@@ -10,6 +10,7 @@ type InventoryRecord = {
 };
 
 function cloneInventory(record: InventoryRecord): InventoryRecord {
+    // Clone nested data so later updates cannot leak back to the source object.
     return {
         name: record.name,
         counts: {
@@ -24,10 +25,12 @@ const original: InventoryRecord = {
     counts: { inStock: 10, reserved: 2 },
 };
 
+// These three names model aliasing, shallow copying, and deep copying side by side.
 const alias = original;
 const shallowCopy = { ...original };
 const deepCopy = cloneInventory(original);
 
+// Mutating each reference reveals which objects still share nested state.
 alias.counts.inStock -= 1;
 shallowCopy.counts.reserved += 3;
 deepCopy.counts.inStock += 5;

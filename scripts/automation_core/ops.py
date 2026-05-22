@@ -58,6 +58,7 @@ def build_parser() -> argparse.ArgumentParser:
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     add_simple_command(subparsers, "build-all", handle_build_all)
+    add_simple_command(subparsers, "clean-artifacts", handle_clean_artifacts)
     add_simple_command(subparsers, "check-links", handle_check_links)
     add_simple_command(subparsers, "check-readme-structure", handle_check_readme_structure)
     add_simple_command(subparsers, "check-module-completeness", handle_check_module_completeness)
@@ -69,6 +70,14 @@ def build_parser() -> argparse.ArgumentParser:
         "--fail-on-findings",
         action="store_true",
         help="Exit non-zero when the audit finds any learner-quality findings.",
+    )
+    audit_education_quality_parser.add_argument(
+        "--fail-on-blocking-findings",
+        action="store_true",
+        help=(
+            "Exit non-zero for blocking findings: boilerplate comments, missing output "
+            "markers, or low comment ratio. Oversized files remain advisory."
+        ),
     )
     audit_education_quality_parser.set_defaults(func=handle_audit_education_quality)
     add_simple_command(
@@ -120,6 +129,11 @@ def handle_build_all(ctx: RepoContext, _: argparse.Namespace) -> int:
     return 0
 
 
+def handle_clean_artifacts(ctx: RepoContext, _: argparse.Namespace) -> int:
+    clean_artifacts(ctx)
+    return 0
+
+
 def handle_check_links(ctx: RepoContext, _: argparse.Namespace) -> int:
     check_links(ctx)
     return 0
@@ -141,7 +155,11 @@ def handle_check_checkpoint_completeness(ctx: RepoContext, _: argparse.Namespace
 
 
 def handle_audit_education_quality(ctx: RepoContext, args: argparse.Namespace) -> int:
-    audit_education_quality(ctx, fail_on_findings=args.fail_on_findings)
+    audit_education_quality(
+        ctx,
+        fail_on_findings=args.fail_on_findings,
+        fail_on_blocking_findings=args.fail_on_blocking_findings,
+    )
     return 0
 
 
@@ -580,6 +598,51 @@ def remove_paths(base_dir: Path, relative_paths: list[str]) -> None:
             candidate.unlink(missing_ok=True)
 
 
+def clean_artifacts(ctx: RepoContext) -> None:
+    removed: list[Path] = []
+
+    def remove_candidate(path: Path) -> None:
+        resolved = path.resolve()
+        try:
+            resolved.relative_to(ctx.root.resolve())
+        except ValueError as error:
+            raise AutomationError(
+                f"Refusing to remove path outside repository: {resolved}"
+            ) from error
+
+        if resolved.is_dir():
+            shutil.rmtree(resolved)
+            removed.append(resolved)
+        elif resolved.exists():
+            resolved.unlink()
+            removed.append(resolved)
+
+    direct_paths = [
+        ctx.root / "build",
+        ctx.root / ".ruff_cache",
+        ctx.root / "compiled_files.txt",
+        ctx.root / "compile_errors.txt",
+        ctx.root / "core_assessment_report.txt",
+    ]
+    for direct_path in direct_paths:
+        remove_candidate(direct_path)
+
+    for pattern in ("*.exe", "*.out", "*.o", "*.obj", "report.txt", "core_assessment_report.txt"):
+        for path in ctx.root.rglob(pattern):
+            if "node_modules" not in path.parts and ".git" not in path.parts:
+                remove_candidate(path)
+
+    for directory_name in ("bin", "obj", "__pycache__"):
+        for path in ctx.root.rglob(directory_name):
+            if path.is_dir() and "node_modules" not in path.parts and ".git" not in path.parts:
+                remove_candidate(path)
+
+    if removed:
+        print(f"Removed {len(removed)} generated artifact path(s).")
+    else:
+        print("No generated artifact paths found.")
+
+
 def resolve_job_path(ctx: RepoContext, working_dir: Path, raw_path: str) -> Path:
     candidate = Path(raw_path)
     if candidate.is_absolute():
@@ -1014,7 +1077,12 @@ def comment_pattern_for_file(path: Path) -> re.Pattern[str]:
     return re.compile(r"^\s*#") if path.suffix == ".py" else re.compile(r"^\s*//")
 
 
-def audit_education_quality(ctx: RepoContext, *, fail_on_findings: bool = False) -> None:
+def audit_education_quality(
+    ctx: RepoContext,
+    *,
+    fail_on_findings: bool = False,
+    fail_on_blocking_findings: bool = False,
+) -> None:
     module_examples = module_example_main_files(ctx)
     if not module_examples:
         raise AutomationError("No module example main files were found for education audit.")
@@ -1171,6 +1239,13 @@ def audit_education_quality(ctx: RepoContext, *, fail_on_findings: bool = False)
         or row["comment_ratio"] < 0.12
         or row["oversized_for_level"]
     ]
+    blocking_findings = [
+        row
+        for row in file_rows
+        if row["boilerplate_hit_count"] > 0
+        or row["missing_observable_output_marker"]
+        or row["comment_ratio"] < 0.12
+    ]
     findings.sort(
         key=lambda row: (
             not row["missing_observable_output_marker"],
@@ -1193,7 +1268,9 @@ def audit_education_quality(ctx: RepoContext, *, fail_on_findings: bool = False)
     lines.append(f"- JSON: `{json_path.relative_to(ctx.root).as_posix()}`")
     lines.append(f"- Markdown: `{markdown_path.relative_to(ctx.root).as_posix()}`")
     lines.append(
-        "- This command is advisory by default. Use `--fail-on-findings` to make findings fail."
+        "- This command is advisory by default. Use `--fail-on-blocking-findings` "
+        "to fail on low-comment, missing-output-marker, or boilerplate findings. "
+        "Use `--fail-on-findings` to make every finding fail."
     )
     lines.append("")
 
@@ -1206,6 +1283,12 @@ def audit_education_quality(ctx: RepoContext, *, fail_on_findings: bool = False)
         raise AutomationError(
             "Education quality audit found "
             f"{len(findings)} file(s) with learner-quality findings. "
+            f"See {markdown_path.relative_to(ctx.root).as_posix()}."
+        )
+    if fail_on_blocking_findings and blocking_findings:
+        raise AutomationError(
+            "Education quality audit found "
+            f"{len(blocking_findings)} blocking learner-quality finding(s). "
             f"See {markdown_path.relative_to(ctx.root).as_posix()}."
         )
 
@@ -1741,6 +1824,10 @@ def load_exercise_output_contracts(ctx: RepoContext) -> dict[str, list[dict[str,
 
 
 def is_vacuous_stdout_pattern(pattern: str) -> bool:
+    normalized = pattern.strip()
+    if normalized in {r"\S", r".+", r"[\s\S]+", r"(?s).+"}:
+        return True
+
     try:
         compiled = re.compile(pattern, re.MULTILINE)
     except re.error:
@@ -1805,23 +1892,56 @@ def run_csharp_source_output_contracts(
             )
 
             run_target = project_dir / "bin" / "Debug" / "net8.0" / "exercise-check.dll"
+            working_dir = repo_path(ctx, job["working_dir"]) if "working_dir" in job else ctx.root
+            setup_files = job.get("setup_files", [])
+            cleanup_paths = list(job.get("cleanup_paths", []))
             capture_stdout = bool(
                 job.get("required_stdout_contains") or job.get("required_stdout_patterns")
             )
-            completed = run_command(
-                ["dotnet", str(run_target)],
-                capture_stdout=capture_stdout,
-                quiet_stdout=not capture_stdout,
-                action=f"C# execution for {label_prefix} output contract {job['program']}",
-                timeout_seconds=30,
-            )
-            if capture_stdout:
-                assert_output_contract(
-                    completed.stdout or "",
-                    job,
-                    f"C# {label_prefix} output contract for {job['program']}",
+
+            try:
+                for file_spec in setup_files:
+                    target = working_dir / file_spec["path"]
+                    target.write_text("\n".join(file_spec["lines"]) + "\n", encoding="utf-8")
+
+                input_text = None
+                if "input_lines" in job:
+                    input_text = "\n".join(job["input_lines"]) + "\n"
+                elif "input_file" in job:
+                    input_text = str((working_dir / job["input_file"]).resolve()) + "\n"
+
+                label = f"C# {label_prefix} output contract for {job['program']}"
+                completed = run_command(
+                    ["dotnet", str(run_target)],
+                    cwd=working_dir,
+                    input_text=input_text,
+                    capture_stdout=capture_stdout,
+                    quiet_stdout=not capture_stdout,
+                    action=f"C# execution for {label_prefix} output contract {job['program']}",
+                    timeout_seconds=30,
                 )
-            executed_jobs += 1
+                if capture_stdout:
+                    assert_output_contract(completed.stdout or "", job, label)
+
+                for output_name in job.get("required_outputs", []):
+                    if not (working_dir / output_name).exists():
+                        raise AutomationError(f"{label} did not create {output_name}")
+
+                for output_spec in job.get("required_output_contains", []):
+                    output_path = working_dir / output_spec["path"]
+                    if not output_path.exists():
+                        raise AutomationError(f"{label} did not create {output_spec['path']}")
+
+                    output_text = output_path.read_text(encoding="utf-8")
+                    for expected in output_spec.get("contains", []):
+                        if expected not in output_text:
+                            raise AutomationError(
+                                f"{label} output {output_spec['path']} did not contain "
+                                f"expected text: {expected}\nActual output:\n{output_text}"
+                            )
+                executed_jobs += 1
+            finally:
+                remove_paths(working_dir, cleanup_paths)
 
     return executed_jobs
 
@@ -2057,33 +2177,63 @@ def check_exercise_output_contracts(ctx: RepoContext, language_filter: str | Non
                     )
                 run_command(compile_command, action=compile_action, timeout_seconds=120)
 
-                input_text = None
-                if "input_lines" in job:
-                    input_text = "\n".join(job["input_lines"]) + "\n"
-
-                if toolchain.mode == "wsl":
-                    binary_command = [
-                        "wsl",
-                        "bash",
-                        "-lc",
-                        shlex.quote(to_wsl_path(output_path)),
-                    ]
-                else:
-                    binary_command = [str(compiled_binary_path(ctx, output_path))]
-
-                completed = run_command(
-                    binary_command,
-                    input_text=input_text,
-                    capture_stdout=True,
-                    action=f"C++ execution for exercise output contract {job['program']}",
-                    timeout_seconds=30,
+                working_dir = (
+                    repo_path(ctx, job["working_dir"]) if "working_dir" in job else ctx.root
                 )
-                assert_output_contract(
-                    completed.stdout or "",
-                    job,
-                    f"C++ exercise output contract for {job['program']}",
-                )
-                executed_jobs += 1
+                setup_files = job.get("setup_files", [])
+                cleanup_paths = list(job.get("cleanup_paths", []))
+
+                try:
+                    for file_spec in setup_files:
+                        target = working_dir / file_spec["path"]
+                        target.write_text("\n".join(file_spec["lines"]) + "\n", encoding="utf-8")
+
+                    input_text = None
+                    if "input_lines" in job:
+                        input_text = "\n".join(job["input_lines"]) + "\n"
+                    elif "input_file" in job:
+                        input_text = str((working_dir / job["input_file"]).resolve()) + "\n"
+
+                    if toolchain.mode == "wsl":
+                        binary_command = [
+                            "wsl",
+                            "bash",
+                            "-lc",
+                            shlex.quote(to_wsl_path(output_path)),
+                        ]
+                    else:
+                        binary_command = [str(compiled_binary_path(ctx, output_path))]
+
+                    label = f"C++ exercise output contract for {job['program']}"
+                    completed = run_command(
+                        binary_command,
+                        cwd=working_dir,
+                        input_text=input_text,
+                        capture_stdout=True,
+                        action=f"C++ execution for exercise output contract {job['program']}",
+                        timeout_seconds=30,
+                    )
+                    assert_output_contract(completed.stdout or "", job, label)
+
+                    for output_name in job.get("required_outputs", []):
+                        if not (working_dir / output_name).exists():
+                            raise AutomationError(f"{label} did not create {output_name}")
+
+                    for output_spec in job.get("required_output_contains", []):
+                        output_path = working_dir / output_spec["path"]
+                        if not output_path.exists():
+                            raise AutomationError(f"{label} did not create {output_spec['path']}")
+
+                        output_text = output_path.read_text(encoding="utf-8")
+                        for expected in output_spec.get("contains", []):
+                            if expected not in output_text:
+                                raise AutomationError(
+                                    f"{label} output {output_spec['path']} did not contain "
+                                    f"expected text: {expected}\nActual output:\n{output_text}"
+                                )
+                    executed_jobs += 1
+                finally:
+                    remove_paths(working_dir, cleanup_paths)
 
     if executed_jobs == 0:
         raise AutomationError("No exercise output contract jobs were executed.")
@@ -2396,37 +2546,40 @@ def check_cross_language_parity(ctx: RepoContext) -> None:
 def verify_repo(ctx: RepoContext) -> None:
     python_cmd = find_python_command()
 
-    print("[1/11] Checking markdown links...")
+    print("[1/12] Checking markdown links...")
     run_command([python_cmd, str(ctx.scripts_dir / "check-links.py")], action="Markdown link check")
 
-    print("[2/11] Checking README structure...")
+    print("[2/12] Checking README structure...")
     check_readme_structure(ctx)
 
-    print("[3/11] Checking module completeness...")
+    print("[3/12] Checking module completeness...")
     check_module_completeness(ctx)
 
-    print("[4/11] Checking checkpoint completeness...")
+    print("[4/12] Checking checkpoint completeness...")
     check_checkpoint_completeness(ctx)
 
-    print("[5/11] Checking documentation sync...")
+    print("[5/12] Checking documentation sync...")
     check_doc_sync(ctx)
 
-    print("[6/11] Checking example comments...")
+    print("[6/12] Checking example comments...")
     check_example_comments(ctx)
 
-    print("[7/11] Checking cross-language parity...")
+    print("[7/12] Checking education quality gate...")
+    audit_education_quality(ctx, fail_on_blocking_findings=True)
+
+    print("[8/12] Checking cross-language parity...")
     check_cross_language_parity(ctx)
 
-    print("[8/11] Checking exercise parity...")
+    print("[9/12] Checking exercise parity...")
     check_exercise_parity(ctx)
 
-    print("[9/11] Checking example output contracts...")
+    print("[10/12] Checking example output contracts...")
     check_example_output_contracts(ctx)
 
-    print("[10/11] Checking exercise output contracts...")
+    print("[11/12] Checking exercise output contracts...")
     check_exercise_output_contracts(ctx)
 
-    print("[11/11] Compiling compiled-language tracks...")
+    print("[12/12] Compiling compiled-language tracks...")
     build_all(ctx)
 
     print("Repository verification completed successfully.")

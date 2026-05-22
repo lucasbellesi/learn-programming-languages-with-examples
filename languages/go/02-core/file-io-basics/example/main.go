@@ -14,40 +14,28 @@ import (
 
 // Helper setup for file io basics; this keeps the walkthrough readable.
 func parseScoreRow(line string) (string, int, bool) {
+	// Each valid row has one name token followed by one integer score.
 	parts := strings.Fields(line)
 	if len(parts) != 2 {
 		return "", 0, false
 	}
 
 	score, err := strconv.Atoi(parts[1])
-	if err != nil {
-		return "", 0, false
-	}
-
-	return parts[0], score, true
+	return parts[0], score, err == nil
 }
 
 // Walk through one fixed scenario so file io basics behavior stays repeatable.
 func main() {
 	// Prepare sample inputs that exercise the key file io basics path.
-	runDirectory := filepath.Clean(filepath.Join(os.TempDir(), "learn-lang-file-io-go"))
-	if err := os.MkdirAll(runDirectory, 0o755); err != nil {
-		// Report values so learners can verify the file io basics outcome.
-		fmt.Println("Could not create temp directory.")
+	inputPath := filepath.Join(os.TempDir(), "learn-lang-file-io-go-scores.txt")
+	outputPath := filepath.Join(os.TempDir(), "learn-lang-file-io-go-summary.txt")
+	sample := strings.Join([]string{"ana 90", "bob 82", "invalid row", "carla 95"}, "\n") + "\n"
+	if err := os.WriteFile(inputPath, []byte(sample), 0o644); err != nil {
+		fmt.Println("Could not create sample input file.")
 		return
 	}
 
-	inputPath := filepath.Join(runDirectory, "scores.txt")
-	outputPath := filepath.Join(runDirectory, "summary.txt")
-
-	if _, err := os.Stat(inputPath); err != nil {
-		sample := strings.Join([]string{"ana 90", "bob 82", "invalid row", "carla 95"}, "\n") + "\n"
-		if writeErr := os.WriteFile(inputPath, []byte(sample), 0o644); writeErr != nil {
-			fmt.Println("Could not create sample input file.")
-			return
-		}
-	}
-
+	// Open the input file, then scan it one learner-visible row at a time.
 	file, err := os.Open(inputPath)
 	if err != nil {
 		fmt.Printf("Could not open %s\n", inputPath)
@@ -55,13 +43,11 @@ func main() {
 	}
 	defer file.Close()
 
-	validRows := 0
-	sum := 0
+	validRows, sum := 0, 0
 	scanner := bufio.NewScanner(file)
 
 	for scanner.Scan() {
-		line := scanner.Text()
-		name, score, ok := parseScoreRow(line)
+		name, score, ok := parseScoreRow(scanner.Text())
 		if !ok {
 			continue
 		}
@@ -76,11 +62,7 @@ func main() {
 		return
 	}
 
-	if validRows == 0 {
-		fmt.Println("No valid rows found.")
-		return
-	}
-
+	// Summarize only rows that passed parsing, then persist the result.
 	average := float64(sum) / float64(validRows)
 	summary := fmt.Sprintf("Rows: %d\nAverage: %.2f\n", validRows, average)
 	if err := os.WriteFile(outputPath, []byte(summary), 0o644); err != nil {
@@ -88,5 +70,6 @@ func main() {
 		return
 	}
 
+	// Print the report path so learners can verify the written file.
 	fmt.Printf("Summary written to %s\n", outputPath)
 }

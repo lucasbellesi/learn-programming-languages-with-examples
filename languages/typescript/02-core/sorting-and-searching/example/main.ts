@@ -5,6 +5,7 @@ function binarySearch(values: number[], target: number): number {
     let left = 0;
     let right = values.length - 1;
 
+    // Binary search repeatedly discards the half that cannot contain the target.
     while (left <= right) {
         const middle = Math.floor((left + right) / 2);
         const value = values[middle]!;
@@ -23,6 +24,7 @@ function binarySearch(values: number[], target: number): number {
 }
 
 const scores = [91, 77, 88, 64, 77, 95];
+// Copy before sorting so the original order remains available for comparison.
 const ascending = [...scores].sort((left, right) => left - right);
 
 // Report output values so learners can verify the sorting and searching result.

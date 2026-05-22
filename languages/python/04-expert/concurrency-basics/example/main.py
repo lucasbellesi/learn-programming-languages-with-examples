@@ -19,9 +19,11 @@ def main() -> None:
     def worker() -> None:
         nonlocal counter
         for _ in range(increments_per_worker):
+            # The lock makes the read-modify-write update behave as one critical section.
             with counter_lock:
                 counter += 1
 
+    # Start all workers before joining so the counter is genuinely shared across threads.
     threads = [threading.Thread(target=worker) for _ in range(worker_count)]
     for thread in threads:
         thread.start()
@@ -41,6 +43,7 @@ def main() -> None:
         for value in (10, 20, 30, 40):
             print(f"Produced {value}")
             jobs.put(value)
+        # A sentinel tells the consumer that no more work is coming.
         jobs.put(None)
 
     def consumer() -> None:
@@ -49,6 +52,7 @@ def main() -> None:
             value = jobs.get()
             if value is None:
                 break
+            # Keep aggregation behind a lock even though this example has one consumer.
             with total_lock:
                 consumed_total += value
             print(f"Consumed {value}")

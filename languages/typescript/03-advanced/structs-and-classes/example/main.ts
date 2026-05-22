@@ -2,6 +2,7 @@
 // Why it matters: practicing structs and classes patterns makes exercises and checkpoints easier to reason about.
 
 interface StudentRecord {
+    // Interfaces capture data shape without adding behavior.
     name: string;
     score: number;
 }
@@ -13,6 +14,7 @@ class CourseSummary {
     ) {}
 
     averageScore(): number {
+        // Methods keep derived behavior close to the data they summarize.
         const total = this.students.reduce(
             (sum, student) => sum + student.score,
             0,
@@ -30,6 +32,7 @@ class CourseSummary {
     }
 }
 
+// Build one realistic object so learners can inspect data plus behavior together.
 const summary = new CourseSummary("TypeScript Core", [
     { name: "Ana", score: 91 },
     { name: "Bob", score: 77 },

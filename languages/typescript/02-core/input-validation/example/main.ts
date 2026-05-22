@@ -10,6 +10,7 @@ function parseIntegerInRange(
     minimum: number,
     maximum: number,
 ): ValidationResult {
+    // Convert first, then validate the parsed value before business logic uses it.
     const value = Number.parseInt(raw, 10);
     if (!Number.isInteger(value)) {
         return { ok: false, error: "not an integer" };
@@ -22,6 +23,7 @@ function parseIntegerInRange(
 
 const attempts = ["hello", "105", "42"];
 for (const attempt of attempts) {
+    // Each attempt follows the same parse -> validate -> act shape.
     const result = parseIntegerInRange(attempt, 1, 100);
     if (!result.ok) {
         // Report output values so learners can verify the input validation result.
@@ -31,6 +33,7 @@ for (const attempt of attempts) {
         continue;
     }
 
+    // Only validated values reach the main calculation.
     console.log(`Accepted value: ${result.value}`);
     console.log(`Square: ${result.value * result.value}`);
     break;
