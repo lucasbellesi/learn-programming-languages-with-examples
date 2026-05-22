@@ -12,6 +12,7 @@ class Program
         {
             Console.Write(prompt);
             string? raw = Console.ReadLine();
+            // Parse first, then validate the numeric range before returning.
             if (!int.TryParse(raw, out int value))
             {
                 Console.WriteLine("Invalid input type. Please enter an integer.");
@@ -34,6 +35,7 @@ class Program
         {
             Console.Write(prompt);
             string? raw = Console.ReadLine();
+            // The same validation shape works for decimal input too.
             if (!double.TryParse(raw, out double value))
             {
                 Console.WriteLine("Invalid input type. Please enter a decimal number.");
@@ -54,6 +56,7 @@ class Program
     static void Main()
     {
         // Prepare sample inputs that exercise the key input validation path.
+        // Only validated values reach the final summary.
         int age = ReadIntInRange("Enter your age (1-120): ", 1, 120);
         double gpa = ReadDoubleInRange("Enter your GPA (0.0-4.0): ", 0.0, 4.0);
 

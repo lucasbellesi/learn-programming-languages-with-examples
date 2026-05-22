@@ -7,6 +7,7 @@ using System.Collections.Generic;
 // Helper setup for inheritance and polymorphism; this keeps the walkthrough readable.
 abstract class Shape
 {
+    // The base type names the behavior that every concrete shape must provide.
     public abstract double Area();
     public abstract string Name { get; }
 }
@@ -16,16 +17,10 @@ class Rectangle : Shape
     private readonly double width;
     private readonly double height;
 
-    public Rectangle(double widthValue, double heightValue)
-    {
-        width = widthValue;
-        height = heightValue;
-    }
+    public Rectangle(double widthValue, double heightValue) =>
+        (width, height) = (widthValue, heightValue);
 
-    public override double Area()
-    {
-        return width * height;
-    }
+    public override double Area() => width * height;
 
     public override string Name => "Rectangle";
 }
@@ -34,15 +29,9 @@ class Circle : Shape
 {
     private readonly double radius;
 
-    public Circle(double radiusValue)
-    {
-        radius = radiusValue;
-    }
+    public Circle(double radiusValue) => radius = radiusValue;
 
-    public override double Area()
-    {
-        return Math.PI * radius * radius;
-    }
+    public override double Area() => Math.PI * radius * radius;
 
     public override string Name => "Circle";
 }
@@ -55,6 +44,7 @@ class Program
         // Prepare sample inputs that exercise the key inheritance and polymorphism path.
         List<Shape> shapes = new List<Shape> { new Rectangle(3.0, 4.0), new Circle(2.0) };
 
+        // The loop depends on the Shape contract, not on concrete type checks.
         foreach (Shape shape in shapes)
         {
             // Report values so learners can verify the inheritance and polymorphism outcome.
