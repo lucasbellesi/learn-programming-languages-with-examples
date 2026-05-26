@@ -1846,6 +1846,28 @@
           "Unknown command: unknown",
           "Final value: 1"
         ]
+      },
+      {
+        "program": "languages/java/03-advanced/constructors-and-invariants/exercises/Exercise01.java",
+        "input_lines": [
+          "-50",
+          "125",
+          "200"
+        ],
+        "required_stdout_contains": [
+          "Withdrawal rejected.",
+          "Final balance: 125.00"
+        ]
+      },
+      {
+        "program": "languages/java/03-advanced/constructors-and-invariants/exercises/Exercise02.java",
+        "input_lines": [
+          "2",
+          "29"
+        ],
+        "required_stdout_contains": [
+          "Invalid date"
+        ]
       }
     ]
   }

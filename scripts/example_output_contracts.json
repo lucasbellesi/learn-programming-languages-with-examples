@@ -750,6 +750,15 @@
           "Owner: Maya",
           "Balance: 115.00"
         ]
+      },
+      {
+        "program": "languages/java/03-advanced/constructors-and-invariants/example/Main.java",
+        "required_stdout_contains": [
+          "Initial value (clamped): -273.15 C",
+          "Set to 25.0 success: true",
+          "Current value: 25.00 C",
+          "Set to -300.0 success: false"
+        ]
       }
     ]
   }

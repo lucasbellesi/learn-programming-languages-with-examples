@@ -45,10 +45,11 @@
 
 - [ ] structs-and-classes example
 - [ ] structs-and-classes exercises
+- [ ] constructors-and-invariants example
+- [ ] constructors-and-invariants exercises
 
 ## Planned
 
-- [ ] constructors-and-invariants module
 - [ ] copy-and-move-semantics module
 - [ ] inheritance-and-polymorphism module
 - [ ] templates-basics module
