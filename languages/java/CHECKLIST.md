@@ -19,9 +19,23 @@
 - [ ] formatted-output-and-iomanip example
 - [ ] formatted-output-and-iomanip exercises
 
+## 02-core
+
+- [ ] input-validation example
+- [ ] input-validation exercises
+- [ ] algorithms-basics example
+- [ ] algorithms-basics exercises
+- [ ] file-io-basics example
+- [ ] file-io-basics exercises
+- [ ] sorting-and-searching example
+- [ ] sorting-and-searching exercises
+- [ ] maps-and-frequency-counting example
+- [ ] maps-and-frequency-counting exercises
+- [ ] error-handling-and-defensive-programming example
+- [ ] error-handling-and-defensive-programming exercises
+
 ## Planned
 
-- [ ] 02-core modules
 - [ ] 03-advanced modules
 - [ ] 04-expert modules
 - [ ] projects

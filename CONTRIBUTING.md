@@ -9,7 +9,7 @@ Thank you for contributing to this repository.
 - Use clear English for all text, comments, and instructions.
 - Maintain cross-platform compatibility (Windows MSYS2 + Linux).
 - Keep Node-based tooling simple and explicit when touching the TypeScript track.
-- Keep Java foundations on plain `javac`/`java` until the track intentionally adopts build tooling.
+- Keep Java modules on plain `javac`/`java` until the track intentionally adopts build tooling.
 
 ## Workflow
 
@@ -99,7 +99,7 @@ Use [EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md](EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md)
 - Avoid external dependencies and test frameworks for C++ modules.
 - Avoid external dependencies and test frameworks for non-C++ checkpoints.
 - Keep the TypeScript track on plain Node console programs; do not introduce browser, DOM, or framework dependencies.
-- Keep the Java foundations MVP on package-free single-file programs; do not introduce Maven, Gradle, or `src/main/java` yet.
+- Keep the Java MVP on package-free single-file programs; do not introduce Maven, Gradle, or `src/main/java` yet.
 - Keep examples aligned with C++17.
 - Keep documentation in English and keep path names consistent with folder names.
 - Keep parity planning updated in `LANGUAGE_PARITY_MATRIX.md` when adding modules or checkpoints to non-C++ tracks.

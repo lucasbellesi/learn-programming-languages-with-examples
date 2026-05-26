@@ -1584,6 +1584,237 @@
           "Interest: 100.00",
           "Final amount: 1100.00"
         ]
+      },
+      {
+        "program": "languages/java/02-core/input-validation/exercises/Exercise01.java",
+        "input_lines": [
+          "abc",
+          "150",
+          "12"
+        ],
+        "required_stdout_contains": [
+          "Invalid integer.",
+          "Out of range.",
+          "Accepted: 12",
+          "Square: 144"
+        ]
+      },
+      {
+        "program": "languages/java/02-core/input-validation/exercises/Exercise02.java",
+        "input_lines": [
+          "0",
+          "3",
+          "101",
+          "90",
+          "80",
+          "70"
+        ],
+        "required_stdout_contains": [
+          "Count must be 1..50.",
+          "Score must be 0..100.",
+          "Average score: 80.00"
+        ]
+      },
+      {
+        "program": "languages/java/02-core/algorithms-basics/exercises/Exercise01.java",
+        "input_lines": [
+          "5",
+          "8",
+          "3",
+          "8",
+          "1",
+          "8",
+          "8"
+        ],
+        "required_stdout_contains": [
+          "First index: 0",
+          "Occurrences: 3"
+        ]
+      },
+      {
+        "program": "languages/java/02-core/algorithms-basics/exercises/Exercise02.java",
+        "input_lines": [
+          "5",
+          "8",
+          "3",
+          "10",
+          "1",
+          "4"
+        ],
+        "required_stdout_contains": [
+          "Minimum: 1",
+          "Maximum: 10",
+          "Even numbers: 3"
+        ]
+      },
+      {
+        "program": "languages/java/02-core/file-io-basics/exercises/Exercise01.java",
+        "working_dir": "languages/java/02-core/file-io-basics",
+        "setup_files": [
+          {
+            "path": "contract-input.txt",
+            "lines": [
+              "alpha",
+              "beta",
+              "gamma"
+            ]
+          }
+        ],
+        "input_lines": [
+          "contract-input.txt",
+          "contract-output.txt"
+        ],
+        "required_stdout_contains": [
+          "Lines copied: 3"
+        ],
+        "required_outputs": [
+          "contract-output.txt"
+        ],
+        "required_output_contains": [
+          {
+            "path": "contract-output.txt",
+            "contains": [
+              "1: alpha",
+              "2: beta",
+              "3: gamma"
+            ]
+          }
+        ],
+        "cleanup_paths": [
+          "contract-input.txt",
+          "contract-output.txt"
+        ]
+      },
+      {
+        "program": "languages/java/02-core/file-io-basics/exercises/Exercise02.java",
+        "working_dir": "languages/java/02-core/file-io-basics",
+        "setup_files": [
+          {
+            "path": "contract-scores.txt",
+            "lines": [
+              "Ana Smith 91",
+              "Bob Lee 77",
+              "InvalidRow",
+              "Carla Mendez 88"
+            ]
+          }
+        ],
+        "input_lines": [
+          "contract-scores.txt",
+          "contract-report.txt"
+        ],
+        "required_stdout_contains": [
+          "Valid records: 3",
+          "Invalid rows skipped: 1",
+          "Average: 85.33",
+          "Report written to contract-report.txt"
+        ],
+        "required_outputs": [
+          "contract-report.txt"
+        ],
+        "required_output_contains": [
+          {
+            "path": "contract-report.txt",
+            "contains": [
+              "Grade Report",
+              "Valid records: 3",
+              "Invalid rows skipped: 1",
+              "Average: 85.33",
+              "- Ana Smith: 91",
+              "- Bob Lee: 77",
+              "- Carla Mendez: 88"
+            ]
+          }
+        ],
+        "cleanup_paths": [
+          "contract-scores.txt",
+          "contract-report.txt"
+        ]
+      },
+      {
+        "program": "languages/java/02-core/sorting-and-searching/exercises/Exercise01.java",
+        "input_lines": [
+          "5",
+          "9",
+          "2",
+          "7",
+          "2",
+          "4"
+        ],
+        "required_stdout_contains": [
+          "Sorted: 2 2 4 7 9"
+        ]
+      },
+      {
+        "program": "languages/java/02-core/sorting-and-searching/exercises/Exercise02.java",
+        "input_lines": [
+          "6",
+          "9",
+          "2",
+          "4",
+          "8",
+          "2",
+          "7",
+          "4"
+        ],
+        "required_stdout_contains": [
+          "Sorted: 2 2 4 7 8 9",
+          "Found 4 at index 2"
+        ]
+      },
+      {
+        "program": "languages/java/02-core/maps-and-frequency-counting/exercises/Exercise01.java",
+        "input_lines": [
+          "Java java maps"
+        ],
+        "required_stdout_contains": [
+          "Word frequencies:",
+          "java: 2",
+          "maps: 1"
+        ]
+      },
+      {
+        "program": "languages/java/02-core/maps-and-frequency-counting/exercises/Exercise02.java",
+        "input_lines": [
+          "7",
+          "4",
+          "2",
+          "4",
+          "7",
+          "4",
+          "2",
+          "7"
+        ],
+        "required_stdout_contains": [
+          "Number frequencies:",
+          "2: 2",
+          "4: 3",
+          "7: 2"
+        ]
+      },
+      {
+        "program": "languages/java/02-core/error-handling-and-defensive-programming/exercises/Exercise01.java",
+        "input_lines": [
+          "42",
+          "0"
+        ],
+        "required_stdout_contains": [
+          "Cannot divide by zero."
+        ]
+      },
+      {
+        "program": "languages/java/02-core/error-handling-and-defensive-programming/exercises/Exercise02.java",
+        "input_lines": [
+          "Ana 91",
+          "BrokenRow",
+          "Bob 77",
+          "Carla 105"
+        ],
+        "required_stdout_contains": [
+          "Accepted rows: 2",
+          "Skipped rows: 2",
+          "Average: 84.00"
+        ]
       }
     ]
   }

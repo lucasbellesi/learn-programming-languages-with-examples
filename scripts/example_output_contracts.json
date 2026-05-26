@@ -669,6 +669,77 @@
           "Notebook",
           "37.50"
         ]
+      },
+      {
+        "program": "languages/java/02-core/input-validation/example/Main.java",
+        "required_stdout_contains": [
+          "Accepted: [91, 77]",
+          "Skipped: 2",
+          "Average: 84.00"
+        ]
+      },
+      {
+        "program": "languages/java/02-core/algorithms-basics/example/Main.java",
+        "required_stdout_contains": [
+          "First index of 4: 0",
+          "Occurrences of 4: 3"
+        ]
+      },
+      {
+        "program": "languages/java/02-core/file-io-basics/example/Main.java",
+        "working_dir": "languages/java/02-core/file-io-basics",
+        "required_stdout_contains": [
+          "Report file: report.txt",
+          "Valid records: 3",
+          "Invalid rows skipped: 1",
+          "Average: 85.33"
+        ],
+        "required_outputs": [
+          "report.txt"
+        ],
+        "required_output_contains": [
+          {
+            "path": "report.txt",
+            "contains": [
+              "Grade Report",
+              "Valid records: 3",
+              "Invalid rows skipped: 1",
+              "- Ana Smith: 91",
+              "- Bob Lee: 77",
+              "- Carla Mendez: 88"
+            ]
+          }
+        ],
+        "cleanup_paths": [
+          "scores.txt",
+          "report.txt"
+        ]
+      },
+      {
+        "program": "languages/java/02-core/sorting-and-searching/example/Main.java",
+        "required_stdout_contains": [
+          "Sorted: 64 77 77 88 91 95",
+          "Index of 88: 3",
+          "Index of 70: -1"
+        ]
+      },
+      {
+        "program": "languages/java/02-core/maps-and-frequency-counting/example/Main.java",
+        "required_stdout_contains": [
+          "Word frequencies:",
+          "java -> 1",
+          "learn -> 2",
+          "maps -> 1"
+        ]
+      },
+      {
+        "program": "languages/java/02-core/error-handling-and-defensive-programming/example/Main.java",
+        "required_stdout_contains": [
+          "Input: 42 6",
+          "Result: 7",
+          "Cannot divide by zero.",
+          "Skipped invalid row: bad row"
+        ]
       }
     ]
   }
