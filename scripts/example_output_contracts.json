@@ -766,6 +766,16 @@
           "Rectangle area: 12.00",
           "Circle area: 12.57"
         ]
+      },
+      {
+        "program": "languages/java/03-advanced/templates-basics/example/Main.java",
+        "required_stdout_contains": [
+          "First score: 91",
+          "First name: Ana",
+          "Box<Integer>: 42",
+          "Box<String>: Java",
+          "Max score: 98"
+        ]
       }
     ]
   }

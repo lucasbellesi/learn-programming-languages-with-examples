@@ -49,11 +49,12 @@
 - [ ] constructors-and-invariants exercises
 - [ ] inheritance-and-polymorphism example
 - [ ] inheritance-and-polymorphism exercises
+- [ ] templates-basics example
+- [ ] templates-basics exercises
 
 ## Planned
 
 - [ ] copy-and-move-semantics module
-- [ ] templates-basics module
 - [ ] 04-expert modules
 - [ ] projects/03-advanced
 - [ ] projects/04-expert

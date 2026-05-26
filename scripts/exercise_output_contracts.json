@@ -1884,6 +1884,29 @@
         "required_stdout_contains": [
           "Total area: 17.07"
         ]
+      },
+      {
+        "program": "languages/java/03-advanced/templates-basics/exercises/Exercise01.java",
+        "input_lines": [
+          "red",
+          "blue"
+        ],
+        "required_stdout_contains": [
+          "Before: red blue",
+          "After: blue red"
+        ]
+      },
+      {
+        "program": "languages/java/03-advanced/templates-basics/exercises/Exercise02.java",
+        "input_lines": [
+          "3",
+          "10",
+          "20",
+          "25"
+        ],
+        "required_stdout_contains": [
+          "Average: 18.33"
+        ]
       }
     ]
   }
