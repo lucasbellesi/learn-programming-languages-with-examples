@@ -2,14 +2,14 @@
 
 ## Scope and Status
 
-This track currently covers `01-foundations` and `02-core` as a Java 21 MVP. Advanced, expert, projects, and assessments are planned for later iterations.
+This track currently covers `01-foundations` and `02-core` as a Java 21 MVP, including projects and assessments for both implemented levels. Advanced, expert, and later checkpoints are planned for future iterations.
 
 - 8/8 foundations modules implemented.
 - 6/6 core modules implemented.
 - 0/5 advanced modules implemented.
 - 0/5 expert modules implemented.
-- 0/4 projects implemented.
-- 0/4 assessments implemented.
+- 2/4 projects implemented (`01-foundations`, `02-core`).
+- 2/4 assessments implemented (`01-foundations`, `02-core`).
 - Uses Java 21 LTS with direct `javac` and `java` commands; no Maven or Gradle yet.
 
 ## Prerequisites
@@ -49,6 +49,12 @@ java -cp build/java Main
   - [sorting-and-searching](./02-core/sorting-and-searching/README.md)
   - [maps-and-frequency-counting](./02-core/maps-and-frequency-counting/README.md)
   - [error-handling-and-defensive-programming](./02-core/error-handling-and-defensive-programming/README.md)
+- Projects
+  - [01-foundations](./projects/01-foundations/README.md)
+  - [02-core](./projects/02-core/README.md)
+- Assessments
+  - [01-foundations](./assessments/01-foundations/README.md)
+  - [02-core](./assessments/02-core/README.md)
 
 ## Progress Tracking
 

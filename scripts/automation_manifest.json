@@ -129,9 +129,10 @@
       "levels": ["01-foundations", "02-core"],
       "module_levels": ["01-foundations", "02-core"],
       "checkpoints": {
-        "projects": [],
-        "assessments": []
+        "projects": ["01-foundations", "02-core"],
+        "assessments": ["01-foundations", "02-core"]
       },
+      "checkpoint_main": "Main.java",
       "example_main": "Main.java",
       "exercise_files": {
         "01": "Exercise01.java",
@@ -139,12 +140,14 @@
       },
       "track_readme": "languages/java/README.md",
       "track_readme_markers": [
-        "This track currently covers `01-foundations` and `02-core` as a Java 21 MVP.",
+        "This track currently covers `01-foundations` and `02-core` as a Java 21 MVP, including projects and assessments for both implemented levels.",
         "- 8/8 foundations modules implemented.",
         "- 6/6 core modules implemented.",
+        "- 2/4 projects implemented (`01-foundations`, `02-core`).",
+        "- 2/4 assessments implemented (`01-foundations`, `02-core`).",
         "- Uses Java 21 LTS with direct `javac` and `java` commands; no Maven or Gradle yet."
       ],
-      "root_status_row": "| Java | 01-foundations, 02-core | 8/8 foundations modules, 6/6 core modules | Java 21 MVP; advanced, expert, projects, and assessments planned |"
+      "root_status_row": "| Java | 01-foundations, 02-core | 8/8 foundations modules, 6/6 core modules, 2/4 projects, 2/4 assessments | Java 21 MVP through core; advanced, expert, and later checkpoints planned |"
     },
     "python": {
       "extension": "py",
@@ -212,7 +215,7 @@
         "- Java currently tracks `01-foundations` and `02-core` as a Java 21 MVP.",
         "`04-expert` projects and assessments are now implemented across all active non-Java tracks.",
         "| types-and-io | Done | Done | Done | Done | Done | Done |",
-        "| 02-core | Done | Done | Done | Planned | Done | Done |",
+        "| 02-core | Done | Done | Done | Done | Done | Done |",
         "| 1 | input-validation | Done | Done | Done | Done | Done | Done |",
         "| 03-advanced | Done | Done | Done | Planned | Done | Done |",
         "| 04-expert | Done | Done | Done | Planned | Done | Done |"
@@ -801,7 +804,104 @@
         "languages/java/02-core/maps-and-frequency-counting/example/Main.java",
         "languages/java/02-core/error-handling-and-defensive-programming/example/Main.java"
       ],
-      "stdin_runs": []
+      "stdin_runs": [
+        {
+          "program": "languages/java/projects/01-foundations/Main.java",
+          "input_lines": ["0", "2", "Ana Smith", "101", "91", "Bob Lee", "77"],
+          "required_stdout_contains": [
+            "Please enter a number greater than zero.",
+            "Score must be between 0 and 100.",
+            "Students:",
+            "- Ana Smith: 91",
+            "- Bob Lee: 77",
+            "Average: 84.00",
+            "Minimum: 77",
+            "Maximum: 91"
+          ]
+        },
+        {
+          "program": "languages/java/assessments/01-foundations/Main.java",
+          "input_lines": ["3", "Ana Smith", "91", "Bob Lee", "55", "Carla Mendez", "88"],
+          "required_stdout_contains": [
+            "Students:",
+            "- Ana Smith: 91",
+            "- Bob Lee: 55",
+            "- Carla Mendez: 88",
+            "Average: 78.00",
+            "Highest: Ana Smith (91)",
+            "Lowest: Bob Lee (55)",
+            "Passed: 2/3"
+          ]
+        },
+        {
+          "working_dir": "languages/java/projects/02-core",
+          "program": "languages/java/projects/02-core/Main.java",
+          "setup_files": [
+            {
+              "path": "smoke-input.txt",
+              "lines": ["Ana Smith 91", "Bob Lee 77", "InvalidRow", "Carla Mendez 88"]
+            }
+          ],
+          "input_file": "smoke-input.txt",
+          "required_stdout_contains": [
+            "Valid records: 3",
+            "Invalid rows skipped: 1",
+            "Average: 85.33",
+            "Report written to report.txt"
+          ],
+          "required_outputs": ["report.txt"],
+          "required_output_contains": [
+            {
+              "path": "report.txt",
+              "contains": [
+                "Grade Report",
+                "Valid records: 3",
+                "Invalid rows skipped: 1",
+                "Average: 85.33",
+                "- Ana Smith: 91",
+                "- Bob Lee: 77",
+                "- Carla Mendez: 88"
+              ]
+            }
+          ],
+          "cleanup_paths": ["smoke-input.txt", "report.txt"]
+        },
+        {
+          "working_dir": "languages/java/assessments/02-core",
+          "program": "languages/java/assessments/02-core/Main.java",
+          "input_lines": ["91", "88", "72", "105", "60", "-1"],
+          "required_stdout_contains": [
+            "Score ignored because it is outside 0-100.",
+            "Valid scores: 4",
+            "Average: 77.75",
+            "Minimum: 60",
+            "Maximum: 91",
+            "Frequency:",
+            "- 60-69: 1",
+            "- 70-79: 1",
+            "- 80-89: 1",
+            "- 90-100: 1",
+            "Report written to core_assessment_report.txt"
+          ],
+          "required_outputs": ["core_assessment_report.txt"],
+          "required_output_contains": [
+            {
+              "path": "core_assessment_report.txt",
+              "contains": [
+                "Valid scores: 4",
+                "Average: 77.75",
+                "Minimum: 60",
+                "Maximum: 91",
+                "- 60-69: 1",
+                "- 70-79: 1",
+                "- 80-89: 1",
+                "- 90-100: 1"
+              ]
+            }
+          ],
+          "cleanup_paths": ["core_assessment_report.txt"]
+        }
+      ]
     }
   },
   "lint": {

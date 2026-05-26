@@ -34,9 +34,18 @@
 - [ ] error-handling-and-defensive-programming example
 - [ ] error-handling-and-defensive-programming exercises
 
+## Checkpoints
+
+- [ ] projects/01-foundations
+- [ ] projects/02-core
+- [ ] assessments/01-foundations
+- [ ] assessments/02-core
+
 ## Planned
 
 - [ ] 03-advanced modules
 - [ ] 04-expert modules
-- [ ] projects
-- [ ] assessments
+- [ ] projects/03-advanced
+- [ ] projects/04-expert
+- [ ] assessments/03-advanced
+- [ ] assessments/04-expert

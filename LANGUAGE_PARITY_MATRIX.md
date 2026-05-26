@@ -84,8 +84,8 @@ Status labels:
 
 | Checkpoint | C++ | C# | Go | Java | Python | TypeScript |
 | --- | --- | --- | --- | --- | --- | --- |
-| 01-foundations | Done | Done | Done | Planned | Done | Done |
-| 02-core | Done | Done | Done | Planned | Done | Done |
+| 01-foundations | Done | Done | Done | Done | Done | Done |
+| 02-core | Done | Done | Done | Done | Done | Done |
 | 03-advanced | Done | Done | Done | Planned | Done | Done |
 | 04-expert | Done | Done | Done | Planned | Done | Done |
 
@@ -93,7 +93,7 @@ Status labels:
 
 | Checkpoint | C++ | C# | Go | Java | Python | TypeScript |
 | --- | --- | --- | --- | --- | --- | --- |
-| 01-foundations | Done | Done | Done | Planned | Done | Done |
-| 02-core | Done | Done | Done | Planned | Done | Done |
+| 01-foundations | Done | Done | Done | Done | Done | Done |
+| 02-core | Done | Done | Done | Done | Done | Done |
 | 03-advanced | Done | Done | Done | Planned | Done | Done |
 | 04-expert | Done | Done | Done | Planned | Done | Done |
