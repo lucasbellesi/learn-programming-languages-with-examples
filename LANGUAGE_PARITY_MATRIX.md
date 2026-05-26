@@ -47,7 +47,7 @@ Current parity progress in non-C++ tracks:
 
 - C#: `5/5` modules complete in `03-advanced`, `5/5` in `04-expert`
 - Go: `5/5` modules complete in `03-advanced`, `5/5` in `04-expert`
-- Java: `2/5` modules complete in `03-advanced`, `0/5` in `04-expert`
+- Java: `3/5` modules complete in `03-advanced`, `0/5` in `04-expert`
 - Python: `5/5` modules complete in `03-advanced`, `5/5` in `04-expert`
 - TypeScript: `5/5` modules complete in `03-advanced`, `5/5` in `04-expert`
 
@@ -58,7 +58,7 @@ Current parity progress in non-C++ tracks:
 | 1 | structs-and-classes | Done | Done | Done | Done | Done | Done |
 | 2 | constructors-and-invariants | Done | Done | Done | Done | Done | Done |
 | 3 | copy-and-move-semantics | Done | Done | Done | Planned | Done | Done |
-| 4 | inheritance-and-polymorphism | Done | Done | Done | Planned | Done | Done |
+| 4 | inheritance-and-polymorphism | Done | Done | Done | Done | Done | Done |
 | 5 | templates-basics | Done | Done | Done | Planned | Done | Done |
 
 `04-expert` projects and assessments are now implemented across all active non-Java tracks.

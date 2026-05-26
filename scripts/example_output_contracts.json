@@ -759,6 +759,13 @@
           "Current value: 25.00 C",
           "Set to -300.0 success: false"
         ]
+      },
+      {
+        "program": "languages/java/03-advanced/inheritance-and-polymorphism/example/Main.java",
+        "required_stdout_contains": [
+          "Rectangle area: 12.00",
+          "Circle area: 12.57"
+        ]
       }
     ]
   }

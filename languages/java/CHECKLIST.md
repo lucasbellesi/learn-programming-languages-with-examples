@@ -47,11 +47,12 @@
 - [ ] structs-and-classes exercises
 - [ ] constructors-and-invariants example
 - [ ] constructors-and-invariants exercises
+- [ ] inheritance-and-polymorphism example
+- [ ] inheritance-and-polymorphism exercises
 
 ## Planned
 
 - [ ] copy-and-move-semantics module
-- [ ] inheritance-and-polymorphism module
 - [ ] templates-basics module
 - [ ] 04-expert modules
 - [ ] projects/03-advanced

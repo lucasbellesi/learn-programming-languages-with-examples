@@ -129,7 +129,11 @@
       "levels": ["01-foundations", "02-core", "03-advanced"],
       "module_levels": ["01-foundations", "02-core", "03-advanced"],
       "module_overrides": {
-        "03-advanced": ["structs-and-classes", "constructors-and-invariants"]
+        "03-advanced": [
+          "structs-and-classes",
+          "constructors-and-invariants",
+          "inheritance-and-polymorphism"
+        ]
       },
       "checkpoints": {
         "projects": ["01-foundations", "02-core"],
@@ -146,12 +150,12 @@
         "This track currently covers `01-foundations` and `02-core` as a Java 21 MVP, including projects and assessments for both implemented levels. The `03-advanced` track has started with `structs-and-classes`; expert and later checkpoints are planned for future iterations.",
         "- 8/8 foundations modules implemented.",
         "- 6/6 core modules implemented.",
-        "- 2/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`).",
+        "- 3/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `inheritance-and-polymorphism`).",
         "- 2/4 projects implemented (`01-foundations`, `02-core`).",
         "- 2/4 assessments implemented (`01-foundations`, `02-core`).",
         "- Uses Java 21 LTS with direct `javac` and `java` commands; no Maven or Gradle yet."
       ],
-      "root_status_row": "| Java | 01-foundations, 02-core, 03-advanced partial | 8/8 foundations modules, 6/6 core modules, 2/5 advanced modules, 2/4 projects, 2/4 assessments | Java 21 MVP through core plus two advanced modules; remaining advanced, expert, and later checkpoints planned |"
+      "root_status_row": "| Java | 01-foundations, 02-core, 03-advanced partial | 8/8 foundations modules, 6/6 core modules, 3/5 advanced modules, 2/4 projects, 2/4 assessments | Java 21 MVP through core plus three advanced modules; remaining advanced, expert, and later checkpoints planned |"
     },
     "python": {
       "extension": "py",
@@ -808,7 +812,8 @@
         "languages/java/02-core/maps-and-frequency-counting/example/Main.java",
         "languages/java/02-core/error-handling-and-defensive-programming/example/Main.java",
         "languages/java/03-advanced/structs-and-classes/example/Main.java",
-        "languages/java/03-advanced/constructors-and-invariants/example/Main.java"
+        "languages/java/03-advanced/constructors-and-invariants/example/Main.java",
+        "languages/java/03-advanced/inheritance-and-polymorphism/example/Main.java"
       ],
       "stdin_runs": [
         {
