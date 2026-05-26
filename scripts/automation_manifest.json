@@ -126,8 +126,11 @@
     },
     "java": {
       "extension": "java",
-      "levels": ["01-foundations", "02-core"],
-      "module_levels": ["01-foundations", "02-core"],
+      "levels": ["01-foundations", "02-core", "03-advanced"],
+      "module_levels": ["01-foundations", "02-core", "03-advanced"],
+      "module_overrides": {
+        "03-advanced": ["structs-and-classes"]
+      },
       "checkpoints": {
         "projects": ["01-foundations", "02-core"],
         "assessments": ["01-foundations", "02-core"]
@@ -140,14 +143,15 @@
       },
       "track_readme": "languages/java/README.md",
       "track_readme_markers": [
-        "This track currently covers `01-foundations` and `02-core` as a Java 21 MVP, including projects and assessments for both implemented levels.",
+        "This track currently covers `01-foundations` and `02-core` as a Java 21 MVP, including projects and assessments for both implemented levels. The `03-advanced` track has started with `structs-and-classes`; expert and later checkpoints are planned for future iterations.",
         "- 8/8 foundations modules implemented.",
         "- 6/6 core modules implemented.",
+        "- 1/5 advanced modules implemented (`structs-and-classes`).",
         "- 2/4 projects implemented (`01-foundations`, `02-core`).",
         "- 2/4 assessments implemented (`01-foundations`, `02-core`).",
         "- Uses Java 21 LTS with direct `javac` and `java` commands; no Maven or Gradle yet."
       ],
-      "root_status_row": "| Java | 01-foundations, 02-core | 8/8 foundations modules, 6/6 core modules, 2/4 projects, 2/4 assessments | Java 21 MVP through core; advanced, expert, and later checkpoints planned |"
+      "root_status_row": "| Java | 01-foundations, 02-core, 03-advanced partial | 8/8 foundations modules, 6/6 core modules, 1/5 advanced modules, 2/4 projects, 2/4 assessments | Java 21 MVP through core plus first advanced module; remaining advanced, expert, and later checkpoints planned |"
     },
     "python": {
       "extension": "py",
@@ -212,7 +216,7 @@
       "markers": [
         "- Canonical order is defined by the C++ track.",
         "- C++, C#, Go, Python, and TypeScript now reach module and checkpoint parity through `04-expert`.",
-        "- Java currently tracks `01-foundations` and `02-core` as a Java 21 MVP.",
+        "- Java currently tracks `01-foundations`, `02-core`, and the first `03-advanced` module as a Java 21 MVP.",
         "`04-expert` projects and assessments are now implemented across all active non-Java tracks.",
         "| types-and-io | Done | Done | Done | Done | Done | Done |",
         "| 02-core | Done | Done | Done | Done | Done | Done |",
@@ -802,7 +806,8 @@
         "languages/java/02-core/file-io-basics/example/Main.java",
         "languages/java/02-core/sorting-and-searching/example/Main.java",
         "languages/java/02-core/maps-and-frequency-counting/example/Main.java",
-        "languages/java/02-core/error-handling-and-defensive-programming/example/Main.java"
+        "languages/java/02-core/error-handling-and-defensive-programming/example/Main.java",
+        "languages/java/03-advanced/structs-and-classes/example/Main.java"
       ],
       "stdin_runs": [
         {

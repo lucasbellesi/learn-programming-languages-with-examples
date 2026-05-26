@@ -41,9 +41,17 @@
 - [ ] assessments/01-foundations
 - [ ] assessments/02-core
 
+## 03-advanced
+
+- [ ] structs-and-classes example
+- [ ] structs-and-classes exercises
+
 ## Planned
 
-- [ ] 03-advanced modules
+- [ ] constructors-and-invariants module
+- [ ] copy-and-move-semantics module
+- [ ] inheritance-and-polymorphism module
+- [ ] templates-basics module
 - [ ] 04-expert modules
 - [ ] projects/03-advanced
 - [ ] projects/04-expert

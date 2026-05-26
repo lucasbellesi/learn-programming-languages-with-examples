@@ -740,6 +740,16 @@
           "Cannot divide by zero.",
           "Skipped invalid row: bad row"
         ]
+      },
+      {
+        "program": "languages/java/03-advanced/structs-and-classes/example/Main.java",
+        "required_stdout_contains": [
+          "Coordinates (record example):",
+          "Point (2, 3), Manhattan distance = 5",
+          "Wallet (class example):",
+          "Owner: Maya",
+          "Balance: 115.00"
+        ]
       }
     ]
   }

@@ -4,7 +4,7 @@ This matrix tracks module and checkpoint parity across C++, C#, Go, Java, Python
 
 - Canonical order is defined by the C++ track.
 - C++, C#, Go, Python, and TypeScript now reach module and checkpoint parity through `04-expert`.
-- Java currently tracks `01-foundations` and `02-core` as a Java 21 MVP.
+- Java currently tracks `01-foundations`, `02-core`, and the first `03-advanced` module as a Java 21 MVP.
 - Status labels:
   - `Done`: module implemented with example, exercises, and README.
   - `Planned`: module not implemented yet, already queued in order.
@@ -47,7 +47,7 @@ Current parity progress in non-C++ tracks:
 
 - C#: `5/5` modules complete in `03-advanced`, `5/5` in `04-expert`
 - Go: `5/5` modules complete in `03-advanced`, `5/5` in `04-expert`
-- Java: `0/5` modules complete in `03-advanced`, `0/5` in `04-expert`
+- Java: `1/5` modules complete in `03-advanced`, `0/5` in `04-expert`
 - Python: `5/5` modules complete in `03-advanced`, `5/5` in `04-expert`
 - TypeScript: `5/5` modules complete in `03-advanced`, `5/5` in `04-expert`
 
@@ -55,7 +55,7 @@ Current parity progress in non-C++ tracks:
 
 | Order | Module | C++ | C# | Go | Java | Python | TypeScript |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | structs-and-classes | Done | Done | Done | Planned | Done | Done |
+| 1 | structs-and-classes | Done | Done | Done | Done | Done | Done |
 | 2 | constructors-and-invariants | Done | Done | Done | Planned | Done | Done |
 | 3 | copy-and-move-semantics | Done | Done | Done | Planned | Done | Done |
 | 4 | inheritance-and-polymorphism | Done | Done | Done | Planned | Done | Done |

@@ -1029,6 +1029,8 @@ def check_doc_sync(ctx: RepoContext) -> None:
                 for language, config in ctx.manifest.languages.items():
                     if level not in config.get("module_levels", []):
                         continue
+                    if module not in expected_modules_for_language_level(ctx, language, level):
+                        continue
 
                     expected_path = f"languages/{language}/{level}/{module}/README.md"
                     if expected_path not in concept_index_text:
@@ -2530,6 +2532,8 @@ def check_exercise_parity(ctx: RepoContext) -> None:
                 config = ctx.manifest.languages[language]
                 if level not in config.get("module_levels", []):
                     continue
+                if module not in expected_modules_for_language_level(ctx, language, level):
+                    continue
                 for exercise_id in ("01", "02"):
                     exercise_path = (
                         ctx.root
@@ -2684,7 +2688,10 @@ def check_cross_language_parity(ctx: RepoContext) -> None:
             focuses: dict[str, str] = {}
             why_lines: dict[str, str] = {}
             for language in languages:
-                if level not in ctx.manifest.languages[language].get("module_levels", []):
+                config = ctx.manifest.languages[language]
+                if level not in config.get("module_levels", []):
+                    continue
+                if module not in expected_modules_for_language_level(ctx, language, level):
                     continue
 
                 example_path = module_example_path(ctx, language, level, module)
