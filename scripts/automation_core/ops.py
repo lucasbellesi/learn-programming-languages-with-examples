@@ -653,6 +653,7 @@ def clean_artifacts(ctx: RepoContext) -> None:
         "*.out",
         "*.o",
         "*.obj",
+        "scores.txt",
         "report.txt",
         "core_assessment_report.txt",
     ):
@@ -1942,6 +1943,7 @@ def smoke_languages(ctx: RepoContext) -> None:
                     ctx,
                     java_class_name(source_path),
                     class_dir,
+                    cwd=temp_root_path,
                     quiet_stdout=True,
                     action=f"Java runtime smoke for {program}",
                 )
