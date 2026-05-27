@@ -2,59 +2,59 @@
 
 ## 01-foundations
 
-- [ ] types-and-io example
-- [ ] types-and-io exercises
-- [ ] operators-and-expressions example
-- [ ] operators-and-expressions exercises
-- [ ] control-flow example
-- [ ] control-flow exercises
-- [ ] functions example
-- [ ] functions exercises
-- [ ] arrays-and-vectors example
-- [ ] arrays-and-vectors exercises
-- [ ] strings example
-- [ ] strings exercises
-- [ ] scope-and-lifetime-basics example
-- [ ] scope-and-lifetime-basics exercises
-- [ ] formatted-output-and-iomanip example
-- [ ] formatted-output-and-iomanip exercises
+- [x] types-and-io example
+- [x] types-and-io exercises
+- [x] operators-and-expressions example
+- [x] operators-and-expressions exercises
+- [x] control-flow example
+- [x] control-flow exercises
+- [x] functions example
+- [x] functions exercises
+- [x] arrays-and-vectors example
+- [x] arrays-and-vectors exercises
+- [x] strings example
+- [x] strings exercises
+- [x] scope-and-lifetime-basics example
+- [x] scope-and-lifetime-basics exercises
+- [x] formatted-output-and-iomanip example
+- [x] formatted-output-and-iomanip exercises
 
 ## 02-core
 
-- [ ] input-validation example
-- [ ] input-validation exercises
-- [ ] algorithms-basics example
-- [ ] algorithms-basics exercises
-- [ ] file-io-basics example
-- [ ] file-io-basics exercises
-- [ ] sorting-and-searching example
-- [ ] sorting-and-searching exercises
-- [ ] maps-and-frequency-counting example
-- [ ] maps-and-frequency-counting exercises
-- [ ] error-handling-and-defensive-programming example
-- [ ] error-handling-and-defensive-programming exercises
+- [x] input-validation example
+- [x] input-validation exercises
+- [x] algorithms-basics example
+- [x] algorithms-basics exercises
+- [x] file-io-basics example
+- [x] file-io-basics exercises
+- [x] sorting-and-searching example
+- [x] sorting-and-searching exercises
+- [x] maps-and-frequency-counting example
+- [x] maps-and-frequency-counting exercises
+- [x] error-handling-and-defensive-programming example
+- [x] error-handling-and-defensive-programming exercises
 
 ## Checkpoints
 
-- [ ] projects/01-foundations
-- [ ] projects/02-core
-- [ ] projects/03-advanced
-- [ ] assessments/01-foundations
-- [ ] assessments/02-core
-- [ ] assessments/03-advanced
+- [x] projects/01-foundations
+- [x] projects/02-core
+- [x] projects/03-advanced
+- [x] assessments/01-foundations
+- [x] assessments/02-core
+- [x] assessments/03-advanced
 
 ## 03-advanced
 
-- [ ] structs-and-classes example
-- [ ] structs-and-classes exercises
-- [ ] constructors-and-invariants example
-- [ ] constructors-and-invariants exercises
-- [ ] copy-and-move-semantics example
-- [ ] copy-and-move-semantics exercises
-- [ ] inheritance-and-polymorphism example
-- [ ] inheritance-and-polymorphism exercises
-- [ ] templates-basics example
-- [ ] templates-basics exercises
+- [x] structs-and-classes example
+- [x] structs-and-classes exercises
+- [x] constructors-and-invariants example
+- [x] constructors-and-invariants exercises
+- [x] copy-and-move-semantics example
+- [x] copy-and-move-semantics exercises
+- [x] inheritance-and-polymorphism example
+- [x] inheritance-and-polymorphism exercises
+- [x] templates-basics example
+- [x] templates-basics exercises
 
 ## Planned
 
@@ -63,8 +63,8 @@
 
 ## 04-expert
 
-- [ ] memory-management-and-raii example
-- [ ] memory-management-and-raii exercises
+- [x] memory-management-and-raii example
+- [x] memory-management-and-raii exercises
 - [ ] smart-pointers-in-depth module
 - [ ] concurrency-basics module
 - [ ] performance-and-profiling-basics module
