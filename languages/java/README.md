@@ -2,14 +2,14 @@
 
 ## Scope and Status
 
-This track currently covers `01-foundations`, `02-core`, and `03-advanced` as a Java 21 MVP, including projects through `03-advanced` and assessments through `02-core`. Expert modules and later checkpoints are planned for future iterations.
+This track currently covers `01-foundations`, `02-core`, and `03-advanced` as a Java 21 MVP, including projects and assessments through `03-advanced`. Expert modules and later checkpoints are planned for future iterations.
 
 - 8/8 foundations modules implemented.
 - 6/6 core modules implemented.
 - 5/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, `templates-basics`).
 - 0/5 expert modules implemented.
 - 3/4 projects implemented (`01-foundations`, `02-core`, `03-advanced`).
-- 2/4 assessments implemented (`01-foundations`, `02-core`).
+- 3/4 assessments implemented (`01-foundations`, `02-core`, `03-advanced`).
 - Uses Java 21 LTS with direct `javac` and `java` commands; no Maven or Gradle yet.
 
 ## Prerequisites
@@ -62,6 +62,7 @@ java -cp build/java Main
 - Assessments
   - [01-foundations](./assessments/01-foundations/README.md)
   - [02-core](./assessments/02-core/README.md)
+  - [03-advanced](./assessments/03-advanced/README.md)
 
 ## Progress Tracking
 

@@ -41,6 +41,7 @@
 - [ ] projects/03-advanced
 - [ ] assessments/01-foundations
 - [ ] assessments/02-core
+- [ ] assessments/03-advanced
 
 ## 03-advanced
 
@@ -59,5 +60,4 @@
 
 - [ ] 04-expert modules
 - [ ] projects/04-expert
-- [ ] assessments/03-advanced
 - [ ] assessments/04-expert
