@@ -4,7 +4,7 @@
 
 This repository teaches programming through small runnable examples and focused exercises.
 
-- Five active language tracks: C++, C#, Go, Python, and TypeScript.
+- Six active language tracks: C++, C#, Go, Java, Python, and TypeScript.
 - Shared concept naming across tracks for easier comparison.
 - Each module follows the same shape: `README.md`, `example/main.*`, and two exercises.
 - Each implemented level ends with a project and an assessment checkpoint.
@@ -19,6 +19,7 @@ For the full local pipeline, install:
 - Go
 - .NET 8 SDK
 - Node LTS with `npm`
+- Java 21 JDK
 
 If you only want to learn one track, follow that track README first because language-specific prerequisites differ.
 
@@ -30,10 +31,12 @@ If you only want to learn one track, follow that track README first because lang
    - [C++ Guide](languages/cpp/README.md)
    - [C# Guide](languages/csharp/README.md)
    - [Go Guide](languages/go/README.md)
+   - [Java Guide](languages/java/README.md)
    - [Python Guide](languages/python/README.md)
    - [TypeScript Guide](languages/typescript/README.md)
 2. Start at the first roadmap for that track:
    - C++: [00-setup](languages/cpp/00-setup/README.md), then `01-foundations`
+   - Java: `01-foundations`, then `02-core`, `03-advanced`, and the available `04-expert` modules
    - C#, Go, Python, TypeScript: `01-foundations`
 3. Run one module example.
 4. Solve `exercises/01` and `exercises/02` in that module.
@@ -53,6 +56,7 @@ If you only want to learn one track, follow that track README first because lang
 | C++ | 00-setup, 01-foundations, 02-core, 03-advanced, 04-expert | Foundations, Core, Advanced, Expert, projects, assessments | Most complete and primary track |
 | C# | 01-foundations, 02-core, 03-advanced, 04-expert | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 5/5 expert modules, 4/4 projects, 4/4 assessments | Module and checkpoint parity complete through expert |
 | Go | 01-foundations, 02-core, 03-advanced, 04-expert | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 5/5 expert modules, 4/4 projects, 4/4 assessments | Module and checkpoint parity complete through expert |
+| Java | 01-foundations, 02-core, 03-advanced, 04-expert partial | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 1/5 expert modules, 3/4 projects, 3/4 assessments | Java 21 MVP complete through advanced checkpoints plus first expert module |
 | Python | 01-foundations, 02-core, 03-advanced, 04-expert | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 5/5 expert modules, 4/4 projects, 4/4 assessments | Module and checkpoint parity complete through expert |
 | TypeScript | 01-foundations, 02-core, 03-advanced, 04-expert | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 5/5 expert modules, 4/4 projects, 4/4 assessments | Module and checkpoint parity complete through expert |
 
@@ -80,6 +84,13 @@ dotnet run --project languages/csharp/01-foundations/types-and-io/example/types-
 go run languages/go/01-foundations/types-and-io/example/main.go
 ~~~
 
+### Java
+
+~~~bash
+javac -d build/java languages/java/01-foundations/types-and-io/example/Main.java
+java -cp build/java Main
+~~~
+
 ### Python
 
 ~~~bash
@@ -105,6 +116,7 @@ learn-programming-languages-with-examples/
     cpp/
     csharp/
     go/
+    java/
     python/
     typescript/
 ~~~
@@ -133,7 +145,7 @@ A standardized `## Learning Metadata` block is required before `## Quick Run` fo
 Checkpoint artifacts under `languages/<language>/projects/*` and `languages/<language>/assessments/*` should mirror the corresponding C++ checkpoint style:
 
 - `README.md`
-- runnable entrypoint (`main.cpp` in C++, `main.cs` + `.csproj` in C#, `main.go` in Go, `main.py` in Python, or `main.ts` in TypeScript)
+- runnable entrypoint (`main.cpp` in C++, `main.cs` + `.csproj` in C#, `main.go` in Go, `main.py` in Python, `Main.java` in Java, or `main.ts` in TypeScript)
 - same learner goal, input/output shape, and acceptance expectations as the C++ version
 
 ## Example Commenting Standard
@@ -160,7 +172,7 @@ bash ./scripts/verify-repo.sh
 bash ./scripts/lint.sh
 ~~~
 
-`verify-repo` validates curriculum structure, the blocking education-quality gate, output contracts, and compiled-language builds. `lint` validates formatting and static checks for C++, Python, Go, C#, and TypeScript.
+`verify-repo` validates curriculum structure, the blocking education-quality gate, output contracts, and compiled-language builds. `lint` validates formatting and static checks for C++, Python, Go, C#, Java, and TypeScript.
 
 Use narrower commands only when you want a faster loop on one area:
 
@@ -198,15 +210,15 @@ bash ./scripts/clean-artifacts.sh
 bash ./scripts/verify-repo.sh
 ~~~
 
-GitHub Actions validates links, README structure, module completeness, checkpoint completeness, documentation sync, compiled-language builds, multi-language smoke checks, and Linux lint checks for C++, Python, Go, C#, and TypeScript.
+GitHub Actions validates links, README structure, module completeness, checkpoint completeness, documentation sync, compiled-language builds, multi-language smoke checks, and Linux lint checks for C++, Python, Go, C#, Java, and TypeScript.
 
 The public PowerShell and Bash scripts remain the supported entrypoints, but they now delegate to a shared Python automation core under `scripts/automation.py` backed by `scripts/automation_manifest.json`.
 
 Use `clean-artifacts` when you want to remove generated build outputs, reports, temporary binaries, and exercise report files without removing dependencies such as `node_modules`.
 
-The multi-language smoke scripts also compile standalone C# exercises by generating temporary validation projects during the check and compile TypeScript programs before executing their smoke targets.
+The multi-language smoke scripts also compile standalone C# exercises by generating temporary validation projects during the check and compile TypeScript programs before executing their smoke targets, and compile Java single-file programs with Java 21.
 
-Use [EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md](EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md) to keep entry examples pedagogically consistent during reviews. The education audit command is advisory and writes markdown/json findings without failing CI.
+Use [EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md](EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md) to keep entry examples pedagogically consistent during reviews. The education audit command writes markdown/json findings; `verify-repo` fails on blocking findings, while oversized-example findings remain advisory unless you opt into strict mode.
 Use [EDUCATIONAL_ANTI_PATTERN_BACKLOG.md](EDUCATIONAL_ANTI_PATTERN_BACKLOG.md) for the prioritized anti-pattern vs corrected-example expansion plan.
 
 `verify-repo` now fails on blocking education-quality findings: low example-comment ratio, missing output explanation markers, or boilerplate comments. Oversized example findings remain advisory. When you want the stricter local cleanup mode that also fails on oversized examples, run:
@@ -220,7 +232,7 @@ Documentation sync also validates that [CONCEPT_INDEX.md](CONCEPT_INDEX.md) cove
 For long exercise-contract runs, you can scope by language:
 
 ~~~bash
-python scripts/automation.py check-exercise-output-contracts --language typescript
+python scripts/automation.py check-exercise-output-contracts --language java
 ~~~
 
 ## Contributing

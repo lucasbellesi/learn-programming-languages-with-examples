@@ -9,6 +9,7 @@ Thank you for contributing to this repository.
 - Use clear English for all text, comments, and instructions.
 - Maintain cross-platform compatibility (Windows MSYS2 + Linux).
 - Keep Node-based tooling simple and explicit when touching the TypeScript track.
+- Keep Java modules on plain `javac`/`java` until the track intentionally adopts build tooling.
 
 ## Workflow
 
@@ -52,12 +53,13 @@ For large changes, you can run one language at a time before the full check:
 
 - `python scripts/automation.py check-exercise-output-contracts --language python`
 - `python scripts/automation.py check-exercise-output-contracts --language go`
+- `python scripts/automation.py check-exercise-output-contracts --language java`
 - `python scripts/automation.py check-exercise-output-contracts --language typescript`
 - `python scripts/automation.py check-exercise-output-contracts --language cpp`
 - `python scripts/automation.py check-exercise-output-contracts --language csharp`
 
 These smoke checks also compile standalone C# exercises by generating temporary validation projects during the check.
-TypeScript checks restore Node dependencies from `package-lock.json`, compile with `tsc`, and execute the emitted JavaScript with `node`.
+TypeScript checks restore Node dependencies from `package-lock.json`, compile with `tsc`, and execute the emitted JavaScript with `node`. Java checks compile single-file programs with Java 21 using `javac` and run them with `java`.
 
 The public PowerShell and Bash scripts are thin wrappers over the shared Python automation core in `scripts/automation.py`. Curriculum validation and smoke target metadata live in `scripts/automation_manifest.json`.
 The artifact cleanup command removes generated build outputs, reports, temporary binaries, and exercise report files while keeping restored dependencies such as `node_modules`.
@@ -82,7 +84,7 @@ Use [EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md](EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md)
   - `## Checkpoint`
 - Every project or assessment checkpoint should include:
   - `README.md`
-  - runnable entrypoint (`main.cs` + `.csproj`, `main.go`, `main.py`, or `main.ts`)
+  - runnable entrypoint (`main.cs` + `.csproj`, `main.go`, `Main.java`, `main.py`, or `main.ts`)
   - the same learner goal, input/output shape, and acceptance expectations as the corresponding C++ checkpoint
   - required `## Learning Metadata` before `## Quick Run` with `Difficulty`, `Estimated Time`, `Prerequisites`, and `Learning Focus`
   - recommended `## Cross-Language Notes` before `## What To Check`
@@ -97,6 +99,7 @@ Use [EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md](EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md)
 - Avoid external dependencies and test frameworks for C++ modules.
 - Avoid external dependencies and test frameworks for non-C++ checkpoints.
 - Keep the TypeScript track on plain Node console programs; do not introduce browser, DOM, or framework dependencies.
+- Keep the Java track on package-free single-file programs; do not introduce Maven, Gradle, or `src/main/java` until the curriculum intentionally adds build tooling.
 - Keep examples aligned with C++17.
 - Keep documentation in English and keep path names consistent with folder names.
 - Keep parity planning updated in `LANGUAGE_PARITY_MATRIX.md` when adding modules or checkpoints to non-C++ tracks.

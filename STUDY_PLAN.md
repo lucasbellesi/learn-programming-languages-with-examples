@@ -2,12 +2,20 @@
 
 This plan assumes 5 study days per week, 60-90 minutes per day.
 
+This is the canonical study plan because the C++ track is the primary complete reference. Learners using C#, Go, Python, TypeScript, or Java can follow the same weekly concept order by opening the matching language guide and concept paths from [CONCEPT_INDEX.md](CONCEPT_INDEX.md). Java currently has complete foundations, core, advanced modules and checkpoints, plus the first expert module.
+
 ## How To Use This Plan
 
 1. Follow modules in order.
 2. For each module: read `README.md`, run `example/main.cpp`, solve `exercises/01.cpp` and `exercises/02.cpp`.
 3. Mark progress in `languages/cpp/CHECKLIST.md`.
 4. Use level capstones to combine concepts.
+
+For another language, replace the C++ file names with that track's entrypoint convention:
+
+- Java: `example/Main.java`, `exercises/Exercise01.java`, `exercises/Exercise02.java`
+- C#: project-based examples with `.csproj`, exercises as `01.cs` and `02.cs`
+- Go, Python, TypeScript: `example/main.*`, `exercises/01.*`, `exercises/02.*`
 
 ## Week 1 - Foundations Basics
 

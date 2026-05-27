@@ -124,6 +124,45 @@
       ],
       "root_status_row": "| Go | 01-foundations, 02-core, 03-advanced, 04-expert | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 5/5 expert modules, 4/4 projects, 4/4 assessments | Module and checkpoint parity complete through expert |"
     },
+    "java": {
+      "extension": "java",
+      "levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
+      "module_levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
+      "module_overrides": {
+        "03-advanced": [
+          "structs-and-classes",
+          "constructors-and-invariants",
+          "copy-and-move-semantics",
+          "inheritance-and-polymorphism",
+          "templates-basics"
+        ],
+        "04-expert": [
+          "memory-management-and-raii"
+        ]
+      },
+      "checkpoints": {
+        "projects": ["01-foundations", "02-core", "03-advanced"],
+        "assessments": ["01-foundations", "02-core", "03-advanced"]
+      },
+      "checkpoint_main": "Main.java",
+      "example_main": "Main.java",
+      "exercise_files": {
+        "01": "Exercise01.java",
+        "02": "Exercise02.java"
+      },
+      "track_readme": "languages/java/README.md",
+      "track_readme_markers": [
+        "This track currently covers `01-foundations`, `02-core`, and `03-advanced` as a Java 21 MVP, including projects and assessments through `03-advanced`. The `04-expert` track has started with deterministic resource management.",
+        "- 8/8 foundations modules implemented.",
+        "- 6/6 core modules implemented.",
+        "- 5/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, `templates-basics`).",
+        "- 1/5 expert modules implemented (`memory-management-and-raii`).",
+        "- 3/4 projects implemented (`01-foundations`, `02-core`, `03-advanced`).",
+        "- 3/4 assessments implemented (`01-foundations`, `02-core`, `03-advanced`).",
+        "- Uses Java 21 LTS with direct `javac` and `java` commands; no Maven or Gradle yet."
+      ],
+      "root_status_row": "| Java | 01-foundations, 02-core, 03-advanced, 04-expert partial | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 1/5 expert modules, 3/4 projects, 3/4 assessments | Java 21 MVP complete through advanced checkpoints plus first expert module |"
+    },
     "python": {
       "extension": "py",
       "levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
@@ -187,11 +226,13 @@
       "markers": [
         "- Canonical order is defined by the C++ track.",
         "- C++, C#, Go, Python, and TypeScript now reach module and checkpoint parity through `04-expert`.",
-        "`04-expert` projects and assessments are now implemented across all active non-C++ tracks.",
-        "| types-and-io | Done | Done | Done | Done | Done |",
-        "| 02-core | Done | Done | Done | Done | Done |",
-        "| 03-advanced | Done | Done | Done | Done | Done |",
-        "| 04-expert | Done | Done | Done | Done | Done |"
+        "- Java currently tracks `01-foundations`, `02-core`, all `03-advanced` modules and checkpoints, and the first `04-expert` module as a Java 21 MVP.",
+        "`04-expert` projects and assessments are now implemented across all active non-Java tracks.",
+        "| types-and-io | Done | Done | Done | Done | Done | Done |",
+        "| 02-core | Done | Done | Done | Done | Done | Done |",
+        "| 1 | input-validation | Done | Done | Done | Done | Done | Done |",
+        "| 03-advanced | Done | Done | Done | Done | Done | Done |",
+        "| 04-expert | Done | Done | Done | Planned | Done | Done |"
       ]
     }
   },
@@ -758,6 +799,153 @@
           "required_stdout_contains": ["Worker 0 partial sum: 48", "Worker 1 partial sum: 97", "Worker 2 partial sum: 60", "Final summary:", "Total: 205", "Minimum: 2", "Maximum: 45"]
         }
       ]
+    },
+    "java": {
+      "build_glob_root": "languages/java",
+      "example_paths": [
+        "languages/java/01-foundations/types-and-io/example/Main.java",
+        "languages/java/01-foundations/operators-and-expressions/example/Main.java",
+        "languages/java/01-foundations/control-flow/example/Main.java",
+        "languages/java/01-foundations/functions/example/Main.java",
+        "languages/java/01-foundations/arrays-and-vectors/example/Main.java",
+        "languages/java/01-foundations/strings/example/Main.java",
+        "languages/java/01-foundations/scope-and-lifetime-basics/example/Main.java",
+        "languages/java/01-foundations/formatted-output-and-iomanip/example/Main.java",
+        "languages/java/02-core/input-validation/example/Main.java",
+        "languages/java/02-core/algorithms-basics/example/Main.java",
+        "languages/java/02-core/file-io-basics/example/Main.java",
+        "languages/java/02-core/sorting-and-searching/example/Main.java",
+        "languages/java/02-core/maps-and-frequency-counting/example/Main.java",
+        "languages/java/02-core/error-handling-and-defensive-programming/example/Main.java",
+        "languages/java/03-advanced/structs-and-classes/example/Main.java",
+        "languages/java/03-advanced/constructors-and-invariants/example/Main.java",
+        "languages/java/03-advanced/copy-and-move-semantics/example/Main.java",
+        "languages/java/03-advanced/inheritance-and-polymorphism/example/Main.java",
+        "languages/java/03-advanced/templates-basics/example/Main.java",
+        "languages/java/04-expert/memory-management-and-raii/example/Main.java"
+      ],
+      "stdin_runs": [
+        {
+          "program": "languages/java/projects/01-foundations/Main.java",
+          "input_lines": ["0", "2", "Ana Smith", "101", "91", "Bob Lee", "77"],
+          "required_stdout_contains": [
+            "Please enter a number greater than zero.",
+            "Score must be between 0 and 100.",
+            "Students:",
+            "- Ana Smith: 91",
+            "- Bob Lee: 77",
+            "Average: 84.00",
+            "Minimum: 77",
+            "Maximum: 91"
+          ]
+        },
+        {
+          "program": "languages/java/assessments/01-foundations/Main.java",
+          "input_lines": ["3", "Ana Smith", "91", "Bob Lee", "55", "Carla Mendez", "88"],
+          "required_stdout_contains": [
+            "Students:",
+            "- Ana Smith: 91",
+            "- Bob Lee: 55",
+            "- Carla Mendez: 88",
+            "Average: 78.00",
+            "Highest: Ana Smith (91)",
+            "Lowest: Bob Lee (55)",
+            "Passed: 2/3"
+          ]
+        },
+        {
+          "working_dir": "languages/java/projects/02-core",
+          "program": "languages/java/projects/02-core/Main.java",
+          "setup_files": [
+            {
+              "path": "smoke-input.txt",
+              "lines": ["Ana Smith 91", "Bob Lee 77", "InvalidRow", "Carla Mendez 88"]
+            }
+          ],
+          "input_file": "smoke-input.txt",
+          "required_stdout_contains": [
+            "Valid records: 3",
+            "Invalid rows skipped: 1",
+            "Average: 85.33",
+            "Report written to report.txt"
+          ],
+          "required_outputs": ["report.txt"],
+          "required_output_contains": [
+            {
+              "path": "report.txt",
+              "contains": [
+                "Grade Report",
+                "Valid records: 3",
+                "Invalid rows skipped: 1",
+                "Average: 85.33",
+                "- Ana Smith: 91",
+                "- Bob Lee: 77",
+                "- Carla Mendez: 88"
+              ]
+            }
+          ],
+          "cleanup_paths": ["smoke-input.txt", "report.txt"]
+        },
+        {
+          "working_dir": "languages/java/assessments/02-core",
+          "program": "languages/java/assessments/02-core/Main.java",
+          "input_lines": ["91", "88", "72", "105", "60", "-1"],
+          "required_stdout_contains": [
+            "Score ignored because it is outside 0-100.",
+            "Valid scores: 4",
+            "Average: 77.75",
+            "Minimum: 60",
+            "Maximum: 91",
+            "Frequency:",
+            "- 60-69: 1",
+            "- 70-79: 1",
+            "- 80-89: 1",
+            "- 90-100: 1",
+            "Report written to core_assessment_report.txt"
+          ],
+          "required_outputs": ["core_assessment_report.txt"],
+          "required_output_contains": [
+            {
+              "path": "core_assessment_report.txt",
+              "contains": [
+                "Valid scores: 4",
+                "Average: 77.75",
+                "Minimum: 60",
+                "Maximum: 91",
+                "- 60-69: 1",
+                "- 70-79: 1",
+                "- 80-89: 1",
+                "- 90-100: 1"
+              ]
+            }
+          ],
+          "cleanup_paths": ["core_assessment_report.txt"]
+        },
+        {
+          "program": "languages/java/projects/03-advanced/Main.java",
+          "required_stdout_contains": [
+            "Course Enrollment Report",
+            "Course: JavaAdvanced | 2/2 enrolled",
+            "Course: Algorithms | 1/3 enrolled",
+            "Overflow accepted: false",
+            "Catalog courses after external clear: 2",
+            "JavaAdvanced roster snapshot: 2"
+          ]
+        },
+        {
+          "program": "languages/java/assessments/03-advanced/Main.java",
+          "input_lines": ["2", "4", "S-101 Ana", "S-202 Bob", "S-202 Duplicate", "S-303 Carla"],
+          "required_stdout_contains": [
+            "Advanced Assessment Report",
+            "Course: JavaAdvanced | 2/2 enrolled",
+            "Accepted: 2",
+            "Rejected: 2",
+            "External attempts after clear: 0",
+            "Batch requests after external clear: 4",
+            "Roster snapshot: 2"
+          ]
+        }
+      ]
     }
   },
   "lint": {
@@ -788,6 +976,11 @@
       "roots": ["languages/typescript"],
       "extensions": [".ts"],
       "exclude_dirs": ["node_modules", "build"]
+    },
+    "java": {
+      "roots": ["languages/java"],
+      "extensions": [".java"],
+      "exclude_dirs": ["build"]
     }
   }
 }

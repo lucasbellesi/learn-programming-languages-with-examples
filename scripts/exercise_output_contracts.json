@@ -1394,6 +1394,570 @@
           "Clone shortcuts: save, search, preview"
         ]
       }
+    ],
+    "java": [
+      {
+        "program": "languages/java/01-foundations/types-and-io/exercises/Exercise01.java",
+        "input_lines": [
+          "3",
+          "10",
+          "20",
+          "30"
+        ],
+        "required_stdout_contains": [
+          "Sum: 60.00",
+          "Average: 20.00",
+          "Minimum: 10.00",
+          "Maximum: 30.00"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/types-and-io/exercises/Exercise02.java",
+        "input_lines": [
+          "Notebook 12.50 3"
+        ],
+        "required_stdout_contains": [
+          "Product: Notebook",
+          "Quantity: 3",
+          "Total: 37.50"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/operators-and-expressions/exercises/Exercise01.java",
+        "input_lines": [
+          "9 4"
+        ],
+        "required_stdout_contains": [
+          "Sum: 13.00",
+          "Difference: 5.00",
+          "Product: 36.00",
+          "Quotient: 2.25"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/operators-and-expressions/exercises/Exercise02.java",
+        "input_lines": [
+          "120 0.15 0.08"
+        ],
+        "required_stdout_contains": [
+          "Discount: 18.00",
+          "Tax: 8.16",
+          "Total: 110.16"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/control-flow/exercises/Exercise01.java",
+        "input_lines": [
+          "87"
+        ],
+        "required_stdout_contains": [
+          "Grade: B"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/control-flow/exercises/Exercise02.java",
+        "input_lines": [
+          "5",
+          "3",
+          "-1",
+          "0",
+          "8",
+          "-2"
+        ],
+        "required_stdout_contains": [
+          "Positive: 2",
+          "Negative: 2",
+          "Zero: 1"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/functions/exercises/Exercise01.java",
+        "input_lines": [
+          "3"
+        ],
+        "required_stdout_contains": [
+          "Area: 28.27",
+          "Circumference: 18.85"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/functions/exercises/Exercise02.java",
+        "input_lines": [
+          "8 3 10"
+        ],
+        "required_stdout_contains": [
+          "Minimum: 3",
+          "Maximum: 10"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/arrays-and-vectors/exercises/Exercise01.java",
+        "input_lines": [
+          "4",
+          "9",
+          "2",
+          "7",
+          "2"
+        ],
+        "required_stdout_contains": [
+          "Sum: 20",
+          "Average: 5.00",
+          "Minimum: 2",
+          "Maximum: 9"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/arrays-and-vectors/exercises/Exercise02.java",
+        "input_lines": [
+          "5",
+          "8",
+          "3",
+          "8",
+          "1",
+          "8",
+          "8"
+        ],
+        "required_stdout_contains": [
+          "Target: 8",
+          "Occurrences: 3"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/strings/exercises/Exercise01.java",
+        "input_lines": [
+          "  Hello Java  "
+        ],
+        "required_stdout_contains": [
+          "Cleaned: Hello Java",
+          "Lowercase: hello java",
+          "Length: 10"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/strings/exercises/Exercise02.java",
+        "input_lines": [
+          "Java strings are useful"
+        ],
+        "required_stdout_contains": [
+          "Words: 4",
+          "Non-space characters: 20"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/scope-and-lifetime-basics/exercises/Exercise01.java",
+        "input_lines": [
+          "12"
+        ],
+        "required_stdout_contains": [
+          "Outer before block: 12",
+          "Inner value: 17",
+          "Outer after block: 12"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/scope-and-lifetime-basics/exercises/Exercise02.java",
+        "input_lines": [
+          "4"
+        ],
+        "required_stdout_contains": [
+          "Calls recorded: 4"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/formatted-output-and-iomanip/exercises/Exercise01.java",
+        "input_lines": [
+          "Notebook 12.5 3"
+        ],
+        "required_stdout_contains": [
+          "Product",
+          "Notebook",
+          "37.50"
+        ]
+      },
+      {
+        "program": "languages/java/01-foundations/formatted-output-and-iomanip/exercises/Exercise02.java",
+        "input_lines": [
+          "1000 0.05 2"
+        ],
+        "required_stdout_contains": [
+          "Principal: 1000.00",
+          "Interest: 100.00",
+          "Final amount: 1100.00"
+        ]
+      },
+      {
+        "program": "languages/java/02-core/input-validation/exercises/Exercise01.java",
+        "input_lines": [
+          "abc",
+          "150",
+          "12"
+        ],
+        "required_stdout_contains": [
+          "Invalid integer.",
+          "Out of range.",
+          "Accepted: 12",
+          "Square: 144"
+        ]
+      },
+      {
+        "program": "languages/java/02-core/input-validation/exercises/Exercise02.java",
+        "input_lines": [
+          "0",
+          "3",
+          "101",
+          "90",
+          "80",
+          "70"
+        ],
+        "required_stdout_contains": [
+          "Count must be 1..50.",
+          "Score must be 0..100.",
+          "Average score: 80.00"
+        ]
+      },
+      {
+        "program": "languages/java/02-core/algorithms-basics/exercises/Exercise01.java",
+        "input_lines": [
+          "5",
+          "8",
+          "3",
+          "8",
+          "1",
+          "8",
+          "8"
+        ],
+        "required_stdout_contains": [
+          "First index: 0",
+          "Occurrences: 3"
+        ]
+      },
+      {
+        "program": "languages/java/02-core/algorithms-basics/exercises/Exercise02.java",
+        "input_lines": [
+          "5",
+          "8",
+          "3",
+          "10",
+          "1",
+          "4"
+        ],
+        "required_stdout_contains": [
+          "Minimum: 1",
+          "Maximum: 10",
+          "Even numbers: 3"
+        ]
+      },
+      {
+        "program": "languages/java/02-core/file-io-basics/exercises/Exercise01.java",
+        "working_dir": "languages/java/02-core/file-io-basics",
+        "setup_files": [
+          {
+            "path": "contract-input.txt",
+            "lines": [
+              "alpha",
+              "beta",
+              "gamma"
+            ]
+          }
+        ],
+        "input_lines": [
+          "contract-input.txt",
+          "contract-output.txt"
+        ],
+        "required_stdout_contains": [
+          "Lines copied: 3"
+        ],
+        "required_outputs": [
+          "contract-output.txt"
+        ],
+        "required_output_contains": [
+          {
+            "path": "contract-output.txt",
+            "contains": [
+              "1: alpha",
+              "2: beta",
+              "3: gamma"
+            ]
+          }
+        ],
+        "cleanup_paths": [
+          "contract-input.txt",
+          "contract-output.txt"
+        ]
+      },
+      {
+        "program": "languages/java/02-core/file-io-basics/exercises/Exercise02.java",
+        "working_dir": "languages/java/02-core/file-io-basics",
+        "setup_files": [
+          {
+            "path": "contract-scores.txt",
+            "lines": [
+              "Ana Smith 91",
+              "Bob Lee 77",
+              "InvalidRow",
+              "Carla Mendez 88"
+            ]
+          }
+        ],
+        "input_lines": [
+          "contract-scores.txt",
+          "contract-report.txt"
+        ],
+        "required_stdout_contains": [
+          "Valid records: 3",
+          "Invalid rows skipped: 1",
+          "Average: 85.33",
+          "Report written to contract-report.txt"
+        ],
+        "required_outputs": [
+          "contract-report.txt"
+        ],
+        "required_output_contains": [
+          {
+            "path": "contract-report.txt",
+            "contains": [
+              "Grade Report",
+              "Valid records: 3",
+              "Invalid rows skipped: 1",
+              "Average: 85.33",
+              "- Ana Smith: 91",
+              "- Bob Lee: 77",
+              "- Carla Mendez: 88"
+            ]
+          }
+        ],
+        "cleanup_paths": [
+          "contract-scores.txt",
+          "contract-report.txt"
+        ]
+      },
+      {
+        "program": "languages/java/02-core/sorting-and-searching/exercises/Exercise01.java",
+        "input_lines": [
+          "5",
+          "9",
+          "2",
+          "7",
+          "2",
+          "4"
+        ],
+        "required_stdout_contains": [
+          "Sorted: 2 2 4 7 9"
+        ]
+      },
+      {
+        "program": "languages/java/02-core/sorting-and-searching/exercises/Exercise02.java",
+        "input_lines": [
+          "6",
+          "9",
+          "2",
+          "4",
+          "8",
+          "2",
+          "7",
+          "4"
+        ],
+        "required_stdout_contains": [
+          "Sorted: 2 2 4 7 8 9",
+          "Found 4 at index 2"
+        ]
+      },
+      {
+        "program": "languages/java/02-core/maps-and-frequency-counting/exercises/Exercise01.java",
+        "input_lines": [
+          "Java java maps"
+        ],
+        "required_stdout_contains": [
+          "Word frequencies:",
+          "java: 2",
+          "maps: 1"
+        ]
+      },
+      {
+        "program": "languages/java/02-core/maps-and-frequency-counting/exercises/Exercise02.java",
+        "input_lines": [
+          "7",
+          "4",
+          "2",
+          "4",
+          "7",
+          "4",
+          "2",
+          "7"
+        ],
+        "required_stdout_contains": [
+          "Number frequencies:",
+          "2: 2",
+          "4: 3",
+          "7: 2"
+        ]
+      },
+      {
+        "program": "languages/java/02-core/error-handling-and-defensive-programming/exercises/Exercise01.java",
+        "input_lines": [
+          "42",
+          "0"
+        ],
+        "required_stdout_contains": [
+          "Cannot divide by zero."
+        ]
+      },
+      {
+        "program": "languages/java/02-core/error-handling-and-defensive-programming/exercises/Exercise02.java",
+        "input_lines": [
+          "Ana 91",
+          "BrokenRow",
+          "Bob 77",
+          "Carla 105"
+        ],
+        "required_stdout_contains": [
+          "Accepted rows: 2",
+          "Skipped rows: 2",
+          "Average: 84.00"
+        ]
+      },
+      {
+        "program": "languages/java/03-advanced/structs-and-classes/exercises/Exercise01.java",
+        "input_lines": [
+          "4.5",
+          "2"
+        ],
+        "required_stdout_contains": [
+          "Area: 9.00",
+          "Perimeter: 13.00"
+        ]
+      },
+      {
+        "program": "languages/java/03-advanced/structs-and-classes/exercises/Exercise02.java",
+        "input_lines": [
+          "inc",
+          "inc",
+          "dec",
+          "reset",
+          "inc",
+          "unknown",
+          "stop"
+        ],
+        "required_stdout_contains": [
+          "Value: 1",
+          "Value: 2",
+          "Value: 1",
+          "Value: 0",
+          "Unknown command: unknown",
+          "Final value: 1"
+        ]
+      },
+      {
+        "program": "languages/java/03-advanced/constructors-and-invariants/exercises/Exercise01.java",
+        "input_lines": [
+          "-50",
+          "125",
+          "200"
+        ],
+        "required_stdout_contains": [
+          "Withdrawal rejected.",
+          "Final balance: 125.00"
+        ]
+      },
+      {
+        "program": "languages/java/03-advanced/constructors-and-invariants/exercises/Exercise02.java",
+        "input_lines": [
+          "2",
+          "29"
+        ],
+        "required_stdout_contains": [
+          "Invalid date"
+        ]
+      },
+      {
+        "program": "languages/java/03-advanced/copy-and-move-semantics/exercises/Exercise01.java",
+        "input_lines": [
+          "4"
+        ],
+        "required_stdout_contains": [
+          "first size: 4",
+          "second size (after transfer): 0",
+          "third size: 4"
+        ]
+      },
+      {
+        "program": "languages/java/03-advanced/copy-and-move-semantics/exercises/Exercise02.java",
+        "input_lines": [
+          "2",
+          "plan",
+          "build"
+        ],
+        "required_stdout_contains": [
+          "External size: 3",
+          "Board size: 2",
+          "Snapshot size: 2"
+        ]
+      },
+      {
+        "program": "languages/java/03-advanced/inheritance-and-polymorphism/exercises/Exercise01.java",
+        "input_lines": [
+          "6",
+          "4"
+        ],
+        "required_stdout_contains": [
+          "Triangle area: 12.00"
+        ]
+      },
+      {
+        "program": "languages/java/03-advanced/inheritance-and-polymorphism/exercises/Exercise02.java",
+        "required_stdout_contains": [
+          "Total area: 17.07"
+        ]
+      },
+      {
+        "program": "languages/java/03-advanced/templates-basics/exercises/Exercise01.java",
+        "input_lines": [
+          "red",
+          "blue"
+        ],
+        "required_stdout_contains": [
+          "Before: red blue",
+          "After: blue red"
+        ]
+      },
+      {
+        "program": "languages/java/03-advanced/templates-basics/exercises/Exercise02.java",
+        "input_lines": [
+          "3",
+          "10",
+          "20",
+          "25"
+        ],
+        "required_stdout_contains": [
+          "Average: 18.33"
+        ]
+      },
+      {
+        "program": "languages/java/04-expert/memory-management-and-raii/exercises/Exercise01.java",
+        "input_lines": [
+          "4",
+          "2",
+          "4",
+          "6",
+          "8"
+        ],
+        "required_stdout_contains": [
+          "Sum: 20",
+          "Reversed: 8 6 4 2",
+          "Active after scope: 0"
+        ]
+      },
+      {
+        "program": "languages/java/04-expert/memory-management-and-raii/exercises/Exercise02.java",
+        "required_stdout_contains": [
+          "enter outer active=1",
+          "enter inner active=2",
+          "inside active=2",
+          "close inner active=1",
+          "close outer active=0",
+          "final active=0"
+        ]
+      }
     ]
   }
 }

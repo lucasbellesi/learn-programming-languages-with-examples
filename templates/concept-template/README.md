@@ -27,6 +27,10 @@ python example/main.py
 # Go
 go run example/main.go
 
+# Java
+javac -d build/java example/Main.java
+java -cp build/java Main
+
 # C#
 dotnet run --project example/concept-template-example.csproj
 
@@ -54,17 +58,17 @@ node build/typescript/<level>/<module>/example/main.js
 
 ## Exercise Focus
 
-- exercises/01.<ext>: short task summary.
-- exercises/02.<ext>: short task summary.
+- exercises/01.<ext> or Exercise01.java: short task summary.
+- exercises/02.<ext> or Exercise02.java: short task summary.
 
 ### Exercise Specs
 
-1. exercises/01.<ext>
+1. exercises/01.<ext> or Exercise01.java
 - Input:
 - Output:
 - Edge cases:
 
-2. exercises/02.<ext>
+2. exercises/02.<ext> or Exercise02.java
 - Input:
 - Output:
 - Edge cases:

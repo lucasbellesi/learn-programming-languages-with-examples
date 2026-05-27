@@ -88,7 +88,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     check_exercise_output_contracts_parser.add_argument(
         "--language",
-        choices=["cpp", "csharp", "go", "python", "typescript"],
+        choices=["cpp", "csharp", "go", "java", "python", "typescript"],
         default=None,
         help="Run only one language track for exercise output contracts.",
     )
@@ -391,6 +391,26 @@ def find_npm_command() -> str:
     raise AutomationError("Required command not found: npm")
 
 
+def find_java_tool(tool: str, ctx: RepoContext | None = None) -> str:
+    resolved = find_command(tool, f"{tool}.exe")
+    if resolved:
+        return resolved
+
+    if ctx and ctx.is_windows:
+        roots = [
+            Path(r"C:\Program Files\Eclipse Adoptium"),
+            Path(r"C:\Program Files\Java"),
+        ]
+        for root in roots:
+            if not root.is_dir():
+                continue
+            matches = sorted(root.glob(f"**/bin/{tool}.exe"), reverse=True)
+            if matches:
+                return str(matches[0])
+
+    raise AutomationError(f"Required command not found: {tool}")
+
+
 def find_clang_format(ctx: RepoContext) -> str:
     resolved = find_command("clang-format", "clang-format.exe")
     if resolved:
@@ -627,7 +647,15 @@ def clean_artifacts(ctx: RepoContext) -> None:
     for direct_path in direct_paths:
         remove_candidate(direct_path)
 
-    for pattern in ("*.exe", "*.out", "*.o", "*.obj", "report.txt", "core_assessment_report.txt"):
+    for pattern in (
+        "*.class",
+        "*.exe",
+        "*.out",
+        "*.o",
+        "*.obj",
+        "report.txt",
+        "core_assessment_report.txt",
+    ):
         for path in ctx.root.rglob(pattern):
             if "node_modules" not in path.parts and ".git" not in path.parts:
                 remove_candidate(path)
@@ -718,7 +746,7 @@ def iter_module_directories(ctx: RepoContext) -> list[tuple[str, str, Path]]:
 def iter_example_code_files(ctx: RepoContext) -> list[Path]:
     files: list[Path] = []
     excluded_dirs = {"obj", "bin", "build"}
-    extensions = {".cpp", ".cs", ".go", ".py", ".ts"}
+    extensions = {".cpp", ".cs", ".go", ".java", ".py", ".ts"}
 
     for path in (ctx.root / "languages").rglob("*"):
         if not path.is_file():
@@ -740,6 +768,15 @@ def expected_modules_for_language_level(ctx: RepoContext, language: str, level: 
     if level in module_overrides:
         return list(module_overrides[level])
     return list(ctx.manifest.module_order[level])
+
+
+def language_example_main(config: dict[str, Any]) -> str:
+    return str(config.get("example_main", f"main.{config['extension']}"))
+
+
+def language_exercise_file(config: dict[str, Any], exercise_id: str) -> str:
+    exercise_files = config.get("exercise_files", {})
+    return str(exercise_files.get(exercise_id, f"{exercise_id}.{config['extension']}"))
 
 
 def check_readme_structure(ctx: RepoContext) -> None:
@@ -801,8 +838,10 @@ def check_module_completeness(ctx: RepoContext) -> None:
     module_count = 0
 
     for language, config in ctx.manifest.languages.items():
-        extension = config["extension"]
         module_levels = config.get("module_levels", [])
+        example_main = language_example_main(config)
+        exercise01_name = language_exercise_file(config, "01")
+        exercise02_name = language_exercise_file(config, "02")
 
         for level in module_levels:
             level_path = ctx.root / "languages" / language / level
@@ -826,9 +865,9 @@ def check_module_completeness(ctx: RepoContext) -> None:
                 readme_path = module_dir / "README.md"
                 example_dir = module_dir / "example"
                 exercises_dir = module_dir / "exercises"
-                main_path = example_dir / f"main.{extension}"
-                exercise01 = exercises_dir / f"01.{extension}"
-                exercise02 = exercises_dir / f"02.{extension}"
+                main_path = example_dir / example_main
+                exercise01 = exercises_dir / exercise01_name
+                exercise02 = exercises_dir / exercise02_name
 
                 if not readme_path.is_file():
                     failures.append(f"{module_dir}: missing README.md")
@@ -838,11 +877,11 @@ def check_module_completeness(ctx: RepoContext) -> None:
                 if not exercises_dir.is_dir():
                     failures.append(f"{module_dir}: missing exercises/ directory")
                 if not main_path.is_file():
-                    failures.append(f"{module_dir}: missing example/main.{extension}")
+                    failures.append(f"{module_dir}: missing example/{example_main}")
                 if not exercise01.is_file():
-                    failures.append(f"{module_dir}: missing exercises/01.{extension}")
+                    failures.append(f"{module_dir}: missing exercises/{exercise01_name}")
                 if not exercise02.is_file():
-                    failures.append(f"{module_dir}: missing exercises/02.{extension}")
+                    failures.append(f"{module_dir}: missing exercises/{exercise02_name}")
 
                 heading_failures = require_markdown_headings(
                     readme_path, ctx.manifest.required_readme_headings
@@ -990,6 +1029,8 @@ def check_doc_sync(ctx: RepoContext) -> None:
                 for language, config in ctx.manifest.languages.items():
                     if level not in config.get("module_levels", []):
                         continue
+                    if module not in expected_modules_for_language_level(ctx, language, level):
+                        continue
 
                     expected_path = f"languages/{language}/{level}/{module}/README.md"
                     if expected_path not in concept_index_text:
@@ -1039,8 +1080,7 @@ def check_example_comments(ctx: RepoContext) -> None:
 def module_example_main_files(ctx: RepoContext) -> list[tuple[str, str, str, Path]]:
     files: list[tuple[str, str, str, Path]] = []
     for language, level, module_dir in iter_module_directories(ctx):
-        extension = ctx.manifest.languages[language]["extension"]
-        main_file = module_dir / "example" / f"main.{extension}"
+        main_file = module_dir / "example" / language_example_main(ctx.manifest.languages[language])
         if not main_file.is_file():
             continue
         files.append((language, level, module_dir.name, main_file))
@@ -1070,6 +1110,8 @@ def output_pattern_for_file(path: Path) -> re.Pattern[str]:
         return re.compile(r"\bConsole\.(Write|WriteLine)\s*\(")
     if suffix == ".cpp":
         return re.compile(r"\bcout\s*<<")
+    if suffix == ".java":
+        return re.compile(r"\bSystem\.out\.(print|printf|println)\s*\(")
     return re.compile(r"\bconsole\.(log|error|warn)\s*\(", re.IGNORECASE)
 
 
@@ -1296,7 +1338,7 @@ def audit_education_quality(
 def lint_repo(ctx: RepoContext) -> None:
     lint_config = ctx.manifest.lint
 
-    print("[1/5] C++ formatting check...")
+    print("[1/6] C++ formatting check...")
     cpp_files = enumerate_source_files(
         ctx,
         roots=lint_config["cpp"]["roots"],
@@ -1310,7 +1352,7 @@ def lint_repo(ctx: RepoContext) -> None:
             action=f"C++ formatting check for {source}",
         )
 
-    print("[2/5] Python lint and format check...")
+    print("[2/6] Python lint and format check...")
     python_cmd = find_python_command()
     python_paths = [str(repo_path(ctx, path)) for path in lint_config["python"]["paths"]]
     run_command([python_cmd, "-m", "ruff", "check", *python_paths], action="Python lint check")
@@ -1318,7 +1360,7 @@ def lint_repo(ctx: RepoContext) -> None:
         [python_cmd, "-m", "ruff", "format", "--check", *python_paths], action="Python format check"
     )
 
-    print("[3/5] Go formatting check...")
+    print("[3/6] Go formatting check...")
     gofmt = find_command("gofmt", "gofmt.exe")
     if not gofmt:
         raise AutomationError("Required command not found: gofmt")
@@ -1342,7 +1384,7 @@ def lint_repo(ctx: RepoContext) -> None:
         print(gofmt_result.stdout.strip())
         raise AutomationError("Go formatting check failed.")
 
-    print("[4/5] C# formatting check...")
+    print("[4/6] C# formatting check...")
     csharp_files = enumerate_source_files(
         ctx,
         roots=lint_config["csharp"]["roots"],
@@ -1359,7 +1401,7 @@ def lint_repo(ctx: RepoContext) -> None:
         action="C# formatting check",
     )
 
-    print("[5/5] TypeScript formatting and type check...")
+    print("[5/6] TypeScript formatting and type check...")
     npm = ensure_typescript_tooling(ctx)
     prettier_patterns = [
         f"{root}/**/*{extension}"
@@ -1373,6 +1415,30 @@ def lint_repo(ctx: RepoContext) -> None:
         timeout_seconds=300,
     )
     compile_typescript(ctx, no_emit=True)
+
+    print("[6/6] Java source style check...")
+    java_config = lint_config.get("java")
+    if java_config:
+        java_files = enumerate_source_files(
+            ctx,
+            roots=java_config["roots"],
+            extensions=java_config["extensions"],
+            exclude_dirs=java_config.get("exclude_dirs", []),
+        )
+        java_failures: list[str] = []
+        for source in java_files:
+            for line_number, line in enumerate(
+                source.read_text(encoding="utf-8").splitlines(), start=1
+            ):
+                if "\t" in line:
+                    java_failures.append(f"{source}:{line_number}: tab indentation")
+                if line.rstrip() != line:
+                    java_failures.append(f"{source}:{line_number}: trailing whitespace")
+        if java_failures:
+            print("Java source style check failed:")
+            for failure in java_failures:
+                print(f" - {failure}")
+            raise AutomationError("Java source style check failed.")
 
     print("Lint checks passed.")
 
@@ -1401,6 +1467,15 @@ def build_all(ctx: RepoContext) -> None:
         print("Compiling TypeScript files...")
         compile_typescript(ctx, out_dir=build_dir / "typescript")
         print(f"Compiled {len(ts_files)} TypeScript file(s) successfully.")
+
+    java_root = ctx.root / "languages" / "java"
+    if java_root.is_dir():
+        java_files = sorted(java_root.rglob("*.java"))
+        print("Compiling Java files...")
+        java_build_root = build_dir / "java"
+        for index, source in enumerate(java_files):
+            compile_java_source(ctx, source, java_build_root / f"check_{index}")
+        print(f"Compiled {len(java_files)} Java file(s) successfully.")
 
 
 def run_module(ctx: RepoContext, module_path: str) -> None:
@@ -1486,6 +1561,32 @@ def run_module(ctx: RepoContext, module_path: str) -> None:
                 print(f"- {normalized}/exercises/{exercise.name}")
         return
 
+    if language == "java":
+        example_file = full_module_path / "example" / "Main.java"
+        if not example_file.is_file():
+            raise AutomationError(f"Missing example file: {normalized}/example/Main.java")
+
+        with tempfile.TemporaryDirectory(prefix="run_module_java_") as temp_root:
+            temp_root_path = Path(temp_root)
+            print(f"Compiling example: {normalized}/example/Main.java")
+            compile_java_source(ctx, example_file, temp_root_path)
+            print("Running example...")
+            run_java_class(
+                ctx,
+                "Main",
+                temp_root_path,
+                action=f"Execution for {normalized}/example/Main.java",
+            )
+
+        exercises_dir = full_module_path / "exercises"
+        exercise_files = sorted(exercises_dir.glob("*.java")) if exercises_dir.is_dir() else []
+        if exercise_files:
+            print()
+            print(f"Exercises in {normalized}/exercises:")
+            for exercise in exercise_files:
+                print(f"- {normalized}/exercises/{exercise.name}")
+        return
+
     raise AutomationError(f"run-module does not support language: {language}")
 
 
@@ -1497,6 +1598,41 @@ def xml_escape(value: str) -> str:
 
 def csharp_output_dll(project_path: Path) -> Path:
     return project_path.parent / "bin" / "Debug" / "net8.0" / f"{project_path.stem}.dll"
+
+
+def java_class_name(source_path: Path) -> str:
+    return source_path.stem
+
+
+def compile_java_source(ctx: RepoContext, source_path: Path, output_dir: Path) -> None:
+    output_dir.mkdir(parents=True, exist_ok=True)
+    run_command(
+        [find_java_tool("javac", ctx), "-d", str(output_dir), str(source_path)],
+        action=f"Java compilation for {source_path}",
+        timeout_seconds=120,
+    )
+
+
+def run_java_class(
+    ctx: RepoContext,
+    class_name: str,
+    class_dir: Path,
+    *,
+    cwd: Path | None = None,
+    input_text: str | None = None,
+    capture_stdout: bool = False,
+    quiet_stdout: bool = False,
+    action: str,
+) -> subprocess.CompletedProcess[str]:
+    return run_command(
+        [find_java_tool("java", ctx), "-cp", str(class_dir), class_name],
+        cwd=cwd,
+        input_text=input_text,
+        capture_stdout=capture_stdout,
+        quiet_stdout=quiet_stdout,
+        action=action,
+        timeout_seconds=30,
+    )
 
 
 def build_csharp_exercises(ctx: RepoContext) -> None:
@@ -1626,7 +1762,7 @@ def smoke_languages(ctx: RepoContext) -> None:
     python_cmd = find_python_command()
 
     python_smoke = ctx.manifest.smoke["python"]
-    print("[1/8] Python syntax check...")
+    print("[1/10] Python syntax check...")
     run_command(
         [
             python_cmd,
@@ -1638,7 +1774,7 @@ def smoke_languages(ctx: RepoContext) -> None:
         action="Python syntax check",
     )
 
-    print("[2/8] Python runtime smoke...")
+    print("[2/10] Python runtime smoke...")
     for program in python_smoke["example_paths"]:
         run_command(
             [python_cmd, str(repo_path(ctx, program))],
@@ -1657,7 +1793,7 @@ def smoke_languages(ctx: RepoContext) -> None:
         )
 
     go_smoke = ctx.manifest.smoke["go"]
-    print("[3/8] Go compile check...")
+    print("[3/10] Go compile check...")
     with tempfile.TemporaryDirectory(prefix="go-smoke-") as temp_root:
         temp_root_path = Path(temp_root)
         go_root = repo_path(ctx, go_smoke["build_glob_root"])
@@ -1689,7 +1825,7 @@ def smoke_languages(ctx: RepoContext) -> None:
                 action=f"Go build for {source}",
             )
 
-    print("[4/8] Go runtime smoke...")
+    print("[4/10] Go runtime smoke...")
     for program in go_smoke["example_paths"]:
         program_path = repo_path(ctx, program)
         run_command(
@@ -1710,13 +1846,13 @@ def smoke_languages(ctx: RepoContext) -> None:
         )
 
     typescript_smoke = ctx.manifest.smoke["typescript"]
-    print("[5/8] TypeScript compile check...")
+    print("[5/10] TypeScript compile check...")
     node_cmd = find_node_command()
     with tempfile.TemporaryDirectory(prefix="ts-smoke-") as temp_root:
         temp_root_path = Path(temp_root)
         compile_typescript(ctx, out_dir=temp_root_path)
 
-        print("[6/8] TypeScript runtime smoke...")
+        print("[6/10] TypeScript runtime smoke...")
         for program in typescript_smoke["example_paths"]:
             source_path = repo_path(ctx, program)
             run_command(
@@ -1745,7 +1881,7 @@ def smoke_languages(ctx: RepoContext) -> None:
             )
 
     csharp_smoke = ctx.manifest.smoke["csharp"]
-    print("[7/8] C# build check...")
+    print("[7/10] C# build check...")
     projects = sorted((ctx.root / "languages" / "csharp").rglob("*.csproj"))
     for project in projects:
         print(f"  Building {project.relative_to(ctx.root)}")
@@ -1765,7 +1901,7 @@ def smoke_languages(ctx: RepoContext) -> None:
         )
     build_csharp_exercises(ctx)
 
-    print("[8/8] C# runtime smoke...")
+    print("[8/10] C# runtime smoke...")
     for project in csharp_smoke["example_projects"]:
         print(f"  Running {project}")
         project_path = repo_path(ctx, project)
@@ -1787,6 +1923,45 @@ def smoke_languages(ctx: RepoContext) -> None:
             label=f"C# runtime smoke for {job.get('project', job.get('working_dir', 'job'))}",
             timeout_seconds=30,
         )
+
+    java_smoke = ctx.manifest.smoke.get("java")
+    if java_smoke:
+        print("[9/10] Java compile check...")
+        with tempfile.TemporaryDirectory(prefix="java-smoke-") as temp_root:
+            temp_root_path = Path(temp_root)
+            java_root = repo_path(ctx, java_smoke["build_glob_root"])
+            for index, source in enumerate(sorted(java_root.rglob("*.java"))):
+                compile_java_source(ctx, source, temp_root_path / f"java_build_{index}")
+
+            print("[10/10] Java runtime smoke...")
+            for program in java_smoke["example_paths"]:
+                source_path = repo_path(ctx, program)
+                class_dir = temp_root_path / f"java_run_{len(program)}_{source_path.stem}"
+                compile_java_source(ctx, source_path, class_dir)
+                run_java_class(
+                    ctx,
+                    java_class_name(source_path),
+                    class_dir,
+                    quiet_stdout=True,
+                    action=f"Java runtime smoke for {program}",
+                )
+            for job in java_smoke.get("stdin_runs", []):
+                source_path = repo_path(ctx, job["program"])
+                class_dir = (
+                    temp_root_path / f"java_stdin_{len(str(source_path))}_{source_path.stem}"
+                )
+                compile_java_source(ctx, source_path, class_dir)
+                smoke_runtime_job(
+                    ctx,
+                    job,
+                    command_builder=lambda current_job, working_dir, compiled_dir=class_dir: [
+                        find_java_tool("java", ctx),
+                        "-cp",
+                        str(compiled_dir),
+                        java_class_name(resolve_job_path(ctx, working_dir, current_job["program"])),
+                    ],
+                    label=f"Java runtime smoke for {job['program']}",
+                )
 
     print("Multi-language smoke checks passed.")
 
@@ -1946,6 +2121,41 @@ def run_csharp_source_output_contracts(
     return executed_jobs
 
 
+def run_java_source_output_contracts(
+    ctx: RepoContext,
+    jobs: list[dict[str, Any]],
+    *,
+    label_prefix: str,
+) -> int:
+    executed_jobs = 0
+    if not jobs:
+        return executed_jobs
+
+    with tempfile.TemporaryDirectory(prefix="java-source-output-contracts-") as temp_root:
+        temp_root_path = Path(temp_root)
+        for index, job in enumerate(jobs):
+            source_path = repo_path(ctx, job["program"])
+            if not source_path.is_file():
+                raise AutomationError(f"Missing Java contract source: {source_path}")
+
+            class_dir = temp_root_path / f"java-contract-{index}"
+            compile_java_source(ctx, source_path, class_dir)
+            smoke_runtime_job(
+                ctx,
+                job,
+                command_builder=lambda current_job, working_dir, compiled_dir=class_dir: [
+                    find_java_tool("java", ctx),
+                    "-cp",
+                    str(compiled_dir),
+                    java_class_name(resolve_job_path(ctx, working_dir, current_job["program"])),
+                ],
+                label=f"Java {label_prefix} output contract for {job['program']}",
+            )
+            executed_jobs += 1
+
+    return executed_jobs
+
+
 def check_example_output_contracts(ctx: RepoContext) -> None:
     contracts = load_example_output_contracts(ctx)
     if not contracts:
@@ -2038,6 +2248,12 @@ def check_example_output_contracts(ctx: RepoContext) -> None:
             )
             executed_jobs += 1
 
+    executed_jobs += run_java_source_output_contracts(
+        ctx,
+        contracts.get("java", []),
+        label_prefix="example",
+    )
+
     cpp_contracts = contracts.get("cpp", [])
     if cpp_contracts:
         toolchain = resolve_gpp_toolchain(ctx)
@@ -2097,7 +2313,7 @@ def check_exercise_output_contracts(ctx: RepoContext, language_filter: str | Non
     executed_jobs = 0
     python_cmd = find_python_command()
     node_cmd = find_node_command()
-    allowed_languages = {"cpp", "csharp", "go", "python", "typescript"}
+    allowed_languages = {"cpp", "csharp", "go", "java", "python", "typescript"}
     if language_filter is not None and language_filter not in allowed_languages:
         raise AutomationError(
             "Unsupported exercise output contracts language filter: "
@@ -2155,6 +2371,13 @@ def check_exercise_output_contracts(ctx: RepoContext, language_filter: str | Non
         executed_jobs += run_csharp_source_output_contracts(
             ctx,
             contracts.get("csharp", []),
+            label_prefix="exercise",
+        )
+
+    if language_filter in (None, "java"):
+        executed_jobs += run_java_source_output_contracts(
+            ctx,
+            contracts.get("java", []),
             label_prefix="exercise",
         )
 
@@ -2248,32 +2471,69 @@ def check_exercise_output_contracts(ctx: RepoContext, language_filter: str | Non
 
 
 def exercise_contract_key(
-    target: str, *, language: str, extension: str
+    target: str, *, language: str, config: dict[str, Any]
 ) -> tuple[str, str, str] | None:
     normalized = target.replace("\\", "/")
-    pattern = (
-        rf"^languages/{re.escape(language)}/([^/]+)/([^/]+)/exercises/(0[12])\."
-        rf"{re.escape(extension)}$"
-    )
+    expected_files = {
+        language_exercise_file(config, exercise_id): exercise_id for exercise_id in ("01", "02")
+    }
+    pattern = rf"^languages/{re.escape(language)}/([^/]+)/([^/]+)/exercises/([^/]+)$"
     match = re.match(pattern, normalized)
     if not match:
         return None
-    return match.group(1), match.group(2), match.group(3)
+    exercise_id = expected_files.get(match.group(3))
+    if exercise_id is None:
+        return None
+    return match.group(1), match.group(2), exercise_id
+
+
+def active_module_languages(ctx: RepoContext) -> list[str]:
+    return [
+        language
+        for language, config in ctx.manifest.languages.items()
+        if config.get("module_levels")
+    ]
+
+
+def parity_check_languages(ctx: RepoContext) -> list[str]:
+    return active_module_languages(ctx)
+
+
+def example_contract_key_for_language(language: str) -> str:
+    return "project" if language == "csharp" else "program"
+
+
+def example_contract_targets_for_smoke(config: dict[str, Any]) -> set[str]:
+    if "example_projects" in config:
+        return set(config.get("example_projects", []))
+    return set(config.get("example_paths", []))
+
+
+def module_example_path(ctx: RepoContext, language: str, level: str, module: str) -> Path:
+    config = ctx.manifest.languages[language]
+    return (
+        ctx.root
+        / "languages"
+        / language
+        / level
+        / module
+        / "example"
+        / language_example_main(config)
+    )
 
 
 def check_exercise_parity(ctx: RepoContext) -> None:
     failures: list[str] = []
-    languages = ["cpp", "csharp", "go", "python", "typescript"]
-    extension_map = {
-        language: ctx.manifest.languages[language]["extension"] for language in languages
-    }
+    languages = parity_check_languages(ctx)
 
     for level, modules in ctx.manifest.module_order.items():
         for module in modules:
             for language in languages:
-                if level not in ctx.manifest.languages[language].get("module_levels", []):
+                config = ctx.manifest.languages[language]
+                if level not in config.get("module_levels", []):
                     continue
-                extension = extension_map[language]
+                if module not in expected_modules_for_language_level(ctx, language, level):
+                    continue
                 for exercise_id in ("01", "02"):
                     exercise_path = (
                         ctx.root
@@ -2282,7 +2542,7 @@ def check_exercise_parity(ctx: RepoContext) -> None:
                         / level
                         / module
                         / "exercises"
-                        / f"{exercise_id}.{extension}"
+                        / language_exercise_file(config, exercise_id)
                     )
                     if not exercise_path.is_file():
                         failures.append(f"{exercise_path}: missing exercise file for parity check")
@@ -2311,7 +2571,7 @@ def check_exercise_parity(ctx: RepoContext) -> None:
             contract_keys_by_language[language] = set()
             continue
 
-        extension = extension_map[language]
+        config = ctx.manifest.languages[language]
         keys: set[tuple[str, str, str]] = set()
         for job in jobs:
             target = job.get("program")
@@ -2329,11 +2589,11 @@ def check_exercise_parity(ctx: RepoContext) -> None:
                     f"{language} contract target does not exist -> {target}"
                 )
 
-            key = exercise_contract_key(target, language=language, extension=extension)
+            key = exercise_contract_key(target, language=language, config=config)
             if key is None:
                 failures.append(
                     "scripts/exercise_output_contracts.json: "
-                    f"{language} contract target must be an exercises/01|02 file -> {target}"
+                    f"{language} contract target must be a configured exercise file -> {target}"
                 )
                 continue
 
@@ -2421,28 +2681,20 @@ def module_focus_comment(path: Path) -> tuple[str | None, str | None]:
 
 def check_cross_language_parity(ctx: RepoContext) -> None:
     failures: list[str] = []
-    languages = ["cpp", "csharp", "go", "python", "typescript"]
-    extension_map = {
-        language: ctx.manifest.languages[language]["extension"] for language in languages
-    }
+    languages = parity_check_languages(ctx)
 
     for level, modules in ctx.manifest.module_order.items():
         for module in modules:
             focuses: dict[str, str] = {}
             why_lines: dict[str, str] = {}
             for language in languages:
-                if level not in ctx.manifest.languages[language].get("module_levels", []):
+                config = ctx.manifest.languages[language]
+                if level not in config.get("module_levels", []):
+                    continue
+                if module not in expected_modules_for_language_level(ctx, language, level):
                     continue
 
-                example_path = (
-                    ctx.root
-                    / "languages"
-                    / language
-                    / level
-                    / module
-                    / "example"
-                    / f"main.{extension_map[language]}"
-                )
+                example_path = module_example_path(ctx, language, level, module)
                 if not example_path.is_file():
                     failures.append(f"{example_path}: missing example entrypoint for parity check")
                     continue
@@ -2464,7 +2716,7 @@ def check_cross_language_parity(ctx: RepoContext) -> None:
                 )
                 failures.append(
                     "languages/*/"
-                    f"{level}/{module}/example/main.*: "
+                    f"{level}/{module}/example/*: "
                     f"module focus mismatch across tracks -> {details}"
                 )
 
@@ -2475,7 +2727,7 @@ def check_cross_language_parity(ctx: RepoContext) -> None:
                 )
                 failures.append(
                     "languages/*/"
-                    f"{level}/{module}/example/main.*: "
+                    f"{level}/{module}/example/*: "
                     f"'Why it matters' mismatch across tracks -> {details}"
                 )
 
@@ -2484,31 +2736,18 @@ def check_cross_language_parity(ctx: RepoContext) -> None:
 
     for language, config in smoke.items():
         contract_jobs = contracts.get(language, [])
-        if language == "csharp":
-            contract_targets = {job.get("project") for job in contract_jobs}
-            expected_targets = set(config.get("example_projects", []))
-            missing = sorted(
-                target for target in expected_targets if target not in contract_targets
+        target_key = example_contract_key_for_language(language)
+        contract_targets = {job.get(target_key) for job in contract_jobs}
+        expected_targets = example_contract_targets_for_smoke(config)
+        missing = sorted(target for target in expected_targets if target not in contract_targets)
+        for target in missing:
+            failures.append(
+                f"scripts/example_output_contracts.json: missing {language} contract for {target}"
             )
-            for target in missing:
-                failures.append(
-                    f"scripts/example_output_contracts.json: missing csharp contract for {target}"
-                )
-        else:
-            contract_targets = {job.get("program") for job in contract_jobs}
-            expected_targets = set(config.get("example_paths", []))
-            missing = sorted(
-                target for target in expected_targets if target not in contract_targets
-            )
-            for target in missing:
-                failures.append(
-                    "scripts/example_output_contracts.json: "
-                    f"missing {language} contract for {target}"
-                )
 
     for language, jobs in contracts.items():
         for job in jobs:
-            key = "project" if language == "csharp" else "program"
+            key = example_contract_key_for_language(language)
             target = job.get(key)
             if not target:
                 failures.append(
