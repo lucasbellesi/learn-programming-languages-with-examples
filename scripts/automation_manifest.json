@@ -126,8 +126,8 @@
     },
     "java": {
       "extension": "java",
-      "levels": ["01-foundations", "02-core", "03-advanced"],
-      "module_levels": ["01-foundations", "02-core", "03-advanced"],
+      "levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
+      "module_levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
       "module_overrides": {
         "03-advanced": [
           "structs-and-classes",
@@ -135,6 +135,9 @@
           "copy-and-move-semantics",
           "inheritance-and-polymorphism",
           "templates-basics"
+        ],
+        "04-expert": [
+          "memory-management-and-raii"
         ]
       },
       "checkpoints": {
@@ -149,15 +152,16 @@
       },
       "track_readme": "languages/java/README.md",
       "track_readme_markers": [
-        "This track currently covers `01-foundations`, `02-core`, and `03-advanced` as a Java 21 MVP, including projects and assessments through `03-advanced`. Expert modules and later checkpoints are planned for future iterations.",
+        "This track currently covers `01-foundations`, `02-core`, and `03-advanced` as a Java 21 MVP, including projects and assessments through `03-advanced`. The `04-expert` track has started with deterministic resource management.",
         "- 8/8 foundations modules implemented.",
         "- 6/6 core modules implemented.",
         "- 5/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, `templates-basics`).",
+        "- 1/5 expert modules implemented (`memory-management-and-raii`).",
         "- 3/4 projects implemented (`01-foundations`, `02-core`, `03-advanced`).",
         "- 3/4 assessments implemented (`01-foundations`, `02-core`, `03-advanced`).",
         "- Uses Java 21 LTS with direct `javac` and `java` commands; no Maven or Gradle yet."
       ],
-      "root_status_row": "| Java | 01-foundations, 02-core, 03-advanced | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 3/4 projects, 3/4 assessments | Java 21 MVP complete through advanced checkpoints; expert and later checkpoints planned |"
+      "root_status_row": "| Java | 01-foundations, 02-core, 03-advanced, 04-expert partial | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 1/5 expert modules, 3/4 projects, 3/4 assessments | Java 21 MVP complete through advanced checkpoints plus first expert module |"
     },
     "python": {
       "extension": "py",
@@ -817,7 +821,8 @@
         "languages/java/03-advanced/constructors-and-invariants/example/Main.java",
         "languages/java/03-advanced/copy-and-move-semantics/example/Main.java",
         "languages/java/03-advanced/inheritance-and-polymorphism/example/Main.java",
-        "languages/java/03-advanced/templates-basics/example/Main.java"
+        "languages/java/03-advanced/templates-basics/example/Main.java",
+        "languages/java/04-expert/memory-management-and-raii/example/Main.java"
       ],
       "stdin_runs": [
         {

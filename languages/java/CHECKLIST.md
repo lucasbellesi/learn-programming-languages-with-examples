@@ -58,6 +58,14 @@
 
 ## Planned
 
-- [ ] 04-expert modules
 - [ ] projects/04-expert
 - [ ] assessments/04-expert
+
+## 04-expert
+
+- [ ] memory-management-and-raii example
+- [ ] memory-management-and-raii exercises
+- [ ] smart-pointers-in-depth module
+- [ ] concurrency-basics module
+- [ ] performance-and-profiling-basics module
+- [ ] modularization-and-build-structure module

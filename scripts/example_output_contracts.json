@@ -785,6 +785,21 @@
           "Box<String>: Java",
           "Max score: 98"
         ]
+      },
+      {
+        "program": "languages/java/04-expert/memory-management-and-raii/example/Main.java",
+        "required_stdout_contains": [
+          "Active before scope: 0",
+          "[acquire] scores size=5 active=1",
+          "Scores: [10, 15, 20, 25, 30]",
+          "Sum: 100",
+          "[acquire] scratch size=3 active=2",
+          "Scratch: [1, 2, 3]",
+          "Active inside scope: 2",
+          "[close] scratch active=1",
+          "[close] scores active=0",
+          "Active after scope: 0"
+        ]
       }
     ]
   }

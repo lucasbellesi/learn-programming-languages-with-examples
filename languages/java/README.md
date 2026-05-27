@@ -2,12 +2,12 @@
 
 ## Scope and Status
 
-This track currently covers `01-foundations`, `02-core`, and `03-advanced` as a Java 21 MVP, including projects and assessments through `03-advanced`. Expert modules and later checkpoints are planned for future iterations.
+This track currently covers `01-foundations`, `02-core`, and `03-advanced` as a Java 21 MVP, including projects and assessments through `03-advanced`. The `04-expert` track has started with deterministic resource management.
 
 - 8/8 foundations modules implemented.
 - 6/6 core modules implemented.
 - 5/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, `templates-basics`).
-- 0/5 expert modules implemented.
+- 1/5 expert modules implemented (`memory-management-and-raii`).
 - 3/4 projects implemented (`01-foundations`, `02-core`, `03-advanced`).
 - 3/4 assessments implemented (`01-foundations`, `02-core`, `03-advanced`).
 - Uses Java 21 LTS with direct `javac` and `java` commands; no Maven or Gradle yet.
@@ -55,6 +55,8 @@ java -cp build/java Main
   - [copy-and-move-semantics](./03-advanced/copy-and-move-semantics/README.md)
   - [inheritance-and-polymorphism](./03-advanced/inheritance-and-polymorphism/README.md)
   - [templates-basics](./03-advanced/templates-basics/README.md)
+- [04-expert](./04-expert/README.md)
+  - [memory-management-and-raii](./04-expert/memory-management-and-raii/README.md)
 - Projects
   - [01-foundations](./projects/01-foundations/README.md)
   - [02-core](./projects/02-core/README.md)

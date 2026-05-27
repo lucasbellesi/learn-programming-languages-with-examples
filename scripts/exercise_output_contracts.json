@@ -1931,6 +1931,32 @@
         "required_stdout_contains": [
           "Average: 18.33"
         ]
+      },
+      {
+        "program": "languages/java/04-expert/memory-management-and-raii/exercises/Exercise01.java",
+        "input_lines": [
+          "4",
+          "2",
+          "4",
+          "6",
+          "8"
+        ],
+        "required_stdout_contains": [
+          "Sum: 20",
+          "Reversed: 8 6 4 2",
+          "Active after scope: 0"
+        ]
+      },
+      {
+        "program": "languages/java/04-expert/memory-management-and-raii/exercises/Exercise02.java",
+        "required_stdout_contains": [
+          "enter outer active=1",
+          "enter inner active=2",
+          "inside active=2",
+          "close inner active=1",
+          "close outer active=0",
+          "final active=0"
+        ]
       }
     ]
   }

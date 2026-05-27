@@ -47,7 +47,7 @@ Current parity progress in non-C++ tracks:
 
 - C#: `5/5` modules complete in `03-advanced`, `5/5` in `04-expert`
 - Go: `5/5` modules complete in `03-advanced`, `5/5` in `04-expert`
-- Java: `3/5` modules complete in `03-advanced`, `0/5` in `04-expert`
+- Java: `5/5` modules complete in `03-advanced`, `1/5` in `04-expert`
 - Python: `5/5` modules complete in `03-advanced`, `5/5` in `04-expert`
 - TypeScript: `5/5` modules complete in `03-advanced`, `5/5` in `04-expert`
 
@@ -67,7 +67,7 @@ Current parity progress in non-C++ tracks:
 
 | Order | Module | C++ | C# | Go | Java | Python | TypeScript |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | memory-management-and-raii | Done | Done | Done | Planned | Done | Done |
+| 1 | memory-management-and-raii | Done | Done | Done | Done | Done | Done |
 | 2 | smart-pointers-in-depth | Done | Done | Done | Planned | Done | Done |
 | 3 | concurrency-basics | Done | Done | Done | Planned | Done | Done |
 | 4 | performance-and-profiling-basics | Done | Done | Done | Planned | Done | Done |
