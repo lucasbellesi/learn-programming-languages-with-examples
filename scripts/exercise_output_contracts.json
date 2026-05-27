@@ -1957,6 +1957,29 @@
           "close outer active=0",
           "final active=0"
         ]
+      },
+      {
+        "program": "languages/java/04-expert/smart-pointers-in-depth/exercises/Exercise01.java",
+        "required_stdout_contains": [
+          "Active: Roadmap",
+          "Backup: Old Notes",
+          "Active moves Roadmap to Backup.",
+          "Active: empty",
+          "Backup: Roadmap",
+          "Empty is empty.",
+          "Empty: empty",
+          "Active: empty"
+        ]
+      },
+      {
+        "program": "languages/java/04-expert/smart-pointers-in-depth/exercises/Exercise02.java",
+        "required_stdout_contains": [
+          "stable: alive -> Still referenced",
+          "temp: alive -> Short lived",
+          "stable: alive -> Still referenced",
+          "temp: expired",
+          "missing: missing"
+        ]
       }
     ]
   }
