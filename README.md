@@ -36,7 +36,7 @@ If you only want to learn one track, follow that track README first because lang
    - [TypeScript Guide](languages/typescript/README.md)
 2. Start at the first roadmap for that track:
    - C++: [00-setup](languages/cpp/00-setup/README.md), then `01-foundations`
-   - Java: `01-foundations`, then `02-core`
+   - Java: `01-foundations`, then `02-core`, `03-advanced`, and the available `04-expert` modules
    - C#, Go, Python, TypeScript: `01-foundations`
 3. Run one module example.
 4. Solve `exercises/01` and `exercises/02` in that module.
@@ -145,7 +145,7 @@ A standardized `## Learning Metadata` block is required before `## Quick Run` fo
 Checkpoint artifacts under `languages/<language>/projects/*` and `languages/<language>/assessments/*` should mirror the corresponding C++ checkpoint style:
 
 - `README.md`
-- runnable entrypoint (`main.cpp` in C++, `main.cs` + `.csproj` in C#, `main.go` in Go, `main.py` in Python, or `Main.java` in Java foundations; `main.ts` in TypeScript)
+- runnable entrypoint (`main.cpp` in C++, `main.cs` + `.csproj` in C#, `main.go` in Go, `main.py` in Python, `Main.java` in Java, or `main.ts` in TypeScript)
 - same learner goal, input/output shape, and acceptance expectations as the C++ version
 
 ## Example Commenting Standard
@@ -218,7 +218,7 @@ Use `clean-artifacts` when you want to remove generated build outputs, reports, 
 
 The multi-language smoke scripts also compile standalone C# exercises by generating temporary validation projects during the check and compile TypeScript programs before executing their smoke targets, and compile Java single-file programs with Java 21.
 
-Use [EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md](EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md) to keep entry examples pedagogically consistent during reviews. The education audit command is advisory and writes markdown/json findings without failing CI.
+Use [EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md](EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md) to keep entry examples pedagogically consistent during reviews. The education audit command writes markdown/json findings; `verify-repo` fails on blocking findings, while oversized-example findings remain advisory unless you opt into strict mode.
 Use [EDUCATIONAL_ANTI_PATTERN_BACKLOG.md](EDUCATIONAL_ANTI_PATTERN_BACKLOG.md) for the prioritized anti-pattern vs corrected-example expansion plan.
 
 `verify-repo` now fails on blocking education-quality findings: low example-comment ratio, missing output explanation markers, or boilerplate comments. Oversized example findings remain advisory. When you want the stricter local cleanup mode that also fails on oversized examples, run:

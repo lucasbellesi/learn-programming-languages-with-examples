@@ -226,7 +226,7 @@
       "markers": [
         "- Canonical order is defined by the C++ track.",
         "- C++, C#, Go, Python, and TypeScript now reach module and checkpoint parity through `04-expert`.",
-        "- Java currently tracks `01-foundations`, `02-core`, and all `03-advanced` modules as a Java 21 MVP.",
+        "- Java currently tracks `01-foundations`, `02-core`, all `03-advanced` modules and checkpoints, and the first `04-expert` module as a Java 21 MVP.",
         "`04-expert` projects and assessments are now implemented across all active non-Java tracks.",
         "| types-and-io | Done | Done | Done | Done | Done | Done |",
         "| 02-core | Done | Done | Done | Done | Done | Done |",

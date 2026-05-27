@@ -4,7 +4,7 @@ This matrix tracks module and checkpoint parity across C++, C#, Go, Java, Python
 
 - Canonical order is defined by the C++ track.
 - C++, C#, Go, Python, and TypeScript now reach module and checkpoint parity through `04-expert`.
-- Java currently tracks `01-foundations`, `02-core`, and all `03-advanced` modules as a Java 21 MVP.
+- Java currently tracks `01-foundations`, `02-core`, all `03-advanced` modules and checkpoints, and the first `04-expert` module as a Java 21 MVP.
 - Status labels:
   - `Done`: module implemented with example, exercises, and README.
   - `Planned`: module not implemented yet, already queued in order.
