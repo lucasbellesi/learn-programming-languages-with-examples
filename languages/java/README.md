@@ -2,11 +2,11 @@
 
 ## Scope and Status
 
-This track currently covers `01-foundations` and `02-core` as a Java 21 MVP, including projects and assessments for both implemented levels. The `03-advanced` track now covers object modeling, invariants, polymorphism, and generics; expert and later checkpoints are planned for future iterations.
+This track currently covers `01-foundations`, `02-core`, and `03-advanced` as a Java 21 MVP, including projects and assessments for the first two implemented levels. Expert modules and later checkpoints are planned for future iterations.
 
 - 8/8 foundations modules implemented.
 - 6/6 core modules implemented.
-- 4/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `inheritance-and-polymorphism`, `templates-basics`).
+- 5/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, `templates-basics`).
 - 0/5 expert modules implemented.
 - 2/4 projects implemented (`01-foundations`, `02-core`).
 - 2/4 assessments implemented (`01-foundations`, `02-core`).
@@ -52,6 +52,7 @@ java -cp build/java Main
 - [03-advanced](./03-advanced/README.md)
   - [structs-and-classes](./03-advanced/structs-and-classes/README.md)
   - [constructors-and-invariants](./03-advanced/constructors-and-invariants/README.md)
+  - [copy-and-move-semantics](./03-advanced/copy-and-move-semantics/README.md)
   - [inheritance-and-polymorphism](./03-advanced/inheritance-and-polymorphism/README.md)
   - [templates-basics](./03-advanced/templates-basics/README.md)
 - Projects

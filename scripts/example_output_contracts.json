@@ -761,6 +761,15 @@
         ]
       },
       {
+        "program": "languages/java/03-advanced/copy-and-move-semantics/example/Main.java",
+        "required_stdout_contains": [
+          "Original: 9/5",
+          "Shallow copy: 9/5",
+          "Defensive copy: 15/2",
+          "Snapshot size: 2"
+        ]
+      },
+      {
         "program": "languages/java/03-advanced/inheritance-and-polymorphism/example/Main.java",
         "required_stdout_contains": [
           "Rectangle area: 12.00",

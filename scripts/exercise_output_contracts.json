@@ -1870,6 +1870,30 @@
         ]
       },
       {
+        "program": "languages/java/03-advanced/copy-and-move-semantics/exercises/Exercise01.java",
+        "input_lines": [
+          "4"
+        ],
+        "required_stdout_contains": [
+          "first size: 4",
+          "second size (after transfer): 0",
+          "third size: 4"
+        ]
+      },
+      {
+        "program": "languages/java/03-advanced/copy-and-move-semantics/exercises/Exercise02.java",
+        "input_lines": [
+          "2",
+          "plan",
+          "build"
+        ],
+        "required_stdout_contains": [
+          "External size: 3",
+          "Board size: 2",
+          "Snapshot size: 2"
+        ]
+      },
+      {
         "program": "languages/java/03-advanced/inheritance-and-polymorphism/exercises/Exercise01.java",
         "input_lines": [
           "6",
