@@ -2,7 +2,7 @@
 
 This plan assumes 5 study days per week, 60-90 minutes per day.
 
-This is the canonical study plan because the C++ track is the primary complete reference. Learners using C#, Go, Python, TypeScript, or Java can follow the same weekly concept order by opening the matching language guide and concept paths from [CONCEPT_INDEX.md](CONCEPT_INDEX.md). Java currently has complete foundations, core, advanced modules and checkpoints, plus the first expert module.
+This is the canonical study plan because the C++ track is the primary complete reference. Learners using C#, Go, Python, TypeScript, or Java can follow the same weekly concept order by opening the matching language guide and concept paths from [CONCEPT_INDEX.md](CONCEPT_INDEX.md). Java currently has complete foundations, core, advanced modules and checkpoints, plus the first two expert modules.
 
 ## How To Use This Plan
 

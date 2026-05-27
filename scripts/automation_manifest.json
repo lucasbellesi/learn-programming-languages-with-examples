@@ -137,7 +137,8 @@
           "templates-basics"
         ],
         "04-expert": [
-          "memory-management-and-raii"
+          "memory-management-and-raii",
+          "smart-pointers-in-depth"
         ]
       },
       "checkpoints": {
@@ -152,16 +153,16 @@
       },
       "track_readme": "languages/java/README.md",
       "track_readme_markers": [
-        "This track currently covers `01-foundations`, `02-core`, and `03-advanced` as a Java 21 MVP, including projects and assessments through `03-advanced`. The `04-expert` track has started with deterministic resource management.",
+        "This track currently covers `01-foundations`, `02-core`, and `03-advanced` as a Java 21 MVP, including projects and assessments through `03-advanced`. The `04-expert` track now includes deterministic resource management and managed-reference ownership patterns.",
         "- 8/8 foundations modules implemented.",
         "- 6/6 core modules implemented.",
         "- 5/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, `templates-basics`).",
-        "- 1/5 expert modules implemented (`memory-management-and-raii`).",
+        "- 2/5 expert modules implemented (`memory-management-and-raii`, `smart-pointers-in-depth`).",
         "- 3/4 projects implemented (`01-foundations`, `02-core`, `03-advanced`).",
         "- 3/4 assessments implemented (`01-foundations`, `02-core`, `03-advanced`).",
         "- Uses Java 21 LTS with direct `javac` and `java` commands; no Maven or Gradle yet."
       ],
-      "root_status_row": "| Java | 01-foundations, 02-core, 03-advanced, 04-expert partial | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 1/5 expert modules, 3/4 projects, 3/4 assessments | Java 21 MVP complete through advanced checkpoints plus first expert module |"
+      "root_status_row": "| Java | 01-foundations, 02-core, 03-advanced, 04-expert partial | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 2/5 expert modules, 3/4 projects, 3/4 assessments | Java 21 MVP complete through advanced checkpoints plus two expert modules |"
     },
     "python": {
       "extension": "py",
@@ -226,7 +227,7 @@
       "markers": [
         "- Canonical order is defined by the C++ track.",
         "- C++, C#, Go, Python, and TypeScript now reach module and checkpoint parity through `04-expert`.",
-        "- Java currently tracks `01-foundations`, `02-core`, all `03-advanced` modules and checkpoints, and the first `04-expert` module as a Java 21 MVP.",
+        "- Java currently tracks `01-foundations`, `02-core`, all `03-advanced` modules and checkpoints, and the first two `04-expert` modules as a Java 21 MVP.",
         "`04-expert` projects and assessments are now implemented across all active non-Java tracks.",
         "| types-and-io | Done | Done | Done | Done | Done | Done |",
         "| 02-core | Done | Done | Done | Done | Done | Done |",
@@ -822,7 +823,8 @@
         "languages/java/03-advanced/copy-and-move-semantics/example/Main.java",
         "languages/java/03-advanced/inheritance-and-polymorphism/example/Main.java",
         "languages/java/03-advanced/templates-basics/example/Main.java",
-        "languages/java/04-expert/memory-management-and-raii/example/Main.java"
+        "languages/java/04-expert/memory-management-and-raii/example/Main.java",
+        "languages/java/04-expert/smart-pointers-in-depth/example/Main.java"
       ],
       "stdin_runs": [
         {

@@ -65,7 +65,7 @@
 
 - [x] memory-management-and-raii example
 - [x] memory-management-and-raii exercises
-- [ ] smart-pointers-in-depth module
+- [x] smart-pointers-in-depth module
 - [ ] concurrency-basics module
 - [ ] performance-and-profiling-basics module
 - [ ] modularization-and-build-structure module

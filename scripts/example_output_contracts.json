@@ -800,6 +800,19 @@
           "[close] scores active=0",
           "Active after scope: 0"
         ]
+      },
+      {
+        "program": "languages/java/04-expert/smart-pointers-in-depth/example/Main.java",
+        "required_stdout_contains": [
+          "Inbox: Quarterly Summary",
+          "Archive: empty",
+          "Inbox transfers Quarterly Summary to Archive.",
+          "Inbox: empty",
+          "Archive: Quarterly Summary",
+          "Archive snapshot size: 2",
+          "Preview can still see: Transient Draft",
+          "Preview target expired."
+        ]
       }
     ]
   }
