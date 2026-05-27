@@ -38,6 +38,7 @@
 
 - [ ] projects/01-foundations
 - [ ] projects/02-core
+- [ ] projects/03-advanced
 - [ ] assessments/01-foundations
 - [ ] assessments/02-core
 
@@ -57,7 +58,6 @@
 ## Planned
 
 - [ ] 04-expert modules
-- [ ] projects/03-advanced
 - [ ] projects/04-expert
 - [ ] assessments/03-advanced
 - [ ] assessments/04-expert
