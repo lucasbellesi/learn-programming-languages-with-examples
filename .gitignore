@@ -12,6 +12,7 @@ compiled_files.txt
 compile_errors.txt
 __pycache__/
 *.pyc
+scores.txt
 report.txt
 core_assessment_report.txt
 node_modules/
