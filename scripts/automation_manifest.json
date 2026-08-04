@@ -145,8 +145,8 @@
         ]
       },
       "checkpoints": {
-        "projects": ["01-foundations", "02-core", "03-advanced"],
-        "assessments": ["01-foundations", "02-core", "03-advanced"]
+        "projects": ["01-foundations", "02-core", "03-advanced", "04-expert"],
+        "assessments": ["01-foundations", "02-core", "03-advanced", "04-expert"]
       },
       "checkpoint_main": "Main.java",
       "example_main": "Main.java",
@@ -156,16 +156,16 @@
       },
       "track_readme": "languages/java/README.md",
       "track_readme_markers": [
-        "This track currently covers every module from `01-foundations` through `04-expert` as a Java 21 learning path, with projects and assessments implemented through `03-advanced`.",
+        "This track covers every module from `01-foundations` through `04-expert` as a Java 21 learning path, plus all project and assessment checkpoints through `04-expert`.",
         "- 8/8 foundations modules implemented.",
         "- 6/6 core modules implemented.",
         "- 5/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, `templates-basics`).",
         "- 5/5 expert modules implemented (`memory-management-and-raii`, `smart-pointers-in-depth`, `concurrency-basics`, `performance-and-profiling-basics`, `modularization-and-build-structure`).",
-        "- 3/4 projects implemented (`01-foundations`, `02-core`, `03-advanced`).",
-        "- 3/4 assessments implemented (`01-foundations`, `02-core`, `03-advanced`).",
+        "- 4/4 projects implemented (`01-foundations`, `02-core`, `03-advanced`, `04-expert`).",
+        "- 4/4 assessments implemented (`01-foundations`, `02-core`, `03-advanced`, `04-expert`).",
         "- Uses Java 21 LTS with direct `javac` and `java` commands; no Maven or Gradle yet."
       ],
-      "root_status_row": "| Java | 01-foundations, 02-core, 03-advanced, 04-expert | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 5/5 expert modules, 3/4 projects, 3/4 assessments | Module parity complete through expert; expert project and assessment pending |"
+      "root_status_row": "| Java | 01-foundations, 02-core, 03-advanced, 04-expert | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 5/5 expert modules, 4/4 projects, 4/4 assessments | Module and checkpoint parity complete through expert |"
     },
     "python": {
       "extension": "py",
@@ -229,14 +229,13 @@
       "path": "LANGUAGE_PARITY_MATRIX.md",
       "markers": [
         "- Canonical order is defined by the C++ track.",
-        "- All six tracks now reach module parity through `04-expert`.",
-        "- Java projects and assessments currently reach `03-advanced`; its `04-expert` checkpoints remain planned.",
-        "`04-expert` projects and assessments are now implemented across all active non-Java tracks.",
+        "- All six tracks now reach module and checkpoint parity through `04-expert`.",
+        "`04-expert` projects and assessments are now implemented across all six active tracks.",
         "| types-and-io | Done | Done | Done | Done | Done | Done |",
         "| 02-core | Done | Done | Done | Done | Done | Done |",
         "| 1 | input-validation | Done | Done | Done | Done | Done | Done |",
         "| 03-advanced | Done | Done | Done | Done | Done | Done |",
-        "| 04-expert | Done | Done | Done | Planned | Done | Done |"
+        "| 04-expert | Done | Done | Done | Done | Done | Done |"
       ]
     }
   },
@@ -951,6 +950,32 @@
             "External attempts after clear: 0",
             "Batch requests after external clear: 4",
             "Roster snapshot: 2"
+          ]
+        },
+        {
+          "program": "languages/java/projects/04-expert/Main.java",
+          "required_stdout_contains": [
+            "Running 3 jobs through 2 steps...",
+            "Step load processed 3 jobs",
+            "Step transform processed 3 jobs",
+            "Every job completed every step: true",
+            "Executor terminated: true"
+          ],
+          "required_stdout_patterns": [
+            "Elapsed \\(microseconds\\): [1-9][0-9]*"
+          ]
+        },
+        {
+          "program": "languages/java/assessments/04-expert/Main.java",
+          "required_stdout_contains": [
+            "Worker 0 partial sum: 48",
+            "Worker 1 partial sum: 97",
+            "Worker 2 partial sum: 60",
+            "Final summary:",
+            "Total: 205",
+            "Minimum: 2",
+            "Maximum: 45",
+            "Executor terminated: true"
           ]
         }
       ]
