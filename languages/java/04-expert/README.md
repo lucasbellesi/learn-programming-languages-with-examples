@@ -1,11 +1,11 @@
 # Java 04 Expert
 
-This level covers deterministic cleanup, managed-reference ownership, concurrent task coordination, JVM measurement discipline, and multi-file program structure.
+This fully implemented level covers deterministic cleanup, managed-reference ownership, concurrent task coordination, JVM measurement discipline, and multi-file program structure.
 
 ## Learning Metadata
 
 - Difficulty: Advanced.
-- Estimated Time: 45-60 minutes per module.
+- Estimated Time: 5-7 hours across modules, project, and assessment.
 - Prerequisites: Completion of `01-foundations`, `02-core`, and `03-advanced`.
 - Study Strategy: Progress from lifetime and ownership into concurrency, measurement, and source boundaries; compare the Java runtime and build model with each sibling track.
 
@@ -46,6 +46,8 @@ This level covers deterministic cleanup, managed-reference ownership, concurrent
 - [ ] I can implement a small `AutoCloseable` resource.
 - [ ] I can explain when Java references are owning, shared, or weak by convention.
 - [ ] I can explain why executors must be shut down and why timing results vary.
+- [ ] I completed `languages/java/projects/04-expert`.
+- [ ] I completed `languages/java/assessments/04-expert`.
 
 ## Study Tip
 

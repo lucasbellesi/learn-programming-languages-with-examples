@@ -39,9 +39,11 @@
 - [x] projects/01-foundations
 - [x] projects/02-core
 - [x] projects/03-advanced
+- [x] projects/04-expert
 - [x] assessments/01-foundations
 - [x] assessments/02-core
 - [x] assessments/03-advanced
+- [x] assessments/04-expert
 
 ## 03-advanced
 
@@ -56,16 +58,11 @@
 - [x] templates-basics example
 - [x] templates-basics exercises
 
-## Planned
-
-- [ ] projects/04-expert
-- [ ] assessments/04-expert
-
 ## 04-expert
 
 - [x] memory-management-and-raii example
 - [x] memory-management-and-raii exercises
 - [x] smart-pointers-in-depth module
-- [ ] concurrency-basics module
-- [ ] performance-and-profiling-basics module
-- [ ] modularization-and-build-structure module
+- [x] concurrency-basics module
+- [x] performance-and-profiling-basics module
+- [x] modularization-and-build-structure module

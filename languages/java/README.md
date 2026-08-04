@@ -2,14 +2,14 @@
 
 ## Scope and Status
 
-This track currently covers every module from `01-foundations` through `04-expert` as a Java 21 learning path, with projects and assessments implemented through `03-advanced`.
+This track covers every module from `01-foundations` through `04-expert` as a Java 21 learning path, plus all project and assessment checkpoints through `04-expert`.
 
 - 8/8 foundations modules implemented.
 - 6/6 core modules implemented.
 - 5/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, `templates-basics`).
 - 5/5 expert modules implemented (`memory-management-and-raii`, `smart-pointers-in-depth`, `concurrency-basics`, `performance-and-profiling-basics`, `modularization-and-build-structure`).
-- 3/4 projects implemented (`01-foundations`, `02-core`, `03-advanced`).
-- 3/4 assessments implemented (`01-foundations`, `02-core`, `03-advanced`).
+- 4/4 projects implemented (`01-foundations`, `02-core`, `03-advanced`, `04-expert`).
+- 4/4 assessments implemented (`01-foundations`, `02-core`, `03-advanced`, `04-expert`).
 - Uses Java 21 LTS with direct `javac` and `java` commands; no Maven or Gradle yet.
 
 ## Prerequisites
@@ -65,10 +65,12 @@ java -cp build/java Main
   - [01-foundations](./projects/01-foundations/README.md)
   - [02-core](./projects/02-core/README.md)
   - [03-advanced](./projects/03-advanced/README.md)
+  - [04-expert](./projects/04-expert/README.md)
 - Assessments
   - [01-foundations](./assessments/01-foundations/README.md)
   - [02-core](./assessments/02-core/README.md)
   - [03-advanced](./assessments/03-advanced/README.md)
+  - [04-expert](./assessments/04-expert/README.md)
 
 ## Progress Tracking
 

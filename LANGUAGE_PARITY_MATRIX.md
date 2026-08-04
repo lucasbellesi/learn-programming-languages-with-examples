@@ -3,8 +3,7 @@
 This matrix tracks module and checkpoint parity across C++, C#, Go, Java, Python, and TypeScript.
 
 - Canonical order is defined by the C++ track.
-- All six tracks now reach module parity through `04-expert`.
-- Java projects and assessments currently reach `03-advanced`; its `04-expert` checkpoints remain planned.
+- All six tracks now reach module and checkpoint parity through `04-expert`.
 - Status labels:
   - `Done`: module implemented with example, exercises, and README.
   - `Planned`: module not implemented yet, already queued in order.
@@ -61,7 +60,7 @@ Current parity progress in non-C++ tracks:
 | 4 | inheritance-and-polymorphism | Done | Done | Done | Done | Done | Done |
 | 5 | templates-basics | Done | Done | Done | Done | Done | Done |
 
-`04-expert` projects and assessments are now implemented across all active non-Java tracks.
+`04-expert` projects and assessments are now implemented across all six active tracks.
 
 ### Expert (`04-expert`)
 
@@ -87,7 +86,7 @@ Status labels:
 | 01-foundations | Done | Done | Done | Done | Done | Done |
 | 02-core | Done | Done | Done | Done | Done | Done |
 | 03-advanced | Done | Done | Done | Done | Done | Done |
-| 04-expert | Done | Done | Done | Planned | Done | Done |
+| 04-expert | Done | Done | Done | Done | Done | Done |
 
 ### Assessments
 
@@ -96,4 +95,4 @@ Status labels:
 | 01-foundations | Done | Done | Done | Done | Done | Done |
 | 02-core | Done | Done | Done | Done | Done | Done |
 | 03-advanced | Done | Done | Done | Done | Done | Done |
-| 04-expert | Done | Done | Done | Planned | Done | Done |
+| 04-expert | Done | Done | Done | Done | Done | Done |
