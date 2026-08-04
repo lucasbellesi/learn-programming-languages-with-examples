@@ -93,11 +93,35 @@ def build_parser() -> argparse.ArgumentParser:
         help="Run only one language track for exercise output contracts.",
     )
     check_exercise_output_contracts_parser.set_defaults(func=handle_check_exercise_output_contracts)
+    check_exercise_parser = subparsers.add_parser(
+        "check-exercise",
+        help="Check one learner exercise submission against its configured cases.",
+    )
+    check_exercise_parser.add_argument(
+        "--language",
+        choices=["cpp", "csharp", "go", "java", "python", "typescript"],
+        required=True,
+    )
+    check_exercise_parser.add_argument("--level", required=True)
+    check_exercise_parser.add_argument("--module", required=True)
+    check_exercise_parser.add_argument("--exercise", choices=["01", "02"], required=True)
+    exercise_source_group = check_exercise_parser.add_mutually_exclusive_group()
+    exercise_source_group.add_argument(
+        "--submission",
+        help="Repository-relative path to the source file to check instead of the starter.",
+    )
+    exercise_source_group.add_argument(
+        "--solution",
+        action="store_true",
+        help="Check the reference solution instead of the starter.",
+    )
+    check_exercise_parser.set_defaults(func=handle_check_exercise)
     add_simple_command(subparsers, "check-exercise-parity", handle_check_exercise_parity)
     add_simple_command(
         subparsers, "check-cross-language-parity", handle_check_cross_language_parity
     )
     add_simple_command(subparsers, "check-doc-sync", handle_check_doc_sync)
+    add_simple_command(subparsers, "test-automation", handle_test_automation)
     add_simple_command(subparsers, "lint", handle_lint)
     add_simple_command(subparsers, "smoke-languages", handle_smoke_languages)
     add_simple_command(subparsers, "verify-repo", handle_verify_repo)
@@ -173,6 +197,19 @@ def handle_check_exercise_output_contracts(ctx: RepoContext, args: argparse.Name
     return 0
 
 
+def handle_check_exercise(ctx: RepoContext, args: argparse.Namespace) -> int:
+    check_learning_exercise(
+        ctx,
+        language=args.language,
+        level=args.level,
+        module=args.module,
+        exercise_id=args.exercise,
+        submission=args.submission,
+        use_solution=args.solution,
+    )
+    return 0
+
+
 def handle_check_exercise_parity(ctx: RepoContext, _: argparse.Namespace) -> int:
     check_exercise_parity(ctx)
     return 0
@@ -185,6 +222,11 @@ def handle_check_cross_language_parity(ctx: RepoContext, _: argparse.Namespace) 
 
 def handle_check_doc_sync(ctx: RepoContext, _: argparse.Namespace) -> int:
     check_doc_sync(ctx)
+    return 0
+
+
+def handle_test_automation(ctx: RepoContext, _: argparse.Namespace) -> int:
+    test_automation(ctx)
     return 0
 
 
@@ -2000,6 +2042,101 @@ def load_exercise_output_contracts(ctx: RepoContext) -> dict[str, list[dict[str,
     return load_output_contracts(ctx, "exercise_output_contracts.json", "exercise")
 
 
+def load_learning_exercises(ctx: RepoContext) -> list[dict[str, Any]]:
+    exercises_path = ctx.scripts_dir / "learning_exercises.json"
+    if not exercises_path.is_file():
+        raise AutomationError(f"Missing learning exercises file: {exercises_path}")
+
+    payload = json.loads(exercises_path.read_text(encoding="utf-8"))
+    exercises = payload.get("exercises")
+    if not isinstance(exercises, list):
+        raise AutomationError(
+            f"{exercises_path}: expected top-level object with an 'exercises' list."
+        )
+    case_sets = payload.get("case_sets", {})
+    if not isinstance(case_sets, dict):
+        raise AutomationError(f"{exercises_path}: 'case_sets' must be an object.")
+
+    result: list[dict[str, Any]] = []
+    for exercise in exercises:
+        if not isinstance(exercise, dict):
+            raise AutomationError(f"{exercises_path}: each exercise must be an object.")
+        current = dict(exercise)
+        case_set_name = current.get("case_set")
+        if case_set_name is not None:
+            cases = case_sets.get(case_set_name)
+            if not isinstance(cases, list):
+                raise AutomationError(
+                    f"{exercises_path}: unknown or invalid case set '{case_set_name}'."
+                )
+            current["cases"] = cases
+        result.append(current)
+    return result
+
+
+def check_learning_exercise(
+    ctx: RepoContext,
+    *,
+    language: str,
+    level: str,
+    module: str,
+    exercise_id: str,
+    submission: str | None,
+    use_solution: bool,
+) -> None:
+    matches = [
+        exercise
+        for exercise in load_learning_exercises(ctx)
+        if exercise.get("language") == language
+        and exercise.get("level") == level
+        and exercise.get("module") == module
+        and exercise.get("exercise") == exercise_id
+    ]
+    exercise_label = f"{language}/{level}/{module}/{exercise_id}"
+    if not matches:
+        raise AutomationError(f"No learner exercise is configured for {exercise_label}.")
+    if len(matches) > 1:
+        raise AutomationError(f"Duplicate learner exercise configuration for {exercise_label}.")
+
+    exercise = matches[0]
+    configured_path = exercise.get("solution" if use_solution else "starter")
+    raw_submission = submission or configured_path
+    if not isinstance(raw_submission, str) or not raw_submission:
+        raise AutomationError(f"Missing source path configuration for {exercise_label}.")
+
+    source_path = repo_path(ctx, raw_submission).resolve()
+    try:
+        source_path.relative_to(ctx.root.resolve())
+    except ValueError as error:
+        raise AutomationError(
+            "Exercise submissions must be located inside the repository."
+        ) from error
+    if not source_path.is_file():
+        raise AutomationError(f"Exercise submission does not exist: {source_path}")
+
+    cases = exercise.get("cases")
+    if not isinstance(cases, list) or not cases:
+        raise AutomationError(f"No check cases are configured for {exercise_label}.")
+
+    program = source_path.relative_to(ctx.root.resolve()).as_posix()
+    jobs: list[dict[str, Any]] = []
+    for index, case in enumerate(cases, start=1):
+        if not isinstance(case, dict):
+            raise AutomationError(f"Invalid case {index} for {exercise_label}.")
+        job = dict(case)
+        job["program"] = program
+        jobs.append(job)
+
+    source_kind = "reference solution" if use_solution else "submission"
+    print(f"Checking {source_kind} for {exercise_label} ({len(jobs)} cases)...")
+    check_exercise_output_contracts(
+        ctx,
+        language_filter=language,
+        contracts_override={language: jobs},
+        success_message=f"Exercise check passed for {exercise_label} ({len(jobs)} cases).",
+    )
+
+
 def is_vacuous_stdout_pattern(pattern: str) -> bool:
     normalized = pattern.strip()
     if normalized in {r"\S", r".+", r"[\s\S]+", r"(?s).+"}:
@@ -2010,6 +2147,11 @@ def is_vacuous_stdout_pattern(pattern: str) -> bool:
     except re.error:
         return False
     return all(compiled.search(sample) for sample in ["", "x", "not expected output\n"])
+
+
+def output_contract_case_suffix(job: dict[str, Any]) -> str:
+    case_name = job.get("name")
+    return f" case '{case_name}'" if isinstance(case_name, str) and case_name else ""
 
 
 def run_csharp_source_output_contracts(
@@ -2028,6 +2170,7 @@ def run_csharp_source_output_contracts(
             source_path = repo_path(ctx, job["program"])
             if not source_path.is_file():
                 raise AutomationError(f"Missing C# contract source: {source_path}")
+            case_suffix = output_contract_case_suffix(job)
 
             project_dir = temp_root_path / f"exercise-{index}"
             project_dir.mkdir(parents=True, exist_ok=True)
@@ -2064,7 +2207,9 @@ def run_csharp_source_output_contracts(
                     "-p:UseAppHost=false",
                 ],
                 quiet_stdout=True,
-                action=f"C# build for {label_prefix} output contract {job['program']}",
+                action=(
+                    f"C# build for {label_prefix} output contract {job['program']}{case_suffix}"
+                ),
                 timeout_seconds=180,
             )
 
@@ -2087,14 +2232,17 @@ def run_csharp_source_output_contracts(
                 elif "input_file" in job:
                     input_text = str((working_dir / job["input_file"]).resolve()) + "\n"
 
-                label = f"C# {label_prefix} output contract for {job['program']}"
+                label = f"C# {label_prefix} output contract for {job['program']}{case_suffix}"
                 completed = run_command(
                     ["dotnet", str(run_target)],
                     cwd=working_dir,
                     input_text=input_text,
                     capture_stdout=capture_stdout,
                     quiet_stdout=not capture_stdout,
-                    action=f"C# execution for {label_prefix} output contract {job['program']}",
+                    action=(
+                        f"C# execution for {label_prefix} output contract "
+                        f"{job['program']}{case_suffix}"
+                    ),
                     timeout_seconds=30,
                 )
                 if capture_stdout:
@@ -2139,6 +2287,7 @@ def run_java_source_output_contracts(
             source_path = repo_path(ctx, job["program"])
             if not source_path.is_file():
                 raise AutomationError(f"Missing Java contract source: {source_path}")
+            case_suffix = output_contract_case_suffix(job)
 
             class_dir = temp_root_path / f"java-contract-{index}"
             compile_java_source(ctx, source_path, class_dir)
@@ -2151,7 +2300,7 @@ def run_java_source_output_contracts(
                     str(compiled_dir),
                     java_class_name(resolve_job_path(ctx, working_dir, current_job["program"])),
                 ],
-                label=f"Java {label_prefix} output contract for {job['program']}",
+                label=(f"Java {label_prefix} output contract for {job['program']}{case_suffix}"),
             )
             executed_jobs += 1
 
@@ -2307,8 +2456,14 @@ def check_example_output_contracts(ctx: RepoContext) -> None:
     print(f"Example output contracts passed for {executed_jobs} jobs.")
 
 
-def check_exercise_output_contracts(ctx: RepoContext, language_filter: str | None = None) -> None:
-    contracts = load_exercise_output_contracts(ctx)
+def check_exercise_output_contracts(
+    ctx: RepoContext,
+    language_filter: str | None = None,
+    *,
+    contracts_override: dict[str, list[dict[str, Any]]] | None = None,
+    success_message: str | None = None,
+) -> None:
+    contracts = contracts_override or load_exercise_output_contracts(ctx)
     if not contracts:
         raise AutomationError("No exercise output contracts configured.")
 
@@ -2323,6 +2478,7 @@ def check_exercise_output_contracts(ctx: RepoContext, language_filter: str | Non
         )
 
     for job in contracts.get("python", []) if language_filter in (None, "python") else []:
+        case_suffix = output_contract_case_suffix(job)
         smoke_runtime_job(
             ctx,
             job,
@@ -2330,11 +2486,12 @@ def check_exercise_output_contracts(ctx: RepoContext, language_filter: str | Non
                 python_cmd,
                 str(resolve_job_path(ctx, working_dir, current_job["program"])),
             ],
-            label=f"Python exercise output contract for {job['program']}",
+            label=f"Python exercise output contract for {job['program']}{case_suffix}",
         )
         executed_jobs += 1
 
     for job in contracts.get("go", []) if language_filter in (None, "go") else []:
+        case_suffix = output_contract_case_suffix(job)
         smoke_runtime_job(
             ctx,
             job,
@@ -2343,7 +2500,7 @@ def check_exercise_output_contracts(ctx: RepoContext, language_filter: str | Non
                 "run",
                 *go_target_arguments(resolve_job_path(ctx, working_dir, current_job["program"])),
             ],
-            label=f"Go exercise output contract for {job['program']}",
+            label=f"Go exercise output contract for {job['program']}{case_suffix}",
         )
         executed_jobs += 1
 
@@ -2352,6 +2509,7 @@ def check_exercise_output_contracts(ctx: RepoContext, language_filter: str | Non
             temp_root_path = Path(temp_root)
             compile_typescript(ctx, out_dir=temp_root_path)
             for job in contracts.get("typescript", []):
+                case_suffix = output_contract_case_suffix(job)
                 smoke_runtime_job(
                     ctx,
                     job,
@@ -2365,7 +2523,9 @@ def check_exercise_output_contracts(ctx: RepoContext, language_filter: str | Non
                             )
                         ),
                     ],
-                    label=f"TypeScript exercise output contract for {job['program']}",
+                    label=(
+                        f"TypeScript exercise output contract for {job['program']}{case_suffix}"
+                    ),
                 )
                 executed_jobs += 1
 
@@ -2392,13 +2552,17 @@ def check_exercise_output_contracts(ctx: RepoContext, language_filter: str | Non
                 source_path = repo_path(ctx, job["program"])
                 if not source_path.is_file():
                     raise AutomationError(f"Missing C++ contract source: {source_path}")
+                case_suffix = output_contract_case_suffix(job)
 
                 output_path = temp_root_path / f"cpp_exercise_contract_{index}"
                 compile_command = cpp_compile_command(ctx, toolchain, source_path, output_path)
-                compile_action = f"C++ compilation for exercise output contract {job['program']}"
+                compile_action = (
+                    f"C++ compilation for exercise output contract {job['program']}{case_suffix}"
+                )
                 if toolchain.mode == "wsl":
                     compile_action = (
-                        f"C++ WSL compilation for exercise output contract {job['program']}"
+                        f"C++ WSL compilation for exercise output contract "
+                        f"{job['program']}{case_suffix}"
                     )
                 run_command(compile_command, action=compile_action, timeout_seconds=120)
 
@@ -2429,13 +2593,16 @@ def check_exercise_output_contracts(ctx: RepoContext, language_filter: str | Non
                     else:
                         binary_command = [str(compiled_binary_path(ctx, output_path))]
 
-                    label = f"C++ exercise output contract for {job['program']}"
+                    label = f"C++ exercise output contract for {job['program']}{case_suffix}"
                     completed = run_command(
                         binary_command,
                         cwd=working_dir,
                         input_text=input_text,
                         capture_stdout=True,
-                        action=f"C++ execution for exercise output contract {job['program']}",
+                        action=(
+                            f"C++ execution for exercise output contract "
+                            f"{job['program']}{case_suffix}"
+                        ),
                         timeout_seconds=30,
                     )
                     assert_output_contract(completed.stdout or "", job, label)
@@ -2463,7 +2630,9 @@ def check_exercise_output_contracts(ctx: RepoContext, language_filter: str | Non
     if executed_jobs == 0:
         raise AutomationError("No exercise output contract jobs were executed.")
 
-    if language_filter is None:
+    if success_message is not None:
+        print(success_message)
+    elif language_filter is None:
         print(f"Exercise output contracts passed for {executed_jobs} jobs.")
     else:
         print(
@@ -2479,7 +2648,10 @@ def exercise_contract_key(
     expected_files = {
         language_exercise_file(config, exercise_id): exercise_id for exercise_id in ("01", "02")
     }
-    pattern = rf"^languages/{re.escape(language)}/([^/]+)/([^/]+)/exercises/([^/]+)$"
+    pattern = (
+        rf"^languages/{re.escape(language)}/([^/]+)/([^/]+)/"
+        r"exercises/(?:solutions/)?([^/]+)$"
+    )
     match = re.match(pattern, normalized)
     if not match:
         return None
@@ -2495,6 +2667,77 @@ def active_module_languages(ctx: RepoContext) -> list[str]:
         for language, config in ctx.manifest.languages.items()
         if config.get("module_levels")
     ]
+
+
+def learning_exercise_config_failures(
+    ctx: RepoContext,
+    contract_keys_by_language: dict[str, set[tuple[str, str, str]]],
+) -> list[str]:
+    failures: list[str] = []
+    configured_keys: set[tuple[str, str, str]] = set()
+
+    for exercise in load_learning_exercises(ctx):
+        language = exercise.get("language")
+        level = exercise.get("level")
+        module = exercise.get("module")
+        exercise_id = exercise.get("exercise")
+        key = (language, level, module, exercise_id)
+        label = "/".join(str(part) for part in key)
+
+        if not all(isinstance(part, str) and part for part in key):
+            failures.append(f"scripts/learning_exercises.json: invalid identity -> {label}")
+            continue
+        typed_key = (language, level, module, exercise_id)
+        if typed_key in configured_keys:
+            failures.append(f"scripts/learning_exercises.json: duplicate exercise -> {label}")
+        configured_keys.add(typed_key)
+
+        config = ctx.manifest.languages.get(language)
+        if config is None:
+            failures.append(f"scripts/learning_exercises.json: unknown language -> {label}")
+            continue
+        if exercise_id not in {"01", "02"}:
+            failures.append(f"scripts/learning_exercises.json: invalid exercise id -> {label}")
+            continue
+
+        file_name = language_exercise_file(config, exercise_id)
+        exercise_root = f"languages/{language}/{level}/{module}/exercises"
+        expected_paths = {
+            "starter": f"{exercise_root}/{file_name}",
+            "solution": f"{exercise_root}/solutions/{file_name}",
+        }
+        for path_kind, expected_path in expected_paths.items():
+            actual_path = exercise.get(path_kind)
+            if actual_path != expected_path:
+                failures.append(
+                    f"scripts/learning_exercises.json: {label} {path_kind} must be {expected_path}"
+                )
+            elif not repo_path(ctx, actual_path).is_file():
+                failures.append(
+                    f"scripts/learning_exercises.json: missing {path_kind} -> {actual_path}"
+                )
+
+        cases = exercise.get("cases")
+        if not isinstance(cases, list) or not cases:
+            failures.append(f"scripts/learning_exercises.json: no cases -> {label}")
+        else:
+            for index, case in enumerate(cases, start=1):
+                if not isinstance(case, dict) or not (
+                    case.get("required_stdout_contains") or case.get("required_stdout_patterns")
+                ):
+                    failures.append(
+                        "scripts/learning_exercises.json: "
+                        f"{label} case {index} has no stdout expectations"
+                    )
+
+        contract_key = (level, module, exercise_id)
+        if contract_key not in contract_keys_by_language.get(language, set()):
+            failures.append(
+                "scripts/exercise_output_contracts.json: "
+                f"missing reference solution contract for {label}"
+            )
+
+    return failures
 
 
 def parity_check_languages(ctx: RepoContext) -> list[str]:
@@ -2636,6 +2879,8 @@ def check_exercise_parity(ctx: RepoContext) -> None:
                     )
 
         contract_keys_by_language[language] = keys
+
+    failures.extend(learning_exercise_config_failures(ctx, contract_keys_by_language))
 
     total_contracts = sum(len(keys) for keys in contract_keys_by_language.values())
     if total_contracts == 0:
@@ -2784,43 +3029,67 @@ def check_cross_language_parity(ctx: RepoContext) -> None:
     print("Cross-language parity validation passed.")
 
 
+def test_automation(ctx: RepoContext) -> None:
+    python_cmd = find_python_command()
+    run_command(
+        [
+            python_cmd,
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "scripts/tests",
+            "-t",
+            ".",
+            "-p",
+            "test_*.py",
+        ],
+        cwd=ctx.root,
+        action="Automation unit tests",
+    )
+    print("Automation unit tests passed.")
+
+
 def verify_repo(ctx: RepoContext) -> None:
     python_cmd = find_python_command()
 
-    print("[1/12] Checking markdown links...")
+    print("[1/13] Running automation unit tests...")
+    test_automation(ctx)
+
+    print("[2/13] Checking markdown links...")
     run_command([python_cmd, str(ctx.scripts_dir / "check-links.py")], action="Markdown link check")
 
-    print("[2/12] Checking README structure...")
+    print("[3/13] Checking README structure...")
     check_readme_structure(ctx)
 
-    print("[3/12] Checking module completeness...")
+    print("[4/13] Checking module completeness...")
     check_module_completeness(ctx)
 
-    print("[4/12] Checking checkpoint completeness...")
+    print("[5/13] Checking checkpoint completeness...")
     check_checkpoint_completeness(ctx)
 
-    print("[5/12] Checking documentation sync...")
+    print("[6/13] Checking documentation sync...")
     check_doc_sync(ctx)
 
-    print("[6/12] Checking example comments...")
+    print("[7/13] Checking example comments...")
     check_example_comments(ctx)
 
-    print("[7/12] Checking education quality gate...")
+    print("[8/13] Checking education quality gate...")
     audit_education_quality(ctx, fail_on_blocking_findings=True)
 
-    print("[8/12] Checking cross-language parity...")
+    print("[9/13] Checking cross-language parity...")
     check_cross_language_parity(ctx)
 
-    print("[9/12] Checking exercise parity...")
+    print("[10/13] Checking exercise parity...")
     check_exercise_parity(ctx)
 
-    print("[10/12] Checking example output contracts...")
+    print("[11/13] Checking example output contracts...")
     check_example_output_contracts(ctx)
 
-    print("[11/12] Checking exercise output contracts...")
+    print("[12/13] Checking exercise output contracts...")
     check_exercise_output_contracts(ctx)
 
-    print("[12/12] Compiling compiled-language tracks...")
+    print("[13/13] Compiling compiled-language tracks...")
     build_all(ctx)
 
     print("Repository verification completed successfully.")

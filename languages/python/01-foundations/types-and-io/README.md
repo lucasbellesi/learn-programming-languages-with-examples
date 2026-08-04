@@ -51,6 +51,17 @@ python example/main.py
 - Output: parsed product name and computed total price.
 - Edge cases: wrong token count; quantity = 0.
 
+## Practice Workflow
+
+1. Edit the starter in `exercises/01.py` or `exercises/02.py`.
+2. Check your work from the repository root:
+
+~~~bash
+python scripts/automation.py check-exercise --language python --level 01-foundations --module types-and-io --exercise 01
+~~~
+
+3. Change `--exercise` to `02` for the second task. Reference implementations are under `exercises/solutions/`; use `--solution` only after attempting the exercise.
+
 ## Checkpoint
 
 - [ ] I can explain the core ideas of this module.

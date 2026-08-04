@@ -61,6 +61,17 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/input-validation-loop.cpp -o type
 - Output: parsed fields and total price.
 - Edge cases: quantity `0` should give total `0`; decimal price should keep precision.
 
+## Practice Workflow
+
+1. Edit the starter in `exercises/01.cpp` or `exercises/02.cpp`.
+2. Check your work from the repository root:
+
+~~~bash
+python scripts/automation.py check-exercise --language cpp --level 01-foundations --module types-and-io --exercise 01
+~~~
+
+3. Change `--exercise` to `02` for the second task. Reference implementations are under `exercises/solutions/`; use `--solution` only after attempting the exercise.
+
 ## Checkpoint
 
 - [ ] I can read and print typed values.

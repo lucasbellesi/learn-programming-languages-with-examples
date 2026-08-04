@@ -52,6 +52,17 @@ node build/typescript/01-foundations/types-and-io/example/main.js
 - Output: product name, quantity, price, and total.
 - Edge cases: quantity 0 should produce total 0; invalid price should print an error.
 
+## Practice Workflow
+
+1. Edit the starter in `exercises/01.ts` or `exercises/02.ts`.
+2. Check your work from the repository root:
+
+~~~bash
+python scripts/automation.py check-exercise --language typescript --level 01-foundations --module types-and-io --exercise 01
+~~~
+
+3. Change `--exercise` to `02` for the second task. Reference implementations are under `exercises/solutions/`; use `--solution` only after attempting the exercise.
+
 ## Checkpoint
 
 - [ ] I can explain the main TypeScript idea in this module.
