@@ -3,8 +3,8 @@
 This matrix tracks module and checkpoint parity across C++, C#, Go, Java, Python, and TypeScript.
 
 - Canonical order is defined by the C++ track.
-- C++, C#, Go, Python, and TypeScript now reach module and checkpoint parity through `04-expert`.
-- Java currently tracks `01-foundations`, `02-core`, all `03-advanced` modules and checkpoints, and the first two `04-expert` modules as a Java 21 MVP.
+- All six tracks now reach module parity through `04-expert`.
+- Java projects and assessments currently reach `03-advanced`; its `04-expert` checkpoints remain planned.
 - Status labels:
   - `Done`: module implemented with example, exercises, and README.
   - `Planned`: module not implemented yet, already queued in order.
@@ -47,7 +47,7 @@ Current parity progress in non-C++ tracks:
 
 - C#: `5/5` modules complete in `03-advanced`, `5/5` in `04-expert`
 - Go: `5/5` modules complete in `03-advanced`, `5/5` in `04-expert`
-- Java: `5/5` modules complete in `03-advanced`, `2/5` in `04-expert`
+- Java: `5/5` modules complete in `03-advanced`, `5/5` in `04-expert`
 - Python: `5/5` modules complete in `03-advanced`, `5/5` in `04-expert`
 - TypeScript: `5/5` modules complete in `03-advanced`, `5/5` in `04-expert`
 
@@ -69,9 +69,9 @@ Current parity progress in non-C++ tracks:
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | memory-management-and-raii | Done | Done | Done | Done | Done | Done |
 | 2 | smart-pointers-in-depth | Done | Done | Done | Done | Done | Done |
-| 3 | concurrency-basics | Done | Done | Done | Planned | Done | Done |
-| 4 | performance-and-profiling-basics | Done | Done | Done | Planned | Done | Done |
-| 5 | modularization-and-build-structure | Done | Done | Done | Planned | Done | Done |
+| 3 | concurrency-basics | Done | Done | Done | Done | Done | Done |
+| 4 | performance-and-profiling-basics | Done | Done | Done | Done | Done | Done |
+| 5 | modularization-and-build-structure | Done | Done | Done | Done | Done | Done |
 
 ## Checkpoint Parity
 

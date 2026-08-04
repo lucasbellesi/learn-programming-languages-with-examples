@@ -1650,7 +1650,14 @@ def java_class_name(source_path: Path) -> str:
 def compile_java_source(ctx: RepoContext, source_path: Path, output_dir: Path) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     run_command(
-        [find_java_tool("javac", ctx), "-d", str(output_dir), str(source_path)],
+        [
+            find_java_tool("javac", ctx),
+            "-d",
+            str(output_dir),
+            "-sourcepath",
+            str(source_path.parent),
+            str(source_path),
+        ],
         action=f"Java compilation for {source_path}",
         timeout_seconds=120,
     )

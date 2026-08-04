@@ -126,7 +126,7 @@ Checks:
 
 ## Definition of Done
 
-- Anti-pattern and corrected examples exist for all 10 modules across all 5 tracks.
+- Anti-pattern and corrected examples exist for all 10 modules across all 6 tracks.
 - Output contracts cover any new runnable example entrypoints.
 - Cross-language parity checks remain green.
 - Full `verify-repo` passes.

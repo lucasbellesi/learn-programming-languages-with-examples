@@ -813,6 +813,40 @@
           "Preview can still see: Transient Draft",
           "Preview target expired."
         ]
+      },
+      {
+        "program": "languages/java/04-expert/concurrency-basics/example/Main.java",
+        "required_stdout_contains": [
+          "Worker results: [10000, 10000, 10000, 10000]",
+          "Expected counter: 40000",
+          "Actual counter: 40000",
+          "Counter is correct: true",
+          "Executor terminated: true"
+        ]
+      },
+      {
+        "program": "languages/java/04-expert/performance-and-profiling-basics/example/Main.java",
+        "required_stdout_contains": [
+          "Matches agree: true",
+          "Measured runs: 8"
+        ],
+        "required_stdout_patterns": [
+          "Linear search average ns: [0-9]+",
+          "HashSet lookup average ns: [0-9]+"
+        ]
+      },
+      {
+        "program": "languages/java/04-expert/modularization-and-build-structure/example/Main.java",
+        "required_stdout_contains": [
+          "Invoice Summary",
+          "- Notebook: 2 x 3.50",
+          "- Pencil: 5 x 0.80",
+          "- Backpack: 1 x 29.99",
+          "Subtotal: 40.99",
+          "Discount: 4.10",
+          "Tax: 2.77",
+          "Total: 39.66"
+        ]
       }
     ]
   }

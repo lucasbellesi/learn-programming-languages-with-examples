@@ -36,7 +36,7 @@ If you only want to learn one track, follow that track README first because lang
    - [TypeScript Guide](languages/typescript/README.md)
 2. Start at the first roadmap for that track:
    - C++: [00-setup](languages/cpp/00-setup/README.md), then `01-foundations`
-   - Java: `01-foundations`, then `02-core`, `03-advanced`, and the available `04-expert` modules
+   - Java: `01-foundations`, then `02-core`, `03-advanced`, and `04-expert`
    - C#, Go, Python, TypeScript: `01-foundations`
 3. Run one module example.
 4. Solve `exercises/01` and `exercises/02` in that module. The `types-and-io` modules provide editable starters plus automated checks as the first guided-practice pilot.
@@ -68,7 +68,7 @@ PowerShell and Bash wrappers are also available as `./scripts/check-exercise.ps1
 | C++ | 00-setup, 01-foundations, 02-core, 03-advanced, 04-expert | Foundations, Core, Advanced, Expert, projects, assessments | Most complete and primary track |
 | C# | 01-foundations, 02-core, 03-advanced, 04-expert | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 5/5 expert modules, 4/4 projects, 4/4 assessments | Module and checkpoint parity complete through expert |
 | Go | 01-foundations, 02-core, 03-advanced, 04-expert | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 5/5 expert modules, 4/4 projects, 4/4 assessments | Module and checkpoint parity complete through expert |
-| Java | 01-foundations, 02-core, 03-advanced, 04-expert partial | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 2/5 expert modules, 3/4 projects, 3/4 assessments | Java 21 MVP complete through advanced checkpoints plus two expert modules |
+| Java | 01-foundations, 02-core, 03-advanced, 04-expert | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 5/5 expert modules, 3/4 projects, 3/4 assessments | Module parity complete through expert; expert project and assessment pending |
 | Python | 01-foundations, 02-core, 03-advanced, 04-expert | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 5/5 expert modules, 4/4 projects, 4/4 assessments | Module and checkpoint parity complete through expert |
 | TypeScript | 01-foundations, 02-core, 03-advanced, 04-expert | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 5/5 expert modules, 4/4 projects, 4/4 assessments | Module and checkpoint parity complete through expert |
 
