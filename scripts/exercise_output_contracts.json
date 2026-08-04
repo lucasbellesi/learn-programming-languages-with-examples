@@ -2042,6 +2042,73 @@
           "temp: expired",
           "missing: missing"
         ]
+      },
+      {
+        "program": "languages/java/04-expert/concurrency-basics/exercises/Exercise01.java",
+        "input_lines": ["6", "1", "2", "3", "4", "5", "6", "3"],
+        "required_stdout_contains": [
+          "Worker 1 partial: 3",
+          "Worker 2 partial: 7",
+          "Worker 3 partial: 11",
+          "Workers used: 3",
+          "Final total: 21"
+        ]
+      },
+      {
+        "program": "languages/java/04-expert/concurrency-basics/exercises/Exercise02.java",
+        "input_lines": ["3"],
+        "required_stdout_contains": [
+          "Produced: 1",
+          "Produced: 2",
+          "Produced: 3",
+          "Consumed: 1",
+          "Consumed: 2",
+          "Consumed: 3",
+          "Produced total: 3",
+          "Consumed total: 3"
+        ]
+      },
+      {
+        "program": "languages/java/04-expert/performance-and-profiling-basics/exercises/Exercise01.java",
+        "input_lines": ["800"],
+        "required_stdout_contains": [
+          "Outputs equal: true",
+          "Output length: 7090"
+        ],
+        "required_stdout_patterns": [
+          "Concatenation average ns: [0-9]+",
+          "StringBuilder average ns: [0-9]+"
+        ]
+      },
+      {
+        "program": "languages/java/04-expert/performance-and-profiling-basics/exercises/Exercise02.java",
+        "input_lines": ["10000"],
+        "required_stdout_contains": [
+          "Checksums equal: true",
+          "Checksum: 49995000"
+        ],
+        "required_stdout_patterns": [
+          "Without capacity average ns: [0-9]+",
+          "With capacity average ns: [0-9]+"
+        ]
+      },
+      {
+        "program": "languages/java/04-expert/modularization-and-build-structure/exercises/Exercise01.java",
+        "input_lines": ["100", "10", "5"],
+        "required_stdout_contains": [
+          "Subtotal: 100.00",
+          "Discount: -10.00",
+          "Tax: 4.50",
+          "Final total: 94.50"
+        ]
+      },
+      {
+        "program": "languages/java/04-expert/modularization-and-build-structure/exercises/Exercise02.java",
+        "input_lines": ["add", "8", "5"],
+        "required_stdout_contains": [
+          "Operation: add",
+          "Result: 13"
+        ]
       }
     ]
   }

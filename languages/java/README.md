@@ -2,12 +2,12 @@
 
 ## Scope and Status
 
-This track currently covers `01-foundations`, `02-core`, and `03-advanced` as a Java 21 MVP, including projects and assessments through `03-advanced`. The `04-expert` track now includes deterministic resource management and managed-reference ownership patterns.
+This track currently covers every module from `01-foundations` through `04-expert` as a Java 21 learning path, with projects and assessments implemented through `03-advanced`.
 
 - 8/8 foundations modules implemented.
 - 6/6 core modules implemented.
 - 5/5 advanced modules implemented (`structs-and-classes`, `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, `templates-basics`).
-- 2/5 expert modules implemented (`memory-management-and-raii`, `smart-pointers-in-depth`).
+- 5/5 expert modules implemented (`memory-management-and-raii`, `smart-pointers-in-depth`, `concurrency-basics`, `performance-and-profiling-basics`, `modularization-and-build-structure`).
 - 3/4 projects implemented (`01-foundations`, `02-core`, `03-advanced`).
 - 3/4 assessments implemented (`01-foundations`, `02-core`, `03-advanced`).
 - Uses Java 21 LTS with direct `javac` and `java` commands; no Maven or Gradle yet.
@@ -58,6 +58,9 @@ java -cp build/java Main
 - [04-expert](./04-expert/README.md)
   - [memory-management-and-raii](./04-expert/memory-management-and-raii/README.md)
   - [smart-pointers-in-depth](./04-expert/smart-pointers-in-depth/README.md)
+  - [concurrency-basics](./04-expert/concurrency-basics/README.md)
+  - [performance-and-profiling-basics](./04-expert/performance-and-profiling-basics/README.md)
+  - [modularization-and-build-structure](./04-expert/modularization-and-build-structure/README.md)
 - Projects
   - [01-foundations](./projects/01-foundations/README.md)
   - [02-core](./projects/02-core/README.md)
@@ -73,6 +76,6 @@ java -cp build/java Main
 
 ## Cross-Language Parity Strategy
 
-- Start by comparing Java foundations and core modules with the C#, Go, Python, TypeScript, and C++ tracks.
+- Compare Java modules at every level with the C#, Go, Python, TypeScript, and C++ tracks.
 - Keep Java examples single-file until the learner has practiced classes, methods, and compilation basics.
-- Defer Maven, Gradle, packages, and project layout until a later Java-specific expansion.
+- Use the expert modularization example as the transition from direct `javac` commands toward packages, Maven, or Gradle in a later Java-specific expansion.

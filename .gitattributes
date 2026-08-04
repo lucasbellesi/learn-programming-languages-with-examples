@@ -1,2 +1,5 @@
 *.gitattributes text eol=lf
 *.py text eol=lf
+*.go text eol=lf
+*.cs text eol=lf
+*.ts text eol=lf
