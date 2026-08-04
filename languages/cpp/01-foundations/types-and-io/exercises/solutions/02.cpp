@@ -8,7 +8,10 @@ int main() {
     int quantity = 0;
 
     cout << "Enter product price quantity (example: notebook 2.50 4): ";
-    cin >> product >> price >> quantity;
+    if (!(cin >> product >> price >> quantity)) {
+        cout << "Invalid format. Use: product price quantity\n";
+        return 0;
+    }
 
     const double totalPrice = price * quantity;
 

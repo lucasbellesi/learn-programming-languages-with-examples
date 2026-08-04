@@ -50,7 +50,7 @@ The `01-foundations/types-and-io` module in every language separates editable st
 python scripts/automation.py check-exercise --language python --level 01-foundations --module types-and-io --exercise 01
 ~~~
 
-Use `--submission <repo-relative-path>` to check another file. Reference solutions live under each module's `exercises/solutions/` directory and can be verified with `--solution` after you have attempted the task.
+Use `--submission <repo-relative-path>` to check another file. TypeScript submissions must remain under `languages/typescript` so the track configuration can compile them. Reference solutions live under each module's `exercises/solutions/` directory and can be verified with `--solution` after you have attempted the task.
 
 PowerShell and Bash wrappers are also available as `./scripts/check-exercise.ps1` and `bash ./scripts/check-exercise.sh`; pass them the same arguments shown above after `check-exercise`.
 

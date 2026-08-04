@@ -1739,6 +1739,11 @@ def assert_output_contract(output: str, job: dict[str, Any], label: str) -> None
             raise AutomationError(
                 f"{label} did not match expected pattern: {pattern}\nActual output:\n{output}"
             )
+    for forbidden in job.get("forbidden_stdout_contains", []):
+        if forbidden in output:
+            raise AutomationError(
+                f"{label} printed forbidden text: {forbidden}\nActual output:\n{output}"
+            )
 
 
 def smoke_runtime_job(
@@ -2113,6 +2118,15 @@ def check_learning_exercise(
         ) from error
     if not source_path.is_file():
         raise AutomationError(f"Exercise submission does not exist: {source_path}")
+    if language == "typescript":
+        typescript_root = (ctx.root / "languages" / "typescript").resolve()
+        try:
+            source_path.relative_to(typescript_root)
+        except ValueError as error:
+            raise AutomationError(
+                "TypeScript submissions must be located under languages/typescript "
+                "so the track tsconfig can compile them."
+            ) from error
 
     cases = exercise.get("cases")
     if not isinstance(cases, list) or not cases:

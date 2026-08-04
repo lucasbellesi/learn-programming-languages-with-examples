@@ -7,7 +7,12 @@ from pathlib import Path
 from unittest.mock import patch
 
 from scripts.automation_core.manifest import Manifest
-from scripts.automation_core.ops import AutomationError, RepoContext, check_learning_exercise
+from scripts.automation_core.ops import (
+    AutomationError,
+    RepoContext,
+    assert_output_contract,
+    check_learning_exercise,
+)
 
 
 class LearningExerciseTests(unittest.TestCase):
@@ -114,6 +119,37 @@ class LearningExerciseTests(unittest.TestCase):
                 )
 
         check_contracts.assert_not_called()
+
+    @patch("scripts.automation_core.ops.check_exercise_output_contracts")
+    def test_rejects_typescript_submission_outside_track(self, check_contracts) -> None:
+        submission = self.root / "submission.ts"
+        submission.write_text("console.log('submission');\n", encoding="utf-8")
+        config = self.exercise_config()
+        config["language"] = "typescript"
+        config["starter"] = "languages/typescript/starter.ts"
+        config["solution"] = "languages/typescript/solution.ts"
+        self.write_config([config])
+
+        with self.assertRaisesRegex(AutomationError, "under languages/typescript"):
+            check_learning_exercise(
+                self.ctx,
+                language="typescript",
+                level="01-foundations",
+                module="types-and-io",
+                exercise_id="01",
+                submission="submission.ts",
+                use_solution=False,
+            )
+
+        check_contracts.assert_not_called()
+
+    def test_rejects_forbidden_output(self) -> None:
+        with self.assertRaisesRegex(AutomationError, "printed forbidden text: Sum:"):
+            assert_output_contract(
+                "Count must be positive.\nSum: 0\n",
+                {"forbidden_stdout_contains": ["Sum:"]},
+                "sample contract",
+            )
 
 
 if __name__ == "__main__":

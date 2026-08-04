@@ -14,7 +14,8 @@
       {
         "name": "non-positive count",
         "input_lines": ["0"],
-        "required_stdout_contains": ["positive"]
+        "required_stdout_contains": ["positive"],
+        "forbidden_stdout_contains": ["Sum:", "Average:", "Minimum:", "Maximum:"]
       }
     ],
     "types-and-io-02": [
@@ -29,6 +30,12 @@
         "input_lines": ["notebook 2.50 0"],
         "required_stdout_contains": ["Product: notebook"],
         "required_stdout_patterns": ["Total(?: price)?: 0(?:\\.0+)?"]
+      },
+      {
+        "name": "invalid format",
+        "input_lines": ["notebook"],
+        "required_stdout_contains": ["Invalid format. Use: product price quantity"],
+        "forbidden_stdout_contains": ["Product:", "Total:", "Total price:"]
       }
     ]
   },

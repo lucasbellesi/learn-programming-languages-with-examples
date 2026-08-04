@@ -1105,24 +1105,22 @@
       },
       {
         "program": "languages/typescript/01-foundations/types-and-io/exercises/solutions/01.ts",
+        "input_lines": ["3", "10", "20", "30"],
         "required_stdout_contains": [
-          "Expected an integer count followed by values.",
-          "Count must be a positive integer.",
-          "Missing or invalid numeric values.",
-          "Sum: 0",
-          "Average: NaN",
-          "Minimum: Infinity",
-          "Maximum: -Infinity"
+          "Sum: 60",
+          "Average: 20.00",
+          "Minimum: 10",
+          "Maximum: 30"
         ]
       },
       {
         "program": "languages/typescript/01-foundations/types-and-io/exercises/solutions/02.ts",
+        "input_lines": ["notebook 2.50 4"],
         "required_stdout_contains": [
-          "Expected: product price quantity",
-          "Invalid invoice data.",
-          "Quantity: NaN",
-          "Price: NaN",
-          "Total: NaN"
+          "Product: notebook",
+          "Quantity: 4",
+          "Price: 2.50",
+          "Total: 10.00"
         ]
       },
       {
