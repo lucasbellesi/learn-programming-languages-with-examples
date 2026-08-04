@@ -12,23 +12,11 @@ Expected Output: Follow the exact output rules described in the same
  * exercise spec.
 */
 #include <iostream>
-#include <string>
 using namespace std;
 
 int main() {
-    string product;
-    double price = 0.0;
-    int quantity = 0;
-
-    cout << "Enter product price quantity (example: notebook 2.50 4): ";
-    cin >> product >> price >> quantity;
-
-    const double totalPrice = price * quantity;
-
-    cout << "Product: " << product << '\n';
-    cout << "Unit price: " << price << '\n';
-    cout << "Quantity: " << quantity << '\n';
-    cout << "Total price: " << totalPrice << '\n';
-
+    // TODO: Read product, unit price, and quantity.
+    // TODO: Print the product details and calculated total.
+    cout << "TODO: implement exercise 02\n";
     return 0;
 }

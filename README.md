@@ -39,8 +39,20 @@ If you only want to learn one track, follow that track README first because lang
    - Java: `01-foundations`, then `02-core`, `03-advanced`, and the available `04-expert` modules
    - C#, Go, Python, TypeScript: `01-foundations`
 3. Run one module example.
-4. Solve `exercises/01` and `exercises/02` in that module.
+4. Solve `exercises/01` and `exercises/02` in that module. The `types-and-io` modules provide editable starters plus automated checks as the first guided-practice pilot.
 5. Mark progress in the language checklist.
+
+### Guided Exercise Pilot
+
+The `01-foundations/types-and-io` module in every language separates editable starters from reference solutions. Edit the exercise file, then check it from the repository root:
+
+~~~bash
+python scripts/automation.py check-exercise --language python --level 01-foundations --module types-and-io --exercise 01
+~~~
+
+Use `--submission <repo-relative-path>` to check another file. TypeScript submissions must remain under `languages/typescript` so the track configuration can compile them. Reference solutions live under each module's `exercises/solutions/` directory and can be verified with `--solution` after you have attempted the task.
+
+PowerShell and Bash wrappers are also available as `./scripts/check-exercise.ps1` and `bash ./scripts/check-exercise.sh`; pass them the same arguments shown above after `check-exercise`.
 
 ### Contributor Path
 
@@ -185,6 +197,7 @@ Use narrower commands only when you want a faster loop on one area:
 ./scripts/check-exercise-parity.ps1
 ./scripts/check-example-output-contracts.ps1
 ./scripts/check-exercise-output-contracts.ps1
+./scripts/test-automation.ps1
 ./scripts/audit-education-quality.ps1
 ./scripts/lint.ps1
 ./scripts/smoke-languages.ps1
@@ -202,6 +215,7 @@ bash ./scripts/check-cross-language-parity.sh
 bash ./scripts/check-exercise-parity.sh
 bash ./scripts/check-example-output-contracts.sh
 bash ./scripts/check-exercise-output-contracts.sh
+bash ./scripts/test-automation.sh
 bash ./scripts/audit-education-quality.sh
 bash ./scripts/lint.sh
 bash ./scripts/smoke-languages.sh
