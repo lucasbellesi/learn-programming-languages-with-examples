@@ -16,8 +16,10 @@ This module introduces simple timing and allocation-aware optimization patterns 
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-python example/main.py
+python scripts/automation.py run-module --module-path languages/python/04-expert/performance-and-profiling-basics
 ~~~
 
 ## Topics Covered

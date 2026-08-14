@@ -16,9 +16,10 @@ This module adapts RAII to TypeScript by focusing on explicit cleanup, `try/fina
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-npm run build:typescript
-node build/typescript/04-expert/memory-management-and-raii/example/main.js
+python scripts/automation.py run-module --module-path languages/typescript/04-expert/memory-management-and-raii
 ~~~
 
 ## Topics Covered

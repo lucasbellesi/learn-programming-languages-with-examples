@@ -16,8 +16,10 @@ This module practices variable lifetime in blocks and safe accumulation patterns
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-python example/main.py
+python scripts/automation.py run-module --module-path languages/python/01-foundations/scope-and-lifetime-basics
 ~~~
 
 ## Topics Covered

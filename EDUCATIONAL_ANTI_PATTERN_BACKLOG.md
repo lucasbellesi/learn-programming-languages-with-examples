@@ -13,7 +13,7 @@ This backlog prioritizes learning impact over raw file count.
 - Keep each pair short and runnable.
 - Keep one teaching point per pair.
 - Keep observable output deterministic.
-- Keep scenario and output intent aligned across C++, C#, Go, Python, and TypeScript.
+- Keep scenario and output intent aligned across C++, C#, Go, Java, Python, and TypeScript.
 - Keep contracts updated for any new runnable entrypoint.
 
 ## Top 10 Modules (Priority Order)

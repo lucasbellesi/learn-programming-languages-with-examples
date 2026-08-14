@@ -81,4 +81,4 @@ python scripts/automation.py run-module --module-path languages/go/01-foundation
 - Complete one module or checkpoint in Go and then the same artifact in C++.
 - Compare explicit error handling, type declarations, and control flow style.
 - Document at least three implementation differences per module pair.
-- Track next parity milestones in [LANGUAGE_PARITY_MATRIX.md](../../LANGUAGE_PARITY_MATRIX.md).
+- Use [LANGUAGE_PARITY_MATRIX.md](../../LANGUAGE_PARITY_MATRIX.md) as the current parity reference.

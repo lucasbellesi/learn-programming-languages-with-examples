@@ -51,17 +51,11 @@ g++ -std=c++17 -Wall -Wextra -pedantic <file>.cpp -o <output>
 
 For large changes, you can run one language at a time before the full check:
 
-- `python scripts/automation.py check-exercise-output-contracts --language python`
-- `python scripts/automation.py check-exercise-output-contracts --language go`
-- `python scripts/automation.py check-exercise-output-contracts --language java`
-- `python scripts/automation.py check-exercise-output-contracts --language typescript`
-- `python scripts/automation.py check-exercise-output-contracts --language cpp`
-- `python scripts/automation.py check-exercise-output-contracts --language csharp`
+- `python scripts/automation.py verify-language --language <cpp|csharp|go|java|python|typescript>`
 
-These smoke checks also compile standalone C# exercises by generating temporary validation projects during the check.
-TypeScript checks restore Node dependencies from `package-lock.json`, compile with `tsc`, and execute the emitted JavaScript with `node`. Java checks compile single-file programs with Java 21 using `javac` and run them with `java`.
+`verify-language` checks the selected toolchain, compiles the track where required, and runs its example, exercise, project, and assessment contracts. C# validation generates temporary projects for standalone exercises. TypeScript restores dependencies from `package-lock.json` and runs emitted JavaScript with `node`; Java compiles package-free single-file programs with Java 21.
 
-The public PowerShell and Bash scripts are thin wrappers over the shared Python automation core in `scripts/automation.py`. Curriculum validation and smoke target metadata live in `scripts/automation_manifest.json`.
+The public PowerShell and Bash scripts are thin wrappers over the shared Python automation core in `scripts/automation.py`. Repository structure and smoke targets live in `scripts/automation_manifest.json`; shared outcomes, exercise contracts, and checkpoint contracts live in `scripts/curriculum_outcomes.json`, `scripts/learning_exercises.json`, and `scripts/learning_checkpoints.json`.
 The artifact cleanup command removes generated build outputs, reports, temporary binaries, and exercise report files while keeping restored dependencies such as `node_modules`.
 
 Use [EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md](EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md) when reviewing `example/main.*` files for teaching clarity and parity.
@@ -75,17 +69,22 @@ Use [EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md](EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md)
 - New concept modules should follow the existing folder layout.
 - Every concept README in implemented levels should include:
   - required `## Learning Metadata` before `## Quick Run` with `Difficulty`, `Estimated Time`, `Prerequisites`, and `Cross-Language Lens`
+  - `## Learning Outcomes` with IDs from `scripts/curriculum_outcomes.json`
   - recommended `## Cross-Language Notes` after `## Common Pitfalls` and before `## Exercise Focus`
   - `## Quick Run`
   - `## Topics Covered`
   - `## Common Pitfalls`
   - `## Exercise Focus`
   - `### Exercise Specs`
+  - `## Check Your Work`
   - `## Checkpoint`
 - Every project or assessment checkpoint should include:
   - `README.md`
-  - runnable entrypoint (`main.cs` + `.csproj`, `main.go`, `Main.java`, `main.py`, or `main.ts`)
-  - the same learner goal, input/output shape, and acceptance expectations as the corresponding C++ checkpoint
+  - incomplete learner files under `starter/`
+  - a runnable reference implementation under `solutions/`
+  - the language entrypoint in both trees (`main.cpp`, `main.cs` + `.csproj`, `main.go`, `Main.java`, `main.py`, or `main.ts`)
+  - shared outcome IDs and named normal/edge cases registered in `scripts/learning_checkpoints.json`
+  - the same learning outcomes as the corresponding checkpoint in other tracks, with idiomatic scenarios where appropriate
   - required `## Learning Metadata` before `## Quick Run` with `Difficulty`, `Estimated Time`, `Prerequisites`, and `Learning Focus`
   - recommended `## Cross-Language Notes` before `## What To Check`
 - Every implemented level README should include required `## Learning Metadata` before `## Module Order` with `Difficulty`, `Estimated Time`, `Prerequisites`, and `Study Strategy`.

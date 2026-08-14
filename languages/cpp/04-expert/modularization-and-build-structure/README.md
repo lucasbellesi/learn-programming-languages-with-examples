@@ -16,10 +16,11 @@ This module introduces basic multi-file organization principles.
 
 ## Quick Run
 
-```bash
-g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o modularization_example
-./modularization_example
-```
+Run from the repository root:
+
+~~~bash
+python scripts/automation.py run-module --module-path languages/cpp/04-expert/modularization-and-build-structure
+~~~
 
 ## More Examples
 

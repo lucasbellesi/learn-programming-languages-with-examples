@@ -16,8 +16,10 @@ This module practices branching, looping, and sentinel-driven iteration.
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-dotnet run --project example/control-flow-example.csproj
+python scripts/automation.py run-module --module-path languages/csharp/01-foundations/control-flow
 ~~~
 
 ## Topics Covered

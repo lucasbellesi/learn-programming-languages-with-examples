@@ -16,8 +16,10 @@ This module shows how constructors enforce valid object state.
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-python example/main.py
+python scripts/automation.py run-module --module-path languages/python/03-advanced/constructors-and-invariants
 ~~~
 
 ## Topics Covered

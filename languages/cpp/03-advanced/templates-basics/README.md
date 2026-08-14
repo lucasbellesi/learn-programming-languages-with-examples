@@ -16,10 +16,11 @@ This module introduces generic programming with templates.
 
 ## Quick Run
 
-```bash
-g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o templates_basics_example
-./templates_basics_example
-```
+Run from the repository root:
+
+~~~bash
+python scripts/automation.py run-module --module-path languages/cpp/03-advanced/templates-basics
+~~~
 
 ## More Examples
 

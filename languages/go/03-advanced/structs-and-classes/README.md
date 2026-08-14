@@ -16,8 +16,10 @@ This module introduces object modeling with `struct` and methods.
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-go run example/main.go
+python scripts/automation.py run-module --module-path languages/go/03-advanced/structs-and-classes
 ~~~
 
 ## Topics Covered

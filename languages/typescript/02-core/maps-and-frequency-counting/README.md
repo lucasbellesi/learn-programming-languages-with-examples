@@ -16,9 +16,10 @@ This module uses `Map` to count repeated values and summarize categorical data.
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-npm run build:typescript
-node build/typescript/02-core/maps-and-frequency-counting/example/main.js
+python scripts/automation.py run-module --module-path languages/typescript/02-core/maps-and-frequency-counting
 ~~~
 
 ## Topics Covered

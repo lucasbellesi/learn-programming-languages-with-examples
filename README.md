@@ -37,7 +37,7 @@ If you only want to learn one track, follow that track README first because lang
 2. Start at the first roadmap for that track:
    - C++: [00-setup](languages/cpp/00-setup/README.md), then `01-foundations`
    - Java: `01-foundations`, then `02-core`, `03-advanced`, and `04-expert`
-   - C#, Go, Python, TypeScript: `01-foundations`
+   - C#, Go, Python, TypeScript: `01-foundations`, then `02-core`, `03-advanced`, and `04-expert`
 3. Run one module example.
 4. Solve the two starter files in that module and check every named normal and edge case.
 5. Mark progress in the language checklist.
@@ -197,7 +197,7 @@ bash ./scripts/verify-repo.sh
 bash ./scripts/lint.sh
 ~~~
 
-`verify-repo` validates curriculum structure, the blocking education-quality gate, output contracts, and compiled-language builds. `lint` validates formatting and static checks for C++, Python, Go, C#, Java, and TypeScript.
+`verify-repo` validates curriculum structure, the blocking education-quality gate, example, exercise, and checkpoint output contracts, plus compiled-language builds. `lint` validates formatting and static checks for C++, Python, Go, C#, Java, and TypeScript.
 
 Use narrower commands only when you want a faster loop on one area:
 
@@ -237,7 +237,7 @@ bash ./scripts/clean-artifacts.sh
 bash ./scripts/verify-repo.sh
 ~~~
 
-GitHub Actions validates links, README structure, module completeness, checkpoint completeness, documentation sync, compiled-language builds, multi-language smoke checks, and Linux lint checks for C++, Python, Go, C#, Java, and TypeScript.
+GitHub Actions validates links, README structure, module completeness, checkpoint completeness, documentation sync, example/exercise/checkpoint contracts, compiled-language builds, multi-language smoke checks, and Linux lint checks for C++, Python, Go, C#, Java, and TypeScript.
 
 The public PowerShell and Bash scripts remain supported entrypoints. The documented course interface is `python scripts/automation.py`, backed by `scripts/automation_manifest.json`, `scripts/curriculum_outcomes.json`, `scripts/learning_exercises.json`, and `scripts/learning_checkpoints.json`.
 
@@ -254,12 +254,12 @@ Use [ROADMAP.md](ROADMAP.md) for current priorities. The anti-pattern expansion 
 python scripts/automation.py audit-education-quality --fail-on-findings
 ~~~
 
-Documentation sync also validates that [CONCEPT_INDEX.md](CONCEPT_INDEX.md) covers every implemented module and checkpoint path listed in the automation manifest. Cross-language parity checks now validate module focus/teaching headers across tracks, exercise parity checks validate `exercises/01` and `exercises/02` alignment across tracks, and example plus exercise output contracts validate stable learner-visible output for smoke-targeted programs.
+Documentation sync also validates that [CONCEPT_INDEX.md](CONCEPT_INDEX.md) covers every implemented module and checkpoint path listed in the automation manifest. Cross-language parity checks validate shared outcome IDs across tracks, while the example, exercise, and checkpoint contracts validate stable learner-visible behavior.
 
-For long exercise-contract runs, you can scope by language:
+For a complete track-level check, including toolchain, examples, exercises, projects, and assessments, scope validation by language:
 
 ~~~bash
-python scripts/automation.py check-exercise-output-contracts --language java
+python scripts/automation.py verify-language --language java
 ~~~
 
 ## Contributing

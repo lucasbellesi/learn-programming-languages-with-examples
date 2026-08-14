@@ -20,11 +20,11 @@ Model courses and enrollments with classes and guarded state updates.
 
 ## Quick Run
 
-Run the reference solution from the repository root:
+Run the checkpoint checker from the repository root. The starter is intentionally incomplete, so the first run establishes the work still to do:
 
-```bash
-python scripts/automation.py check-checkpoint --language csharp --kind project --level 03-advanced --solution
-```
+~~~bash
+python scripts/automation.py check-checkpoint --language csharp --kind project --level 03-advanced
+~~~
 
 ## Requirements
 

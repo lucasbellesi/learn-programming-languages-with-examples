@@ -7,7 +7,7 @@ This module practices breaking behavior into reusable functions with clear input
 - Difficulty: Beginner.
 - Estimated Time: 20-35 minutes.
 - Prerequisites: Java 21 JDK and prior modules in this level.
-- Cross-Language Lens: Compare Java's explicit class and type requirements with the same concept in C++, C#, Go, Python, and TypeScript.
+- Cross-Language Lens: Compare Java's static methods with free functions, package-level functions, and module functions in the other tracks.
 
 ## Learning Outcomes
 
@@ -16,9 +16,10 @@ This module practices breaking behavior into reusable functions with clear input
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-javac -d build/java languages/java/01-foundations/functions/example/Main.java
-java -cp build/java Main
+python scripts/automation.py run-module --module-path languages/java/01-foundations/functions
 ~~~
 
 ## Topics Covered
@@ -48,12 +49,12 @@ java -cp build/java Main
 1. exercises/Exercise01.java
 - Input: one radius value.
 - Output: area and circumference.
-- Edge cases: missing values; boundary numeric values.
+- Edge cases: radius = 0; decimal radius.
 
 2. exercises/Exercise02.java
 - Input: three integers.
 - Output: minimum and maximum values.
-- Edge cases: missing values; zero or repeated values where relevant.
+- Edge cases: repeated values; all values are negative.
 
 ## Check Your Work
 

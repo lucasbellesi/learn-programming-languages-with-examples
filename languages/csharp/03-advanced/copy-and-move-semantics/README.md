@@ -16,8 +16,10 @@ This module introduces copying behavior and transfer-style updates with referenc
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-dotnet run --project example/copy-and-move-semantics-example.csproj
+python scripts/automation.py run-module --module-path languages/csharp/03-advanced/copy-and-move-semantics
 ~~~
 
 ## Topics Covered

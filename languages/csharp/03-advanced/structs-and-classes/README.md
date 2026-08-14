@@ -16,8 +16,10 @@ This module introduces object modeling with `struct` and `class`.
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-dotnet run --project example/structs-and-classes-example.csproj
+python scripts/automation.py run-module --module-path languages/csharp/03-advanced/structs-and-classes
 ~~~
 
 ## Topics Covered

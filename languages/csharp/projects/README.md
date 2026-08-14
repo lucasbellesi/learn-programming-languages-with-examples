@@ -9,6 +9,6 @@ This directory contains larger checkpoint programs that combine concepts across 
 3. [03-advanced](./03-advanced/README.md)
 4. [04-expert](./04-expert/README.md)
 
-## Next Gap
+## Coverage
 
 All project checkpoints through `04-expert` are available in this track.

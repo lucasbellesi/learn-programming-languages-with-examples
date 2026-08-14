@@ -16,9 +16,10 @@ This module introduces TypeScript concurrency through async tasks, `Promise.all`
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-npm run build:typescript
-node build/typescript/04-expert/concurrency-basics/example/main.js
+python scripts/automation.py run-module --module-path languages/typescript/04-expert/concurrency-basics
 ~~~
 
 ## Topics Covered

@@ -16,10 +16,11 @@ This module introduces ownership and deterministic cleanup in C++.
 
 ## Quick Run
 
-```bash
-g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o memory_raii_example
-./memory_raii_example
-```
+Run from the repository root:
+
+~~~bash
+python scripts/automation.py run-module --module-path languages/cpp/04-expert/memory-management-and-raii
+~~~
 
 ## More Examples
 

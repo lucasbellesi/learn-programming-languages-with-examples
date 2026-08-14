@@ -16,9 +16,10 @@ This module shows how to split a TypeScript console program into reusable files 
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-npm run build:typescript
-node build/typescript/04-expert/modularization-and-build-structure/example/main.js
+python scripts/automation.py run-module --module-path languages/typescript/04-expert/modularization-and-build-structure
 ~~~
 
 ## Topics Covered

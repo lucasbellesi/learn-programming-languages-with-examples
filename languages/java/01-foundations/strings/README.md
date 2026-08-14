@@ -7,7 +7,7 @@ This module practices cleaning and combining text while preserving readable stri
 - Difficulty: Beginner.
 - Estimated Time: 20-35 minutes.
 - Prerequisites: Java 21 JDK and prior modules in this level.
-- Cross-Language Lens: Compare Java's explicit class and type requirements with the same concept in C++, C#, Go, Python, and TypeScript.
+- Cross-Language Lens: Compare Java's immutable `String` operations and regex-based splitting with string handling in the other tracks.
 
 ## Learning Outcomes
 
@@ -16,9 +16,10 @@ This module practices cleaning and combining text while preserving readable stri
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-javac -d build/java languages/java/01-foundations/strings/example/Main.java
-java -cp build/java Main
+python scripts/automation.py run-module --module-path languages/java/01-foundations/strings
 ~~~
 
 ## Topics Covered
@@ -48,12 +49,12 @@ java -cp build/java Main
 1. exercises/Exercise01.java
 - Input: one line of text.
 - Output: trimmed and lowercase text plus length.
-- Edge cases: missing values; boundary numeric values.
+- Edge cases: whitespace-only input; text with digits and punctuation.
 
 2. exercises/Exercise02.java
 - Input: one sentence.
 - Output: word count and non-space character count.
-- Edge cases: missing values; zero or repeated values where relevant.
+- Edge cases: whitespace-only sentence; repeated spaces.
 
 ## Check Your Work
 

@@ -16,9 +16,10 @@ This module introduces richer object modeling in TypeScript with interfaces and 
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-npm run build:typescript
-node build/typescript/03-advanced/structs-and-classes/example/main.js
+python scripts/automation.py run-module --module-path languages/typescript/03-advanced/structs-and-classes
 ~~~
 
 ## Topics Covered

@@ -16,8 +16,10 @@ This module introduces simple measurement and optimization patterns in C#.
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-dotnet run --project example/performance-and-profiling-basics-example.csproj
+python scripts/automation.py run-module --module-path languages/csharp/04-expert/performance-and-profiling-basics
 ~~~
 
 ## Topics Covered

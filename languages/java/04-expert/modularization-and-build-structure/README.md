@@ -16,9 +16,10 @@ This module shows how to split a Java console program into focused source files 
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-javac -d build/java languages/java/04-expert/modularization-and-build-structure/example/*.java
-java -cp build/java Main
+python scripts/automation.py run-module --module-path languages/java/04-expert/modularization-and-build-structure
 ~~~
 
 ## Topics Covered

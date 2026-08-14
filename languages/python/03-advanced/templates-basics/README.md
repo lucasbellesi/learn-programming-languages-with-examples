@@ -16,8 +16,10 @@ This module introduces generic programming with type hints and reusable classes.
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-python example/main.py
+python scripts/automation.py run-module --module-path languages/python/03-advanced/templates-basics
 ~~~
 
 ## Topics Covered

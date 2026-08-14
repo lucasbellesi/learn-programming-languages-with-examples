@@ -16,9 +16,10 @@ This module models behavior variation with interfaces and overriding implementat
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-javac -d build/java languages/java/03-advanced/inheritance-and-polymorphism/example/Main.java
-java -cp build/java Main
+python scripts/automation.py run-module --module-path languages/java/03-advanced/inheritance-and-polymorphism
 ~~~
 
 ## Topics Covered

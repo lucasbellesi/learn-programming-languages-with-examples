@@ -16,8 +16,10 @@ This module introduces splitting a Python program into focused modules.
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-python example/main.py
+python scripts/automation.py run-module --module-path languages/python/04-expert/modularization-and-build-structure
 ~~~
 
 ## Topics Covered

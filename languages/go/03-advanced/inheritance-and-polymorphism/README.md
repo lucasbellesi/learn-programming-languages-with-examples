@@ -16,8 +16,10 @@ This module models behavior variation with interfaces and dynamic dispatch.
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-go run example/main.go
+python scripts/automation.py run-module --module-path languages/go/03-advanced/inheritance-and-polymorphism
 ~~~
 
 ## Topics Covered

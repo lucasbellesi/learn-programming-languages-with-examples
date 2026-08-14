@@ -12,4 +12,14 @@ Use these assessments after finishing each level to check practical readiness.
 Each assessment contains:
 
 - `README.md` with requirements and sample input/output.
-- `main.cpp` with a reference implementation you can run and inspect.
+- an incomplete `starter/main.cpp` for the learner attempt.
+- a runnable reference implementation under `solutions/` for post-attempt review.
+- named normal and edge cases checked through `check-checkpoint`.
+
+Run an assessment from the repository root:
+
+```bash
+python scripts/automation.py check-checkpoint --language cpp --kind assessment --level 01-foundations
+```
+
+Change `--level` for later assessments. Add `--solution` only after completing an attempt.

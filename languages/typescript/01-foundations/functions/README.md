@@ -16,9 +16,10 @@ This module introduces reusable logic through typed function design.
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-npm run build:typescript
-node build/typescript/01-foundations/functions/example/main.js
+python scripts/automation.py run-module --module-path languages/typescript/01-foundations/functions
 ~~~
 
 ## Topics Covered

@@ -16,9 +16,10 @@ This module introduces measurement discipline and allocation-aware comparisons o
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-javac -d build/java languages/java/04-expert/performance-and-profiling-basics/example/Main.java
-java -cp build/java Main
+python scripts/automation.py run-module --module-path languages/java/04-expert/performance-and-profiling-basics
 ~~~
 
 ## Topics Covered

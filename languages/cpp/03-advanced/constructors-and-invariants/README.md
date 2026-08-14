@@ -16,10 +16,11 @@ This module shows how constructors enforce valid object state.
 
 ## Quick Run
 
-```bash
-g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o constructors_invariants_example
-./constructors_invariants_example
-```
+Run from the repository root:
+
+~~~bash
+python scripts/automation.py run-module --module-path languages/cpp/03-advanced/constructors-and-invariants
+~~~
 
 ## More Examples
 

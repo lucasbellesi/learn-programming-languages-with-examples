@@ -16,8 +16,10 @@ This module introduces deterministic cleanup in Python through context managers.
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-python example/main.py
+python scripts/automation.py run-module --module-path languages/python/04-expert/memory-management-and-raii
 ~~~
 
 ## Topics Covered

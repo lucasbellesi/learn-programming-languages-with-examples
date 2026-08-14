@@ -20,11 +20,11 @@ Build a concurrent pipeline simulator with explicit resource ownership, determin
 
 ## Quick Run
 
-Run the reference solution from the repository root:
+Run the checkpoint checker from the repository root. The starter is intentionally incomplete, so the first run establishes the work still to do:
 
-```bash
-python scripts/automation.py check-checkpoint --language java --kind project --level 04-expert --solution
-```
+~~~bash
+python scripts/automation.py check-checkpoint --language java --kind project --level 04-expert
+~~~
 
 ## Requirements
 

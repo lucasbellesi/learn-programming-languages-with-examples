@@ -66,15 +66,15 @@ It is intentionally not a full answer dump.
 
 ## strings
 
-### `exercises/01.cpp` (palindrome check)
-- Strategy: normalize input (ignore case/spaces if exercise requires), compare mirrored positions.
-- Common mistakes: mismatched index bounds when checking from both ends.
-- Self-check: test odd/even length strings and punctuation handling expectations.
-
-### `exercises/02.cpp` (word counting or string parsing task)
-- Strategy: define exact parsing rule first, then loop through characters/tokens accordingly.
-- Common mistakes: not handling leading/trailing spaces.
+### `exercises/01.cpp` (word counting)
+- Strategy: define the whitespace rule, then count transitions from whitespace to non-whitespace characters.
+- Common mistakes: counting every space as a separator or mishandling leading and trailing whitespace.
 - Self-check: test empty input and multiple spaces between words.
+
+### `exercises/02.cpp` (palindrome check)
+- Strategy: normalize input as required by the exercise, then compare mirrored positions.
+- Common mistakes: mismatched index bounds or inconsistent handling of case and punctuation.
+- Self-check: test odd/even length strings and punctuation handling expectations.
 
 ## operators-and-expressions
 

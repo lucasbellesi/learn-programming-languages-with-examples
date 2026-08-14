@@ -16,9 +16,10 @@ This module introduces shared interfaces and subtype behavior in TypeScript.
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-npm run build:typescript
-node build/typescript/03-advanced/inheritance-and-polymorphism/example/main.js
+python scripts/automation.py run-module --module-path languages/typescript/03-advanced/inheritance-and-polymorphism
 ~~~
 
 ## Topics Covered

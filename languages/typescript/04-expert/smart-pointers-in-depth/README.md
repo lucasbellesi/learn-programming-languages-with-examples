@@ -16,9 +16,10 @@ This module adapts smart pointer ideas to TypeScript references, ownership trans
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-npm run build:typescript
-node build/typescript/04-expert/smart-pointers-in-depth/example/main.js
+python scripts/automation.py run-module --module-path languages/typescript/04-expert/smart-pointers-in-depth
 ~~~
 
 ## Topics Covered

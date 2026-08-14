@@ -7,7 +7,7 @@ This module teaches defensive input handling in interactive programs.
 - Difficulty: Intermediate.
 - Estimated Time: 30-45 minutes.
 - Prerequisites: `01-foundations/control-flow`, `01-foundations/types-and-io`.
-- Cross-Language Lens: Compare loop-driven validation in all four languages and notice where parsing APIs are strict versus forgiving.
+- Cross-Language Lens: Compare loop-driven validation in all six active languages and notice where parsing APIs are strict versus forgiving.
 
 ## Learning Outcomes
 
@@ -16,10 +16,11 @@ This module teaches defensive input handling in interactive programs.
 
 ## Quick Run
 
-```bash
-g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o input_validation_example
-./input_validation_example
-```
+Run from the repository root:
+
+~~~bash
+python scripts/automation.py run-module --module-path languages/cpp/02-core/input-validation
+~~~
 
 ## More Examples
 

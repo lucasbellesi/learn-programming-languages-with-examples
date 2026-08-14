@@ -4,9 +4,7 @@ This matrix tracks module and checkpoint parity across C++, C#, Go, Java, Python
 
 - Canonical order is defined by the C++ track.
 - All six tracks now reach module and checkpoint parity through `04-expert`.
-- Status labels:
-  - `Done`: module implemented with example, exercises, and README.
-  - `Planned`: module not implemented yet, already queued in order.
+- `Done` means the module is implemented with an example, exercises, and README.
 
 ## Foundations (`01-foundations`)
 
@@ -50,7 +48,7 @@ Current parity progress in non-C++ tracks:
 - Python: `5/5` modules complete in `03-advanced`, `5/5` in `04-expert`
 - TypeScript: `5/5` modules complete in `03-advanced`, `5/5` in `04-expert`
 
-### Advanced (`03-advanced`) - Current Expansion Queue
+### Advanced (`03-advanced`)
 
 | Order | Module | C++ | C# | Go | Java | Python | TypeScript |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -74,10 +72,7 @@ Current parity progress in non-C++ tracks:
 
 ## Checkpoint Parity
 
-Status labels:
-
-- `Done`: checkpoint implemented with README and runnable entrypoint.
-- `Planned`: checkpoint not implemented yet.
+`Done` means the checkpoint has a README plus runnable starter and solution trees.
 
 ### Projects
 

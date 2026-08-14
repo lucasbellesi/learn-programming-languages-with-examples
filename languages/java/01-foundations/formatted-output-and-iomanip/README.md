@@ -7,7 +7,7 @@ This module practices formatting values so output is easier to read and compare.
 - Difficulty: Beginner.
 - Estimated Time: 20-35 minutes.
 - Prerequisites: Java 21 JDK and prior modules in this level.
-- Cross-Language Lens: Compare Java's explicit class and type requirements with the same concept in C++, C#, Go, Python, and TypeScript.
+- Cross-Language Lens: Compare Java `printf` width and precision controls with each track's formatting APIs.
 
 ## Learning Outcomes
 
@@ -16,9 +16,10 @@ This module practices formatting values so output is easier to read and compare.
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-javac -d build/java languages/java/01-foundations/formatted-output-and-iomanip/example/Main.java
-java -cp build/java Main
+python scripts/automation.py run-module --module-path languages/java/01-foundations/formatted-output-and-iomanip
 ~~~
 
 ## Topics Covered
@@ -48,12 +49,12 @@ java -cp build/java Main
 1. exercises/Exercise01.java
 - Input: product price quantity.
 - Output: aligned product, quantity, price, and total fields.
-- Edge cases: missing values; boundary numeric values.
+- Edge cases: quantity = 0; price with many decimal places.
 
 2. exercises/Exercise02.java
 - Input: principal rate years.
 - Output: interest and final amount with two decimals.
-- Edge cases: missing values; zero or repeated values where relevant.
+- Edge cases: zero principal; zero interest rate.
 
 ## Check Your Work
 

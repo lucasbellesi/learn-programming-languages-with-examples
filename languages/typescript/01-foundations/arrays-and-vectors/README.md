@@ -16,9 +16,10 @@ This module uses typed arrays to store, transform, and summarize groups of value
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-npm run build:typescript
-node build/typescript/01-foundations/arrays-and-vectors/example/main.js
+python scripts/automation.py run-module --module-path languages/typescript/01-foundations/arrays-and-vectors
 ~~~
 
 ## Topics Covered

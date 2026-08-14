@@ -16,9 +16,10 @@ This module introduces basic measurement and comparison tools in TypeScript usin
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-npm run build:typescript
-node build/typescript/04-expert/performance-and-profiling-basics/example/main.js
+python scripts/automation.py run-module --module-path languages/typescript/04-expert/performance-and-profiling-basics
 ~~~
 
 ## Topics Covered

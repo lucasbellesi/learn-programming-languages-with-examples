@@ -16,8 +16,10 @@ This module practices arithmetic operators, precedence, and derived calculations
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-python example/main.py
+python scripts/automation.py run-module --module-path languages/python/01-foundations/operators-and-expressions
 ~~~
 
 ## Topics Covered

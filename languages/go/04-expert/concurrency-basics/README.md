@@ -16,8 +16,10 @@ This module introduces goroutines, mutexes, and channels for safe concurrent coo
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-go run example/main.go
+python scripts/automation.py run-module --module-path languages/go/04-expert/concurrency-basics
 ~~~
 
 ## Topics Covered

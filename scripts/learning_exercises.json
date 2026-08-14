@@ -7599,27 +7599,24 @@
         },
         {
           "input_lines": [
-            "0",
-            "10",
-            "20",
-            "30"
+            "0"
           ],
-          "name": "edge: missing values",
+          "name": "edge: N = 0",
           "covers": [
-            "missing values"
+            "N = 0"
           ],
           "oracle_solution": true
         },
         {
           "input_lines": [
+            "3",
+            "-5.5",
             "0",
-            "10",
-            "20",
-            "30"
+            "5.5"
           ],
-          "name": "edge: boundary numeric values",
+          "name": "edge: negative and decimal values",
           "covers": [
-            "boundary numeric values"
+            "negative and decimal values"
           ],
           "oracle_solution": true
         }
@@ -7653,21 +7650,21 @@
         },
         {
           "input_lines": [
-            "Notebook 0 3"
+            "Notebook 12.50 0"
           ],
-          "name": "edge: missing values",
+          "name": "edge: quantity = 0",
           "covers": [
-            "missing values"
+            "quantity = 0"
           ],
           "oracle_solution": true
         },
         {
           "input_lines": [
-            "Notebook 5 3"
+            "Notebook 0.99 3"
           ],
-          "name": "edge: zero or repeated values where relevant",
+          "name": "edge: decimal price",
           "covers": [
-            "zero or repeated values where relevant"
+            "decimal price"
           ],
           "oracle_solution": true
         }
@@ -7702,21 +7699,21 @@
         },
         {
           "input_lines": [
-            "0 4"
+            "9 0"
           ],
-          "name": "edge: missing values",
+          "name": "edge: divisor = 0",
           "covers": [
-            "missing values"
+            "divisor = 0"
           ],
           "oracle_solution": true
         },
         {
           "input_lines": [
-            "0 4"
+            "-9 4"
           ],
-          "name": "edge: boundary numeric values",
+          "name": "edge: negative operands",
           "covers": [
-            "boundary numeric values"
+            "negative operands"
           ],
           "oracle_solution": true
         }
@@ -7752,19 +7749,19 @@
           "input_lines": [
             "0 0.15 0.08"
           ],
-          "name": "edge: missing values",
+          "name": "edge: zero subtotal",
           "covers": [
-            "missing values"
+            "zero subtotal"
           ],
           "oracle_solution": true
         },
         {
           "input_lines": [
-            "5 0.15 0.08"
+            "120 0 0"
           ],
-          "name": "edge: zero or repeated values where relevant",
+          "name": "edge: zero discount and tax rates",
           "covers": [
-            "zero or repeated values where relevant"
+            "zero discount and tax rates"
           ],
           "oracle_solution": true
         }
@@ -7796,21 +7793,21 @@
         },
         {
           "input_lines": [
-            "0"
+            "90"
           ],
-          "name": "edge: missing values",
+          "name": "edge: grade boundary",
           "covers": [
-            "missing values"
+            "grade boundary"
           ],
           "oracle_solution": true
         },
         {
           "input_lines": [
-            "0"
+            "-1"
           ],
-          "name": "edge: boundary numeric values",
+          "name": "edge: score outside 0..100",
           "covers": [
-            "boundary numeric values"
+            "score outside 0..100"
           ],
           "oracle_solution": true
         }
@@ -7849,31 +7846,25 @@
         },
         {
           "input_lines": [
-            "0",
-            "3",
-            "-1",
-            "0",
-            "8",
-            "-2"
+            "0"
           ],
-          "name": "edge: missing values",
+          "name": "edge: N = 0",
           "covers": [
-            "missing values"
+            "N = 0"
           ],
           "oracle_solution": true
         },
         {
           "input_lines": [
-            "5",
-            "5",
-            "5",
-            "5",
-            "5",
-            "5"
+            "4",
+            "0",
+            "0",
+            "0",
+            "0"
           ],
-          "name": "edge: zero or repeated values where relevant",
+          "name": "edge: all values are zero",
           "covers": [
-            "zero or repeated values where relevant"
+            "all values are zero"
           ],
           "oracle_solution": true
         }
@@ -7908,19 +7899,19 @@
           "input_lines": [
             "0"
           ],
-          "name": "edge: missing values",
+          "name": "edge: radius = 0",
           "covers": [
-            "missing values"
+            "radius = 0"
           ],
           "oracle_solution": true
         },
         {
           "input_lines": [
-            "0"
+            "2.5"
           ],
-          "name": "edge: boundary numeric values",
+          "name": "edge: decimal radius",
           "covers": [
-            "boundary numeric values"
+            "decimal radius"
           ],
           "oracle_solution": true
         }
@@ -7953,21 +7944,21 @@
         },
         {
           "input_lines": [
-            "0 3 10"
+            "5 5 5"
           ],
-          "name": "edge: missing values",
+          "name": "edge: repeated values",
           "covers": [
-            "missing values"
+            "repeated values"
           ],
           "oracle_solution": true
         },
         {
           "input_lines": [
-            "5 3 10"
+            "-8 -3 -10"
           ],
-          "name": "edge: zero or repeated values where relevant",
+          "name": "edge: all values are negative",
           "covers": [
-            "zero or repeated values where relevant"
+            "all values are negative"
           ],
           "oracle_solution": true
         }
@@ -8006,15 +7997,11 @@
         },
         {
           "input_lines": [
-            "0",
-            "9",
-            "2",
-            "7",
-            "2"
+            "0"
           ],
-          "name": "edge: missing values",
+          "name": "edge: N = 0",
           "covers": [
-            "missing values"
+            "N = 0"
           ],
           "oracle_solution": true
         },
@@ -8024,9 +8011,9 @@
             "-100",
             "100"
           ],
-          "name": "edge: boundary numeric values",
+          "name": "edge: negative and positive values",
           "covers": [
-            "boundary numeric values"
+            "negative and positive values"
           ],
           "oracle_solution": true
         }
@@ -8066,16 +8053,11 @@
         {
           "input_lines": [
             "0",
-            "8",
-            "3",
-            "8",
-            "1",
-            "8",
             "8"
           ],
-          "name": "edge: missing values",
+          "name": "edge: N = 0",
           "covers": [
-            "missing values"
+            "N = 0"
           ],
           "oracle_solution": true
         },
@@ -8089,9 +8071,9 @@
             "5",
             "8"
           ],
-          "name": "edge: zero or repeated values where relevant",
+          "name": "edge: target absent",
           "covers": [
-            "zero or repeated values where relevant"
+            "target absent"
           ],
           "oracle_solution": true
         }
@@ -8125,21 +8107,21 @@
         },
         {
           "input_lines": [
-            "edge-case"
+            "   "
           ],
-          "name": "edge: missing values",
+          "name": "edge: whitespace-only input",
           "covers": [
-            "missing values"
+            "whitespace-only input"
           ],
           "oracle_solution": true
         },
         {
           "input_lines": [
-            "0"
+            "  Java 21!  "
           ],
-          "name": "edge: boundary numeric values",
+          "name": "edge: text with digits and punctuation",
           "covers": [
-            "boundary numeric values"
+            "text with digits and punctuation"
           ],
           "oracle_solution": true
         }
@@ -8172,21 +8154,21 @@
         },
         {
           "input_lines": [
-            "edge-case"
+            "   "
           ],
-          "name": "edge: missing values",
+          "name": "edge: whitespace-only sentence",
           "covers": [
-            "missing values"
+            "whitespace-only sentence"
           ],
           "oracle_solution": true
         },
         {
           "input_lines": [
-            "edge-case"
+            "Java   strings   work"
           ],
-          "name": "edge: zero or repeated values where relevant",
+          "name": "edge: repeated spaces",
           "covers": [
-            "zero or repeated values where relevant"
+            "repeated spaces"
           ],
           "oracle_solution": true
         }
@@ -8222,19 +8204,19 @@
           "input_lines": [
             "0"
           ],
-          "name": "edge: missing values",
+          "name": "edge: base value = 0",
           "covers": [
-            "missing values"
+            "base value = 0"
           ],
           "oracle_solution": true
         },
         {
           "input_lines": [
-            "90"
+            "-5"
           ],
-          "name": "edge: boundary numeric values",
+          "name": "edge: negative base value",
           "covers": [
-            "boundary numeric values"
+            "negative base value"
           ],
           "oracle_solution": true
         }
@@ -8268,19 +8250,19 @@
           "input_lines": [
             "0"
           ],
-          "name": "edge: missing values",
+          "name": "edge: count = 0",
           "covers": [
-            "missing values"
+            "count = 0"
           ],
           "oracle_solution": true
         },
         {
           "input_lines": [
-            "5"
+            "-2"
           ],
-          "name": "edge: zero or repeated values where relevant",
+          "name": "edge: negative count",
           "covers": [
-            "zero or repeated values where relevant"
+            "negative count"
           ],
           "oracle_solution": true
         }
@@ -8314,21 +8296,21 @@
         },
         {
           "input_lines": [
-            "Notebook 0 3"
+            "Notebook 12.5 0"
           ],
-          "name": "edge: missing values",
+          "name": "edge: quantity = 0",
           "covers": [
-            "missing values"
+            "quantity = 0"
           ],
           "oracle_solution": true
         },
         {
           "input_lines": [
-            "Notebook 0 3"
+            "Notebook 12.3456 3"
           ],
-          "name": "edge: boundary numeric values",
+          "name": "edge: price with many decimal places",
           "covers": [
-            "boundary numeric values"
+            "price with many decimal places"
           ],
           "oracle_solution": true
         }
@@ -8364,19 +8346,19 @@
           "input_lines": [
             "0 0.05 2"
           ],
-          "name": "edge: missing values",
+          "name": "edge: zero principal",
           "covers": [
-            "missing values"
+            "zero principal"
           ],
           "oracle_solution": true
         },
         {
           "input_lines": [
-            "5 0.05 2"
+            "1000 0 2"
           ],
-          "name": "edge: zero or repeated values where relevant",
+          "name": "edge: zero interest rate",
           "covers": [
-            "zero or repeated values where relevant"
+            "zero interest rate"
           ],
           "oracle_solution": true
         }

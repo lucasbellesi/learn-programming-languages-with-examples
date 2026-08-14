@@ -16,9 +16,10 @@ This module teaches defensive validation patterns for TypeScript console program
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-npm run build:typescript
-node build/typescript/02-core/input-validation/example/main.js
+python scripts/automation.py run-module --module-path languages/typescript/02-core/input-validation
 ~~~
 
 ## Topics Covered

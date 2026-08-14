@@ -16,10 +16,11 @@ This module teaches readable numeric and table output formatting.
 
 ## Quick Run
 
-```bash
-g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o iomanip_example
-./iomanip_example
-```
+Run from the repository root:
+
+~~~bash
+python scripts/automation.py run-module --module-path languages/cpp/01-foundations/formatted-output-and-iomanip
+~~~
 
 ## More Examples
 

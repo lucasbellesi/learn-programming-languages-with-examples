@@ -16,9 +16,10 @@ This module shows how constructors enforce valid object state.
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-javac -d build/java languages/java/03-advanced/constructors-and-invariants/example/Main.java
-java -cp build/java Main
+python scripts/automation.py run-module --module-path languages/java/03-advanced/constructors-and-invariants
 ~~~
 
 ## Topics Covered

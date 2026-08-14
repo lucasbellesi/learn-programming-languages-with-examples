@@ -16,10 +16,11 @@ This module introduces value copying and ownership transfer through moves.
 
 ## Quick Run
 
-```bash
-g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o copy_move_example
-./copy_move_example
-```
+Run from the repository root:
+
+~~~bash
+python scripts/automation.py run-module --module-path languages/cpp/03-advanced/copy-and-move-semantics
+~~~
 
 ## More Examples
 

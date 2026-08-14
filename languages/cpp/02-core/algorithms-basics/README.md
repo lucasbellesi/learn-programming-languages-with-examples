@@ -16,10 +16,11 @@ This module introduces common algorithmic patterns over vectors.
 
 ## Quick Run
 
-```bash
-g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o algorithms_basics_example
-./algorithms_basics_example
-```
+Run from the repository root:
+
+~~~bash
+python scripts/automation.py run-module --module-path languages/cpp/02-core/algorithms-basics
+~~~
 
 ## More Examples
 

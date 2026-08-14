@@ -16,8 +16,10 @@ This module introduces deterministic cleanup in Go through `defer` and explicit 
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-go run example/main.go
+python scripts/automation.py run-module --module-path languages/go/04-expert/memory-management-and-raii
 ~~~
 
 ## Topics Covered

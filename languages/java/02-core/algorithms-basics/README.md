@@ -16,9 +16,10 @@ This module practices small search and counting algorithms over arrays.
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-javac -d build/java languages/java/02-core/algorithms-basics/example/Main.java
-java -cp build/java Main
+python scripts/automation.py run-module --module-path languages/java/02-core/algorithms-basics
 ~~~
 
 ## Topics Covered

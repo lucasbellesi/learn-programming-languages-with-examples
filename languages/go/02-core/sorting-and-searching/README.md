@@ -16,8 +16,10 @@ This module introduces basic sorting and searching techniques.
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-go run example/main.go
+python scripts/automation.py run-module --module-path languages/go/02-core/sorting-and-searching
 ~~~
 
 ## Topics Covered

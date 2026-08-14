@@ -16,8 +16,10 @@ This module adapts smart pointer ideas to Go pointers, nil-safe ownership slots,
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-go run example/main.go
+python scripts/automation.py run-module --module-path languages/go/04-expert/smart-pointers-in-depth
 ~~~
 
 ## Topics Covered

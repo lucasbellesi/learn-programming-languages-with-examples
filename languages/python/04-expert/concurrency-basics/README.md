@@ -16,8 +16,10 @@ This module introduces thread-based coordination with locks and queues in Python
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-python example/main.py
+python scripts/automation.py run-module --module-path languages/python/04-expert/concurrency-basics
 ~~~
 
 ## Topics Covered

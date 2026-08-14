@@ -1,7 +1,7 @@
 # Concept Template (Language-Agnostic)
 
 Use this template when creating a new concept module in any track.
-All section headings below are required by repository validation scripts, including `Learning Metadata`.
+All section headings below are required by repository validation scripts.
 
 When writing `example/main.*`, start with a short header comment that states the module focus and why it matters, then add intent-first comments before meaningful logic blocks so new developers can follow program flow quickly.
 
@@ -12,31 +12,17 @@ When writing `example/main.*`, start with a short header comment that states the
 - Prerequisites:
 - Cross-Language Lens:
 
+## Learning Outcomes
+
+- `<OUTCOME-ID-01>`: First measurable result shared by this module across tracks.
+- `<OUTCOME-ID-02>`: Second measurable result, adapted idiomatically for the language.
+
 ## Quick Run
 
-Include one command that runs the module example.
+Run from the repository root:
 
 ~~~bash
-# C++
-g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o concept_example
-./concept_example
-
-# Python
-python example/main.py
-
-# Go
-go run example/main.go
-
-# Java
-javac -d build/java example/Main.java
-java -cp build/java Main
-
-# C#
-dotnet run --project example/concept-template-example.csproj
-
-# TypeScript
-npm run build:typescript
-node build/typescript/<level>/<module>/example/main.js
+python scripts/automation.py run-module --module-path languages/<language>/<level>/<module>
 ~~~
 
 ## Topics Covered
@@ -72,6 +58,16 @@ node build/typescript/<level>/<module>/example/main.js
 - Input:
 - Output:
 - Edge cases:
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+~~~bash
+python scripts/automation.py check-exercise --language <language> --level <level> --module <module> --exercise 01
+~~~
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 
