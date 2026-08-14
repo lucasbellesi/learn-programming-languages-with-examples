@@ -1,0 +1,4 @@
+Ana Smith 91
+Bob Lee 77
+InvalidRow
+Carla Mendez 88

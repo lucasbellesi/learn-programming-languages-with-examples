@@ -10,7 +10,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws IOException {
         // Explicit paths make missing input observable instead of creating it silently.
-        Path inputPath = Path.of(args.length > 0 ? args[0] : "example/fixtures/scores.txt");
+        Path inputPath = Path.of(args.length > 0 ? args[0] : "example/fixtures/sample-scores.txt");
         Path reportPath = Path.of(args.length > 1 ? args[1] : "build/report.txt");
         if (!Files.isRegularFile(inputPath)) {
             System.err.println("Input file not found: " + inputPath.toAbsolutePath());

@@ -13,7 +13,7 @@ import (
 
 func main() {
 	// Explicit arguments make missing input observable instead of creating it silently.
-	inputPath := filepath.Join("example", "fixtures", "scores.txt")
+	inputPath := filepath.Join("example", "fixtures", "sample-scores.txt")
 	outputPath := filepath.Join("build", "report.txt")
 	if len(os.Args) > 1 {
 		inputPath = os.Args[1]

@@ -7,7 +7,7 @@ import { buildScoreReport, parseScoreRow } from "./score-report";
 
 // Explicit paths make missing input observable instead of creating it silently.
 const sourcePath = path.resolve(
-    process.argv[2] ?? path.join("example", "fixtures", "scores.txt"),
+    process.argv[2] ?? path.join("example", "fixtures", "sample-scores.txt"),
 );
 const reportPath = path.resolve(
     process.argv[3] ?? path.join("build", "report.txt"),

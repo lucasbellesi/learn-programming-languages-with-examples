@@ -592,6 +592,10 @@
         "name": "module reference scenario",
         "program": "languages/go/02-core/file-io-basics/example/main.go",
         "working_dir": "languages/go/02-core/file-io-basics",
+        "arguments": [
+          "example/fixtures/sample-scores.txt",
+          "build/report.txt"
+        ],
         "required_stdout_contains": [
           "Report file:",
           "Valid records: 3",
@@ -895,6 +899,10 @@
       {
         "program": "languages/typescript/02-core/file-io-basics/example/main.ts",
         "working_dir": "languages/typescript/02-core/file-io-basics",
+        "arguments": [
+          "example/fixtures/sample-scores.txt",
+          "build/report.txt"
+        ],
         "required_stdout_contains": [
           "Report file:",
           "Valid records: 3",
@@ -1140,6 +1148,10 @@
       {
         "program": "languages/java/02-core/file-io-basics/example/Main.java",
         "working_dir": "languages/java/02-core/file-io-basics",
+        "arguments": [
+          "example/fixtures/sample-scores.txt",
+          "build/report.txt"
+        ],
         "required_stdout_contains": [
           "Report file:",
           "Valid records: 3",
