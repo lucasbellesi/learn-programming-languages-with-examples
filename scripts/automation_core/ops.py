@@ -15,6 +15,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from .curriculum import CurriculumError, load_curriculum_outcomes, load_learning_checkpoints
 from .links import check_markdown_links
 from .manifest import Manifest, load_manifest
 
@@ -80,9 +81,13 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     audit_education_quality_parser.set_defaults(func=handle_audit_education_quality)
-    add_simple_command(
-        subparsers, "check-example-output-contracts", handle_check_example_output_contracts
+    check_example_output_contracts_parser = subparsers.add_parser("check-example-output-contracts")
+    check_example_output_contracts_parser.add_argument(
+        "--language",
+        choices=["cpp", "csharp", "go", "java", "python", "typescript"],
+        default=None,
     )
+    check_example_output_contracts_parser.set_defaults(func=handle_check_example_output_contracts)
     check_exercise_output_contracts_parser = subparsers.add_parser(
         "check-exercise-output-contracts"
     )
@@ -125,6 +130,41 @@ def build_parser() -> argparse.ArgumentParser:
     add_simple_command(subparsers, "lint", handle_lint)
     add_simple_command(subparsers, "smoke-languages", handle_smoke_languages)
     add_simple_command(subparsers, "verify-repo", handle_verify_repo)
+
+    doctor_parser = subparsers.add_parser(
+        "doctor", help="Check the required toolchain for one language track."
+    )
+    doctor_parser.add_argument(
+        "--language",
+        choices=["cpp", "csharp", "go", "java", "python", "typescript"],
+        required=True,
+    )
+    doctor_parser.set_defaults(func=handle_doctor)
+
+    verify_language_parser = subparsers.add_parser(
+        "verify-language", help="Validate one language track without repeating other tracks."
+    )
+    verify_language_parser.add_argument(
+        "--language",
+        choices=["cpp", "csharp", "go", "java", "python", "typescript"],
+        required=True,
+    )
+    verify_language_parser.set_defaults(func=handle_verify_language)
+
+    check_checkpoint_parser = subparsers.add_parser(
+        "check-checkpoint", help="Check one project or assessment submission."
+    )
+    check_checkpoint_parser.add_argument(
+        "--language",
+        choices=["cpp", "csharp", "go", "java", "python", "typescript"],
+        required=True,
+    )
+    check_checkpoint_parser.add_argument("--kind", choices=["project", "assessment"], required=True)
+    check_checkpoint_parser.add_argument("--level", required=True)
+    checkpoint_source_group = check_checkpoint_parser.add_mutually_exclusive_group()
+    checkpoint_source_group.add_argument("--submission")
+    checkpoint_source_group.add_argument("--solution", action="store_true")
+    check_checkpoint_parser.set_defaults(func=handle_check_checkpoint)
 
     run_module = subparsers.add_parser("run-module")
     run_module.add_argument("--module-path", required=True)
@@ -187,8 +227,8 @@ def handle_audit_education_quality(ctx: RepoContext, args: argparse.Namespace) -
     return 0
 
 
-def handle_check_example_output_contracts(ctx: RepoContext, _: argparse.Namespace) -> int:
-    check_example_output_contracts(ctx)
+def handle_check_example_output_contracts(ctx: RepoContext, args: argparse.Namespace) -> int:
+    check_example_output_contracts(ctx, language_filter=args.language)
     return 0
 
 
@@ -247,6 +287,28 @@ def handle_verify_repo(ctx: RepoContext, _: argparse.Namespace) -> int:
 
 def handle_run_module(ctx: RepoContext, args: argparse.Namespace) -> int:
     run_module(ctx, args.module_path)
+    return 0
+
+
+def handle_doctor(ctx: RepoContext, args: argparse.Namespace) -> int:
+    doctor_language(ctx, args.language)
+    return 0
+
+
+def handle_verify_language(ctx: RepoContext, args: argparse.Namespace) -> int:
+    verify_language(ctx, args.language)
+    return 0
+
+
+def handle_check_checkpoint(ctx: RepoContext, args: argparse.Namespace) -> int:
+    check_learning_checkpoint(
+        ctx,
+        language=args.language,
+        kind=args.kind,
+        level=args.level,
+        submission=args.submission,
+        use_solution=args.solution,
+    )
     return 0
 
 
@@ -726,7 +788,19 @@ def resolve_job_path(ctx: RepoContext, working_dir: Path, raw_path: str) -> Path
 def go_target_arguments(path: Path) -> list[str]:
     if path.is_dir():
         return [str(candidate) for candidate in sorted(path.glob("*.go"))]
+    if path.suffix == ".go":
+        companions = [
+            candidate
+            for candidate in sorted(path.parent.glob("*.go"))
+            if candidate == path or not go_file_has_main(candidate)
+        ]
+        if len(companions) > 1:
+            return [str(candidate) for candidate in companions]
     return [str(path)]
+
+
+def go_file_has_main(path: Path) -> bool:
+    return bool(re.search(r"(?m)^func\s+main\s*\(", path.read_text(encoding="utf-8")))
 
 
 def go_directory_needs_package_build(directory: Path) -> bool:
@@ -739,9 +813,7 @@ def go_directory_needs_package_build(directory: Path) -> bool:
 
     main_function_count = 0
     for path in go_files:
-        main_function_count += len(
-            re.findall(r"(?m)^func\s+main\s*\(", path.read_text(encoding="utf-8"))
-        )
+        main_function_count += int(go_file_has_main(path))
 
     return main_function_count <= 1
 
@@ -956,6 +1028,23 @@ def check_module_completeness(ctx: RepoContext) -> None:
 def check_checkpoint_completeness(ctx: RepoContext) -> None:
     failures: list[str] = []
     checkpoint_count = 0
+    try:
+        configured_checkpoints = load_learning_checkpoints(ctx.scripts_dir)
+        outcomes_by_module = load_curriculum_outcomes(ctx.scripts_dir)
+    except CurriculumError as error:
+        raise AutomationError(str(error)) from error
+    configured_by_key: dict[tuple[str, str, str], dict[str, Any]] = {}
+    for checkpoint in configured_checkpoints:
+        key = (
+            str(checkpoint.get("language")),
+            str(checkpoint.get("kind")),
+            str(checkpoint.get("level")),
+        )
+        if key in configured_by_key:
+            failures.append(
+                "scripts/learning_checkpoints.json: duplicate checkpoint -> " + "/".join(key)
+            )
+        configured_by_key[key] = checkpoint
 
     for language, config in ctx.manifest.languages.items():
         language_root = ctx.root / "languages" / language
@@ -994,15 +1083,116 @@ def check_checkpoint_completeness(ctx: RepoContext) -> None:
                         suffix = failure.split(": ", 1)[1] if ": " in failure else failure
                         failures.append(f"{checkpoint_dir}: README {suffix}")
 
-                checkpoint_main = config.get("checkpoint_main")
-                if checkpoint_main and not (checkpoint_dir / checkpoint_main).is_file():
-                    failures.append(f"{checkpoint_dir}: missing {checkpoint_main}")
+                checkpoint_main = config.get("checkpoint_main") or (
+                    "main.cpp" if language == "cpp" else None
+                )
+                starter_dir = checkpoint_dir / "starter"
+                solution_dir = checkpoint_dir / "solutions"
+                for source_kind, source_dir in (
+                    ("starter", starter_dir),
+                    ("solution", solution_dir),
+                ):
+                    if not source_dir.is_dir():
+                        failures.append(f"{checkpoint_dir}: missing {source_dir.name}/ directory")
+                        continue
+                    if checkpoint_main and not (source_dir / checkpoint_main).is_file():
+                        failures.append(
+                            f"{checkpoint_dir}: missing {source_dir.name}/{checkpoint_main}"
+                        )
+                    if language == "csharp" and not any(source_dir.glob("*.csproj")):
+                        failures.append(
+                            f"{checkpoint_dir}: missing {source_dir.name}/ .csproj file"
+                        )
 
-                if language == "csharp" and not any(checkpoint_dir.glob("*.csproj")):
-                    failures.append(f"{checkpoint_dir}: missing .csproj file")
+                singular_kind = "project" if kind == "projects" else "assessment"
+                key = (language, singular_kind, checkpoint_name)
+                checkpoint = configured_by_key.get(key)
+                label = "/".join(key)
+                if checkpoint is None:
+                    failures.append(
+                        f"scripts/learning_checkpoints.json: missing checkpoint -> {label}"
+                    )
+                    continue
+                expected_starter = f"languages/{language}/{kind}/{checkpoint_name}/starter"
+                expected_solution = f"languages/{language}/{kind}/{checkpoint_name}/solutions"
+                if checkpoint.get("starter") != expected_starter:
+                    failures.append(
+                        f"scripts/learning_checkpoints.json: {label} starter must be "
+                        f"{expected_starter}"
+                    )
+                if checkpoint.get("solution") != expected_solution:
+                    failures.append(
+                        f"scripts/learning_checkpoints.json: {label} solution must be "
+                        f"{expected_solution}"
+                    )
+                if checkpoint.get("entrypoint") != checkpoint_main:
+                    failures.append(
+                        f"scripts/learning_checkpoints.json: {label} has wrong entrypoint"
+                    )
+                expected_outcomes = [
+                    outcome_id
+                    for module_key, module_outcomes in outcomes_by_module.items()
+                    if module_key.startswith(f"{checkpoint_name}/")
+                    for outcome_id in module_outcomes.ids
+                ]
+                outcome_ids = checkpoint.get("outcome_ids")
+                if not isinstance(outcome_ids, list) or not 2 <= len(outcome_ids) <= 4:
+                    failures.append(
+                        f"scripts/learning_checkpoints.json: {label} needs 2 to 4 outcomes"
+                    )
+                elif not set(outcome_ids).issubset(set(expected_outcomes)):
+                    failures.append(
+                        "scripts/learning_checkpoints.json: "
+                        f"{label} uses outcomes outside its level"
+                    )
+                if checkpoint.get("milestones") is not (kind == "projects"):
+                    failures.append(
+                        f"scripts/learning_checkpoints.json: {label} milestone policy mismatch"
+                    )
+                cases = checkpoint.get("cases")
+                if not isinstance(cases, list) or not cases:
+                    failures.append(f"scripts/learning_checkpoints.json: no cases -> {label}")
+                else:
+                    for index, case in enumerate(cases, start=1):
+                        if not isinstance(case, dict) or not isinstance(case.get("name"), str):
+                            failures.append(
+                                "scripts/learning_checkpoints.json: "
+                                f"invalid case {index} -> {label}"
+                            )
+                        elif not (
+                            case.get("required_stdout_contains")
+                            or case.get("required_stdout_patterns")
+                            or case.get("oracle_solution") is True
+                        ):
+                            failures.append(
+                                "scripts/learning_checkpoints.json: "
+                                f"case {index} has no assertions or oracle -> {label}"
+                            )
+                if readme_path.is_file() and isinstance(outcome_ids, list):
+                    readme_text = readme_path.read_text(encoding="utf-8")
+                    for outcome_id in outcome_ids:
+                        if f"- `{outcome_id}`" not in readme_text:
+                            failures.append(f"{readme_path}: missing outcome id -> {outcome_id}")
+
+                if checkpoint_main:
+                    starter_main = starter_dir / checkpoint_main
+                    solution_main = solution_dir / checkpoint_main
+                    if starter_main.is_file() and solution_main.is_file():
+                        if starter_main.read_text(encoding="utf-8") == solution_main.read_text(
+                            encoding="utf-8"
+                        ):
+                            failures.append(f"{checkpoint_dir}: starter equals solution")
+                        if "TODO" not in starter_main.read_text(encoding="utf-8"):
+                            failures.append(f"{checkpoint_dir}: starter entrypoint has no TODO")
 
     if checkpoint_count == 0:
         raise AutomationError("No checkpoint directories found for completeness validation.")
+
+    if len(configured_by_key) != checkpoint_count:
+        failures.append(
+            "scripts/learning_checkpoints.json: expected "
+            f"{checkpoint_count} checkpoints, found {len(configured_by_key)}"
+        )
 
     if failures:
         print("Checkpoint completeness validation failed:")
@@ -1172,6 +1362,12 @@ def audit_education_quality(
     if not module_examples:
         raise AutomationError("No module example main files were found for education audit.")
 
+    waiver_path = ctx.scripts_dir / "education_quality_waivers.json"
+    waiver_payload = json.loads(waiver_path.read_text(encoding="utf-8"))
+    waivers = waiver_payload.get("waivers", {})
+    if not isinstance(waivers, dict):
+        raise AutomationError(f"{waiver_path}: expected a 'waivers' object.")
+
     boilerplate_patterns = [
         re.compile(r"Define the reusable pieces first so", re.IGNORECASE),
         re.compile(r"Run one deterministic scenario so", re.IGNORECASE),
@@ -1229,6 +1425,7 @@ def audit_education_quality(
                 "has_output_statements": has_output,
                 "has_observable_output_marker": has_output_marker,
                 "missing_observable_output_marker": bool(has_output and not has_output_marker),
+                "size_waiver": waivers.get(relative_path),
             }
         )
 
@@ -1244,6 +1441,7 @@ def audit_education_quality(
         }
 
     oversized_count = 0
+    waived_oversized_count = 0
     low_comment_ratio_count = 0
     missing_output_marker_count = 0
     boilerplate_file_count = 0
@@ -1252,7 +1450,10 @@ def audit_education_quality(
         threshold = level_thresholds[row["level"]]["oversized_threshold"]
         row["oversized_for_level"] = bool(row["non_blank_lines"] > threshold)
         if row["oversized_for_level"]:
-            oversized_count += 1
+            if row["size_waiver"]:
+                waived_oversized_count += 1
+            else:
+                oversized_count += 1
         if row["comment_ratio"] < 0.12:
             low_comment_ratio_count += 1
         if row["missing_observable_output_marker"]:
@@ -1273,6 +1474,7 @@ def audit_education_quality(
         "files_missing_observable_output_marker": missing_output_marker_count,
         "files_low_comment_ratio": low_comment_ratio_count,
         "files_oversized_for_level": oversized_count,
+        "files_oversized_with_waiver": waived_oversized_count,
         "low_comment_ratio_threshold": 0.12,
         "level_thresholds": level_thresholds,
     }
@@ -1300,6 +1502,10 @@ def audit_education_quality(
         f"{summary['files_low_comment_ratio']}"
     )
     lines.append(f"- Files oversized for level norms: {summary['files_oversized_for_level']}")
+    lines.append(
+        f"- Oversized files covered by an educational waiver: "
+        f"{summary['files_oversized_with_waiver']}"
+    )
     lines.append("")
     lines.append("## Level Size Thresholds")
     lines.append("")
@@ -1314,15 +1520,17 @@ def audit_education_quality(
     lines.append("")
     lines.append("## Priority Findings")
     lines.append("")
-    lines.append("| Path | Comment Ratio | Boilerplate Hits | Missing Output Marker | Oversized |")
-    lines.append("| --- | ---: | ---: | ---: | ---: |")
+    lines.append(
+        "| Path | Comment Ratio | Boilerplate Hits | Missing Output Marker | Oversized | Waived |"
+    )
+    lines.append("| --- | ---: | ---: | ---: | ---: | ---: |")
     findings = [
         row
         for row in file_rows
         if row["boilerplate_hit_count"] > 0
         or row["missing_observable_output_marker"]
         or row["comment_ratio"] < 0.12
-        or row["oversized_for_level"]
+        or (row["oversized_for_level"] and not row["size_waiver"])
     ]
     blocking_findings = [
         row
@@ -1343,10 +1551,11 @@ def audit_education_quality(
         lines.append(
             f"| {row['path']} | {row['comment_ratio']:.3f} | {row['boilerplate_hit_count']} | "
             f"{'yes' if row['missing_observable_output_marker'] else 'no'} | "
-            f"{'yes' if row['oversized_for_level'] else 'no'} |"
+            f"{'yes' if row['oversized_for_level'] else 'no'} | "
+            f"{'yes' if row['size_waiver'] else 'no'} |"
         )
     if not findings:
-        lines.append("| _No findings_ | - | - | - | - |")
+        lines.append("| _No findings_ | - | - | - | - | - |")
     lines.append("")
     lines.append("## Output")
     lines.append("")
@@ -1564,6 +1773,7 @@ def run_module(ctx: RepoContext, module_path: str) -> None:
                 binary_path = compiled_binary_path(ctx, output_path)
                 run_command(
                     [str(binary_path)],
+                    cwd=full_module_path,
                     action=f"Execution for {normalized}/example/main.cpp",
                 )
 
@@ -1592,6 +1802,7 @@ def run_module(ctx: RepoContext, module_path: str) -> None:
             compiled_example = typescript_output_path(ctx, temp_root_path, example_file)
             run_command(
                 [find_node_command(), str(compiled_example)],
+                cwd=full_module_path,
                 action=f"Execution for {normalized}/example/main.ts",
             )
 
@@ -1618,6 +1829,7 @@ def run_module(ctx: RepoContext, module_path: str) -> None:
                 ctx,
                 "Main",
                 temp_root_path,
+                cwd=full_module_path,
                 action=f"Execution for {normalized}/example/Main.java",
             )
 
@@ -1630,7 +1842,191 @@ def run_module(ctx: RepoContext, module_path: str) -> None:
                 print(f"- {normalized}/exercises/{exercise.name}")
         return
 
+    if language == "python":
+        example_file = full_module_path / "example" / "main.py"
+        if not example_file.is_file():
+            raise AutomationError(f"Missing example file: {normalized}/example/main.py")
+        print("Running example...")
+        run_command(
+            [find_python_command(), str(example_file)],
+            cwd=full_module_path,
+            action=f"Execution for {normalized}/example/main.py",
+        )
+        print_module_exercises(full_module_path, normalized, "*.py")
+        return
+
+    if language == "go":
+        example_file = full_module_path / "example" / "main.go"
+        if not example_file.is_file():
+            raise AutomationError(f"Missing example file: {normalized}/example/main.go")
+        print("Running example...")
+        run_command(
+            ["go", "run", *go_target_arguments(example_file)],
+            cwd=full_module_path,
+            action=f"Execution for {normalized}/example/main.go",
+        )
+        print_module_exercises(full_module_path, normalized, "*.go")
+        return
+
+    if language == "csharp":
+        example_dir = full_module_path / "example"
+        main_file = example_dir / "main.cs"
+        if not main_file.is_file():
+            raise AutomationError(f"Missing example file: {normalized}/example/main.cs")
+        projects = [
+            project
+            for project in sorted(example_dir.glob("*.csproj"))
+            if 'Compile Include="main.cs"' in project.read_text(encoding="utf-8")
+        ]
+        if len(projects) != 1:
+            raise AutomationError(
+                f"Expected one C# project for {normalized}/example/main.cs; found {len(projects)}."
+            )
+        print(f"Building example: {projects[0].relative_to(ctx.root).as_posix()}")
+        run_command(
+            ["dotnet", "run", "--project", str(projects[0])],
+            cwd=full_module_path,
+            action=f"Execution for {normalized}/example/main.cs",
+            timeout_seconds=180,
+        )
+        print_module_exercises(full_module_path, normalized, "*.cs")
+        return
+
     raise AutomationError(f"run-module does not support language: {language}")
+
+
+def print_module_exercises(module_path: Path, normalized: str, pattern: str) -> None:
+    exercises_dir = module_path / "exercises"
+    exercise_files = sorted(exercises_dir.glob(pattern)) if exercises_dir.is_dir() else []
+    if not exercise_files:
+        return
+    print()
+    print(f"Exercises in {normalized}/exercises:")
+    for exercise in exercise_files:
+        print(f"- {normalized}/exercises/{exercise.name}")
+
+
+def doctor_language(ctx: RepoContext, language: str) -> None:
+    commands: dict[str, list[list[str]]] = {
+        "cpp": [[resolve_gpp_toolchain(ctx).command, "--version"]],
+        "csharp": [["dotnet", "--version"]],
+        "go": [["go", "version"]],
+        "java": [
+            [find_java_tool("javac", ctx), "-version"],
+            [find_java_tool("java", ctx), "-version"],
+        ],
+        "python": [[find_python_command(), "--version"]],
+        "typescript": [
+            [find_node_command(), "--version"],
+            [find_npm_command(), "exec", "--", "tsc", "--version"],
+        ],
+    }
+    if language not in commands:
+        raise AutomationError(f"Unsupported language: {language}")
+    print(f"Checking {language} toolchain...")
+    for command in commands[language]:
+        run_command(
+            command,
+            cwd=ctx.root,
+            action=f"{language} toolchain check ({Path(command[0]).name})",
+            timeout_seconds=60,
+        )
+    print(f"{language} toolchain is ready.")
+
+
+def compile_language(ctx: RepoContext, language: str) -> None:
+    language_root = ctx.root / "languages" / language
+    if language == "python":
+        run_command(
+            [find_python_command(), "-m", "compileall", "-q", str(language_root)],
+            action="Python syntax check",
+        )
+        return
+    if language == "typescript":
+        compile_typescript(ctx, no_emit=True)
+        return
+    if language == "java":
+        with tempfile.TemporaryDirectory(prefix="verify-java-") as temp_root:
+            for index, source in enumerate(sorted(language_root.rglob("*.java"))):
+                compile_java_source(ctx, source, Path(temp_root) / str(index))
+        return
+    if language == "cpp":
+        toolchain = resolve_gpp_toolchain(ctx)
+        with tempfile.TemporaryDirectory(prefix="verify-cpp-") as temp_root:
+            for index, source in enumerate(sorted(language_root.rglob("*.cpp"))):
+                output = Path(temp_root) / str(index)
+                run_command(
+                    cpp_compile_command(ctx, toolchain, source, output),
+                    action=f"C++ compilation for {source}",
+                    timeout_seconds=120,
+                )
+        return
+    if language == "go":
+        with tempfile.TemporaryDirectory(prefix="verify-go-") as temp_root:
+            go_files = sorted(language_root.rglob("*.go"))
+            package_dirs = sorted(
+                path
+                for path in {file_path.parent for file_path in go_files}
+                if go_directory_needs_package_build(path)
+            )
+            package_dir_set = set(package_dirs)
+            standalone_files = [
+                path
+                for path in go_files
+                if path.parent not in package_dir_set and go_file_has_main(path)
+            ]
+            for index, package_dir in enumerate(package_dirs):
+                run_command(
+                    [
+                        "go",
+                        "build",
+                        "-o",
+                        str(Path(temp_root) / f"package-{index}"),
+                        *go_target_arguments(package_dir),
+                    ],
+                    action=f"Go build for {package_dir}",
+                )
+            for index, source in enumerate(standalone_files):
+                run_command(
+                    [
+                        "go",
+                        "build",
+                        "-o",
+                        str(Path(temp_root) / f"source-{index}"),
+                        *go_target_arguments(source),
+                    ],
+                    action=f"Go build for {source}",
+                )
+        return
+    if language == "csharp":
+        for project in sorted(language_root.rglob("*.csproj")):
+            run_command(
+                [
+                    "dotnet",
+                    "build",
+                    str(project),
+                    "--nologo",
+                    "--verbosity",
+                    "quiet",
+                    "-p:UseAppHost=false",
+                ],
+                action=f"C# build for {project}",
+                timeout_seconds=180,
+            )
+        build_csharp_exercises(ctx)
+        return
+    raise AutomationError(f"Unsupported language: {language}")
+
+
+def verify_language(ctx: RepoContext, language: str) -> None:
+    doctor_language(ctx, language)
+    print(f"Compiling {language} track...")
+    compile_language(ctx, language)
+    print(f"Running {language} example contracts...")
+    check_example_output_contracts(ctx, language_filter=language)
+    print(f"Running {language} exercise contracts...")
+    check_exercise_output_contracts(ctx, language_filter=language)
+    print(f"Language verification passed: {language}.")
 
 
 def xml_escape(value: str) -> str:
@@ -1736,6 +2132,20 @@ def build_csharp_exercises(ctx: RepoContext) -> None:
 
 
 def assert_output_contract(output: str, job: dict[str, Any], label: str) -> None:
+    capture = job.get("_capture_stdout")
+    if callable(capture):
+        capture(output)
+    expected_output = job.get("_required_stdout_equals")
+    if isinstance(expected_output, str):
+        normalized_actual = normalize_oracle_output(output, job)
+        normalized_expected = normalize_oracle_output(expected_output, job)
+        if normalized_actual != normalized_expected:
+            raise AutomationError(
+                f"{label} did not match the reference solution output.\n"
+                f"Expected:\n{expected_output}\nActual:\n{output}"
+            )
+    if job.get("oracle_solution") and not output.strip():
+        raise AutomationError(f"{label} produced no output for an oracle-backed case.")
     for expected in job.get("required_stdout_contains", []):
         if expected not in output:
             raise AutomationError(
@@ -1751,6 +2161,22 @@ def assert_output_contract(output: str, job: dict[str, Any], label: str) -> None
             raise AutomationError(
                 f"{label} printed forbidden text: {forbidden}\nActual output:\n{output}"
             )
+
+
+def normalize_oracle_output(output: str, job: dict[str, Any]) -> str:
+    normalized = output.replace("\r\n", "\n").strip()
+    normalizers = job.get("oracle_normalizers", [])
+    if "timings" in normalizers:
+        timing_words = re.compile(
+            r"tim(?:e|ing)|ticks?|elapsed|duration|milliseconds?|\bms\b", re.I
+        )
+        normalized = "\n".join(
+            re.sub(r"\b\d+(?:\.\d+)?\b", "<timing>", line) if timing_words.search(line) else line
+            for line in normalized.splitlines()
+        )
+    if "unordered_lines" in normalizers:
+        normalized = "\n".join(sorted(normalized.splitlines()))
+    return normalized
 
 
 def smoke_runtime_job(
@@ -1777,11 +2203,17 @@ def smoke_runtime_job(
             input_text = str((working_dir / job["input_file"]).resolve()) + "\n"
 
         capture_stdout = bool(
-            job.get("required_stdout_contains") or job.get("required_stdout_patterns")
+            job.get("required_stdout_contains")
+            or job.get("required_stdout_patterns")
+            or job.get("oracle_solution")
+            or job.get("_capture_stdout")
+            or job.get("_required_stdout_equals")
         )
 
+        command = list(command_builder(job, working_dir))
+        command.extend(str(argument) for argument in job.get("arguments", []))
         completed = run_command(
-            command_builder(job, working_dir),
+            command,
             cwd=working_dir,
             input_text=input_text,
             quiet_stdout=not capture_stdout,
@@ -1859,7 +2291,9 @@ def smoke_languages(ctx: RepoContext) -> None:
         )
         package_dir_set = set(package_dirs)
         standalone_files = sorted(
-            path for path in go_root.rglob("*.go") if path.parent not in package_dir_set
+            path
+            for path in go_root.rglob("*.go")
+            if path.parent not in package_dir_set and go_file_has_main(path)
         )
 
         for index, package_dir in enumerate(package_dirs):
@@ -1876,7 +2310,13 @@ def smoke_languages(ctx: RepoContext) -> None:
 
         for index, source in enumerate(standalone_files):
             run_command(
-                ["go", "build", "-o", str(temp_root_path / f"go_build_file_{index}"), str(source)],
+                [
+                    "go",
+                    "build",
+                    "-o",
+                    str(temp_root_path / f"go_build_file_{index}"),
+                    *go_target_arguments(source),
+                ],
                 action=f"Go build for {source}",
             )
 
@@ -1997,7 +2437,7 @@ def smoke_languages(ctx: RepoContext) -> None:
                     ctx,
                     java_class_name(source_path),
                     class_dir,
-                    cwd=temp_root_path,
+                    cwd=source_path.parent.parent,
                     quiet_stdout=True,
                     action=f"Java runtime smoke for {program}",
                 )
@@ -2051,7 +2491,28 @@ def load_example_output_contracts(ctx: RepoContext) -> dict[str, list[dict[str, 
 
 
 def load_exercise_output_contracts(ctx: RepoContext) -> dict[str, list[dict[str, Any]]]:
-    return load_output_contracts(ctx, "exercise_output_contracts.json", "exercise")
+    contracts: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for exercise in load_learning_exercises(ctx):
+        language = exercise.get("language")
+        solution = exercise.get("solution")
+        cases = exercise.get("cases")
+        if not isinstance(language, str) or not isinstance(solution, str):
+            raise AutomationError(
+                "scripts/learning_exercises.json: exercise identity and solution are required."
+            )
+        if not isinstance(cases, list):
+            raise AutomationError(
+                "scripts/learning_exercises.json: every exercise must define cases."
+            )
+        for case in cases:
+            if not isinstance(case, dict):
+                raise AutomationError(
+                    "scripts/learning_exercises.json: every exercise case must be an object."
+                )
+            job = dict(case)
+            job["program"] = solution
+            contracts[language].append(job)
+    return dict(contracts)
 
 
 def load_learning_exercises(ctx: RepoContext) -> list[dict[str, Any]]:
@@ -2139,12 +2600,39 @@ def check_learning_exercise(
     if not isinstance(cases, list) or not cases:
         raise AutomationError(f"No check cases are configured for {exercise_label}.")
 
+    oracle_outputs: dict[int, str] = {}
+    if not use_solution and any(case.get("oracle_solution") for case in cases):
+        solution = exercise.get("solution")
+        if not isinstance(solution, str):
+            raise AutomationError(f"Missing reference solution for {exercise_label}.")
+        oracle_jobs: list[dict[str, Any]] = []
+        for index, case in enumerate(cases):
+            if not case.get("oracle_solution"):
+                continue
+            oracle_job = dict(case)
+            oracle_job["program"] = solution
+            oracle_job["_capture_stdout"] = lambda output, case_index=index: (
+                oracle_outputs.__setitem__(case_index, output)
+            )
+            oracle_jobs.append(oracle_job)
+        check_exercise_output_contracts(
+            ctx,
+            language_filter=language,
+            contracts_override={language: oracle_jobs},
+            success_message=None,
+        )
+
     program = source_path.relative_to(ctx.root.resolve()).as_posix()
     jobs: list[dict[str, Any]] = []
-    for index, case in enumerate(cases, start=1):
+    for index, case in enumerate(cases):
         if not isinstance(case, dict):
-            raise AutomationError(f"Invalid case {index} for {exercise_label}.")
+            raise AutomationError(f"Invalid case {index + 1} for {exercise_label}.")
         job = dict(case)
+        if job.get("oracle_solution") and not use_solution:
+            forbidden = list(job.get("forbidden_stdout_contains", []))
+            forbidden.append("TODO: implement this exercise")
+            job["forbidden_stdout_contains"] = forbidden
+            job["_required_stdout_equals"] = oracle_outputs[index]
         job["program"] = program
         jobs.append(job)
 
@@ -2156,6 +2644,144 @@ def check_learning_exercise(
         contracts_override={language: jobs},
         success_message=f"Exercise check passed for {exercise_label} ({len(jobs)} cases).",
     )
+
+
+def check_learning_checkpoint(
+    ctx: RepoContext,
+    *,
+    language: str,
+    kind: str,
+    level: str,
+    submission: str | None,
+    use_solution: bool,
+) -> None:
+    try:
+        checkpoints = load_learning_checkpoints(ctx.scripts_dir)
+    except CurriculumError as error:
+        raise AutomationError(str(error)) from error
+    matches = [
+        checkpoint
+        for checkpoint in checkpoints
+        if checkpoint.get("language") == language
+        and checkpoint.get("kind") == kind
+        and checkpoint.get("level") == level
+    ]
+    label = f"{language}/{kind}/{level}"
+    if not matches:
+        raise AutomationError(f"No learner checkpoint is configured for {label}.")
+    if len(matches) > 1:
+        raise AutomationError(f"Duplicate learner checkpoint configuration for {label}.")
+
+    checkpoint = matches[0]
+    configured_root = checkpoint.get("solution" if use_solution else "starter")
+    raw_root = submission or configured_root
+    if not isinstance(raw_root, str) or not raw_root:
+        raise AutomationError(f"Missing checkpoint path configuration for {label}.")
+    source_root = repo_path(ctx, raw_root).resolve()
+    try:
+        source_root.relative_to(ctx.root.resolve())
+    except ValueError as error:
+        raise AutomationError(
+            "Checkpoint submissions must be located inside the repository."
+        ) from error
+    if not source_root.is_dir():
+        raise AutomationError(f"Checkpoint submission directory does not exist: {source_root}")
+
+    entrypoint = checkpoint.get("entrypoint")
+    if not isinstance(entrypoint, str) or not (source_root / entrypoint).is_file():
+        raise AutomationError(
+            f"Checkpoint entrypoint does not exist: {source_root / str(entrypoint)}"
+        )
+    cases = checkpoint.get("cases")
+    if not isinstance(cases, list) or not cases:
+        raise AutomationError(f"No check cases are configured for {label}.")
+
+    relative_root = source_root.relative_to(ctx.root.resolve()).as_posix()
+    jobs: list[dict[str, Any]] = []
+    for index, case in enumerate(cases, start=1):
+        if not isinstance(case, dict):
+            raise AutomationError(f"Invalid case {index} for {label}.")
+        job = dict(case)
+        job["working_dir"] = relative_root
+        if job.get("oracle_solution") and not use_solution:
+            forbidden = list(job.get("forbidden_stdout_contains", []))
+            forbidden.append("TODO: implement this checkpoint")
+            job["forbidden_stdout_contains"] = forbidden
+        job["program"] = f"{relative_root}/{entrypoint}"
+        jobs.append(job)
+
+    source_kind = "reference solution" if use_solution else "submission"
+    print(f"Checking {source_kind} for {label} ({len(jobs)} cases)...")
+
+    def run_checkpoint_jobs(
+        current_root: Path,
+        current_jobs: list[dict[str, Any]],
+        phase: str,
+    ) -> None:
+        if language != "csharp":
+            check_exercise_output_contracts(
+                ctx,
+                language_filter=language,
+                contracts_override={language: current_jobs},
+                success_message=None,
+            )
+            return
+
+        project_file = checkpoint.get("project_file")
+        if not isinstance(project_file, str) or not (current_root / project_file).is_file():
+            raise AutomationError(f"C# checkpoint project does not exist in {current_root}.")
+        project = current_root / project_file
+        run_command(
+            [
+                "dotnet",
+                "build",
+                str(project),
+                "--nologo",
+                "--verbosity",
+                "quiet",
+                "-p:UseAppHost=false",
+            ],
+            action=f"C# checkpoint {phase} build for {label}",
+            timeout_seconds=180,
+        )
+        for job in current_jobs:
+            smoke_runtime_job(
+                ctx,
+                job,
+                command_builder=lambda _job, _working_dir: [
+                    "dotnet",
+                    str(csharp_output_dll(project)),
+                ],
+                label=(
+                    f"C# checkpoint {phase} contract for {label}{output_contract_case_suffix(job)}"
+                ),
+            )
+
+    if not use_solution and any(case.get("oracle_solution") for case in cases):
+        solution_root_value = checkpoint.get("solution")
+        if not isinstance(solution_root_value, str):
+            raise AutomationError(f"Missing checkpoint reference solution for {label}.")
+        solution_root = repo_path(ctx, solution_root_value).resolve()
+        solution_relative = solution_root.relative_to(ctx.root.resolve()).as_posix()
+        oracle_outputs: dict[int, str] = {}
+        oracle_jobs: list[dict[str, Any]] = []
+        for index, case in enumerate(cases):
+            if not case.get("oracle_solution"):
+                continue
+            oracle_job = dict(case)
+            oracle_job["working_dir"] = solution_relative
+            oracle_job["program"] = f"{solution_relative}/{entrypoint}"
+            oracle_job["_capture_stdout"] = lambda output, case_index=index: (
+                oracle_outputs.__setitem__(case_index, output)
+            )
+            oracle_jobs.append(oracle_job)
+        run_checkpoint_jobs(solution_root, oracle_jobs, "reference")
+        for index, job in enumerate(jobs):
+            if job.get("oracle_solution"):
+                job["_required_stdout_equals"] = oracle_outputs[index]
+
+    run_checkpoint_jobs(source_root, jobs, source_kind)
+    print(f"Checkpoint check passed for {label} ({len(jobs)} cases).")
 
 
 def is_vacuous_stdout_pattern(pattern: str) -> bool:
@@ -2187,59 +2813,64 @@ def run_csharp_source_output_contracts(
 
     with tempfile.TemporaryDirectory(prefix="csharp-source-output-contracts-") as temp_root:
         temp_root_path = Path(temp_root)
-        for index, job in enumerate(jobs):
+        compiled_targets: dict[str, Path] = {}
+        for job in jobs:
             source_path = repo_path(ctx, job["program"])
             if not source_path.is_file():
                 raise AutomationError(f"Missing C# contract source: {source_path}")
             case_suffix = output_contract_case_suffix(job)
 
-            project_dir = temp_root_path / f"exercise-{index}"
-            project_dir.mkdir(parents=True, exist_ok=True)
-            project_path = project_dir / "exercise-check.csproj"
-            escaped_source = xml_escape(str(source_path.resolve()))
-            project_path.write_text(
-                "\n".join(
+            run_target = compiled_targets.get(job["program"])
+            if run_target is None:
+                project_dir = temp_root_path / f"exercise-{len(compiled_targets)}"
+                project_dir.mkdir(parents=True, exist_ok=True)
+                project_path = project_dir / "exercise-check.csproj"
+                escaped_source = xml_escape(str(source_path.resolve()))
+                project_path.write_text(
+                    "\n".join(
+                        [
+                            '<Project Sdk="Microsoft.NET.Sdk">',
+                            "  <PropertyGroup>",
+                            "    <OutputType>Exe</OutputType>",
+                            "    <TargetFramework>net8.0</TargetFramework>",
+                            "    <ImplicitUsings>disable</ImplicitUsings>",
+                            "    <Nullable>disable</Nullable>",
+                            "    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>",
+                            "  </PropertyGroup>",
+                            "  <ItemGroup>",
+                            f'    <Compile Include="{escaped_source}" Link="Program.cs" />',
+                            "  </ItemGroup>",
+                            "</Project>",
+                            "",
+                        ]
+                    ),
+                    encoding="utf-8",
+                )
+                run_command(
                     [
-                        '<Project Sdk="Microsoft.NET.Sdk">',
-                        "  <PropertyGroup>",
-                        "    <OutputType>Exe</OutputType>",
-                        "    <TargetFramework>net8.0</TargetFramework>",
-                        "    <ImplicitUsings>disable</ImplicitUsings>",
-                        "    <Nullable>disable</Nullable>",
-                        "    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>",
-                        "  </PropertyGroup>",
-                        "  <ItemGroup>",
-                        f'    <Compile Include="{escaped_source}" Link="Program.cs" />',
-                        "  </ItemGroup>",
-                        "</Project>",
-                        "",
-                    ]
-                ),
-                encoding="utf-8",
-            )
-            run_command(
-                [
-                    "dotnet",
-                    "build",
-                    str(project_path),
-                    "--nologo",
-                    "--verbosity",
-                    "quiet",
-                    "-p:UseAppHost=false",
-                ],
-                quiet_stdout=True,
-                action=(
-                    f"C# build for {label_prefix} output contract {job['program']}{case_suffix}"
-                ),
-                timeout_seconds=180,
-            )
-
-            run_target = project_dir / "bin" / "Debug" / "net8.0" / "exercise-check.dll"
+                        "dotnet",
+                        "build",
+                        str(project_path),
+                        "--nologo",
+                        "--verbosity",
+                        "quiet",
+                        "-p:UseAppHost=false",
+                    ],
+                    quiet_stdout=True,
+                    action=f"C# build for {label_prefix} contract {job['program']}",
+                    timeout_seconds=180,
+                )
+                run_target = project_dir / "bin" / "Debug" / "net8.0" / "exercise-check.dll"
+                compiled_targets[job["program"]] = run_target
             working_dir = repo_path(ctx, job["working_dir"]) if "working_dir" in job else ctx.root
             setup_files = job.get("setup_files", [])
             cleanup_paths = list(job.get("cleanup_paths", []))
             capture_stdout = bool(
-                job.get("required_stdout_contains") or job.get("required_stdout_patterns")
+                job.get("required_stdout_contains")
+                or job.get("required_stdout_patterns")
+                or job.get("oracle_solution")
+                or job.get("_capture_stdout")
+                or job.get("_required_stdout_equals")
             )
 
             try:
@@ -2304,14 +2935,18 @@ def run_java_source_output_contracts(
 
     with tempfile.TemporaryDirectory(prefix="java-source-output-contracts-") as temp_root:
         temp_root_path = Path(temp_root)
-        for index, job in enumerate(jobs):
+        compiled_targets: dict[str, Path] = {}
+        for job in jobs:
             source_path = repo_path(ctx, job["program"])
             if not source_path.is_file():
                 raise AutomationError(f"Missing Java contract source: {source_path}")
             case_suffix = output_contract_case_suffix(job)
 
-            class_dir = temp_root_path / f"java-contract-{index}"
-            compile_java_source(ctx, source_path, class_dir)
+            class_dir = compiled_targets.get(job["program"])
+            if class_dir is None:
+                class_dir = temp_root_path / f"java-contract-{len(compiled_targets)}"
+                compile_java_source(ctx, source_path, class_dir)
+                compiled_targets[job["program"]] = class_dir
             smoke_runtime_job(
                 ctx,
                 job,
@@ -2328,8 +2963,10 @@ def run_java_source_output_contracts(
     return executed_jobs
 
 
-def check_example_output_contracts(ctx: RepoContext) -> None:
+def check_example_output_contracts(ctx: RepoContext, *, language_filter: str | None = None) -> None:
     contracts = load_example_output_contracts(ctx)
+    if language_filter is not None:
+        contracts = {language_filter: contracts.get(language_filter, [])}
     if not contracts:
         raise AutomationError("No example output contracts configured.")
 
@@ -2456,25 +3093,49 @@ def check_example_output_contracts(ctx: RepoContext) -> None:
                     ]
                 else:
                     binary_command = [str(compiled_binary_path(ctx, output_path))]
+                binary_command.extend(str(argument) for argument in job.get("arguments", []))
 
-                completed = run_command(
-                    binary_command,
-                    input_text=input_text,
-                    capture_stdout=True,
-                    action=f"C++ execution for output contract {job['program']}",
-                    timeout_seconds=30,
+                working_dir = (
+                    repo_path(ctx, job["working_dir"]) if "working_dir" in job else ctx.root
                 )
-                assert_output_contract(
-                    completed.stdout or "",
-                    job,
-                    f"C++ example output contract for {job['program']}",
-                )
-                executed_jobs += 1
+                cleanup_paths = list(job.get("cleanup_paths", []))
+                label = f"C++ example output contract for {job['program']}"
+                try:
+                    for file_spec in job.get("setup_files", []):
+                        target = working_dir / file_spec["path"]
+                        target.write_text("\n".join(file_spec["lines"]) + "\n", encoding="utf-8")
+                    completed = run_command(
+                        binary_command,
+                        cwd=working_dir,
+                        input_text=input_text,
+                        capture_stdout=True,
+                        action=f"C++ execution for output contract {job['program']}",
+                        timeout_seconds=30,
+                    )
+                    assert_output_contract(completed.stdout or "", job, label)
+                    for output_name in job.get("required_outputs", []):
+                        if not (working_dir / output_name).exists():
+                            raise AutomationError(f"{label} did not create {output_name}")
+                    for output_spec in job.get("required_output_contains", []):
+                        generated = working_dir / output_spec["path"]
+                        if not generated.exists():
+                            raise AutomationError(f"{label} did not create {output_spec['path']}")
+                        generated_text = generated.read_text(encoding="utf-8")
+                        for expected in output_spec.get("contains", []):
+                            if expected not in generated_text:
+                                raise AutomationError(
+                                    f"{label} output {output_spec['path']} did not contain "
+                                    f"expected text: {expected}\nActual output:\n{generated_text}"
+                                )
+                    executed_jobs += 1
+                finally:
+                    remove_paths(working_dir, cleanup_paths)
 
     if executed_jobs == 0:
         raise AutomationError("No example output contract jobs were executed.")
 
-    print(f"Example output contracts passed for {executed_jobs} jobs.")
+    suffix = "" if language_filter is None else f" in language '{language_filter}'"
+    print(f"Example output contracts passed for {executed_jobs} jobs{suffix}.")
 
 
 def check_exercise_output_contracts(
@@ -2569,23 +3230,24 @@ def check_exercise_output_contracts(
         toolchain = resolve_gpp_toolchain(ctx)
         with tempfile.TemporaryDirectory(prefix="cpp-exercise-output-contracts-") as temp_root:
             temp_root_path = Path(temp_root)
-            for index, job in enumerate(cpp_contracts):
+            compiled_targets: dict[str, Path] = {}
+            for job in cpp_contracts:
                 source_path = repo_path(ctx, job["program"])
                 if not source_path.is_file():
                     raise AutomationError(f"Missing C++ contract source: {source_path}")
                 case_suffix = output_contract_case_suffix(job)
 
-                output_path = temp_root_path / f"cpp_exercise_contract_{index}"
-                compile_command = cpp_compile_command(ctx, toolchain, source_path, output_path)
-                compile_action = (
-                    f"C++ compilation for exercise output contract {job['program']}{case_suffix}"
-                )
-                if toolchain.mode == "wsl":
-                    compile_action = (
-                        f"C++ WSL compilation for exercise output contract "
-                        f"{job['program']}{case_suffix}"
+                binary_output = compiled_targets.get(job["program"])
+                if binary_output is None:
+                    binary_output = temp_root_path / f"cpp-contract-{len(compiled_targets)}"
+                    compile_command = cpp_compile_command(
+                        ctx, toolchain, source_path, binary_output
                     )
-                run_command(compile_command, action=compile_action, timeout_seconds=120)
+                    compile_action = f"C++ compilation for contract {job['program']}"
+                    if toolchain.mode == "wsl":
+                        compile_action = f"C++ WSL compilation for contract {job['program']}"
+                    run_command(compile_command, action=compile_action, timeout_seconds=120)
+                    compiled_targets[job["program"]] = binary_output
 
                 working_dir = (
                     repo_path(ctx, job["working_dir"]) if "working_dir" in job else ctx.root
@@ -2609,10 +3271,11 @@ def check_exercise_output_contracts(
                             "wsl",
                             "bash",
                             "-lc",
-                            shlex.quote(to_wsl_path(output_path)),
+                            shlex.quote(to_wsl_path(binary_output)),
                         ]
                     else:
-                        binary_command = [str(compiled_binary_path(ctx, output_path))]
+                        binary_command = [str(compiled_binary_path(ctx, binary_output))]
+                    binary_command.extend(str(argument) for argument in job.get("arguments", []))
 
                     label = f"C++ exercise output contract for {job['program']}{case_suffix}"
                     completed = run_command(
@@ -2690,12 +3353,31 @@ def active_module_languages(ctx: RepoContext) -> list[str]:
     ]
 
 
-def learning_exercise_config_failures(
-    ctx: RepoContext,
-    contract_keys_by_language: dict[str, set[tuple[str, str, str]]],
-) -> list[str]:
+def documented_exercise_edge_cases(readme: Path, exercise_id: str) -> list[str]:
+    text = readme.read_text(encoding="utf-8")
+    specs = text.split("### Exercise Specs", maxsplit=1)[-1]
+    match = re.search(
+        rf"(?:^|\n){int(exercise_id)}\.\s.*?(?=\n[12]\.\s|\n## Check Your Work|"
+        r"\n## Checkpoint|\Z)",
+        specs,
+        re.DOTALL,
+    )
+    if not match:
+        return []
+    edge_match = re.search(r"^- Edge cases:\s*(.+)$", match.group(0), re.MULTILINE)
+    if not edge_match:
+        return []
+    raw = edge_match.group(1).strip().rstrip(".")
+    return [part.strip().strip("`") for part in raw.split(";") if part.strip()]
+
+
+def learning_exercise_config_failures(ctx: RepoContext) -> list[str]:
     failures: list[str] = []
-    configured_keys: set[tuple[str, str, str]] = set()
+    configured_keys: set[tuple[str, str, str, str]] = set()
+    try:
+        outcomes_by_module = load_curriculum_outcomes(ctx.scripts_dir)
+    except CurriculumError as error:
+        return [str(error)]
 
     for exercise in load_learning_exercises(ctx):
         language = exercise.get("language")
@@ -2738,25 +3420,115 @@ def learning_exercise_config_failures(
                     f"scripts/learning_exercises.json: missing {path_kind} -> {actual_path}"
                 )
 
+        starter_path = repo_path(ctx, expected_paths["starter"])
+        solution_path = repo_path(ctx, expected_paths["solution"])
+        if starter_path.is_file() and solution_path.is_file():
+            starter_text = starter_path.read_text(encoding="utf-8")
+            solution_text = solution_path.read_text(encoding="utf-8")
+            if starter_text == solution_text:
+                failures.append(
+                    f"scripts/learning_exercises.json: starter equals solution -> {label}"
+                )
+            if "TODO" not in starter_text:
+                failures.append(f"scripts/learning_exercises.json: starter has no TODO -> {label}")
+
+        module_key = f"{level}/{module}"
+        module_outcomes = outcomes_by_module.get(module_key)
+        expected_outcome_ids = list(module_outcomes.ids) if module_outcomes else []
+        if exercise.get("outcome_ids") != expected_outcome_ids:
+            failures.append(
+                "scripts/learning_exercises.json: "
+                f"{label} outcome_ids must be {expected_outcome_ids}"
+            )
+
         cases = exercise.get("cases")
         if not isinstance(cases, list) or not cases:
             failures.append(f"scripts/learning_exercises.json: no cases -> {label}")
         else:
+            case_names: set[str] = set()
+            covered: set[str] = set()
+            normal_execution: str | None = None
             for index, case in enumerate(cases, start=1):
-                if not isinstance(case, dict) or not (
-                    case.get("required_stdout_contains") or case.get("required_stdout_patterns")
+                if not isinstance(case, dict):
+                    failures.append(
+                        f"scripts/learning_exercises.json: {label} case {index} is invalid"
+                    )
+                    continue
+                case_name = case.get("name")
+                if not isinstance(case_name, str) or not case_name:
+                    failures.append(
+                        f"scripts/learning_exercises.json: {label} case {index} has no name"
+                    )
+                elif case_name in case_names:
+                    failures.append(
+                        f"scripts/learning_exercises.json: {label} duplicate case '{case_name}'"
+                    )
+                else:
+                    case_names.add(case_name)
+                case_coverage = case.get("covers", [])
+                if isinstance(case_coverage, list):
+                    covered.update(item for item in case_coverage if isinstance(item, str))
+                execution = json.dumps(
+                    {
+                        key: case.get(key)
+                        for key in (
+                            "input_lines",
+                            "input_file",
+                            "arguments",
+                            "setup_files",
+                            "working_dir",
+                        )
+                    },
+                    sort_keys=True,
+                )
+                if index == 1:
+                    normal_execution = execution
+                elif execution == normal_execution and case.get("shared_execution") is not True:
+                    failures.append(
+                        "scripts/learning_exercises.json: "
+                        f"{label} case {index} duplicates the normal execution"
+                    )
+                normalizers = case.get("oracle_normalizers", [])
+                if not isinstance(normalizers, list) or any(
+                    normalizer not in {"timings", "unordered_lines"} for normalizer in normalizers
                 ):
                     failures.append(
                         "scripts/learning_exercises.json: "
-                        f"{label} case {index} has no stdout expectations"
+                        f"{label} case {index} has invalid oracle_normalizers"
+                    )
+                if not (
+                    case.get("required_stdout_contains")
+                    or case.get("required_stdout_patterns")
+                    or case.get("oracle_solution") is True
+                ):
+                    failures.append(
+                        "scripts/learning_exercises.json: "
+                        f"{label} case {index} has no assertions or solution oracle"
+                    )
+            if "normal" not in covered:
+                failures.append(f"scripts/learning_exercises.json: no normal case -> {label}")
+            readme = ctx.root / "languages" / language / level / module / "README.md"
+            for edge in documented_exercise_edge_cases(readme, exercise_id):
+                if edge not in covered:
+                    failures.append(
+                        f"scripts/learning_exercises.json: uncovered edge '{edge}' -> {label}"
                     )
 
-        contract_key = (level, module, exercise_id)
-        if contract_key not in contract_keys_by_language.get(language, set()):
-            failures.append(
-                "scripts/exercise_output_contracts.json: "
-                f"missing reference solution contract for {label}"
-            )
+    expected_keys = {
+        (language, level, module, exercise_id)
+        for language in active_module_languages(ctx)
+        for level, modules in ctx.manifest.module_order.items()
+        if level in ctx.manifest.languages[language].get("module_levels", [])
+        for module in modules
+        if module in expected_modules_for_language_level(ctx, language, level)
+        for exercise_id in ("01", "02")
+    }
+    for missing in sorted(expected_keys - configured_keys):
+        failures.append("scripts/learning_exercises.json: missing exercise -> " + "/".join(missing))
+    for extra in sorted(configured_keys - expected_keys):
+        failures.append(
+            "scripts/learning_exercises.json: unexpected exercise -> " + "/".join(extra)
+        )
 
     return failures
 
@@ -2775,6 +3547,26 @@ def example_contract_targets_for_smoke(config: dict[str, Any]) -> set[str]:
     return set(config.get("example_paths", []))
 
 
+def all_module_example_contract_targets(ctx: RepoContext, language: str) -> set[str]:
+    config = ctx.manifest.languages[language]
+    targets: set[str] = set()
+    for level in config.get("module_levels", []):
+        for module in expected_modules_for_language_level(ctx, language, level):
+            example_dir = ctx.root / "languages" / language / level / module / "example"
+            if language == "csharp":
+                projects = [
+                    project
+                    for project in example_dir.glob("*.csproj")
+                    if 'Compile Include="main.cs"' in project.read_text(encoding="utf-8")
+                ]
+                if len(projects) == 1:
+                    targets.add(projects[0].relative_to(ctx.root).as_posix())
+                continue
+            target = example_dir / language_example_main(config)
+            targets.add(target.relative_to(ctx.root).as_posix())
+    return targets
+
+
 def module_example_path(ctx: RepoContext, language: str, level: str, module: str) -> Path:
     config = ctx.manifest.languages[language]
     return (
@@ -2786,6 +3578,52 @@ def module_example_path(ctx: RepoContext, language: str, level: str, module: str
         / "example"
         / language_example_main(config)
     )
+
+
+def curriculum_outcome_failures(ctx: RepoContext) -> list[str]:
+    failures: list[str] = []
+    try:
+        outcomes_by_module = load_curriculum_outcomes(ctx.scripts_dir)
+    except CurriculumError as error:
+        return [str(error)]
+
+    expected_modules = {
+        f"{level}/{module}"
+        for level, modules in ctx.manifest.module_order.items()
+        for module in modules
+    }
+    missing_modules = sorted(expected_modules - set(outcomes_by_module))
+    extra_modules = sorted(set(outcomes_by_module) - expected_modules)
+    for module_key in missing_modules:
+        failures.append(f"scripts/curriculum_outcomes.json: missing module -> {module_key}")
+    for module_key in extra_modules:
+        failures.append(f"scripts/curriculum_outcomes.json: unknown module -> {module_key}")
+
+    active_languages = set(active_module_languages(ctx))
+    for module_key, module_outcomes in outcomes_by_module.items():
+        unknown_adaptations = sorted(set(module_outcomes.language_adaptations) - active_languages)
+        for language in unknown_adaptations:
+            failures.append(
+                "scripts/curriculum_outcomes.json: "
+                f"unknown language adaptation '{language}' -> {module_key}"
+            )
+
+        if module_key not in expected_modules:
+            continue
+        level, module = module_key.split("/", maxsplit=1)
+        for language in sorted(active_languages):
+            config = ctx.manifest.languages[language]
+            if level not in config.get("module_levels", []):
+                continue
+            readme = ctx.root / "languages" / language / level / module / "README.md"
+            text = readme.read_text(encoding="utf-8") if readme.is_file() else ""
+            if "## Learning Outcomes" not in text:
+                failures.append(f"{readme}: missing -> ## Learning Outcomes")
+                continue
+            for outcome_id in module_outcomes.ids:
+                if not re.search(rf"^- `{re.escape(outcome_id)}`:\s+\S", text, re.MULTILINE):
+                    failures.append(f"{readme}: missing outcome id -> {outcome_id}")
+    return failures
 
 
 def check_exercise_parity(ctx: RepoContext) -> None:
@@ -2824,15 +3662,13 @@ def check_exercise_parity(ctx: RepoContext) -> None:
 
     unknown_languages = sorted(language for language in contracts if language not in languages)
     for language in unknown_languages:
-        failures.append(
-            f"scripts/exercise_output_contracts.json: unexpected language key '{language}'"
-        )
+        failures.append(f"scripts/learning_exercises.json: unexpected language key '{language}'")
 
     for language in languages:
         jobs = contracts.get(language, [])
         if not jobs:
             failures.append(
-                f"scripts/exercise_output_contracts.json: no contracts configured for {language}"
+                f"scripts/learning_exercises.json: no contracts configured for {language}"
             )
             contract_keys_by_language[language] = set()
             continue
@@ -2843,22 +3679,21 @@ def check_exercise_parity(ctx: RepoContext) -> None:
             target = job.get("program")
             if not target:
                 failures.append(
-                    "scripts/exercise_output_contracts.json: "
-                    f"{language} contract missing 'program' field"
+                    f"scripts/learning_exercises.json: {language} contract missing 'program' field"
                 )
                 continue
 
             target_path = repo_path(ctx, target)
             if not target_path.is_file():
                 failures.append(
-                    "scripts/exercise_output_contracts.json: "
+                    "scripts/learning_exercises.json: "
                     f"{language} contract target does not exist -> {target}"
                 )
 
             key = exercise_contract_key(target, language=language, config=config)
             if key is None:
                 failures.append(
-                    "scripts/exercise_output_contracts.json: "
+                    "scripts/learning_exercises.json: "
                     f"{language} contract target must be a configured exercise file -> {target}"
                 )
                 continue
@@ -2866,47 +3701,46 @@ def check_exercise_parity(ctx: RepoContext) -> None:
             level, module, exercise_id = key
             if level not in expected_levels:
                 failures.append(
-                    "scripts/exercise_output_contracts.json: "
+                    "scripts/learning_exercises.json: "
                     f"{language} contract uses unknown level '{level}' -> {target}"
                 )
             if (level, module) not in expected_modules:
                 failures.append(
-                    "scripts/exercise_output_contracts.json: "
+                    "scripts/learning_exercises.json: "
                     f"{language} contract uses unknown module '{module}' in level '{level}' -> "
                     f"{target}"
                 )
             if exercise_id not in {"01", "02"}:
                 failures.append(
-                    "scripts/exercise_output_contracts.json: "
+                    "scripts/learning_exercises.json: "
                     f"{language} contract exercise id must be 01 or 02 -> {target}"
-                )
-            if key in keys:
-                failures.append(
-                    "scripts/exercise_output_contracts.json: "
-                    f"duplicate {language} contract key {level}/{module}/exercises/{exercise_id}"
                 )
             keys.add(key)
 
-            if not job.get("required_stdout_contains") and not job.get("required_stdout_patterns"):
+            if not (
+                job.get("required_stdout_contains")
+                or job.get("required_stdout_patterns")
+                or job.get("oracle_solution") is True
+            ):
                 failures.append(
-                    "scripts/exercise_output_contracts.json: "
-                    f"{language} contract has no stdout expectations -> {target}"
+                    "scripts/learning_exercises.json: "
+                    f"{language} contract has no assertions or oracle -> {target}"
                 )
             for pattern in job.get("required_stdout_patterns", []):
                 if is_vacuous_stdout_pattern(pattern):
                     failures.append(
-                        "scripts/exercise_output_contracts.json: "
+                        "scripts/learning_exercises.json: "
                         f"{language} contract has a vacuous stdout pattern -> {target}"
                     )
 
         contract_keys_by_language[language] = keys
 
-    failures.extend(learning_exercise_config_failures(ctx, contract_keys_by_language))
+    failures.extend(learning_exercise_config_failures(ctx))
 
     total_contracts = sum(len(keys) for keys in contract_keys_by_language.values())
     if total_contracts == 0:
         failures.append(
-            "scripts/exercise_output_contracts.json: no exercise contracts parsed for any language"
+            "scripts/learning_exercises.json: no exercise contracts parsed for any language"
         )
 
     if failures:
@@ -2948,7 +3782,7 @@ def module_focus_comment(path: Path) -> tuple[str | None, str | None]:
 
 
 def check_cross_language_parity(ctx: RepoContext) -> None:
-    failures: list[str] = []
+    failures: list[str] = curriculum_outcome_failures(ctx)
     languages = parity_check_languages(ctx)
 
     for level, modules in ctx.manifest.module_order.items():
@@ -3000,13 +3834,11 @@ def check_cross_language_parity(ctx: RepoContext) -> None:
                 )
 
     contracts = load_example_output_contracts(ctx)
-    smoke = ctx.manifest.smoke
-
-    for language, config in smoke.items():
+    for language in active_module_languages(ctx):
         contract_jobs = contracts.get(language, [])
         target_key = example_contract_key_for_language(language)
         contract_targets = {job.get(target_key) for job in contract_jobs}
-        expected_targets = example_contract_targets_for_smoke(config)
+        expected_targets = all_module_example_contract_targets(ctx, language)
         missing = sorted(target for target in expected_targets if target not in contract_targets)
         for target in missing:
             failures.append(
@@ -3029,10 +3861,14 @@ def check_cross_language_parity(ctx: RepoContext) -> None:
                     "scripts/example_output_contracts.json: "
                     f"contract target does not exist -> {target}"
                 )
-            if not job.get("required_stdout_contains") and not job.get("required_stdout_patterns"):
+            if not (
+                job.get("required_stdout_contains")
+                or job.get("required_stdout_patterns")
+                or job.get("oracle_solution") is True
+            ):
                 failures.append(
                     "scripts/example_output_contracts.json: "
-                    f"{language} contract has no stdout expectations -> {target}"
+                    f"{language} contract has no assertions or oracle -> {target}"
                 )
             for pattern in job.get("required_stdout_patterns", []):
                 if is_vacuous_stdout_pattern(pattern):

@@ -1,10 +1,13 @@
 {
   "required_readme_headings": [
+    "## Learning Metadata",
+    "## Learning Outcomes",
     "## Quick Run",
     "## Topics Covered",
     "## Common Pitfalls",
     "## Exercise Focus",
     "### Exercise Specs",
+    "## Check Your Work",
     "## Checkpoint"
   ],
   "checkpoint_kinds": [
@@ -68,11 +71,32 @@
   "languages": {
     "cpp": {
       "extension": "cpp",
-      "levels": ["00-setup", "01-foundations", "02-core", "03-advanced", "04-expert"],
-      "module_levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
+      "levels": [
+        "00-setup",
+        "01-foundations",
+        "02-core",
+        "03-advanced",
+        "04-expert"
+      ],
+      "module_levels": [
+        "01-foundations",
+        "02-core",
+        "03-advanced",
+        "04-expert"
+      ],
       "checkpoints": {
-        "projects": ["01-foundations", "02-core", "03-advanced", "04-expert"],
-        "assessments": ["01-foundations", "02-core", "03-advanced", "04-expert"]
+        "projects": [
+          "01-foundations",
+          "02-core",
+          "03-advanced",
+          "04-expert"
+        ],
+        "assessments": [
+          "01-foundations",
+          "02-core",
+          "03-advanced",
+          "04-expert"
+        ]
       },
       "track_readme": "languages/cpp/README.md",
       "track_readme_markers": [
@@ -80,15 +104,35 @@
         "- Includes level capstone projects and assessments.",
         "- Targets C++17 with `g++`."
       ],
-      "root_status_row": "| C++ | 00-setup, 01-foundations, 02-core, 03-advanced, 04-expert | Foundations, Core, Advanced, Expert, projects, assessments | Most complete and primary track |"
+      "root_status_row": "| C++ | 00-setup, 01-foundations, 02-core, 03-advanced, 04-expert | Foundations, Core, Advanced, Expert, projects, assessments | Canonical reference track for curriculum order |"
     },
     "csharp": {
       "extension": "cs",
-      "levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
-      "module_levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
+      "levels": [
+        "01-foundations",
+        "02-core",
+        "03-advanced",
+        "04-expert"
+      ],
+      "module_levels": [
+        "01-foundations",
+        "02-core",
+        "03-advanced",
+        "04-expert"
+      ],
       "checkpoints": {
-        "projects": ["01-foundations", "02-core", "03-advanced", "04-expert"],
-        "assessments": ["01-foundations", "02-core", "03-advanced", "04-expert"]
+        "projects": [
+          "01-foundations",
+          "02-core",
+          "03-advanced",
+          "04-expert"
+        ],
+        "assessments": [
+          "01-foundations",
+          "02-core",
+          "03-advanced",
+          "04-expert"
+        ]
       },
       "checkpoint_main": "main.cs",
       "track_readme": "languages/csharp/README.md",
@@ -105,11 +149,31 @@
     },
     "go": {
       "extension": "go",
-      "levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
-      "module_levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
+      "levels": [
+        "01-foundations",
+        "02-core",
+        "03-advanced",
+        "04-expert"
+      ],
+      "module_levels": [
+        "01-foundations",
+        "02-core",
+        "03-advanced",
+        "04-expert"
+      ],
       "checkpoints": {
-        "projects": ["01-foundations", "02-core", "03-advanced", "04-expert"],
-        "assessments": ["01-foundations", "02-core", "03-advanced", "04-expert"]
+        "projects": [
+          "01-foundations",
+          "02-core",
+          "03-advanced",
+          "04-expert"
+        ],
+        "assessments": [
+          "01-foundations",
+          "02-core",
+          "03-advanced",
+          "04-expert"
+        ]
       },
       "checkpoint_main": "main.go",
       "track_readme": "languages/go/README.md",
@@ -126,8 +190,18 @@
     },
     "java": {
       "extension": "java",
-      "levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
-      "module_levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
+      "levels": [
+        "01-foundations",
+        "02-core",
+        "03-advanced",
+        "04-expert"
+      ],
+      "module_levels": [
+        "01-foundations",
+        "02-core",
+        "03-advanced",
+        "04-expert"
+      ],
       "module_overrides": {
         "03-advanced": [
           "structs-and-classes",
@@ -145,8 +219,18 @@
         ]
       },
       "checkpoints": {
-        "projects": ["01-foundations", "02-core", "03-advanced", "04-expert"],
-        "assessments": ["01-foundations", "02-core", "03-advanced", "04-expert"]
+        "projects": [
+          "01-foundations",
+          "02-core",
+          "03-advanced",
+          "04-expert"
+        ],
+        "assessments": [
+          "01-foundations",
+          "02-core",
+          "03-advanced",
+          "04-expert"
+        ]
       },
       "checkpoint_main": "Main.java",
       "example_main": "Main.java",
@@ -169,11 +253,31 @@
     },
     "python": {
       "extension": "py",
-      "levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
-      "module_levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
+      "levels": [
+        "01-foundations",
+        "02-core",
+        "03-advanced",
+        "04-expert"
+      ],
+      "module_levels": [
+        "01-foundations",
+        "02-core",
+        "03-advanced",
+        "04-expert"
+      ],
       "checkpoints": {
-        "projects": ["01-foundations", "02-core", "03-advanced", "04-expert"],
-        "assessments": ["01-foundations", "02-core", "03-advanced", "04-expert"]
+        "projects": [
+          "01-foundations",
+          "02-core",
+          "03-advanced",
+          "04-expert"
+        ],
+        "assessments": [
+          "01-foundations",
+          "02-core",
+          "03-advanced",
+          "04-expert"
+        ]
       },
       "checkpoint_main": "main.py",
       "track_readme": "languages/python/README.md",
@@ -190,11 +294,31 @@
     },
     "typescript": {
       "extension": "ts",
-      "levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
-      "module_levels": ["01-foundations", "02-core", "03-advanced", "04-expert"],
+      "levels": [
+        "01-foundations",
+        "02-core",
+        "03-advanced",
+        "04-expert"
+      ],
+      "module_levels": [
+        "01-foundations",
+        "02-core",
+        "03-advanced",
+        "04-expert"
+      ],
       "checkpoints": {
-        "projects": ["01-foundations", "02-core", "03-advanced", "04-expert"],
-        "assessments": ["01-foundations", "02-core", "03-advanced", "04-expert"]
+        "projects": [
+          "01-foundations",
+          "02-core",
+          "03-advanced",
+          "04-expert"
+        ],
+        "assessments": [
+          "01-foundations",
+          "02-core",
+          "03-advanced",
+          "04-expert"
+        ]
       },
       "checkpoint_main": "main.ts",
       "track_readme": "languages/typescript/README.md",
@@ -262,8 +386,16 @@
       ],
       "stdin_runs": [
         {
-          "program": "languages/python/projects/01-foundations/main.py",
-          "input_lines": ["0", "2", "Ana Smith", "101", "91", "Bob Lee", "77"],
+          "program": "languages/python/projects/01-foundations/solutions/main.py",
+          "input_lines": [
+            "0",
+            "2",
+            "Ana Smith",
+            "101",
+            "91",
+            "Bob Lee",
+            "77"
+          ],
           "required_stdout_contains": [
             "Please enter a number greater than zero.",
             "Score must be between 0 and 100.",
@@ -276,12 +408,19 @@
           ]
         },
         {
-          "program": "languages/python/assessments/01-foundations/main.py",
-          "input_lines": ["3", "Ana Smith", "91", "Bob Lee", "55", "Carla Mendez", "88"]
+          "program": "languages/python/assessments/01-foundations/solutions/main.py",
+          "input_lines": [
+            "3",
+            "Ana Smith",
+            "91",
+            "Bob Lee",
+            "55",
+            "Carla Mendez",
+            "88"
+          ]
         },
         {
-          "program": "languages/python/assessments/03-advanced/main.py"
-          ,
+          "program": "languages/python/assessments/03-advanced/solutions/main.py",
           "required_stdout_contains": [
             "Shape areas:",
             "Total area:",
@@ -292,8 +431,7 @@
           ]
         },
         {
-          "program": "languages/python/assessments/04-expert/main.py"
-          ,
+          "program": "languages/python/assessments/04-expert/solutions/main.py",
           "required_stdout_contains": [
             "Worker 0 partial sum: 48",
             "Worker 1 partial sum: 97",
@@ -305,11 +443,10 @@
           ]
         },
         {
-          "program": "languages/python/projects/03-advanced/main.py"
+          "program": "languages/python/projects/03-advanced/solutions/main.py"
         },
         {
-          "program": "languages/python/projects/04-expert/main.py"
-          ,
+          "program": "languages/python/projects/04-expert/solutions/main.py",
           "required_stdout_contains": [
             "Running 3 jobs through 2 steps...",
             "Step load processed 3 jobs",
@@ -320,12 +457,17 @@
           ]
         },
         {
-          "working_dir": "languages/python/projects/02-core",
+          "working_dir": "languages/python/projects/02-core/solutions",
           "program": "main.py",
           "setup_files": [
             {
               "path": "smoke-input.txt",
-              "lines": ["Ana Smith 91", "Bob Lee 77", "InvalidRow", "Carla Mendez 88"]
+              "lines": [
+                "Ana Smith 91",
+                "Bob Lee 77",
+                "InvalidRow",
+                "Carla Mendez 88"
+              ]
             }
           ],
           "input_file": "smoke-input.txt",
@@ -335,7 +477,9 @@
             "Average: 85.33",
             "Report written to report.txt"
           ],
-          "required_outputs": ["report.txt"],
+          "required_outputs": [
+            "report.txt"
+          ],
           "required_output_contains": [
             {
               "path": "report.txt",
@@ -350,12 +494,22 @@
               ]
             }
           ],
-          "cleanup_paths": ["smoke-input.txt", "report.txt"]
+          "cleanup_paths": [
+            "smoke-input.txt",
+            "report.txt"
+          ]
         },
         {
-          "working_dir": "languages/python/assessments/02-core",
+          "working_dir": "languages/python/assessments/02-core/solutions",
           "program": "main.py",
-          "input_lines": ["91", "88", "72", "105", "60", "-1"],
+          "input_lines": [
+            "91",
+            "88",
+            "72",
+            "105",
+            "60",
+            "-1"
+          ],
           "required_stdout_contains": [
             "Score ignored because it is outside 0-100.",
             "Valid scores: 4",
@@ -369,7 +523,9 @@
             "- 90-100: 1",
             "Report written to core_assessment_report.txt"
           ],
-          "required_outputs": ["core_assessment_report.txt"],
+          "required_outputs": [
+            "core_assessment_report.txt"
+          ],
           "required_output_contains": [
             {
               "path": "core_assessment_report.txt",
@@ -385,7 +541,9 @@
               ]
             }
           ],
-          "cleanup_paths": ["core_assessment_report.txt"]
+          "cleanup_paths": [
+            "core_assessment_report.txt"
+          ]
         }
       ]
     },
@@ -411,8 +569,16 @@
       ],
       "stdin_runs": [
         {
-          "program": "languages/go/projects/01-foundations/main.go",
-          "input_lines": ["0", "2", "Ana Smith", "101", "91", "Bob Lee", "77"],
+          "program": "languages/go/projects/01-foundations/solutions/main.go",
+          "input_lines": [
+            "0",
+            "2",
+            "Ana Smith",
+            "101",
+            "91",
+            "Bob Lee",
+            "77"
+          ],
           "required_stdout_contains": [
             "Please enter a positive number.",
             "Score out of range. Enter a value from 0 to 100.",
@@ -425,12 +591,19 @@
           ]
         },
         {
-          "program": "languages/go/assessments/01-foundations/main.go",
-          "input_lines": ["3", "Ana Smith", "91", "Bob Lee", "55", "Carla Mendez", "88"]
+          "program": "languages/go/assessments/01-foundations/solutions/main.go",
+          "input_lines": [
+            "3",
+            "Ana Smith",
+            "91",
+            "Bob Lee",
+            "55",
+            "Carla Mendez",
+            "88"
+          ]
         },
         {
-          "program": "languages/go/assessments/03-advanced/main.go"
-          ,
+          "program": "languages/go/assessments/03-advanced/solutions/main.go",
           "required_stdout_contains": [
             "Shape areas:",
             "Total area:",
@@ -441,8 +614,7 @@
           ]
         },
         {
-          "program": "languages/go/assessments/04-expert/main.go"
-          ,
+          "program": "languages/go/assessments/04-expert/solutions/main.go",
           "required_stdout_contains": [
             "Worker 0 partial sum: 48",
             "Worker 1 partial sum: 97",
@@ -454,11 +626,10 @@
           ]
         },
         {
-          "program": "languages/go/projects/03-advanced/main.go"
+          "program": "languages/go/projects/03-advanced/solutions/main.go"
         },
         {
-          "program": "languages/go/projects/04-expert/main.go"
-          ,
+          "program": "languages/go/projects/04-expert/solutions/main.go",
           "required_stdout_contains": [
             "Running 3 jobs through 2 steps...",
             "Step load processed 3 jobs",
@@ -469,19 +640,26 @@
           ]
         },
         {
-          "working_dir": "languages/go/projects/02-core",
+          "working_dir": "languages/go/projects/02-core/solutions",
           "program": "main.go",
           "setup_files": [
             {
               "path": "smoke-input.txt",
-              "lines": ["Ana Smith 91", "Bob Lee 77", "InvalidRow", "Carla Mendez 88"]
+              "lines": [
+                "Ana Smith 91",
+                "Bob Lee 77",
+                "InvalidRow",
+                "Carla Mendez 88"
+              ]
             }
           ],
           "input_file": "smoke-input.txt",
           "required_stdout_contains": [
             "Report generated: report.txt"
           ],
-          "required_outputs": ["report.txt"],
+          "required_outputs": [
+            "report.txt"
+          ],
           "required_output_contains": [
             {
               "path": "report.txt",
@@ -494,12 +672,17 @@
               ]
             }
           ],
-          "cleanup_paths": ["smoke-input.txt", "report.txt"]
+          "cleanup_paths": [
+            "smoke-input.txt",
+            "report.txt"
+          ]
         },
         {
-          "working_dir": "languages/go/assessments/02-core",
+          "working_dir": "languages/go/assessments/02-core/solutions",
           "program": "main.go",
-          "input_lines": ["12 17 31 77 91 105 64 -3 88 -1"],
+          "input_lines": [
+            "12 17 31 77 91 105 64 -3 88 -1"
+          ],
           "required_stdout_contains": [
             "Ignoring out-of-range value: 105",
             "Ignoring out-of-range value: -3",
@@ -512,7 +695,9 @@
             "90-100: 1",
             "Report saved to core_assessment_report.txt"
           ],
-          "required_outputs": ["core_assessment_report.txt"],
+          "required_outputs": [
+            "core_assessment_report.txt"
+          ],
           "required_output_contains": [
             {
               "path": "core_assessment_report.txt",
@@ -531,7 +716,9 @@
               ]
             }
           ],
-          "cleanup_paths": ["core_assessment_report.txt"]
+          "cleanup_paths": [
+            "core_assessment_report.txt"
+          ]
         }
       ]
     },
@@ -557,8 +744,16 @@
       ],
       "stdin_runs": [
         {
-          "project": "languages/csharp/projects/01-foundations/foundations-project.csproj",
-          "input_lines": ["0", "2", "Ana Smith", "101", "91", "Bob Lee", "77"],
+          "project": "languages/csharp/projects/01-foundations/solutions/foundations-project.csproj",
+          "input_lines": [
+            "0",
+            "2",
+            "Ana Smith",
+            "101",
+            "91",
+            "Bob Lee",
+            "77"
+          ],
           "required_stdout_contains": [
             "Please enter a positive number.",
             "Score out of range. Enter a value from 0 to 100.",
@@ -571,12 +766,19 @@
           ]
         },
         {
-          "project": "languages/csharp/assessments/01-foundations/assessment-01-foundations.csproj",
-          "input_lines": ["3", "Ana Smith", "91", "Bob Lee", "55", "Carla Mendez", "88"]
+          "project": "languages/csharp/assessments/01-foundations/solutions/assessment-01-foundations.csproj",
+          "input_lines": [
+            "3",
+            "Ana Smith",
+            "91",
+            "Bob Lee",
+            "55",
+            "Carla Mendez",
+            "88"
+          ]
         },
         {
-          "project": "languages/csharp/assessments/03-advanced/assessment-03-advanced.csproj"
-          ,
+          "project": "languages/csharp/assessments/03-advanced/solutions/assessment-03-advanced.csproj",
           "required_stdout_contains": [
             "Shape areas:",
             "Total area:",
@@ -587,8 +789,7 @@
           ]
         },
         {
-          "project": "languages/csharp/assessments/04-expert/assessment-04-expert.csproj"
-          ,
+          "project": "languages/csharp/assessments/04-expert/solutions/assessment-04-expert.csproj",
           "required_stdout_contains": [
             "Worker 0 partial sum: 48",
             "Worker 1 partial sum: 97",
@@ -600,11 +801,10 @@
           ]
         },
         {
-          "project": "languages/csharp/projects/03-advanced/advanced-project.csproj"
+          "project": "languages/csharp/projects/03-advanced/solutions/advanced-project.csproj"
         },
         {
-          "project": "languages/csharp/projects/04-expert/expert-project.csproj"
-          ,
+          "project": "languages/csharp/projects/04-expert/solutions/expert-project.csproj",
           "required_stdout_contains": [
             "Running 3 jobs through 2 steps...",
             "Step load processed 3 jobs",
@@ -615,19 +815,26 @@
           ]
         },
         {
-          "working_dir": "languages/csharp/projects/02-core",
+          "working_dir": "languages/csharp/projects/02-core/solutions",
           "project": "core-project.csproj",
           "setup_files": [
             {
               "path": "smoke-input.txt",
-              "lines": ["Ana Smith 91", "Bob Lee 77", "InvalidRow", "Carla Mendez 88"]
+              "lines": [
+                "Ana Smith 91",
+                "Bob Lee 77",
+                "InvalidRow",
+                "Carla Mendez 88"
+              ]
             }
           ],
           "input_file": "smoke-input.txt",
           "required_stdout_contains": [
             "Report generated: report.txt"
           ],
-          "required_outputs": ["report.txt"],
+          "required_outputs": [
+            "report.txt"
+          ],
           "required_output_contains": [
             {
               "path": "report.txt",
@@ -640,12 +847,17 @@
               ]
             }
           ],
-          "cleanup_paths": ["smoke-input.txt", "report.txt"]
+          "cleanup_paths": [
+            "smoke-input.txt",
+            "report.txt"
+          ]
         },
         {
-          "working_dir": "languages/csharp/assessments/02-core",
+          "working_dir": "languages/csharp/assessments/02-core/solutions",
           "project": "assessment-02-core.csproj",
-          "input_lines": ["12 17 31 77 91 105 64 -3 88 -1"],
+          "input_lines": [
+            "12 17 31 77 91 105 64 -3 88 -1"
+          ],
           "required_stdout_contains": [
             "Ignoring out-of-range value: 105",
             "Ignoring out-of-range value: -3",
@@ -658,7 +870,9 @@
             "90-100: 1",
             "Report saved to core_assessment_report.txt"
           ],
-          "required_outputs": ["core_assessment_report.txt"],
+          "required_outputs": [
+            "core_assessment_report.txt"
+          ],
           "required_output_contains": [
             {
               "path": "core_assessment_report.txt",
@@ -677,7 +891,9 @@
               ]
             }
           ],
-          "cleanup_paths": ["core_assessment_report.txt"]
+          "cleanup_paths": [
+            "core_assessment_report.txt"
+          ]
         }
       ]
     },
@@ -702,8 +918,16 @@
       ],
       "stdin_runs": [
         {
-          "program": "languages/typescript/projects/01-foundations/main.ts",
-          "input_lines": ["0", "2", "Ana Smith", "101", "91", "Bob Lee", "77"],
+          "program": "languages/typescript/projects/01-foundations/solutions/main.ts",
+          "input_lines": [
+            "0",
+            "2",
+            "Ana Smith",
+            "101",
+            "91",
+            "Bob Lee",
+            "77"
+          ],
           "required_stdout_contains": [
             "Invalid student count. Enter a positive integer.",
             "Invalid score for Ana Smith. Enter a value between 0 and 100.",
@@ -716,22 +940,47 @@
           ]
         },
         {
-          "program": "languages/typescript/assessments/01-foundations/main.ts",
-          "input_lines": ["3", "Ana Smith", "91", "Bob Lee", "55", "Carla Mendez", "88"],
-          "required_stdout_contains": ["Students:", "Average:", "Highest:", "Lowest:", "Passed:"]
+          "program": "languages/typescript/assessments/01-foundations/solutions/main.ts",
+          "input_lines": [
+            "3",
+            "Ana Smith",
+            "91",
+            "Bob Lee",
+            "55",
+            "Carla Mendez",
+            "88"
+          ],
+          "required_stdout_contains": [
+            "Students:",
+            "Average:",
+            "Highest:",
+            "Lowest:",
+            "Passed:"
+          ]
         },
         {
-          "working_dir": "languages/typescript/projects/02-core",
+          "working_dir": "languages/typescript/projects/02-core/solutions",
           "program": "main.ts",
           "setup_files": [
             {
               "path": "smoke-input.txt",
-              "lines": ["Ana Smith 91", "Bob Lee 77", "InvalidRow", "Carla Mendez 88"]
+              "lines": [
+                "Ana Smith 91",
+                "Bob Lee 77",
+                "InvalidRow",
+                "Carla Mendez 88"
+              ]
             }
           ],
           "input_file": "smoke-input.txt",
-          "required_stdout_contains": ["Valid records:", "Invalid rows skipped:", "Report written to report.txt"],
-          "required_outputs": ["report.txt"],
+          "required_stdout_contains": [
+            "Valid records:",
+            "Invalid rows skipped:",
+            "Report written to report.txt"
+          ],
+          "required_outputs": [
+            "report.txt"
+          ],
           "required_output_contains": [
             {
               "path": "report.txt",
@@ -746,12 +995,17 @@
               ]
             }
           ],
-          "cleanup_paths": ["smoke-input.txt", "report.txt"]
+          "cleanup_paths": [
+            "smoke-input.txt",
+            "report.txt"
+          ]
         },
         {
-          "working_dir": "languages/typescript/assessments/02-core",
+          "working_dir": "languages/typescript/assessments/02-core/solutions",
           "program": "main.ts",
-          "input_lines": ["12 17 31 77 91 105 64 -3 88 -1"],
+          "input_lines": [
+            "12 17 31 77 91 105 64 -3 88 -1"
+          ],
           "required_stdout_contains": [
             "Ignoring out-of-range value: 105",
             "Ignoring out-of-range value: -3",
@@ -764,7 +1018,9 @@
             "90-100: 1",
             "Report saved to core_assessment_report.txt"
           ],
-          "required_outputs": ["core_assessment_report.txt"],
+          "required_outputs": [
+            "core_assessment_report.txt"
+          ],
           "required_output_contains": [
             {
               "path": "core_assessment_report.txt",
@@ -783,23 +1039,49 @@
               ]
             }
           ],
-          "cleanup_paths": ["core_assessment_report.txt"]
+          "cleanup_paths": [
+            "core_assessment_report.txt"
+          ]
         },
         {
-          "program": "languages/typescript/projects/03-advanced/main.ts",
-          "required_stdout_contains": ["Course: TypeScriptBasics | 2/2 enrolled", "Course: Algorithms | 1/3 enrolled"]
+          "program": "languages/typescript/projects/03-advanced/solutions/main.ts",
+          "required_stdout_contains": [
+            "Course: TypeScriptBasics | 2/2 enrolled",
+            "Course: Algorithms | 1/3 enrolled"
+          ]
         },
         {
-          "program": "languages/typescript/assessments/03-advanced/main.ts",
-          "required_stdout_contains": ["Shape areas:", "Total area:", "Minimum area:", "Maximum area:", "Sample counts:", "Computed areas:"]
+          "program": "languages/typescript/assessments/03-advanced/solutions/main.ts",
+          "required_stdout_contains": [
+            "Shape areas:",
+            "Total area:",
+            "Minimum area:",
+            "Maximum area:",
+            "Sample counts:",
+            "Computed areas:"
+          ]
         },
         {
-          "program": "languages/typescript/projects/04-expert/main.ts",
-          "required_stdout_contains": ["Running 3 jobs through 2 steps...", "Step load processed 3 jobs", "Step transform processed 3 jobs", "Elapsed (ms):", "Report closed: true"]
+          "program": "languages/typescript/projects/04-expert/solutions/main.ts",
+          "required_stdout_contains": [
+            "Running 3 jobs through 2 steps...",
+            "Step load processed 3 jobs",
+            "Step transform processed 3 jobs",
+            "Elapsed (ms):",
+            "Report closed: true"
+          ]
         },
         {
-          "program": "languages/typescript/assessments/04-expert/main.ts",
-          "required_stdout_contains": ["Worker 0 partial sum: 48", "Worker 1 partial sum: 97", "Worker 2 partial sum: 60", "Final summary:", "Total: 205", "Minimum: 2", "Maximum: 45"]
+          "program": "languages/typescript/assessments/04-expert/solutions/main.ts",
+          "required_stdout_contains": [
+            "Worker 0 partial sum: 48",
+            "Worker 1 partial sum: 97",
+            "Worker 2 partial sum: 60",
+            "Final summary:",
+            "Total: 205",
+            "Minimum: 2",
+            "Maximum: 45"
+          ]
         }
       ]
     },
@@ -833,8 +1115,16 @@
       ],
       "stdin_runs": [
         {
-          "program": "languages/java/projects/01-foundations/Main.java",
-          "input_lines": ["0", "2", "Ana Smith", "101", "91", "Bob Lee", "77"],
+          "program": "languages/java/projects/01-foundations/solutions/Main.java",
+          "input_lines": [
+            "0",
+            "2",
+            "Ana Smith",
+            "101",
+            "91",
+            "Bob Lee",
+            "77"
+          ],
           "required_stdout_contains": [
             "Please enter a number greater than zero.",
             "Score must be between 0 and 100.",
@@ -847,8 +1137,16 @@
           ]
         },
         {
-          "program": "languages/java/assessments/01-foundations/Main.java",
-          "input_lines": ["3", "Ana Smith", "91", "Bob Lee", "55", "Carla Mendez", "88"],
+          "program": "languages/java/assessments/01-foundations/solutions/Main.java",
+          "input_lines": [
+            "3",
+            "Ana Smith",
+            "91",
+            "Bob Lee",
+            "55",
+            "Carla Mendez",
+            "88"
+          ],
           "required_stdout_contains": [
             "Students:",
             "- Ana Smith: 91",
@@ -861,12 +1159,17 @@
           ]
         },
         {
-          "working_dir": "languages/java/projects/02-core",
-          "program": "languages/java/projects/02-core/Main.java",
+          "working_dir": "languages/java/projects/02-core/solutions",
+          "program": "languages/java/projects/02-core/solutions/Main.java",
           "setup_files": [
             {
               "path": "smoke-input.txt",
-              "lines": ["Ana Smith 91", "Bob Lee 77", "InvalidRow", "Carla Mendez 88"]
+              "lines": [
+                "Ana Smith 91",
+                "Bob Lee 77",
+                "InvalidRow",
+                "Carla Mendez 88"
+              ]
             }
           ],
           "input_file": "smoke-input.txt",
@@ -876,7 +1179,9 @@
             "Average: 85.33",
             "Report written to report.txt"
           ],
-          "required_outputs": ["report.txt"],
+          "required_outputs": [
+            "report.txt"
+          ],
           "required_output_contains": [
             {
               "path": "report.txt",
@@ -891,12 +1196,22 @@
               ]
             }
           ],
-          "cleanup_paths": ["smoke-input.txt", "report.txt"]
+          "cleanup_paths": [
+            "smoke-input.txt",
+            "report.txt"
+          ]
         },
         {
-          "working_dir": "languages/java/assessments/02-core",
-          "program": "languages/java/assessments/02-core/Main.java",
-          "input_lines": ["91", "88", "72", "105", "60", "-1"],
+          "working_dir": "languages/java/assessments/02-core/solutions",
+          "program": "languages/java/assessments/02-core/solutions/Main.java",
+          "input_lines": [
+            "91",
+            "88",
+            "72",
+            "105",
+            "60",
+            "-1"
+          ],
           "required_stdout_contains": [
             "Score ignored because it is outside 0-100.",
             "Valid scores: 4",
@@ -910,7 +1225,9 @@
             "- 90-100: 1",
             "Report written to core_assessment_report.txt"
           ],
-          "required_outputs": ["core_assessment_report.txt"],
+          "required_outputs": [
+            "core_assessment_report.txt"
+          ],
           "required_output_contains": [
             {
               "path": "core_assessment_report.txt",
@@ -926,10 +1243,12 @@
               ]
             }
           ],
-          "cleanup_paths": ["core_assessment_report.txt"]
+          "cleanup_paths": [
+            "core_assessment_report.txt"
+          ]
         },
         {
-          "program": "languages/java/projects/03-advanced/Main.java",
+          "program": "languages/java/projects/03-advanced/solutions/Main.java",
           "required_stdout_contains": [
             "Course Enrollment Report",
             "Course: JavaAdvanced | 2/2 enrolled",
@@ -940,8 +1259,15 @@
           ]
         },
         {
-          "program": "languages/java/assessments/03-advanced/Main.java",
-          "input_lines": ["2", "4", "S-101 Ana", "S-202 Bob", "S-202 Duplicate", "S-303 Carla"],
+          "program": "languages/java/assessments/03-advanced/solutions/Main.java",
+          "input_lines": [
+            "2",
+            "4",
+            "S-101 Ana",
+            "S-202 Bob",
+            "S-202 Duplicate",
+            "S-303 Carla"
+          ],
           "required_stdout_contains": [
             "Advanced Assessment Report",
             "Course: JavaAdvanced | 2/2 enrolled",
@@ -953,7 +1279,7 @@
           ]
         },
         {
-          "program": "languages/java/projects/04-expert/Main.java",
+          "program": "languages/java/projects/04-expert/solutions/Main.java",
           "required_stdout_contains": [
             "Running 3 jobs through 2 steps...",
             "Step load processed 3 jobs",
@@ -966,7 +1292,7 @@
           ]
         },
         {
-          "program": "languages/java/assessments/04-expert/Main.java",
+          "program": "languages/java/assessments/04-expert/solutions/Main.java",
           "required_stdout_contains": [
             "Worker 0 partial sum: 48",
             "Worker 1 partial sum: 97",
@@ -983,9 +1309,19 @@
   },
   "lint": {
     "cpp": {
-      "roots": ["languages/cpp"],
-      "extensions": [".cpp", ".h", ".hpp"],
-      "exclude_dirs": ["bin", "obj", "build"]
+      "roots": [
+        "languages/cpp"
+      ],
+      "extensions": [
+        ".cpp",
+        ".h",
+        ".hpp"
+      ],
+      "exclude_dirs": [
+        "bin",
+        "obj",
+        "build"
+      ]
     },
     "python": {
       "paths": [
@@ -996,24 +1332,52 @@
       ]
     },
     "go": {
-      "roots": ["languages/go"],
-      "extensions": [".go"],
-      "exclude_dirs": ["bin", "obj", "build"]
+      "roots": [
+        "languages/go"
+      ],
+      "extensions": [
+        ".go"
+      ],
+      "exclude_dirs": [
+        "bin",
+        "obj",
+        "build"
+      ]
     },
     "csharp": {
-      "roots": ["languages/csharp"],
-      "extensions": [".cs"],
-      "exclude_dirs": ["bin", "obj"]
+      "roots": [
+        "languages/csharp"
+      ],
+      "extensions": [
+        ".cs"
+      ],
+      "exclude_dirs": [
+        "bin",
+        "obj"
+      ]
     },
     "typescript": {
-      "roots": ["languages/typescript"],
-      "extensions": [".ts"],
-      "exclude_dirs": ["node_modules", "build"]
+      "roots": [
+        "languages/typescript"
+      ],
+      "extensions": [
+        ".ts"
+      ],
+      "exclude_dirs": [
+        "node_modules",
+        "build"
+      ]
     },
     "java": {
-      "roots": ["languages/java"],
-      "extensions": [".java"],
-      "exclude_dirs": ["build"]
+      "roots": [
+        "languages/java"
+      ],
+      "extensions": [
+        ".java"
+      ],
+      "exclude_dirs": [
+        "build"
+      ]
     }
   }
 }

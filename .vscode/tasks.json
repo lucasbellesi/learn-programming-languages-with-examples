@@ -1,52 +1,54 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "Build active C++ file (C++17)",
-            "type": "shell",
-            "command": "g++",
-            "args": [
-                "-std=c++17",
-                "-Wall",
-                "-Wextra",
-                "-pedantic",
-                "${file}",
-                "-o",
-                "${fileDirname}${pathSeparator}${fileBasenameNoExtension}"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "options": {
-                "cwd": "${workspaceFolder}"
-            }
-        },
-        {
-            "label": "Run active C++ file",
-            "type": "shell",
-            "command": "${fileDirname}/${fileBasenameNoExtension}",
-            "windows": {
-                "command": "${fileDirname}\\${fileBasenameNoExtension}.exe"
-            },
-            "linux": {
-                "command": "${fileDirname}/${fileBasenameNoExtension}"
-            },
-            "problemMatcher": [],
-            "options": {
-                "cwd": "${workspaceFolder}"
-            }
-        },
-        {
-            "label": "Build and run active C++ file",
-            "dependsOn": [
-                "Build active C++ file (C++17)",
-                "Run active C++ file"
-            ],
-            "dependsOrder": "sequence"
-        }
-    ]
+  "version": "2.0.0",
+  "inputs": [
+    {
+      "id": "language",
+      "type": "pickString",
+      "description": "Language track",
+      "options": ["cpp", "csharp", "go", "java", "python", "typescript"],
+      "default": "python"
+    },
+    {
+      "id": "modulePath",
+      "type": "promptString",
+      "description": "Repository-relative module path",
+      "default": "languages/python/01-foundations/types-and-io"
+    }
+  ],
+  "tasks": [
+    {
+      "label": "Course: doctor",
+      "type": "shell",
+      "command": "python",
+      "args": ["scripts/automation.py", "doctor", "--language", "${input:language}"],
+      "problemMatcher": [],
+      "options": {"cwd": "${workspaceFolder}"}
+    },
+    {
+      "label": "Course: run module",
+      "type": "shell",
+      "command": "python",
+      "args": ["scripts/automation.py", "run-module", "--module-path", "${input:modulePath}"],
+      "problemMatcher": [],
+      "options": {"cwd": "${workspaceFolder}"}
+    },
+    {
+      "label": "Course: verify language",
+      "type": "shell",
+      "command": "python",
+      "args": ["scripts/automation.py", "verify-language", "--language", "${input:language}"],
+      "group": {"kind": "test", "isDefault": true},
+      "problemMatcher": [],
+      "options": {"cwd": "${workspaceFolder}"}
+    },
+    {
+      "label": "Repository: tests and structure",
+      "type": "shell",
+      "command": "python",
+      "args": ["scripts/automation.py", "test-automation"],
+      "group": "test",
+      "problemMatcher": [],
+      "options": {"cwd": "${workspaceFolder}"}
+    }
+  ]
 }
