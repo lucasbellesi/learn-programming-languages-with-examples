@@ -1,28 +1,7 @@
-﻿#include <iostream>
-#include <string>
-using namespace std;
-
-int add(int left, int right) { return left + right; }
-
-int subtract(int left, int right) { return left - right; }
+#include <iostream>
 
 int main() {
-    string op;
-    int a = 0;
-    int b = 0;
-
-    cout << "Operation (add/sub): ";
-    cin >> op;
-    cout << "Enter two integers: ";
-    cin >> a >> b;
-
-    if (op == "add") {
-        cout << "Result: " << add(a, b) << '\n';
-    } else if (op == "sub") {
-        cout << "Result: " << subtract(a, b) << '\n';
-    } else {
-        cout << "Unsupported operation.\n";
-    }
-
+    // TODO: implement the README specification (EXP-MOD-01, EXP-MOD-02).
+    std::cout << "TODO: implement this exercise\n";
     return 0;
 }

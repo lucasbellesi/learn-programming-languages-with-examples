@@ -1,13 +1,10 @@
 using System;
 
-class Program
+internal static class Program
 {
-    static void Main()
+    private static void Main()
     {
-        Console.Write("Enter text: ");
-        string line = Console.ReadLine() ?? "";
-
-        string[] words = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-        Console.WriteLine($"Word count: {words.Length}");
+        // TODO: implement the README specification (FND-STR-01, FND-STR-02).
+        Console.WriteLine("TODO: implement this exercise");
     }
 }

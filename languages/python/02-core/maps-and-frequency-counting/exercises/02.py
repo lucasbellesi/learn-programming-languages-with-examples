@@ -1,16 +1,7 @@
-text = input("Enter text: ")
+def main() -> None:
+    # TODO: implement the README specification (COR-MAP-01, COR-MAP-02).
+    print("TODO: implement this exercise")
 
-frequency = {}
-for ch in text:
-    frequency[ch] = frequency.get(ch, 0) + 1
 
-result = None
-for ch in text:
-    if frequency[ch] == 1:
-        result = ch
-        break
-
-if result is None:
-    print("No non-repeating character found.")
-else:
-    print(f"First non-repeating character: {result}")
+if __name__ == "__main__":
+    main()

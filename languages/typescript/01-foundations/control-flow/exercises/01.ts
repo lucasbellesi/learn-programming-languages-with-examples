@@ -1,18 +1,4 @@
-import * as fs from "node:fs";
-const choice = Number.parseInt(fs.readFileSync(0, "utf8").trim(), 10);
-if (!Number.isInteger(choice)) {
-    console.log("Expected one integer option.");
-}
-let label = "Unknown option";
-switch (choice) {
-    case 1:
-        label = "Open";
-        break;
-    case 2:
-        label = "Save";
-        break;
-    case 3:
-        label = "Exit";
-        break;
-}
-console.log(label);
+// TODO: implement the README specification (FND-CFL-01, FND-CFL-02).
+console.log("TODO: implement this exercise");
+
+export {};

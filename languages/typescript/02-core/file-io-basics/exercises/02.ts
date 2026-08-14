@@ -1,26 +1,4 @@
-import * as fs from "node:fs";
+// TODO: implement the README specification (COR-FIO-01, COR-FIO-02).
+console.log("TODO: implement this exercise");
 
-function main(): void {
-    const lines = fs
-        .readFileSync(0, "utf8")
-        .split(/\r?\n/)
-        .map((line) => line.trim())
-        .filter((line) => line.length > 0);
-
-    const sourcePath = lines[0] ?? "";
-    const destinationPath = lines[1] ?? "";
-    if (!sourcePath || !destinationPath) {
-        console.log("Expected source and destination paths.");
-        return;
-    }
-    if (!fs.existsSync(sourcePath)) {
-        console.log("Source file not found.");
-        return;
-    }
-
-    const content = fs.readFileSync(sourcePath, "utf8").toUpperCase();
-    fs.writeFileSync(destinationPath, content, "utf8");
-    console.log(`Wrote uppercase copy to ${destinationPath}`);
-}
-
-main();
+export {};

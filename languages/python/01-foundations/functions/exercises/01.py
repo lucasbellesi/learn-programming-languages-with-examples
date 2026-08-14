@@ -1,6 +1,7 @@
-def max_of_three(a, b, c):
-    return max(a, b, c)
+def main() -> None:
+    # TODO: implement the README specification (FND-FUN-01, FND-FUN-02).
+    print("TODO: implement this exercise")
 
 
-x, y, z = map(int, input("Enter three integers: ").split())
-print(f"Maximum: {max_of_three(x, y, z)}")
+if __name__ == "__main__":
+    main()

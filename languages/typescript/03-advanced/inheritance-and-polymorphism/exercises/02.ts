@@ -1,35 +1,4 @@
-import * as fs from "node:fs";
+// TODO: implement the README specification (ADV-POL-01, ADV-POL-02).
+console.log("TODO: implement this exercise");
 
-interface Renderer {
-    render(label: string): string;
-}
-
-class UppercaseRenderer implements Renderer {
-    render(label: string): string {
-        return label.toUpperCase();
-    }
-}
-
-class BracketRenderer implements Renderer {
-    render(label: string): string {
-        return `[${label}]`;
-    }
-}
-
-function main(): void {
-    const label = fs.readFileSync(0, "utf8").trim();
-    if (!label) {
-        console.log("Label is required.");
-        return;
-    }
-
-    const renderers: Renderer[] = [
-        new UppercaseRenderer(),
-        new BracketRenderer(),
-    ];
-    for (const renderer of renderers) {
-        console.log(renderer.render(label));
-    }
-}
-
-main();
+export {};

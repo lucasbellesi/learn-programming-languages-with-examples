@@ -1,7 +1,7 @@
-def count_vowels(text):
-    vowels = "aeiou"
-    return sum(1 for ch in text.lower() if ch in vowels)
+def main() -> None:
+    # TODO: implement the README specification (FND-FUN-01, FND-FUN-02).
+    print("TODO: implement this exercise")
 
 
-line = input("Enter text: ")
-print(f"Number of vowels: {count_vowels(line)}")
+if __name__ == "__main__":
+    main()
