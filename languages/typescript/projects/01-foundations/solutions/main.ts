@@ -68,3 +68,5 @@ for (const student of students) {
 console.log(`Average: ${(total / students.length).toFixed(2)}`);
 console.log(`Minimum: ${minimum}`);
 console.log(`Maximum: ${maximum}`);
+
+export {};

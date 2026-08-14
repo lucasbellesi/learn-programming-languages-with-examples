@@ -50,3 +50,5 @@ console.log(`Average: ${(total / students.length).toFixed(2)}`);
 console.log(`Highest: ${highest.name} (${highest.score})`);
 console.log(`Lowest: ${lowest.name} (${lowest.score})`);
 console.log(`Passed: ${passed}/${students.length}`);
+
+export {};
