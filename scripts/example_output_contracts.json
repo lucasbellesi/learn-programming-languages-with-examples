@@ -116,6 +116,104 @@
           "Add: 10",
           "Multiply: 21"
         ]
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/cpp/01-foundations/types-and-io/example/main.cpp",
+        "oracle_solution": true,
+        "input_lines": [
+          "Ada Lovelace",
+          "30",
+          "3.8",
+          "y"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/cpp/01-foundations/operators-and-expressions/example/main.cpp",
+        "oracle_solution": true
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/cpp/01-foundations/control-flow/example/main.cpp",
+        "oracle_solution": true,
+        "input_lines": [
+          "3",
+          "5"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/cpp/01-foundations/arrays-and-vectors/example/main.cpp",
+        "oracle_solution": true,
+        "input_lines": [
+          "3",
+          "10",
+          "20",
+          "30"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/cpp/01-foundations/strings/example/main.cpp",
+        "oracle_solution": true,
+        "input_lines": [
+          "1990",
+          "Ada Lovelace",
+          "Hello course world"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/cpp/01-foundations/scope-and-lifetime-basics/example/main.cpp",
+        "oracle_solution": true
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/cpp/02-core/input-validation/example/main.cpp",
+        "oracle_solution": true,
+        "input_lines": [
+          "bad",
+          "0",
+          "30",
+          "bad",
+          "5",
+          "3.8"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/cpp/02-core/file-io-basics/example/main.cpp",
+        "working_dir": "languages/cpp/02-core/file-io-basics/example",
+        "setup_files": [
+          {
+            "path": "scores.txt",
+            "lines": [
+              "ana 90",
+              "bob 82",
+              "carla 95"
+            ]
+          }
+        ],
+        "required_stdout_contains": [
+          "Summary written to summary.txt"
+        ],
+        "required_outputs": [
+          "summary.txt"
+        ],
+        "required_output_contains": [
+          {
+            "path": "summary.txt",
+            "contains": [
+              "Rows: 3",
+              "Average: 89"
+            ]
+          }
+        ],
+        "cleanup_paths": [
+          "scores.txt",
+          "summary.txt"
+        ]
       }
     ],
     "python": [
@@ -231,6 +329,80 @@
           "Subtotal: 40.99",
           "Total: 39.66"
         ]
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/python/01-foundations/types-and-io/example/main.py",
+        "oracle_solution": true,
+        "input_lines": [
+          "Ada Lovelace",
+          "30",
+          "3.8"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/python/01-foundations/operators-and-expressions/example/main.py",
+        "oracle_solution": true,
+        "input_lines": [
+          "3661",
+          "10",
+          "2"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/python/01-foundations/control-flow/example/main.py",
+        "oracle_solution": true,
+        "input_lines": [
+          "3",
+          "5"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/python/01-foundations/arrays-and-vectors/example/main.py",
+        "oracle_solution": true,
+        "input_lines": [
+          "3",
+          "10",
+          "20",
+          "30"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/python/01-foundations/strings/example/main.py",
+        "oracle_solution": true,
+        "input_lines": [
+          "Hello, Course World!"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/python/01-foundations/scope-and-lifetime-basics/example/main.py",
+        "oracle_solution": true,
+        "input_lines": [
+          "87"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/python/02-core/input-validation/example/main.py",
+        "oracle_solution": true,
+        "input_lines": [
+          "bad",
+          "0",
+          "30",
+          "bad",
+          "5",
+          "3.8"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/python/02-core/file-io-basics/example/main.py",
+        "oracle_solution": true
       }
     ],
     "go": [
@@ -346,6 +518,131 @@
           "Subtotal: 40.99",
           "Total: 39.66"
         ]
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/go/01-foundations/types-and-io/example/main.go",
+        "oracle_solution": true,
+        "input_lines": [
+          "Ada",
+          "30",
+          "3.8"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/go/01-foundations/operators-and-expressions/example/main.go",
+        "oracle_solution": true,
+        "input_lines": [
+          "3661",
+          "10",
+          "2"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/go/01-foundations/control-flow/example/main.go",
+        "oracle_solution": true,
+        "input_lines": [
+          "3",
+          "5"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/go/01-foundations/arrays-and-vectors/example/main.go",
+        "oracle_solution": true,
+        "input_lines": [
+          "3",
+          "10",
+          "20",
+          "30"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/go/01-foundations/strings/example/main.go",
+        "oracle_solution": true,
+        "input_lines": [
+          "Hello, Course World!"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/go/01-foundations/scope-and-lifetime-basics/example/main.go",
+        "oracle_solution": true,
+        "input_lines": [
+          "87"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/go/02-core/input-validation/example/main.go",
+        "oracle_solution": true,
+        "input_lines": [
+          "bad",
+          "0",
+          "30",
+          "bad",
+          "5",
+          "3.8"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/go/02-core/file-io-basics/example/main.go",
+        "working_dir": "languages/go/02-core/file-io-basics",
+        "required_stdout_contains": [
+          "Report file:",
+          "Valid records: 3",
+          "Invalid rows skipped: 1",
+          "Average: 85.33"
+        ],
+        "required_outputs": [
+          "build/report.txt"
+        ],
+        "required_output_contains": [
+          {
+            "path": "build/report.txt",
+            "contains": [
+              "Grade Report",
+              "- Ana Smith: 91",
+              "- Bob Lee: 77",
+              "- Carla Mendez: 88"
+            ]
+          }
+        ],
+        "cleanup_paths": [
+          "build"
+        ]
+      },
+      {
+        "name": "no valid score rows",
+        "program": "languages/go/02-core/file-io-basics/example/main.go",
+        "working_dir": "languages/go/02-core/file-io-basics",
+        "arguments": [
+          "example/fixtures/no-valid-scores.txt",
+          "build/no-valid-report.txt"
+        ],
+        "required_stdout_contains": [
+          "Valid records: 0",
+          "Invalid rows skipped: 3",
+          "No valid records."
+        ],
+        "forbidden_stdout_contains": [
+          "Average:"
+        ],
+        "required_outputs": [
+          "build/no-valid-report.txt"
+        ],
+        "cleanup_paths": [
+          "build"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/go/04-expert/modularization-and-build-structure/example/main.go",
+        "oracle_solution": true
       }
     ],
     "csharp": [
@@ -462,6 +759,80 @@
           "Invoice summary",
           "Final total: 44.39"
         ]
+      },
+      {
+        "name": "module reference scenario",
+        "project": "languages/csharp/01-foundations/types-and-io/example/types-and-io-example.csproj",
+        "oracle_solution": true,
+        "input_lines": [
+          "Ada Lovelace",
+          "30",
+          "3.8"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "project": "languages/csharp/01-foundations/operators-and-expressions/example/operators-and-expressions-example.csproj",
+        "oracle_solution": true,
+        "input_lines": [
+          "3661",
+          "10",
+          "2"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "project": "languages/csharp/01-foundations/control-flow/example/control-flow-example.csproj",
+        "oracle_solution": true,
+        "input_lines": [
+          "3",
+          "5"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "project": "languages/csharp/01-foundations/arrays-and-vectors/example/arrays-and-vectors-example.csproj",
+        "oracle_solution": true,
+        "input_lines": [
+          "3",
+          "10",
+          "20",
+          "30"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "project": "languages/csharp/01-foundations/strings/example/strings-example.csproj",
+        "oracle_solution": true,
+        "input_lines": [
+          "Hello, Course World!"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "project": "languages/csharp/01-foundations/scope-and-lifetime-basics/example/scope-and-lifetime-basics-example.csproj",
+        "oracle_solution": true,
+        "input_lines": [
+          "87"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "project": "languages/csharp/02-core/input-validation/example/input-validation-example.csproj",
+        "oracle_solution": true,
+        "input_lines": [
+          "bad",
+          "0",
+          "30",
+          "bad",
+          "5",
+          "3.8"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "project": "languages/csharp/02-core/file-io-basics/example/file-io-basics-example.csproj",
+        "oracle_solution": true
       }
     ],
     "typescript": [
@@ -523,6 +894,7 @@
       },
       {
         "program": "languages/typescript/02-core/file-io-basics/example/main.ts",
+        "working_dir": "languages/typescript/02-core/file-io-basics",
         "required_stdout_contains": [
           "Report file:",
           "Valid records: 3",
@@ -530,11 +902,11 @@
           "Average: 85.33"
         ],
         "required_outputs": [
-          "report.txt"
+          "build/report.txt"
         ],
         "required_output_contains": [
           {
-            "path": "report.txt",
+            "path": "build/report.txt",
             "contains": [
               "Grade Report",
               "Valid records: 3",
@@ -546,8 +918,30 @@
           }
         ],
         "cleanup_paths": [
-          "scores.txt",
-          "report.txt"
+          "build"
+        ]
+      },
+      {
+        "name": "strict parsing and no valid rows",
+        "program": "languages/typescript/02-core/file-io-basics/example/main.ts",
+        "working_dir": "languages/typescript/02-core/file-io-basics",
+        "arguments": [
+          "example/fixtures/no-valid-scores.txt",
+          "build/no-valid-report.txt"
+        ],
+        "required_stdout_contains": [
+          "Valid records: 0",
+          "Invalid rows skipped: 3",
+          "No valid records."
+        ],
+        "forbidden_stdout_contains": [
+          "Average:"
+        ],
+        "required_outputs": [
+          "build/no-valid-report.txt"
+        ],
+        "cleanup_paths": [
+          "build"
         ]
       },
       {
@@ -605,6 +999,64 @@
           "Invoice Summary",
           "Total: 39.66"
         ]
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/typescript/01-foundations/operators-and-expressions/example/main.ts",
+        "oracle_solution": true,
+        "input_lines": [
+          "3661",
+          "10",
+          "2"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/typescript/01-foundations/control-flow/example/main.ts",
+        "oracle_solution": true,
+        "input_lines": [
+          "3",
+          "5"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/typescript/01-foundations/strings/example/main.ts",
+        "oracle_solution": true,
+        "input_lines": [
+          "Hello, Course World!"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/typescript/01-foundations/scope-and-lifetime-basics/example/main.ts",
+        "oracle_solution": true,
+        "input_lines": [
+          "87"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/typescript/02-core/input-validation/example/main.ts",
+        "oracle_solution": true,
+        "input_lines": [
+          "bad",
+          "0",
+          "30",
+          "bad",
+          "5",
+          "3.8"
+        ]
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/typescript/03-advanced/constructors-and-invariants/example/main.ts",
+        "oracle_solution": true
+      },
+      {
+        "name": "module reference scenario",
+        "program": "languages/typescript/03-advanced/copy-and-move-semantics/example/main.ts",
+        "oracle_solution": true
       }
     ],
     "java": [
@@ -689,17 +1141,17 @@
         "program": "languages/java/02-core/file-io-basics/example/Main.java",
         "working_dir": "languages/java/02-core/file-io-basics",
         "required_stdout_contains": [
-          "Report file: report.txt",
+          "Report file:",
           "Valid records: 3",
           "Invalid rows skipped: 1",
           "Average: 85.33"
         ],
         "required_outputs": [
-          "report.txt"
+          "build/report.txt"
         ],
         "required_output_contains": [
           {
-            "path": "report.txt",
+            "path": "build/report.txt",
             "contains": [
               "Grade Report",
               "Valid records: 3",
@@ -711,8 +1163,30 @@
           }
         ],
         "cleanup_paths": [
-          "scores.txt",
-          "report.txt"
+          "build"
+        ]
+      },
+      {
+        "name": "no valid score rows",
+        "program": "languages/java/02-core/file-io-basics/example/Main.java",
+        "working_dir": "languages/java/02-core/file-io-basics",
+        "arguments": [
+          "example/fixtures/no-valid-scores.txt",
+          "build/no-valid-report.txt"
+        ],
+        "required_stdout_contains": [
+          "Valid records: 0",
+          "Invalid rows skipped: 3",
+          "No valid records."
+        ],
+        "forbidden_stdout_contains": [
+          "Average:"
+        ],
+        "required_outputs": [
+          "build/no-valid-report.txt"
+        ],
+        "cleanup_paths": [
+          "build"
         ]
       },
       {
@@ -809,7 +1283,12 @@
           "Inbox transfers Quarterly Summary to Archive.",
           "Inbox: empty",
           "Archive: Quarterly Summary",
-          "Archive snapshot size: 2",
+          "Archive snapshot size: 2"
+        ]
+      },
+      {
+        "program": "languages/java/04-expert/smart-pointers-in-depth/example/WeakObservation.java",
+        "required_stdout_contains": [
           "Preview can still see: Transient Draft",
           "Preview target expired."
         ]

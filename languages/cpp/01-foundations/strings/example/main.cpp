@@ -2,7 +2,6 @@
 // Why it matters: practicing strings patterns makes exercises and checkpoints easier to reason
 // about.
 
-#include <cctype>
 #include <iostream>
 #include <limits>
 #include <string>
@@ -40,15 +39,6 @@ int main() {
     } else {
         cout << "Your sentence has only one word.\n";
     }
-
-    int vowelCount = 0;
-    for (char ch : sentence) {
-        const char lower = static_cast<char>(tolower(static_cast<unsigned char>(ch)));
-        if (lower == 'a' || lower == 'e' || lower == 'i' || lower == 'o' || lower == 'u') {
-            ++vowelCount;
-        }
-    }
-    cout << "Vowel count: " << vowelCount << '\n';
 
     return 0;
 }

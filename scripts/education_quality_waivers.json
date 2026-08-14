@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "waivers": {
+    "languages/go/02-core/input-validation/example/main.go": {
+      "reason": "Keeps scanner recovery, range validation, retry behavior, and final aggregation in one traceable console workflow.",
+      "review_when": "Split only if the entrypoint exceeds the level threshold by more than 50 percent or introduces a second domain task."
+    },
+    "languages/java/03-advanced/copy-and-move-semantics/example/Main.java": {
+      "reason": "Java needs one cohesive comparison of aliasing, defensive copying, and explicit transfer-by-convention to avoid implying C++ move syntax exists on the JVM.",
+      "review_when": "Revisit if a companion example can preserve the direct side-by-side comparison."
+    },
+    "languages/java/03-advanced/structs-and-classes/example/Main.java": {
+      "reason": "The record and guarded class deliberately share one scenario so learners can compare lightweight data with behavior-rich objects.",
+      "review_when": "Revisit if either model gains additional unrelated behavior."
+    }
+  }
+}

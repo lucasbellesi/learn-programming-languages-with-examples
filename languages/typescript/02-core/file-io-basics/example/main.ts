@@ -3,76 +3,41 @@
 
 import * as fs from "node:fs";
 import * as path from "node:path";
+import { buildScoreReport, parseScoreRow } from "./score-report";
 
-type ScoreRecord = {
-    name: string;
-    score: number;
-};
+// Explicit paths make missing input observable instead of creating it silently.
+const sourcePath = path.resolve(
+    process.argv[2] ?? path.join("example", "fixtures", "scores.txt"),
+);
+const reportPath = path.resolve(
+    process.argv[3] ?? path.join("build", "report.txt"),
+);
 
-function parseScoreRow(line: string): ScoreRecord | null {
-    // Split on whitespace so names can contain spaces and the score stays last.
-    const parts = line.trim().split(/\s+/);
-    if (parts.length < 2) {
-        return null;
-    }
-
-    // Reject rows where the final field is not an integer score.
-    const score = Number.parseInt(parts.at(-1) ?? "", 10);
-    if (!Number.isInteger(score)) {
-        return null;
-    }
-
-    // Rejoin the remaining fields as the learner-visible name.
-    const name = parts.slice(0, -1).join(" ");
-    return name ? { name, score } : null;
-}
-
-const sourcePath = path.join(process.cwd(), "scores.txt");
-const reportPath = path.join(process.cwd(), "report.txt");
-
-// Create a small deterministic input file when the learner has not provided one yet.
 if (!fs.existsSync(sourcePath)) {
-    fs.writeFileSync(
-        sourcePath,
-        "Ana Smith 91\nBob Lee 77\nInvalidRow\nCarla Mendez 88\n",
-        "utf8",
-    );
-}
+    console.error(`Input file not found: ${sourcePath}`);
+    process.exitCode = 1;
+} else {
+    const records = [];
+    let invalidRows = 0;
 
-const records: ScoreRecord[] = [];
-let invalidRows = 0;
-
-// Read the file the same way a checkpoint program would read a learner-provided path.
-for (const line of fs.readFileSync(sourcePath, "utf8").split(/\r?\n/)) {
-    // Empty lines are harmless formatting noise, not invalid data.
-    if (line.trim().length === 0) {
-        continue;
+    // Keep accepted and rejected records separate for transparent feedback.
+    for (const line of fs.readFileSync(sourcePath, "utf8").split(/\r?\n/)) {
+        if (line.trim().length === 0) {
+            continue;
+        }
+        const record = parseScoreRow(line);
+        if (record === null) {
+            invalidRows++;
+        } else {
+            records.push(record);
+        }
     }
 
-    // Keep bad rows out of the report while still counting what was skipped.
-    const record = parseScoreRow(line);
-    if (record === null) {
-        invalidRows++;
-        continue;
-    }
-
-    records.push(record);
+    // Persist and print the same report so both outputs can be compared directly.
+    const report = buildScoreReport(records, invalidRows);
+    fs.mkdirSync(path.dirname(reportPath), { recursive: true });
+    fs.writeFileSync(reportPath, report + "\n", "utf8");
+    console.log(`Source file: ${sourcePath}`);
+    console.log(`Report file: ${reportPath}`);
+    console.log(report);
 }
-
-// Summarize the valid rows before writing the learner-facing report.
-const total = records.reduce((sum, record) => sum + record.score, 0);
-const average = records.length === 0 ? 0 : total / records.length;
-const report = [
-    "Grade Report",
-    `Valid records: ${records.length}`,
-    `Invalid rows skipped: ${invalidRows}`,
-    `Average: ${average.toFixed(2)}`,
-    ...records.map((record) => `- ${record.name}: ${record.score}`),
-].join("\n");
-
-fs.writeFileSync(reportPath, report + "\n", "utf8");
-
-// Report output values so learners can inspect the file that was written.
-console.log(`Source file: ${sourcePath}`);
-console.log(`Report file: ${reportPath}`);
-console.log(report);

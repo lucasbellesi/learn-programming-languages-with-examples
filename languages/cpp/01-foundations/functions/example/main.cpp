@@ -26,16 +26,6 @@ void printVector(const vector<int>& values) {
     cout << "]\n";
 }
 
-void incrementByValue(int number) {
-    ++number;
-    cout << "Inside incrementByValue: " << number << '\n';
-}
-
-void incrementByReference(int& number) {
-    ++number;
-    cout << "Inside incrementByReference: " << number << '\n';
-}
-
 // Walk through one fixed scenario so functions behavior stays repeatable.
 int main() {
     // Prepare sample inputs that exercise the key functions path.
@@ -51,13 +41,6 @@ int main() {
     const vector<int> numbers{1, 2, 3, 4, 5};
     cout << "Vector content: ";
     printVector(numbers);
-
-    int value = 5;
-    cout << "\nOriginal value: " << value << '\n';
-    incrementByValue(value);
-    cout << "After incrementByValue: " << value << '\n';
-    incrementByReference(value);
-    cout << "After incrementByReference: " << value << '\n';
 
     return 0;
 }

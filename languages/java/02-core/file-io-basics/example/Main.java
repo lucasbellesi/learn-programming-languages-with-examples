@@ -6,44 +6,26 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class Main {
-    record StudentScore(String name, int score) {
-    }
-
-    static StudentScore parseRecord(String line) {
-        String[] parts = line.trim().split("\\s+");
-        // A valid record needs at least a first name, last name, and numeric score.
-        if (parts.length < 3) {
-            return null;
-        }
-
-        try {
-            int score = Integer.parseInt(parts[parts.length - 1]);
-            // Domain validation stays beside parsing so invalid rows have one exit path.
-            if (score < 0 || score > 100) {
-                return null;
-            }
-            String name = String.join(" ", java.util.Arrays.copyOf(parts, parts.length - 1));
-            return new StudentScore(name, score);
-        } catch (NumberFormatException error) {
-            // Returning null keeps the caller in charge of counting skipped records.
-            return null;
-        }
-    }
-
     public static void main(String[] args) throws IOException {
-        Locale.setDefault(Locale.US);
-        Path inputPath = Path.of("scores.txt");
-        Path reportPath = Path.of("report.txt");
-        Files.write(inputPath, List.of("Ana Smith 91", "Bob Lee 77", "InvalidRow", "Carla Mendez 88"));
+        // Explicit paths make missing input observable instead of creating it silently.
+        Path inputPath = Path.of(args.length > 0 ? args[0] : "example/fixtures/scores.txt");
+        Path reportPath = Path.of(args.length > 1 ? args[1] : "build/report.txt");
+        if (!Files.isRegularFile(inputPath)) {
+            System.err.println("Input file not found: " + inputPath.toAbsolutePath());
+            return;
+        }
 
-        List<StudentScore> validRecords = new ArrayList<>();
+        List<ScoreReport.StudentScore> validRecords = new ArrayList<>();
         int skipped = 0;
+
+        // Keep accepted and rejected records separate for transparent feedback.
         for (String line : Files.readAllLines(inputPath)) {
-            StudentScore record = parseRecord(line);
-            // The main loop separates accepted records from malformed rows.
+            if (line.isBlank()) {
+                continue;
+            }
+            ScoreReport.StudentScore record = ScoreReport.parseRecord(line);
             if (record == null) {
                 skipped++;
             } else {
@@ -51,22 +33,14 @@ public class Main {
             }
         }
 
-        double average = validRecords.stream().mapToInt(StudentScore::score).average().orElse(0.0);
-        List<String> report = new ArrayList<>();
-        report.add("Grade Report");
-        report.add("Valid records: " + validRecords.size());
-        report.add("Invalid rows skipped: " + skipped);
-        report.add(String.format("Average: %.2f", average));
-        for (StudentScore record : validRecords) {
-            // Each accepted row is preserved in the report for easy manual checking.
-            report.add("- " + record.name() + ": " + record.score());
+        // Persist and print the same report so both outputs can be compared directly.
+        List<String> report = ScoreReport.build(validRecords, skipped);
+        Path parent = reportPath.toAbsolutePath().getParent();
+        if (parent != null) {
+            Files.createDirectories(parent);
         }
         Files.write(reportPath, report);
-
-        // Report both console and file results so the transformation can be verified.
         System.out.println("Report file: " + reportPath);
-        System.out.println("Valid records: " + validRecords.size());
-        System.out.println("Invalid rows skipped: " + skipped);
-        System.out.printf("Average: %.2f%n", average);
+        report.forEach(System.out::println);
     }
 }
