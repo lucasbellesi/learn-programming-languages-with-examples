@@ -24,10 +24,19 @@ Write a program that:
 - Prerequisites: All `01-foundations` modules, especially `types-and-io`, `control-flow`, and `strings`.
 - Learning Focus: Prove you can read structured input, preserve names, and compute accurate summaries without step-by-step scaffolding.
 
+## Learning Outcomes
+
+- `FND-TIO-02`
+- `FND-CFL-02`
+- `FND-FUN-01`
+- `FND-SEQ-02`
+
 ## Quick Run
 
+Run the reference solution from the repository root:
+
 ```bash
-go run main.go
+python scripts/automation.py check-checkpoint --language go --kind assessment --level 01-foundations --solution
 ```
 
 ## Sample Input
@@ -60,6 +69,16 @@ Passed: 2/3
 - Compared with the C++ assessment, this version keeps the same scoring logic with simpler building blocks and explicit parse flow.
 - Relative to Python and TypeScript, the runtime hides less and asks for more deliberate validation code.
 - The key comparison is low ceremony with strong control over input handling.
+
+## Check Your Work
+
+Implement the task in `starter/`, then run from the repository root:
+
+```bash
+python scripts/automation.py check-checkpoint --language go --kind assessment --level 01-foundations
+```
+
+Use `--solution` only after completing a full attempt. Each failed case reports targeted feedback without exposing the implementation.
 
 ## What To Check
 

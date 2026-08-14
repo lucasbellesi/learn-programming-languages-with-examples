@@ -24,11 +24,19 @@ Write a program that:
 - Prerequisites: All `01-foundations` modules, especially `types-and-io`, `control-flow`, and `strings`.
 - Learning Focus: Prove you can read structured input, preserve names, and compute accurate summaries without step-by-step scaffolding.
 
+## Learning Outcomes
+
+- `FND-TIO-02`
+- `FND-CFL-02`
+- `FND-FUN-01`
+- `FND-SEQ-02`
+
 ## Quick Run
 
+Run the reference solution from the repository root:
+
 ```bash
-javac -d build/java languages/java/assessments/01-foundations/Main.java
-java -cp build/java Main
+python scripts/automation.py check-checkpoint --language java --kind assessment --level 01-foundations --solution
 ```
 
 ## Sample Input
@@ -61,6 +69,16 @@ Passed: 2/3
 - Compared with C++, Java keeps the assessment strongly typed with less setup code.
 - Relative to Python and TypeScript, Java's explicit record type makes the stored data shape visible.
 - The comparison to watch is how much structure is useful before introducing packages and projects.
+
+## Check Your Work
+
+Implement the task in `starter/`, then run from the repository root:
+
+```bash
+python scripts/automation.py check-checkpoint --language java --kind assessment --level 01-foundations
+```
+
+Use `--solution` only after completing a full attempt. Each failed case reports targeted feedback without exposing the implementation.
 
 ## What To Check
 

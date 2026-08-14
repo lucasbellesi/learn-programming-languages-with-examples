@@ -9,6 +9,11 @@ This module teaches defensive input handling in interactive programs.
 - Prerequisites: `01-foundations/control-flow`, `01-foundations/types-and-io`.
 - Cross-Language Lens: Compare loop-driven validation in all four languages and notice where parsing APIs are strict versus forgiving.
 
+## Learning Outcomes
+
+- `COR-VAL-01`: Reject malformed and out-of-domain input without corrupting state.
+- `COR-VAL-02`: Design retry and termination behavior that cannot loop accidentally.
+
 ## Quick Run
 
 ```bash
@@ -50,6 +55,16 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o input_validation_exam
 - Input: score count in `[1, 50]`, then scores in `[0, 100]`.
 - Output: class average.
 - Edge cases: invalid types mid-sequence; boundary values `0`, `100`.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language cpp --level 02-core --module input-validation --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

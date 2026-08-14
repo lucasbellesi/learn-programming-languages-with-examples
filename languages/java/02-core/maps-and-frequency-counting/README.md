@@ -9,6 +9,11 @@ This module practices using maps to count repeated values.
 - Prerequisites: `01-foundations/strings`, `02-core/algorithms-basics`.
 - Cross-Language Lens: Compare Java's `Map` APIs with dictionaries, maps, and objects in C++, C#, Go, Python, and TypeScript.
 
+## Learning Outcomes
+
+- `COR-MAP-01`: Use key-value collections to aggregate and retrieve data.
+- `COR-MAP-02`: Define normalization and missing-key behavior explicitly.
+
 ## Quick Run
 
 ~~~bash
@@ -51,6 +56,16 @@ java -cp build/java Main
 - Input: count followed by that many integers.
 - Output: numeric frequencies sorted by value.
 - Edge cases: duplicates; negative numbers; single value.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language java --level 02-core --module maps-and-frequency-counting --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

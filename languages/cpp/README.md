@@ -2,7 +2,7 @@
 
 ## Scope and Status
 
-This is the primary and most complete track in the repository.
+This is the canonical reference track for curriculum order. It has the same module and checkpoint coverage as the other active tracks.
 
 - Covers setup, foundations, core, advanced, and expert levels.
 - Includes level capstone projects and assessments.
@@ -18,11 +18,11 @@ This is the primary and most complete track in the repository.
 
 1. Read [00-setup](./00-setup/README.md).
 2. Open [01-foundations](./01-foundations/README.md).
-3. Run one module example:
+3. From the repository root, check the toolchain and run one module example:
 
 ~~~bash
-g++ -std=c++17 -Wall -Wextra -pedantic 01-foundations/types-and-io/example/main.cpp -o types_and_io_example
-./types_and_io_example
+python scripts/automation.py doctor --language cpp
+python scripts/automation.py run-module --module-path languages/cpp/01-foundations/types-and-io
 ~~~
 
 ## Level and Module Map
@@ -45,7 +45,7 @@ g++ -std=c++17 -Wall -Wextra -pedantic 01-foundations/types-and-io/example/main.
 
 ## Cross-Language Parity Strategy
 
-Use C++ as the reference implementation track:
+Use C++ as the canonical curriculum-order reference:
 
 - Solve the same module in C++, then in Python, Go, or C#.
 - Compare syntax, type systems, and standard library patterns.

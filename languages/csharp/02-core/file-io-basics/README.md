@@ -9,6 +9,11 @@ This module teaches safe text-file reading and writing with basic stream APIs.
 - Prerequisites: `01-foundations/types-and-io`, `01-foundations/strings`.
 - Cross-Language Lens: Compare text-file APIs, line parsing, and error handling styles while keeping the workflow conceptually identical.
 
+## Learning Outcomes
+
+- `COR-FIO-01`: Read and write explicit paths while reporting I/O failures.
+- `COR-FIO-02`: Parse records defensively and distinguish valid from rejected rows.
+
 ## Quick Run
 
 ~~~bash
@@ -50,6 +55,16 @@ dotnet run --project example/file-io-basics-example.csproj
 - Input: file path with rows in the format `name score`.
 - Output: valid row count, invalid row count, and average score.
 - Edge cases: malformed rows; file with no valid rows.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language csharp --level 02-core --module file-io-basics --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

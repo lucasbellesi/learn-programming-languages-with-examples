@@ -9,6 +9,11 @@ This module practices cleanup, search, and tokenization with immutable TypeScrip
 - Prerequisites: 01-foundations/types-and-io and 01-foundations/control-flow.
 - Cross-Language Lens: Compare immutable string handling, indexing rules, and tokenization helpers across all five tracks.
 
+## Learning Outcomes
+
+- `FND-STR-01`: Normalize, inspect, and transform textual data.
+- `FND-STR-02`: Handle empty input and character boundaries safely.
+
 ## Quick Run
 
 ~~~bash
@@ -51,6 +56,16 @@ node build/typescript/01-foundations/strings/example/main.js
 - Input: one token shaped like name@domain.
 - Output: the normalized token with the domain replaced by ***.
 - Edge cases: missing @ should print an error; uppercase letters should be normalized.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language typescript --level 01-foundations --module strings --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

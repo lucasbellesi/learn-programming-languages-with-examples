@@ -9,6 +9,11 @@ This module practices typed input, safe parsing, and basic numeric summaries.
 - Prerequisites: None; this is the entry module for the track.
 - Cross-Language Lens: Compare strongly typed console input in C++ and C# with explicit parsing in Go and Python's more dynamic input model.
 
+## Learning Outcomes
+
+- `FND-TIO-01`: Choose suitable primitive values and variables for a small problem.
+- `FND-TIO-02`: Read, validate, transform, and present console data.
+
 ## Quick Run
 
 ~~~bash
@@ -61,6 +66,16 @@ python scripts/automation.py check-exercise --language python --level 01-foundat
 ~~~
 
 3. Change `--exercise` to `02` for the second task. Reference implementations are under `exercises/solutions/`; use `--solution` only after attempting the exercise.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language python --level 01-foundations --module types-and-io --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

@@ -9,6 +9,11 @@ This module practices variable lifetime in blocks and safe accumulation patterns
 - Prerequisites: `01-foundations/functions`, `01-foundations/control-flow`.
 - Cross-Language Lens: Compare block scope everywhere, then contrast deterministic destruction in C++ with garbage-collected lifetime in the other tracks.
 
+## Learning Outcomes
+
+- `FND-SCP-01`: Predict name visibility across nested scopes.
+- `FND-SCP-02`: Explain when values and resources cease to be usable.
+
 ## Quick Run
 
 ~~~bash
@@ -44,6 +49,16 @@ dotnet run --project example/scope-and-lifetime-basics-example.csproj
 - Input: positive count and then count integer values.
 - Output: sum and average values.
 - Edge cases: count <= 0; negative numbers within the sequence.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language csharp --level 01-foundations --module scope-and-lifetime-basics --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

@@ -1,5 +1,7 @@
 # Educational Anti-Pattern Backlog
 
+> Status: deferred. [ROADMAP.md](ROADMAP.md) defines the prerequisites for resuming this expansion. Guided practice, stable contracts, and learner workflow take priority over adding 120 more examples.
+
 ## Goal
 
 Add one focused **anti-pattern vs corrected version** example pair to the highest-leverage modules, while preserving cross-language parity and stable runnable behavior.

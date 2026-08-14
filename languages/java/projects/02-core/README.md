@@ -11,11 +11,19 @@ Build a program that reads student grades from a text file and writes a summary 
 - Prerequisites: All `02-core` modules, especially `input-validation`, `file-io-basics`, and `error-handling-and-defensive-programming`.
 - Learning Focus: Integrate parsing, validation, and file-backed reporting without letting malformed rows break the workflow.
 
+## Learning Outcomes
+
+- `COR-VAL-01`
+- `COR-ALG-01`
+- `COR-FIO-01`
+- `COR-ERR-02`
+
 ## Quick Run
 
+Run the reference solution from the repository root:
+
 ```bash
-javac -d build/java languages/java/projects/02-core/Main.java
-java -cp build/java Main
+python scripts/automation.py check-checkpoint --language java --kind project --level 02-core --solution
 ```
 
 ## Requirements
@@ -25,6 +33,13 @@ java -cp build/java Main
 - Skip invalid rows without stopping the whole program.
 - Print a short summary to the console.
 - Write the detailed report to `report.txt`.
+
+## Milestones
+
+1. Model the input and domain rules.
+2. Implement the smallest end-to-end workflow.
+3. Add validation and boundary behavior.
+4. Refactor only after every configured case passes.
 
 ## Concepts Practiced
 
@@ -68,6 +83,16 @@ Report written to report.txt
 - malformed rows are skipped or counted without crashing the program
 - the report artifact is created in the expected working directory
 - summary values are computed only from valid rows
+
+## Check Your Work
+
+Implement the task in `starter/`, then run from the repository root:
+
+```bash
+python scripts/automation.py check-checkpoint --language java --kind project --level 02-core
+```
+
+Use `--solution` only after completing a full attempt. Each failed case reports targeted feedback without exposing the implementation.
 
 ## Extension Ideas
 

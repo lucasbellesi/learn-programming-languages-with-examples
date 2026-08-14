@@ -21,12 +21,20 @@ Write a program that:
 - Prerequisites: All `03-advanced` modules, especially `structs-and-classes`, `inheritance-and-polymorphism`, and `templates-basics`.
 - Learning Focus: Prove you can model abstractions, use reusable helpers, and summarize derived values correctly.
 
+## Learning Outcomes
+
+- `ADV-MOD-01`
+- `ADV-INV-02`
+- `ADV-POL-01`
+- `ADV-GEN-01`
+
 ## Quick Run
 
-~~~bash
-npm run build:typescript
-node build/typescript/assessments/03-advanced/main.js
-~~~
+Run the reference solution from the repository root:
+
+```bash
+python scripts/automation.py check-checkpoint --language typescript --kind assessment --level 03-advanced --solution
+```
 
 ## Expected Output (shape)
 
@@ -45,6 +53,16 @@ Computed areas: [...]
 - Compared with the C++ assessment, this version maps the same advanced abstraction challenge onto classes plus structural typing and generics.
 - Relative to Python, more of the shared contract is visible before runtime; relative to C#, less is tied to a strictly nominal class system.
 - The useful comparison is how a typed JavaScript language balances flexibility and abstraction discipline.
+
+## Check Your Work
+
+Implement the task in `starter/`, then run from the repository root:
+
+```bash
+python scripts/automation.py check-checkpoint --language typescript --kind assessment --level 03-advanced
+```
+
+Use `--solution` only after completing a full attempt. Each failed case reports targeted feedback without exposing the implementation.
 
 ## What To Check
 

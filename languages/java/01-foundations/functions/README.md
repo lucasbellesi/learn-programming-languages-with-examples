@@ -9,6 +9,11 @@ This module practices breaking behavior into reusable functions with clear input
 - Prerequisites: Java 21 JDK and prior modules in this level.
 - Cross-Language Lens: Compare Java's explicit class and type requirements with the same concept in C++, C#, Go, Python, and TypeScript.
 
+## Learning Outcomes
+
+- `FND-FUN-01`: Decompose a problem into focused functions with explicit contracts.
+- `FND-FUN-02`: Use parameters and return values without hidden state changes.
+
 ## Quick Run
 
 ~~~bash
@@ -49,6 +54,16 @@ java -cp build/java Main
 - Input: three integers.
 - Output: minimum and maximum values.
 - Edge cases: missing values; zero or repeated values where relevant.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language java --level 01-foundations --module functions --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

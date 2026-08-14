@@ -24,10 +24,19 @@ Write a program that:
 - Prerequisites: All `01-foundations` modules, especially `types-and-io`, `control-flow`, and `strings`.
 - Learning Focus: Prove you can read structured input, preserve names, and compute accurate summaries without step-by-step scaffolding.
 
+## Learning Outcomes
+
+- `FND-TIO-02`
+- `FND-CFL-02`
+- `FND-FUN-01`
+- `FND-SEQ-02`
+
 ## Quick Run
 
+Run the reference solution from the repository root:
+
 ```bash
-dotnet run --project assessment-01-foundations.csproj
+python scripts/automation.py check-checkpoint --language csharp --kind assessment --level 01-foundations --solution
 ```
 
 ## Sample Input
@@ -60,6 +69,16 @@ Passed: 2/3
 - Compared with the C++ assessment, the same beginner goals are tested with less console-API friction.
 - Relative to Python and TypeScript, the type system still makes the target structure more explicit.
 - The useful comparison is easier surface syntax without changing the summary rules.
+
+## Check Your Work
+
+Implement the task in `starter/`, then run from the repository root:
+
+```bash
+python scripts/automation.py check-checkpoint --language csharp --kind assessment --level 01-foundations
+```
+
+Use `--solution` only after completing a full attempt. Each failed case reports targeted feedback without exposing the implementation.
 
 ## What To Check
 

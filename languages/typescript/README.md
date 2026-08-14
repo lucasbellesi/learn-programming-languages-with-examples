@@ -22,19 +22,14 @@ This track currently covers `01-foundations`, `02-core`, `03-advanced`, `04-expe
 ## Quick Start
 
 1. Open [01-foundations](./01-foundations/README.md).
-2. Build the TypeScript track:
+2. From the repository root, check the toolchain and run one module example:
 
 ~~~bash
-npm run build:typescript
+python scripts/automation.py doctor --language typescript
+python scripts/automation.py run-module --module-path languages/typescript/01-foundations/types-and-io
 ~~~
 
-3. Run one module example:
-
-~~~bash
-node build/typescript/01-foundations/types-and-io/example/main.js
-~~~
-
-4. Solve:
+3. Solve:
 - `01-foundations/types-and-io/exercises/01.ts`
 - `01-foundations/types-and-io/exercises/02.ts`
 

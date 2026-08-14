@@ -9,6 +9,11 @@ This module practices reading and writing small text files with Java's standard 
 - Prerequisites: `01-foundations/strings`, `02-core/input-validation`.
 - Cross-Language Lens: Compare Java's `Path` and `Files` APIs with file handling in C++, C#, Go, Python, and TypeScript.
 
+## Learning Outcomes
+
+- `COR-FIO-01`: Read and write explicit paths while reporting I/O failures.
+- `COR-FIO-02`: Parse records defensively and distinguish valid from rejected rows.
+
 ## Quick Run
 
 ~~~bash
@@ -51,6 +56,16 @@ java -cp build/java Main
 - Input: input file path and output file path.
 - Output: valid record count, skipped row count, average score, and report path.
 - Edge cases: malformed rows; scores outside 0..100.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language java --level 02-core --module file-io-basics --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

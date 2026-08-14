@@ -22,10 +22,19 @@ Write a program that reads integer values until `-1`, then:
 - Prerequisites: All `02-core` modules, especially `input-validation`, `maps-and-frequency-counting`, and `error-handling-and-defensive-programming`.
 - Learning Focus: Prove validation, aggregation, defensive handling, and report generation under mixed-quality input.
 
+## Learning Outcomes
+
+- `COR-VAL-01`
+- `COR-ALG-01`
+- `COR-FIO-01`
+- `COR-ERR-02`
+
 ## Quick Run
 
+Run the reference solution from the repository root:
+
 ```bash
-dotnet run --project assessment-02-core.csproj
+python scripts/automation.py check-checkpoint --language csharp --kind assessment --level 02-core --solution
 ```
 
 ## Sample Input
@@ -45,6 +54,16 @@ dotnet run --project assessment-02-core.csproj
 - Compared with the C++ assessment, this version keeps the same validation target with a richer standard library and a managed runtime.
 - Relative to Python and TypeScript, the report pipeline still benefits from static typing all the way through.
 - The useful comparison is convenience without weakening defensive logic.
+
+## Check Your Work
+
+Implement the task in `starter/`, then run from the repository root:
+
+```bash
+python scripts/automation.py check-checkpoint --language csharp --kind assessment --level 02-core
+```
+
+Use `--solution` only after completing a full attempt. Each failed case reports targeted feedback without exposing the implementation.
 
 ## What To Check
 

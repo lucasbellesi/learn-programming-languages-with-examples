@@ -21,10 +21,19 @@ Write a program that:
 - Prerequisites: All `03-advanced` modules, especially `structs-and-classes`, `inheritance-and-polymorphism`, and `templates-basics`.
 - Learning Focus: Prove you can model abstractions, use reusable helpers, and summarize derived values correctly.
 
+## Learning Outcomes
+
+- `ADV-MOD-01`
+- `ADV-INV-02`
+- `ADV-POL-01`
+- `ADV-GEN-01`
+
 ## Quick Run
 
+Run the reference solution from the repository root:
+
 ```bash
-go run main.go
+python scripts/automation.py check-checkpoint --language go --kind assessment --level 03-advanced --solution
 ```
 
 ## Expected Output (shape)
@@ -44,6 +53,16 @@ Computed areas: [...]
 - Compared with the C++ assessment, this version reaches the same abstraction goal through interfaces and generics rather than class-heavy design.
 - Relative to C# and TypeScript, the language asks for fewer structural declarations around the same idea.
 - The key comparison is interface-oriented modeling versus inheritance-oriented modeling.
+
+## Check Your Work
+
+Implement the task in `starter/`, then run from the repository root:
+
+```bash
+python scripts/automation.py check-checkpoint --language go --kind assessment --level 03-advanced
+```
+
+Use `--solution` only after completing a full attempt. Each failed case reports targeted feedback without exposing the implementation.
 
 ## What To Check
 

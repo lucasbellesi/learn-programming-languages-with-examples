@@ -9,6 +9,11 @@ This module introduces beginner-friendly file reading and writing in Node-based 
 - Prerequisites: `01-foundations/strings` and `01-foundations/types-and-io`.
 - Cross-Language Lens: Compare `fs.readFileSync` and `fs.writeFileSync` with stream-based or line-based file handling in the other tracks.
 
+## Learning Outcomes
+
+- `COR-FIO-01`: Read and write explicit paths while reporting I/O failures.
+- `COR-FIO-02`: Parse records defensively and distinguish valid from rejected rows.
+
 ## Quick Run
 
 ~~~bash
@@ -51,6 +56,16 @@ node build/typescript/02-core/file-io-basics/example/main.js
 - Input: source path and destination path.
 - Output: confirmation that the uppercase copy was written.
 - Edge cases: missing source file; empty content; source and destination paths that differ only by folder.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language typescript --level 02-core --module file-io-basics --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

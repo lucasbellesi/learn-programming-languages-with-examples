@@ -9,6 +9,11 @@ This module shows how TypeScript can format aligned text and numeric summaries w
 - Prerequisites: 01-foundations/types-and-io and 01-foundations/operators-and-expressions.
 - Cross-Language Lens: Compare stream manipulators, interpolated strings, format verbs, and template-string helpers for the same reporting task.
 
+## Learning Outcomes
+
+- `FND-FMT-01`: Produce stable human-readable tabular and numeric output.
+- `FND-FMT-02`: Choose precision, alignment, and labels appropriate to the data.
+
 ## Quick Run
 
 ~~~bash
@@ -45,6 +50,16 @@ node build/typescript/01-foundations/formatted-output-and-iomanip/example/main.j
 - Input: name and score pairs on one line.
 - Output: one formatted row per pair.
 - Edge cases: odd token counts should print an error; decimal scores should still align.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language typescript --level 01-foundations --module formatted-output-and-iomanip --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

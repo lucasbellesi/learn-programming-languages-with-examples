@@ -9,6 +9,11 @@ This module introduces basic sorting and searching techniques.
 - Prerequisites: `02-core/algorithms-basics`, `01-foundations/arrays-and-vectors`.
 - Cross-Language Lens: Compare built-in sort and search helpers and the stability guarantees each standard library makes.
 
+## Learning Outcomes
+
+- `COR-SRT-01`: Choose and apply sorting and searching operations correctly.
+- `COR-SRT-02`: Explain ordering, duplicates, missing values, and stability tradeoffs.
+
 ## Quick Run
 
 ```bash
@@ -60,6 +65,16 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/stable-vs-unstable-sort.cpp -o so
 - Input: sorted list and target.
 - Output: index of target or `-1`.
 - Edge cases: target smaller than min; target larger than max.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language cpp --level 02-core --module sorting-and-searching --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

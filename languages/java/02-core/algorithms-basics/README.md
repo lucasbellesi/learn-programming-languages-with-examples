@@ -9,6 +9,11 @@ This module practices small search and counting algorithms over arrays.
 - Prerequisites: `01-foundations/arrays-and-vectors`, `01-foundations/control-flow`.
 - Cross-Language Lens: Compare Java loops and helper methods with the same algorithmic patterns in C++, C#, Go, Python, and TypeScript.
 
+## Learning Outcomes
+
+- `COR-ALG-01`: Implement linear scans and accumulations with clear invariants.
+- `COR-ALG-02`: Analyze behavior for empty, duplicate, and missing values.
+
 ## Quick Run
 
 ~~~bash
@@ -51,6 +56,16 @@ java -cp build/java Main
 - Input: count followed by that many integers.
 - Output: minimum, maximum, and count of even numbers.
 - Edge cases: single value; negative values; all odd values.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language java --level 02-core --module algorithms-basics --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

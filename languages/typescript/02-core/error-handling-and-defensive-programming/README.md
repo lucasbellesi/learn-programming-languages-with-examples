@@ -9,6 +9,11 @@ This module teaches TypeScript programs to reject bad data cleanly without losin
 - Prerequisites: `02-core/input-validation` and `02-core/file-io-basics`.
 - Cross-Language Lens: Compare guard clauses, nullable parse results, and selective `try/catch` with the defensive styles used in the other tracks.
 
+## Learning Outcomes
+
+- `COR-ERR-01`: Separate expected failures from programming defects.
+- `COR-ERR-02`: Preserve valid state and useful diagnostics when operations fail.
+
 ## Quick Run
 
 ~~~bash
@@ -45,6 +50,16 @@ node build/typescript/02-core/error-handling-and-defensive-programming/example/m
 - Input: one line of mixed tokens.
 - Output: valid count and average of accepted integers.
 - Edge cases: no valid integers; malformed tokens between valid numbers.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language typescript --level 02-core --module error-handling-and-defensive-programming --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

@@ -9,6 +9,11 @@ This module introduces core algorithm patterns over arrays in plain TypeScript.
 - Prerequisites: `01-foundations/arrays-and-vectors` and `01-foundations/functions`.
 - Cross-Language Lens: Compare explicit loops with library helpers and notice when beginner-friendly code is clearer than a dense chain of methods.
 
+## Learning Outcomes
+
+- `COR-ALG-01`: Implement linear scans and accumulations with clear invariants.
+- `COR-ALG-02`: Analyze behavior for empty, duplicate, and missing values.
+
 ## Quick Run
 
 ~~~bash
@@ -51,6 +56,16 @@ node build/typescript/02-core/algorithms-basics/example/main.js
 - Input: integer `n`, then `n` values.
 - Output: minimum, maximum, and even count.
 - Edge cases: all odd numbers; all equal values; `n <= 0`.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language typescript --level 02-core --module algorithms-basics --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

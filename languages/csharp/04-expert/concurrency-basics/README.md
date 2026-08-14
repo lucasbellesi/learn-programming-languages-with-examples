@@ -9,6 +9,11 @@ This module introduces safe multithreaded coordination with tasks, locks, and mo
 - Prerequisites: `01-foundations/control-flow`, `03-advanced/structs-and-classes`.
 - Cross-Language Lens: Compare `std::thread`, `Task`, goroutines, and Python threads as different concurrency building blocks.
 
+## Learning Outcomes
+
+- `EXP-CON-01`: Coordinate concurrent work without data races or lost results.
+- `EXP-CON-02`: Define completion, cancellation, and error propagation behavior.
+
 ## Quick Run
 
 ~~~bash
@@ -51,6 +56,16 @@ dotnet run --project example/concurrency-basics-example.csproj
 - Input: number of items to produce.
 - Output: produced/consumed item logs and completion summary.
 - Edge cases: zero items; consumer waiting while queue is empty.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language csharp --level 04-expert --module concurrency-basics --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

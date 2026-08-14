@@ -9,6 +9,11 @@ This module practices ordering values before searching them.
 - Prerequisites: `02-core/algorithms-basics`.
 - Cross-Language Lens: Compare Java's `Arrays.sort` with sorting helpers in C++, C#, Go, Python, and TypeScript.
 
+## Learning Outcomes
+
+- `COR-SRT-01`: Choose and apply sorting and searching operations correctly.
+- `COR-SRT-02`: Explain ordering, duplicates, missing values, and stability tradeoffs.
+
 ## Quick Run
 
 ~~~bash
@@ -51,6 +56,16 @@ java -cp build/java Main
 - Input: count, values, then target.
 - Output: sorted values and the target's sorted index or `-1`.
 - Edge cases: duplicate target; missing target.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language java --level 02-core --module sorting-and-searching --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

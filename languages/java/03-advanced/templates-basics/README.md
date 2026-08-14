@@ -9,6 +9,11 @@ This module introduces reusable Java code with generic methods and generic class
 - Prerequisites: `01-foundations/functions`, `02-core/arrays-and-vectors`, `03-advanced/structs-and-classes`.
 - Cross-Language Lens: Compare Java generics with C++ templates, C# generics, Go type parameters, Python's runtime flexibility, and TypeScript generics.
 
+## Learning Outcomes
+
+- `ADV-GEN-01`: Express reusable type-safe behavior with language generics.
+- `ADV-GEN-02`: Apply constraints when an operation requires specific capabilities.
+
 ## Quick Run
 
 ~~~bash
@@ -53,6 +58,16 @@ java -cp build/java Main
 - Input: count followed by decimal values.
 - Output: arithmetic average.
 - Edge cases: zero count; mixed positive and negative values.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language java --level 03-advanced --module templates-basics --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

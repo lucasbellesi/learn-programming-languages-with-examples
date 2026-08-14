@@ -20,10 +20,11 @@ This track currently covers `01-foundations`, `02-core`, `03-advanced`, and `04-
 ## Quick Start
 
 1. Open [01-foundations](./01-foundations/README.md).
-2. Run one module example:
+2. From the repository root, check the toolchain and run one module example:
 
 ~~~bash
-python 01-foundations/types-and-io/example/main.py
+python scripts/automation.py doctor --language python
+python scripts/automation.py run-module --module-path languages/python/01-foundations/types-and-io
 ~~~
 
 3. Solve:

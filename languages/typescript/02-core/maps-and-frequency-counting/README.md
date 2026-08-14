@@ -9,6 +9,11 @@ This module uses `Map` to count repeated values and summarize categorical data.
 - Prerequisites: `02-core/algorithms-basics` and `01-foundations/strings`.
 - Cross-Language Lens: Compare `Map` usage with `std::map`, `Dictionary`, Go maps, and Python dictionaries for the same counting task.
 
+## Learning Outcomes
+
+- `COR-MAP-01`: Use key-value collections to aggregate and retrieve data.
+- `COR-MAP-02`: Define normalization and missing-key behavior explicitly.
+
 ## Quick Run
 
 ~~~bash
@@ -45,6 +50,16 @@ node build/typescript/02-core/maps-and-frequency-counting/example/main.js
 - Input: one line of space-separated words.
 - Output: the most frequent word and its count.
 - Edge cases: ties should keep the first word that reaches the best count; empty input should print an error.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language typescript --level 02-core --module maps-and-frequency-counting --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

@@ -95,9 +95,9 @@ Use [EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md](EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md)
   - comments before program flow, validation, core transformation, branching, or output blocks when those blocks are non-trivial
   - language-specific notes when the example is an adaptation rather than a direct translation of the C++ concept
   - no empty scaffolding comments such as `Intent:` and no line-by-line narration of obvious syntax
-- Exercise files outside the guided-practice pilot must contain complete, runnable content.
+- Exercise starters must compile, contain focused TODOs, and remain incomplete; full implementations belong in `exercises/solutions/`.
 - Guided-practice modules keep compilable starters at the documented exercise paths and complete reference implementations under `exercises/solutions/`.
-- Add guided exercise metadata and shared cases to `scripts/learning_exercises.json`, and keep reference solutions covered by `scripts/exercise_output_contracts.json`.
+- Add starter, solution, outcome IDs, and named normal/edge cases to `scripts/learning_exercises.json`; it is the canonical exercise contract.
 - Add or update automation unit tests under `scripts/tests/` when changing the guided exercise runner or configuration contract.
 - Avoid external dependencies and test frameworks for C++ modules.
 - Avoid external dependencies and test frameworks for non-C++ checkpoints.

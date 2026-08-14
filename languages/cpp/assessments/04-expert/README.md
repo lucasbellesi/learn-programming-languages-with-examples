@@ -24,14 +24,20 @@ Write a program that:
 - Prerequisites: All `04-expert` modules, especially `memory-management-and-raii`, `smart-pointers-in-depth`, and `concurrency-basics`.
 - Learning Focus: Prove you can coordinate work safely, choose the right ownership model for the track, and aggregate results under expert-level constraints.
 
+## Learning Outcomes
+
+- `EXP-MEM-02`
+- `EXP-CON-01`
+- `EXP-PER-01`
+- `EXP-MOD-01`
+
 ## Quick Run
 
-```bash
-g++ -std=c++17 -Wall -Wextra -pedantic -pthread main.cpp -o assessment_04_expert
-./assessment_04_expert
-```
+Run the reference solution from the repository root:
 
-On Linux, `-pthread` is required for thread support.
+```bash
+python scripts/automation.py check-checkpoint --language cpp --kind assessment --level 04-expert --solution
+```
 
 ## Expected Output (shape)
 
@@ -50,6 +56,16 @@ Maximum: ...
 - This is the canonical expert assessment for coordination, aggregation, and deterministic reasoning under concurrency pressure.
 - Other tracks keep the same final outputs but adapt worker execution to their own runtime model.
 - Compare how much explicit synchronization each language demands to reach the same summary.
+
+## Check Your Work
+
+Implement the task in `starter/`, then run from the repository root:
+
+```bash
+python scripts/automation.py check-checkpoint --language cpp --kind assessment --level 04-expert
+```
+
+Use `--solution` only after completing a full attempt. Each failed case reports targeted feedback without exposing the implementation.
 
 ## What To Check
 

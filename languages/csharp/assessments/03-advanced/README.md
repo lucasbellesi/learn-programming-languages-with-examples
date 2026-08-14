@@ -21,10 +21,19 @@ Write a program that:
 - Prerequisites: All `03-advanced` modules, especially `structs-and-classes`, `inheritance-and-polymorphism`, and `templates-basics`.
 - Learning Focus: Prove you can model abstractions, use reusable helpers, and summarize derived values correctly.
 
+## Learning Outcomes
+
+- `ADV-MOD-01`
+- `ADV-INV-02`
+- `ADV-POL-01`
+- `ADV-GEN-01`
+
 ## Quick Run
 
+Run the reference solution from the repository root:
+
 ```bash
-dotnet run --project assessment-03-advanced.csproj
+python scripts/automation.py check-checkpoint --language csharp --kind assessment --level 03-advanced --solution
 ```
 
 ## Expected Output (shape)
@@ -44,6 +53,16 @@ Computed areas: [...]
 - Compared with the C++ assessment, this version keeps the same abstraction target with a smoother managed object model and generics.
 - Relative to Go and TypeScript, class-based polymorphism stays the most direct here.
 - The useful comparison is advanced design with less ownership ceremony but similar conceptual weight.
+
+## Check Your Work
+
+Implement the task in `starter/`, then run from the repository root:
+
+```bash
+python scripts/automation.py check-checkpoint --language csharp --kind assessment --level 03-advanced
+```
+
+Use `--solution` only after completing a full attempt. Each failed case reports targeted feedback without exposing the implementation.
 
 ## What To Check
 

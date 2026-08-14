@@ -9,6 +9,11 @@ This module models behavior variation with interfaces and overriding implementat
 - Prerequisites: `03-advanced/structs-and-classes`, `03-advanced/constructors-and-invariants`.
 - Cross-Language Lens: Compare virtual dispatch, interfaces, and duck-typed behavior to see how polymorphism changes by language.
 
+## Learning Outcomes
+
+- `ADV-POL-01`: Program against a shared behavioral abstraction.
+- `ADV-POL-02`: Use dynamic dispatch without unsafe type assumptions.
+
 ## Quick Run
 
 ~~~bash
@@ -51,6 +56,16 @@ java -cp build/java Main
 - Input: predefined shape objects.
 - Output: total area through polymorphic iteration.
 - Edge cases: empty shape list; mixed shape types.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language java --level 03-advanced --module inheritance-and-polymorphism --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

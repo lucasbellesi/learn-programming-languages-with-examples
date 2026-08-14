@@ -9,6 +9,11 @@ This module practices table-style output, alignment, and precision control.
 - Prerequisites: `01-foundations/types-and-io`, `01-foundations/operators-and-expressions`.
 - Cross-Language Lens: Compare stream manipulators, format strings, `fmt`, and Python formatting for the same reporting task.
 
+## Learning Outcomes
+
+- `FND-FMT-01`: Produce stable human-readable tabular and numeric output.
+- `FND-FMT-02`: Choose precision, alignment, and labels appropriate to the data.
+
 ## Quick Run
 
 ~~~bash
@@ -44,6 +49,16 @@ python example/main.py
 - Input: numeric list plus precision value from 0 to 6.
 - Output: count, sum, average, minimum, and maximum with selected precision.
 - Edge cases: empty numeric input; precision outside 0..6.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language python --level 01-foundations --module formatted-output-and-iomanip --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

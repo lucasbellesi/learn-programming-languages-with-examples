@@ -9,6 +9,11 @@ This module introduces simple timing and allocation-aware optimization patterns 
 - Prerequisites: `02-core/algorithms-basics`, `03-advanced/structs-and-classes`.
 - Cross-Language Lens: Compare timing tools, allocation costs, and how each runtime changes the meaning of fast enough.
 
+## Learning Outcomes
+
+- `EXP-PER-01`: Measure before optimizing and interpret timing data cautiously.
+- `EXP-PER-02`: Relate algorithmic and allocation choices to observed cost.
+
 ## Quick Run
 
 ~~~bash
@@ -51,6 +56,16 @@ python example/main.py
 - Input: element count.
 - Output: elapsed seconds for list fill with and without pre-sized storage.
 - Edge cases: zero count; small sizes with little visible difference.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language python --level 04-expert --module performance-and-profiling-basics --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

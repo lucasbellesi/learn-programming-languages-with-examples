@@ -21,11 +21,19 @@ Write a program that:
 - Prerequisites: All `03-advanced` modules, especially `structs-and-classes`, `inheritance-and-polymorphism`, and `templates-basics`.
 - Learning Focus: Prove you can model abstractions, use reusable helpers, and summarize derived values correctly.
 
+## Learning Outcomes
+
+- `ADV-MOD-01`
+- `ADV-INV-02`
+- `ADV-POL-01`
+- `ADV-GEN-01`
+
 ## Quick Run
 
+Run the reference solution from the repository root:
+
 ```bash
-g++ -std=c++17 -Wall -Wextra -pedantic main.cpp -o assessment_03_advanced
-./assessment_03_advanced
+python scripts/automation.py check-checkpoint --language cpp --kind assessment --level 03-advanced --solution
 ```
 
 ## Expected Output (shape)
@@ -45,6 +53,16 @@ Computed areas: [...]
 - This is the canonical advanced assessment for abstraction, polymorphism, and generic reuse in one program.
 - Compared with the other tracks, it ties those ideas most directly to explicit ownership and compile-time templates.
 - Use it as the baseline when comparing what advanced abstraction looks like in each language.
+
+## Check Your Work
+
+Implement the task in `starter/`, then run from the repository root:
+
+```bash
+python scripts/automation.py check-checkpoint --language cpp --kind assessment --level 03-advanced
+```
+
+Use `--solution` only after completing a full attempt. Each failed case reports targeted feedback without exposing the implementation.
 
 ## What To Check
 

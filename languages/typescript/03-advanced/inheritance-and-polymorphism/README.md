@@ -9,6 +9,11 @@ This module introduces shared interfaces and subtype behavior in TypeScript.
 - Prerequisites: `03-advanced/structs-and-classes` and `03-advanced/constructors-and-invariants`.
 - Cross-Language Lens: Compare abstract classes, interfaces, and runtime dispatch across C++, C#, Go, Python, and TypeScript.
 
+## Learning Outcomes
+
+- `ADV-POL-01`: Program against a shared behavioral abstraction.
+- `ADV-POL-02`: Use dynamic dispatch without unsafe type assumptions.
+
 ## Quick Run
 
 ~~~bash
@@ -51,6 +56,16 @@ node build/typescript/03-advanced/inheritance-and-polymorphism/example/main.js
 - Input: one label.
 - Output: the same label rendered through two interface implementations.
 - Edge cases: empty label should print an error.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language typescript --level 03-advanced --module inheritance-and-polymorphism --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

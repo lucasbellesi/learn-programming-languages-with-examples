@@ -9,6 +9,11 @@ This module introduces copying behavior and transfer-style updates with slices a
 - Prerequisites: `03-advanced/structs-and-classes`, `03-advanced/constructors-and-invariants`.
 - Cross-Language Lens: Use this module to contrast C++ ownership transfer with reference-heavy behavior in C#, Go, and Python.
 
+## Learning Outcomes
+
+- `ADV-CPY-01`: Predict aliasing and independence after copying or sharing values.
+- `ADV-CPY-02`: Choose an idiomatic ownership-transfer strategy for the language.
+
 ## Quick Run
 
 ~~~bash
@@ -50,6 +55,16 @@ go run example/main.go
 - Input: text values to store.
 - Output: size and content checks after copy vs shared assignment.
 - Edge cases: empty strings; repeated insertions.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language go --level 03-advanced --module copy-and-move-semantics --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

@@ -11,11 +11,19 @@ Model courses and enrollments with Java classes, invariants, defensive copies, p
 - Prerequisites: All `03-advanced` modules, especially `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, and `templates-basics`.
 - Learning Focus: Integrate custom types, guarded state changes, copy boundaries, and reusable reporting in one small object-oriented program.
 
+## Learning Outcomes
+
+- `ADV-MOD-01`
+- `ADV-INV-02`
+- `ADV-POL-01`
+- `ADV-GEN-01`
+
 ## Quick Run
 
+Run the reference solution from the repository root:
+
 ```bash
-javac -d build/java languages/java/projects/03-advanced/Main.java
-java -cp build/java Main
+python scripts/automation.py check-checkpoint --language java --kind project --level 03-advanced --solution
 ```
 
 ## Requirements
@@ -25,6 +33,13 @@ java -cp build/java Main
 - Prevent enrollment beyond capacity and duplicate student IDs.
 - Return immutable snapshots instead of internal mutable lists.
 - Print multiple reportable objects through one generic helper.
+
+## Milestones
+
+1. Model the input and domain rules.
+2. Implement the smallest end-to-end workflow.
+3. Add validation and boundary behavior.
+4. Refactor only after every configured case passes.
 
 ## Concepts Practiced
 
@@ -57,6 +72,16 @@ JavaAdvanced roster snapshot: 2
 - external list changes do not mutate the catalog
 - report output reflects the final object state
 - generic reporting works for more than one concrete object
+
+## Check Your Work
+
+Implement the task in `starter/`, then run from the repository root:
+
+```bash
+python scripts/automation.py check-checkpoint --language java --kind project --level 03-advanced
+```
+
+Use `--solution` only after completing a full attempt. Each failed case reports targeted feedback without exposing the implementation.
 
 ## Extension Ideas
 

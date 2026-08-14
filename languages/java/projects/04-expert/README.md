@@ -11,11 +11,19 @@ Build a concurrent pipeline simulator with explicit resource ownership, determin
 - Prerequisites: All `04-expert` modules, especially `concurrency-basics`, `performance-and-profiling-basics`, and `modularization-and-build-structure`.
 - Learning Focus: Integrate reusable components, runtime measurements, concurrent coordination, and deterministic cleanup into one cohesive Java capstone.
 
+## Learning Outcomes
+
+- `EXP-MEM-02`
+- `EXP-CON-01`
+- `EXP-PER-01`
+- `EXP-MOD-01`
+
 ## Quick Run
 
+Run the reference solution from the repository root:
+
 ```bash
-javac -d build/java -sourcepath languages/java/projects/04-expert languages/java/projects/04-expert/Main.java
-java -cp build/java Main
+python scripts/automation.py check-checkpoint --language java --kind project --level 04-expert --solution
 ```
 
 ## Requirements
@@ -52,6 +60,16 @@ Only the measured microsecond value should vary.
 - per-step summary counts match the processed workload under concurrent execution
 - the executor is terminated after the `try-with-resources` scope
 - elapsed timing is reported as a positive measurement
+
+## Check Your Work
+
+Implement the task in `starter/`, then run from the repository root:
+
+```bash
+python scripts/automation.py check-checkpoint --language java --kind project --level 04-expert
+```
+
+Use `--solution` only after completing a full attempt. Each failed case reports targeted feedback without exposing the implementation.
 
 ## Extension Ideas
 

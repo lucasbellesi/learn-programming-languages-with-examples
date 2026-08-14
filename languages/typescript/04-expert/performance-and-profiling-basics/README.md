@@ -9,6 +9,11 @@ This module introduces basic measurement and comparison tools in TypeScript usin
 - Prerequisites: `02-core/algorithms-basics`, `02-core/maps-and-frequency-counting`, and `03-advanced/copy-and-move-semantics`.
 - Cross-Language Lens: Compare Node timing tools and allocation costs with native profilers and lower-level memory behavior in other tracks.
 
+## Learning Outcomes
+
+- `EXP-PER-01`: Measure before optimizing and interpret timing data cautiously.
+- `EXP-PER-02`: Relate algorithmic and allocation choices to observed cost.
+
 ## Quick Run
 
 ~~~bash
@@ -52,6 +57,16 @@ node build/typescript/04-expert/performance-and-profiling-basics/example/main.js
 - Input: none.
 - Output: average milliseconds for both string-building approaches.
 - Edge cases: workloads too small to show a meaningful difference.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language typescript --level 04-expert --module performance-and-profiling-basics --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

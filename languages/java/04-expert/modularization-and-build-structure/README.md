@@ -9,6 +9,11 @@ This module shows how to split a Java console program into focused source files 
 - Prerequisites: `02-core/file-io-basics`, `03-advanced/structs-and-classes`, `04-expert/performance-and-profiling-basics`.
 - Cross-Language Lens: Compare Java source sets and packages with C++ compilation units, C# projects, Go packages, Python modules, and TypeScript imports.
 
+## Learning Outcomes
+
+- `EXP-MOD-01`: Separate public contracts from implementation details.
+- `EXP-MOD-02`: Organize a multi-file program with an explicit build boundary.
+
 ## Quick Run
 
 ~~~bash
@@ -55,6 +60,16 @@ java -cp build/java Main
 - Input: command name and two integers.
 - Output: result from the registered operation.
 - Edge cases: unsupported command; division by zero.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language java --level 04-expert --module modularization-and-build-structure --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

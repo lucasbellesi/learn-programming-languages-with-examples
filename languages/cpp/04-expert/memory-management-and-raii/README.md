@@ -9,6 +9,11 @@ This module introduces ownership and deterministic cleanup in C++.
 - Prerequisites: `01-foundations/scope-and-lifetime-basics`, `03-advanced/structs-and-classes`.
 - Cross-Language Lens: Contrast deterministic cleanup in C++ with `IDisposable`, `defer`, and context-manager style resource handling.
 
+## Learning Outcomes
+
+- `EXP-MEM-01`: Explain the language's resource and memory lifetime model.
+- `EXP-MEM-02`: Guarantee deterministic cleanup for non-memory resources.
+
 ## Quick Run
 
 ```bash
@@ -56,6 +61,16 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o memory_raii_example
 - Input: none (scope demonstration).
 - Output: enter/exit logs proving automatic cleanup.
 - Edge cases: nested scopes; final counter should return to zero.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language cpp --level 04-expert --module memory-management-and-raii --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

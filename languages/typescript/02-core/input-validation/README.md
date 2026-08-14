@@ -9,6 +9,11 @@ This module teaches defensive validation patterns for TypeScript console program
 - Prerequisites: `01-foundations/types-and-io` and `01-foundations/control-flow`.
 - Cross-Language Lens: Compare retry-loop validation in TypeScript with the same logic in C++, C#, Go, and Python, especially where parsing APIs fail differently.
 
+## Learning Outcomes
+
+- `COR-VAL-01`: Reject malformed and out-of-domain input without corrupting state.
+- `COR-VAL-02`: Design retry and termination behavior that cannot loop accidentally.
+
 ## Quick Run
 
 ~~~bash
@@ -45,6 +50,16 @@ node build/typescript/02-core/input-validation/example/main.js
 - Input: score count in range `1..50`, followed by that many scores in range `0..100`.
 - Output: average score.
 - Edge cases: missing scores; invalid score values; boundary values `0` and `100`.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language typescript --level 02-core --module input-validation --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

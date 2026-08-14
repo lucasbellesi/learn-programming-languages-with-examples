@@ -9,6 +9,11 @@ This module expands ownership modeling with `unique_ptr`, `shared_ptr`, and `wea
 - Prerequisites: `04-expert/memory-management-and-raii`.
 - Cross-Language Lens: Compare explicit ownership tools in C++ with managed references, pointer conventions, and weak-reference patterns elsewhere.
 
+## Learning Outcomes
+
+- `EXP-OWN-01`: Model exclusive, shared, and non-owning relationships idiomatically.
+- `EXP-OWN-02`: Prevent leaks, cycles, and stale observations in ownership graphs.
+
 ## Quick Run
 
 ```bash
@@ -56,6 +61,16 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o smart_pointers_exampl
 - Input: none.
 - Output: cycle-safe parent/child relationship logs.
 - Edge cases: expired weak references; parent reset behavior.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language cpp --level 04-expert --module smart-pointers-in-depth --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

@@ -9,6 +9,11 @@ This module introduces simple measurement and optimization patterns.
 - Prerequisites: `02-core/algorithms-basics`, `03-advanced/structs-and-classes`.
 - Cross-Language Lens: Compare timing tools, allocation costs, and how each runtime changes the meaning of fast enough.
 
+## Learning Outcomes
+
+- `EXP-PER-01`: Measure before optimizing and interpret timing data cautiously.
+- `EXP-PER-02`: Relate algorithmic and allocation choices to observed cost.
+
 ## Quick Run
 
 ```bash
@@ -56,6 +61,16 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o performance_profiling
 - Input: element count.
 - Output: timing for push_back with and without reserve.
 - Edge cases: zero count; large count.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language cpp --level 04-expert --module performance-and-profiling-basics --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

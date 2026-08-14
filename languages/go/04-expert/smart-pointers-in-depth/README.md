@@ -9,6 +9,11 @@ This module adapts smart pointer ideas to Go pointers, nil-safe ownership slots,
 - Prerequisites: `04-expert/memory-management-and-raii`.
 - Cross-Language Lens: Compare explicit ownership tools in C++ with managed references, pointer conventions, and weak-reference patterns elsewhere.
 
+## Learning Outcomes
+
+- `EXP-OWN-01`: Model exclusive, shared, and non-owning relationships idiomatically.
+- `EXP-OWN-02`: Prevent leaks, cycles, and stale observations in ownership graphs.
+
 ## Quick Run
 
 ~~~bash
@@ -51,6 +56,16 @@ go run example/main.go
 - Input: none.
 - Output: parent/child navigation logs with nil-safe checks.
 - Edge cases: detached child pointer; missing parent pointer.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language go --level 04-expert --module smart-pointers-in-depth --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

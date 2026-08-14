@@ -9,6 +9,11 @@ This module teaches robust error checks and safe failure behavior.
 - Prerequisites: `02-core/input-validation`, `02-core/file-io-basics`.
 - Cross-Language Lens: Compare exceptions, error returns, and guard-style validation as different ways to keep programs safe.
 
+## Learning Outcomes
+
+- `COR-ERR-01`: Separate expected failures from programming defects.
+- `COR-ERR-02`: Preserve valid state and useful diagnostics when operations fail.
+
 ## Quick Run
 
 ```bash
@@ -50,6 +55,16 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o defensive_programming
 - Input: pairs of numbers for division until valid.
 - Output: quotient or error/retry message.
 - Edge cases: divisor zero; non-numeric input.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language cpp --level 02-core --module error-handling-and-defensive-programming --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

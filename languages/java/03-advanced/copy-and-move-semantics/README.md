@@ -9,6 +9,11 @@ This module adapts copy and move semantics to Java through references, aliasing,
 - Prerequisites: `03-advanced/structs-and-classes`, `03-advanced/constructors-and-invariants`, `03-advanced/templates-basics`.
 - Cross-Language Lens: Compare C++ ownership transfer with Java's reference assignment, copying helpers, and immutable collection boundaries.
 
+## Learning Outcomes
+
+- `ADV-CPY-01`: Predict aliasing and independence after copying or sharing values.
+- `ADV-CPY-02`: Choose an idiomatic ownership-transfer strategy for the language.
+
 ## Quick Run
 
 ~~~bash
@@ -53,6 +58,16 @@ java -cp build/java Main
 - Input: task names.
 - Output: internal task count after an external list changes.
 - Edge cases: empty task list; repeated task names.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language java --level 03-advanced --module copy-and-move-semantics --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 
