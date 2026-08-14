@@ -2026,6 +2026,8 @@ def verify_language(ctx: RepoContext, language: str) -> None:
     check_example_output_contracts(ctx, language_filter=language)
     print(f"Running {language} exercise contracts...")
     check_exercise_output_contracts(ctx, language_filter=language)
+    print(f"Running {language} checkpoint contracts...")
+    check_solution_checkpoint_contracts(ctx, language_filter=language)
     print(f"Language verification passed: {language}.")
 
 
@@ -2782,6 +2784,51 @@ def check_learning_checkpoint(
 
     run_checkpoint_jobs(source_root, jobs, source_kind)
     print(f"Checkpoint check passed for {label} ({len(jobs)} cases).")
+
+
+def check_solution_checkpoint_contracts(
+    ctx: RepoContext, *, language_filter: str | None = None
+) -> None:
+    if language_filter is not None and language_filter not in ctx.manifest.languages:
+        supported = ", ".join(sorted(ctx.manifest.languages))
+        raise AutomationError(
+            "Unsupported checkpoint language filter: "
+            f"{language_filter}. Expected one of: {supported}."
+        )
+
+    try:
+        checkpoints = load_learning_checkpoints(ctx.scripts_dir)
+    except CurriculumError as error:
+        raise AutomationError(str(error)) from error
+
+    selected = [
+        checkpoint
+        for checkpoint in checkpoints
+        if language_filter is None or checkpoint.get("language") == language_filter
+    ]
+    if not selected:
+        suffix = f" for language '{language_filter}'" if language_filter else ""
+        raise AutomationError(f"No checkpoint contracts configured{suffix}.")
+
+    for checkpoint in sorted(
+        selected,
+        key=lambda item: (
+            str(item.get("language")),
+            str(item.get("kind")),
+            str(item.get("level")),
+        ),
+    ):
+        check_learning_checkpoint(
+            ctx,
+            language=str(checkpoint["language"]),
+            kind=str(checkpoint["kind"]),
+            level=str(checkpoint["level"]),
+            submission=None,
+            use_solution=True,
+        )
+
+    suffix = f" in language '{language_filter}'" if language_filter else ""
+    print(f"Checkpoint contracts passed for {len(selected)} solutions{suffix}.")
 
 
 def is_vacuous_stdout_pattern(pattern: str) -> bool:
@@ -3910,43 +3957,46 @@ def test_automation(ctx: RepoContext) -> None:
 def verify_repo(ctx: RepoContext) -> None:
     python_cmd = find_python_command()
 
-    print("[1/13] Running automation unit tests...")
+    print("[1/14] Running automation unit tests...")
     test_automation(ctx)
 
-    print("[2/13] Checking markdown links...")
+    print("[2/14] Checking markdown links...")
     run_command([python_cmd, str(ctx.scripts_dir / "check-links.py")], action="Markdown link check")
 
-    print("[3/13] Checking README structure...")
+    print("[3/14] Checking README structure...")
     check_readme_structure(ctx)
 
-    print("[4/13] Checking module completeness...")
+    print("[4/14] Checking module completeness...")
     check_module_completeness(ctx)
 
-    print("[5/13] Checking checkpoint completeness...")
+    print("[5/14] Checking checkpoint completeness...")
     check_checkpoint_completeness(ctx)
 
-    print("[6/13] Checking documentation sync...")
+    print("[6/14] Checking documentation sync...")
     check_doc_sync(ctx)
 
-    print("[7/13] Checking example comments...")
+    print("[7/14] Checking example comments...")
     check_example_comments(ctx)
 
-    print("[8/13] Checking education quality gate...")
+    print("[8/14] Checking education quality gate...")
     audit_education_quality(ctx, fail_on_blocking_findings=True)
 
-    print("[9/13] Checking cross-language parity...")
+    print("[9/14] Checking cross-language parity...")
     check_cross_language_parity(ctx)
 
-    print("[10/13] Checking exercise parity...")
+    print("[10/14] Checking exercise parity...")
     check_exercise_parity(ctx)
 
-    print("[11/13] Checking example output contracts...")
+    print("[11/14] Checking example output contracts...")
     check_example_output_contracts(ctx)
 
-    print("[12/13] Checking exercise output contracts...")
+    print("[12/14] Checking exercise output contracts...")
     check_exercise_output_contracts(ctx)
 
-    print("[13/13] Compiling compiled-language tracks...")
+    print("[13/14] Checking checkpoint solution contracts...")
+    check_solution_checkpoint_contracts(ctx)
+
+    print("[14/14] Compiling compiled-language tracks...")
     build_all(ctx)
 
     print("Repository verification completed successfully.")
