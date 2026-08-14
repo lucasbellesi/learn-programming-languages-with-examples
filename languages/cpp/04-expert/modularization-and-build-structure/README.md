@@ -9,6 +9,11 @@ This module introduces basic multi-file organization principles.
 - Prerequisites: `02-core/file-io-basics`, `03-advanced/structs-and-classes`.
 - Cross-Language Lens: Compare packages, projects, modules, and compilation units as different ways to scale beyond one file.
 
+## Learning Outcomes
+
+- `EXP-MOD-01`: Separate public contracts from implementation details.
+- `EXP-MOD-02`: Organize a multi-file program with an explicit build boundary.
+
 ## Quick Run
 
 ```bash
@@ -56,6 +61,16 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o modularization_exampl
 - Input: command choice and numbers.
 - Output: reused utility operation results.
 - Edge cases: unsupported command; negative values.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language cpp --level 04-expert --module modularization-and-build-structure --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

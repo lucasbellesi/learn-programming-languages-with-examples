@@ -9,6 +9,11 @@ This module introduces reusable logic through function design.
 - Prerequisites: `01-foundations/control-flow`, `01-foundations/operators-and-expressions`.
 - Cross-Language Lens: Compare helper-function design, argument passing defaults, and overloading support across the four tracks.
 
+## Learning Outcomes
+
+- `FND-FUN-01`: Decompose a problem into focused functions with explicit contracts.
+- `FND-FUN-02`: Use parameters and return values without hidden state changes.
+
 ## Quick Run
 
 ```bash
@@ -24,6 +29,8 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o functions_example
 g++ -std=c++17 -Wall -Wextra -pedantic example/function-overload-basics.cpp -o functions_overload_basics
 ./functions_overload_basics
 ```
+
+- `example/parameter-passing.cpp` contrasts pass-by-value and pass-by-reference.
 
 ## Topics Covered
 
@@ -60,6 +67,16 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/function-overload-basics.cpp -o f
 - Input: one line of text.
 - Output: vowel count.
 - Edge cases: empty string returns `0`; uppercase vowels should be counted.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language cpp --level 01-foundations --module functions --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

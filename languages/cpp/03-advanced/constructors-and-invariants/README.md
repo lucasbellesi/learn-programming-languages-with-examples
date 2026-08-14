@@ -9,6 +9,11 @@ This module shows how constructors enforce valid object state.
 - Prerequisites: `03-advanced/structs-and-classes`.
 - Cross-Language Lens: Compare constructor rules, validation points, and object setup guarantees in each track.
 
+## Learning Outcomes
+
+- `ADV-INV-01`: Construct objects only in valid states.
+- `ADV-INV-02`: Keep mutations from violating established invariants.
+
 ## Quick Run
 
 ```bash
@@ -50,6 +55,16 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o constructors_invarian
 - Input: month and day values.
 - Output: valid/invalid date result.
 - Edge cases: month out of range; day out of range for month.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language cpp --level 03-advanced --module constructors-and-invariants --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

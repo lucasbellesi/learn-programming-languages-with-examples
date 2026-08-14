@@ -39,18 +39,27 @@ If you only want to learn one track, follow that track README first because lang
    - Java: `01-foundations`, then `02-core`, `03-advanced`, and `04-expert`
    - C#, Go, Python, TypeScript: `01-foundations`
 3. Run one module example.
-4. Solve `exercises/01` and `exercises/02` in that module. The `types-and-io` modules provide editable starters plus automated checks as the first guided-practice pilot.
+4. Solve the two starter files in that module and check every named normal and edge case.
 5. Mark progress in the language checklist.
 
-### Guided Exercise Pilot
+### Practical Course Workflow
 
-The `01-foundations/types-and-io` module in every language separates editable starters from reference solutions. Edit the exercise file, then check it from the repository root:
+Run every command from the repository root. First confirm the selected toolchain, then run a module and check a starter:
 
 ~~~bash
+python scripts/automation.py doctor --language python
+python scripts/automation.py run-module --module-path languages/python/01-foundations/types-and-io
 python scripts/automation.py check-exercise --language python --level 01-foundations --module types-and-io --exercise 01
 ~~~
 
-Use `--submission <repo-relative-path>` to check another file. TypeScript submissions must remain under `languages/typescript` so the track configuration can compile them. Reference solutions live under each module's `exercises/solutions/` directory and can be verified with `--solution` after you have attempted the task.
+All 288 exercises separate editable starters from reference solutions. Use `--submission <repo-relative-path>` to check another file. TypeScript submissions must remain under `languages/typescript` so the track configuration can compile them. Reference solutions live under each module's `exercises/solutions/` directory and can be verified with `--solution` after a complete attempt.
+
+Projects and assessments follow the same rule: work in `starter/`, keep `solutions/` closed until review, and check from the root:
+
+~~~bash
+python scripts/automation.py check-checkpoint --language python --kind project --level 01-foundations
+python scripts/automation.py check-checkpoint --language python --kind assessment --level 01-foundations
+~~~
 
 PowerShell and Bash wrappers are also available as `./scripts/check-exercise.ps1` and `bash ./scripts/check-exercise.sh`; pass them the same arguments shown above after `check-exercise`.
 
@@ -65,7 +74,7 @@ PowerShell and Bash wrappers are also available as `./scripts/check-exercise.ps1
 
 | Language | Current Levels | Coverage | Track Status |
 | --- | --- | --- | --- |
-| C++ | 00-setup, 01-foundations, 02-core, 03-advanced, 04-expert | Foundations, Core, Advanced, Expert, projects, assessments | Most complete and primary track |
+| C++ | 00-setup, 01-foundations, 02-core, 03-advanced, 04-expert | Foundations, Core, Advanced, Expert, projects, assessments | Canonical reference track for curriculum order |
 | C# | 01-foundations, 02-core, 03-advanced, 04-expert | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 5/5 expert modules, 4/4 projects, 4/4 assessments | Module and checkpoint parity complete through expert |
 | Go | 01-foundations, 02-core, 03-advanced, 04-expert | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 5/5 expert modules, 4/4 projects, 4/4 assessments | Module and checkpoint parity complete through expert |
 | Java | 01-foundations, 02-core, 03-advanced, 04-expert | 8/8 foundations modules, 6/6 core modules, 5/5 advanced modules, 5/5 expert modules, 4/4 projects, 4/4 assessments | Module and checkpoint parity complete through expert |
@@ -137,12 +146,15 @@ learn-programming-languages-with-examples/
 
 All concept module README files under `languages/<language>/<level>/<module>/README.md` follow one required structure:
 
-1. `## Quick Run`
-2. `## Topics Covered`
-3. `## Common Pitfalls`
-4. `## Exercise Focus`
-5. `### Exercise Specs`
-6. `## Checkpoint`
+1. `## Learning Metadata`
+2. `## Learning Outcomes`
+3. `## Quick Run`
+4. `## Topics Covered`
+5. `## Common Pitfalls`
+6. `## Exercise Focus`
+7. `### Exercise Specs`
+8. `## Check Your Work`
+9. `## Checkpoint`
 
 Reference: [Module README Style](languages/cpp/MODULE_README_STYLE.md)
 
@@ -154,11 +166,12 @@ A standardized `## Learning Metadata` block is required before `## Quick Run` fo
 
 `## Cross-Language Notes` is the recommended comparison section for new or substantially updated modules and checkpoints. Keep it short, concrete, and honest about where concepts do not map one-to-one.
 
-Checkpoint artifacts under `languages/<language>/projects/*` and `languages/<language>/assessments/*` should mirror the corresponding C++ checkpoint style:
+Checkpoint artifacts under `languages/<language>/projects/*` and `languages/<language>/assessments/*` use this course structure:
 
 - `README.md`
-- runnable entrypoint (`main.cpp` in C++, `main.cs` + `.csproj` in C#, `main.go` in Go, `main.py` in Python, `Main.java` in Java, or `main.ts` in TypeScript)
-- same learner goal, input/output shape, and acceptance expectations as the C++ version
+- incomplete learner files under `starter/`
+- runnable reference implementation under `solutions/`
+- the level's shared outcome IDs, with idiomatic scenarios and acceptance expectations for the language
 
 ## Example Commenting Standard
 
@@ -226,14 +239,14 @@ bash ./scripts/verify-repo.sh
 
 GitHub Actions validates links, README structure, module completeness, checkpoint completeness, documentation sync, compiled-language builds, multi-language smoke checks, and Linux lint checks for C++, Python, Go, C#, Java, and TypeScript.
 
-The public PowerShell and Bash scripts remain the supported entrypoints, but they now delegate to a shared Python automation core under `scripts/automation.py` backed by `scripts/automation_manifest.json`.
+The public PowerShell and Bash scripts remain supported entrypoints. The documented course interface is `python scripts/automation.py`, backed by `scripts/automation_manifest.json`, `scripts/curriculum_outcomes.json`, `scripts/learning_exercises.json`, and `scripts/learning_checkpoints.json`.
 
 Use `clean-artifacts` when you want to remove generated build outputs, reports, temporary binaries, and exercise report files without removing dependencies such as `node_modules`.
 
 The multi-language smoke scripts also compile standalone C# exercises by generating temporary validation projects during the check and compile TypeScript programs before executing their smoke targets, and compile Java single-file programs with Java 21.
 
 Use [EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md](EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md) to keep entry examples pedagogically consistent during reviews. The education audit command writes markdown/json findings; `verify-repo` fails on blocking findings, while oversized-example findings remain advisory unless you opt into strict mode.
-Use [EDUCATIONAL_ANTI_PATTERN_BACKLOG.md](EDUCATIONAL_ANTI_PATTERN_BACKLOG.md) for the prioritized anti-pattern vs corrected-example expansion plan.
+Use [ROADMAP.md](ROADMAP.md) for current priorities. The anti-pattern expansion is intentionally deferred until guided practice and checkpoint validation remain stable.
 
 `verify-repo` now fails on blocking education-quality findings: low example-comment ratio, missing output explanation markers, or boilerplate comments. Oversized example findings remain advisory. When you want the stricter local cleanup mode that also fails on oversized examples, run:
 

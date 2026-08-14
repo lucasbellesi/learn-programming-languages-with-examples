@@ -1,30 +1,7 @@
-﻿#include <iostream>
-using namespace std;
-
-class Shape {
-  public:
-    virtual ~Shape() = default;
-    virtual double area() const = 0;
-};
-
-class Triangle : public Shape {
-  public:
-    Triangle(double baseValue, double heightValue) : base(baseValue), height(heightValue) {}
-
-    double area() const override { return 0.5 * base * height; }
-
-  private:
-    double base;
-    double height;
-};
+#include <iostream>
 
 int main() {
-    double base = 0.0;
-    double height = 0.0;
-    cout << "Enter base and height: ";
-    cin >> base >> height;
-
-    Triangle triangle(base, height);
-    cout << "Triangle area: " << triangle.area() << '\n';
+    // TODO: implement the README specification (ADV-POL-01, ADV-POL-02).
+    std::cout << "TODO: implement this exercise\n";
     return 0;
 }

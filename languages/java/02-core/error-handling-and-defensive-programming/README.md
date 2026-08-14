@@ -9,6 +9,11 @@ This module practices handling invalid operations and malformed records explicit
 - Prerequisites: `02-core/input-validation`, `02-core/file-io-basics`.
 - Cross-Language Lens: Compare Java exceptions and guard clauses with defensive patterns in C++, C#, Go, Python, and TypeScript.
 
+## Learning Outcomes
+
+- `COR-ERR-01`: Separate expected failures from programming defects.
+- `COR-ERR-02`: Preserve valid state and useful diagnostics when operations fail.
+
 ## Quick Run
 
 ~~~bash
@@ -51,6 +56,16 @@ java -cp build/java Main
 - Input: rows shaped as `name score` until EOF.
 - Output: accepted row count, skipped row count, and average score.
 - Edge cases: malformed rows; score outside 0..100.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language java --level 02-core --module error-handling-and-defensive-programming --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

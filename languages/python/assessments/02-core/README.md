@@ -26,10 +26,19 @@ Write a program that:
 - Prerequisites: All `02-core` modules, especially `input-validation`, `maps-and-frequency-counting`, and `error-handling-and-defensive-programming`.
 - Learning Focus: Prove validation, aggregation, defensive handling, and report generation under mixed-quality input.
 
+## Learning Outcomes
+
+- `COR-VAL-01`
+- `COR-ALG-01`
+- `COR-FIO-01`
+- `COR-ERR-02`
+
 ## Quick Run
 
+Run the reference solution from the repository root:
+
 ```bash
-python main.py
+python scripts/automation.py check-checkpoint --language python --kind assessment --level 02-core --solution
 ```
 
 ## Sample Input
@@ -69,6 +78,16 @@ Report written to core_assessment_report.txt
 - Compared with the C++ assessment, this version shortens the mechanics of filtering and counting while keeping the same correctness bar.
 - Relative to C#, Go, and TypeScript, more trust is placed in disciplined runtime checks than in compile-time structure.
 - The comparison to watch is concise code versus explicit static guarantees.
+
+## Check Your Work
+
+Implement the task in `starter/`, then run from the repository root:
+
+```bash
+python scripts/automation.py check-checkpoint --language python --kind assessment --level 02-core
+```
+
+Use `--solution` only after completing a full attempt. Each failed case reports targeted feedback without exposing the implementation.
 
 ## What To Check
 

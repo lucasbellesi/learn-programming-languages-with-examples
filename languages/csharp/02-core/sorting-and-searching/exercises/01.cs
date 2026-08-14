@@ -1,41 +1,10 @@
 using System;
-using System.Collections.Generic;
 
-class Program
+internal static class Program
 {
-    static void Main()
+    private static void Main()
     {
-        Console.Write("How many numbers? ");
-        int n = int.Parse(Console.ReadLine() ?? "0");
-
-        if (n <= 0)
-        {
-            Console.WriteLine("Please enter a positive count.");
-            return;
-        }
-
-        List<int> values = new List<int>();
-        for (int i = 0; i < n; i++)
-        {
-            values.Add(int.Parse(Console.ReadLine() ?? "0"));
-        }
-
-        for (int i = 0; i < n - 1; i++)
-        {
-            int minIndex = i;
-            for (int j = i + 1; j < n; j++)
-            {
-                if (values[j] < values[minIndex])
-                {
-                    minIndex = j;
-                }
-            }
-
-            int temp = values[i];
-            values[i] = values[minIndex];
-            values[minIndex] = temp;
-        }
-
-        Console.WriteLine(string.Join(" ", values));
+        // TODO: implement the README specification (COR-SRT-01, COR-SRT-02).
+        Console.WriteLine("TODO: implement this exercise");
     }
 }

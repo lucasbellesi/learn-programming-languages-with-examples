@@ -9,6 +9,11 @@ This module covers arithmetic, relational, and logical expressions in C++.
 - Prerequisites: `01-foundations/types-and-io`.
 - Cross-Language Lens: Compare integer division, boolean logic, and truthiness rules before assuming the same expression means the same thing in every language.
 
+## Learning Outcomes
+
+- `FND-OPE-01`: Build expressions with correct precedence and explicit intent.
+- `FND-OPE-02`: Distinguish arithmetic, comparison, and logical operations.
+
 ## Quick Run
 
 ```bash
@@ -50,6 +55,16 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o operators_example
 - Input: base price, discount eligibility (`0` or `1`), tax rate.
 - Output: final price after discount and tax.
 - Edge cases: no discount case; zero tax case.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language cpp --level 01-foundations --module operators-and-expressions --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

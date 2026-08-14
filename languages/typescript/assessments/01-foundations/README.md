@@ -24,12 +24,20 @@ Write a program that:
 - Prerequisites: All `01-foundations` modules, especially `types-and-io`, `control-flow`, and `strings`.
 - Learning Focus: Prove you can read structured input, preserve names, and compute accurate summaries without step-by-step scaffolding.
 
+## Learning Outcomes
+
+- `FND-TIO-02`
+- `FND-CFL-02`
+- `FND-FUN-01`
+- `FND-SEQ-02`
+
 ## Quick Run
 
-~~~bash
-npm run build:typescript
-node build/typescript/assessments/01-foundations/main.js
-~~~
+Run the reference solution from the repository root:
+
+```bash
+python scripts/automation.py check-checkpoint --language typescript --kind assessment --level 01-foundations --solution
+```
 
 ## Sample Input
 
@@ -61,6 +69,16 @@ Passed: 2/3
 - Compared with the C++ assessment, this version keeps the same input-and-summary challenge in a Node console setting.
 - Relative to Python, static types give more guidance for records and aggregates without changing the runtime parsing model.
 - The main comparison is typed beginner architecture over a scripting-style execution environment.
+
+## Check Your Work
+
+Implement the task in `starter/`, then run from the repository root:
+
+```bash
+python scripts/automation.py check-checkpoint --language typescript --kind assessment --level 01-foundations
+```
+
+Use `--solution` only after completing a full attempt. Each failed case reports targeted feedback without exposing the implementation.
 
 ## What To Check
 

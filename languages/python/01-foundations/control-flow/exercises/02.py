@@ -1,13 +1,7 @@
-print("Enter integers (-1 to stop):")
-values = []
+def main() -> None:
+    # TODO: implement the README specification (FND-CFL-01, FND-CFL-02).
+    print("TODO: implement this exercise")
 
-while True:
-    current = int(input())
-    if current == -1:
-        break
-    values.append(current)
 
-if not values:
-    print("No values entered.")
-else:
-    print(f"Average: {sum(values) / len(values)}")
+if __name__ == "__main__":
+    main()

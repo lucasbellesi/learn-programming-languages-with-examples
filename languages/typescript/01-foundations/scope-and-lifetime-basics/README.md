@@ -9,6 +9,11 @@ This module explains block scope and closure-based lifetime in beginner TypeScri
 - Prerequisites: 01-foundations/functions and 01-foundations/control-flow.
 - Cross-Language Lens: Compare block scope everywhere, then contrast TypeScript closures and GC-managed lifetime with C++ stack lifetime.
 
+## Learning Outcomes
+
+- `FND-SCP-01`: Predict name visibility across nested scopes.
+- `FND-SCP-02`: Explain when values and resources cease to be usable.
+
 ## Quick Run
 
 ~~~bash
@@ -45,6 +50,16 @@ node build/typescript/01-foundations/scope-and-lifetime-basics/example/main.js
 - Input: one word and one replacement word.
 - Output: outer and inner values to show the scopes stay separate.
 - Edge cases: empty words should print an error; identical words should still demonstrate two scopes.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language typescript --level 01-foundations --module scope-and-lifetime-basics --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

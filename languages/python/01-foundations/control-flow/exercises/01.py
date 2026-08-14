@@ -1,11 +1,7 @@
-n = int(input("Run FizzBuzz up to: "))
+def main() -> None:
+    # TODO: implement the README specification (FND-CFL-01, FND-CFL-02).
+    print("TODO: implement this exercise")
 
-for i in range(1, n + 1):
-    if i % 15 == 0:
-        print("FizzBuzz")
-    elif i % 3 == 0:
-        print("Fizz")
-    elif i % 5 == 0:
-        print("Buzz")
-    else:
-        print(i)
+
+if __name__ == "__main__":
+    main()

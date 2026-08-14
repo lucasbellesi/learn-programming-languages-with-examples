@@ -9,6 +9,11 @@ This module practices reading typed input carefully and turning raw text into va
 - Prerequisites: Java 21 JDK and prior modules in this level.
 - Cross-Language Lens: Compare Java's explicit class and type requirements with the same concept in C++, C#, Go, Python, and TypeScript.
 
+## Learning Outcomes
+
+- `FND-TIO-01`: Choose suitable primitive values and variables for a small problem.
+- `FND-TIO-02`: Read, validate, transform, and present console data.
+
 ## Quick Run
 
 ~~~bash
@@ -60,6 +65,16 @@ python scripts/automation.py check-exercise --language java --level 01-foundatio
 ~~~
 
 3. Change `--exercise` to `02` for the second task. Reference implementations are under `exercises/solutions/`; use `--solution` only after attempting the exercise.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language java --level 01-foundations --module types-and-io --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

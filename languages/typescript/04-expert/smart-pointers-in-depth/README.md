@@ -9,6 +9,11 @@ This module adapts smart pointer ideas to TypeScript references, ownership trans
 - Prerequisites: `04-expert/memory-management-and-raii` and `03-advanced/copy-and-move-semantics`.
 - Cross-Language Lens: Compare C++ smart pointers with TypeScript object references, transfer-by-convention, and cloning when aliases become risky.
 
+## Learning Outcomes
+
+- `EXP-OWN-01`: Model exclusive, shared, and non-owning relationships idiomatically.
+- `EXP-OWN-02`: Prevent leaks, cycles, and stale observations in ownership graphs.
+
 ## Quick Run
 
 ~~~bash
@@ -52,6 +57,16 @@ node build/typescript/04-expert/smart-pointers-in-depth/example/main.js
 - Input: none.
 - Output: original and cloned preference states after editing only the clone.
 - Edge cases: nested arrays or objects that would break a shallow copy.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language typescript --level 04-expert --module smart-pointers-in-depth --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

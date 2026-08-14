@@ -9,6 +9,11 @@ This module focuses on constructors that reject invalid state and keep objects t
 - Prerequisites: `03-advanced/structs-and-classes` and `02-core/input-validation`.
 - Cross-Language Lens: Compare constructor validation across C++, C#, Go factory patterns, Python initializers, and TypeScript classes.
 
+## Learning Outcomes
+
+- `ADV-INV-01`: Construct objects only in valid states.
+- `ADV-INV-02`: Keep mutations from violating established invariants.
+
 ## Quick Run
 
 ~~~bash
@@ -45,6 +50,16 @@ node build/typescript/03-advanced/constructors-and-invariants/example/main.js
 - Input: minimum and maximum temperatures.
 - Output: validated range or an error.
 - Edge cases: minimum above maximum; invalid numbers.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language typescript --level 03-advanced --module constructors-and-invariants --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

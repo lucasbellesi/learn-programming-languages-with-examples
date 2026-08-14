@@ -1,25 +1,7 @@
-﻿#include <iostream>
-#include <memory>
-using namespace std;
-
-class Resource {
-  public:
-    Resource() { cout << "Resource acquired\n"; }
-
-    ~Resource() { cout << "Resource released\n"; }
-};
+#include <iostream>
 
 int main() {
-    unique_ptr<Resource> resource(new Resource());
-
-    unique_ptr<Resource> moved = move(resource);
-    if (!resource) {
-        cout << "Ownership moved successfully.\n";
-    }
-
-    if (moved) {
-        cout << "Moved owner is active.\n";
-    }
-
+    // TODO: implement the README specification (EXP-OWN-01, EXP-OWN-02).
+    std::cout << "TODO: implement this exercise\n";
     return 0;
 }

@@ -9,6 +9,11 @@ This module introduces generic programming with type hints and reusable classes.
 - Prerequisites: `01-foundations/functions`, `03-advanced/structs-and-classes`.
 - Cross-Language Lens: Compare C++ templates with C# generics, Go type parameters, and Python's runtime flexibility.
 
+## Learning Outcomes
+
+- `ADV-GEN-01`: Express reusable type-safe behavior with language generics.
+- `ADV-GEN-02`: Apply constraints when an operation requires specific capabilities.
+
 ## Quick Run
 
 ~~~bash
@@ -50,6 +55,16 @@ python example/main.py
 - Input: numeric sequence.
 - Output: arithmetic average.
 - Edge cases: empty list should return `0`; mixed positive/negative values.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language python --level 03-advanced --module templates-basics --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

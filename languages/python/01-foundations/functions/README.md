@@ -9,6 +9,11 @@ This module practices extracting reusable logic and calling helper functions.
 - Prerequisites: `01-foundations/control-flow`, `01-foundations/operators-and-expressions`.
 - Cross-Language Lens: Compare helper-function design, argument passing defaults, and overloading support across the four tracks.
 
+## Learning Outcomes
+
+- `FND-FUN-01`: Decompose a problem into focused functions with explicit contracts.
+- `FND-FUN-02`: Use parameters and return values without hidden state changes.
+
 ## Quick Run
 
 ~~~bash
@@ -50,6 +55,16 @@ python example/main.py
 - Input: one text line.
 - Output: number of vowels in the text.
 - Edge cases: empty string; uppercase vowels.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language python --level 01-foundations --module functions --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

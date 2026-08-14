@@ -9,6 +9,11 @@ This module adapts RAII to TypeScript by focusing on explicit cleanup, `try/fina
 - Prerequisites: `03-advanced/constructors-and-invariants` and `02-core/error-handling-and-defensive-programming`.
 - Cross-Language Lens: Compare C++ destructor-driven cleanup with TypeScript's explicit `close` methods and `try/finally` scopes.
 
+## Learning Outcomes
+
+- `EXP-MEM-01`: Explain the language's resource and memory lifetime model.
+- `EXP-MEM-02`: Guarantee deterministic cleanup for non-memory resources.
+
 ## Quick Run
 
 ~~~bash
@@ -52,6 +57,16 @@ node build/typescript/04-expert/memory-management-and-raii/example/main.js
 - Input: none.
 - Output: session logs before closing, after closing, and a guarded error message.
 - Edge cases: repeated close calls; operations attempted after close.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language typescript --level 04-expert --module memory-management-and-raii --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

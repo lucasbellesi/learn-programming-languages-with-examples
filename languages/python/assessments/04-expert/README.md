@@ -24,10 +24,19 @@ Write a program that:
 - Prerequisites: All `04-expert` modules, especially `memory-management-and-raii`, `smart-pointers-in-depth`, and `concurrency-basics`.
 - Learning Focus: Prove you can coordinate work safely, choose the right ownership model for the track, and aggregate results under expert-level constraints.
 
+## Learning Outcomes
+
+- `EXP-MEM-02`
+- `EXP-CON-01`
+- `EXP-PER-01`
+- `EXP-MOD-01`
+
 ## Quick Run
 
+Run the reference solution from the repository root:
+
 ```bash
-python main.py
+python scripts/automation.py check-checkpoint --language python --kind assessment --level 04-expert --solution
 ```
 
 ## Expected Output
@@ -50,6 +59,16 @@ The worker lines may appear in a different order, but the three partial sums and
 - Compared with the C++ assessment, this version foregrounds correctness and aggregation clarity over low-level thread control.
 - Relative to Go and C#, the runtime model changes what "parallel" really means, but not what the final summary must prove.
 - The comparison to keep in mind is deterministic reporting despite different worker mechanisms.
+
+## Check Your Work
+
+Implement the task in `starter/`, then run from the repository root:
+
+```bash
+python scripts/automation.py check-checkpoint --language python --kind assessment --level 04-expert
+```
+
+Use `--solution` only after completing a full attempt. Each failed case reports targeted feedback without exposing the implementation.
 
 ## What To Check
 

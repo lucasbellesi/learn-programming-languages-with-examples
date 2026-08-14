@@ -11,10 +11,19 @@ Build a small pipeline simulator using ownership-aware steps and timing metrics.
 - Prerequisites: All `04-expert` modules, especially `concurrency-basics`, `performance-and-profiling-basics`, and `modularization-and-build-structure`.
 - Learning Focus: Integrate reusable components, runtime measurements, and multi-step coordination into one cohesive capstone.
 
+## Learning Outcomes
+
+- `EXP-MEM-02`
+- `EXP-CON-01`
+- `EXP-PER-01`
+- `EXP-MOD-01`
+
 ## Quick Run
 
+Run the reference solution from the repository root:
+
 ```bash
-dotnet run --project expert-project.csproj
+python scripts/automation.py check-checkpoint --language csharp --kind project --level 04-expert --solution
 ```
 
 ## Requirements
@@ -46,6 +55,16 @@ The first three lines should stay exact. Only the measured microsecond value sho
 - every job passes through each step in the intended order
 - per-step summary counts match the processed workload
 - elapsed timing is reported and remains a positive measurement
+
+## Check Your Work
+
+Implement the task in `starter/`, then run from the repository root:
+
+```bash
+python scripts/automation.py check-checkpoint --language csharp --kind project --level 04-expert
+```
+
+Use `--solution` only after completing a full attempt. Each failed case reports targeted feedback without exposing the implementation.
 
 ## Extension Ideas
 

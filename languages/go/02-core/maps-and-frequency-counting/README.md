@@ -9,6 +9,11 @@ This module introduces map-based counting patterns for grouped data.
 - Prerequisites: `01-foundations/arrays-and-vectors`, `01-foundations/strings`.
 - Cross-Language Lens: Compare hash map ergonomics, missing-key behavior, and default-value patterns across the four languages.
 
+## Learning Outcomes
+
+- `COR-MAP-01`: Use key-value collections to aggregate and retrieve data.
+- `COR-MAP-02`: Define normalization and missing-key behavior explicitly.
+
 ## Quick Run
 
 ~~~bash
@@ -44,6 +49,16 @@ go run example/main.go
 - Input: one lowercase string.
 - Output: first non-repeating character or message if none.
 - Edge cases: all repeated characters; one-character string.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language go --level 02-core --module maps-and-frequency-counting --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

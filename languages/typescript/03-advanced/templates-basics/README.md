@@ -9,6 +9,11 @@ This module adapts the generic-programming idea to TypeScript generics.
 - Prerequisites: `03-advanced/structs-and-classes` and `03-advanced/inheritance-and-polymorphism`.
 - Cross-Language Lens: Compare C++ templates, C# generics, Go type parameters, Python type hints, and TypeScript generics as related but not identical tools.
 
+## Learning Outcomes
+
+- `ADV-GEN-01`: Express reusable type-safe behavior with language generics.
+- `ADV-GEN-02`: Apply constraints when an operation requires specific capabilities.
+
 ## Quick Run
 
 ~~~bash
@@ -51,6 +56,16 @@ node build/typescript/03-advanced/templates-basics/example/main.js
 - Input: two values.
 - Output: a generic pair rendered in order.
 - Edge cases: missing second value should print an error.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language typescript --level 03-advanced --module templates-basics --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

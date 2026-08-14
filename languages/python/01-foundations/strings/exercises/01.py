@@ -1,4 +1,7 @@
-line = input("Enter text: ")
-words = [word for word in line.strip().split() if word]
+def main() -> None:
+    # TODO: implement the README specification (FND-STR-01, FND-STR-02).
+    print("TODO: implement this exercise")
 
-print(f"Word count: {len(words)}")
+
+if __name__ == "__main__":
+    main()

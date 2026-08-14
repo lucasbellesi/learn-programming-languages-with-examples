@@ -9,6 +9,11 @@ This module introduces object modeling with `struct` and `class`.
 - Prerequisites: `01-foundations/functions`, `01-foundations/scope-and-lifetime-basics`.
 - Cross-Language Lens: Compare lightweight records, full classes, and method receivers to see how each language models data plus behavior.
 
+## Learning Outcomes
+
+- `ADV-MOD-01`: Model data and behavior with cohesive domain types.
+- `ADV-MOD-02`: Protect invariants through constructors and methods.
+
 ## Quick Run
 
 ```bash
@@ -54,6 +59,16 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/class-with-validation.cpp -o stru
 - Input: sequence of commands (`inc`, `dec`, `reset`, `stop`).
 - Output: counter value updates and final value.
 - Edge cases: unknown commands; immediate `stop`.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language cpp --level 03-advanced --module structs-and-classes --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

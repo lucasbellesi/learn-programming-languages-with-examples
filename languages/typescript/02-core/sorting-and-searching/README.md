@@ -9,6 +9,11 @@ This module practices ordering data and locating target values with explicit com
 - Prerequisites: `02-core/algorithms-basics` and `01-foundations/arrays-and-vectors`.
 - Cross-Language Lens: Compare custom comparators, stable sort expectations, and hand-written search logic before assuming the standard library does the same thing everywhere.
 
+## Learning Outcomes
+
+- `COR-SRT-01`: Choose and apply sorting and searching operations correctly.
+- `COR-SRT-02`: Explain ordering, duplicates, missing values, and stability tradeoffs.
+
 ## Quick Run
 
 ~~~bash
@@ -51,6 +56,16 @@ node build/typescript/02-core/sorting-and-searching/example/main.js
 - Input: integer `n`, then `n` sorted integers, then a target.
 - Output: target index or `-1`.
 - Edge cases: target absent; repeated values; `n <= 0`.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language typescript --level 02-core --module sorting-and-searching --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

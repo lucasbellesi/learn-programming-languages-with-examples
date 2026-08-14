@@ -1,14 +1,7 @@
-n = int(input("How many digits? "))
+def main() -> None:
+    # TODO: implement the README specification (COR-MAP-01, COR-MAP-02).
+    print("TODO: implement this exercise")
 
-if n <= 0:
-    print("Please enter a positive count.")
-else:
-    frequency = {digit: 0 for digit in range(10)}
 
-    for _ in range(n):
-        value = int(input())
-        if 0 <= value <= 9:
-            frequency[value] += 1
-
-    for digit in range(10):
-        print(f"{digit} -> {frequency[digit]}")
+if __name__ == "__main__":
+    main()

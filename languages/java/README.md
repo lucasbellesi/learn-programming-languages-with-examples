@@ -20,11 +20,11 @@ This track covers every module from `01-foundations` through `04-expert` as a Ja
 ## Quick Start
 
 1. Open [01-foundations](./01-foundations/README.md), then continue with [02-core](./02-core/README.md).
-2. Run one module example:
+2. From the repository root, check the toolchain and run one module example:
 
 ~~~bash
-javac -d build/java languages/java/01-foundations/types-and-io/example/Main.java
-java -cp build/java Main
+python scripts/automation.py doctor --language java
+python scripts/automation.py run-module --module-path languages/java/01-foundations/types-and-io
 ~~~
 
 3. Solve:

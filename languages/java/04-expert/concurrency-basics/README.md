@@ -9,6 +9,11 @@ This module introduces safe multithreaded coordination with executors, futures, 
 - Prerequisites: `01-foundations/control-flow`, `03-advanced/structs-and-classes`.
 - Cross-Language Lens: Compare Java executors and futures with `std::thread`, C# tasks, goroutines, Python threads, and TypeScript promises.
 
+## Learning Outcomes
+
+- `EXP-CON-01`: Coordinate concurrent work without data races or lost results.
+- `EXP-CON-02`: Define completion, cancellation, and error propagation behavior.
+
 ## Quick Run
 
 ~~~bash
@@ -55,6 +60,16 @@ java -cp build/java Main
 - Input: number of items to produce.
 - Output: produced/consumed logs and completion summary.
 - Edge cases: zero items; negative item count.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language java --level 04-expert --module concurrency-basics --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

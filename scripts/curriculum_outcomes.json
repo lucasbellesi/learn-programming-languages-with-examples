@@ -1,0 +1,162 @@
+{
+  "version": 1,
+  "modules": {
+    "01-foundations/types-and-io": {
+      "outcomes": [
+        {"id": "FND-TIO-01", "description": "Choose suitable primitive values and variables for a small problem."},
+        {"id": "FND-TIO-02", "description": "Read, validate, transform, and present console data."}
+      ]
+    },
+    "01-foundations/operators-and-expressions": {
+      "outcomes": [
+        {"id": "FND-OPE-01", "description": "Build expressions with correct precedence and explicit intent."},
+        {"id": "FND-OPE-02", "description": "Distinguish arithmetic, comparison, and logical operations."}
+      ]
+    },
+    "01-foundations/control-flow": {
+      "outcomes": [
+        {"id": "FND-CFL-01", "description": "Select branches that cover normal and boundary conditions."},
+        {"id": "FND-CFL-02", "description": "Write terminating loops and reason about their invariants."}
+      ]
+    },
+    "01-foundations/functions": {
+      "outcomes": [
+        {"id": "FND-FUN-01", "description": "Decompose a problem into focused functions with explicit contracts."},
+        {"id": "FND-FUN-02", "description": "Use parameters and return values without hidden state changes."}
+      ]
+    },
+    "01-foundations/arrays-and-vectors": {
+      "outcomes": [
+        {"id": "FND-SEQ-01", "description": "Store and traverse ordered collections safely."},
+        {"id": "FND-SEQ-02", "description": "Handle empty collections and index boundaries explicitly."}
+      ]
+    },
+    "01-foundations/strings": {
+      "outcomes": [
+        {"id": "FND-STR-01", "description": "Normalize, inspect, and transform textual data."},
+        {"id": "FND-STR-02", "description": "Handle empty input and character boundaries safely."}
+      ]
+    },
+    "01-foundations/scope-and-lifetime-basics": {
+      "outcomes": [
+        {"id": "FND-SCP-01", "description": "Predict name visibility across nested scopes."},
+        {"id": "FND-SCP-02", "description": "Explain when values and resources cease to be usable."}
+      ]
+    },
+    "01-foundations/formatted-output-and-iomanip": {
+      "outcomes": [
+        {"id": "FND-FMT-01", "description": "Produce stable human-readable tabular and numeric output."},
+        {"id": "FND-FMT-02", "description": "Choose precision, alignment, and labels appropriate to the data."}
+      ]
+    },
+    "02-core/input-validation": {
+      "outcomes": [
+        {"id": "COR-VAL-01", "description": "Reject malformed and out-of-domain input without corrupting state."},
+        {"id": "COR-VAL-02", "description": "Design retry and termination behavior that cannot loop accidentally."}
+      ]
+    },
+    "02-core/algorithms-basics": {
+      "outcomes": [
+        {"id": "COR-ALG-01", "description": "Implement linear scans and accumulations with clear invariants."},
+        {"id": "COR-ALG-02", "description": "Analyze behavior for empty, duplicate, and missing values."}
+      ]
+    },
+    "02-core/file-io-basics": {
+      "outcomes": [
+        {"id": "COR-FIO-01", "description": "Read and write explicit paths while reporting I/O failures."},
+        {"id": "COR-FIO-02", "description": "Parse records defensively and distinguish valid from rejected rows."}
+      ]
+    },
+    "02-core/sorting-and-searching": {
+      "outcomes": [
+        {"id": "COR-SRT-01", "description": "Choose and apply sorting and searching operations correctly."},
+        {"id": "COR-SRT-02", "description": "Explain ordering, duplicates, missing values, and stability tradeoffs."}
+      ]
+    },
+    "02-core/maps-and-frequency-counting": {
+      "outcomes": [
+        {"id": "COR-MAP-01", "description": "Use key-value collections to aggregate and retrieve data."},
+        {"id": "COR-MAP-02", "description": "Define normalization and missing-key behavior explicitly."}
+      ]
+    },
+    "02-core/error-handling-and-defensive-programming": {
+      "outcomes": [
+        {"id": "COR-ERR-01", "description": "Separate expected failures from programming defects."},
+        {"id": "COR-ERR-02", "description": "Preserve valid state and useful diagnostics when operations fail."}
+      ]
+    },
+    "03-advanced/structs-and-classes": {
+      "outcomes": [
+        {"id": "ADV-MOD-01", "description": "Model data and behavior with cohesive domain types."},
+        {"id": "ADV-MOD-02", "description": "Protect invariants through constructors and methods."}
+      ]
+    },
+    "03-advanced/constructors-and-invariants": {
+      "outcomes": [
+        {"id": "ADV-INV-01", "description": "Construct objects only in valid states."},
+        {"id": "ADV-INV-02", "description": "Keep mutations from violating established invariants."}
+      ]
+    },
+    "03-advanced/copy-and-move-semantics": {
+      "outcomes": [
+        {"id": "ADV-CPY-01", "description": "Predict aliasing and independence after copying or sharing values."},
+        {"id": "ADV-CPY-02", "description": "Choose an idiomatic ownership-transfer strategy for the language."}
+      ],
+      "language_adaptations": {
+        "java": ["Contrast reference copying with explicit transfer-by-convention."],
+        "python": ["Contrast aliasing, shallow copies, and deep copies."],
+        "typescript": ["Contrast object aliasing with explicit cloning and immutable updates."]
+      }
+    },
+    "03-advanced/inheritance-and-polymorphism": {
+      "outcomes": [
+        {"id": "ADV-POL-01", "description": "Program against a shared behavioral abstraction."},
+        {"id": "ADV-POL-02", "description": "Use dynamic dispatch without unsafe type assumptions."}
+      ]
+    },
+    "03-advanced/templates-basics": {
+      "outcomes": [
+        {"id": "ADV-GEN-01", "description": "Express reusable type-safe behavior with language generics."},
+        {"id": "ADV-GEN-02", "description": "Apply constraints when an operation requires specific capabilities."}
+      ],
+      "language_adaptations": {
+        "python": ["Use type parameters and protocols as static guidance over dynamic values."],
+        "go": ["Use type sets and constraints supported by Go generics."]
+      }
+    },
+    "04-expert/memory-management-and-raii": {
+      "outcomes": [
+        {"id": "EXP-MEM-01", "description": "Explain the language's resource and memory lifetime model."},
+        {"id": "EXP-MEM-02", "description": "Guarantee deterministic cleanup for non-memory resources."}
+      ]
+    },
+    "04-expert/smart-pointers-in-depth": {
+      "outcomes": [
+        {"id": "EXP-OWN-01", "description": "Model exclusive, shared, and non-owning relationships idiomatically."},
+        {"id": "EXP-OWN-02", "description": "Prevent leaks, cycles, and stale observations in ownership graphs."}
+      ],
+      "language_adaptations": {
+        "java": ["Use strong and weak references to explain reachability rather than C++ pointer syntax."],
+        "go": ["Use explicit ownership conventions and avoid retaining references unnecessarily."]
+      }
+    },
+    "04-expert/concurrency-basics": {
+      "outcomes": [
+        {"id": "EXP-CON-01", "description": "Coordinate concurrent work without data races or lost results."},
+        {"id": "EXP-CON-02", "description": "Define completion, cancellation, and error propagation behavior."}
+      ]
+    },
+    "04-expert/performance-and-profiling-basics": {
+      "outcomes": [
+        {"id": "EXP-PER-01", "description": "Measure before optimizing and interpret timing data cautiously."},
+        {"id": "EXP-PER-02", "description": "Relate algorithmic and allocation choices to observed cost."}
+      ]
+    },
+    "04-expert/modularization-and-build-structure": {
+      "outcomes": [
+        {"id": "EXP-MOD-01", "description": "Separate public contracts from implementation details."},
+        {"id": "EXP-MOD-02", "description": "Organize a multi-file program with an explicit build boundary."}
+      ]
+    }
+  }
+}

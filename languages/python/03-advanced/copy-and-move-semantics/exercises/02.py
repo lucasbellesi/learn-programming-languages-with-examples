@@ -1,17 +1,7 @@
-raw_count = input("How many strings? ").strip()
-if not raw_count.isdigit() or int(raw_count) <= 0:
-    print("Please enter a positive count.")
-else:
-    count = int(raw_count)
-    values: list[str] = []
+def main() -> None:
+    # TODO: implement the README specification (ADV-CPY-01, ADV-CPY-02).
+    print("TODO: implement this exercise")
 
-    for index in range(count):
-        text = input(f"String {index + 1}: ").strip()
-        values.append(text)
 
-        alias = values
-        snapshot = values.copy()
-
-        print(f"Current size: {len(values)}")
-        print(f"Alias sees size: {len(alias)}")
-        print(f"Snapshot size: {len(snapshot)}")
+if __name__ == "__main__":
+    main()

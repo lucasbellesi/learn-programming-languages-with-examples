@@ -9,6 +9,11 @@ This module practices combining values through expressions and readable calculat
 - Prerequisites: Java 21 JDK and prior modules in this level.
 - Cross-Language Lens: Compare Java's explicit class and type requirements with the same concept in C++, C#, Go, Python, and TypeScript.
 
+## Learning Outcomes
+
+- `FND-OPE-01`: Build expressions with correct precedence and explicit intent.
+- `FND-OPE-02`: Distinguish arithmetic, comparison, and logical operations.
+
 ## Quick Run
 
 ~~~bash
@@ -49,6 +54,16 @@ java -cp build/java Main
 - Input: subtotal discountRate taxRate.
 - Output: discount amount, tax amount, and final total.
 - Edge cases: missing values; zero or repeated values where relevant.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language java --level 01-foundations --module operators-and-expressions --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

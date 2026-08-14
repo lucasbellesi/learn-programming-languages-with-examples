@@ -11,12 +11,20 @@ Build a TypeScript console program that reads student grades from a text file an
 - Prerequisites: All `02-core` modules, especially `input-validation`, `file-io-basics`, and `error-handling-and-defensive-programming`.
 - Learning Focus: Integrate file parsing, validation, and report generation without letting malformed rows stop the whole workflow.
 
+## Learning Outcomes
+
+- `COR-VAL-01`
+- `COR-ALG-01`
+- `COR-FIO-01`
+- `COR-ERR-02`
+
 ## Quick Run
 
-~~~bash
-npm run build:typescript
-node build/typescript/projects/02-core/main.js
-~~~
+Run the reference solution from the repository root:
+
+```bash
+python scripts/automation.py check-checkpoint --language typescript --kind project --level 02-core --solution
+```
 
 ## Requirements
 
@@ -25,6 +33,13 @@ node build/typescript/projects/02-core/main.js
 - Skip invalid rows without crashing the program.
 - Print a short summary to stdout.
 - Write a detailed report to `report.txt`.
+
+## Milestones
+
+1. Model the input and domain rules.
+2. Implement the smallest end-to-end workflow.
+3. Add validation and boundary behavior.
+4. Refactor only after every configured case passes.
 
 ## Concepts Practiced
 
@@ -68,6 +83,16 @@ Report written to report.txt
 - malformed rows are skipped without stopping valid processing
 - the report file is created in the current working directory
 - average, minimum, and maximum use only valid rows
+
+## Check Your Work
+
+Implement the task in `starter/`, then run from the repository root:
+
+```bash
+python scripts/automation.py check-checkpoint --language typescript --kind project --level 02-core
+```
+
+Use `--solution` only after completing a full attempt. Each failed case reports targeted feedback without exposing the implementation.
 
 ## Extension Ideas
 

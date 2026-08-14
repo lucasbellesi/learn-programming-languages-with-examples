@@ -9,6 +9,11 @@ This module practices storing related values in ordered collections and iteratin
 - Prerequisites: Java 21 JDK and prior modules in this level.
 - Cross-Language Lens: Compare Java's explicit class and type requirements with the same concept in C++, C#, Go, Python, and TypeScript.
 
+## Learning Outcomes
+
+- `FND-SEQ-01`: Store and traverse ordered collections safely.
+- `FND-SEQ-02`: Handle empty collections and index boundaries explicitly.
+
 ## Quick Run
 
 ~~~bash
@@ -49,6 +54,16 @@ java -cp build/java Main
 - Input: count N, N integers, then target.
 - Output: target occurrence count.
 - Edge cases: missing values; zero or repeated values where relevant.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language java --level 01-foundations --module arrays-and-vectors --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

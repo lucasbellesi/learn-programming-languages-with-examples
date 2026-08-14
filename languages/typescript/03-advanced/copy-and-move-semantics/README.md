@@ -9,6 +9,11 @@ This module adapts the C++ ownership topic to TypeScript by focusing on referenc
 - Prerequisites: `03-advanced/structs-and-classes` and `02-core/algorithms-basics`.
 - Cross-Language Lens: Compare C++ copy and move rules with TypeScript reference sharing, spread copies, and deep-clone helpers.
 
+## Learning Outcomes
+
+- `ADV-CPY-01`: Predict aliasing and independence after copying or sharing values.
+- `ADV-CPY-02`: Choose an idiomatic ownership-transfer strategy for the language.
+
 ## Quick Run
 
 ~~~bash
@@ -51,6 +56,16 @@ node build/typescript/03-advanced/copy-and-move-semantics/example/main.js
 - Input: item name, quantity, and reserved quantity.
 - Output: original and cloned inventory states after a clone-only update.
 - Edge cases: invalid counts; negative values.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language typescript --level 03-advanced --module copy-and-move-semantics --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

@@ -9,6 +9,11 @@ This module practices cleaning and combining text while preserving readable stri
 - Prerequisites: Java 21 JDK and prior modules in this level.
 - Cross-Language Lens: Compare Java's explicit class and type requirements with the same concept in C++, C#, Go, Python, and TypeScript.
 
+## Learning Outcomes
+
+- `FND-STR-01`: Normalize, inspect, and transform textual data.
+- `FND-STR-02`: Handle empty input and character boundaries safely.
+
 ## Quick Run
 
 ~~~bash
@@ -49,6 +54,16 @@ java -cp build/java Main
 - Input: one sentence.
 - Output: word count and non-space character count.
 - Edge cases: missing values; zero or repeated values where relevant.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language java --level 01-foundations --module strings --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

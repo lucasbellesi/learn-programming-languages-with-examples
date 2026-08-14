@@ -22,18 +22,8 @@ int main() {
     }
 
     int n = 0;
-    cout << "Enter N for factorial and counting: ";
+    cout << "Enter N for counting: ";
     cin >> n;
-
-    if (n < 0) {
-        cout << "Factorial is not defined for negative integers.\n";
-    } else {
-        unsigned long long factorial = 1;
-        for (int i = 1; i <= n; ++i) {
-            factorial *= static_cast<unsigned long long>(i);
-        }
-        cout << n << "! = " << factorial << '\n';
-    }
 
     cout << "Numbers from 1 to " << n << ": ";
     if (n > 0) {

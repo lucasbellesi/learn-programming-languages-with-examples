@@ -9,6 +9,11 @@ This module shows how to split a TypeScript console program into reusable files 
 - Prerequisites: `03-advanced/structs-and-classes` and `04-expert/performance-and-profiling-basics`.
 - Cross-Language Lens: Compare TypeScript imports and shared type exports with header/source splits in C++ and package layouts in Go.
 
+## Learning Outcomes
+
+- `EXP-MOD-01`: Separate public contracts from implementation details.
+- `EXP-MOD-02`: Organize a multi-file program with an explicit build boundary.
+
 ## Quick Run
 
 ~~~bash
@@ -52,6 +57,16 @@ node build/typescript/04-expert/modularization-and-build-structure/example/main.
 - Input: none.
 - Output: parsed event counts plus a short summary report.
 - Edge cases: malformed lines; empty input arrays.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language typescript --level 04-expert --module modularization-and-build-structure --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

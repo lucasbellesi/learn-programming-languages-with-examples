@@ -9,6 +9,11 @@ This module practices choosing between branches and repeating work with predicta
 - Prerequisites: Java 21 JDK and prior modules in this level.
 - Cross-Language Lens: Compare Java's explicit class and type requirements with the same concept in C++, C#, Go, Python, and TypeScript.
 
+## Learning Outcomes
+
+- `FND-CFL-01`: Select branches that cover normal and boundary conditions.
+- `FND-CFL-02`: Write terminating loops and reason about their invariants.
+
 ## Quick Run
 
 ~~~bash
@@ -49,6 +54,16 @@ java -cp build/java Main
 - Input: count N followed by N integers.
 - Output: positive, negative, and zero counts.
 - Edge cases: missing values; zero or repeated values where relevant.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language java --level 01-foundations --module control-flow --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

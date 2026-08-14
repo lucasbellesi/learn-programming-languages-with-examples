@@ -11,12 +11,20 @@ Build a small async pipeline that coordinates reusable steps, measures elapsed t
 - Prerequisites: All `04-expert` modules, especially `concurrency-basics`, `performance-and-profiling-basics`, and `modularization-and-build-structure`.
 - Learning Focus: Integrate async coordination, explicit cleanup, timing, and modular object behavior into one cohesive TypeScript program.
 
+## Learning Outcomes
+
+- `EXP-MEM-02`
+- `EXP-CON-01`
+- `EXP-PER-01`
+- `EXP-MOD-01`
+
 ## Quick Run
 
-~~~bash
-npm run build:typescript
-node build/typescript/projects/04-expert/main.js
-~~~
+Run the reference solution from the repository root:
+
+```bash
+python scripts/automation.py check-checkpoint --language typescript --kind project --level 04-expert --solution
+```
 
 ## Requirements
 
@@ -50,6 +58,16 @@ The step counts and the final closed-state line should stay exact. Only the meas
 - per-step counts match the number of processed jobs
 - elapsed timing is reported as a positive measurement
 - the resource cleanup path runs before the program exits
+
+## Check Your Work
+
+Implement the task in `starter/`, then run from the repository root:
+
+```bash
+python scripts/automation.py check-checkpoint --language typescript --kind project --level 04-expert
+```
+
+Use `--solution` only after completing a full attempt. Each failed case reports targeted feedback without exposing the implementation.
 
 ## Extension Ideas
 

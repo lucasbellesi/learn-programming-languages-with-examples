@@ -22,11 +22,19 @@ Write a program that reads integer values until `-1`, then:
 - Prerequisites: All `02-core` modules, especially `input-validation`, `maps-and-frequency-counting`, and `error-handling-and-defensive-programming`.
 - Learning Focus: Prove validation, aggregation, defensive handling, and report generation under mixed-quality input.
 
+## Learning Outcomes
+
+- `COR-VAL-01`
+- `COR-ALG-01`
+- `COR-FIO-01`
+- `COR-ERR-02`
+
 ## Quick Run
 
+Run the reference solution from the repository root:
+
 ```bash
-g++ -std=c++17 -Wall -Wextra -pedantic main.cpp -o assessment_02_core
-./assessment_02_core
+python scripts/automation.py check-checkpoint --language cpp --kind assessment --level 02-core --solution
 ```
 
 ## Sample Input
@@ -46,6 +54,16 @@ g++ -std=c++17 -Wall -Wextra -pedantic main.cpp -o assessment_02_core
 - This is the canonical validation-and-counting assessment for the core level.
 - Compared with the other tracks, it keeps the most explicit control over parse flow, ranges, and report generation.
 - Use it to compare how each runtime expresses the same defensive-programming goal.
+
+## Check Your Work
+
+Implement the task in `starter/`, then run from the repository root:
+
+```bash
+python scripts/automation.py check-checkpoint --language cpp --kind assessment --level 02-core
+```
+
+Use `--solution` only after completing a full attempt. Each failed case reports targeted feedback without exposing the implementation.
 
 ## What To Check
 

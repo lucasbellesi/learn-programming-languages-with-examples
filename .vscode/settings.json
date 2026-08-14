@@ -1,3 +1,12 @@
 {
-    "C_Cpp.default.cppStandard": "c++17"
+  "C_Cpp.default.cppStandard": "c++17",
+  "java.configuration.runtimes": [],
+  "python.analysis.typeCheckingMode": "basic",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "files.eol": "\n",
+  "files.exclude": {
+    "**/bin": true,
+    "**/obj": true,
+    "**/__pycache__": true
+  }
 }

@@ -9,6 +9,11 @@ This module introduces reusable logic through typed function design.
 - Prerequisites: 01-foundations/control-flow and 01-foundations/operators-and-expressions.
 - Cross-Language Lens: Compare helper-function design and overload signatures in TypeScript with overloads, templates, and simpler function models in the other tracks.
 
+## Learning Outcomes
+
+- `FND-FUN-01`: Decompose a problem into focused functions with explicit contracts.
+- `FND-FUN-02`: Use parameters and return values without hidden state changes.
+
 ## Quick Run
 
 ~~~bash
@@ -51,6 +56,16 @@ node build/typescript/01-foundations/functions/example/main.js
 - Input: one line of text.
 - Output: the vowel count.
 - Edge cases: an empty string should return 0; uppercase vowels should be counted.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language typescript --level 01-foundations --module functions --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

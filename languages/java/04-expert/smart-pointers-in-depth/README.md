@@ -9,12 +9,21 @@ This module adapts smart pointer ideas to Java through strong references, explic
 - Prerequisites: `04-expert/memory-management-and-raii`.
 - Cross-Language Lens: Compare explicit ownership tools in C++ with managed references, pointer conventions, and weak-reference patterns elsewhere.
 
+## Learning Outcomes
+
+- `EXP-OWN-01`: Model exclusive, shared, and non-owning relationships idiomatically.
+- `EXP-OWN-02`: Prevent leaks, cycles, and stale observations in ownership graphs.
+
 ## Quick Run
 
 ~~~bash
 javac -d build/java languages/java/04-expert/smart-pointers-in-depth/example/Main.java
 java -cp build/java Main
 ~~~
+
+## More Examples
+
+- `example/WeakObservation.java` isolates non-owning observation and labels deterministic expiration as a simulation.
 
 ## Topics Covered
 
@@ -56,6 +65,16 @@ java -cp build/java Main
 - Input: none.
 - Output: alive/expired cache lookup logs.
 - Edge cases: expired weak reference; cache miss.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language java --level 04-expert --module smart-pointers-in-depth --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

@@ -9,6 +9,11 @@ This module introduces object modeling with records and classes.
 - Prerequisites: `01-foundations/functions`, `01-foundations/scope-and-lifetime-basics`, and `02-core/input-validation`.
 - Cross-Language Lens: Compare Java records and classes with structs, dataclasses, interfaces, and class-style patterns in the other tracks.
 
+## Learning Outcomes
+
+- `ADV-MOD-01`: Model data and behavior with cohesive domain types.
+- `ADV-MOD-02`: Protect invariants through constructors and methods.
+
 ## Quick Run
 
 ~~~bash
@@ -45,6 +50,16 @@ java -cp build/java Main
 - Input: sequence of commands (`inc`, `dec`, `reset`, `stop`).
 - Output: counter value updates and final value.
 - Edge cases: unknown commands; immediate `stop`.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language java --level 03-advanced --module structs-and-classes --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

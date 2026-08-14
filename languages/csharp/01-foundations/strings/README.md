@@ -9,6 +9,11 @@ This module practices splitting text, normalizing characters, and basic text ana
 - Prerequisites: `01-foundations/types-and-io`, `01-foundations/control-flow`.
 - Cross-Language Lens: Compare immutable string handling, indexing rules, and tokenization helpers in each language.
 
+## Learning Outcomes
+
+- `FND-STR-01`: Normalize, inspect, and transform textual data.
+- `FND-STR-02`: Handle empty input and character boundaries safely.
+
 ## Quick Run
 
 ~~~bash
@@ -50,6 +55,16 @@ dotnet run --project example/strings-example.csproj
 - Input: single line that may contain spaces or punctuation.
 - Output: Palindrome or Not palindrome style result.
 - Edge cases: input with no letters; mixed upper/lower case.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language csharp --level 01-foundations --module strings --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

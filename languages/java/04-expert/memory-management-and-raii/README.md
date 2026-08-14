@@ -9,6 +9,11 @@ This module adapts RAII to Java through `AutoCloseable` and `try-with-resources`
 - Prerequisites: `01-foundations/scope-and-lifetime-basics`, `03-advanced/constructors-and-invariants`, `03-advanced/copy-and-move-semantics`.
 - Cross-Language Lens: Contrast deterministic cleanup in C++ with `IDisposable`, `defer`, context-manager style cleanup, and Java `try-with-resources`.
 
+## Learning Outcomes
+
+- `EXP-MEM-01`: Explain the language's resource and memory lifetime model.
+- `EXP-MEM-02`: Guarantee deterministic cleanup for non-memory resources.
+
 ## Quick Run
 
 ~~~bash
@@ -54,6 +59,16 @@ java -cp build/java Main
 - Input: none.
 - Output: enter/close logs proving automatic cleanup.
 - Edge cases: nested scopes; final active counter must return to zero.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language java --level 04-expert --module memory-management-and-raii --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

@@ -9,6 +9,11 @@ This module uses arithmetic, comparisons, and boolean expressions to build small
 - Prerequisites: 01-foundations/types-and-io.
 - Cross-Language Lens: Compare integer division, remainder, and boolean expressions before assuming the same operator behaves identically across languages.
 
+## Learning Outcomes
+
+- `FND-OPE-01`: Build expressions with correct precedence and explicit intent.
+- `FND-OPE-02`: Distinguish arithmetic, comparison, and logical operations.
+
 ## Quick Run
 
 ~~~bash
@@ -45,6 +50,16 @@ node build/typescript/01-foundations/operators-and-expressions/example/main.js
 - Input: subtotal and loyalty flag (true or false).
 - Output: final price after the discount rule.
 - Edge cases: subtotal 0 should remain 0; invalid loyalty text should print an error.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language typescript --level 01-foundations --module operators-and-expressions --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

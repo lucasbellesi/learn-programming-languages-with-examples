@@ -9,6 +9,11 @@ This module introduces common algorithmic patterns over collections.
 - Prerequisites: `01-foundations/arrays-and-vectors`, `01-foundations/functions`.
 - Cross-Language Lens: Compare hand-written loops with library helpers and see when explicit iteration stays clearer for beginners.
 
+## Learning Outcomes
+
+- `COR-ALG-01`: Implement linear scans and accumulations with clear invariants.
+- `COR-ALG-02`: Analyze behavior for empty, duplicate, and missing values.
+
 ## Quick Run
 
 ~~~bash
@@ -50,6 +55,16 @@ dotnet run --project example/algorithms-basics-example.csproj
 - Input: integer `n`, then `n` values.
 - Output: minimum, maximum, and even count.
 - Edge cases: all odd numbers (even count `0`); all equal values.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language csharp --level 02-core --module algorithms-basics --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

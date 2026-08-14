@@ -9,6 +9,11 @@ This module practices rejecting invalid values while keeping the program flow pr
 - Prerequisites: `01-foundations/control-flow`, `01-foundations/types-and-io`.
 - Cross-Language Lens: Compare Java's explicit parsing exceptions with validation loops in C++, C#, Go, Python, and TypeScript.
 
+## Learning Outcomes
+
+- `COR-VAL-01`: Reject malformed and out-of-domain input without corrupting state.
+- `COR-VAL-02`: Design retry and termination behavior that cannot loop accidentally.
+
 ## Quick Run
 
 ~~~bash
@@ -51,6 +56,16 @@ java -cp build/java Main
 - Input: score count in range 1..50, followed by scores in range 0..100.
 - Output: average score.
 - Edge cases: invalid count; invalid score in the middle of entry.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language java --level 02-core --module input-validation --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

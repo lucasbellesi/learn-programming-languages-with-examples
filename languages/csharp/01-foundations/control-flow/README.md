@@ -9,6 +9,11 @@ This module practices branching, looping, and sentinel-driven iteration.
 - Prerequisites: `01-foundations/types-and-io`, `01-foundations/operators-and-expressions`.
 - Cross-Language Lens: Compare braces-and-loops in C++, C#, and Go with Python indentation while keeping the underlying branching logic identical.
 
+## Learning Outcomes
+
+- `FND-CFL-01`: Select branches that cover normal and boundary conditions.
+- `FND-CFL-02`: Write terminating loops and reason about their invariants.
+
 ## Quick Run
 
 ~~~bash
@@ -44,6 +49,16 @@ dotnet run --project example/control-flow-example.csproj
 - Input: integer stream terminated by -1.
 - Output: average of entered values or a no-data message.
 - Edge cases: first value already -1; negative values other than sentinel.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language csharp --level 01-foundations --module control-flow --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

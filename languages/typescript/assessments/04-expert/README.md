@@ -24,12 +24,20 @@ Write a program that:
 - Prerequisites: All `04-expert` modules, especially `smart-pointers-in-depth`, `concurrency-basics`, and `performance-and-profiling-basics`.
 - Learning Focus: Prove you can structure async work clearly, return partial summaries safely, and combine them into deterministic final output.
 
+## Learning Outcomes
+
+- `EXP-MEM-02`
+- `EXP-CON-01`
+- `EXP-PER-01`
+- `EXP-MOD-01`
+
 ## Quick Run
 
-~~~bash
-npm run build:typescript
-node build/typescript/assessments/04-expert/main.js
-~~~
+Run the reference solution from the repository root:
+
+```bash
+python scripts/automation.py check-checkpoint --language typescript --kind assessment --level 04-expert --solution
+```
 
 ## Expected Output
 
@@ -49,6 +57,16 @@ Maximum: 45
 - Compared with the C++ assessment, this version turns worker coordination into async job orchestration instead of shared-memory threading.
 - Relative to Go, C#, and Python, deterministic output order matters more because completion order can differ under the event loop.
 - The core comparison is stable aggregation logic across radically different concurrency primitives.
+
+## Check Your Work
+
+Implement the task in `starter/`, then run from the repository root:
+
+```bash
+python scripts/automation.py check-checkpoint --language typescript --kind assessment --level 04-expert
+```
+
+Use `--solution` only after completing a full attempt. Each failed case reports targeted feedback without exposing the implementation.
 
 ## What To Check
 

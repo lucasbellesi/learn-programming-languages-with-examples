@@ -9,6 +9,11 @@ This module introduces richer object modeling in TypeScript with interfaces and 
 - Prerequisites: `02-core/algorithms-basics` and `01-foundations/arrays-and-vectors`.
 - Cross-Language Lens: Compare C++ structs, C# classes, Go structs, Python classes, and TypeScript interfaces/classes as different tradeoffs for modeling state and behavior.
 
+## Learning Outcomes
+
+- `ADV-MOD-01`: Model data and behavior with cohesive domain types.
+- `ADV-MOD-02`: Protect invariants through constructors and methods.
+
 ## Quick Run
 
 ~~~bash
@@ -45,6 +50,16 @@ node build/typescript/03-advanced/structs-and-classes/example/main.js
 - Input: label, quantity, and unit price.
 - Output: class-based invoice summary with total.
 - Edge cases: negative quantity or price should print an error.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language typescript --level 03-advanced --module structs-and-classes --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

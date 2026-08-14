@@ -1,7 +1,6 @@
 // Module focus: Tracking ownership and lifetime when multiple references can observe the same value.
 // Why it matters: practicing smart pointers in depth patterns makes exercises and checkpoints easier to reason about.
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -56,30 +55,6 @@ public class Main {
         }
     }
 
-    static final class PreviewPane {
-        private final WeakReference<Report> currentReport;
-
-        PreviewPane(Report report) {
-            // The preview can observe the report without becoming an owner.
-            this.currentReport = new WeakReference<>(report);
-        }
-
-        void clearForDemo() {
-            // Clearing the weak reference gives this small example deterministic output.
-            currentReport.clear();
-        }
-
-        void describe() {
-            Report report = currentReport.get();
-            if (report == null) {
-                System.out.println("Preview target expired.");
-                return;
-            }
-
-            System.out.println("Preview can still see: " + report.title());
-        }
-    }
-
     public static void main(String[] args) {
         ReportOwner inbox = new ReportOwner("Inbox", new Report("Quarterly Summary"));
         ReportOwner archiveSlot = new ReportOwner("Archive", null);
@@ -97,13 +72,5 @@ public class Main {
         // The snapshot is safe to share because callers cannot mutate archive internals.
         System.out.println("Archive snapshot size: " + archive.snapshot().size());
 
-        Report transientDraft = new Report("Transient Draft");
-        PreviewPane preview = new PreviewPane(transientDraft);
-        preview.describe();
-
-        // Weak observers must handle the target disappearing without owning it.
-        transientDraft = null;
-        preview.clearForDemo();
-        preview.describe();
     }
 }

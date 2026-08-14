@@ -9,6 +9,11 @@ This module introduces fixed-size and dynamic collections in C++.
 - Prerequisites: `01-foundations/control-flow`, `01-foundations/functions`.
 - Cross-Language Lens: Compare `vector`, `List<T>`, slices, and Python lists as different tradeoffs for dynamic sequence handling.
 
+## Learning Outcomes
+
+- `FND-SEQ-01`: Store and traverse ordered collections safely.
+- `FND-SEQ-02`: Handle empty collections and index boundaries explicitly.
+
 ## Quick Run
 
 ```bash
@@ -60,6 +65,16 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/vector-filter.cpp -o arrays_and_v
 - Input: integer `n`, then `n` integers, then one target integer.
 - Output: number of occurrences of target.
 - Edge cases: target not found should print `0`; all values equal target should print `n`.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language cpp --level 01-foundations --module arrays-and-vectors --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

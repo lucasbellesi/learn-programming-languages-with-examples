@@ -9,6 +9,11 @@ This module introduces TypeScript concurrency through async tasks, `Promise.all`
 - Prerequisites: `02-core/algorithms-basics` and `03-advanced/templates-basics`.
 - Cross-Language Lens: Compare thread-based concurrency in C++ or Go with TypeScript's event-loop concurrency, where tasks overlap without shared-memory threads by default.
 
+## Learning Outcomes
+
+- `EXP-CON-01`: Coordinate concurrent work without data races or lost results.
+- `EXP-CON-02`: Define completion, cancellation, and error propagation behavior.
+
 ## Quick Run
 
 ~~~bash
@@ -52,6 +57,16 @@ node build/typescript/04-expert/concurrency-basics/example/main.js
 - Input: none.
 - Output: worker start/finish logs plus a final ordered summary.
 - Edge cases: fewer jobs than workers; an empty job list.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language typescript --level 04-expert --module concurrency-basics --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

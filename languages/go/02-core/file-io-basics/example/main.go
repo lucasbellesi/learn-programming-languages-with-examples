@@ -8,68 +8,61 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	"strconv"
 	"strings"
 )
 
-// Helper setup for file io basics; this keeps the walkthrough readable.
-func parseScoreRow(line string) (string, int, bool) {
-	// Each valid row has one name token followed by one integer score.
-	parts := strings.Fields(line)
-	if len(parts) != 2 {
-		return "", 0, false
-	}
-
-	score, err := strconv.Atoi(parts[1])
-	return parts[0], score, err == nil
-}
-
-// Walk through one fixed scenario so file io basics behavior stays repeatable.
 func main() {
-	// Prepare sample inputs that exercise the key file io basics path.
-	inputPath := filepath.Join(os.TempDir(), "learn-lang-file-io-go-scores.txt")
-	outputPath := filepath.Join(os.TempDir(), "learn-lang-file-io-go-summary.txt")
-	sample := strings.Join([]string{"ana 90", "bob 82", "invalid row", "carla 95"}, "\n") + "\n"
-	if err := os.WriteFile(inputPath, []byte(sample), 0o644); err != nil {
-		fmt.Println("Could not create sample input file.")
-		return
+	// Explicit arguments make missing input observable instead of creating it silently.
+	inputPath := filepath.Join("example", "fixtures", "sample-scores.txt")
+	outputPath := filepath.Join("build", "report.txt")
+	if len(os.Args) > 1 {
+		inputPath = os.Args[1]
+	}
+	if len(os.Args) > 2 {
+		outputPath = os.Args[2]
 	}
 
-	// Open the input file, then scan it one learner-visible row at a time.
 	file, err := os.Open(inputPath)
 	if err != nil {
-		fmt.Printf("Could not open %s\n", inputPath)
+		fmt.Printf("Could not open %s: %v\n", inputPath, err)
 		return
 	}
 	defer file.Close()
 
-	validRows, sum := 0, 0
+	// Keep accepted and rejected records separate so the report can explain both.
+	var records []scoreRecord
+	invalidRows := 0
+	// Blank lines are formatting noise; malformed non-blank rows count as rejected data.
 	scanner := bufio.NewScanner(file)
-
 	for scanner.Scan() {
-		name, score, ok := parseScoreRow(scanner.Text())
-		if !ok {
+		if strings.TrimSpace(scanner.Text()) == "" {
 			continue
 		}
-
-		validRows++
-		sum += score
-		fmt.Printf("%s -> %d\n", name, score)
+		record, ok := parseScoreRow(scanner.Text())
+		if ok {
+			records = append(records, record)
+		} else {
+			invalidRows++
+		}
 	}
-
 	if err := scanner.Err(); err != nil {
-		fmt.Println("Could not read input file.")
+		fmt.Printf("Could not read input file: %v\n", err)
 		return
 	}
 
-	// Summarize only rows that passed parsing, then persist the result.
-	average := float64(sum) / float64(validRows)
-	summary := fmt.Sprintf("Rows: %d\nAverage: %.2f\n", validRows, average)
-	if err := os.WriteFile(outputPath, []byte(summary), 0o644); err != nil {
-		fmt.Printf("Could not create %s\n", outputPath)
+	// Build and persist one deterministic learner-visible report.
+	report := buildReport(records, invalidRows)
+	if err := os.MkdirAll(filepath.Dir(outputPath), 0o755); err != nil {
+		fmt.Printf("Could not create output directory: %v\n", err)
+		return
+	}
+	if err := os.WriteFile(outputPath, []byte(report+"\n"), 0o644); err != nil {
+		fmt.Printf("Could not create %s: %v\n", outputPath, err)
 		return
 	}
 
-	// Print the report path so learners can verify the written file.
-	fmt.Printf("Summary written to %s\n", outputPath)
+	// Print the same report so file and console results are easy to compare.
+	// The explicit path also tells learners exactly where the generated artifact lives.
+	fmt.Printf("Report file: %s\n", outputPath)
+	fmt.Println(report)
 }

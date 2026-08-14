@@ -9,6 +9,11 @@ This module introduces practical text handling with `std::string`.
 - Prerequisites: `01-foundations/types-and-io`, `01-foundations/control-flow`.
 - Cross-Language Lens: Compare immutable string handling, indexing rules, and tokenization helpers in each language.
 
+## Learning Outcomes
+
+- `FND-STR-01`: Normalize, inspect, and transform textual data.
+- `FND-STR-02`: Handle empty input and character boundaries safely.
+
 ## Quick Run
 
 ```bash
@@ -24,6 +29,8 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o strings_example
 g++ -std=c++17 -Wall -Wextra -pedantic example/string-clean-and-tokenize.cpp -o strings_clean_and_tokenize
 ./strings_clean_and_tokenize
 ```
+
+- `example/vowel-count.cpp` keeps character classification separate from the main walkthrough.
 
 ## Topics Covered
 
@@ -60,6 +67,16 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/string-clean-and-tokenize.cpp -o 
 - Input: one line of text.
 - Output: `Palindrome: true` or `Palindrome: false`.
 - Edge cases: mixed case letters; punctuation and spaces should be ignored.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language cpp --level 01-foundations --module strings --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

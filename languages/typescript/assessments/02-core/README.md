@@ -26,12 +26,20 @@ Write a program that:
 - Prerequisites: All `02-core` modules, especially `input-validation`, `maps-and-frequency-counting`, and `error-handling-and-defensive-programming`.
 - Learning Focus: Prove validation, aggregation, defensive handling, and report generation under mixed-quality input.
 
+## Learning Outcomes
+
+- `COR-VAL-01`
+- `COR-ALG-01`
+- `COR-FIO-01`
+- `COR-ERR-02`
+
 ## Quick Run
 
-~~~bash
-npm run build:typescript
-node build/typescript/assessments/02-core/main.js
-~~~
+Run the reference solution from the repository root:
+
+```bash
+python scripts/automation.py check-checkpoint --language typescript --kind assessment --level 02-core --solution
+```
 
 ## Sample Input
 
@@ -65,6 +73,16 @@ Report saved to core_assessment_report.txt
 - Compared with the C++ assessment, this version performs the same defensive-counting task through Node input parsing and typed arrays.
 - Relative to Python, compile-time checking helps keep the frequency-table logic organized.
 - The main comparison is script-like ingestion with a stronger static model of the report pipeline.
+
+## Check Your Work
+
+Implement the task in `starter/`, then run from the repository root:
+
+```bash
+python scripts/automation.py check-checkpoint --language typescript --kind assessment --level 02-core
+```
+
+Use `--solution` only after completing a full attempt. Each failed case reports targeted feedback without exposing the implementation.
 
 ## What To Check
 

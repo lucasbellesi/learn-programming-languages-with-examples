@@ -9,6 +9,11 @@ This module introduces value copying and ownership transfer through moves.
 - Prerequisites: `03-advanced/structs-and-classes`, `03-advanced/constructors-and-invariants`.
 - Cross-Language Lens: Use this module to contrast C++ ownership transfer with reference-heavy behavior in C#, Go, and Python.
 
+## Learning Outcomes
+
+- `ADV-CPY-01`: Predict aliasing and independence after copying or sharing values.
+- `ADV-CPY-02`: Choose an idiomatic ownership-transfer strategy for the language.
+
 ## Quick Run
 
 ```bash
@@ -56,6 +61,16 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o copy_move_example
 - Input: string values to store.
 - Output: size/capacity growth while using move insertion.
 - Edge cases: empty strings; repeated insertions.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language cpp --level 03-advanced --module copy-and-move-semantics --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

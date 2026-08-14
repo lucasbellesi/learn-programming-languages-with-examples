@@ -9,6 +9,11 @@ This module explains where variables are visible and how long they live.
 - Prerequisites: `01-foundations/functions`, `01-foundations/control-flow`.
 - Cross-Language Lens: Compare block scope everywhere, then contrast deterministic destruction in C++ with garbage-collected lifetime in the other tracks.
 
+## Learning Outcomes
+
+- `FND-SCP-01`: Predict name visibility across nested scopes.
+- `FND-SCP-02`: Explain when values and resources cease to be usable.
+
 ## Quick Run
 
 ```bash
@@ -50,6 +55,16 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o scope_lifetime_exampl
 - Input: an integer `N`.
 - Output: sum of `1..N` with scoped helper blocks.
 - Edge cases: `N <= 0`; `N = 1`.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language cpp --level 01-foundations --module scope-and-lifetime-basics --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

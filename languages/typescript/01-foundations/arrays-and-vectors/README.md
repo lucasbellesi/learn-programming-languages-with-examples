@@ -9,6 +9,11 @@ This module uses typed arrays to store, transform, and summarize groups of value
 - Prerequisites: 01-foundations/control-flow and 01-foundations/functions.
 - Cross-Language Lens: Compare vector, List<T>, slices, Python lists, and TypeScript arrays as different tradeoffs for dynamic sequence work.
 
+## Learning Outcomes
+
+- `FND-SEQ-01`: Store and traverse ordered collections safely.
+- `FND-SEQ-02`: Handle empty collections and index boundaries explicitly.
+
 ## Quick Run
 
 ~~~bash
@@ -51,6 +56,16 @@ node build/typescript/01-foundations/arrays-and-vectors/example/main.js
 - Input: one line of space-separated words.
 - Output: the unique words in first-seen order.
 - Edge cases: empty input should print an error; already unique input should stay unchanged.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language typescript --level 01-foundations --module arrays-and-vectors --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

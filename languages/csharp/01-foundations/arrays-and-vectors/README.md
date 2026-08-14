@@ -9,6 +9,11 @@ This module practices storing sequences, iterating them, and computing frequenci
 - Prerequisites: `01-foundations/control-flow`, `01-foundations/functions`.
 - Cross-Language Lens: Compare `vector`, `List<T>`, slices, and Python lists as different tradeoffs for dynamic sequence handling.
 
+## Learning Outcomes
+
+- `FND-SEQ-01`: Store and traverse ordered collections safely.
+- `FND-SEQ-02`: Handle empty collections and index boundaries explicitly.
+
 ## Quick Run
 
 ~~~bash
@@ -50,6 +55,16 @@ dotnet run --project example/arrays-and-vectors-example.csproj
 - Input: integer list plus a target integer.
 - Output: frequency count for target value.
 - Edge cases: empty list input; target not present.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language csharp --level 01-foundations --module arrays-and-vectors --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

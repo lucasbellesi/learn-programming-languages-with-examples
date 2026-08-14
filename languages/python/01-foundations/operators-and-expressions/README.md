@@ -9,6 +9,11 @@ This module practices arithmetic operators, precedence, and derived calculations
 - Prerequisites: `01-foundations/types-and-io`.
 - Cross-Language Lens: Compare integer division, boolean logic, and truthiness rules before assuming the same expression means the same thing in every language.
 
+## Learning Outcomes
+
+- `FND-OPE-01`: Build expressions with correct precedence and explicit intent.
+- `FND-OPE-02`: Distinguish arithmetic, comparison, and logical operations.
+
 ## Quick Run
 
 ~~~bash
@@ -44,6 +49,16 @@ python example/main.py
 - Input: subtotal, discountPercent, and taxPercent.
 - Output: discount amount, tax amount, and final total.
 - Edge cases: subtotal < 0; zero discount or zero tax.
+
+## Check Your Work
+
+Run from the repository root after implementing a starter:
+
+```bash
+python scripts/automation.py check-exercise --language python --level 01-foundations --module operators-and-expressions --exercise 01
+```
+
+Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
 
 ## Checkpoint
 

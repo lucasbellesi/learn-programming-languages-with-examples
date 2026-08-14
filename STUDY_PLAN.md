@@ -1,121 +1,93 @@
-# 4-Week Study Plan (C++ Track)
+# Self-Directed Study Plan
 
-This plan assumes 5 study days per week, 60-90 minutes per day.
+This course is designed for work from the repository root. Choose one language and keep the same track for a full level before using another language for comparison.
 
-This is the canonical study plan because the C++ track is the primary reference. Learners using C#, Go, Python, TypeScript, or Java can follow the same weekly concept order by opening the matching language guide and concept paths from [CONCEPT_INDEX.md](CONCEPT_INDEX.md). All six tracks now include every module, project, and assessment through expert.
+## Standard Pace: 8 Weeks
 
-## How To Use This Plan
+Plan for five sessions of 60-90 minutes each week. For every module: read the README, run the example, implement both starters, run `check-exercise`, and record one mistake or tradeoff you learned.
 
-1. Follow modules in order.
-2. For each module: read `README.md`, run `example/main.cpp`, solve `exercises/01.cpp` and `exercises/02.cpp`.
-3. Mark progress in `languages/cpp/CHECKLIST.md`.
-4. Use level capstones to combine concepts.
+### Week 1 - Foundations I
 
-For another language, replace the C++ file names with that track's entrypoint convention:
+- `types-and-io`
+- `operators-and-expressions`
+- `control-flow`
+- `functions`
 
-- Java: `example/Main.java`, `exercises/Exercise01.java`, `exercises/Exercise02.java`
-- C#: project-based examples with `.csproj`, exercises as `01.cs` and `02.cs`
-- Go, Python, TypeScript: `example/main.*`, `exercises/01.*`, `exercises/02.*`
+### Week 2 - Foundations II
 
-## Week 1 - Foundations Basics
+- `arrays-and-vectors`
+- `strings`
+- `scope-and-lifetime-basics`
+- `formatted-output-and-iomanip`
+- Foundations project and assessment
 
-Modules:
+### Week 3 - Core I
 
-- `languages/cpp/01-foundations/types-and-io`
-- `languages/cpp/01-foundations/operators-and-expressions`
-- `languages/cpp/01-foundations/control-flow`
-- `languages/cpp/01-foundations/functions`
+- `input-validation`
+- `algorithms-basics`
+- `file-io-basics`
 
-Suggested pacing:
+### Week 4 - Core II
 
-- Day 1: types-and-io
-- Day 2: operators-and-expressions
-- Day 3: control-flow
-- Day 4: functions
-- Day 5: exercise review + error fixes
+- `sorting-and-searching`
+- `maps-and-frequency-counting`
+- `error-handling-and-defensive-programming`
+- Core project and assessment
 
-Done when:
+### Week 5 - Advanced I
 
-- [ ] All 8 exercises from Week 1 are solved.
-- [ ] You can explain when to use `getline` versus `cin >>`.
-- [ ] You can write and call functions with clear parameters and return values.
+- `structs-and-classes`
+- `constructors-and-invariants`
+- `copy-and-move-semantics`
 
-## Week 2 - Foundations Collections + Capstone
+### Week 6 - Advanced II
 
-Modules:
+- `inheritance-and-polymorphism`
+- `templates-basics`
+- Advanced project and assessment
 
-- `languages/cpp/01-foundations/arrays-and-vectors`
-- `languages/cpp/01-foundations/strings`
-- `languages/cpp/01-foundations/scope-and-lifetime-basics`
-- `languages/cpp/01-foundations/formatted-output-and-iomanip`
+### Week 7 - Expert I
 
-Capstone:
+- `memory-management-and-raii`
+- `smart-pointers-in-depth`
+- `concurrency-basics`
 
-- `languages/cpp/projects/01-foundations`
+### Week 8 - Expert II
 
-Suggested pacing:
+- `performance-and-profiling-basics`
+- `modularization-and-build-structure`
+- Expert project and assessment
+- Final review of the language checklist
 
-- Day 1-4: one module per day
-- Day 5: complete the foundations capstone and extensions
+## Accelerated Pace: 4 Weeks
 
-Done when:
+Use this only if you already program in another language. Complete two standard weeks per week:
 
-- [ ] All Week 2 exercises are solved.
-- [ ] Capstone builds and runs from terminal and VS Code.
-- [ ] You can process lists of values and print formatted reports.
+1. Week 1: all foundations modules, project, and assessment.
+2. Week 2: all core modules, project, and assessment.
+3. Week 3: all advanced modules, project, and assessment.
+4. Week 4: all expert modules, project, and assessment.
 
-## Week 3 - Core Level + Capstone
+Do not skip automated cases. Reduce written reflection and companion examples before reducing exercise or checkpoint coverage.
 
-Modules:
+## Course Commands
 
-- `languages/cpp/02-core/input-validation`
-- `languages/cpp/02-core/algorithms-basics`
-- `languages/cpp/02-core/file-io-basics`
-- `languages/cpp/02-core/sorting-and-searching`
-- `languages/cpp/02-core/maps-and-frequency-counting`
-- `languages/cpp/02-core/error-handling-and-defensive-programming`
+Replace the sample language and module identifiers while keeping the commands at the repository root:
 
-Capstone:
+```bash
+python scripts/automation.py doctor --language python
+python scripts/automation.py run-module --module-path languages/python/01-foundations/types-and-io
+python scripts/automation.py check-exercise --language python --level 01-foundations --module types-and-io --exercise 01
+python scripts/automation.py check-checkpoint --language python --kind project --level 01-foundations
+python scripts/automation.py check-checkpoint --language python --kind assessment --level 01-foundations
+```
 
-- `languages/cpp/projects/02-core`
+Reference solutions are intentionally separate. Add `--solution` only after completing and checking your own attempt.
 
-Suggested pacing:
+## Completion Standard
 
-- Day 1-4: first four modules
-- Day 5: remaining modules + capstone start
-
-Done when:
-
-- [ ] You can validate user/file input safely.
-- [ ] You can sort/search data and build frequency summaries.
-- [ ] Core capstone generates the expected output report.
-
-## Week 4 - Advanced + Expert Essentials
-
-Modules:
-
-- `languages/cpp/03-advanced/structs-and-classes`
-- `languages/cpp/03-advanced/constructors-and-invariants`
-- `languages/cpp/03-advanced/copy-and-move-semantics`
-- `languages/cpp/03-advanced/inheritance-and-polymorphism`
-- `languages/cpp/03-advanced/templates-basics`
-- `languages/cpp/04-expert/memory-management-and-raii`
-- `languages/cpp/04-expert/smart-pointers-in-depth`
-
-Capstones:
-
-- `languages/cpp/projects/03-advanced`
-- `languages/cpp/projects/04-expert`
-
-Done when:
-
-- [ ] You can design classes with clear invariants.
-- [ ] You can explain ownership (`unique_ptr`, `shared_ptr`, `weak_ptr`).
-- [ ] You can complete both advanced/expert capstones and explain tradeoffs.
-
-## Weekly Review Checklist
-
-- [ ] I can run module examples from terminal and VS Code.
-- [ ] I can explain why each exercise solution is correct.
-- [ ] I documented at least 2 mistakes and how I fixed them.
-- [ ] I updated `languages/cpp/CHECKLIST.md`.
+- [ ] All 24 module examples run.
+- [ ] All 48 exercise starters are implemented and pass their named cases.
+- [ ] All four projects and four assessments pass their checkpoint contracts.
+- [ ] The track checklist remains an honest record of your own progress.
+- [ ] You can explain at least one idiomatic difference from another language for each level.

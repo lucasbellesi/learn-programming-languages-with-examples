@@ -22,11 +22,19 @@ Write a program that:
 - Prerequisites: All `03-advanced` modules, especially `constructors-and-invariants`, `copy-and-move-semantics`, `inheritance-and-polymorphism`, and `templates-basics`.
 - Learning Focus: Demonstrate object modeling, guarded state updates, defensive copying, and reusable reporting under a small input contract.
 
+## Learning Outcomes
+
+- `ADV-MOD-01`
+- `ADV-INV-02`
+- `ADV-POL-01`
+- `ADV-GEN-01`
+
 ## Quick Run
 
+Run the reference solution from the repository root:
+
 ```bash
-javac -d build/java languages/java/assessments/03-advanced/Main.java
-java -cp build/java Main
+python scripts/automation.py check-checkpoint --language java --kind assessment --level 03-advanced --solution
 ```
 
 ## Sample Input
@@ -57,6 +65,16 @@ Roster snapshot: 2
 - Compared with C++, Java uses defensive copies and immutable snapshots instead of ownership transfer syntax.
 - Relative to Python, Java makes invalid states more visible through constructors and explicit types.
 - Compared with TypeScript, Java relies on nominal interfaces and JVM collection APIs for the reporting and snapshot boundaries.
+
+## Check Your Work
+
+Implement the task in `starter/`, then run from the repository root:
+
+```bash
+python scripts/automation.py check-checkpoint --language java --kind assessment --level 03-advanced
+```
+
+Use `--solution` only after completing a full attempt. Each failed case reports targeted feedback without exposing the implementation.
 
 ## What To Check
 

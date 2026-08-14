@@ -1,0 +1,134 @@
+name: Repository CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+concurrency:
+  group: repository-ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Unit tests
+        run: python scripts/automation.py test-automation
+      - name: Documentation and curriculum structure
+        run: |
+          python scripts/automation.py check-links
+          python scripts/automation.py check-readme-structure
+          python scripts/automation.py check-module-completeness
+          python scripts/automation.py check-checkpoint-completeness
+          python scripts/automation.py check-doc-sync
+          python scripts/automation.py check-cross-language-parity
+          python scripts/automation.py check-exercise-parity
+          python scripts/automation.py audit-education-quality --fail-on-blocking-findings
+
+  linux-language:
+    needs: quality
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [cpp, csharp, go, java, python, typescript]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        if: matrix.language == 'typescript'
+        with:
+          node-version: "22"
+          cache: npm
+      - uses: actions/setup-go@v5
+        if: matrix.language == 'go'
+        with:
+          go-version: "1.22"
+      - uses: actions/setup-dotnet@v4
+        if: matrix.language == 'csharp'
+        with:
+          dotnet-version: "8.0.x"
+      - uses: actions/setup-java@v4
+        if: matrix.language == 'java'
+        with:
+          distribution: temurin
+          java-version: "21"
+      - name: Install TypeScript dependencies
+        if: matrix.language == 'typescript'
+        run: npm ci
+      - name: Verify track
+        run: python scripts/automation.py verify-language --language ${{ matrix.language }}
+
+  lint-linux:
+    needs: quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.22"
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - name: Install formatters
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clang-format
+          python -m pip install ruff
+          npm ci
+      - name: Lint all tracks
+        run: python scripts/automation.py lint
+
+  windows-smoke:
+    needs: quality
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.22"
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: UCRT64
+          path-type: inherit
+          update: true
+          install: mingw-w64-ucrt-x86_64-gcc
+      - name: Add MinGW to PATH
+        shell: pwsh
+        run: '"C:\msys64\ucrt64\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append'
+      - name: Install TypeScript dependencies
+        run: npm ci
+      - name: Windows solution smoke
+        run: python scripts/automation.py smoke-languages
