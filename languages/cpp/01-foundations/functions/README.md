@@ -7,7 +7,7 @@ This module introduces reusable logic through function design.
 - Difficulty: Beginner.
 - Estimated Time: 20-35 minutes.
 - Prerequisites: `01-foundations/control-flow`, `01-foundations/operators-and-expressions`.
-- Cross-Language Lens: Compare helper-function design, argument passing defaults, and overloading support across the four tracks.
+- Cross-Language Lens: Compare helper-function design, argument passing defaults, and overloading support across the six active tracks.
 
 ## Learning Outcomes
 
@@ -16,10 +16,11 @@ This module introduces reusable logic through function design.
 
 ## Quick Run
 
-```bash
-g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o functions_example
-./functions_example
-```
+Run from the repository root:
+
+~~~bash
+python scripts/automation.py run-module --module-path languages/cpp/01-foundations/functions
+~~~
 
 ## More Examples
 

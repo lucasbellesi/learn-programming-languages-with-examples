@@ -16,8 +16,10 @@ This module adapts smart pointer ideas to Python references, ownership slots, an
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-python example/main.py
+python scripts/automation.py run-module --module-path languages/python/04-expert/smart-pointers-in-depth
 ~~~
 
 ## Topics Covered

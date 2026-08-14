@@ -16,9 +16,10 @@ This module practices handling invalid operations and malformed records explicit
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-javac -d build/java languages/java/02-core/error-handling-and-defensive-programming/example/Main.java
-java -cp build/java Main
+python scripts/automation.py run-module --module-path languages/java/02-core/error-handling-and-defensive-programming
 ~~~
 
 ## Topics Covered

@@ -16,8 +16,10 @@ This module introduces copying behavior and transfer-style updates with slices a
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-go run example/main.go
+python scripts/automation.py run-module --module-path languages/go/03-advanced/copy-and-move-semantics
 ~~~
 
 ## Topics Covered

@@ -16,8 +16,10 @@ This module teaches safe text-file reading and writing with simple stream patter
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-go run example/main.go
+python scripts/automation.py run-module --module-path languages/go/02-core/file-io-basics
 ~~~
 
 ## Topics Covered

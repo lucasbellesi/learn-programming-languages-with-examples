@@ -16,8 +16,10 @@ This module practices typed input, safe parsing, and basic numeric summaries.
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-go run example/main.go
+python scripts/automation.py run-module --module-path languages/go/01-foundations/types-and-io
 ~~~
 
 ## Topics Covered
@@ -55,17 +57,6 @@ go run example/main.go
 - Input: single-line record: product price quantity.
 - Output: parsed product name and computed total price.
 - Edge cases: wrong token count; quantity = 0.
-
-## Practice Workflow
-
-1. Edit the starter in `exercises/01.go` or `exercises/02.go`.
-2. Check your work from the repository root:
-
-~~~bash
-python scripts/automation.py check-exercise --language go --level 01-foundations --module types-and-io --exercise 01
-~~~
-
-3. Change `--exercise` to `02` for the second task. Reference implementations are under `exercises/solutions/`; use `--solution` only after attempting the exercise.
 
 ## Check Your Work
 

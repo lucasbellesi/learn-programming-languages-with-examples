@@ -13,11 +13,14 @@ Capstones are level-based projects that combine multiple modules into one practi
 
 1. Complete all concept modules in the matching level first.
 2. Read the capstone README requirements.
-3. Run the provided `main.cpp`.
-4. Extend the project using the extension ideas.
+3. Work in the checkpoint's `starter/` directory without opening `solutions/`.
+4. Run the checker from the repository root and complete the guided milestones.
+5. Review the reference implementation only after a complete attempt, then try the extension ideas.
 
-## Build Command
+## Check Command
 
 ```bash
-g++ -std=c++17 -Wall -Wextra -pedantic main.cpp -o capstone
+python scripts/automation.py check-checkpoint --language cpp --kind project --level 01-foundations
 ```
+
+Change `--level` for later capstones. Add `--solution` only when reviewing the reference implementation.

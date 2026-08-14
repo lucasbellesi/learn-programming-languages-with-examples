@@ -16,9 +16,10 @@ This module practices branching and loops to keep TypeScript programs predictabl
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-npm run build:typescript
-node build/typescript/01-foundations/control-flow/example/main.js
+python scripts/automation.py run-module --module-path languages/typescript/01-foundations/control-flow
 ~~~
 
 ## Topics Covered

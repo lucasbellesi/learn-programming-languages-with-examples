@@ -16,9 +16,10 @@ This module adapts the C++ ownership topic to TypeScript by focusing on referenc
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-npm run build:typescript
-node build/typescript/03-advanced/copy-and-move-semantics/example/main.js
+python scripts/automation.py run-module --module-path languages/typescript/03-advanced/copy-and-move-semantics
 ~~~
 
 ## Topics Covered

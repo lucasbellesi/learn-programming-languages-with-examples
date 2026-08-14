@@ -16,8 +16,10 @@ This module introduces multi-file organization and project references in C#.
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-dotnet run --project example/modularization-and-build-structure-example.csproj
+python scripts/automation.py run-module --module-path languages/csharp/04-expert/modularization-and-build-structure
 ~~~
 
 ## Topics Covered

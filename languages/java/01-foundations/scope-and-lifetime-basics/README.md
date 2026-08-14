@@ -7,7 +7,7 @@ This module practices how names stay visible only inside the blocks that own the
 - Difficulty: Beginner.
 - Estimated Time: 20-35 minutes.
 - Prerequisites: Java 21 JDK and prior modules in this level.
-- Cross-Language Lens: Compare Java's explicit class and type requirements with the same concept in C++, C#, Go, Python, and TypeScript.
+- Cross-Language Lens: Compare Java block scope and static fields with stack lifetime, closures, and module-level state in the other tracks.
 
 ## Learning Outcomes
 
@@ -16,9 +16,10 @@ This module practices how names stay visible only inside the blocks that own the
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-javac -d build/java languages/java/01-foundations/scope-and-lifetime-basics/example/Main.java
-java -cp build/java Main
+python scripts/automation.py run-module --module-path languages/java/01-foundations/scope-and-lifetime-basics
 ~~~
 
 ## Topics Covered
@@ -48,12 +49,12 @@ java -cp build/java Main
 1. exercises/Exercise01.java
 - Input: one integer base value.
 - Output: outer, inner, and final values.
-- Edge cases: missing values; boundary numeric values.
+- Edge cases: base value = 0; negative base value.
 
 2. exercises/Exercise02.java
 - Input: one integer count.
 - Output: number of method calls recorded by shared state.
-- Edge cases: missing values; zero or repeated values where relevant.
+- Edge cases: count = 0; negative count.
 
 ## Check Your Work
 

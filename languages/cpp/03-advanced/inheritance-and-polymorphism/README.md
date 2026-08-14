@@ -16,10 +16,11 @@ This module models behavior variation with virtual functions.
 
 ## Quick Run
 
-```bash
-g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o inheritance_polymorphism_example
-./inheritance_polymorphism_example
-```
+Run from the repository root:
+
+~~~bash
+python scripts/automation.py run-module --module-path languages/cpp/03-advanced/inheritance-and-polymorphism
+~~~
 
 ## More Examples
 

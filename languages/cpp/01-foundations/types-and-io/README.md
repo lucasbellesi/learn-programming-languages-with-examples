@@ -16,10 +16,11 @@ This module covers basic data types and console input/output in C++.
 
 ## Quick Run
 
-```bash
-g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o types_and_io_example
-./types_and_io_example
-```
+Run from the repository root:
+
+~~~bash
+python scripts/automation.py run-module --module-path languages/cpp/01-foundations/types-and-io
+~~~
 
 ## More Examples
 
@@ -65,17 +66,6 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/input-validation-loop.cpp -o type
 - Input: single line: `product price quantity`.
 - Output: parsed fields and total price.
 - Edge cases: quantity `0` should give total `0`; decimal price should keep precision.
-
-## Practice Workflow
-
-1. Edit the starter in `exercises/01.cpp` or `exercises/02.cpp`.
-2. Check your work from the repository root:
-
-~~~bash
-python scripts/automation.py check-exercise --language cpp --level 01-foundations --module types-and-io --exercise 01
-~~~
-
-3. Change `--exercise` to `02` for the second task. Reference implementations are under `exercises/solutions/`; use `--solution` only after attempting the exercise.
 
 ## Check Your Work
 

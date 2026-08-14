@@ -16,9 +16,10 @@ This module adapts copy and move semantics to Java through references, aliasing,
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-javac -d build/java languages/java/03-advanced/copy-and-move-semantics/example/Main.java
-java -cp build/java Main
+python scripts/automation.py run-module --module-path languages/java/03-advanced/copy-and-move-semantics
 ~~~
 
 ## Topics Covered

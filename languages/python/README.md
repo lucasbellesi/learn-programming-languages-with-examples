@@ -81,4 +81,4 @@ python scripts/automation.py run-module --module-path languages/python/01-founda
 - Complete one module or checkpoint in Python and then the same artifact in C++.
 - Compare readability, typing, and standard library approaches.
 - Document at least three implementation differences per module pair.
-- Track next parity milestones in [LANGUAGE_PARITY_MATRIX.md](../../LANGUAGE_PARITY_MATRIX.md).
+- Use [LANGUAGE_PARITY_MATRIX.md](../../LANGUAGE_PARITY_MATRIX.md) as the current parity reference.

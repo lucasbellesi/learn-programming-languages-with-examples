@@ -20,11 +20,11 @@ Build a program that reads student grades from a text file and writes a summary 
 
 ## Quick Run
 
-Run the reference solution from the repository root:
+Run the checkpoint checker from the repository root. The starter is intentionally incomplete, so the first run establishes the work still to do:
 
-```bash
-python scripts/automation.py check-checkpoint --language python --kind project --level 02-core --solution
-```
+~~~bash
+python scripts/automation.py check-checkpoint --language python --kind project --level 02-core
+~~~
 
 ## Requirements
 

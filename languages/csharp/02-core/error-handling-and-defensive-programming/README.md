@@ -16,8 +16,10 @@ This module teaches robust validation checks and safe failure behavior.
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-dotnet run --project example/error-handling-and-defensive-programming-example.csproj
+python scripts/automation.py run-module --module-path languages/csharp/02-core/error-handling-and-defensive-programming
 ~~~
 
 ## Topics Covered

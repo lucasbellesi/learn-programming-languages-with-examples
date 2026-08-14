@@ -16,10 +16,11 @@ This module covers arithmetic, relational, and logical expressions in C++.
 
 ## Quick Run
 
-```bash
-g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o operators_example
-./operators_example
-```
+Run from the repository root:
+
+~~~bash
+python scripts/automation.py run-module --module-path languages/cpp/01-foundations/operators-and-expressions
+~~~
 
 ## More Examples
 

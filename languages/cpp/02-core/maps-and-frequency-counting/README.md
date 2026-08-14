@@ -7,7 +7,7 @@ This module introduces associative containers for counting/grouping data.
 - Difficulty: Intermediate.
 - Estimated Time: 30-45 minutes.
 - Prerequisites: `01-foundations/arrays-and-vectors`, `01-foundations/strings`.
-- Cross-Language Lens: Compare hash map ergonomics, missing-key behavior, and default-value patterns across the four languages.
+- Cross-Language Lens: Compare hash map ergonomics, missing-key behavior, and default-value patterns across the six active languages.
 
 ## Learning Outcomes
 
@@ -16,10 +16,11 @@ This module introduces associative containers for counting/grouping data.
 
 ## Quick Run
 
-```bash
-g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o maps_frequency_example
-./maps_frequency_example
-```
+Run from the repository root:
+
+~~~bash
+python scripts/automation.py run-module --module-path languages/cpp/02-core/maps-and-frequency-counting
+~~~
 
 ## More Examples
 

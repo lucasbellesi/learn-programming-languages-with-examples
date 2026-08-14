@@ -7,7 +7,7 @@ This module practices combining values through expressions and readable calculat
 - Difficulty: Beginner.
 - Estimated Time: 20-35 minutes.
 - Prerequisites: Java 21 JDK and prior modules in this level.
-- Cross-Language Lens: Compare Java's explicit class and type requirements with the same concept in C++, C#, Go, Python, and TypeScript.
+- Cross-Language Lens: Compare Java's numeric promotion and explicit zero-divisor branch with division behavior in the other tracks.
 
 ## Learning Outcomes
 
@@ -16,9 +16,10 @@ This module practices combining values through expressions and readable calculat
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-javac -d build/java languages/java/01-foundations/operators-and-expressions/example/Main.java
-java -cp build/java Main
+python scripts/automation.py run-module --module-path languages/java/01-foundations/operators-and-expressions
 ~~~
 
 ## Topics Covered
@@ -48,12 +49,12 @@ java -cp build/java Main
 1. exercises/Exercise01.java
 - Input: two numeric values.
 - Output: sum, difference, product, and quotient.
-- Edge cases: missing values; boundary numeric values.
+- Edge cases: divisor = 0; negative operands.
 
 2. exercises/Exercise02.java
 - Input: subtotal discountRate taxRate.
 - Output: discount amount, tax amount, and final total.
-- Edge cases: missing values; zero or repeated values where relevant.
+- Edge cases: zero subtotal; zero discount and tax rates.
 
 ## Check Your Work
 

@@ -16,8 +16,10 @@ This module introduces separation of responsibilities and package-oriented desig
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-go run example/main.go example/pricing.go example/formatting.go
+python scripts/automation.py run-module --module-path languages/go/04-expert/modularization-and-build-structure
 ~~~
 
 ## Topics Covered

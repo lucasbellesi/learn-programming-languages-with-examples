@@ -16,9 +16,10 @@ This module uses arithmetic, comparisons, and boolean expressions to build small
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-npm run build:typescript
-node build/typescript/01-foundations/operators-and-expressions/example/main.js
+python scripts/automation.py run-module --module-path languages/typescript/01-foundations/operators-and-expressions
 ~~~
 
 ## Topics Covered

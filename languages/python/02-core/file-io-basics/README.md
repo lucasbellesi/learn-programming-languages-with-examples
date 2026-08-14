@@ -16,8 +16,10 @@ This module teaches safe text-file reading and writing with beginner-friendly pa
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-python example/main.py
+python scripts/automation.py run-module --module-path languages/python/02-core/file-io-basics
 ~~~
 
 ## Topics Covered

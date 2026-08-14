@@ -16,8 +16,10 @@ This module practices storing sequences, iterating them, and computing frequenci
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-dotnet run --project example/arrays-and-vectors-example.csproj
+python scripts/automation.py run-module --module-path languages/csharp/01-foundations/arrays-and-vectors
 ~~~
 
 ## Topics Covered

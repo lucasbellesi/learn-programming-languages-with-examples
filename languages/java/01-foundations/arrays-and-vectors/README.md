@@ -7,7 +7,7 @@ This module practices storing related values in ordered collections and iteratin
 - Difficulty: Beginner.
 - Estimated Time: 20-35 minutes.
 - Prerequisites: Java 21 JDK and prior modules in this level.
-- Cross-Language Lens: Compare Java's explicit class and type requirements with the same concept in C++, C#, Go, Python, and TypeScript.
+- Cross-Language Lens: Compare Java arrays with C++ vectors, C# arrays, Go slices, Python lists, and TypeScript arrays.
 
 ## Learning Outcomes
 
@@ -16,9 +16,10 @@ This module practices storing related values in ordered collections and iteratin
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-javac -d build/java languages/java/01-foundations/arrays-and-vectors/example/Main.java
-java -cp build/java Main
+python scripts/automation.py run-module --module-path languages/java/01-foundations/arrays-and-vectors
 ~~~
 
 ## Topics Covered
@@ -48,12 +49,12 @@ java -cp build/java Main
 1. exercises/Exercise01.java
 - Input: count N followed by N integers.
 - Output: sum, average, minimum, and maximum.
-- Edge cases: missing values; boundary numeric values.
+- Edge cases: N = 0; negative and positive values.
 
 2. exercises/Exercise02.java
 - Input: count N, N integers, then target.
 - Output: target occurrence count.
-- Edge cases: missing values; zero or repeated values where relevant.
+- Edge cases: N = 0; target absent.
 
 ## Check Your Work
 

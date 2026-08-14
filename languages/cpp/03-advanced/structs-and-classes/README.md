@@ -16,10 +16,11 @@ This module introduces object modeling with `struct` and `class`.
 
 ## Quick Run
 
-```bash
-g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o structs_and_classes_example
-./structs_and_classes_example
-```
+Run from the repository root:
+
+~~~bash
+python scripts/automation.py run-module --module-path languages/cpp/03-advanced/structs-and-classes
+~~~
 
 ## More Examples
 

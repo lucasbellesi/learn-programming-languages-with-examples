@@ -16,8 +16,10 @@ This module teaches safe text-file reading and writing with basic stream APIs.
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-dotnet run --project example/file-io-basics-example.csproj
+python scripts/automation.py run-module --module-path languages/csharp/02-core/file-io-basics
 ~~~
 
 ## Topics Covered

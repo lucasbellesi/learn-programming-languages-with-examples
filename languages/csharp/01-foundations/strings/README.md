@@ -16,8 +16,10 @@ This module practices splitting text, normalizing characters, and basic text ana
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-dotnet run --project example/strings-example.csproj
+python scripts/automation.py run-module --module-path languages/csharp/01-foundations/strings
 ~~~
 
 ## Topics Covered

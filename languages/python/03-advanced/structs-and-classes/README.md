@@ -16,8 +16,10 @@ This module introduces object modeling with dataclass-style structures and class
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-python example/main.py
+python scripts/automation.py run-module --module-path languages/python/03-advanced/structs-and-classes
 ~~~
 
 ## Topics Covered

@@ -16,9 +16,10 @@ This module practices rejecting invalid values while keeping the program flow pr
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-javac -d build/java languages/java/02-core/input-validation/example/Main.java
-java -cp build/java Main
+python scripts/automation.py run-module --module-path languages/java/02-core/input-validation
 ~~~
 
 ## Topics Covered

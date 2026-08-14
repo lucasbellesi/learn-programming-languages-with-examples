@@ -16,10 +16,11 @@ This module introduces basic sorting and searching techniques.
 
 ## Quick Run
 
-```bash
-g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o sorting_searching_example
-./sorting_searching_example
-```
+Run from the repository root:
+
+~~~bash
+python scripts/automation.py run-module --module-path languages/cpp/02-core/sorting-and-searching
+~~~
 
 ## More Examples
 

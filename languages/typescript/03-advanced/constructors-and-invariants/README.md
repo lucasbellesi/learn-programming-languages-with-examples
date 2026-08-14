@@ -16,9 +16,10 @@ This module focuses on constructors that reject invalid state and keep objects t
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-npm run build:typescript
-node build/typescript/03-advanced/constructors-and-invariants/example/main.js
+python scripts/automation.py run-module --module-path languages/typescript/03-advanced/constructors-and-invariants
 ~~~
 
 ## Topics Covered

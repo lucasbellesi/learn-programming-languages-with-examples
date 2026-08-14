@@ -16,8 +16,10 @@ This module models behavior variation with abstract base classes and overrides.
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-python example/main.py
+python scripts/automation.py run-module --module-path languages/python/03-advanced/inheritance-and-polymorphism
 ~~~
 
 ## Topics Covered

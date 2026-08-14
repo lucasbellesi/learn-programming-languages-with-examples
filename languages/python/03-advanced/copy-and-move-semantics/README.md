@@ -16,8 +16,10 @@ This module introduces copying behavior and transfer-style updates with mutable 
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-python example/main.py
+python scripts/automation.py run-module --module-path languages/python/03-advanced/copy-and-move-semantics
 ~~~
 
 ## Topics Covered

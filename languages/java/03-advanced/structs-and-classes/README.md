@@ -16,9 +16,10 @@ This module introduces object modeling with records and classes.
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-javac -d build/java languages/java/03-advanced/structs-and-classes/example/Main.java
-java -cp build/java Main
+python scripts/automation.py run-module --module-path languages/java/03-advanced/structs-and-classes
 ~~~
 
 ## Topics Covered

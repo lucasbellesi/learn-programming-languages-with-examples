@@ -7,7 +7,7 @@ This module teaches defensive input handling for interactive programs.
 - Difficulty: Intermediate.
 - Estimated Time: 30-45 minutes.
 - Prerequisites: `01-foundations/control-flow`, `01-foundations/types-and-io`.
-- Cross-Language Lens: Compare loop-driven validation in all four languages and notice where parsing APIs are strict versus forgiving.
+- Cross-Language Lens: Compare loop-driven validation in all six active languages and notice where parsing APIs are strict versus forgiving.
 
 ## Learning Outcomes
 
@@ -16,8 +16,10 @@ This module teaches defensive input handling for interactive programs.
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-dotnet run --project example/input-validation-example.csproj
+python scripts/automation.py run-module --module-path languages/csharp/02-core/input-validation
 ~~~
 
 ## Topics Covered

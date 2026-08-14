@@ -7,7 +7,7 @@ This module practices choosing between branches and repeating work with predicta
 - Difficulty: Beginner.
 - Estimated Time: 20-35 minutes.
 - Prerequisites: Java 21 JDK and prior modules in this level.
-- Cross-Language Lens: Compare Java's explicit class and type requirements with the same concept in C++, C#, Go, Python, and TypeScript.
+- Cross-Language Lens: Compare Java's `if` chains and counted loops with equivalent branching and iteration constructs in the other tracks.
 
 ## Learning Outcomes
 
@@ -16,9 +16,10 @@ This module practices choosing between branches and repeating work with predicta
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-javac -d build/java languages/java/01-foundations/control-flow/example/Main.java
-java -cp build/java Main
+python scripts/automation.py run-module --module-path languages/java/01-foundations/control-flow
 ~~~
 
 ## Topics Covered
@@ -48,12 +49,12 @@ java -cp build/java Main
 1. exercises/Exercise01.java
 - Input: one integer score.
 - Output: letter grade label.
-- Edge cases: missing values; boundary numeric values.
+- Edge cases: grade boundary; score outside 0..100.
 
 2. exercises/Exercise02.java
 - Input: count N followed by N integers.
 - Output: positive, negative, and zero counts.
-- Edge cases: missing values; zero or repeated values where relevant.
+- Edge cases: N = 0; all values are zero.
 
 ## Check Your Work
 

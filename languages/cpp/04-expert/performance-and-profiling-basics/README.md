@@ -16,10 +16,11 @@ This module introduces simple measurement and optimization patterns.
 
 ## Quick Run
 
-```bash
-g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o performance_profiling_example
-./performance_profiling_example
-```
+Run from the repository root:
+
+~~~bash
+python scripts/automation.py run-module --module-path languages/cpp/04-expert/performance-and-profiling-basics
+~~~
 
 ## More Examples
 

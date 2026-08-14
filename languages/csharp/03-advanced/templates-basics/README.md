@@ -16,8 +16,10 @@ This module introduces generic programming with methods and classes.
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-dotnet run --project example/templates-basics-example.csproj
+python scripts/automation.py run-module --module-path languages/csharp/03-advanced/templates-basics
 ~~~
 
 ## Topics Covered

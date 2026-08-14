@@ -16,8 +16,10 @@ This module practices splitting text, normalizing characters, and basic text ana
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-go run example/main.go
+python scripts/automation.py run-module --module-path languages/go/01-foundations/strings
 ~~~
 
 ## Topics Covered

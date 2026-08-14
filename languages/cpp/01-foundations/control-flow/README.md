@@ -16,10 +16,11 @@ This module teaches branching and repetition in C++ programs.
 
 ## Quick Run
 
-```bash
-g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o control_flow_example
-./control_flow_example
-```
+Run from the repository root:
+
+~~~bash
+python scripts/automation.py run-module --module-path languages/cpp/01-foundations/control-flow
+~~~
 
 ## More Examples
 

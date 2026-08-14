@@ -16,10 +16,11 @@ This module introduces practical text handling with `std::string`.
 
 ## Quick Run
 
-```bash
-g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o strings_example
-./strings_example
-```
+Run from the repository root:
+
+~~~bash
+python scripts/automation.py run-module --module-path languages/cpp/01-foundations/strings
+~~~
 
 ## More Examples
 

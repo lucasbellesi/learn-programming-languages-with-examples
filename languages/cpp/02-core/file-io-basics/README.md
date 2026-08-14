@@ -16,10 +16,11 @@ This module teaches safe text-file reading and writing with streams.
 
 ## Quick Run
 
-```bash
-g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o file_io_example
-./file_io_example
-```
+Run from the repository root:
+
+~~~bash
+python scripts/automation.py run-module --module-path languages/cpp/02-core/file-io-basics
+~~~
 
 ## More Examples
 

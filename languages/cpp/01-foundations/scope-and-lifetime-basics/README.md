@@ -16,10 +16,11 @@ This module explains where variables are visible and how long they live.
 
 ## Quick Run
 
-```bash
-g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o scope_lifetime_example
-./scope_lifetime_example
-```
+Run from the repository root:
+
+~~~bash
+python scripts/automation.py run-module --module-path languages/cpp/01-foundations/scope-and-lifetime-basics
+~~~
 
 ## More Examples
 

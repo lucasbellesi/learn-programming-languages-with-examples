@@ -7,7 +7,7 @@ This module practices reading typed input carefully and turning raw text into va
 - Difficulty: Beginner.
 - Estimated Time: 20-35 minutes.
 - Prerequisites: Java 21 JDK and prior modules in this level.
-- Cross-Language Lens: Compare Java's explicit class and type requirements with the same concept in C++, C#, Go, Python, and TypeScript.
+- Cross-Language Lens: Compare Java's `Scanner` parsing and explicit numeric types with the console-input models used by the other tracks.
 
 ## Learning Outcomes
 
@@ -16,9 +16,10 @@ This module practices reading typed input carefully and turning raw text into va
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-javac -d build/java languages/java/01-foundations/types-and-io/example/Main.java
-java -cp build/java Main
+python scripts/automation.py run-module --module-path languages/java/01-foundations/types-and-io
 ~~~
 
 ## Topics Covered
@@ -48,23 +49,12 @@ java -cp build/java Main
 1. exercises/Exercise01.java
 - Input: integer N followed by N numeric values.
 - Output: summary lines for sum, average, minimum, and maximum.
-- Edge cases: missing values; boundary numeric values.
+- Edge cases: N = 0; negative and decimal values.
 
 2. exercises/Exercise02.java
 - Input: single-line record: product price quantity.
 - Output: parsed product name and computed total price.
-- Edge cases: missing values; zero or repeated values where relevant.
-
-## Practice Workflow
-
-1. Edit the starter in `exercises/Exercise01.java` or `exercises/Exercise02.java`.
-2. Check your work from the repository root:
-
-~~~bash
-python scripts/automation.py check-exercise --language java --level 01-foundations --module types-and-io --exercise 01
-~~~
-
-3. Change `--exercise` to `02` for the second task. Reference implementations are under `exercises/solutions/`; use `--solution` only after attempting the exercise.
+- Edge cases: quantity = 0; decimal price.
 
 ## Check Your Work
 

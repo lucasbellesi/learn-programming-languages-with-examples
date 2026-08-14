@@ -16,8 +16,10 @@ This module introduces deterministic cleanup patterns in managed C# code.
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-dotnet run --project example/memory-management-and-raii-example.csproj
+python scripts/automation.py run-module --module-path languages/csharp/04-expert/memory-management-and-raii
 ~~~
 
 ## Topics Covered

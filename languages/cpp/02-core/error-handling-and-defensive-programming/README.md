@@ -16,10 +16,11 @@ This module teaches robust error checks and safe failure behavior.
 
 ## Quick Run
 
-```bash
-g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o defensive_programming_example
-./defensive_programming_example
-```
+Run from the repository root:
+
+~~~bash
+python scripts/automation.py run-module --module-path languages/cpp/02-core/error-handling-and-defensive-programming
+~~~
 
 ## More Examples
 

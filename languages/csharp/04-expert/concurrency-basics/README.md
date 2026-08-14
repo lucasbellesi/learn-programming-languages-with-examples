@@ -16,8 +16,10 @@ This module introduces safe multithreaded coordination with tasks, locks, and mo
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-dotnet run --project example/concurrency-basics-example.csproj
+python scripts/automation.py run-module --module-path languages/csharp/04-expert/concurrency-basics
 ~~~
 
 ## Topics Covered

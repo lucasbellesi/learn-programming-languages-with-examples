@@ -16,8 +16,10 @@ This module practices table-style output, alignment, and precision control.
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-dotnet run --project example/formatted-output-and-iomanip-example.csproj
+python scripts/automation.py run-module --module-path languages/csharp/01-foundations/formatted-output-and-iomanip
 ~~~
 
 ## Topics Covered

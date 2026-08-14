@@ -16,8 +16,10 @@ This module practices arithmetic operators, precedence, and derived calculations
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-dotnet run --project example/operators-and-expressions-example.csproj
+python scripts/automation.py run-module --module-path languages/csharp/01-foundations/operators-and-expressions
 ~~~
 
 ## Topics Covered

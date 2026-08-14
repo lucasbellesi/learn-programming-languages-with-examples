@@ -16,9 +16,10 @@ This module introduces core algorithm patterns over arrays in plain TypeScript.
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-npm run build:typescript
-node build/typescript/02-core/algorithms-basics/example/main.js
+python scripts/automation.py run-module --module-path languages/typescript/02-core/algorithms-basics
 ~~~
 
 ## Topics Covered

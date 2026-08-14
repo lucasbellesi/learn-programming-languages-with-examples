@@ -16,9 +16,10 @@ This module adapts smart pointer ideas to Java through strong references, explic
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-javac -d build/java languages/java/04-expert/smart-pointers-in-depth/example/Main.java
-java -cp build/java Main
+python scripts/automation.py run-module --module-path languages/java/04-expert/smart-pointers-in-depth
 ~~~
 
 ## More Examples

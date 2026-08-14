@@ -16,9 +16,10 @@ This module practices cleanup, search, and tokenization with immutable TypeScrip
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-npm run build:typescript
-node build/typescript/01-foundations/strings/example/main.js
+python scripts/automation.py run-module --module-path languages/typescript/01-foundations/strings
 ~~~
 
 ## Topics Covered

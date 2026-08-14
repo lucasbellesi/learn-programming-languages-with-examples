@@ -16,9 +16,10 @@ This module practices ordering data and locating target values with explicit com
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-npm run build:typescript
-node build/typescript/02-core/sorting-and-searching/example/main.js
+python scripts/automation.py run-module --module-path languages/typescript/02-core/sorting-and-searching
 ~~~
 
 ## Topics Covered

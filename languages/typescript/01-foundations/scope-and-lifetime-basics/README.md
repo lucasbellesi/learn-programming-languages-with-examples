@@ -16,9 +16,10 @@ This module explains block scope and closure-based lifetime in beginner TypeScri
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-npm run build:typescript
-node build/typescript/01-foundations/scope-and-lifetime-basics/example/main.js
+python scripts/automation.py run-module --module-path languages/typescript/01-foundations/scope-and-lifetime-basics
 ~~~
 
 ## Topics Covered

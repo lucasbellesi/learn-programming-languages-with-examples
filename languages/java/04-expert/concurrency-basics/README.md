@@ -16,9 +16,10 @@ This module introduces safe multithreaded coordination with executors, futures, 
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-javac -d build/java languages/java/04-expert/concurrency-basics/example/Main.java
-java -cp build/java Main
+python scripts/automation.py run-module --module-path languages/java/04-expert/concurrency-basics
 ~~~
 
 ## Topics Covered

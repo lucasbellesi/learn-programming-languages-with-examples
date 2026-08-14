@@ -16,8 +16,10 @@ This module shows how constructors enforce valid object state.
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-dotnet run --project example/constructors-and-invariants-example.csproj
+python scripts/automation.py run-module --module-path languages/csharp/03-advanced/constructors-and-invariants
 ~~~
 
 ## Topics Covered

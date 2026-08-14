@@ -16,9 +16,10 @@ This module adapts RAII to Java through `AutoCloseable` and `try-with-resources`
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-javac -d build/java languages/java/04-expert/memory-management-and-raii/example/Main.java
-java -cp build/java Main
+python scripts/automation.py run-module --module-path languages/java/04-expert/memory-management-and-raii
 ~~~
 
 ## Topics Covered

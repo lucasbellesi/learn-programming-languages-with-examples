@@ -16,10 +16,11 @@ This module introduces fixed-size and dynamic collections in C++.
 
 ## Quick Run
 
-```bash
-g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o arrays_and_vectors_example
-./arrays_and_vectors_example
-```
+Run from the repository root:
+
+~~~bash
+python scripts/automation.py run-module --module-path languages/cpp/01-foundations/arrays-and-vectors
+~~~
 
 ## More Examples
 

@@ -7,7 +7,7 @@ This module introduces map-based counting patterns for grouped data.
 - Difficulty: Intermediate.
 - Estimated Time: 30-45 minutes.
 - Prerequisites: `01-foundations/arrays-and-vectors`, `01-foundations/strings`.
-- Cross-Language Lens: Compare hash map ergonomics, missing-key behavior, and default-value patterns across the four languages.
+- Cross-Language Lens: Compare hash map ergonomics, missing-key behavior, and default-value patterns across the six active languages.
 
 ## Learning Outcomes
 
@@ -16,8 +16,10 @@ This module introduces map-based counting patterns for grouped data.
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-go run example/main.go
+python scripts/automation.py run-module --module-path languages/go/02-core/maps-and-frequency-counting
 ~~~
 
 ## Topics Covered

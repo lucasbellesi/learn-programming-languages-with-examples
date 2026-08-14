@@ -16,9 +16,10 @@ This module practices reading and writing small text files with Java's standard 
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-javac -d build/java languages/java/02-core/file-io-basics/example/Main.java
-java -cp build/java Main
+python scripts/automation.py run-module --module-path languages/java/02-core/file-io-basics
 ~~~
 
 ## Topics Covered

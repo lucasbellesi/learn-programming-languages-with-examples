@@ -16,10 +16,11 @@ This module expands ownership modeling with `unique_ptr`, `shared_ptr`, and `wea
 
 ## Quick Run
 
-```bash
-g++ -std=c++17 -Wall -Wextra -pedantic example/main.cpp -o smart_pointers_example
-./smart_pointers_example
-```
+Run from the repository root:
+
+~~~bash
+python scripts/automation.py run-module --module-path languages/cpp/04-expert/smart-pointers-in-depth
+~~~
 
 ## More Examples
 

@@ -16,12 +16,11 @@ This module introduces real multithreaded programming with `std::thread`.
 
 ## Quick Run
 
-```bash
-g++ -std=c++17 -Wall -Wextra -pedantic -pthread example/main.cpp -o concurrency_basics_example
-./concurrency_basics_example
-```
+Run from the repository root:
 
-On Linux, `-pthread` is required for thread support.
+~~~bash
+python scripts/automation.py run-module --module-path languages/cpp/04-expert/concurrency-basics
+~~~
 
 ## More Examples
 

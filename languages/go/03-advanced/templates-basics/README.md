@@ -16,8 +16,10 @@ This module introduces generic programming with type parameters.
 
 ## Quick Run
 
+Run from the repository root:
+
 ~~~bash
-go run example/main.go
+python scripts/automation.py run-module --module-path languages/go/03-advanced/templates-basics
 ~~~
 
 ## Topics Covered
