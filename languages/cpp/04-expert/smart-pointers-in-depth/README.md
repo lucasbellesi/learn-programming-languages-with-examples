@@ -54,12 +54,12 @@ python scripts/automation.py run-module --module-path languages/cpp/04-expert/sm
 ### Exercise Specs
 
 1. `exercises/01.cpp`
-- Input: none.
-- Output: object construction/destruction messages.
-- Edge cases: transfer ownership with move; null pointer checks.
+- Input: source and destination resource names, or `empty`, one per line.
+- Output: both owners before and after the attempted transfer.
+- Edge cases: empty source; occupied destination.
 
 2. `exercises/02.cpp`
-- Input: none.
+- Input: `alive`, `expired`, or `missing` reference scenario.
 - Output: cycle-safe parent/child relationship logs.
 - Edge cases: expired weak references; parent reset behavior.
 

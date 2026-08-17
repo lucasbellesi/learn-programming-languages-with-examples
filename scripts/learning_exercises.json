@@ -2158,30 +2158,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Starting scope demo.",
-            "Final active guards: 0"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "2"
+          ],
+          "required_stdout_equals": "Starting scope demo.\n[enter] scope 1 | active guards: 1\n[enter] scope 2 | active guards: 2\nInside deepest scope | active guards: 2\n[exit]  scope 2 | active guards: 1\n[exit]  scope 1 | active guards: 0\nFinal active guards: 0\n"
         },
         {
-          "name": "edge: nested scopes",
+          "name": "edge: three nested scopes close in reverse order",
           "covers": [
             "nested scopes"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Starting scope demo.\n[enter] first scope | active guards: 1\n[enter] nested scope | active guards: 2\nInside nested scope.\n[exit]  nested scope | active guards: 1\nBack to first scope.\n[exit]  first scope | active guards: 0\nFinal active guards: 0\n"
+          "input_lines": [
+            "3"
+          ],
+          "required_stdout_equals": "Starting scope demo.\n[enter] scope 1 | active guards: 1\n[enter] scope 2 | active guards: 2\n[enter] scope 3 | active guards: 3\nInside deepest scope | active guards: 3\n[exit]  scope 3 | active guards: 2\n[exit]  scope 2 | active guards: 1\n[exit]  scope 1 | active guards: 0\nFinal active guards: 0\n"
         },
         {
-          "name": "edge: final counter should return to zero",
+          "name": "edge: final active counter returns to zero",
           "covers": [
-            "final counter should return to zero"
+            "final active counter returns to zero"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Starting scope demo.\n[enter] first scope | active guards: 1\n[enter] nested scope | active guards: 2\nInside nested scope.\n[exit]  nested scope | active guards: 1\nBack to first scope.\n[exit]  first scope | active guards: 0\nFinal active guards: 0\n"
+          "input_lines": [
+            "1"
+          ],
+          "required_stdout_equals": "Starting scope demo.\n[enter] scope 1 | active guards: 1\nInside deepest scope | active guards: 1\n[exit]  scope 1 | active guards: 0\nFinal active guards: 0\n"
         }
       ],
       "route_role": "both",
@@ -2200,30 +2204,37 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Ownership moved successfully.",
-            "Moved owner is active."
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "Roadmap",
+            "empty"
+          ],
+          "required_stdout_equals": "Source: Roadmap\nDestination: empty\nTransfer: moved\nSource: empty\nDestination: Roadmap\n"
         },
         {
-          "name": "edge: transfer ownership with move",
+          "name": "edge: moving from an empty holder",
           "covers": [
-            "transfer ownership with move"
+            "moving from an empty holder"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Resource acquired\nOwnership moved successfully.\nMoved owner is active.\nResource released\n"
+          "input_lines": [
+            "empty",
+            "empty"
+          ],
+          "required_stdout_equals": "Source: empty\nDestination: empty\nTransfer: source empty\nSource: empty\nDestination: empty\n"
         },
         {
-          "name": "edge: null pointer checks",
+          "name": "edge: destination already occupied",
           "covers": [
-            "null pointer checks"
+            "destination already occupied"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Resource acquired\nOwnership moved successfully.\nMoved owner is active.\nResource released\n"
+          "input_lines": [
+            "Roadmap",
+            "Old Notes"
+          ],
+          "required_stdout_equals": "Source: Roadmap\nDestination: Old Notes\nTransfer: destination occupied\nSource: Roadmap\nDestination: Old Notes\n"
         }
       ],
       "route_role": "guided",
@@ -2242,30 +2253,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Parent is still alive.",
-            "Parent no longer exists."
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "alive"
+          ],
+          "required_stdout_equals": "Parent is still alive.\n"
         },
         {
-          "name": "edge: expired weak references",
+          "name": "edge: expired or detached reference",
           "covers": [
-            "expired weak references"
+            "expired or detached reference"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Parent is still alive.\nParent no longer exists.\n"
+          "input_lines": [
+            "expired"
+          ],
+          "required_stdout_equals": "Parent no longer exists.\n"
         },
         {
-          "name": "edge: parent reset behavior",
+          "name": "edge: missing reference",
           "covers": [
-            "parent reset behavior"
+            "missing reference"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Parent is still alive.\nParent no longer exists.\n"
+          "input_lines": [
+            "missing"
+          ],
+          "required_stdout_equals": "Parent no longer exists.\n"
         }
       ],
       "route_role": "both",
@@ -4780,30 +4795,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Active before scopes: 0",
-            "Active after scopes: 0"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "2"
+          ],
+          "required_stdout_equals": "Active before scopes: 0\nenter scope-1 (active=1)\nenter scope-2 (active=2)\nActive at deepest scope: 2\nexit scope-2 (active=1)\nexit scope-1 (active=0)\nActive after scopes: 0\n"
         },
         {
-          "name": "edge: nested scopes",
+          "name": "edge: three nested scopes close in reverse order",
           "covers": [
             "nested scopes"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Active before scopes: 0\nenter outer (active=1)\nActive inside outer: 1\nenter inner (active=2)\nActive inside inner: 2\nexit inner (active=1)\nActive after inner: 1\nexit outer (active=0)\nActive after scopes: 0\n"
+          "input_lines": [
+            "3"
+          ],
+          "required_stdout_equals": "Active before scopes: 0\nenter scope-1 (active=1)\nenter scope-2 (active=2)\nenter scope-3 (active=3)\nActive at deepest scope: 3\nexit scope-3 (active=2)\nexit scope-2 (active=1)\nexit scope-1 (active=0)\nActive after scopes: 0\n"
         },
         {
-          "name": "edge: final active counter must return to zero",
+          "name": "edge: final active counter returns to zero",
           "covers": [
-            "final active counter must return to zero"
+            "final active counter returns to zero"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Active before scopes: 0\nenter outer (active=1)\nActive inside outer: 1\nenter inner (active=2)\nActive inside inner: 2\nexit inner (active=1)\nActive after inner: 1\nexit outer (active=0)\nActive after scopes: 0\n"
+          "input_lines": [
+            "1"
+          ],
+          "required_stdout_equals": "Active before scopes: 0\nenter scope-1 (active=1)\nActive at deepest scope: 1\nexit scope-1 (active=0)\nActive after scopes: 0\n"
         }
       ],
       "route_role": "both",
@@ -4822,30 +4841,37 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Active moves Roadmap to Backup.",
-            "Empty is empty."
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "Roadmap",
+            "empty"
+          ],
+          "required_stdout_equals": "Source: Roadmap\nDestination: empty\nSource moves Roadmap to Destination.\nSource: empty\nDestination: Roadmap\n"
         },
         {
-          "name": "edge: moving from an empty owner",
+          "name": "edge: moving from an empty holder",
           "covers": [
-            "moving from an empty owner"
+            "moving from an empty holder"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Active: Roadmap\nBackup: Old Notes\nActive moves Roadmap to Backup.\nActive: empty\nBackup: Roadmap\nEmpty is empty.\nEmpty: empty\nActive: empty\n"
+          "input_lines": [
+            "empty",
+            "empty"
+          ],
+          "required_stdout_equals": "Source: empty\nDestination: empty\nSource is empty.\nSource: empty\nDestination: empty\n"
         },
         {
-          "name": "edge: destination already holding another object",
+          "name": "edge: destination already occupied",
           "covers": [
-            "destination already holding another object"
+            "destination already occupied"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Active: Roadmap\nBackup: Old Notes\nActive moves Roadmap to Backup.\nActive: empty\nBackup: Roadmap\nEmpty is empty.\nEmpty: empty\nActive: empty\n"
+          "input_lines": [
+            "Roadmap",
+            "Old Notes"
+          ],
+          "required_stdout_equals": "Source: Roadmap\nDestination: Old Notes\nDestination is occupied.\nSource: Roadmap\nDestination: Old Notes\n"
         }
       ],
       "route_role": "guided",
@@ -4864,30 +4890,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "temp: alive -> Short lived",
-            "missing: missing"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "alive"
+          ],
+          "required_stdout_equals": "entry: alive -> payload\n"
         },
         {
-          "name": "edge: expired weak reference",
+          "name": "edge: expired or detached reference",
           "covers": [
-            "expired weak reference"
+            "expired or detached reference"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "stable: alive -> Still referenced\ntemp: alive -> Short lived\nstable: alive -> Still referenced\ntemp: alive -> Short lived\nmissing: missing\n"
+          "input_lines": [
+            "expired"
+          ],
+          "required_stdout_equals": "entry: expired\n"
         },
         {
-          "name": "edge: cache miss",
+          "name": "edge: missing reference",
           "covers": [
-            "cache miss"
+            "missing reference"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "stable: alive -> Still referenced\ntemp: alive -> Short lived\nstable: alive -> Still referenced\ntemp: alive -> Short lived\nmissing: missing\n"
+          "input_lines": [
+            "missing"
+          ],
+          "required_stdout_equals": "entry: missing\n"
         }
       ],
       "route_role": "both",
@@ -7409,30 +7439,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Active before scopes: 0",
-            "Active after scopes: 0"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "2"
+          ],
+          "required_stdout_equals": "Active before scopes: 0\nenter scope-1 (active=1)\nenter scope-2 (active=2)\nActive at deepest scope: 2\nexit scope-2 (active=1)\nexit scope-1 (active=0)\nActive after scopes: 0\n"
         },
         {
-          "name": "edge: nested scopes",
+          "name": "edge: three nested scopes close in reverse order",
           "covers": [
             "nested scopes"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Active before scopes: 0\nenter outer (active=1)\nActive inside outer: 1\nenter inner (active=2)\nActive inside inner: 2\nexit inner (active=1)\nActive after inner: 1\nexit outer (active=0)\nActive after scopes: 0\n"
+          "input_lines": [
+            "3"
+          ],
+          "required_stdout_equals": "Active before scopes: 0\nenter scope-1 (active=1)\nenter scope-2 (active=2)\nenter scope-3 (active=3)\nActive at deepest scope: 3\nexit scope-3 (active=2)\nexit scope-2 (active=1)\nexit scope-1 (active=0)\nActive after scopes: 0\n"
         },
         {
-          "name": "edge: final active counter must return to zero",
+          "name": "edge: final active counter returns to zero",
           "covers": [
-            "final active counter must return to zero"
+            "final active counter returns to zero"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Active before scopes: 0\nenter outer (active=1)\nActive inside outer: 1\nenter inner (active=2)\nActive inside inner: 2\nexit inner (active=1)\nActive after inner: 1\nexit outer (active=0)\nActive after scopes: 0\n"
+          "input_lines": [
+            "1"
+          ],
+          "required_stdout_equals": "Active before scopes: 0\nenter scope-1 (active=1)\nActive at deepest scope: 1\nexit scope-1 (active=0)\nActive after scopes: 0\n"
         }
       ],
       "route_role": "both",
@@ -7451,30 +7485,37 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Active moves Roadmap to Backup.",
-            "Empty is empty."
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "Roadmap",
+            "empty"
+          ],
+          "required_stdout_equals": "Source: Roadmap\nDestination: empty\nSource moves Roadmap to Destination.\nSource: empty\nDestination: Roadmap\n"
         },
         {
           "name": "edge: moving from an empty holder",
           "covers": [
             "moving from an empty holder"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Active: Roadmap\nBackup: Old Notes\nActive moves Roadmap to Backup.\nActive: empty\nBackup: Roadmap\nEmpty is empty.\nEmpty: empty\nActive: empty\n"
+          "input_lines": [
+            "empty",
+            "empty"
+          ],
+          "required_stdout_equals": "Source: empty\nDestination: empty\nSource is empty.\nSource: empty\nDestination: empty\n"
         },
         {
           "name": "edge: destination already occupied",
           "covers": [
             "destination already occupied"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Active: Roadmap\nBackup: Old Notes\nActive moves Roadmap to Backup.\nActive: empty\nBackup: Roadmap\nEmpty is empty.\nEmpty: empty\nActive: empty\n"
+          "input_lines": [
+            "Roadmap",
+            "Old Notes"
+          ],
+          "required_stdout_equals": "Source: Roadmap\nDestination: Old Notes\nDestination is occupied.\nSource: Roadmap\nDestination: Old Notes\n"
         }
       ],
       "route_role": "guided",
@@ -7493,30 +7534,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Child name: child",
-            "Parent has no child."
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "linked"
+          ],
+          "required_stdout_equals": "Child name: child\nParent name: parent\n"
         },
         {
-          "name": "edge: detached child pointer",
+          "name": "edge: expired or detached reference",
           "covers": [
-            "detached child pointer"
+            "expired or detached reference"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Child name: child\nParent name: parent\nParent has no child.\nParent name: parent\n"
+          "input_lines": [
+            "child-removed"
+          ],
+          "required_stdout_equals": "Parent has no child.\n"
         },
         {
-          "name": "edge: missing parent pointer",
+          "name": "edge: missing reference",
           "covers": [
-            "missing parent pointer"
+            "missing reference"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Child name: child\nParent name: parent\nParent has no child.\nParent name: parent\n"
+          "input_lines": [
+            "parent-removed"
+          ],
+          "required_stdout_equals": "Child has no parent.\n"
         }
       ],
       "route_role": "both",
@@ -10204,34 +10249,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "enter outer active=1",
-            "enter inner active=2",
-            "inside active=2",
-            "close inner active=1",
-            "close outer active=0",
-            "final active=0"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "2"
+          ],
+          "required_stdout_equals": "enter scope-1 active=1\nenter scope-2 active=2\ninside active=2\nclose scope-2 active=1\nclose scope-1 active=0\nfinal active=0\n"
         },
         {
-          "name": "edge: nested scopes",
+          "name": "edge: three nested scopes close in reverse order",
           "covers": [
             "nested scopes"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "enter outer active=1\nenter inner active=2\ninside active=2\nclose inner active=1\nclose outer active=0\nfinal active=0\n"
+          "input_lines": [
+            "3"
+          ],
+          "required_stdout_equals": "enter scope-1 active=1\nenter scope-2 active=2\nenter scope-3 active=3\ninside active=3\nclose scope-3 active=2\nclose scope-2 active=1\nclose scope-1 active=0\nfinal active=0\n"
         },
         {
-          "name": "edge: final active counter must return to zero",
+          "name": "edge: final active counter returns to zero",
           "covers": [
-            "final active counter must return to zero"
+            "final active counter returns to zero"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "enter outer active=1\nenter inner active=2\ninside active=2\nclose inner active=1\nclose outer active=0\nfinal active=0\n"
+          "input_lines": [
+            "1"
+          ],
+          "required_stdout_equals": "enter scope-1 active=1\ninside active=1\nclose scope-1 active=0\nfinal active=0\n"
         }
       ],
       "route_role": "both",
@@ -10250,36 +10295,37 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Active: Roadmap",
-            "Backup: Old Notes",
-            "Active moves Roadmap to Backup.",
-            "Active: empty",
-            "Backup: Roadmap",
-            "Empty is empty.",
-            "Empty: empty",
-            "Active: empty"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "Roadmap",
+            "empty"
+          ],
+          "required_stdout_equals": "Source: Roadmap\nDestination: empty\nSource moves Roadmap to Destination.\nSource: empty\nDestination: Roadmap\n"
         },
         {
-          "name": "edge: moving from an empty owner",
+          "name": "edge: moving from an empty holder",
           "covers": [
-            "moving from an empty owner"
+            "moving from an empty holder"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Active: Roadmap\nBackup: Old Notes\nActive moves Roadmap to Backup.\nActive: empty\nBackup: Roadmap\nEmpty is empty.\nEmpty: empty\nActive: empty\n"
+          "input_lines": [
+            "empty",
+            "empty"
+          ],
+          "required_stdout_equals": "Source: empty\nDestination: empty\nSource is empty.\nSource: empty\nDestination: empty\n"
         },
         {
-          "name": "edge: destination already holding another object",
+          "name": "edge: destination already occupied",
           "covers": [
-            "destination already holding another object"
+            "destination already occupied"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Active: Roadmap\nBackup: Old Notes\nActive moves Roadmap to Backup.\nActive: empty\nBackup: Roadmap\nEmpty is empty.\nEmpty: empty\nActive: empty\n"
+          "input_lines": [
+            "Roadmap",
+            "Old Notes"
+          ],
+          "required_stdout_equals": "Source: Roadmap\nDestination: Old Notes\nDestination is occupied.\nSource: Roadmap\nDestination: Old Notes\n"
         }
       ],
       "route_role": "guided",
@@ -10298,33 +10344,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "stable: alive -> Still referenced",
-            "temp: alive -> Short lived",
-            "stable: alive -> Still referenced",
-            "temp: expired",
-            "missing: missing"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "alive"
+          ],
+          "required_stdout_equals": "entry: alive -> payload\n"
         },
         {
-          "name": "edge: expired weak reference",
+          "name": "edge: expired or detached reference",
           "covers": [
-            "expired weak reference"
+            "expired or detached reference"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "stable: alive -> Still referenced\ntemp: alive -> Short lived\nstable: alive -> Still referenced\ntemp: expired\nmissing: missing\n"
+          "input_lines": [
+            "expired"
+          ],
+          "required_stdout_equals": "entry: expired\n"
         },
         {
-          "name": "edge: cache miss",
+          "name": "edge: missing reference",
           "covers": [
-            "cache miss"
+            "missing reference"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "stable: alive -> Still referenced\ntemp: alive -> Short lived\nstable: alive -> Still referenced\ntemp: expired\nmissing: missing\n"
+          "input_lines": [
+            "missing"
+          ],
+          "required_stdout_equals": "entry: missing\n"
         }
       ],
       "route_role": "both",
@@ -12883,30 +12930,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Active before scopes: 0",
-            "Active after scopes: 0"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "2"
+          ],
+          "required_stdout_equals": "Active before scopes: 0\nenter scope-1 (active=1)\nenter scope-2 (active=2)\nActive at deepest scope: 2\nexit scope-2 (active=1)\nexit scope-1 (active=0)\nActive after scopes: 0\n"
         },
         {
-          "name": "edge: nested scopes",
+          "name": "edge: three nested scopes close in reverse order",
           "covers": [
             "nested scopes"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Active before scopes: 0\nenter outer (active=1)\nActive inside outer: 1\nenter inner (active=2)\nActive inside inner: 2\nexit inner (active=1)\nActive after inner: 1\nexit outer (active=0)\nActive after scopes: 0\n"
+          "input_lines": [
+            "3"
+          ],
+          "required_stdout_equals": "Active before scopes: 0\nenter scope-1 (active=1)\nenter scope-2 (active=2)\nenter scope-3 (active=3)\nActive at deepest scope: 3\nexit scope-3 (active=2)\nexit scope-2 (active=1)\nexit scope-1 (active=0)\nActive after scopes: 0\n"
         },
         {
-          "name": "edge: final active counter must return to zero",
+          "name": "edge: final active counter returns to zero",
           "covers": [
-            "final active counter must return to zero"
+            "final active counter returns to zero"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Active before scopes: 0\nenter outer (active=1)\nActive inside outer: 1\nenter inner (active=2)\nActive inside inner: 2\nexit inner (active=1)\nActive after inner: 1\nexit outer (active=0)\nActive after scopes: 0\n"
+          "input_lines": [
+            "1"
+          ],
+          "required_stdout_equals": "Active before scopes: 0\nenter scope-1 (active=1)\nActive at deepest scope: 1\nexit scope-1 (active=0)\nActive after scopes: 0\n"
         }
       ],
       "route_role": "both",
@@ -12925,30 +12976,37 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Active moves Roadmap to Backup.",
-            "Empty is empty."
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "Roadmap",
+            "empty"
+          ],
+          "required_stdout_equals": "Source: Roadmap\nDestination: empty\nSource moves Roadmap to Destination.\nSource: empty\nDestination: Roadmap\n"
         },
         {
           "name": "edge: moving from an empty holder",
           "covers": [
             "moving from an empty holder"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Active: Roadmap\nBackup: Old Notes\nActive moves Roadmap to Backup.\nActive: empty\nBackup: Roadmap\nEmpty is empty.\nEmpty: empty\nActive: empty\n"
+          "input_lines": [
+            "empty",
+            "empty"
+          ],
+          "required_stdout_equals": "Source: empty\nDestination: empty\nSource is empty.\nSource: empty\nDestination: empty\n"
         },
         {
           "name": "edge: destination already occupied",
           "covers": [
             "destination already occupied"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Active: Roadmap\nBackup: Old Notes\nActive moves Roadmap to Backup.\nActive: empty\nBackup: Roadmap\nEmpty is empty.\nEmpty: empty\nActive: empty\n"
+          "input_lines": [
+            "Roadmap",
+            "Old Notes"
+          ],
+          "required_stdout_equals": "Source: Roadmap\nDestination: Old Notes\nDestination is occupied.\nSource: Roadmap\nDestination: Old Notes\n"
         }
       ],
       "route_role": "guided",
@@ -12967,30 +13025,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "temp: expired",
-            "missing: missing"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "alive"
+          ],
+          "required_stdout_equals": "entry: alive -> payload\n"
         },
         {
-          "name": "edge: expired weak reference",
+          "name": "edge: expired or detached reference",
           "covers": [
-            "expired weak reference"
+            "expired or detached reference"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "stable: alive -> Still referenced\ntemp: alive -> Short lived\nstable: alive -> Still referenced\ntemp: expired\nmissing: missing\n"
+          "input_lines": [
+            "expired"
+          ],
+          "required_stdout_equals": "entry: expired\n"
         },
         {
-          "name": "edge: cache miss",
+          "name": "edge: missing reference",
           "covers": [
-            "cache miss"
+            "missing reference"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "stable: alive -> Still referenced\ntemp: alive -> Short lived\nstable: alive -> Still referenced\ntemp: expired\nmissing: missing\n"
+          "input_lines": [
+            "missing"
+          ],
+          "required_stdout_equals": "entry: missing\n"
         }
       ],
       "route_role": "both",

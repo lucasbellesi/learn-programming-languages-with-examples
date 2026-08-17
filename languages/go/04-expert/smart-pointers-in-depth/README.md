@@ -50,12 +50,12 @@ python scripts/automation.py run-module --module-path languages/go/04-expert/sma
 ### Exercise Specs
 
 1. exercises/01.go
-- Input: none.
+- Input: source and destination note titles, or `empty`, one per line.
 - Output: ownership transfer logs before and after moving.
 - Edge cases: moving from an empty holder; destination already occupied.
 
 2. exercises/02.go
-- Input: none.
+- Input: `linked`, `child-removed`, or `parent-removed` relationship scenario.
 - Output: parent/child navigation logs with nil-safe checks.
 - Edge cases: detached child pointer; missing parent pointer.
 

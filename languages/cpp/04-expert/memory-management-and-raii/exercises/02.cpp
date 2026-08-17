@@ -1,9 +1,13 @@
+#include <iostream>
+
 namespace {
 void runMemoryManagementRaiiExercise() {
-    // TODO 1: Read or prepare none (scope demonstration).
-    // TODO 2: RAII guard with automatic scope cleanup.
-    // TODO 3: Produce enter/exit logs proving automatic cleanup; verify nested scopes; final
-    //         counter should return to zero.
+    int depth = 0;
+    std::cin >> depth;
+    // TODO 1: Validate depth as a positive number of nested scopes.
+    // TODO 2: Define a guard that increments on construction and decrements on destruction.
+    // TODO 3: Enter depth scopes recursively and prove that the final counter returns to zero.
+    (void)depth;
 }
 } // namespace
 

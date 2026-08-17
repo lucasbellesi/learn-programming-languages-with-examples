@@ -1,9 +1,14 @@
+#include <iostream>
+#include <string>
+
 namespace {
 void runSmartPointersInDepthExercise() {
-    // TODO 1: Read or prepare none.
-    // TODO 2: Break parent/child cycle with `weak_ptr`.
-    // TODO 3: Produce cycle-safe parent/child relationship logs; verify expired weak references;
-    //         parent reset behavior.
+    std::string scenario;
+    std::cin >> scenario;
+    // TODO 1: Accept `alive`, `expired`, or `missing` as the observation scenario.
+    // TODO 2: Model the child-to-parent link with `std::weak_ptr`.
+    // TODO 3: Report whether locking the weak reference succeeds in each state.
+    (void)scenario;
 }
 } // namespace
 

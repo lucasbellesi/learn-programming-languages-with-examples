@@ -59,7 +59,7 @@ python scripts/automation.py run-module --module-path languages/cpp/04-expert/me
 - Edge cases: `n <= 0` message; negative values in sequence.
 
 2. `exercises/02.cpp`
-- Input: none (scope demonstration).
+- Input: positive nesting depth.
 - Output: enter/exit logs proving automatic cleanup.
 - Edge cases: nested scopes; final counter should return to zero.
 

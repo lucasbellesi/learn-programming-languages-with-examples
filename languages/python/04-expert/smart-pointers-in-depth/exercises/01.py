@@ -1,9 +1,11 @@
 def run_smart_pointers_in_depth_exercise() -> None:
-    # TODO 1: Read or prepare none.
+    source_title = input()
+    destination_title = input()
+    # TODO 1: Convert `empty` to a null holder and other lines to owned notes.
     # TODO 2: Move an owned note between holders.
     # TODO 3: Produce ownership transfer logs before and after moving; verify moving from an empty
     #         holder; destination already occupied.
-    pass
+    _ = source_title, destination_title
 
 
 def main() -> None:

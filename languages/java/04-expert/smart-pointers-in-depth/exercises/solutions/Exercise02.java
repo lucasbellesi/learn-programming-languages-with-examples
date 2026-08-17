@@ -4,6 +4,7 @@
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Exercise02 {
     record CachedValue(String text) {
@@ -41,20 +42,19 @@ public class Exercise02 {
     }
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String scenario = scanner.hasNextLine() ? scanner.nextLine() : "missing";
         WeakCache cache = new WeakCache();
-        CachedValue stable = new CachedValue("Still referenced");
-        CachedValue temporary = new CachedValue("Short lived");
+        if (scenario.equals("missing")) {
+            cache.printLookup("entry");
+            return;
+        }
 
-        cache.store("stable", stable);
-        cache.store("temp", temporary);
-        cache.printLookup("stable");
-        cache.printLookup("temp");
-
-        temporary = null;
-        cache.expireForDemo("temp");
-
-        cache.printLookup("stable");
-        cache.printLookup("temp");
-        cache.printLookup("missing");
+        CachedValue value = new CachedValue("payload");
+        cache.store("entry", value);
+        if (scenario.equals("expired")) {
+            cache.expireForDemo("entry");
+        }
+        cache.printLookup("entry");
     }
 }

@@ -1,8 +1,9 @@
 def run_smart_pointers_in_depth_exercise() -> None:
-    # TODO 1: Read or prepare none.
+    scenario = input()
+    # TODO 1: Accept `alive`, `expired`, or `missing` as the lookup scenario.
     # TODO 2: Observe cache entries through `weakref.ref`.
     # TODO 3: Produce alive/expired cache lookup logs; verify expired weak reference; cache miss.
-    pass
+    _ = scenario
 
 
 def main() -> None:

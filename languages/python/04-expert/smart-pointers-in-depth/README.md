@@ -50,12 +50,12 @@ python scripts/automation.py run-module --module-path languages/python/04-expert
 ### Exercise Specs
 
 1. exercises/01.py
-- Input: none.
+- Input: source and destination note titles, or `empty`, one per line.
 - Output: ownership transfer logs before and after moving.
 - Edge cases: moving from an empty holder; destination already occupied.
 
 2. exercises/02.py
-- Input: none.
+- Input: `alive`, `expired`, or `missing` cache scenario.
 - Output: alive/expired cache lookup logs.
 - Edge cases: expired weak reference; cache miss.
 

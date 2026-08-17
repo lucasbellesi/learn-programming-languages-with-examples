@@ -57,7 +57,7 @@ python scripts/automation.py run-module --module-path languages/java/04-expert/m
 - Edge cases: `n <= 0`; invalid integer input.
 
 2. exercises/Exercise02.java
-- Input: none.
+- Input: positive nesting depth.
 - Output: enter/close logs proving automatic cleanup.
 - Edge cases: nested scopes; final active counter must return to zero.
 

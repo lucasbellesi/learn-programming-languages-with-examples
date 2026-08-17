@@ -25,14 +25,21 @@ func printParentName(child *node) {
 }
 
 func main() {
+	var scenario string
+	fmt.Scan(&scenario)
 	parent := &node{name: "parent"}
 	child := &node{name: "child", parent: parent}
 	parent.child = child
 
-	printChildName(parent)
-	printParentName(child)
-
-	parent.child = nil
-	printChildName(parent)
-	printParentName(child)
+	switch scenario {
+	case "linked":
+		printChildName(parent)
+		printParentName(child)
+	case "parent-removed":
+		child.parent = nil
+		printParentName(child)
+	case "child-removed":
+		parent.child = nil
+		printChildName(parent)
+	}
 }

@@ -1,9 +1,17 @@
+#include <iostream>
+#include <string>
+
 namespace {
 void runSmartPointersInDepthExercise() {
-    // TODO 1: Read or prepare none.
-    // TODO 2: Refactor raw-owner object to `unique_ptr`.
-    // TODO 3: Produce object construction/destruction messages; verify transfer ownership with
-    //         move; null pointer checks.
+    std::string sourceName;
+    std::string destinationName;
+    std::getline(std::cin, sourceName);
+    std::getline(std::cin, destinationName);
+    // TODO 1: Convert `empty` to a null owner and other lines to owned resources.
+    // TODO 2: Transfer with `std::move` only when the source exists and destination is empty.
+    // TODO 3: Print both holders before and after the attempted transfer.
+    (void)sourceName;
+    (void)destinationName;
 }
 } // namespace
 
