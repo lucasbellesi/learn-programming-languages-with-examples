@@ -18,9 +18,9 @@ This module adapts RAII to TypeScript by focusing on explicit cleanup, `try/fina
 
 Run from the repository root:
 
-~~~bash
+```bash
 python scripts/automation.py run-module --module-path languages/typescript/04-expert/memory-management-and-raii
-~~~
+```
 
 ## Topics Covered
 
@@ -50,12 +50,14 @@ python scripts/automation.py run-module --module-path languages/typescript/04-ex
 ### Exercise Specs
 
 1. exercises/01.ts
-- Input: none.
+
+- Input: resource label, comma-separated work chunks, and `success` or `failure` on separate lines.
 - Output: setup, work, and cleanup messages in the correct order.
 - Edge cases: cleanup must still happen after a simulated failure.
 
 2. exercises/02.ts
-- Input: none.
+
+- Input: one `record <message>` or `close` command per line.
 - Output: session logs before closing, after closing, and a guarded error message.
 - Edge cases: repeated close calls; operations attempted after close.
 
@@ -76,4 +78,3 @@ Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercise
 - [ ] I can guard a resource from use-after-close mistakes.
 - [ ] I completed exercises/01.ts.
 - [ ] I completed exercises/02.ts.
-

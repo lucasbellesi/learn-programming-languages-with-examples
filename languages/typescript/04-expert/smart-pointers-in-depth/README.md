@@ -18,9 +18,9 @@ This module adapts smart pointer ideas to TypeScript references, ownership trans
 
 Run from the repository root:
 
-~~~bash
+```bash
 python scripts/automation.py run-module --module-path languages/typescript/04-expert/smart-pointers-in-depth
-~~~
+```
 
 ## Topics Covered
 
@@ -50,12 +50,14 @@ python scripts/automation.py run-module --module-path languages/typescript/04-ex
 ### Exercise Specs
 
 1. exercises/01.ts
-- Input: none.
+
+- Input: source and destination parcels as `tracking-id|weight`, or `empty`, one per line.
 - Output: holder state before and after transfer.
 - Edge cases: moving from an empty holder; destination already occupied.
 
 2. exercises/02.ts
-- Input: none.
+
+- Input: original theme, comma-separated shortcuts, clone theme, and an optional new shortcut on separate lines.
 - Output: original and cloned preference states after editing only the clone.
 - Edge cases: nested arrays or objects that would break a shallow copy.
 
@@ -76,4 +78,3 @@ Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercise
 - [ ] I can decide when to transfer, share, or clone.
 - [ ] I completed exercises/01.ts.
 - [ ] I completed exercises/02.ts.
-

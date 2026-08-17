@@ -18,9 +18,9 @@ This module introduces TypeScript concurrency through async tasks, `Promise.all`
 
 Run from the repository root:
 
-~~~bash
+```bash
 python scripts/automation.py run-module --module-path languages/typescript/04-expert/concurrency-basics
-~~~
+```
 
 ## Topics Covered
 
@@ -50,12 +50,14 @@ python scripts/automation.py run-module --module-path languages/typescript/04-ex
 ### Exercise Specs
 
 1. exercises/01.ts
-- Input: none.
+
+- Input: zero or more `label delay-ms` task lines.
 - Output: completed task results in the original request order.
 - Edge cases: mixed delays; one task finishing earlier than the first request.
 
 2. exercises/02.ts
-- Input: none.
+
+- Input: worker limit followed by one delay in milliseconds per job.
 - Output: worker start/finish logs plus a final ordered summary.
 - Edge cases: fewer jobs than workers; an empty job list.
 
@@ -76,4 +78,3 @@ Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercise
 - [ ] I can limit concurrency without rewriting the task itself.
 - [ ] I completed exercises/01.ts.
 - [ ] I completed exercises/02.ts.
-

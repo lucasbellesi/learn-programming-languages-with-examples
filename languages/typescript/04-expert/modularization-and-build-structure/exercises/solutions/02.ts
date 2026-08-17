@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+
 type EventSummary = {
     event: string;
     count: number;
@@ -9,6 +11,10 @@ function parseEvents(lines: string[]): EventSummary[] {
     for (const line of lines) {
         const trimmed = line.trim();
         if (trimmed.length === 0) {
+            continue;
+        }
+        if (!/^[a-z][a-z-]*$/.test(trimmed)) {
+            console.log(`Skipped malformed event: ${trimmed}`);
             continue;
         }
 
@@ -28,16 +34,11 @@ function renderSummary(summaries: EventSummary[]): string {
 }
 
 function main(): void {
-    const summaries = parseEvents([
-        "login",
-        "purchase",
-        "login",
-        "logout",
-        "",
-        "purchase",
-    ]);
+    const summaries = parseEvents(readFileSync(0, "utf8").split(/\r?\n/));
 
-    console.log(renderSummary(summaries));
+    console.log(
+        summaries.length === 0 ? "No valid events." : renderSummary(summaries),
+    );
 }
 
 main();

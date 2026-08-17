@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { setTimeout as delay } from "node:timers/promises";
 
 async function runWithLimit<T>(
@@ -24,8 +25,23 @@ async function runWithLimit<T>(
 }
 
 async function main(): Promise<void> {
-    const jobs = [30, 10, 20, 5];
-    const results = await runWithLimit(jobs, 2, async (waitMs) => {
+    const [limitLine = "1", ...jobLines] = readFileSync(0, "utf8")
+        .trimEnd()
+        .split(/\r?\n/);
+    const limit = Number(limitLine);
+    const jobs = jobLines
+        .map((line) => line.trim())
+        .filter((line) => line.length > 0)
+        .map(Number);
+    if (!Number.isInteger(limit) || limit <= 0) {
+        console.log("Worker limit must be positive.");
+        return;
+    }
+    if (jobs.length === 0) {
+        console.log("No jobs.");
+        return;
+    }
+    const results = await runWithLimit(jobs, limit, async (waitMs) => {
         await delay(waitMs);
         return `finished ${waitMs}`;
     });

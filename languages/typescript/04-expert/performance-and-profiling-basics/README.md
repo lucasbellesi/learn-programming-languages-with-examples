@@ -18,9 +18,9 @@ This module introduces basic measurement and comparison tools in TypeScript usin
 
 Run from the repository root:
 
-~~~bash
+```bash
 python scripts/automation.py run-module --module-path languages/typescript/04-expert/performance-and-profiling-basics
-~~~
+```
 
 ## Topics Covered
 
@@ -50,12 +50,14 @@ python scripts/automation.py run-module --module-path languages/typescript/04-ex
 ### Exercise Specs
 
 1. exercises/01.ts
-- Input: none.
+
+- Input: non-negative record count.
 - Output: average milliseconds for scan-based and map-based lookups.
 - Edge cases: very small data sizes may hide the expected difference.
 
 2. exercises/02.ts
-- Input: none.
+
+- Input: non-negative value count.
 - Output: average milliseconds for both string-building approaches.
 - Edge cases: workloads too small to show a meaningful difference.
 
@@ -76,4 +78,3 @@ Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercise
 - [ ] I can explain how allocation patterns affect runtime.
 - [ ] I completed exercises/01.ts.
 - [ ] I completed exercises/02.ts.
-

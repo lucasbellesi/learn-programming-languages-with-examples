@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { performance } from "node:perf_hooks";
 
 function averageDuration(runs: number, work: () => void): number {
@@ -10,7 +11,12 @@ function averageDuration(runs: number, work: () => void): number {
 }
 
 function main(): void {
-    const values = Array.from({ length: 5_000 }, (_, index) => `row-${index}`);
+    const requestedSize = Number(readFileSync(0, "utf8").trim());
+    const size =
+        Number.isInteger(requestedSize) && requestedSize >= 0
+            ? requestedSize
+            : 0;
+    const values = Array.from({ length: size }, (_, index) => `row-${index}`);
     const runs = 12;
 
     const concatAverage = averageDuration(runs, () => {
@@ -28,6 +34,7 @@ function main(): void {
         void parts.join("").length;
     });
 
+    console.log(`Values: ${size}`);
     console.log(`Concat average (ms): ${concatAverage.toFixed(3)}`);
     console.log(`Buffered average (ms): ${bufferedAverage.toFixed(3)}`);
 }

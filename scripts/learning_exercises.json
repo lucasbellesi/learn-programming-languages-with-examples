@@ -15476,25 +15476,40 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Acquire session-cache",
-            "Append header",
-            "Append payload",
-            "Caught: Simulated failure after work",
-            "Release session-cache"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "session-cache",
+            "header,payload",
+            "success"
+          ],
+          "required_stdout_equals": "Acquire session-cache\nAppend header\nAppend payload\nWork complete: 2 chunk(s)\nRelease session-cache\n"
         },
         {
           "name": "edge: cleanup must still happen after a simulated failure",
           "covers": [
             "cleanup must still happen after a simulated failure"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Acquire session-cache\nAppend header\nAppend payload\nCaught: Simulated failure after work\nRelease session-cache\n"
+          "input_lines": [
+            "failure-buffer",
+            "header,payload",
+            "failure"
+          ],
+          "required_stdout_equals": "Acquire failure-buffer\nAppend header\nAppend payload\nCaught: Simulated failure after work\nRelease failure-buffer\n"
+        },
+        {
+          "name": "edge: an empty workload still releases the resource",
+          "covers": [
+            "an empty workload still releases the resource"
+          ],
+          "input_lines": [
+            "empty-buffer",
+            "",
+            "success"
+          ],
+          "required_stdout_equals": "Acquire empty-buffer\nWork complete: 0 chunk(s)\nRelease empty-buffer\n"
         }
       ],
       "route_role": "guided",
@@ -15513,30 +15528,38 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Before close: connected, validated",
-            "Guarded error: Cannot record after close."
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "record connected",
+            "record validated",
+            "close"
+          ],
+          "required_stdout_equals": "Session closed.\nSnapshot: connected, validated\n"
         },
         {
           "name": "edge: repeated close calls",
           "covers": [
             "repeated close calls"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Before close: connected, validated\nSession closed.\nGuarded error: Cannot record after close.\n"
+          "input_lines": [
+            "close",
+            "close"
+          ],
+          "required_stdout_equals": "Session closed.\nSession already closed.\nSnapshot: empty\n"
         },
         {
           "name": "edge: operations attempted after close",
           "covers": [
             "operations attempted after close"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Before close: connected, validated\nSession closed.\nGuarded error: Cannot record after close.\n"
+          "input_lines": [
+            "close",
+            "record late-write"
+          ],
+          "required_stdout_equals": "Session closed.\nGuarded error: Cannot record after close.\nSnapshot: empty\n"
         }
       ],
       "route_role": "both",
@@ -15555,30 +15578,37 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "north: PKG-204 (12kg)",
-            "south: PKG-204 (12kg)"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "PKG-204|12",
+            "empty"
+          ],
+          "required_stdout_equals": "north: PKG-204 (12kg)\nsouth: empty\nTransfer: moved\nnorth: empty\nsouth: PKG-204 (12kg)\n"
         },
         {
           "name": "edge: moving from an empty holder",
           "covers": [
             "moving from an empty holder"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "north: PKG-204 (12kg)\nsouth: empty\nnorth: empty\nsouth: PKG-204 (12kg)\n"
+          "input_lines": [
+            "empty",
+            "empty"
+          ],
+          "required_stdout_equals": "north: empty\nsouth: empty\nTransfer: source empty\nnorth: empty\nsouth: empty\n"
         },
         {
           "name": "edge: destination already occupied",
           "covers": [
             "destination already occupied"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "north: PKG-204 (12kg)\nsouth: empty\nnorth: empty\nsouth: PKG-204 (12kg)\n"
+          "input_lines": [
+            "PKG-204|12",
+            "PKG-900|4"
+          ],
+          "required_stdout_equals": "north: PKG-204 (12kg)\nsouth: PKG-900 (4kg)\nTransfer: destination occupied\nnorth: PKG-204 (12kg)\nsouth: PKG-900 (4kg)\n"
         }
       ],
       "route_role": "guided",
@@ -15597,22 +15627,43 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Clone theme: dark",
-            "Clone shortcuts: save, search, preview"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "light",
+            "save,search",
+            "dark",
+            "preview"
+          ],
+          "required_stdout_equals": "Original theme: light\nOriginal shortcuts: save, search\nClone theme: dark\nClone shortcuts: save, search, preview\n"
         },
         {
-          "name": "edge: nested arrays or objects that would break a shallow copy",
+          "name": "edge: nested arrays remain independent after cloning",
           "covers": [
-            "nested arrays or objects that would break a shallow copy"
+            "nested arrays remain independent after cloning"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Original theme: light\nOriginal shortcuts: save, search\nClone theme: dark\nClone shortcuts: save, search, preview\n"
+          "input_lines": [
+            "compact",
+            "open,close",
+            "compact",
+            "export"
+          ],
+          "required_stdout_equals": "Original theme: compact\nOriginal shortcuts: open, close\nClone theme: compact\nClone shortcuts: open, close, export\n"
+        },
+        {
+          "name": "edge: empty nested collections can be cloned",
+          "covers": [
+            "empty nested collections can be cloned"
+          ],
+          "input_lines": [
+            "light",
+            "",
+            "dark",
+            "preview"
+          ],
+          "required_stdout_equals": "Original theme: light\nOriginal shortcuts: none\nClone theme: dark\nClone shortcuts: preview\n"
         }
       ],
       "route_role": "both",
@@ -15631,40 +15682,35 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "alpha ready",
-            "beta ready",
-            "gamma ready"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
           ],
-          "oracle_normalizers": [
-            "unordered_lines"
-          ]
-        },
-        {
-          "name": "edge: mixed delays",
-          "covers": [
-            "mixed delays"
-          ],
-          "shared_execution": true,
-          "oracle_normalizers": [
-            "unordered_lines"
+          "input_lines": [
+            "alpha 20",
+            "beta 5",
+            "gamma 12"
           ],
           "required_stdout_equals": "alpha ready\nbeta ready\ngamma ready\n"
         },
         {
-          "name": "edge: one task finishing earlier than the first request",
+          "name": "edge: mixed delays preserve request order",
           "covers": [
-            "one task finishing earlier than the first request"
+            "mixed delays preserve request order"
           ],
-          "shared_execution": true,
-          "oracle_normalizers": [
-            "unordered_lines"
+          "input_lines": [
+            "slow 15",
+            "fast 1"
           ],
-          "required_stdout_equals": "alpha ready\nbeta ready\ngamma ready\n"
+          "required_stdout_equals": "slow ready\nfast ready\n"
+        },
+        {
+          "name": "edge: an empty task list",
+          "covers": [
+            "an empty task list"
+          ],
+          "input_lines": [],
+          "required_stdout_equals": "No tasks.\n"
         }
       ],
       "route_role": "guided",
@@ -15683,41 +15729,40 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "finished 30",
-            "finished 10",
-            "finished 20",
-            "finished 5"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
           ],
-          "oracle_normalizers": [
-            "unordered_lines"
-          ]
+          "input_lines": [
+            "2",
+            "30",
+            "10",
+            "20",
+            "5"
+          ],
+          "required_stdout_equals": "finished 30\nfinished 10\nfinished 20\nfinished 5\n"
         },
         {
           "name": "edge: fewer jobs than workers",
           "covers": [
             "fewer jobs than workers"
           ],
-          "shared_execution": true,
-          "oracle_normalizers": [
-            "unordered_lines"
+          "input_lines": [
+            "4",
+            "3",
+            "1"
           ],
-          "required_stdout_equals": "finished 30\nfinished 10\nfinished 20\nfinished 5\n"
+          "required_stdout_equals": "finished 3\nfinished 1\n"
         },
         {
           "name": "edge: an empty job list",
           "covers": [
             "an empty job list"
           ],
-          "shared_execution": true,
-          "oracle_normalizers": [
-            "unordered_lines"
+          "input_lines": [
+            "2"
           ],
-          "required_stdout_equals": "finished 30\nfinished 10\nfinished 20\nfinished 5\n"
+          "required_stdout_equals": "No jobs.\n"
         }
       ],
       "route_role": "both",
@@ -15736,13 +15781,17 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Scan average (ms):",
-            "Map average (ms):"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
+          ],
+          "input_lines": [
+            "4000"
+          ],
+          "required_stdout_contains": [
+            "Records: 4000",
+            "Scan average (ms):",
+            "Map average (ms):"
           ],
           "oracle_normalizers": [
             "timings"
@@ -15753,11 +15802,34 @@
           "covers": [
             "very small data sizes may hide the expected difference"
           ],
-          "shared_execution": true,
+          "input_lines": [
+            "1"
+          ],
+          "required_stdout_contains": [
+            "Records: 1",
+            "Scan average (ms):",
+            "Map average (ms):"
+          ],
           "oracle_normalizers": [
             "timings"
+          ]
+        },
+        {
+          "name": "edge: an empty collection can still be measured",
+          "covers": [
+            "an empty collection can still be measured"
           ],
-          "required_stdout_equals": "Scan average (ms): 0.076\nMap average (ms): 0.001\n"
+          "input_lines": [
+            "0"
+          ],
+          "required_stdout_contains": [
+            "Records: 0",
+            "Scan average (ms):",
+            "Map average (ms):"
+          ],
+          "oracle_normalizers": [
+            "timings"
+          ]
         }
       ],
       "route_role": "guided",
@@ -15776,13 +15848,17 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Concat average (ms):",
-            "Buffered average (ms):"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
+          ],
+          "input_lines": [
+            "5000"
+          ],
+          "required_stdout_contains": [
+            "Values: 5000",
+            "Concat average (ms):",
+            "Buffered average (ms):"
           ],
           "oracle_normalizers": [
             "timings"
@@ -15793,11 +15869,34 @@
           "covers": [
             "workloads too small to show a meaningful difference"
           ],
-          "shared_execution": true,
+          "input_lines": [
+            "1"
+          ],
+          "required_stdout_contains": [
+            "Values: 1",
+            "Concat average (ms):",
+            "Buffered average (ms):"
+          ],
           "oracle_normalizers": [
             "timings"
+          ]
+        },
+        {
+          "name": "edge: an empty workload still produces a measurement",
+          "covers": [
+            "an empty workload still produces a measurement"
           ],
-          "required_stdout_equals": "Concat average (ms): 0.285\nBuffered average (ms): 0.261\n"
+          "input_lines": [
+            "0"
+          ],
+          "required_stdout_contains": [
+            "Values: 0",
+            "Concat average (ms):",
+            "Buffered average (ms):"
+          ],
+          "oracle_normalizers": [
+            "timings"
+          ]
         }
       ],
       "route_role": "both",
@@ -15816,30 +15915,37 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Service: notifications",
-            "Retries: 3"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "notifications",
+            "3"
+          ],
+          "required_stdout_equals": "Service: notifications\nRetries: 3\n"
         },
         {
           "name": "edge: missing service name",
           "covers": [
             "missing service name"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Service: notifications\nRetries: 3\n"
+          "input_lines": [
+            "",
+            "3"
+          ],
+          "required_stdout_equals": "Service name is required.\n"
         },
         {
           "name": "edge: invalid retry count",
           "covers": [
             "invalid retry count"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Service: notifications\nRetries: 3\n"
+          "input_lines": [
+            "notifications",
+            "-1"
+          ],
+          "required_stdout_equals": "Retry count cannot be negative.\n"
         }
       ],
       "route_role": "guided",
@@ -15858,31 +15964,39 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "login: 2",
-            "purchase: 2",
-            "logout: 1"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "login",
+            "purchase",
+            "login",
+            "logout",
+            "purchase"
+          ],
+          "required_stdout_equals": "login: 2\npurchase: 2\nlogout: 1\n"
         },
         {
           "name": "edge: malformed lines",
           "covers": [
             "malformed lines"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "login: 2\npurchase: 2\nlogout: 1\n"
+          "input_lines": [
+            "login",
+            "INVALID EVENT",
+            "purchase",
+            "login"
+          ],
+          "required_stdout_equals": "Skipped malformed event: INVALID EVENT\nlogin: 2\npurchase: 1\n"
         },
         {
           "name": "edge: empty input arrays",
           "covers": [
             "empty input arrays"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "login: 2\npurchase: 2\nlogout: 1\n"
+          "input_lines": [],
+          "required_stdout_equals": "No valid events.\n"
         }
       ],
       "route_role": "both",

@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+
 type ServiceConfig = {
     name: string;
     retryCount: number;
@@ -21,9 +23,12 @@ function renderConfig(config: ServiceConfig): string {
 }
 
 function main(): void {
+    const [name = "", retries = "0"] = readFileSync(0, "utf8")
+        .trimEnd()
+        .split(/\r?\n/);
     const config: ServiceConfig = {
-        name: "notifications",
-        retryCount: 3,
+        name,
+        retryCount: Number(retries),
     };
     const problems = validateConfig(config);
 
