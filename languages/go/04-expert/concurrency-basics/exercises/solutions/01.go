@@ -68,9 +68,13 @@ func main() {
 	close(results)
 
 	total := 0
+	partials := make([]int, workerCount)
 	for result := range results {
-		fmt.Printf("Worker %d partial: %d\n", result.worker, result.sum)
+		partials[result.worker-1] = result.sum
 		total += result.sum
+	}
+	for workerIndex, partial := range partials {
+		fmt.Printf("Worker %d partial: %d\n", workerIndex+1, partial)
 	}
 	fmt.Printf("Total: %d\n", total)
 }
