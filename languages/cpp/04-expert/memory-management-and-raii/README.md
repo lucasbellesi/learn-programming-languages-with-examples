@@ -61,7 +61,7 @@ python scripts/automation.py run-module --module-path languages/cpp/04-expert/me
 2. `exercises/02.cpp`
 - Input: positive nesting depth.
 - Output: enter/exit logs proving automatic cleanup.
-- Edge cases: nested scopes; final counter should return to zero.
+- Edge cases: nested scopes; final active counter returns to zero.
 
 ## Check Your Work
 

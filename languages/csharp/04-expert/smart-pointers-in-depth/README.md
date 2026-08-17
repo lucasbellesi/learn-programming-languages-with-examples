@@ -52,12 +52,12 @@ python scripts/automation.py run-module --module-path languages/csharp/04-expert
 1. exercises/01.cs
 - Input: source and destination document names, or `empty`, one per line.
 - Output: ownership transfer logs before and after moving.
-- Edge cases: moving from an empty owner; destination already holding another object.
+- Edge cases: moving from an empty holder; destination already occupied.
 
 2. exercises/02.cs
 - Input: `alive`, `expired`, or `missing` cache scenario.
 - Output: alive/expired cache lookup logs.
-- Edge cases: expired weak reference; cache miss.
+- Edge cases: expired or detached reference; missing reference.
 
 ## Check Your Work
 

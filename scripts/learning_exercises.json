@@ -645,6 +645,16 @@
             "boundary scores like 90, 80, 70, 60"
           ],
           "required_stdout_equals": "Enter score (0-100): Grade: A\n"
+        },
+        {
+          "input_lines": [
+            "101"
+          ],
+          "name": "edge: scores outside the accepted range",
+          "covers": [
+            "scores outside the accepted range"
+          ],
+          "required_stdout_equals": "Enter score (0-100): Invalid score.\n"
         }
       ],
       "route_role": "guided",
@@ -2562,6 +2572,18 @@
             "division by zero checks"
           ],
           "required_stdout_equals": "Enter a b c: Result: 0\n"
+        },
+        {
+          "input_lines": [
+            "100",
+            "10",
+            "-5"
+          ],
+          "name": "edge: negative divisors preserve the sign",
+          "covers": [
+            "negative divisors preserve the sign"
+          ],
+          "required_stdout_equals": "Enter a b c: Result: -22\n"
         }
       ],
       "route_role": "guided",

@@ -60,12 +60,12 @@ python scripts/automation.py run-module --module-path languages/java/04-expert/s
 1. exercises/Exercise01.java
 - Input: source and destination document names, or `empty`, one per line.
 - Output: ownership transfer logs before and after moving.
-- Edge cases: moving from an empty owner; destination already holding another object.
+- Edge cases: moving from an empty holder; destination already occupied.
 
 2. exercises/Exercise02.java
 - Input: `alive`, `expired`, or `missing` cache scenario.
 - Output: alive/expired cache lookup logs.
-- Edge cases: expired weak reference; cache miss.
+- Edge cases: expired or detached reference; missing reference.
 
 ## Check Your Work
 

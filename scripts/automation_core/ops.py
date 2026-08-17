@@ -1540,15 +1540,22 @@ def education_debt_counts(ctx: RepoContext) -> dict[str, int]:
     generic_exercise_starters = 0
     weak_guided_exercise_starters = 0
     exercise_oracle_cases = 0
+    exercise_contracts_with_fewer_than_three_cases = 0
+    exercise_shared_execution_facets = 0
     for exercise in exercises:
         starter = repo_path(ctx, str(exercise.get("starter", "")))
         text = starter.read_text(encoding="utf-8") if starter.is_file() else ""
         generic_exercise_starters += int(has_generic_starter_prompt(text))
         weak_guided_exercise_starters += int(guided_todo_count(text) < 3)
+        cases = exercise.get("cases", [])
+        exercise_contracts_with_fewer_than_three_cases += int(
+            not isinstance(cases, list) or len(cases) < 3
+        )
+        exercise_shared_execution_facets += sum(
+            int(case.get("shared_execution") is True) for case in cases if isinstance(case, dict)
+        )
         exercise_oracle_cases += sum(
-            int(case.get("oracle_solution") is True)
-            for case in exercise.get("cases", [])
-            if isinstance(case, dict)
+            int(case.get("oracle_solution") is True) for case in cases if isinstance(case, dict)
         )
 
     generic_project_starters = 0
@@ -1592,6 +1599,10 @@ def education_debt_counts(ctx: RepoContext) -> dict[str, int]:
         "weak_guided_project_starters": weak_guided_project_starters,
         "missing_cross_language_notes": missing_cross_language_notes,
         "exercise_oracle_cases": exercise_oracle_cases,
+        "exercise_contracts_with_fewer_than_three_cases": (
+            exercise_contracts_with_fewer_than_three_cases
+        ),
+        "exercise_shared_execution_facets": exercise_shared_execution_facets,
         "checkpoint_oracle_cases": checkpoint_oracle_cases,
         "checkpoint_contracts_with_fewer_than_three_cases": checkpoint_single_case_contracts,
         "checkpoint_shared_execution_facets": checkpoint_shared_execution_facets,
@@ -3868,6 +3879,10 @@ def learning_exercise_config_failures(ctx: RepoContext) -> list[str]:
         if not isinstance(cases, list) or not cases:
             failures.append(f"scripts/learning_exercises.json: no cases -> {label}")
         else:
+            if len(cases) < 3:
+                failures.append(
+                    f"scripts/learning_exercises.json: at least three cases are required -> {label}"
+                )
             case_names: set[str] = set()
             covered: set[str] = set()
             execution_cases: dict[str, int] = {}
@@ -3888,6 +3903,11 @@ def learning_exercise_config_failures(ctx: RepoContext) -> list[str]:
                     )
                 else:
                     case_names.add(case_name)
+                if case.get("shared_execution") is True:
+                    failures.append(
+                        "scripts/learning_exercises.json: "
+                        f"shared_execution is not allowed -> {label} case {index}"
+                    )
                 case_coverage = case.get("covers", [])
                 if isinstance(case_coverage, list):
                     covered.update(item for item in case_coverage if isinstance(item, str))
@@ -3905,7 +3925,7 @@ def learning_exercise_config_failures(ctx: RepoContext) -> list[str]:
                     sort_keys=True,
                 )
                 previous_case = execution_cases.get(execution)
-                if previous_case is not None and case.get("shared_execution") is not True:
+                if previous_case is not None:
                     failures.append(
                         "scripts/learning_exercises.json: "
                         f"{label} case {index} duplicates case {previous_case} execution"

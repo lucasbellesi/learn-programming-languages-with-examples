@@ -59,7 +59,7 @@ python scripts/automation.py run-module --module-path languages/java/04-expert/m
 2. exercises/Exercise02.java
 - Input: positive nesting depth.
 - Output: enter/close logs proving automatic cleanup.
-- Edge cases: nested scopes; final active counter must return to zero.
+- Edge cases: nested scopes; final active counter returns to zero.
 
 ## Check Your Work
 

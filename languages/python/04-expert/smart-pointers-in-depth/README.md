@@ -57,7 +57,7 @@ python scripts/automation.py run-module --module-path languages/python/04-expert
 2. exercises/02.py
 - Input: `alive`, `expired`, or `missing` cache scenario.
 - Output: alive/expired cache lookup logs.
-- Edge cases: expired weak reference; cache miss.
+- Edge cases: expired or detached reference; missing reference.
 
 ## Check Your Work
 

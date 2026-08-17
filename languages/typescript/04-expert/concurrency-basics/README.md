@@ -53,7 +53,7 @@ python scripts/automation.py run-module --module-path languages/typescript/04-ex
 
 - Input: zero or more `label delay-ms` task lines.
 - Output: completed task results in the original request order.
-- Edge cases: mixed delays; one task finishing earlier than the first request.
+- Edge cases: mixed delays preserve request order; an empty task list.
 
 2. exercises/02.ts
 

@@ -57,7 +57,7 @@ python scripts/automation.py run-module --module-path languages/go/04-expert/sma
 2. exercises/02.go
 - Input: `linked`, `child-removed`, or `parent-removed` relationship scenario.
 - Output: parent/child navigation logs with nil-safe checks.
-- Edge cases: detached child pointer; missing parent pointer.
+- Edge cases: expired or detached reference; missing reference.
 
 ## Check Your Work
 

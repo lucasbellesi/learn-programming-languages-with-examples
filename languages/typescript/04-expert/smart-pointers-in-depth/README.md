@@ -59,7 +59,7 @@ python scripts/automation.py run-module --module-path languages/typescript/04-ex
 
 - Input: original theme, comma-separated shortcuts, clone theme, and an optional new shortcut on separate lines.
 - Output: original and cloned preference states after editing only the clone.
-- Edge cases: nested arrays or objects that would break a shallow copy.
+- Edge cases: nested arrays remain independent after cloning; empty nested collections can be cloned.
 
 ## Check Your Work
 

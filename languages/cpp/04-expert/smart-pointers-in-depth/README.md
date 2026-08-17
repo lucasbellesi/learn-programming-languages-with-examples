@@ -56,12 +56,12 @@ python scripts/automation.py run-module --module-path languages/cpp/04-expert/sm
 1. `exercises/01.cpp`
 - Input: source and destination resource names, or `empty`, one per line.
 - Output: both owners before and after the attempted transfer.
-- Edge cases: empty source; occupied destination.
+- Edge cases: moving from an empty holder; destination already occupied.
 
 2. `exercises/02.cpp`
 - Input: `alive`, `expired`, or `missing` reference scenario.
 - Output: cycle-safe parent/child relationship logs.
-- Edge cases: expired weak references; parent reset behavior.
+- Edge cases: expired or detached reference; missing reference.
 
 ## Check Your Work
 
