@@ -208,6 +208,8 @@ bash ./scripts/lint.sh
 
 `verify-repo` validates curriculum structure, the blocking education-quality gate, example, exercise, and checkpoint output contracts, plus compiled-language builds. `lint` validates formatting and static checks for C++, Python, Go, C#, Java, and TypeScript.
 
+Pull requests and `master` use Linux-only required CI. Windows compatibility runs in a separate workflow every Monday, on every tag, and on demand. Run the manual Windows workflow successfully before publishing a release tag.
+
 Use narrower commands only when you want a faster loop on one area:
 
 ~~~powershell

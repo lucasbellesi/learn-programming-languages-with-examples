@@ -58,6 +58,8 @@ For large changes, you can run one language at a time before the full check:
 The public PowerShell and Bash scripts are thin wrappers over the shared Python automation core in `scripts/automation.py`. Repository structure and smoke targets live in `scripts/automation_manifest.json`; shared outcomes, exercise contracts, and checkpoint contracts live in `scripts/curriculum_outcomes.json`, `scripts/learning_exercises.json`, and `scripts/learning_checkpoints.json`.
 The artifact cleanup command removes generated build outputs, reports, temporary binaries, and exercise report files while keeping restored dependencies such as `node_modules`.
 
+Required pull-request and `master` checks run on Linux. Windows compatibility is verified by the separate `Windows Compatibility` workflow every Monday, for every pushed tag, and through `workflow_dispatch`. Before publishing a release tag, run that workflow manually against the commit you intend to tag and confirm that all six language jobs pass.
+
 Use [EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md](EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md) when reviewing `example/main.*` files for teaching clarity and parity.
 `verify-repo` fails on blocking education-quality findings: low example-comment ratio, missing output explanation markers, or boilerplate comments. Oversized example findings remain advisory. During focused cleanup work, run `python scripts/automation.py audit-education-quality --fail-on-findings` to make every learner-quality finding fail locally.
 
