@@ -1,6 +1,13 @@
+def run_structs_classes_exercise() -> None:
+    # TODO 1: Read or prepare sequence of commands (`inc`, `dec`, `reset`, `stop`).
+    # TODO 2: Build an encapsulated `Counter` class with commands.
+    # TODO 3: Produce counter value updates and final value; verify unknown commands; immediate
+    #         `stop`.
+    pass
+
+
 def main() -> None:
-    # TODO: implement the README specification (ADV-MOD-01, ADV-MOD-02).
-    print("TODO: implement this exercise")
+    run_structs_classes_exercise()
 
 
 if __name__ == "__main__":

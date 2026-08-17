@@ -1,4 +1,4 @@
-# Smart Pointers in Depth (Python)
+# Strong/Weak References and Ownership (Python)
 
 This module adapts smart pointer ideas to Python references, ownership slots, and `weakref`.
 

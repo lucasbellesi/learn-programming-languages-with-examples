@@ -1,12 +1,13 @@
 // Module focus: Walking data step by step to compute summaries and decisions.
-// Why it matters: practicing algorithms basics patterns makes exercises and checkpoints easier to
-// reason about.
+// Why it matters: the example makes it possible to implement linear scans and accumulations with
+// clear invariants before the learner tackles the exercises.
 
 #include <iostream>
 #include <vector>
 using namespace std;
 
-// Helper setup for algorithms basics; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to implement linear scans and accumulations
+// with clear invariants.
 int linearSearch(const vector<int>& values, int target) {
     for (size_t i = 0; i < values.size(); ++i) {
         if (values[i] == target) {
@@ -47,14 +48,15 @@ void printMinMax(const vector<int>& values) {
     cout << "Maximum: " << maxValue << '\n';
 }
 
-// Walk through one fixed scenario so algorithms basics behavior stays repeatable.
+// Fixed inputs make the consequence of forgetting to handle empty input visible and repeatable.
 int main() {
-    // Prepare sample inputs that exercise the key algorithms basics path.
+    // These values exercise the normal path before the exercises vary the documented boundaries.
     const vector<int> values{4, 7, 4, 1, 9, 4, 2};
     const int target = 4;
 
     const int firstIndex = linearSearch(values, target);
-    // Report values so learners can verify the algorithms basics outcome.
+    // The printed result shows whether the program can analyze behavior for empty, duplicate, and
+    // missing values.
     cout << "First index of " << target << ": " << firstIndex << '\n';
     cout << "Occurrences of " << target << ": " << countOccurrences(values, target) << '\n';
 

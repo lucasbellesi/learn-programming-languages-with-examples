@@ -77,6 +77,24 @@ class CliTests(unittest.TestCase):
         args = self.parser.parse_args(["check-exercise-output-contracts", "--language", "go"])
         self.assertEqual(args.language, "go")
 
+    def test_hint_exercise_parses_stage(self) -> None:
+        args = self.parser.parse_args(
+            [
+                "hint-exercise",
+                "--language",
+                "python",
+                "--level",
+                "01-foundations",
+                "--module",
+                "types-and-io",
+                "--exercise",
+                "01",
+                "--stage",
+                "2",
+            ]
+        )
+        self.assertEqual(args.stage, 2)
+
 
 if __name__ == "__main__":
     unittest.main()

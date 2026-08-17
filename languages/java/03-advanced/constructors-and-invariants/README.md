@@ -35,6 +35,12 @@ python scripts/automation.py run-module --module-path languages/java/03-advanced
 - Writing directly into internal fields from outside methods.
 - Ignoring failed updates and assuming state changed.
 
+## Cross-Language Notes
+
+- In Java, read this module through the native focus ?Constructors and Invariants?; the shared folder name remains stable for side-by-side navigation.
+- Use nominal types, JVM collections, and explicit resource scopes to demonstrate how to construct objects only in valid states.
+- Compare observable behavior with the other tracks when learning to keep mutations from violating established invariants; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - exercises/Exercise01.java: bank account with non-negative balance invariant.

@@ -1,16 +1,21 @@
 // Module focus: Combining values through expressions and readable calculations.
-// Why it matters: practicing operators and expressions patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to build expressions with correct precedence and
+// explicit intent before the learner tackles the exercises.
 
 using System;
 
-// Helper setup for operators and expressions; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to build expressions with correct precedence
+// and explicit intent.
 class Program
 {
-    // Walk through one fixed scenario so operators and expressions behavior stays repeatable.
+    // Fixed inputs make the consequence of forgetting to reject negative totals for time
+    // conversion or subtotal visible and repeatable.
     static void Main()
     {
-        // Prepare sample inputs that exercise the key operators and expressions path.
-        // Report values so learners can verify the operators and expressions outcome.
+        // These values exercise the normal path before the exercises vary the documented
+        // boundaries.
+        // The printed result shows whether the program can distinguish arithmetic, comparison,
+        // and logical operations.
         Console.Write("Enter total seconds: ");
         int totalSeconds = int.Parse(Console.ReadLine() ?? "0");
 

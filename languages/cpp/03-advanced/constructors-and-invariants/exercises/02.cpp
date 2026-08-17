@@ -1,7 +1,13 @@
-#include <iostream>
+namespace {
+void runConstructorsInvariantsExercise() {
+    // TODO 1: Read or prepare month and day values.
+    // TODO 2: Date class with month/day validation.
+    // TODO 3: Produce valid/invalid date result; verify month out of range; day out of range for
+    //         month.
+}
+} // namespace
 
 int main() {
-    // TODO: implement the README specification (ADV-INV-01, ADV-INV-02).
-    std::cout << "TODO: implement this exercise\n";
+    runConstructorsInvariantsExercise();
     return 0;
 }

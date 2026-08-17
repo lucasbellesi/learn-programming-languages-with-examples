@@ -39,8 +39,9 @@ If you only want to learn one track, follow that track README first because lang
    - Java: `01-foundations`, then `02-core`, `03-advanced`, and `04-expert`
    - C#, Go, Python, TypeScript: `01-foundations`, then `02-core`, `03-advanced`, and `04-expert`
 3. Run one module example.
-4. Solve the two starter files in that module and check every named normal and edge case.
-5. Mark progress in the language checklist.
+4. Choose the guided or comparative route described in [STUDY_PLAN.md](STUDY_PLAN.md).
+5. Solve the selected starter files and check every named normal and edge case.
+6. Mark progress using [LEARNING_LOG_TEMPLATE.md](LEARNING_LOG_TEMPLATE.md).
 
 ### Practical Course Workflow
 
@@ -50,9 +51,15 @@ Run every command from the repository root. First confirm the selected toolchain
 python scripts/automation.py doctor --language python
 python scripts/automation.py run-module --module-path languages/python/01-foundations/types-and-io
 python scripts/automation.py check-exercise --language python --level 01-foundations --module types-and-io --exercise 01
+python scripts/automation.py hint-exercise --language python --level 01-foundations --module types-and-io --exercise 01 --stage 1
 ~~~
 
-All 288 exercises separate editable starters from reference solutions. Use `--submission <repo-relative-path>` to check another file. TypeScript submissions must remain under `languages/typescript` so the track configuration can compile them. Reference solutions live under each module's `exercises/solutions/` directory and can be verified with `--solution` after a complete attempt.
+All 288 exercises separate compilable guided starters from reference solutions. Hints
+progress from conceptual to structural to idiomatic API guidance without returning solved
+code. Use `--submission <repo-relative-path>` to check another file. TypeScript submissions
+must remain under `languages/typescript` so the track configuration can compile them.
+Reference solutions live under each module's `exercises/solutions/` directory and can be
+verified with `--solution` after a complete attempt.
 
 Projects and assessments follow the same rule: work in `starter/`, keep `solutions/` closed until review, and check from the root:
 
@@ -151,10 +158,11 @@ All concept module README files under `languages/<language>/<level>/<module>/REA
 3. `## Quick Run`
 4. `## Topics Covered`
 5. `## Common Pitfalls`
-6. `## Exercise Focus`
-7. `### Exercise Specs`
-8. `## Check Your Work`
-9. `## Checkpoint`
+6. `## Cross-Language Notes`
+7. `## Exercise Focus`
+8. `### Exercise Specs`
+9. `## Check Your Work`
+10. `## Checkpoint`
 
 Reference: [Module README Style](languages/cpp/MODULE_README_STYLE.md)
 
@@ -164,7 +172,8 @@ A standardized `## Learning Metadata` block is required before `## Quick Run` fo
 - checkpoints: difficulty, estimated time, prerequisites, learning focus
 - level READMEs: difficulty, estimated time, prerequisites, study strategy
 
-`## Cross-Language Notes` is the recommended comparison section for new or substantially updated modules and checkpoints. Keep it short, concrete, and honest about where concepts do not map one-to-one.
+`## Cross-Language Notes` is required in modules. Keep it short, concrete, native to the
+current language, and honest about where concepts do not map one-to-one.
 
 Checkpoint artifacts under `languages/<language>/projects/*` and `languages/<language>/assessments/*` use this course structure:
 

@@ -13,6 +13,40 @@
       "type": "promptString",
       "description": "Repository-relative module path",
       "default": "languages/python/01-foundations/types-and-io"
+    },
+    {
+      "id": "level",
+      "type": "pickString",
+      "description": "Course level",
+      "options": ["01-foundations", "02-core", "03-advanced", "04-expert"],
+      "default": "01-foundations"
+    },
+    {
+      "id": "module",
+      "type": "promptString",
+      "description": "Canonical module key",
+      "default": "types-and-io"
+    },
+    {
+      "id": "exercise",
+      "type": "pickString",
+      "description": "Exercise number",
+      "options": ["01", "02"],
+      "default": "01"
+    },
+    {
+      "id": "hintStage",
+      "type": "pickString",
+      "description": "Hint stage: conceptual, structural, or idiomatic API",
+      "options": ["1", "2", "3"],
+      "default": "1"
+    },
+    {
+      "id": "checkpointKind",
+      "type": "pickString",
+      "description": "Checkpoint kind",
+      "options": ["project", "assessment"],
+      "default": "project"
     }
   ],
   "tasks": [
@@ -38,6 +72,53 @@
       "command": "python",
       "args": ["scripts/automation.py", "verify-language", "--language", "${input:language}"],
       "group": {"kind": "test", "isDefault": true},
+      "problemMatcher": [],
+      "options": {"cwd": "${workspaceFolder}"}
+    },
+    {
+      "label": "Course: check exercise",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "scripts/automation.py",
+        "check-exercise",
+        "--language", "${input:language}",
+        "--level", "${input:level}",
+        "--module", "${input:module}",
+        "--exercise", "${input:exercise}"
+      ],
+      "group": "test",
+      "problemMatcher": [],
+      "options": {"cwd": "${workspaceFolder}"}
+    },
+    {
+      "label": "Course: hint exercise",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "scripts/automation.py",
+        "hint-exercise",
+        "--language", "${input:language}",
+        "--level", "${input:level}",
+        "--module", "${input:module}",
+        "--exercise", "${input:exercise}",
+        "--stage", "${input:hintStage}"
+      ],
+      "problemMatcher": [],
+      "options": {"cwd": "${workspaceFolder}"}
+    },
+    {
+      "label": "Course: check checkpoint",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "scripts/automation.py",
+        "check-checkpoint",
+        "--language", "${input:language}",
+        "--kind", "${input:checkpointKind}",
+        "--level", "${input:level}"
+      ],
+      "group": "test",
       "problemMatcher": [],
       "options": {"cwd": "${workspaceFolder}"}
     },

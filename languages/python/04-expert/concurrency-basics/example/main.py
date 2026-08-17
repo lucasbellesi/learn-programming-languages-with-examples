@@ -1,6 +1,6 @@
 # Module focus: Starting multiple units of work and combining their results safely.
-# Why it matters: practicing concurrency basics patterns makes exercises and checkpoints easier to
-# reason about.
+# Why it matters: the example makes it possible to coordinate concurrent work without data races
+# or lost results before the learner tackles the exercises.
 
 from __future__ import annotations
 
@@ -8,9 +8,10 @@ import queue
 import threading
 
 
-# Walk through one fixed scenario so concurrency basics behavior stays repeatable.
+# Fixed inputs make the consequence of assuming the GIL removes the need for coordination design
+# visible and repeatable.
 def main() -> None:
-    # Prepare sample inputs that exercise the key concurrency basics path.
+    # These values exercise the normal path before the exercises vary the documented boundaries.
     worker_count = 4
     increments_per_worker = 10_000
     counter = 0
@@ -30,7 +31,8 @@ def main() -> None:
     for thread in threads:
         thread.join()
 
-    # Report output values so learners can verify the concurrency basics outcome.
+    # The printed result shows whether the program can define completion, cancellation, and error
+    # propagation behavior.
     print(f"Expected counter: {worker_count * increments_per_worker}")
     print(f"Actual counter: {counter}")
 

@@ -1,4 +1,4 @@
-# Memory Management and RAII
+# Managed Memory and Explicit Cleanup (TypeScript)
 
 This module adapts RAII to TypeScript by focusing on explicit cleanup, `try/finally`, and disposable-style helpers.
 

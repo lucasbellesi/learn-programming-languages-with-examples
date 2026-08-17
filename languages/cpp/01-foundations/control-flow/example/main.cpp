@@ -1,15 +1,18 @@
 // Module focus: Choosing between branches and repeating work with predictable control flow.
-// Why it matters: practicing control flow patterns makes exercises and checkpoints easier to reason
+// Why it matters: the example makes it possible to select branches that cover normal and boundary
+// conditions before the learner tackles the exercises.
 // about.
 
 #include <iostream>
 using namespace std;
 
-// Walk through one fixed scenario so control flow behavior stays repeatable.
+// Fixed inputs make the consequence of missing braces in multi-line branches visible and
+// repeatable.
 int main() {
-    // Prepare sample inputs that exercise the key control flow path.
+    // These values exercise the normal path before the exercises vary the documented boundaries.
     int value = 0;
-    // Report values so learners can verify the control flow outcome.
+    // The printed result shows whether the program can write terminating loops and reason about
+    // their invariants.
     cout << "Enter an integer: ";
     cin >> value;
 

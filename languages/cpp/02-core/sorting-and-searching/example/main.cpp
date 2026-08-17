@@ -1,20 +1,22 @@
 // Module focus: Reordering data and locating values with deliberate search logic.
-// Why it matters: practicing sorting and searching patterns makes exercises and checkpoints easier
-// to reason about.
+// Why it matters: the example makes it possible to choose and apply sorting and searching
+// operations correctly before the learner tackles the exercises.
 
 #include <algorithm>
 #include <iostream>
 #include <vector>
 using namespace std;
 
-// Walk through one fixed scenario so sorting and searching behavior stays repeatable.
+// Fixed inputs make the consequence of running binary search on unsorted data visible and
+// repeatable.
 int main() {
-    // Prepare sample inputs that exercise the key sorting and searching path.
+    // These values exercise the normal path before the exercises vary the documented boundaries.
     vector<int> values{7, 2, 9, 4, 2, 8};
 
     sort(values.begin(), values.end());
 
-    // Report values so learners can verify the sorting and searching outcome.
+    // The printed result shows whether the program can explain ordering, duplicates, missing
+    // values, and stability tradeoffs.
     cout << "Sorted: ";
     for (int value : values) {
         cout << value << ' ';

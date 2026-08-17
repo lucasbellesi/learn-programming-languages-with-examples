@@ -40,6 +40,12 @@ python scripts/automation.py run-module --module-path languages/cpp/02-core/inpu
 - Accepting out-of-range values.
 - Duplicating validation loops instead of using helper functions.
 
+## Cross-Language Notes
+
+- In C++, read this module through the native focus ?Input Validation?; the shared folder name remains stable for side-by-side navigation.
+- Use explicit value/reference semantics and standard-library types to demonstrate how to reject malformed and out-of-domain input without corrupting state.
+- Compare observable behavior with the other tracks when learning to design retry and termination behavior that cannot loop accidentally; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - `exercises/01.cpp`: read integer in range `[1, 100]` then print square.

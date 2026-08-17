@@ -1,4 +1,4 @@
-# Arrays and Vectors (C#)
+# Arrays and Lists (C#)
 
 This module practices storing sequences, iterating them, and computing frequencies.
 
@@ -37,9 +37,9 @@ python scripts/automation.py run-module --module-path languages/csharp/01-founda
 
 ## Cross-Language Notes
 
-- Compared with the C++ version, each track solves the same sequence problems with a different default dynamic-array model.
-- The key comparison is where bounds safety, resizing behavior, and iteration ergonomics come from in each language.
-- This module is most useful when you notice how similar tasks feel different under `vector`, `List<T>`, slices, Python lists, and TypeScript arrays.
+- In C#, read this module through the native focus ?Arrays and Lists?; the shared folder name remains stable for side-by-side navigation.
+- Use static types, .NET collections, and managed-resource patterns to demonstrate how to store and traverse ordered collections safely.
+- Compare observable behavior with the other tracks when learning to handle empty collections and index boundaries explicitly; equivalent evidence matters more than identical syntax.
 
 ## Exercise Focus
 

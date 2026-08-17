@@ -1,5 +1,6 @@
 // Module focus: Building objects that start valid and stay valid through guarded updates.
-// Why it matters: practicing constructors and invariants patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to construct objects only in valid states before
+// the learner tackles the exercises.
 
 import java.util.Locale;
 
@@ -31,10 +32,12 @@ public class Main {
     public static void main(String[] args) {
         Locale.setDefault(Locale.US);
 
-        // Prepare sample inputs that exercise the key constructors and invariants path.
+        // These values exercise the normal path before the exercises vary the documented
+        // boundaries.
         Temperature temperature = new Temperature(-500.0);
 
-        // Report values so learners can verify the constructors and invariants outcome.
+        // The printed result shows whether the program can keep mutations from violating
+        // established invariants.
         System.out.printf("Initial value (clamped): %.2f C%n", temperature.celsius());
 
         boolean updated = temperature.setCelsius(25.0);

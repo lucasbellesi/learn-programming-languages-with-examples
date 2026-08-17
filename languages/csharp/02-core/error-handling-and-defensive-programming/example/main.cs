@@ -1,9 +1,11 @@
 // Module focus: Guarding risky inputs so failures stay explicit and controlled.
-// Why it matters: practicing error handling and defensive programming patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to separate expected failures from programming
+// defects before the learner tackles the exercises.
 
 using System;
 
-// Helper setup for error handling and defensive programming; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to separate expected failures from
+// programming defects.
 class Program
 {
     static bool TrySafeDivide(double left, double right, out double result)
@@ -18,15 +20,18 @@ class Program
         return true;
     }
 
-    // Walk through one fixed scenario so error handling and defensive programming behavior stays repeatable.
+    // Fixed inputs make the consequence of continuing execution after detecting an invalid state
+    // visible and repeatable.
     static void Main()
     {
-        // Prepare sample inputs that exercise the key error handling and defensive programming path.
+        // These values exercise the normal path before the exercises vary the documented
+        // boundaries.
         (double left, double right)[] scenarios = new[] { (42.0, 6.0), (10.0, 0.0) };
 
         foreach ((double left, double right) in scenarios)
         {
-            // Report values so learners can verify the error handling and defensive programming outcome.
+            // The printed result shows whether the program can preserve valid state and useful
+            // diagnostics when operations fail.
             Console.WriteLine($"Input: {left} {right}");
 
             if (!TrySafeDivide(left, right, out double quotient))

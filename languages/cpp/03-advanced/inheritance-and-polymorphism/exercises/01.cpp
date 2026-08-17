@@ -1,7 +1,13 @@
-#include <iostream>
+namespace {
+void runInheritancePolymorphismExercise() {
+    // TODO 1: Read or prepare triangle base and height.
+    // TODO 2: Extend shape hierarchy with `Triangle`.
+    // TODO 3: Produce computed area through overridden method; verify zero dimensions; decimal
+    //         dimensions.
+}
+} // namespace
 
 int main() {
-    // TODO: implement the README specification (ADV-POL-01, ADV-POL-02).
-    std::cout << "TODO: implement this exercise\n";
+    runInheritancePolymorphismExercise();
     return 0;
 }

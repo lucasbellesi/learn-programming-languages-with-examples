@@ -1,5 +1,6 @@
 // Module focus: Choosing between branches and repeating work with predictable control flow.
-// Why it matters: practicing control flow patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to select branches that cover normal and boundary
+// conditions before the learner tackles the exercises.
 
 const scores = [92, 74, 58];
 for (const score of scores) {
@@ -10,7 +11,8 @@ for (const score of scores) {
     } else if (score >= 60) {
         label = "Passing";
     }
-    // Report output values so learners can verify the control flow result.
+    // The printed result shows whether the program can write terminating loops and reason about
+    // their invariants.
     console.log(`Score ${score}: ${label}`);
 }
 const menuChoice: number = 2;

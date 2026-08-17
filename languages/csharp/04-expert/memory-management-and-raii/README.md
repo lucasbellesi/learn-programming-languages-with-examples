@@ -1,4 +1,4 @@
-# Memory Management and RAII (C#)
+# Managed Memory and Deterministic Disposal (C#)
 
 This module introduces deterministic cleanup patterns in managed C# code.
 

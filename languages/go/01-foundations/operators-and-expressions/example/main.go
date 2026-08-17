@@ -1,15 +1,18 @@
 // Module focus: Combining values through expressions and readable calculations.
-// Why it matters: practicing operators and expressions patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to build expressions with correct precedence and
+// explicit intent before the learner tackles the exercises.
 
 package main
 
 import "fmt"
 
-// Walk through one fixed scenario so operators and expressions behavior stays repeatable.
+// Fixed inputs make the consequence of forgetting to reject negative totals for time conversion
+// or subtotal visible and repeatable.
 func main() {
-	// Prepare sample inputs that exercise the key operators and expressions path.
+	// These values exercise the normal path before the exercises vary the documented boundaries.
 	var totalSeconds int
-	// Report values so learners can verify the operators and expressions outcome.
+	// The printed result shows whether the program can distinguish arithmetic, comparison, and
+	// logical operations.
 	fmt.Print("Enter total seconds: ")
 	fmt.Scanln(&totalSeconds)
 

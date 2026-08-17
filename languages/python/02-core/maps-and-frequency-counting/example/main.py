@@ -1,10 +1,10 @@
 # Module focus: Counting repeated values and summarizing them through keyed lookups.
-# Why it matters: practicing maps and frequency counting patterns makes exercises and checkpoints
-# easier to reason about.
+# Why it matters: the example makes it possible to use key-value collections to aggregate and
+# retrieve data before the learner tackles the exercises.
 
-# Walk through one fixed scenario so maps and frequency counting behavior stays repeatable.
+# Fixed inputs make the consequence of assuming missing keys already exist visible and repeatable.
 def main():
-    # Prepare sample inputs that exercise the key maps and frequency counting path.
+    # These values exercise the normal path before the exercises vary the documented boundaries.
     text = "banana bandana"
     frequencies = {}
 
@@ -14,7 +14,8 @@ def main():
 
         frequencies[ch] = frequencies.get(ch, 0) + 1
 
-    # Report output values so learners can verify the maps and frequency counting outcome.
+    # The printed result shows whether the program can define normalization and missing-key
+    # behavior explicitly.
     print("Character frequencies:")
     for key in sorted(frequencies):
         print(f"{key} -> {frequencies[key]}")

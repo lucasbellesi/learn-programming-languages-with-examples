@@ -20,6 +20,7 @@ class Outcome:
 class ModuleOutcomes:
     outcomes: tuple[Outcome, ...]
     language_adaptations: dict[str, tuple[str, ...]]
+    display_titles: dict[str, str]
 
     @property
     def ids(self) -> tuple[str, ...]:
@@ -83,7 +84,18 @@ def load_curriculum_outcomes(scripts_dir: Path) -> dict[str, ModuleOutcomes]:
                 raise CurriculumError(f"{path}: invalid language adaptation for '{module_key}'.")
             adaptations[language] = tuple(notes)
 
-        result[module_key] = ModuleOutcomes(tuple(outcomes), adaptations)
+        raw_display_titles = raw_module.get("display_titles", {})
+        if not isinstance(raw_display_titles, dict) or any(
+            not isinstance(language, str) or not isinstance(title, str) or not title.strip()
+            for language, title in raw_display_titles.items()
+        ):
+            raise CurriculumError(f"{path}: invalid display titles for '{module_key}'.")
+
+        result[module_key] = ModuleOutcomes(
+            tuple(outcomes),
+            adaptations,
+            dict(raw_display_titles),
+        )
     return result
 
 

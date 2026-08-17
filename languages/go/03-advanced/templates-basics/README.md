@@ -1,4 +1,4 @@
-# Templates Basics (Go)
+# Type Parameters and Constraints (Go)
 
 This module introduces generic programming with type parameters.
 
@@ -37,9 +37,9 @@ python scripts/automation.py run-module --module-path languages/go/03-advanced/t
 
 ## Cross-Language Notes
 
-- Compared with C++, this concept broadens from templates into each language's own reusable generic abstraction model.
-- Relative to Go and C#, TypeScript generics stay expressive without runtime specialization, while Python treats the same idea more informally.
-- The useful comparison is how each language generalizes logic without abandoning type clarity.
+- In Go, read this module through the native focus ?Type Parameters and Constraints?; the shared folder name remains stable for side-by-side navigation.
+- Use explicit errors, slices/maps, interfaces, and defer to demonstrate how to express reusable type-safe behavior with language generics.
+- Compare observable behavior with the other tracks when learning to apply constraints when an operation requires specific capabilities; equivalent evidence matters more than identical syntax.
 
 ## Exercise Focus
 

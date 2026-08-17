@@ -1,6 +1,6 @@
 # Module focus: Tracking ownership and lifetime when multiple references can observe the same value.
-# Why it matters: practicing smart pointers in depth patterns makes exercises and checkpoints easier
-# to reason about.
+# Why it matters: the example makes it possible to model exclusive, shared, and non-owning
+# relationships idiomatically before the learner tackles the exercises.
 
 # This example shows tracking ownership and lifetime when multiple references can observe the same
 # value.
@@ -11,12 +11,15 @@ import gc
 import weakref
 
 
-# Helper setup for smart pointers in depth; this keeps the walkthrough readable.
+# Separate helpers keep the main path focused on how to model exclusive, shared, and non-owning
+# relationships idiomatically.
 class Report:
     def __init__(self, title: str) -> None:
-        # Prepare sample inputs that exercise the key smart pointers in depth path.
+        # These values exercise the normal path before the exercises vary the documented
+        # boundaries.
         self.title = title
-        # Report output values so learners can verify the smart pointers in depth outcome.
+        # The printed result shows whether the program can prevent leaks, cycles, and stale
+        # observations in ownership graphs.
         print(f"Created report: {title}")
 
 
@@ -68,7 +71,8 @@ def create_preview_session() -> tuple[PreviewPane, PreviewSession]:
     return PreviewPane(current), session
 
 
-# Walk through one fixed scenario so smart pointers in depth behavior stays repeatable.
+# Fixed inputs make the consequence of assuming a weak reference behaves like a normal strong
+# reference visible and repeatable.
 def main() -> None:
     inbox = ReportOwner("Inbox", Report("Quarterly Summary"))
     archive = ReportOwner("Archive", None)

@@ -1,5 +1,6 @@
 // Module focus: Reordering data and locating values with deliberate search logic.
-// Why it matters: practicing sorting and searching patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to choose and apply sorting and searching
+// operations correctly before the learner tackles the exercises.
 
 function binarySearch(values: number[], target: number): number {
     let left = 0;
@@ -27,7 +28,8 @@ const scores = [91, 77, 88, 64, 77, 95];
 // Copy before sorting so the original order remains available for comparison.
 const ascending = [...scores].sort((left, right) => left - right);
 
-// Report output values so learners can verify the sorting and searching result.
+// The printed result shows whether the program can explain ordering, duplicates, missing values,
+// and stability tradeoffs.
 console.log(`Original: ${scores.join(", ")}`);
 console.log(`Sorted: ${ascending.join(", ")}`);
 console.log(`Index of 88: ${binarySearch(ascending, 88)}`);

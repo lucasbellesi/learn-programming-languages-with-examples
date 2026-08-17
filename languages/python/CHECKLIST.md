@@ -1,5 +1,8 @@
 ﻿# Python Progress Checklist
 
+Use the shared [solution rubric](../../LEARNER_SOLUTION_RUBRIC.md) and
+[learning log](../../LEARNING_LOG_TEMPLATE.md); they apply equally to every track.
+
 ## 01-foundations
 
 - [ ] Complete `01-foundations/types-and-io`.

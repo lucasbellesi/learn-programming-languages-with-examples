@@ -1,4 +1,4 @@
-# Formatted Output
+# Formatted Console Output (TypeScript)
 
 This module shows how TypeScript can format aligned text and numeric summaries without stream manipulators.
 
@@ -34,6 +34,12 @@ python scripts/automation.py run-module --module-path languages/typescript/01-fo
 - Formatting too early and losing the numeric value for later math.
 - Hardcoding spacing instead of using helper methods.
 - Mixing alignment and business logic in the same long expression.
+
+## Cross-Language Notes
+
+- In TypeScript, read this module through the native focus ?Formatted Console Output?; the shared folder name remains stable for side-by-side navigation.
+- Use structural types, Node APIs, and explicit reference conventions to demonstrate how to produce stable human-readable tabular and numeric output.
+- Compare observable behavior with the other tracks when learning to choose precision, alignment, and labels appropriate to the data; equivalent evidence matters more than identical syntax.
 
 ## Exercise Focus
 

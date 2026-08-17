@@ -1,8 +1,11 @@
 package main
 
-import "fmt"
+func runSortingSearchingExercise() {
+	// TODO 1: Read or prepare integer `n`, then `n` integers.
+	// TODO 2: Implement selection sort.
+	// TODO 3: Produce numbers sorted ascending; verify duplicate values; already sorted input.
+}
 
 func main() {
-	// TODO: implement the README specification (COR-SRT-01, COR-SRT-02).
-	fmt.Println("TODO: implement this exercise")
+	runSortingSearchingExercise()
 }

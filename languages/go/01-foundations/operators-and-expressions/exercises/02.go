@@ -1,8 +1,12 @@
 package main
 
-import "fmt"
+func runOperatorsExpressionsExercise() {
+	// TODO 1: Read or prepare subtotal, discountPercent, and taxPercent.
+	// TODO 2: Apply discount and tax percentages to compute final total.
+	// TODO 3: Produce discount amount, tax amount, and final total; verify subtotal < 0; zero
+	//         discount or zero tax.
+}
 
 func main() {
-	// TODO: implement the README specification (FND-OPE-01, FND-OPE-02).
-	fmt.Println("TODO: implement this exercise")
+	runOperatorsExpressionsExercise()
 }

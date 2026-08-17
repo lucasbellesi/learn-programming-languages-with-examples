@@ -35,6 +35,12 @@ python scripts/automation.py run-module --module-path languages/csharp/03-advanc
 - Exposing class fields directly instead of validating through methods.
 - Accepting invalid constructor values and fixing bugs later.
 
+## Cross-Language Notes
+
+- In C#, read this module through the native focus ?Structs and Classes?; the shared folder name remains stable for side-by-side navigation.
+- Use static types, .NET collections, and managed-resource patterns to demonstrate how to model data and behavior with cohesive domain types.
+- Compare observable behavior with the other tracks when learning to protect invariants through constructors and methods; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - exercises/01.cs: model a rectangle using `struct` and methods.

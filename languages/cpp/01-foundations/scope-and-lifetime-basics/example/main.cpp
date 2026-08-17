@@ -1,11 +1,12 @@
 // Module focus: How names stay visible only inside the blocks that own them.
-// Why it matters: practicing scope and lifetime basics patterns makes exercises and checkpoints
-// easier to reason about.
+// Why it matters: the example makes it possible to predict name visibility across nested
+// scopes before the learner tackles the exercises.
 
 #include <iostream>
 using namespace std;
 
-// Helper setup for scope and lifetime basics; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to predict name visibility across nested
+// scopes.
 void printRangeSum(int from, int to) {
     int sum = 0;
     for (int value = from; value <= to; ++value) {
@@ -14,11 +15,13 @@ void printRangeSum(int from, int to) {
     cout << "Sum from " << from << " to " << to << " = " << sum << '\n';
 }
 
-// Walk through one fixed scenario so scope and lifetime basics behavior stays repeatable.
+// Fixed inputs make the consequence of using variables outside their scope visible and
+// repeatable.
 int main() {
-    // Prepare sample inputs that exercise the key scope and lifetime basics path.
+    // These values exercise the normal path before the exercises vary the documented boundaries.
     int value = 10;
-    // Report values so learners can verify the scope and lifetime basics outcome.
+    // The printed result shows whether the program can explain when values and resources cease to
+    // be usable.
     cout << "Outer value: " << value << '\n';
 
     {

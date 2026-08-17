@@ -47,14 +47,44 @@ class ContractHelperTests(unittest.TestCase):
         self.assertEqual(captured, ["Ready\n"])
 
     def test_oracle_exact_output_rejects_difference(self) -> None:
-        with self.assertRaisesRegex(AutomationError, "reference solution"):
-            assert_output_contract("Actual\n", {"_required_stdout_equals": "Expected\n"}, "x")
+        with self.assertRaisesRegex(AutomationError, "exact output contract"):
+            assert_output_contract("Actual\n", {"required_stdout_equals": "Expected\n"}, "x")
 
     def test_oracle_timing_normalizer_ignores_measurements(self) -> None:
         assert_output_contract(
             "Elapsed time: 92.4 ms\n",
             {
                 "_required_stdout_equals": "Elapsed time: 11.2 ms\n",
+                "oracle_normalizers": ["timings"],
+            },
+            "x",
+        )
+
+    def test_timing_normalizer_handles_compact_second_units(self) -> None:
+        assert_output_contract(
+            "Concatenation: 0.000202s\nJoin: 0.000141s\n",
+            {
+                "required_stdout_equals": "Concatenation: 0.000208s\nJoin: 0.000143s\n",
+                "oracle_normalizers": ["timings"],
+            },
+            "x",
+        )
+
+    def test_timing_normalizer_ignores_compact_unit_resolution(self) -> None:
+        assert_output_contract(
+            "Without capacity: 762.8µs\n",
+            {
+                "required_stdout_equals": "Without capacity: 0s\n",
+                "oracle_normalizers": ["timings"],
+            },
+            "x",
+        )
+
+    def test_timing_normalizer_handles_units_in_labels(self) -> None:
+        assert_output_contract(
+            "Concatenation average ns: 200\n",
+            {
+                "required_stdout_equals": "Concatenation average ns: 220\n",
                 "oracle_normalizers": ["timings"],
             },
             "x",

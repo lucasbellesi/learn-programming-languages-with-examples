@@ -1,5 +1,6 @@
 // Module focus: Walking data step by step to compute summaries and decisions.
-// Why it matters: practicing algorithms basics patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to implement linear scans and accumulations with
+// clear invariants before the learner tackles the exercises.
 
 function firstIndexOf(values: number[], target: number): number {
     // A linear scan is the simplest search when the data is not sorted.
@@ -39,7 +40,8 @@ function summarize(values: number[]): {
 
 const values = [14, 7, 22, 14, 9, 18];
 const summary = summarize(values);
-// Report output values so learners can verify the algorithms basics result.
+// The printed result shows whether the program can analyze behavior for empty, duplicate, and
+// missing values.
 console.log(`Values: ${values.join(", ")}`);
 console.log(`First index of 14: ${firstIndexOf(values, 14)}`);
 console.log(`Minimum: ${summary.minimum}`);

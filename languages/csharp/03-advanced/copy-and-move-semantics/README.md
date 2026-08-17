@@ -1,4 +1,4 @@
-# Copy and Move Semantics (C#)
+# Reference Copies and Ownership Conventions (C#)
 
 This module introduces copying behavior and transfer-style updates with reference types.
 

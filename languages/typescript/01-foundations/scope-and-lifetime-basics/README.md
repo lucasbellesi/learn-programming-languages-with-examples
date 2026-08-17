@@ -35,6 +35,12 @@ python scripts/automation.py run-module --module-path languages/typescript/01-fo
 - Assuming a closure copies the value instead of keeping access to it.
 - Using var-style thinking in a let and const codebase.
 
+## Cross-Language Notes
+
+- In TypeScript, read this module through the native focus ?Scope and Lifetime Basics?; the shared folder name remains stable for side-by-side navigation.
+- Use structural types, Node APIs, and explicit reference conventions to demonstrate how to predict name visibility across nested scopes.
+- Compare observable behavior with the other tracks when learning to explain when values and resources cease to be usable; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - exercises/01.ts: build a closure-based counter that prints the next value on each call.

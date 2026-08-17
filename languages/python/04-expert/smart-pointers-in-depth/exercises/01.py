@@ -1,6 +1,13 @@
+def run_smart_pointers_in_depth_exercise() -> None:
+    # TODO 1: Read or prepare none.
+    # TODO 2: Move an owned note between holders.
+    # TODO 3: Produce ownership transfer logs before and after moving; verify moving from an empty
+    #         holder; destination already occupied.
+    pass
+
+
 def main() -> None:
-    # TODO: implement the README specification (EXP-OWN-01, EXP-OWN-02).
-    print("TODO: implement this exercise")
+    run_smart_pointers_in_depth_exercise()
 
 
 if __name__ == "__main__":

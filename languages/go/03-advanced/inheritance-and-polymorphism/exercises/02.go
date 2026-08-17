@@ -1,8 +1,12 @@
 package main
 
-import "fmt"
+func runInheritancePolymorphismExercise() {
+	// TODO 1: Read or prepare predefined shape objects.
+	// TODO 2: Aggregate shapes in `[]Shape`.
+	// TODO 3: Produce total area through polymorphic iteration; verify empty shape list; mixed
+	//         shape types.
+}
 
 func main() {
-	// TODO: implement the README specification (ADV-POL-01, ADV-POL-02).
-	fmt.Println("TODO: implement this exercise")
+	runInheritancePolymorphismExercise()
 }

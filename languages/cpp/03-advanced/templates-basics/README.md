@@ -1,4 +1,4 @@
-# Templates Basics
+# Templates Basics (C++)
 
 This module introduces generic programming with templates.
 
@@ -46,9 +46,9 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/generic-print-and-sum.cpp -o temp
 
 ## Cross-Language Notes
 
-- Compared with C++, this concept broadens from templates into each language's own reusable generic abstraction model.
-- Relative to Go and C#, TypeScript generics stay expressive without runtime specialization, while Python treats the same idea more informally.
-- The useful comparison is how each language generalizes logic without abandoning type clarity.
+- In C++, read this module through the native focus ?Templates Basics?; the shared folder name remains stable for side-by-side navigation.
+- Use explicit value/reference semantics and standard-library types to demonstrate how to express reusable type-safe behavior with language generics.
+- Compare observable behavior with the other tracks when learning to apply constraints when an operation requires specific capabilities; equivalent evidence matters more than identical syntax.
 
 ## Exercise Focus
 

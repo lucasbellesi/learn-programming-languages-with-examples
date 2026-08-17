@@ -1,14 +1,15 @@
 # Module focus: Treating different concrete types through one common interface.
-# Why it matters: practicing inheritance and polymorphism patterns makes exercises and checkpoints
-# easier to reason about.
+# Why it matters: the example makes it possible to program against a shared behavioral
+# abstraction before the learner tackles the exercises.
 
 from abc import ABC, abstractmethod
 from math import pi
 
 
-# Helper setup for inheritance and polymorphism; this keeps the walkthrough readable.
+# Separate helpers keep the main path focused on how to program against a shared behavioral
+# abstraction.
 class Shape(ABC):
-    # Prepare sample inputs that exercise the key inheritance and polymorphism path.
+    # These values exercise the normal path before the exercises vary the documented boundaries.
     @abstractmethod
     def area(self) -> float:
         pass
@@ -44,12 +45,14 @@ class Circle(Shape):
         return "Circle"
 
 
-# Walk through one fixed scenario so inheritance and polymorphism behavior stays repeatable.
+# Fixed inputs make the consequence of forgetting to implement required abstract methods visible
+# and repeatable.
 def main() -> None:
     shapes: list[Shape] = [Rectangle(3.0, 4.0), Circle(2.0)]
 
     for shape in shapes:
-        # Report output values so learners can verify the inheritance and polymorphism outcome.
+        # The printed result shows whether the program can use dynamic dispatch without unsafe
+        # type assumptions.
         print(f"{shape.name} area: {shape.area():.2f}")
 
 

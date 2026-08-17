@@ -1,7 +1,13 @@
-#include <iostream>
+namespace {
+void runSmartPointersInDepthExercise() {
+    // TODO 1: Read or prepare none.
+    // TODO 2: Refactor raw-owner object to `unique_ptr`.
+    // TODO 3: Produce object construction/destruction messages; verify transfer ownership with
+    //         move; null pointer checks.
+}
+} // namespace
 
 int main() {
-    // TODO: implement the README specification (EXP-OWN-01, EXP-OWN-02).
-    std::cout << "TODO: implement this exercise\n";
+    runSmartPointersInDepthExercise();
     return 0;
 }

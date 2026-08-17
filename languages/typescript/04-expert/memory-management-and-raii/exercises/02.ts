@@ -1,4 +1,10 @@
-// TODO: implement the README specification (EXP-MEM-01, EXP-MEM-02).
-console.log("TODO: implement this exercise");
+function runMemoryManagementRaiiExercise(): void {
+    // TODO 1: Read or prepare none.
+    // TODO 2: Enforce closed-state guardrails in a reusable session object.
+    // TODO 3: Produce session logs before closing, after closing, and a guarded error message;
+    //         verify repeated close calls; operations attempted after close.
+}
+
+runMemoryManagementRaiiExercise();
 
 export {};

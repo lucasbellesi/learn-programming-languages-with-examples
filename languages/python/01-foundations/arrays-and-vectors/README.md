@@ -1,4 +1,4 @@
-# Arrays and Vectors (Python)
+# Lists and Sequences (Python)
 
 This module practices storing sequences, iterating them, and computing frequencies.
 
@@ -37,9 +37,9 @@ python scripts/automation.py run-module --module-path languages/python/01-founda
 
 ## Cross-Language Notes
 
-- Compared with the C++ version, each track solves the same sequence problems with a different default dynamic-array model.
-- The key comparison is where bounds safety, resizing behavior, and iteration ergonomics come from in each language.
-- This module is most useful when you notice how similar tasks feel different under `vector`, `List<T>`, slices, Python lists, and TypeScript arrays.
+- In Python, read this module through the native focus ?Lists and Sequences?; the shared folder name remains stable for side-by-side navigation.
+- Use dynamic values, collection protocols, and context managers to demonstrate how to store and traverse ordered collections safely.
+- Compare observable behavior with the other tracks when learning to handle empty collections and index boundaries explicitly; equivalent evidence matters more than identical syntax.
 
 ## Exercise Focus
 

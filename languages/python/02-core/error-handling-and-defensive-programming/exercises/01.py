@@ -1,6 +1,12 @@
+def run_error_handling_defensive_programming_exercise() -> None:
+    # TODO 1: Read or prepare one row with format `name,age,city`.
+    # TODO 2: Validate CSV-like row format.
+    # TODO 3: Produce parsed fields or invalid format message; verify missing commas; empty fields.
+    pass
+
+
 def main() -> None:
-    # TODO: implement the README specification (COR-ERR-01, COR-ERR-02).
-    print("TODO: implement this exercise")
+    run_error_handling_defensive_programming_exercise()
 
 
 if __name__ == "__main__":

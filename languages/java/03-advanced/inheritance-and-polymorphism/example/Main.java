@@ -1,5 +1,6 @@
 // Module focus: Treating different concrete types through one common interface.
-// Why it matters: practicing inheritance and polymorphism patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to program against a shared behavioral
+// abstraction before the learner tackles the exercises.
 
 import java.util.List;
 import java.util.Locale;
@@ -55,11 +56,13 @@ public class Main {
     public static void main(String[] args) {
         Locale.setDefault(Locale.US);
 
-        // Prepare sample inputs that exercise the key inheritance and polymorphism path.
+        // These values exercise the normal path before the exercises vary the documented
+        // boundaries.
         List<Shape> shapes = List.of(new Rectangle(3.0, 4.0), new Circle(2.0));
 
         for (Shape shape : shapes) {
-            // Report values so learners can verify the inheritance and polymorphism outcome.
+            // The printed result shows whether the program can use dynamic dispatch without
+            // unsafe type assumptions.
             System.out.printf("%s area: %.2f%n", shape.name(), shape.area());
         }
     }

@@ -1,5 +1,6 @@
 // Module focus: Rejecting invalid input before the main workflow continues.
-// Why it matters: practicing input validation patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to reject malformed and out-of-domain input
+// without corrupting state before the learner tackles the exercises.
 
 type ValidationResult =
     | { ok: true; value: number }
@@ -26,7 +27,8 @@ for (const attempt of attempts) {
     // Each attempt follows the same parse -> validate -> act shape.
     const result = parseIntegerInRange(attempt, 1, 100);
     if (!result.ok) {
-        // Report output values so learners can verify the input validation result.
+        // The printed result shows whether the program can design retry and termination behavior
+        // that cannot loop accidentally.
         console.log(
             `Rejected ${JSON.stringify(attempt)} because it is ${result.error}.`,
         );

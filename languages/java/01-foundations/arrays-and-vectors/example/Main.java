@@ -1,5 +1,6 @@
 // Module focus: Storing related values in ordered collections and iterating safely.
-// Why it matters: practicing arrays and vectors patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to store and traverse ordered collections safely
+// before the learner tackles the exercises.
 
 public class Main {
     public static void main(String[] args) {

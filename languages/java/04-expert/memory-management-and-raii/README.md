@@ -1,4 +1,4 @@
-# Memory Management and RAII (Java)
+# Managed Memory and try-with-resources (Java)
 
 This module adapts RAII to Java through `AutoCloseable` and `try-with-resources`.
 

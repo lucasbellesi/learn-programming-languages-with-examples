@@ -1,4 +1,4 @@
-# Formatted Output (Java)
+# Formatted Console Output (Java)
 
 This module practices formatting values so output is easier to read and compare.
 

@@ -35,6 +35,12 @@ python scripts/automation.py run-module --module-path languages/typescript/01-fo
 - Forgetting to update loop state.
 - Nesting conditionals so deeply that the rule becomes hard to read.
 
+## Cross-Language Notes
+
+- In TypeScript, read this module through the native focus ?Control Flow?; the shared folder name remains stable for side-by-side navigation.
+- Use structural types, Node APIs, and explicit reference conventions to demonstrate how to select branches that cover normal and boundary conditions.
+- Compare observable behavior with the other tracks when learning to write terminating loops and reason about their invariants; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - exercises/01.ts: map a numeric menu choice to a command label.

@@ -1,5 +1,6 @@
 // Module focus: Guarding risky inputs so failures stay explicit and controlled.
-// Why it matters: practicing error handling and defensive programming patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to separate expected failures from programming
+// defects before the learner tackles the exercises.
 
 public class Main {
     static int divide(int left, int right) {

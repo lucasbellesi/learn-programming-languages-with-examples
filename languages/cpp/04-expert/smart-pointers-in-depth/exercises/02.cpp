@@ -1,7 +1,13 @@
-#include <iostream>
+namespace {
+void runSmartPointersInDepthExercise() {
+    // TODO 1: Read or prepare none.
+    // TODO 2: Break parent/child cycle with `weak_ptr`.
+    // TODO 3: Produce cycle-safe parent/child relationship logs; verify expired weak references;
+    //         parent reset behavior.
+}
+} // namespace
 
 int main() {
-    // TODO: implement the README specification (EXP-OWN-01, EXP-OWN-02).
-    std::cout << "TODO: implement this exercise\n";
+    runSmartPointersInDepthExercise();
     return 0;
 }

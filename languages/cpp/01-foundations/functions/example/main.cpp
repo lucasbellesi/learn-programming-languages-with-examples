@@ -1,12 +1,14 @@
 // Module focus: Breaking behavior into reusable functions with clear inputs and outputs.
-// Why it matters: practicing functions patterns makes exercises and checkpoints easier to reason
+// Why it matters: the example makes it possible to decompose a problem into focused functions
+// with explicit contracts before the learner tackles the exercises.
 // about.
 
 #include <iostream>
 #include <vector>
 using namespace std;
 
-// Helper setup for functions; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to decompose a problem into focused
+// functions with explicit contracts.
 int sum(int a, int b) { return a + b; }
 
 void swapByReference(int& left, int& right) {
@@ -26,10 +28,12 @@ void printVector(const vector<int>& values) {
     cout << "]\n";
 }
 
-// Walk through one fixed scenario so functions behavior stays repeatable.
+// Fixed inputs make the consequence of unnecessary copies of large objects visible and
+// repeatable.
 int main() {
-    // Prepare sample inputs that exercise the key functions path.
-    // Report values so learners can verify the functions outcome.
+    // These values exercise the normal path before the exercises vary the documented boundaries.
+    // The printed result shows whether the program can use parameters and return values without
+    // hidden state changes.
     cout << "sum(4, 6) = " << sum(4, 6) << '\n';
 
     int first = 10;

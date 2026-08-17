@@ -48,9 +48,9 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/string-clean-and-tokenize.cpp -o 
 
 ## Cross-Language Notes
 
-- Compared with C++, the other tracks usually hide more of the low-level string-management cost while keeping the same parsing goals.
-- Relative to Python and TypeScript, C# and Go keep more explicit API choices around splitting, trimming, and rebuilding text.
-- The main comparison is text-processing convenience versus how visible allocation and mutation remain.
+- In C++, read this module through the native focus ?Strings?; the shared folder name remains stable for side-by-side navigation.
+- Use explicit value/reference semantics and standard-library types to demonstrate how to normalize, inspect, and transform textual data.
+- Compare observable behavior with the other tracks when learning to handle empty input and character boundaries safely; equivalent evidence matters more than identical syntax.
 
 ## Exercise Focus
 

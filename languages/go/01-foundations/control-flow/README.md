@@ -35,6 +35,12 @@ python scripts/automation.py run-module --module-path languages/go/01-foundation
 - Forgetting to stop on sentinel values in streaming input.
 - Dividing by zero when no values were collected.
 
+## Cross-Language Notes
+
+- In Go, read this module through the native focus ?Control Flow?; the shared folder name remains stable for side-by-side navigation.
+- Use explicit errors, slices/maps, interfaces, and defer to demonstrate how to select branches that cover normal and boundary conditions.
+- Compare observable behavior with the other tracks when learning to write terminating loops and reason about their invariants; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - exercises/01.go: run FizzBuzz rules from 1 to N using condition priority.

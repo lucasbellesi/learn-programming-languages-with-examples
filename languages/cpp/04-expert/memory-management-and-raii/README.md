@@ -1,4 +1,4 @@
-# Memory Management and RAII
+# Memory Management and RAII (C++)
 
 This module introduces ownership and deterministic cleanup in C++.
 

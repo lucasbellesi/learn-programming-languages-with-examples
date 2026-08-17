@@ -44,6 +44,12 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/class-with-validation.cpp -o stru
 - Forgetting to validate constructor inputs.
 - Missing `const` on read-only methods.
 
+## Cross-Language Notes
+
+- In C++, read this module through the native focus ?Structs and Classes?; the shared folder name remains stable for side-by-side navigation.
+- Use explicit value/reference semantics and standard-library types to demonstrate how to model data and behavior with cohesive domain types.
+- Compare observable behavior with the other tracks when learning to protect invariants through constructors and methods; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - `exercises/01.cpp`: model rectangle using `struct` and methods.

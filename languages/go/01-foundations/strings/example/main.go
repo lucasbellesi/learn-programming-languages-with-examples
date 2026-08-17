@@ -1,5 +1,6 @@
 // Module focus: Cleaning and combining text while preserving readable string logic.
-// Why it matters: practicing strings patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to normalize, inspect, and transform textual data
+// before the learner tackles the exercises.
 
 package main
 
@@ -11,11 +12,13 @@ import (
 	"unicode"
 )
 
-// Walk through one fixed scenario so strings behavior stays repeatable.
+// Fixed inputs make the consequence of counting words without removing extra spaces visible and
+// repeatable.
 func main() {
-	// Prepare sample inputs that exercise the key strings path.
+	// These values exercise the normal path before the exercises vary the documented boundaries.
 	reader := bufio.NewReader(os.Stdin)
-	// Report values so learners can verify the strings outcome.
+	// The printed result shows whether the program can handle empty input and character boundaries
+	// safely.
 	fmt.Print("Enter a sentence: ")
 	line, _ := reader.ReadString('\n')
 

@@ -1,7 +1,9 @@
 // Module focus: Tying resource cleanup to object lifetime so cleanup stays predictable.
-// Why it matters: practicing memory management and raii patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to explain the language's resource and memory
+// lifetime model before the learner tackles the exercises.
 
-// Helper setup for memory management and raii; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to explain the language's resource and
+// memory lifetime model.
 class FakeFile {
     private closed = false;
 
@@ -43,9 +45,10 @@ function usingResource<T extends { close(): void }, TResult>(
     }
 }
 
-// Walk through one fixed scenario so memory management and raii behavior stays repeatable.
+// Fixed inputs make the consequence of assuming garbage collection will close files or sockets
+// for you visible and repeatable.
 function main(): void {
-    // Prepare sample inputs that exercise the key memory management and raii path.
+    // These values exercise the normal path before the exercises vary the documented boundaries.
     const report = new FakeFile("report.txt");
 
     usingResource(report, (handle) => {
@@ -53,7 +56,8 @@ function main(): void {
         handle.writeLine("totals");
     });
 
-    // Report values so learners can verify the memory management and raii outcome.
+    // The printed result shows whether the program can guarantee deterministic cleanup for
+    // non-memory resources.
     console.log(`Closed after scope: ${report.isClosed()}`);
 }
 

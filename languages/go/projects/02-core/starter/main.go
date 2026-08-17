@@ -1,8 +1,11 @@
 package main
 
-import "fmt"
+func runProject() {
+	// TODO 1: Input file path from user.
+	// TODO 2: Parse each line as `name score`.
+	// TODO 3: Skip invalid rows with a warning count.
+}
 
 func main() {
-	// TODO: implement the README specification (COR-VAL-01, COR-ALG-01, COR-FIO-01, COR-ERR-02).
-	fmt.Println("TODO: implement this checkpoint")
+	runProject()
 }

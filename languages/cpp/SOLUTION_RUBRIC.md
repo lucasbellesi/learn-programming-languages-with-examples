@@ -1,5 +1,9 @@
 # C++ Exercise Solution Rubric
 
+The canonical cross-language rubric is
+[LEARNER_SOLUTION_RUBRIC.md](../../LEARNER_SOLUTION_RUBRIC.md). This file remains for
+compatibility with existing C++ links.
+
 Use this rubric to evaluate your exercise solutions before marking them complete.
 
 ## Scoring

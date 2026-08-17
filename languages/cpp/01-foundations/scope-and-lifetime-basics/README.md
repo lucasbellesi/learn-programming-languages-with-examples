@@ -40,6 +40,12 @@ python scripts/automation.py run-module --module-path languages/cpp/01-foundatio
 - Confusing shadowed variables with the original variable.
 - Declaring variables too early and keeping them alive unnecessarily.
 
+## Cross-Language Notes
+
+- In C++, read this module through the native focus ?Scope and Lifetime Basics?; the shared folder name remains stable for side-by-side navigation.
+- Use explicit value/reference semantics and standard-library types to demonstrate how to predict name visibility across nested scopes.
+- Compare observable behavior with the other tracks when learning to explain when values and resources cease to be usable; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - `exercises/01.cpp`: identify and fix a shadowing bug in grading logic.

@@ -1,6 +1,13 @@
+def run_formatted_output_iomanip_exercise() -> None:
+    # TODO 1: Read or prepare numeric list plus precision value from 0 to 6.
+    # TODO 2: Compute summary metrics and print them using user-selected precision.
+    # TODO 3: Produce count, sum, average, minimum, and maximum with selected precision; verify
+    #         empty numeric input; precision outside 0..6.
+    pass
+
+
 def main() -> None:
-    # TODO: implement the README specification (FND-FMT-01, FND-FMT-02).
-    print("TODO: implement this exercise")
+    run_formatted_output_iomanip_exercise()
 
 
 if __name__ == "__main__":

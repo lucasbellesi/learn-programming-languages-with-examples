@@ -1,7 +1,12 @@
-#include <iostream>
+namespace {
+void runModularizationBuildStructureExercise() {
+    // TODO 1: Read or prepare sample values.
+    // TODO 2: Refactor procedural code into module-like sections.
+    // TODO 3: Produce calculations via separated helper functions; verify division by zero checks.
+}
+} // namespace
 
 int main() {
-    // TODO: implement the README specification (EXP-MOD-01, EXP-MOD-02).
-    std::cout << "TODO: implement this exercise\n";
+    runModularizationBuildStructureExercise();
     return 0;
 }

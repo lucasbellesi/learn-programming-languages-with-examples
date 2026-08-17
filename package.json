@@ -2,9 +2,9 @@
   "name": "learn-programming-languages-with-examples",
   "private": true,
   "devDependencies": {
-    "@types/node": "^22.14.1",
-    "prettier": "^3.5.3",
-    "typescript": "^5.8.3"
+    "@types/node": "22.19.15",
+    "prettier": "3.8.1",
+    "typescript": "5.9.3"
   },
   "scripts": {
     "build:typescript": "tsc --project languages/typescript/tsconfig.json",

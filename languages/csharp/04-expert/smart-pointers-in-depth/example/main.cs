@@ -1,9 +1,11 @@
 // Module focus: Tracking ownership and lifetime when multiple references can observe the same value.
-// Why it matters: practicing smart pointers in depth patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to model exclusive, shared, and non-owning
+// relationships idiomatically before the learner tackles the exercises.
 
 using System;
 
-// Helper setup for smart pointers in depth; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to model exclusive, shared, and non-owning
+// relationships idiomatically.
 sealed record Report(string Title);
 
 sealed class ReportOwner
@@ -22,7 +24,8 @@ sealed class ReportOwner
             return;
         }
 
-        // Report output values so learners can verify the smart pointers in depth result.
+        // The printed result shows whether the program can prevent leaks, cycles, and stale
+        // observations in ownership graphs.
         Console.WriteLine($"{Name} transfers {Current.Title} to {destination.Name}.");
         destination.Current = Current;
         Current = null;

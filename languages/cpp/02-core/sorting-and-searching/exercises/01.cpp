@@ -1,7 +1,12 @@
-#include <iostream>
+namespace {
+void runSortingSearchingExercise() {
+    // TODO 1: Read or prepare integer `n`, then `n` integers.
+    // TODO 2: Implement selection sort.
+    // TODO 3: Produce numbers sorted ascending; verify duplicate values; already sorted input.
+}
+} // namespace
 
 int main() {
-    // TODO: implement the README specification (COR-SRT-01, COR-SRT-02).
-    std::cout << "TODO: implement this exercise\n";
+    runSortingSearchingExercise();
     return 0;
 }

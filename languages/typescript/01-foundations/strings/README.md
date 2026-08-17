@@ -37,9 +37,9 @@ python scripts/automation.py run-module --module-path languages/typescript/01-fo
 
 ## Cross-Language Notes
 
-- Compared with C++, the other tracks usually hide more of the low-level string-management cost while keeping the same parsing goals.
-- Relative to Python and TypeScript, C# and Go keep more explicit API choices around splitting, trimming, and rebuilding text.
-- The main comparison is text-processing convenience versus how visible allocation and mutation remain.
+- In TypeScript, read this module through the native focus ?Strings?; the shared folder name remains stable for side-by-side navigation.
+- Use structural types, Node APIs, and explicit reference conventions to demonstrate how to normalize, inspect, and transform textual data.
+- Compare observable behavior with the other tracks when learning to handle empty input and character boundaries safely; equivalent evidence matters more than identical syntax.
 
 ## Exercise Focus
 

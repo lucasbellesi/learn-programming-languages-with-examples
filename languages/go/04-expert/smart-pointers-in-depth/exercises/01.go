@@ -1,8 +1,12 @@
 package main
 
-import "fmt"
+func runSmartPointersInDepthExercise() {
+	// TODO 1: Read or prepare none.
+	// TODO 2: Move an owned note between holders.
+	// TODO 3: Produce ownership transfer logs before and after moving; verify moving from an empty
+	//         holder; destination already occupied.
+}
 
 func main() {
-	// TODO: implement the README specification (EXP-OWN-01, EXP-OWN-02).
-	fmt.Println("TODO: implement this exercise")
+	runSmartPointersInDepthExercise()
 }

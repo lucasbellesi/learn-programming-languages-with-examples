@@ -35,6 +35,12 @@ python scripts/automation.py run-module --module-path languages/go/02-core/error
 - Performing division without zero checks.
 - Ignoring parse errors from numeric conversion.
 
+## Cross-Language Notes
+
+- In Go, read this module through the native focus ?Error Handling and Defensive Programming?; the shared folder name remains stable for side-by-side navigation.
+- Use explicit errors, slices/maps, interfaces, and defer to demonstrate how to separate expected failures from programming defects.
+- Compare observable behavior with the other tracks when learning to preserve valid state and useful diagnostics when operations fail; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - exercises/01.go: validate CSV-like row format.

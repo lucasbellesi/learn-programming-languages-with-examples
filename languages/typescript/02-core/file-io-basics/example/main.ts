@@ -1,5 +1,6 @@
 // Module focus: Reading plain-text files, parsing rows, and writing clear results.
-// Why it matters: practicing file io basics patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to read and write explicit paths while reporting
+// I/O failures before the learner tackles the exercises.
 
 import * as fs from "node:fs";
 import * as path from "node:path";

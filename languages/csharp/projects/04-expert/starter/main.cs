@@ -1,10 +1,14 @@
-using System;
-
 internal static class Program
 {
+    private static void RunProject()
+    {
+        // TODO 1: Represent processing steps as reusable objects.
+        // TODO 2: Process a list of jobs through all steps.
+        // TODO 3: Measure pipeline duration with `Stopwatch`.
+    }
+
     private static void Main()
     {
-        // TODO: implement the README specification (EXP-MEM-02, EXP-CON-01, EXP-PER-01, EXP-MOD-01).
-        Console.WriteLine("TODO: implement this checkpoint");
+        RunProject();
     }
 }

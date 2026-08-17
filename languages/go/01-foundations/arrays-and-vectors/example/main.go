@@ -1,15 +1,18 @@
 // Module focus: Storing related values in ordered collections and iterating safely.
-// Why it matters: practicing arrays and vectors patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to store and traverse ordered collections safely
+// before the learner tackles the exercises.
 
 package main
 
 import "fmt"
 
-// Walk through one fixed scenario so arrays and vectors behavior stays repeatable.
+// Fixed inputs make the consequence of trusting collection size input when count is zero or
+// negative visible and repeatable.
 func main() {
-	// Prepare sample inputs that exercise the key arrays and vectors path.
+	// These values exercise the normal path before the exercises vary the documented boundaries.
 	fixedScores := [3]int{72, 88, 95}
-	// Report values so learners can verify the arrays and vectors outcome.
+	// The printed result shows whether the program can handle empty collections and index boundaries
+	// explicitly.
 	fmt.Printf("Fixed array values: %d, %d, %d\n", fixedScores[0], fixedScores[1], fixedScores[2])
 
 	var count int

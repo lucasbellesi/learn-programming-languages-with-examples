@@ -1,9 +1,11 @@
 // Module focus: Starting multiple units of work and combining their results safely.
-// Why it matters: practicing concurrency basics patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to coordinate concurrent work without data races
+// or lost results before the learner tackles the exercises.
 
 import { setTimeout as delay } from "node:timers/promises";
 
-// Helper setup for concurrency basics; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to coordinate concurrent work without data
+// races or lost results.
 type JobResult = {
     name: string;
     score: number;
@@ -18,10 +20,11 @@ async function loadJob(
     return { name, score };
 }
 
-// Walk through one fixed scenario so concurrency basics behavior stays repeatable.
+// Fixed inputs make the consequence of confusing concurrency with parallel CPU work visible and
+// repeatable.
 async function main(): Promise<void> {
     // Promise.all keeps the output order tied to the request order.
-    // Prepare sample inputs that exercise the key concurrency basics path.
+    // These values exercise the normal path before the exercises vary the documented boundaries.
     const results = await Promise.all([
         loadJob("load", 25, 3),
         loadJob("validate", 10, 5),
@@ -30,7 +33,8 @@ async function main(): Promise<void> {
 
     const total = results.reduce((sum, result) => sum + result.score, 0);
 
-    // Report values so learners can verify the concurrency basics outcome.
+    // The printed result shows whether the program can define completion, cancellation, and error
+    // propagation behavior.
     console.log(`Completed ${results.length} concurrent jobs.`);
     for (const result of results) {
         console.log(`- ${result.name}: ${result.score}`);

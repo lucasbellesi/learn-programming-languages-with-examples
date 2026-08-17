@@ -1,5 +1,6 @@
 // Module focus: Guarding risky inputs so failures stay explicit and controlled.
-// Why it matters: practicing error handling and defensive programming patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to separate expected failures from programming
+// defects before the learner tackles the exercises.
 
 type ScoreRecord = {
     name: string;
@@ -40,7 +41,8 @@ const accepted: ScoreRecord[] = [];
 for (const row of rows) {
     const record = parseRecord(row);
     if (record === null) {
-        // Report output values so learners can verify the error handling and defensive programming result.
+        // The printed result shows whether the program can preserve valid state and useful
+        // diagnostics when operations fail.
         console.log(`Skipped invalid row: ${row}`);
         continue;
     }

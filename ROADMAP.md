@@ -16,15 +16,18 @@ This is the current source of truth for repository improvement work. Prior revie
 - 288 exercises represented in `scripts/learning_exercises.json` with starter, solution, outcomes, and named cases.
 - 48 checkpoints represented in `scripts/learning_checkpoints.json` with starter, solution, outcomes, and runtime cases.
 - Root-level `doctor`, `run-module`, `check-exercise`, `check-checkpoint`, and `verify-language` commands.
-- Standard eight-week plan and accelerated four-week variant.
+- Guided and comparative routes, staged hints, a shared rubric, and a learning log.
+- Zero solution-oracle cases: deterministic behavior is recorded as explicit assertions.
+- Three named contract facets for every checkpoint, with normal, boundary/error, and state/resource coverage.
 
 ## Current Quality Priorities
 
-1. Promote deterministic dynamic-oracle cases to stable positive, negative, regex, or generated-file assertions when that makes feedback more specific.
-2. Keep every documented edge case tied to a named automated case when specifications change.
-3. Split automation internals only when focused tests preserve the public CLI contract.
-4. Keep PR feedback below ten minutes by compiling each target once per job.
-5. Review educational size waivers when their explicit trigger conditions are reached.
+1. Replace shared-execution checkpoint facets with distinct parameterized executions, starting with Advanced and Expert assessments.
+2. Add mutation checks that prove checkpoint contracts reject hardcoded normal-path output.
+3. Keep every documented edge case tied to a named automated case when specifications change.
+4. Continue extracting focused automation modules while preserving the public CLI contract.
+5. Keep local verification below seven minutes and CI below ten by compiling each target once per job.
+6. Review educational size waivers when their explicit trigger conditions are reached.
 
 ## Deferred Work
 

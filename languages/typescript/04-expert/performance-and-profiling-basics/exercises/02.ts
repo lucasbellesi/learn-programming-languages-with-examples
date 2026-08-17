@@ -1,4 +1,10 @@
-// TODO: implement the README specification (EXP-PER-01, EXP-PER-02).
-console.log("TODO: implement this exercise");
+function runPerformanceProfilingBasicsExercise(): void {
+    // TODO 1: Read or prepare none.
+    // TODO 2: Compare string concatenation with buffered joins.
+    // TODO 3: Produce average milliseconds for both string-building approaches; verify workloads
+    //         too small to show a meaningful difference.
+}
+
+runPerformanceProfilingBasicsExercise();
 
 export {};

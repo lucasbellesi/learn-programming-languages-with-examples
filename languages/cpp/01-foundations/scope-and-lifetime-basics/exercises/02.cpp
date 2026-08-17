@@ -1,7 +1,12 @@
-#include <iostream>
+namespace {
+void runScopeLifetimeBasicsExercise() {
+    // TODO 1: Read or prepare an integer `N`.
+    // TODO 2: Reduce variable lifetime and print clear scope boundaries.
+    // TODO 3: Produce sum of `1..N` with scoped helper blocks; verify `N <= 0`; `N = 1`.
+}
+} // namespace
 
 int main() {
-    // TODO: implement the README specification (FND-SCP-01, FND-SCP-02).
-    std::cout << "TODO: implement this exercise\n";
+    runScopeLifetimeBasicsExercise();
     return 0;
 }

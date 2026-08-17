@@ -1,4 +1,4 @@
-# Smart Pointers in Depth (Go)
+# Ownership Conventions and Reference Lifetimes (Go)
 
 This module adapts smart pointer ideas to Go pointers, nil-safe ownership slots, and mutation boundaries.
 

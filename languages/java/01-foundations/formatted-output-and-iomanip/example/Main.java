@@ -1,5 +1,6 @@
 // Module focus: Formatting values so output is easier to read and compare.
-// Why it matters: practicing formatted output and iomanip patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to produce stable human-readable tabular and
+// numeric output before the learner tackles the exercises.
 
 import java.util.Locale;
 

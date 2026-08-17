@@ -1,15 +1,19 @@
 // Module focus: Formatting values so output is easier to read and compare.
-// Why it matters: practicing formatted output and iomanip patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to produce stable human-readable tabular and
+// numeric output before the learner tackles the exercises.
 
 using System;
 
-// Helper setup for formatted output and iomanip; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to produce stable human-readable tabular and
+// numeric output.
 class Program
 {
-    // Walk through one fixed scenario so formatted output and iomanip behavior stays repeatable.
+    // Fixed inputs make the consequence of producing unreadable tables with inconsistent widths
+    // visible and repeatable.
     static void Main()
     {
-        // Prepare sample inputs that exercise the key formatted output and iomanip path.
+        // These values exercise the normal path before the exercises vary the documented
+        // boundaries.
         (string Name, int Quantity, double UnitPrice)[] items =
         {
             ("Notebook", 2, 3.5),
@@ -17,7 +21,8 @@ class Program
             ("Backpack", 1, 29.99),
         };
 
-        // Report values so learners can verify the formatted output and iomanip outcome.
+        // The printed result shows whether the program can choose precision, alignment, and
+        // labels appropriate to the data.
         Console.WriteLine($"{"Item", -12}{"Qty", 6}{"Unit", 10}{"Total", 10}");
         Console.WriteLine(new string('-', 38));
 

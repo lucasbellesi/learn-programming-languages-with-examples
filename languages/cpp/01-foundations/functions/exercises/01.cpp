@@ -1,7 +1,13 @@
-#include <iostream>
+namespace {
+void runFunctionsExercise() {
+    // TODO 1: Read or prepare three integers.
+    // TODO 2: Return max of three integers.
+    // TODO 3: Produce largest integer; verify repeated max values should still return correct max;
+    //         all negative values should still work.
+}
+} // namespace
 
 int main() {
-    // TODO: implement the README specification (FND-FUN-01, FND-FUN-02).
-    std::cout << "TODO: implement this exercise\n";
+    runFunctionsExercise();
     return 0;
 }

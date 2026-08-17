@@ -1,4 +1,4 @@
-# Memory Management and RAII (Go)
+# Managed Memory, Close, and defer (Go)
 
 This module introduces deterministic cleanup in Go through `defer` and explicit `Close` methods.
 

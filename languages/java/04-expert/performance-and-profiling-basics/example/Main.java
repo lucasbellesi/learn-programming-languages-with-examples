@@ -1,5 +1,6 @@
 // Module focus: Measuring hot paths before changing code for speed.
-// Why it matters: practicing performance and profiling basics patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to measure before optimizing and interpret timing
+// data cautiously before the learner tackles the exercises.
 
 import java.util.HashSet;
 import java.util.Set;

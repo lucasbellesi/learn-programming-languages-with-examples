@@ -35,6 +35,12 @@ python scripts/automation.py run-module --module-path languages/typescript/02-co
 - Returning vague errors that hide why validation failed.
 - Repeating the same checks inline instead of extracting helpers.
 
+## Cross-Language Notes
+
+- In TypeScript, read this module through the native focus ?Input Validation?; the shared folder name remains stable for side-by-side navigation.
+- Use structural types, Node APIs, and explicit reference conventions to demonstrate how to reject malformed and out-of-domain input without corrupting state.
+- Compare observable behavior with the other tracks when learning to design retry and termination behavior that cannot loop accidentally; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - exercises/01.ts: validate one integer in range `1..100` and print its square.

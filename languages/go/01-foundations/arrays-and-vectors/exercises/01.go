@@ -1,8 +1,12 @@
 package main
 
-import "fmt"
+func runArraysVectorsExercise() {
+	// TODO 1: Read or prepare positive integer count and then count integers.
+	// TODO 2: Read N integers, store them, and print them in reverse order.
+	// TODO 3: Produce values printed in reverse insertion order; verify count <= 0; repeated values
+	//         in the collection.
+}
 
 func main() {
-	// TODO: implement the README specification (FND-SEQ-01, FND-SEQ-02).
-	fmt.Println("TODO: implement this exercise")
+	runArraysVectorsExercise()
 }

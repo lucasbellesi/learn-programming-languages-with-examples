@@ -1,4 +1,4 @@
-# Formatted Output and I/O Manipulators (Go)
+# Formatted Console Output (Go)
 
 This module practices table-style output, alignment, and precision control.
 
@@ -34,6 +34,12 @@ python scripts/automation.py run-module --module-path languages/go/01-foundation
 - Producing unreadable tables with inconsistent widths.
 - Not validating precision ranges before formatting.
 - Forgetting to maintain numeric precision in totals and averages.
+
+## Cross-Language Notes
+
+- In Go, read this module through the native focus ?Formatted Console Output?; the shared folder name remains stable for side-by-side navigation.
+- Use explicit errors, slices/maps, interfaces, and defer to demonstrate how to produce stable human-readable tabular and numeric output.
+- Compare observable behavior with the other tracks when learning to choose precision, alignment, and labels appropriate to the data; equivalent evidence matters more than identical syntax.
 
 ## Exercise Focus
 

@@ -1,5 +1,6 @@
 // Module focus: Building objects that start valid and stay valid through guarded updates.
-// Why it matters: practicing constructors and invariants patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to construct objects only in valid states before
+// the learner tackles the exercises.
 
 class BankAccount {
     #balance: number;
@@ -35,7 +36,8 @@ class BankAccount {
     }
 
     printStatus(): void {
-        // Report output values so learners can verify the constructors and invariants result.
+        // The printed result shows whether the program can keep mutations from violating
+        // established invariants.
         console.log(`${this.owner}: ${this.#balance.toFixed(2)}`);
     }
 }

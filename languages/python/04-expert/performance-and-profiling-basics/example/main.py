@@ -1,16 +1,17 @@
 # Module focus: Measuring hot paths before changing code for speed.
-# Why it matters: practicing performance and profiling basics patterns makes exercises and
-# checkpoints easier to reason about.
+# Why it matters: the example makes it possible to measure before optimizing and interpret
+# timing data cautiously before the learner tackles the exercises.
 
 from __future__ import annotations
 
 import time
 
-# Prepare sample inputs that exercise the key performance and profiling basics path.
+# These values exercise the normal path before the exercises vary the documented boundaries.
 retained_object: object | None = None
 
 
-# Helper setup for performance and profiling basics; this keeps the walkthrough readable.
+# Separate helpers keep the main path focused on how to measure before optimizing and interpret
+# timing data cautiously.
 def measure_average(action, repetitions: int) -> float:
     # Warm up once so setup effects are less likely to dominate the repeated samples.
     action()
@@ -52,7 +53,8 @@ def fill_with_presize(item_count: int) -> list[int]:
     return values
 
 
-# Walk through one fixed scenario so performance and profiling basics behavior stays repeatable.
+# Fixed inputs make the consequence of timing workloads that are too small to compare fairly
+# visible and repeatable.
 def main() -> None:
     line_count = 4_000
     repetitions = 12
@@ -72,7 +74,8 @@ def main() -> None:
         repetitions,
     )
 
-    # Report output values so learners can verify the performance and profiling basics outcome.
+    # The printed result shows whether the program can relate algorithmic and allocation choices
+    # to observed cost.
     print(f"Average string concatenation ({repetitions} runs): {concat_duration:.6f}s")
     print(f"Average str.join ({repetitions} runs): {join_duration:.6f}s")
 

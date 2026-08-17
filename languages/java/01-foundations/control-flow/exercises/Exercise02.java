@@ -1,6 +1,11 @@
 public class Exercise02 {
+    private static void runControlFlowExercise() {
+        // TODO 1: Read or prepare count N followed by N integers.
+        // TODO 2: Count positive, negative, and zero values.
+        // TODO 3: Produce positive, negative, and zero counts; verify N = 0; all values are zero.
+    }
+
     public static void main(String[] args) {
-        // TODO: implement the README specification (FND-CFL-01, FND-CFL-02).
-        System.out.println("TODO: implement this exercise");
+        runControlFlowExercise();
     }
 }

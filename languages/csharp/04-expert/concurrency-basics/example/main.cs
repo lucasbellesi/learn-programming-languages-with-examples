@@ -1,5 +1,6 @@
 // Module focus: Starting multiple units of work and combining their results safely.
-// Why it matters: practicing concurrency basics patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to coordinate concurrent work without data races
+// or lost results before the learner tackles the exercises.
 
 using System;
 using System.Threading.Tasks;

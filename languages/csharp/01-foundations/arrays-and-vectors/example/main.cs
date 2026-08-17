@@ -1,18 +1,23 @@
 // Module focus: Storing related values in ordered collections and iterating safely.
-// Why it matters: practicing arrays and vectors patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to store and traverse ordered collections safely
+// before the learner tackles the exercises.
 
 using System;
 using System.Collections.Generic;
 
-// Helper setup for arrays and vectors; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to store and traverse ordered collections
+// safely.
 class Program
 {
-    // Walk through one fixed scenario so arrays and vectors behavior stays repeatable.
+    // Fixed inputs make the consequence of trusting collection size input when count is zero or
+    // negative visible and repeatable.
     static void Main()
     {
-        // Prepare sample inputs that exercise the key arrays and vectors path.
+        // These values exercise the normal path before the exercises vary the documented
+        // boundaries.
         int[] fixedScores = { 72, 88, 95 };
-        // Report values so learners can verify the arrays and vectors outcome.
+        // The printed result shows whether the program can handle empty collections and index
+        // boundaries explicitly.
         Console.WriteLine($"Fixed array values: {string.Join(", ", fixedScores)}");
 
         Console.Write("How many temperatures do you want to enter? ");

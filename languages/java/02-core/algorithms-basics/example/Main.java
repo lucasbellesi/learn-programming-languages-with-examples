@@ -1,5 +1,6 @@
 // Module focus: Walking data step by step to compute summaries and decisions.
-// Why it matters: practicing algorithms basics patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to implement linear scans and accumulations with
+// clear invariants before the learner tackles the exercises.
 
 public class Main {
     static int firstIndexOf(int[] values, int target) {

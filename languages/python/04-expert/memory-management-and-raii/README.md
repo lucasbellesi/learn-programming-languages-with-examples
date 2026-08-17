@@ -1,4 +1,4 @@
-# Memory Management and RAII (Python)
+# Managed Memory and Context Managers (Python)
 
 This module introduces deterministic cleanup in Python through context managers.
 

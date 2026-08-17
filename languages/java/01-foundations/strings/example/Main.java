@@ -1,5 +1,6 @@
 // Module focus: Cleaning and combining text while preserving readable string logic.
-// Why it matters: practicing strings patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to normalize, inspect, and transform textual data
+// before the learner tackles the exercises.
 
 public class Main {
     public static void main(String[] args) {

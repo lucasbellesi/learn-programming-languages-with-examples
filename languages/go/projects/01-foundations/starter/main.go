@@ -1,8 +1,11 @@
 package main
 
-import "fmt"
+func runProject() {
+	// TODO 1: Ask for number of students.
+	// TODO 2: Read each student name with full-line input and score with numeric validation.
+	// TODO 3: Keep score input in the range `0` to `100`.
+}
 
 func main() {
-	// TODO: implement the README specification (FND-TIO-02, FND-CFL-02, FND-FUN-01, FND-SEQ-02).
-	fmt.Println("TODO: implement this checkpoint")
+	runProject()
 }

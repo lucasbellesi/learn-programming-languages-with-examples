@@ -1,10 +1,14 @@
-using System;
-
 internal static class Program
 {
+    private static void RunTemplatesBasicsExercise()
+    {
+        // TODO 1: Read or prepare two values of the same type.
+        // TODO 2: Generic swap function.
+        // TODO 3: Produce values before and after swap; verify identical values; negative numbers.
+    }
+
     private static void Main()
     {
-        // TODO: implement the README specification (ADV-GEN-01, ADV-GEN-02).
-        Console.WriteLine("TODO: implement this exercise");
+        RunTemplatesBasicsExercise();
     }
 }

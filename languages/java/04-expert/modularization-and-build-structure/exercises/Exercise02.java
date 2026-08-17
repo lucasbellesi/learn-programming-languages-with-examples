@@ -1,6 +1,12 @@
 public class Exercise02 {
+    private static void runModularizationBuildStructureExercise() {
+        // TODO 1: Read or prepare command name and two integers.
+        // TODO 2: Dispatch reusable arithmetic operations through a registry.
+        // TODO 3: Produce result from the registered operation; verify unsupported command; division by
+        //         zero.
+    }
+
     public static void main(String[] args) {
-        // TODO: implement the README specification (EXP-MOD-01, EXP-MOD-02).
-        System.out.println("TODO: implement this exercise");
+        runModularizationBuildStructureExercise();
     }
 }

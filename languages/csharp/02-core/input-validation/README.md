@@ -35,6 +35,12 @@ python scripts/automation.py run-module --module-path languages/csharp/02-core/i
 - Accepting out-of-range values after successful parsing.
 - Duplicating similar validation loops instead of extracting helpers.
 
+## Cross-Language Notes
+
+- In C#, read this module through the native focus ?Input Validation?; the shared folder name remains stable for side-by-side navigation.
+- Use static types, .NET collections, and managed-resource patterns to demonstrate how to reject malformed and out-of-domain input without corrupting state.
+- Compare observable behavior with the other tracks when learning to design retry and termination behavior that cannot loop accidentally; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - exercises/01.cs: read an integer in range 1 to 100 and print its square.

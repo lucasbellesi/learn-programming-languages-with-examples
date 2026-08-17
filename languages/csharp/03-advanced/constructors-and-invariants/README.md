@@ -35,6 +35,12 @@ python scripts/automation.py run-module --module-path languages/csharp/03-advanc
 - Updating private state directly from callers.
 - Returning success when an invalid update was ignored.
 
+## Cross-Language Notes
+
+- In C#, read this module through the native focus ?Constructors and Invariants?; the shared folder name remains stable for side-by-side navigation.
+- Use static types, .NET collections, and managed-resource patterns to demonstrate how to construct objects only in valid states.
+- Compare observable behavior with the other tracks when learning to keep mutations from violating established invariants; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - exercises/01.cs: bank account with non-negative balance invariant.

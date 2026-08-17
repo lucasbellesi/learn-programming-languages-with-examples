@@ -1,6 +1,13 @@
+def run_maps_frequency_counting_exercise() -> None:
+    # TODO 1: Read or prepare one lowercase string.
+    # TODO 2: First non-repeating character.
+    # TODO 3: Produce first non-repeating character or message if none; verify all repeated
+    #         characters; one-character string.
+    pass
+
+
 def main() -> None:
-    # TODO: implement the README specification (COR-MAP-01, COR-MAP-02).
-    print("TODO: implement this exercise")
+    run_maps_frequency_counting_exercise()
 
 
 if __name__ == "__main__":

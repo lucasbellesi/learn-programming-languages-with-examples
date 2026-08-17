@@ -1,4 +1,4 @@
-# Smart Pointers in Depth (C#)
+# Ownership, Weak References, and Disposal (C#)
 
 This module adapts smart pointer ideas to managed references, ownership transfer, and weak observation in C#.
 

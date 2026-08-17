@@ -1,5 +1,6 @@
 // Module focus: How copying, sharing, or transferring state changes later behavior.
-// Why it matters: practicing copy and move semantics patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to predict aliasing and independence after
+// copying or sharing values before the learner tackles the exercises.
 
 type InventoryRecord = {
     name: string;
@@ -35,7 +36,8 @@ alias.counts.inStock -= 1;
 shallowCopy.counts.reserved += 3;
 deepCopy.counts.inStock += 5;
 
-// Report output values so learners can verify the copy and move semantics result.
+// The printed result shows whether the program can choose an idiomatic ownership-transfer
+// strategy for the language.
 console.log(`Original: ${original.counts.inStock}/${original.counts.reserved}`);
 console.log(
     `Shallow copy: ${shallowCopy.counts.inStock}/${shallowCopy.counts.reserved}`,

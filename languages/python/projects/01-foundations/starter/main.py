@@ -1,6 +1,12 @@
+def run_project() -> None:
+    # TODO 1: Ask for number of students.
+    # TODO 2: Read each student name as a full line and score with numeric validation.
+    # TODO 3: Keep score input in the range `0` to `100`.
+    pass
+
+
 def main() -> None:
-    # TODO: implement the README specification (FND-TIO-02, FND-CFL-02, FND-FUN-01, FND-SEQ-02).
-    print("TODO: implement this checkpoint")
+    run_project()
 
 
 if __name__ == "__main__":

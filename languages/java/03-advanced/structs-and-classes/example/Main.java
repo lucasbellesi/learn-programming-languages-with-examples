@@ -1,5 +1,6 @@
 // Module focus: Modeling related data and behavior with structured types.
-// Why it matters: practicing structs and classes patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to model data and behavior with cohesive domain
+// types before the learner tackles the exercises.
 
 import java.util.List;
 import java.util.Locale;
@@ -56,7 +57,8 @@ public class Main {
         // Prepare sample inputs that exercise the record path.
         List<Coordinate> route = List.of(new Coordinate(2, 3), new Coordinate(-1, 4), new Coordinate(5, -2));
 
-        // Report values so learners can verify the structs and classes outcome.
+        // The printed result shows whether the program can protect invariants through
+        // constructors and methods.
         System.out.println("Coordinates (record example):");
         for (Coordinate point : route) {
             System.out.println(

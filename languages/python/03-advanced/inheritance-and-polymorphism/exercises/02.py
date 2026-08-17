@@ -1,6 +1,13 @@
+def run_inheritance_polymorphism_exercise() -> None:
+    # TODO 1: Read or prepare predefined shape objects.
+    # TODO 2: Aggregate shapes in `list[Shape]`.
+    # TODO 3: Produce total area through polymorphic iteration; verify empty shape list; mixed shape
+    #         types.
+    pass
+
+
 def main() -> None:
-    # TODO: implement the README specification (ADV-POL-01, ADV-POL-02).
-    print("TODO: implement this exercise")
+    run_inheritance_polymorphism_exercise()
 
 
 if __name__ == "__main__":

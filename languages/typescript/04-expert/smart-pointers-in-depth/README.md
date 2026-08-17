@@ -1,4 +1,4 @@
-# Smart Pointers in Depth
+# Reference Ownership and Alias Management (TypeScript)
 
 This module adapts smart pointer ideas to TypeScript references, ownership transfer conventions, and explicit alias management.
 

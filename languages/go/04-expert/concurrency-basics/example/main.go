@@ -1,5 +1,6 @@
 // Module focus: Starting multiple units of work and combining their results safely.
-// Why it matters: practicing concurrency basics patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to coordinate concurrent work without data races
+// or lost results before the learner tackles the exercises.
 
 package main
 
@@ -8,9 +9,10 @@ import (
 	"sync"
 )
 
-// Walk through one fixed scenario so concurrency basics behavior stays repeatable.
+// Fixed inputs make the consequence of accessing shared state without a mutex visible and
+// repeatable.
 func main() {
-	// Prepare sample inputs that exercise the key concurrency basics path.
+	// These values exercise the normal path before the exercises vary the documented boundaries.
 	const workerCount = 4
 	const incrementsPerWorker = 10000
 
@@ -32,7 +34,8 @@ func main() {
 	}
 
 	wg.Wait()
-	// Report values so learners can verify the concurrency basics outcome.
+	// The printed result shows whether the program can define completion, cancellation, and error
+	// propagation behavior.
 	fmt.Printf("Expected counter: %d\n", workerCount*incrementsPerWorker)
 	fmt.Printf("Actual counter: %d\n", counter)
 

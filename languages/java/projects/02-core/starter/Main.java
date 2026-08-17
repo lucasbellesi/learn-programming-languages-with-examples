@@ -1,6 +1,11 @@
 public class Main {
+    private static void runProject() {
+        // TODO 1: Ask for an input file path.
+        // TODO 2: Read lines in the format `Full Name Score`.
+        // TODO 3: Skip invalid rows without stopping the whole program.
+    }
+
     public static void main(String[] args) {
-        // TODO: implement the README specification (COR-VAL-01, COR-ALG-01, COR-FIO-01, COR-ERR-02).
-        System.out.println("TODO: implement this checkpoint");
+        runProject();
     }
 }

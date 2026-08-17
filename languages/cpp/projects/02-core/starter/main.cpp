@@ -1,7 +1,12 @@
-#include <iostream>
+namespace {
+void runProject() {
+    // TODO 1: Input file path from user.
+    // TODO 2: Parse each line as `name score`.
+    // TODO 3: Skip invalid rows with a warning count.
+}
+} // namespace
 
 int main() {
-    // TODO: implement the README specification (COR-VAL-01, COR-ALG-01, COR-FIO-01, COR-ERR-02).
-    std::cout << "TODO: implement this checkpoint\n";
+    runProject();
     return 0;
 }

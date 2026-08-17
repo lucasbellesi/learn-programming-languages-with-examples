@@ -35,6 +35,12 @@ python scripts/automation.py run-module --module-path languages/python/02-core/e
 - Performing division without zero checks.
 - Catching errors without giving useful user feedback.
 
+## Cross-Language Notes
+
+- In Python, read this module through the native focus ?Error Handling and Defensive Programming?; the shared folder name remains stable for side-by-side navigation.
+- Use dynamic values, collection protocols, and context managers to demonstrate how to separate expected failures from programming defects.
+- Compare observable behavior with the other tracks when learning to preserve valid state and useful diagnostics when operations fail; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - exercises/01.py: validate CSV-like row format.

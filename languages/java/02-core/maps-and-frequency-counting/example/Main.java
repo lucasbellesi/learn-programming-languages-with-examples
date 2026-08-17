@@ -1,5 +1,6 @@
 // Module focus: Counting repeated values and summarizing them through keyed lookups.
-// Why it matters: practicing maps and frequency counting patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to use key-value collections to aggregate and
+// retrieve data before the learner tackles the exercises.
 
 import java.util.Locale;
 import java.util.Map;

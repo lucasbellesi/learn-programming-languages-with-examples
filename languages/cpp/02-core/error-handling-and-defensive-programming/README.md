@@ -40,6 +40,12 @@ python scripts/automation.py run-module --module-path languages/cpp/02-core/erro
 - Performing division without zero checks.
 - Hiding errors with vague messages.
 
+## Cross-Language Notes
+
+- In C++, read this module through the native focus ?Error Handling and Defensive Programming?; the shared folder name remains stable for side-by-side navigation.
+- Use explicit value/reference semantics and standard-library types to demonstrate how to separate expected failures from programming defects.
+- Compare observable behavior with the other tracks when learning to preserve valid state and useful diagnostics when operations fail; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - `exercises/01.cpp`: validate CSV-like row format.

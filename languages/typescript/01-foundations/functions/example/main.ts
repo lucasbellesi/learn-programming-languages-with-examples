@@ -1,5 +1,6 @@
 // Module focus: Breaking behavior into reusable functions with clear inputs and outputs.
-// Why it matters: practicing functions patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to decompose a problem into focused functions
+// with explicit contracts before the learner tackles the exercises.
 
 function formatLabel(value: number): string;
 function formatLabel(value: string): string;

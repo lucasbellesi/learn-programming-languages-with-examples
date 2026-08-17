@@ -1,16 +1,21 @@
 // Module focus: Choosing between branches and repeating work with predictable control flow.
-// Why it matters: practicing control flow patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to select branches that cover normal and boundary
+// conditions before the learner tackles the exercises.
 
 using System;
 
-// Helper setup for control flow; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to select branches that cover normal and
+// boundary conditions.
 class Program
 {
-    // Walk through one fixed scenario so control flow behavior stays repeatable.
+    // Fixed inputs make the consequence of not handling non-positive upper bounds before entering
+    // loops visible and repeatable.
     static void Main()
     {
-        // Prepare sample inputs that exercise the key control flow path.
-        // Report values so learners can verify the control flow outcome.
+        // These values exercise the normal path before the exercises vary the documented
+        // boundaries.
+        // The printed result shows whether the program can write terminating loops and reason
+        // about their invariants.
         Console.Write("Enter an integer: ");
         int value = int.Parse(Console.ReadLine() ?? "0");
 

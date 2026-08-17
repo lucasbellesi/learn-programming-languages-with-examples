@@ -1,5 +1,6 @@
 // Module focus: Writing generic code that stays useful across multiple data types.
-// Why it matters: practicing templates basics patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to express reusable type-safe behavior with
+// language generics before the learner tackles the exercises.
 
 import java.util.List;
 
@@ -41,7 +42,8 @@ public class Main {
         List<Integer> scores = List.of(91, 98, 87);
         List<String> names = List.of("Ana", "Bea", "Chen");
 
-        // Report output values so learners can verify the generics basics result.
+        // The printed result shows whether the program can apply constraints when an operation
+        // requires specific capabilities.
         System.out.println("First score: " + firstOrDefault(scores, 0));
         System.out.println("First name: " + firstOrDefault(names, "unknown"));
         System.out.println(new Box<>(42).describe("Box<Integer>"));

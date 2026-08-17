@@ -35,6 +35,12 @@ python scripts/automation.py run-module --module-path languages/go/02-core/input
 - Accepting values outside allowed ranges after type conversion.
 - Repeating validation code instead of centralizing it in helpers.
 
+## Cross-Language Notes
+
+- In Go, read this module through the native focus ?Input Validation?; the shared folder name remains stable for side-by-side navigation.
+- Use explicit errors, slices/maps, interfaces, and defer to demonstrate how to reject malformed and out-of-domain input without corrupting state.
+- Compare observable behavior with the other tracks when learning to design retry and termination behavior that cannot loop accidentally; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - exercises/01.go: read an integer in range 1 to 100 and print its square.

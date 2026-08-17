@@ -92,7 +92,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y clang-format
-          python -m pip install ruff
+          python -m pip install ruff==0.15.8
           npm ci
       - name: Lint all tracks
         run: python scripts/automation.py lint

@@ -1,14 +1,17 @@
 # Module focus: How copying, sharing, or transferring state changes later behavior.
-# Why it matters: practicing copy and move semantics patterns makes exercises and checkpoints easier
-# to reason about.
+# Why it matters: the example makes it possible to predict aliasing and independence after
+# copying or sharing values before the learner tackles the exercises.
 
-# Helper setup for copy and move semantics; this keeps the walkthrough readable.
+# Separate helpers keep the main path focused on how to predict aliasing and independence after
+# copying or sharing values.
 class Buffer:
     def __init__(self, size: int) -> None:
-        # Prepare sample inputs that exercise the key copy and move semantics path.
+        # These values exercise the normal path before the exercises vary the documented
+        # boundaries.
         safe_size = max(0, size)
         self._values = [0] * safe_size
-        # Report output values so learners can verify the copy and move semantics outcome.
+        # The printed result shows whether the program can choose an idiomatic ownership-transfer
+        # strategy for the language.
         print(f"Constructed (size={len(self._values)})")
 
     def clone(self) -> "Buffer":
@@ -30,7 +33,8 @@ class Buffer:
         return len(self._values)
 
 
-# Walk through one fixed scenario so copy and move semantics behavior stays repeatable.
+# Fixed inputs make the consequence of assuming `=` duplicates list contents visible and
+# repeatable.
 def main() -> None:
     first = Buffer(3)
     second = first.clone()

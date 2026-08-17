@@ -3,6 +3,12 @@
 Use this template when creating a new concept module in any track.
 All section headings below are required by repository validation scripts.
 
+Register both exercises in `scripts/learning_exercises.json`. Exercise 01 uses
+`route_role: guided`; exercise 02 uses `route_role: both`. Both use
+`starter_mode: guided`, keep the reference implementation under
+`exercises/solutions/`, and provide three staged hints through the canonical README
+specification rather than solved code.
+
 When writing `example/main.*`, start with a short header comment that states the module focus and why it matters, then add intent-first comments before meaningful logic blocks so new developers can follow program flow quickly.
 
 ## Learning Metadata
@@ -68,6 +74,15 @@ python scripts/automation.py check-exercise --language <language> --level <level
 ~~~
 
 Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
+
+Ask for the least revealing hint first:
+
+~~~bash
+python scripts/automation.py hint-exercise --language <language> --level <level> --module <module> --exercise 01 --stage 1
+~~~
+
+Stages are conceptual, structural, and idiomatic API guidance. They must never reveal
+the reference solution.
 
 ## Checkpoint
 

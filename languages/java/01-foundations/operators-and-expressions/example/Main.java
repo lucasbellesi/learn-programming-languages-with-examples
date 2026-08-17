@@ -1,5 +1,6 @@
 // Module focus: Combining values through expressions and readable calculations.
-// Why it matters: practicing operators and expressions patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to build expressions with correct precedence and
+// explicit intent before the learner tackles the exercises.
 
 import java.util.Locale;
 

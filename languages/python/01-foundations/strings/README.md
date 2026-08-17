@@ -37,9 +37,9 @@ python scripts/automation.py run-module --module-path languages/python/01-founda
 
 ## Cross-Language Notes
 
-- Compared with C++, the other tracks usually hide more of the low-level string-management cost while keeping the same parsing goals.
-- Relative to Python and TypeScript, C# and Go keep more explicit API choices around splitting, trimming, and rebuilding text.
-- The main comparison is text-processing convenience versus how visible allocation and mutation remain.
+- In Python, read this module through the native focus ?Strings?; the shared folder name remains stable for side-by-side navigation.
+- Use dynamic values, collection protocols, and context managers to demonstrate how to normalize, inspect, and transform textual data.
+- Compare observable behavior with the other tracks when learning to handle empty input and character boundaries safely; equivalent evidence matters more than identical syntax.
 
 ## Exercise Focus
 

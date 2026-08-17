@@ -1,10 +1,15 @@
-using System;
-
 internal static class Program
 {
+    private static void RunScopeLifetimeBasicsExercise()
+    {
+        // TODO 1: Read or prepare positive count and then count integer values.
+        // TODO 2: Accumulate N integers and compute sum and average from shared state.
+        // TODO 3: Produce sum and average values; verify count <= 0; negative numbers within the
+        //         sequence.
+    }
+
     private static void Main()
     {
-        // TODO: implement the README specification (FND-SCP-01, FND-SCP-02).
-        Console.WriteLine("TODO: implement this exercise");
+        RunScopeLifetimeBasicsExercise();
     }
 }

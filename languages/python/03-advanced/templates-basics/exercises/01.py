@@ -1,6 +1,12 @@
+def run_templates_basics_exercise() -> None:
+    # TODO 1: Read or prepare two values of the same type.
+    # TODO 2: Generic swap function.
+    # TODO 3: Produce values before and after swap; verify identical values; negative numbers.
+    pass
+
+
 def main() -> None:
-    # TODO: implement the README specification (ADV-GEN-01, ADV-GEN-02).
-    print("TODO: implement this exercise")
+    run_templates_basics_exercise()
 
 
 if __name__ == "__main__":

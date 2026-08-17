@@ -1,11 +1,13 @@
 // Module focus: Tracking ownership and lifetime when multiple references can observe the same value.
-// Why it matters: practicing smart pointers in depth patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to model exclusive, shared, and non-owning
+// relationships idiomatically before the learner tackles the exercises.
 
 package main
 
 import "fmt"
 
-// Helper setup for smart pointers in depth; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to model exclusive, shared, and non-owning
+// relationships idiomatically.
 type report struct {
 	title string
 }
@@ -33,9 +35,10 @@ func (o *reportOwner) print() {
 	fmt.Printf("%s: %s\n", o.name, o.report.title)
 }
 
-// Walk through one fixed scenario so smart pointers in depth behavior stays repeatable.
+// Fixed inputs make the consequence of using pointers everywhere even when values are simpler
+// visible and repeatable.
 func main() {
-	// Prepare sample inputs that exercise the key smart pointers in depth path.
+	// These values exercise the normal path before the exercises vary the documented boundaries.
 	inbox := reportOwner{name: "Inbox", report: &report{title: "Quarterly Summary"}}
 	archive := reportOwner{name: "Archive"}
 
@@ -50,6 +53,7 @@ func main() {
 	observer := primary
 	*observer += 5
 
-	// Report values so learners can verify the smart pointers in depth outcome.
+	// The printed result shows whether the program can prevent leaks, cycles, and stale observations
+	// in ownership graphs.
 	fmt.Printf("Shared score after alias update: %d\n", score)
 }

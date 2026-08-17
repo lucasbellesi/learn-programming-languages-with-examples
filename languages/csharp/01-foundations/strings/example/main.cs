@@ -1,17 +1,22 @@
 // Module focus: Cleaning and combining text while preserving readable string logic.
-// Why it matters: practicing strings patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to normalize, inspect, and transform textual data
+// before the learner tackles the exercises.
 
 using System;
 using System.Text;
 
-// Helper setup for strings; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to normalize, inspect, and transform textual
+// data.
 class Program
 {
-    // Walk through one fixed scenario so strings behavior stays repeatable.
+    // Fixed inputs make the consequence of counting words without removing extra spaces visible
+    // and repeatable.
     static void Main()
     {
-        // Prepare sample inputs that exercise the key strings path.
-        // Report values so learners can verify the strings outcome.
+        // These values exercise the normal path before the exercises vary the documented
+        // boundaries.
+        // The printed result shows whether the program can handle empty input and character
+        // boundaries safely.
         Console.Write("Enter a sentence: ");
         string line = Console.ReadLine() ?? "";
 

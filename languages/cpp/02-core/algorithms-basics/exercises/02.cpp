@@ -1,7 +1,13 @@
-#include <iostream>
+namespace {
+void runAlgorithmsBasicsExercise() {
+    // TODO 1: Read or prepare integer `n`, then `n` values.
+    // TODO 2: Min, max, and even-count in one pass.
+    // TODO 3: Produce minimum, maximum, and even count; verify all odd numbers (even count `0`);
+    //         all equal values.
+}
+} // namespace
 
 int main() {
-    // TODO: implement the README specification (COR-ALG-01, COR-ALG-02).
-    std::cout << "TODO: implement this exercise\n";
+    runAlgorithmsBasicsExercise();
     return 0;
 }

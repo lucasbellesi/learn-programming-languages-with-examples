@@ -1,4 +1,4 @@
-# Smart Pointers in Depth (Java)
+# Strong, Weak, and Scoped References (Java)
 
 This module adapts smart pointer ideas to Java through strong references, explicit ownership slots, defensive copies, `Optional`, and `WeakReference`.
 

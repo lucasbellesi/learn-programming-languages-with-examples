@@ -1,11 +1,13 @@
 // Module focus: How copying, sharing, or transferring state changes later behavior.
-// Why it matters: practicing copy and move semantics patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to predict aliasing and independence after
+// copying or sharing values before the learner tackles the exercises.
 
 package main
 
 import "fmt"
 
-// Helper setup for copy and move semantics; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to predict aliasing and independence after
+// copying or sharing values.
 type Buffer struct {
 	values []int
 }
@@ -39,14 +41,16 @@ func (b *Buffer) Size() int {
 	return len(b.values)
 }
 
-// Walk through one fixed scenario so copy and move semantics behavior stays repeatable.
+// Fixed inputs make the consequence of assuming `=` creates an independent deep copy for slices
+// visible and repeatable.
 func main() {
-	// Prepare sample inputs that exercise the key copy and move semantics path.
+	// These values exercise the normal path before the exercises vary the documented boundaries.
 	first := NewBuffer(3)
 	second := first.Clone()
 	third := second.Transfer()
 
-	// Report values so learners can verify the copy and move semantics outcome.
+	// The printed result shows whether the program can choose an idiomatic ownership-transfer
+	// strategy for the language.
 	fmt.Printf("first size: %d\n", first.Size())
 	fmt.Printf("second size (after transfer): %d\n", second.Size())
 	fmt.Printf("third size: %d\n", third.Size())

@@ -35,6 +35,12 @@ python scripts/automation.py run-module --module-path languages/go/02-core/maps-
 - Printing map entries directly and expecting stable key order.
 - Forgetting to filter separators before counting symbols.
 
+## Cross-Language Notes
+
+- In Go, read this module through the native focus ?Maps and Frequency Counting?; the shared folder name remains stable for side-by-side navigation.
+- Use explicit errors, slices/maps, interfaces, and defer to demonstrate how to use key-value collections to aggregate and retrieve data.
+- Compare observable behavior with the other tracks when learning to define normalization and missing-key behavior explicitly; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - exercises/01.go: count digit frequencies.

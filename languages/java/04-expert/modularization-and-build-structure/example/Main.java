@@ -1,5 +1,6 @@
 // Module focus: Splitting responsibilities so entrypoints and helpers stay focused.
-// Why it matters: practicing modularization and build structure patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to separate public contracts from implementation
+// details before the learner tackles the exercises.
 
 import java.util.List;
 

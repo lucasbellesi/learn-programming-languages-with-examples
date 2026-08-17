@@ -13,9 +13,11 @@ from collections import defaultdict
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
+from time import perf_counter
 from typing import Any
 
 from .curriculum import CurriculumError, load_curriculum_outcomes, load_learning_checkpoints
+from .guidance import GuidanceError, format_hint, load_exercise_guidance
 from .links import check_markdown_links
 from .manifest import Manifest, load_manifest
 
@@ -121,6 +123,20 @@ def build_parser() -> argparse.ArgumentParser:
         help="Check the reference solution instead of the starter.",
     )
     check_exercise_parser.set_defaults(func=handle_check_exercise)
+    hint_exercise_parser = subparsers.add_parser(
+        "hint-exercise",
+        help="Show a graduated hint without revealing the reference solution.",
+    )
+    hint_exercise_parser.add_argument(
+        "--language",
+        choices=["cpp", "csharp", "go", "java", "python", "typescript"],
+        required=True,
+    )
+    hint_exercise_parser.add_argument("--level", required=True)
+    hint_exercise_parser.add_argument("--module", required=True)
+    hint_exercise_parser.add_argument("--exercise", choices=["01", "02"], required=True)
+    hint_exercise_parser.add_argument("--stage", type=int, choices=[1, 2, 3], required=True)
+    hint_exercise_parser.set_defaults(func=handle_hint_exercise)
     add_simple_command(subparsers, "check-exercise-parity", handle_check_exercise_parity)
     add_simple_command(
         subparsers, "check-cross-language-parity", handle_check_cross_language_parity
@@ -250,6 +266,18 @@ def handle_check_exercise(ctx: RepoContext, args: argparse.Namespace) -> int:
     return 0
 
 
+def handle_hint_exercise(ctx: RepoContext, args: argparse.Namespace) -> int:
+    show_exercise_hint(
+        ctx,
+        language=args.language,
+        level=args.level,
+        module=args.module,
+        exercise_id=args.exercise,
+        stage=args.stage,
+    )
+    return 0
+
+
 def handle_check_exercise_parity(ctx: RepoContext, _: argparse.Namespace) -> int:
     check_exercise_parity(ctx)
     return 0
@@ -314,6 +342,58 @@ def handle_check_checkpoint(ctx: RepoContext, args: argparse.Namespace) -> int:
 
 def repo_path(ctx: RepoContext, relative_path: str) -> Path:
     return ctx.root / Path(relative_path)
+
+
+def show_exercise_hint(
+    ctx: RepoContext,
+    *,
+    language: str,
+    level: str,
+    module: str,
+    exercise_id: str,
+    stage: int,
+) -> None:
+    matches = [
+        exercise
+        for exercise in load_learning_exercises(ctx)
+        if exercise.get("language") == language
+        and exercise.get("level") == level
+        and exercise.get("module") == module
+        and exercise.get("exercise") == exercise_id
+    ]
+    label = f"{language}/{level}/{module}/{exercise_id}"
+    if len(matches) != 1:
+        raise AutomationError(f"Expected one configured exercise for hint: {label}")
+    outcome_ids = matches[0].get("outcome_ids", [])
+    if not isinstance(outcome_ids, list) or not all(isinstance(item, str) for item in outcome_ids):
+        raise AutomationError(f"Invalid outcome ids for exercise hint: {label}")
+    try:
+        module_outcomes = load_curriculum_outcomes(ctx.scripts_dir).get(f"{level}/{module}")
+        display_title = (
+            module_outcomes.display_titles.get(language, module)
+            if module_outcomes is not None
+            else module
+        )
+        guidance = load_exercise_guidance(
+            ctx.root,
+            language=language,
+            level=level,
+            module=module,
+            exercise_id=exercise_id,
+            outcome_ids=tuple(outcome_ids),
+        )
+        print(f"Module: {display_title} ({module})")
+        print(
+            format_hint(
+                guidance,
+                language=language,
+                level=level,
+                module=module,
+                stage=stage,
+            )
+        )
+    except GuidanceError as error:
+        raise AutomationError(str(error)) from error
 
 
 def check_links(ctx: RepoContext) -> None:
@@ -561,6 +641,8 @@ def run_command(
             cwd=str(cwd) if cwd else None,
             input=input_text,
             text=True,
+            encoding="utf-8",
+            errors="replace",
             stdout=stdout_target,
             stderr=None,
             check=False,
@@ -1149,24 +1231,67 @@ def check_checkpoint_completeness(ctx: RepoContext) -> None:
                     failures.append(
                         f"scripts/learning_checkpoints.json: {label} milestone policy mismatch"
                     )
+                expected_starter_mode = "guided" if kind == "projects" else "independent"
+                expected_route_role = "guided" if kind == "projects" else "both"
+                if checkpoint.get("starter_mode") != expected_starter_mode:
+                    failures.append(
+                        "scripts/learning_checkpoints.json: "
+                        f"{label} starter_mode must be {expected_starter_mode}"
+                    )
+                if checkpoint.get("route_role") != expected_route_role:
+                    failures.append(
+                        "scripts/learning_checkpoints.json: "
+                        f"{label} route_role must be {expected_route_role}"
+                    )
                 cases = checkpoint.get("cases")
                 if not isinstance(cases, list) or not cases:
                     failures.append(f"scripts/learning_checkpoints.json: no cases -> {label}")
                 else:
+                    if len(cases) < 3:
+                        failures.append(
+                            f"scripts/learning_checkpoints.json: fewer than three cases -> {label}"
+                        )
+                    case_names: set[str] = set()
+                    covered_behaviors: set[str] = set()
                     for index, case in enumerate(cases, start=1):
                         if not isinstance(case, dict) or not isinstance(case.get("name"), str):
                             failures.append(
                                 "scripts/learning_checkpoints.json: "
                                 f"invalid case {index} -> {label}"
                             )
-                        elif not (
-                            case.get("required_stdout_contains")
+                            continue
+                        case_name = case["name"]
+                        if case_name in case_names:
+                            failures.append(
+                                f"scripts/learning_checkpoints.json: duplicate case name "
+                                f"'{case_name}' -> {label}"
+                            )
+                        case_names.add(case_name)
+                        covered_behaviors.update(
+                            value for value in case.get("covers", []) if isinstance(value, str)
+                        )
+                        if case.get("oracle_solution") is True and not isinstance(
+                            case.get("oracle_waiver"), str
+                        ):
+                            failures.append(
+                                "scripts/learning_checkpoints.json: oracle_solution requires "
+                                f"oracle_waiver in case {index} -> {label}"
+                            )
+                        if not (
+                            case.get("required_stdout_equals")
+                            or case.get("required_stdout_contains")
                             or case.get("required_stdout_patterns")
                             or case.get("oracle_solution") is True
                         ):
                             failures.append(
                                 "scripts/learning_checkpoints.json: "
                                 f"case {index} has no assertions or oracle -> {label}"
+                            )
+                    for expected_behavior in ("normal", "boundary", "error", "state", "resources"):
+                        if expected_behavior not in covered_behaviors:
+                            failures.append(
+                                "scripts/learning_checkpoints.json: missing "
+                                f"'{expected_behavior}' coverage -> {label}"
                             )
                 if readme_path.is_file() and isinstance(outcome_ids, list):
                     readme_text = readme_path.read_text(encoding="utf-8")
@@ -1182,8 +1307,15 @@ def check_checkpoint_completeness(ctx: RepoContext) -> None:
                             encoding="utf-8"
                         ):
                             failures.append(f"{checkpoint_dir}: starter equals solution")
-                        if "TODO" not in starter_main.read_text(encoding="utf-8"):
-                            failures.append(f"{checkpoint_dir}: starter entrypoint has no TODO")
+                starter_text = starter_main.read_text(encoding="utf-8")
+                if "TODO" not in starter_text:
+                    failures.append(f"{checkpoint_dir}: starter entrypoint has no TODO")
+                if kind == "projects" and has_generic_starter_prompt(starter_text):
+                    failures.append(f"{checkpoint_dir}: project starter has a generic TODO")
+                if kind == "projects" and guided_todo_count(starter_text) < 3:
+                    failures.append(
+                        f"{checkpoint_dir}: guided project starter needs TODO 1, TODO 2, and TODO 3"
+                    )
 
     if checkpoint_count == 0:
         raise AutomationError("No checkpoint directories found for completeness validation.")
@@ -1352,6 +1484,90 @@ def comment_pattern_for_file(path: Path) -> re.Pattern[str]:
     return re.compile(r"^\s*#") if path.suffix == ".py" else re.compile(r"^\s*//")
 
 
+GENERIC_STARTER_PATTERNS = (
+    "implement the readme specification",
+    "implement this exercise",
+    "implement this checkpoint",
+    "implement the requested task",
+    "solve exercise 01 here",
+    "solve exercise 02 here",
+)
+
+
+def has_generic_starter_prompt(text: str) -> bool:
+    lowered = text.lower()
+    return any(pattern in lowered for pattern in GENERIC_STARTER_PATTERNS)
+
+
+def guided_todo_count(text: str) -> int:
+    return len(re.findall(r"\bTODO\s+[123]\s*:", text, re.IGNORECASE))
+
+
+def education_debt_counts(ctx: RepoContext) -> dict[str, int]:
+    exercises = load_learning_exercises(ctx)
+    checkpoints = load_learning_checkpoints(ctx.scripts_dir)
+
+    generic_exercise_starters = 0
+    weak_guided_exercise_starters = 0
+    exercise_oracle_cases = 0
+    for exercise in exercises:
+        starter = repo_path(ctx, str(exercise.get("starter", "")))
+        text = starter.read_text(encoding="utf-8") if starter.is_file() else ""
+        generic_exercise_starters += int(has_generic_starter_prompt(text))
+        weak_guided_exercise_starters += int(guided_todo_count(text) < 3)
+        exercise_oracle_cases += sum(
+            int(case.get("oracle_solution") is True)
+            for case in exercise.get("cases", [])
+            if isinstance(case, dict)
+        )
+
+    generic_project_starters = 0
+    weak_guided_project_starters = 0
+    checkpoint_oracle_cases = 0
+    checkpoint_single_case_contracts = 0
+    checkpoint_shared_execution_facets = 0
+    for checkpoint in checkpoints:
+        cases = checkpoint.get("cases", [])
+        if isinstance(cases, list):
+            checkpoint_single_case_contracts += int(len(cases) < 3)
+            checkpoint_shared_execution_facets += sum(
+                int(case.get("shared_execution") is True)
+                for case in cases
+                if isinstance(case, dict)
+            )
+            checkpoint_oracle_cases += sum(
+                int(case.get("oracle_solution") is True) for case in cases if isinstance(case, dict)
+            )
+        if checkpoint.get("kind") != "project":
+            continue
+        starter = repo_path(ctx, str(checkpoint.get("starter", ""))) / str(
+            checkpoint.get("entrypoint", "")
+        )
+        text = starter.read_text(encoding="utf-8") if starter.is_file() else ""
+        generic_project_starters += int(has_generic_starter_prompt(text))
+        weak_guided_project_starters += int(guided_todo_count(text) < 3)
+
+    missing_cross_language_notes = 0
+    for _language, _level, module_dir in iter_module_directories(ctx):
+        readme = module_dir / "README.md"
+        if not readme.is_file() or "## Cross-Language Notes" not in readme.read_text(
+            encoding="utf-8"
+        ):
+            missing_cross_language_notes += 1
+
+    return {
+        "generic_exercise_starters": generic_exercise_starters,
+        "weak_guided_exercise_starters": weak_guided_exercise_starters,
+        "generic_project_starters": generic_project_starters,
+        "weak_guided_project_starters": weak_guided_project_starters,
+        "missing_cross_language_notes": missing_cross_language_notes,
+        "exercise_oracle_cases": exercise_oracle_cases,
+        "checkpoint_oracle_cases": checkpoint_oracle_cases,
+        "checkpoint_contracts_with_fewer_than_three_cases": checkpoint_single_case_contracts,
+        "checkpoint_shared_execution_facets": checkpoint_shared_execution_facets,
+    }
+
+
 def audit_education_quality(
     ctx: RepoContext,
     *,
@@ -1377,6 +1593,11 @@ def audit_education_quality(
             r"Print the observed state here so learners can (connect|match)",
             re.IGNORECASE,
         ),
+        re.compile(r"Why it matters:\s*practicing", re.IGNORECASE),
+        re.compile(r"Helper setup for", re.IGNORECASE),
+        re.compile(r"Walk through one fixed scenario so", re.IGNORECASE),
+        re.compile(r"Prepare sample inputs that exercise the key", re.IGNORECASE),
+        re.compile(r"Report output values so learners can verify", re.IGNORECASE),
     ]
     output_marker_pattern = re.compile(
         r"(print|output|report|expected|actual|verify|summary|observed)",
@@ -1479,6 +1700,18 @@ def audit_education_quality(
         "level_thresholds": level_thresholds,
     }
 
+    baseline_path = ctx.scripts_dir / "education_quality_baseline.json"
+    baseline = json.loads(baseline_path.read_text(encoding="utf-8"))
+    allowed_debt = baseline.get("maximum_counts", {})
+    current_debt = education_debt_counts(ctx)
+    debt_regressions = [
+        f"{name}: current {count} exceeds baseline {allowed_debt.get(name, 0)}"
+        for name, count in current_debt.items()
+        if count > allowed_debt.get(name, 0)
+    ]
+    summary["education_debt"] = current_debt
+    summary["education_debt_baseline"] = allowed_debt
+
     json_path.write_text(
         json.dumps({"summary": summary, "files": file_rows}, indent=2),
         encoding="utf-8",
@@ -1506,6 +1739,9 @@ def audit_education_quality(
         f"- Oversized files covered by an educational waiver: "
         f"{summary['files_oversized_with_waiver']}"
     )
+    lines.append("- Educational debt (current / allowed):")
+    for name, count in current_debt.items():
+        lines.append(f"  - `{name}`: {count} / {allowed_debt.get(name, 0)}")
     lines.append("")
     lines.append("## Level Size Thresholds")
     lines.append("")
@@ -1579,6 +1815,8 @@ def audit_education_quality(
             f"{len(findings)} file(s) with learner-quality findings. "
             f"See {markdown_path.relative_to(ctx.root).as_posix()}."
         )
+    if debt_regressions:
+        raise AutomationError("Education debt baseline regressed: " + "; ".join(debt_regressions))
     if fail_on_blocking_findings and blocking_findings:
         raise AutomationError(
             "Education quality audit found "
@@ -1728,6 +1966,51 @@ def build_all(ctx: RepoContext) -> None:
         for index, source in enumerate(java_files):
             compile_java_source(ctx, source, java_build_root / f"check_{index}")
         print(f"Compiled {len(java_files)} Java file(s) successfully.")
+
+
+def build_verification_gaps(ctx: RepoContext) -> None:
+    """Compile sources not already compiled by verify-repo contract phases."""
+
+    build_dir = ctx.root / "build" / "verification-gaps"
+    build_dir.mkdir(parents=True, exist_ok=True)
+
+    cpp_root = ctx.root / "languages" / "cpp"
+    cpp_gaps = [
+        source
+        for source in sorted(cpp_root.rglob("*.cpp"))
+        if not (
+            source.name == "main.cpp"
+            and source.parent.name == "example"
+            or "solutions" in source.parts
+        )
+    ]
+    if cpp_gaps:
+        toolchain = resolve_gpp_toolchain(ctx)
+        for index, source in enumerate(cpp_gaps):
+            output = build_dir / f"cpp_{index}"
+            run_command(
+                cpp_compile_command(ctx, toolchain, source, output),
+                quiet_stdout=True,
+                action=f"Verification-gap C++ compilation for {source}",
+            )
+        print(f"Compiled {len(cpp_gaps)} uncovered C++ starter/auxiliary file(s).")
+
+    java_root = ctx.root / "languages" / "java"
+    java_gaps = [
+        source
+        for source in sorted(java_root.rglob("*.java"))
+        if not (
+            source.name == "Main.java"
+            and source.parent.name == "example"
+            or "solutions" in source.parts
+        )
+    ]
+    for index, source in enumerate(java_gaps):
+        compile_java_source(ctx, source, build_dir / f"java_{index}")
+    if java_gaps:
+        print(f"Compiled {len(java_gaps)} uncovered Java starter/auxiliary file(s).")
+
+    print("TypeScript has no verification gaps: its contract phases compile the complete tsconfig.")
 
 
 def run_module(ctx: RepoContext, module_path: str) -> None:
@@ -2137,13 +2420,13 @@ def assert_output_contract(output: str, job: dict[str, Any], label: str) -> None
     capture = job.get("_capture_stdout")
     if callable(capture):
         capture(output)
-    expected_output = job.get("_required_stdout_equals")
+    expected_output = job.get("required_stdout_equals", job.get("_required_stdout_equals"))
     if isinstance(expected_output, str):
         normalized_actual = normalize_oracle_output(output, job)
         normalized_expected = normalize_oracle_output(expected_output, job)
         if normalized_actual != normalized_expected:
             raise AutomationError(
-                f"{label} did not match the reference solution output.\n"
+                f"{label} did not match the exact output contract.\n"
                 f"Expected:\n{expected_output}\nActual:\n{output}"
             )
     if job.get("oracle_solution") and not output.strip():
@@ -2170,12 +2453,19 @@ def normalize_oracle_output(output: str, job: dict[str, Any]) -> str:
     normalizers = job.get("oracle_normalizers", [])
     if "timings" in normalizers:
         timing_words = re.compile(
-            r"tim(?:e|ing)|ticks?|elapsed|duration|milliseconds?|\bms\b", re.I
+            r"tim(?:e|ing)|ticks?|elapsed|duration|milliseconds?|\b(?:ms|us|\u00b5s|ns)\b",
+            re.I,
         )
-        normalized = "\n".join(
-            re.sub(r"\b\d+(?:\.\d+)?\b", "<timing>", line) if timing_words.search(line) else line
-            for line in normalized.splitlines()
+        timing_value_with_unit = re.compile(
+            r"\b\d+(?:\.\d+)?\s*(?:ms|us|\u00b5s|ns|s)\b", re.IGNORECASE
         )
+        normalized_lines: list[str] = []
+        for line in normalized.splitlines():
+            if timing_words.search(line):
+                normalized_lines.append(re.sub(r"\b\d+(?:\.\d+)?\b", "<timing>", line))
+            else:
+                normalized_lines.append(timing_value_with_unit.sub("<timing>", line))
+        normalized = "\n".join(normalized_lines)
     if "unordered_lines" in normalizers:
         normalized = "\n".join(sorted(normalized.splitlines()))
     return normalized
@@ -2209,6 +2499,7 @@ def smoke_runtime_job(
             or job.get("required_stdout_patterns")
             or job.get("oracle_solution")
             or job.get("_capture_stdout")
+            or job.get("required_stdout_equals")
             or job.get("_required_stdout_equals")
         )
 
@@ -2917,6 +3208,7 @@ def run_csharp_source_output_contracts(
                 or job.get("required_stdout_patterns")
                 or job.get("oracle_solution")
                 or job.get("_capture_stdout")
+                or job.get("required_stdout_equals")
                 or job.get("_required_stdout_equals")
             )
 
@@ -3010,6 +3302,47 @@ def run_java_source_output_contracts(
     return executed_jobs
 
 
+def run_go_source_output_contracts(
+    ctx: RepoContext,
+    jobs: list[dict[str, Any]],
+    *,
+    label_prefix: str,
+) -> int:
+    if not jobs:
+        return 0
+
+    executed_jobs = 0
+    with tempfile.TemporaryDirectory(prefix="go-source-output-contracts-") as temp_root:
+        temp_root_path = Path(temp_root)
+        compiled_targets: dict[str, Path] = {}
+        for job in jobs:
+            source_path = repo_path(ctx, job["program"])
+            if not source_path.exists():
+                raise AutomationError(f"Missing Go contract source: {source_path}")
+
+            binary = compiled_targets.get(job["program"])
+            if binary is None:
+                output = temp_root_path / f"go-contract-{len(compiled_targets)}"
+                run_command(
+                    ["go", "build", "-o", str(output), *go_target_arguments(source_path)],
+                    action=f"Go compilation for output contract {job['program']}",
+                    timeout_seconds=120,
+                )
+                binary = compiled_binary_path(ctx, output)
+                compiled_targets[job["program"]] = binary
+
+            case_suffix = output_contract_case_suffix(job)
+            smoke_runtime_job(
+                ctx,
+                job,
+                command_builder=lambda _job, _working_dir, target=binary: [str(target)],
+                label=f"Go {label_prefix} output contract for {job['program']}{case_suffix}",
+            )
+            executed_jobs += 1
+
+    return executed_jobs
+
+
 def check_example_output_contracts(ctx: RepoContext, *, language_filter: str | None = None) -> None:
     contracts = load_example_output_contracts(ctx)
     if language_filter is not None:
@@ -3033,18 +3366,11 @@ def check_example_output_contracts(ctx: RepoContext, *, language_filter: str | N
         )
         executed_jobs += 1
 
-    for job in contracts.get("go", []):
-        smoke_runtime_job(
-            ctx,
-            job,
-            command_builder=lambda current_job, working_dir: [
-                "go",
-                "run",
-                *go_target_arguments(resolve_job_path(ctx, working_dir, current_job["program"])),
-            ],
-            label=f"Go example output contract for {job['program']}",
-        )
-        executed_jobs += 1
+    executed_jobs += run_go_source_output_contracts(
+        ctx,
+        contracts.get("go", []),
+        label_prefix="example",
+    )
 
     if contracts.get("typescript"):
         with tempfile.TemporaryDirectory(prefix="ts-output-contracts-") as temp_root:
@@ -3219,19 +3545,12 @@ def check_exercise_output_contracts(
         )
         executed_jobs += 1
 
-    for job in contracts.get("go", []) if language_filter in (None, "go") else []:
-        case_suffix = output_contract_case_suffix(job)
-        smoke_runtime_job(
+    if language_filter in (None, "go"):
+        executed_jobs += run_go_source_output_contracts(
             ctx,
-            job,
-            command_builder=lambda current_job, working_dir: [
-                "go",
-                "run",
-                *go_target_arguments(resolve_job_path(ctx, working_dir, current_job["program"])),
-            ],
-            label=f"Go exercise output contract for {job['program']}{case_suffix}",
+            contracts.get("go", []),
+            label_prefix="exercise",
         )
-        executed_jobs += 1
 
     if language_filter in (None, "typescript") and contracts.get("typescript"):
         with tempfile.TemporaryDirectory(prefix="ts-exercise-output-contracts-") as temp_root:
@@ -3449,6 +3768,13 @@ def learning_exercise_config_failures(ctx: RepoContext) -> list[str]:
         if exercise_id not in {"01", "02"}:
             failures.append(f"scripts/learning_exercises.json: invalid exercise id -> {label}")
             continue
+        expected_route_role = "guided" if exercise_id == "01" else "both"
+        if exercise.get("route_role") != expected_route_role:
+            failures.append(
+                f"scripts/learning_exercises.json: {label} route_role must be {expected_route_role}"
+            )
+        if exercise.get("starter_mode") != "guided":
+            failures.append(f"scripts/learning_exercises.json: {label} starter_mode must be guided")
 
         file_name = language_exercise_file(config, exercise_id)
         exercise_root = f"languages/{language}/{level}/{module}/exercises"
@@ -3478,6 +3804,15 @@ def learning_exercise_config_failures(ctx: RepoContext) -> list[str]:
                 )
             if "TODO" not in starter_text:
                 failures.append(f"scripts/learning_exercises.json: starter has no TODO -> {label}")
+            if has_generic_starter_prompt(starter_text):
+                failures.append(
+                    f"scripts/learning_exercises.json: starter has a generic TODO -> {label}"
+                )
+            if guided_todo_count(starter_text) < 3:
+                failures.append(
+                    "scripts/learning_exercises.json: starter needs behavior-specific "
+                    f"TODO 1, TODO 2, and TODO 3 -> {label}"
+                )
 
         module_key = f"{level}/{module}"
         module_outcomes = outcomes_by_module.get(module_key)
@@ -3543,8 +3878,16 @@ def learning_exercise_config_failures(ctx: RepoContext) -> list[str]:
                         "scripts/learning_exercises.json: "
                         f"{label} case {index} has invalid oracle_normalizers"
                     )
+                if case.get("oracle_solution") is True and not isinstance(
+                    case.get("oracle_waiver"), str
+                ):
+                    failures.append(
+                        "scripts/learning_exercises.json: oracle_solution requires "
+                        f"oracle_waiver -> {label} case {index}"
+                    )
                 if not (
-                    case.get("required_stdout_contains")
+                    case.get("required_stdout_equals")
+                    or case.get("required_stdout_contains")
                     or case.get("required_stdout_patterns")
                     or case.get("oracle_solution") is True
                 ):
@@ -3653,6 +3996,21 @@ def curriculum_outcome_failures(ctx: RepoContext) -> list[str]:
             failures.append(
                 "scripts/curriculum_outcomes.json: "
                 f"unknown language adaptation '{language}' -> {module_key}"
+            )
+        unknown_titles = sorted(set(module_outcomes.display_titles) - active_languages)
+        for language in unknown_titles:
+            failures.append(
+                "scripts/curriculum_outcomes.json: "
+                f"unknown display-title language '{language}' -> {module_key}"
+            )
+        if (
+            module_outcomes.display_titles
+            and set(module_outcomes.display_titles) != active_languages
+        ):
+            missing_titles = sorted(active_languages - set(module_outcomes.display_titles))
+            failures.append(
+                "scripts/curriculum_outcomes.json: "
+                f"display titles incomplete for {module_key} -> {', '.join(missing_titles)}"
             )
 
         if module_key not in expected_modules:
@@ -3765,7 +4123,8 @@ def check_exercise_parity(ctx: RepoContext) -> None:
             keys.add(key)
 
             if not (
-                job.get("required_stdout_contains")
+                job.get("required_stdout_equals")
+                or job.get("required_stdout_contains")
                 or job.get("required_stdout_patterns")
                 or job.get("oracle_solution") is True
             ):
@@ -3909,7 +4268,8 @@ def check_cross_language_parity(ctx: RepoContext) -> None:
                     f"contract target does not exist -> {target}"
                 )
             if not (
-                job.get("required_stdout_contains")
+                job.get("required_stdout_equals")
+                or job.get("required_stdout_contains")
                 or job.get("required_stdout_patterns")
                 or job.get("oracle_solution") is True
             ):
@@ -3956,47 +4316,56 @@ def test_automation(ctx: RepoContext) -> None:
 
 def verify_repo(ctx: RepoContext) -> None:
     python_cmd = find_python_command()
+    phases: list[tuple[str, Any]] = [
+        ("Automation unit tests", lambda: test_automation(ctx)),
+        (
+            "Markdown links",
+            lambda: run_command(
+                [python_cmd, str(ctx.scripts_dir / "check-links.py")],
+                action="Markdown link check",
+            ),
+        ),
+        ("README structure", lambda: check_readme_structure(ctx)),
+        ("Module completeness", lambda: check_module_completeness(ctx)),
+        ("Checkpoint completeness", lambda: check_checkpoint_completeness(ctx)),
+        ("Documentation sync", lambda: check_doc_sync(ctx)),
+        ("Example comments", lambda: check_example_comments(ctx)),
+        (
+            "Education quality gate",
+            lambda: audit_education_quality(ctx, fail_on_blocking_findings=True),
+        ),
+        ("Cross-language parity", lambda: check_cross_language_parity(ctx)),
+        ("Exercise parity", lambda: check_exercise_parity(ctx)),
+        ("Example output contracts", lambda: check_example_output_contracts(ctx)),
+        ("Exercise output contracts", lambda: check_exercise_output_contracts(ctx)),
+        ("Checkpoint solution contracts", lambda: check_solution_checkpoint_contracts(ctx)),
+        ("Uncovered starter and auxiliary builds", lambda: build_verification_gaps(ctx)),
+    ]
 
-    print("[1/14] Running automation unit tests...")
-    test_automation(ctx)
+    verification_started = perf_counter()
+    phase_durations: list[dict[str, Any]] = []
+    for index, (name, action) in enumerate(phases, start=1):
+        print(f"[{index}/{len(phases)}] {name}...")
+        phase_started = perf_counter()
+        action()
+        duration = perf_counter() - phase_started
+        phase_durations.append({"phase": name, "seconds": round(duration, 3)})
+        print(f"[{index}/{len(phases)}] {name} completed in {duration:.2f}s.")
 
-    print("[2/14] Checking markdown links...")
-    run_command([python_cmd, str(ctx.scripts_dir / "check-links.py")], action="Markdown link check")
-
-    print("[3/14] Checking README structure...")
-    check_readme_structure(ctx)
-
-    print("[4/14] Checking module completeness...")
-    check_module_completeness(ctx)
-
-    print("[5/14] Checking checkpoint completeness...")
-    check_checkpoint_completeness(ctx)
-
-    print("[6/14] Checking documentation sync...")
-    check_doc_sync(ctx)
-
-    print("[7/14] Checking example comments...")
-    check_example_comments(ctx)
-
-    print("[8/14] Checking education quality gate...")
-    audit_education_quality(ctx, fail_on_blocking_findings=True)
-
-    print("[9/14] Checking cross-language parity...")
-    check_cross_language_parity(ctx)
-
-    print("[10/14] Checking exercise parity...")
-    check_exercise_parity(ctx)
-
-    print("[11/14] Checking example output contracts...")
-    check_example_output_contracts(ctx)
-
-    print("[12/14] Checking exercise output contracts...")
-    check_exercise_output_contracts(ctx)
-
-    print("[13/14] Checking checkpoint solution contracts...")
-    check_solution_checkpoint_contracts(ctx)
-
-    print("[14/14] Compiling compiled-language tracks...")
-    build_all(ctx)
-
-    print("Repository verification completed successfully.")
+    total_duration = perf_counter() - verification_started
+    timing_path = ctx.root / "build" / "reports" / "verify-repo-timings.json"
+    timing_path.parent.mkdir(parents=True, exist_ok=True)
+    timing_path.write_text(
+        json.dumps(
+            {
+                "generated_at_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                "total_seconds": round(total_duration, 3),
+                "phases": phase_durations,
+            },
+            indent=2,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    print(f"Repository verification completed successfully in {total_duration:.2f}s.")
+    print(f"Timing report: {timing_path.relative_to(ctx.root).as_posix()}")

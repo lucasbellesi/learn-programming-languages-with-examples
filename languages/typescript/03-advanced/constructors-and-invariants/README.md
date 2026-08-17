@@ -35,6 +35,12 @@ python scripts/automation.py run-module --module-path languages/typescript/03-ad
 - Exposing fields that bypass invariant checks.
 - Returning partially initialized objects.
 
+## Cross-Language Notes
+
+- In TypeScript, read this module through the native focus ?Constructors and Invariants?; the shared folder name remains stable for side-by-side navigation.
+- Use structural types, Node APIs, and explicit reference conventions to demonstrate how to construct objects only in valid states.
+- Compare observable behavior with the other tracks when learning to keep mutations from violating established invariants; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - exercises/01.ts: build a validated bank account.

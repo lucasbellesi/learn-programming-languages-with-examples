@@ -1,8 +1,12 @@
 package main
 
-import "fmt"
+func runConcurrencyBasicsExercise() {
+	// TODO 1: Read or prepare number of items to produce.
+	// TODO 2: Producer-consumer queue with channels.
+	// TODO 3: Produce produced/consumed item logs and completion summary; verify zero items;
+	//         consumer waiting on an empty queue.
+}
 
 func main() {
-	// TODO: implement the README specification (EXP-CON-01, EXP-CON-02).
-	fmt.Println("TODO: implement this exercise")
+	runConcurrencyBasicsExercise()
 }

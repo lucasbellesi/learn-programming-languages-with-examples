@@ -1,6 +1,12 @@
+def run_sorting_searching_exercise() -> None:
+    # TODO 1: Read or prepare integer `n`, then `n` integers.
+    # TODO 2: Implement selection sort.
+    # TODO 3: Produce numbers sorted ascending; verify duplicate values; already sorted input.
+    pass
+
+
 def main() -> None:
-    # TODO: implement the README specification (COR-SRT-01, COR-SRT-02).
-    print("TODO: implement this exercise")
+    run_sorting_searching_exercise()
 
 
 if __name__ == "__main__":

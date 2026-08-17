@@ -5,6 +5,22 @@
       "reason": "Keeps scanner recovery, range validation, retry behavior, and final aggregation in one traceable console workflow.",
       "review_when": "Split only if the entrypoint exceeds the level threshold by more than 50 percent or introduces a second domain task."
     },
+    "languages/cpp/02-core/input-validation/example/main.cpp": {
+      "reason": "Keeps stream recovery, range validation, retry behavior, and the final accepted value in one traceable input loop.",
+      "review_when": "Split if validation gains a second input domain or the recovery path can be demonstrated independently."
+    },
+    "languages/csharp/02-core/input-validation/example/main.cs": {
+      "reason": "Keeps parsing, retry prompts, range checks, and successful state transition visible in one console workflow.",
+      "review_when": "Extract a helper when another validated field would otherwise duplicate the loop."
+    },
+    "languages/go/02-core/algorithms-basics/example/main.go": {
+      "reason": "The side-by-side traversal, filtering, accumulation, and lookup operations form one deliberately comparable data pass.",
+      "review_when": "Split if another algorithm family is added or the comparison no longer fits one screen per operation."
+    },
+    "languages/go/02-core/file-io-basics/example/main.go": {
+      "reason": "Write, close, reopen, scan, error check, and cleanup are kept together so resource order remains observable.",
+      "review_when": "Extract helpers if a second file format or unrelated transformation is introduced."
+    },
     "languages/java/03-advanced/copy-and-move-semantics/example/Main.java": {
       "reason": "Java needs one cohesive comparison of aliasing, defensive copying, and explicit transfer-by-convention to avoid implying C++ move syntax exists on the JVM.",
       "review_when": "Revisit if a companion example can preserve the direct side-by-side comparison."

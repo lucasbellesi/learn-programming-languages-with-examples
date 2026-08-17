@@ -1,6 +1,13 @@
+def run_inheritance_polymorphism_exercise() -> None:
+    # TODO 1: Read or prepare triangle base and height.
+    # TODO 2: Extend shape model with `Triangle`.
+    # TODO 3: Produce computed area through overridden method; verify zero dimensions; decimal
+    #         dimensions.
+    pass
+
+
 def main() -> None:
-    # TODO: implement the README specification (ADV-POL-01, ADV-POL-02).
-    print("TODO: implement this exercise")
+    run_inheritance_polymorphism_exercise()
 
 
 if __name__ == "__main__":

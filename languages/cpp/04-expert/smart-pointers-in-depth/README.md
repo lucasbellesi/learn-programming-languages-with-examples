@@ -1,4 +1,4 @@
-# Smart Pointers in Depth
+# Smart Pointers in Depth (C++)
 
 This module expands ownership modeling with `unique_ptr`, `shared_ptr`, and `weak_ptr`.
 

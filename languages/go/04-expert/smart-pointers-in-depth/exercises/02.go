@@ -1,8 +1,12 @@
 package main
 
-import "fmt"
+func runSmartPointersInDepthExercise() {
+	// TODO 1: Read or prepare none.
+	// TODO 2: Navigate parent-child pointers safely.
+	// TODO 3: Produce parent/child navigation logs with nil-safe checks; verify detached child
+	//         pointer; missing parent pointer.
+}
 
 func main() {
-	// TODO: implement the README specification (EXP-OWN-01, EXP-OWN-02).
-	fmt.Println("TODO: implement this exercise")
+	runSmartPointersInDepthExercise()
 }

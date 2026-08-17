@@ -1,16 +1,21 @@
 // Module focus: Reading typed input carefully and turning raw text into values.
-// Why it matters: practicing types and io patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to choose suitable primitive values and variables
+// for a small problem before the learner tackles the exercises.
 
 using System;
 
-// Helper setup for types and io; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to choose suitable primitive values and
+// variables for a small problem.
 class Program
 {
-    // Walk through one fixed scenario so types and io behavior stays repeatable.
+    // Fixed inputs make the consequence of assuming input parsing always succeeds without
+    // validation visible and repeatable.
     static void Main()
     {
-        // Prepare sample inputs that exercise the key types and io path.
-        // Report values so learners can verify the types and io outcome.
+        // These values exercise the normal path before the exercises vary the documented
+        // boundaries.
+        // The printed result shows whether the program can read, validate, transform, and present
+        // console data.
         Console.Write("Enter your full name: ");
         string fullName = Console.ReadLine() ?? "";
 

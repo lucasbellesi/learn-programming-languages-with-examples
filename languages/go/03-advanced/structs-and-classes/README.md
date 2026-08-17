@@ -35,6 +35,12 @@ python scripts/automation.py run-module --module-path languages/go/03-advanced/s
 - Skipping constructor guards for invalid initial values.
 - Mixing value and pointer receivers without intent.
 
+## Cross-Language Notes
+
+- In Go, read this module through the native focus ?Structs and Classes?; the shared folder name remains stable for side-by-side navigation.
+- Use explicit errors, slices/maps, interfaces, and defer to demonstrate how to model data and behavior with cohesive domain types.
+- Compare observable behavior with the other tracks when learning to protect invariants through constructors and methods; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - exercises/01.go: model a rectangle using a `struct` and methods.

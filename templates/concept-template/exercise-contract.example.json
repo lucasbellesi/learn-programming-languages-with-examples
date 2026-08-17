@@ -1,0 +1,30 @@
+{
+  "language": "<language>",
+  "level": "<level>",
+  "module": "<module>",
+  "exercise": "01",
+  "route_role": "guided",
+  "starter_mode": "guided",
+  "outcome_ids": ["<OUTCOME-ID-01>"],
+  "cases": [
+    {
+      "name": "normal transformation",
+      "input_lines": ["<normal input>"],
+      "required_stdout_contains": ["<expected result>"],
+      "covers": ["normal"]
+    },
+    {
+      "name": "documented boundary",
+      "input_lines": ["<boundary input>"],
+      "required_stdout_contains": ["<boundary response>"],
+      "covers": ["boundary"]
+    },
+    {
+      "name": "invalid input is rejected",
+      "input_lines": ["<invalid input>"],
+      "required_stdout_contains": ["<diagnostic>"],
+      "forbidden_stdout_contains": ["<hardcoded normal result>"],
+      "covers": ["error"]
+    }
+  ]
+}

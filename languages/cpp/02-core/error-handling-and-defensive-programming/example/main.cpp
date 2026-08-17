@@ -1,12 +1,13 @@
 // Module focus: Guarding risky inputs so failures stay explicit and controlled.
-// Why it matters: practicing error handling and defensive programming patterns makes exercises and
-// checkpoints easier to reason about.
+// Why it matters: the example makes it possible to separate expected failures from
+// programming defects before the learner tackles the exercises.
 
 #include <iostream>
 #include <limits>
 using namespace std;
 
-// Helper setup for error handling and defensive programming; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to separate expected failures from
+// programming defects.
 bool safeDivide(double left, double right, double& result) {
     if (right == 0.0) {
         return false;
@@ -15,14 +16,14 @@ bool safeDivide(double left, double right, double& result) {
     return true;
 }
 
-// Walk through one fixed scenario so error handling and defensive programming behavior stays
-// repeatable.
+// A fixed scenario makes the main decision path visible and repeatable.
 int main() {
-    // Prepare sample inputs that exercise the key error handling and defensive programming path.
+    // These values exercise the normal path before the exercises vary the documented boundaries.
     double a = 0.0;
     double b = 0.0;
 
-    // Report values so learners can verify the error handling and defensive programming outcome.
+    // The printed result shows whether the program can preserve valid state and useful
+    // diagnostics when operations fail.
     cout << "Enter two numbers: ";
     if (!(cin >> a >> b)) {
         cout << "Invalid numeric input.\n";
