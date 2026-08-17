@@ -51,7 +51,7 @@ python scripts/automation.py run-module --module-path languages/typescript/01-fo
 1. exercises/01.ts
 - Input: one integer start value and one integer number of calls.
 - Output: the counter values in order.
-- Edge cases: zero calls should print nothing; negative start values should still work.
+- Edge cases: zero calls should print a clear message; negative start values should still work.
 
 2. exercises/02.ts
 - Input: one word and one replacement word.

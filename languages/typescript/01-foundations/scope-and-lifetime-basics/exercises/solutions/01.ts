@@ -14,8 +14,11 @@ const start = Number.parseInt(startText ?? "", 10);
 const callCount = Number.parseInt(callCountText ?? "", 10);
 if (!Number.isInteger(start) || !Number.isInteger(callCount) || callCount < 0) {
     console.log("Expected: start callCount");
-}
-const counter = makeCounter(start);
-for (let index = 0; index < callCount; index += 1) {
-    console.log(counter());
+} else if (callCount === 0) {
+    console.log("No calls requested.");
+} else {
+    const counter = makeCounter(start);
+    for (let index = 0; index < callCount; index += 1) {
+        console.log(counter());
+    }
 }

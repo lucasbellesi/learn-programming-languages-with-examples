@@ -13410,32 +13410,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Expected two integers and a non-zero divisor.",
-            "Quotient: NaN",
-            "Remainder: NaN",
-            "Left is even: false"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "17 5"
+          ],
+          "required_stdout_equals": "Quotient: 3\nRemainder: 2\nLeft is even: false\n"
         },
         {
           "name": "edge: division by zero should print an error",
           "covers": [
             "division by zero should print an error"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected two integers and a non-zero divisor.\nQuotient: NaN\nRemainder: NaN\nLeft is even: false\n"
+          "required_stdout_equals": "Expected two integers and a non-zero divisor.\n",
+          "input_lines": [
+            "17 0"
+          ]
         },
         {
           "name": "edge: negative values should still work",
           "covers": [
             "negative values should still work"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected two integers and a non-zero divisor.\nQuotient: NaN\nRemainder: NaN\nLeft is even: false\n"
+          "required_stdout_equals": "Quotient: -3\nRemainder: -2\nLeft is even: false\n",
+          "input_lines": [
+            "-17 5"
+          ]
         }
       ],
       "route_role": "guided",
@@ -13454,30 +13456,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Expected: subtotal loyaltyFlag",
-            "Final price: NaN"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "120 true"
+          ],
+          "required_stdout_equals": "Final price: 103.00\n"
         },
         {
           "name": "edge: subtotal 0 should remain 0",
           "covers": [
             "subtotal 0 should remain 0"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected: subtotal loyaltyFlag\nFinal price: NaN\n"
+          "required_stdout_equals": "Final price: 0.00\n",
+          "input_lines": [
+            "0 false"
+          ]
         },
         {
           "name": "edge: invalid loyalty text should print an error",
           "covers": [
             "invalid loyalty text should print an error"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected: subtotal loyaltyFlag\nFinal price: NaN\n"
+          "required_stdout_equals": "Expected: subtotal loyaltyFlag\n",
+          "input_lines": [
+            "100 yes"
+          ]
         }
       ],
       "route_role": "both",
@@ -13496,30 +13502,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Expected one integer option.",
-            "Unknown option"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "2"
+          ],
+          "required_stdout_equals": "Save\n"
         },
         {
           "name": "edge: unknown menu options should print Unknown option",
           "covers": [
             "unknown menu options should print Unknown option"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected one integer option.\nUnknown option\n"
+          "required_stdout_equals": "Unknown option\n",
+          "input_lines": [
+            "9"
+          ]
         },
         {
           "name": "edge: negative numbers should still be handled",
           "covers": [
             "negative numbers should still be handled"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected one integer option.\nUnknown option\n"
+          "required_stdout_equals": "Unknown option\n",
+          "input_lines": [
+            "-1"
+          ]
         }
       ],
       "route_role": "guided",
@@ -13538,30 +13548,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Expected a non-negative integer.",
-            "Countdown complete."
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "3"
+          ],
+          "required_stdout_equals": "Count: 3\nCount: 2\nCount: 1\nCount: 0\nCountdown complete.\n"
         },
         {
           "name": "edge: 0 should still print one line",
           "covers": [
             "0 should still print one line"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected a non-negative integer.\nCountdown complete.\n"
+          "required_stdout_equals": "Count: 0\nStopped immediately.\n",
+          "input_lines": [
+            "0"
+          ]
         },
         {
           "name": "edge: negative input should print an error",
           "covers": [
             "negative input should print an error"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected a non-negative integer.\nCountdown complete.\n"
+          "required_stdout_equals": "Expected a non-negative integer.\n",
+          "input_lines": [
+            "-1"
+          ]
         }
       ],
       "route_role": "both",
@@ -13580,29 +13594,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Expected three integers."
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "3 9 4"
+          ],
+          "required_stdout_equals": "9\n"
         },
         {
           "name": "edge: repeated maximum values should still return the right answer",
           "covers": [
             "repeated maximum values should still return the right answer"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected three integers.\nNaN\n"
+          "required_stdout_equals": "9\n",
+          "input_lines": [
+            "9 9 2"
+          ]
         },
         {
           "name": "edge: negative values should still work",
           "covers": [
             "negative values should still work"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected three integers.\nNaN\n"
+          "required_stdout_equals": "-2\n",
+          "input_lines": [
+            "-5 -2 -9"
+          ]
         }
       ],
       "route_role": "guided",
@@ -13621,29 +13640,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "0"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "Education"
+          ],
+          "required_stdout_equals": "5\n"
         },
         {
           "name": "edge: an empty string should return 0",
           "covers": [
             "an empty string should return 0"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "0\n"
+          "required_stdout_equals": "0\n",
+          "input_lines": [
+            ""
+          ]
         },
         {
           "name": "edge: uppercase vowels should be counted",
           "covers": [
             "uppercase vowels should be counted"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "0\n"
+          "required_stdout_equals": "5\n",
+          "input_lines": [
+            "AEIOU xyz"
+          ]
         }
       ],
       "route_role": "both",
@@ -13662,30 +13686,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Count must be a positive integer.",
-            "Missing or invalid integer values."
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "5 1 2 3 4 5"
+          ],
+          "required_stdout_equals": "5 4 3 2 1\n"
         },
         {
           "name": "edge: N <= 0 should print an error",
           "covers": [
             "N <= 0 should print an error"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Count must be a positive integer.\nMissing or invalid integer values.\n\n"
+          "required_stdout_equals": "Count must be a positive integer.\n",
+          "input_lines": [
+            "0"
+          ]
         },
         {
           "name": "edge: repeated values should stay repeated in reverse",
           "covers": [
             "repeated values should stay repeated in reverse"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Count must be a positive integer.\nMissing or invalid integer values.\n\n"
+          "required_stdout_equals": "2 3 3 2 2\n",
+          "input_lines": [
+            "5 2 2 3 3 2"
+          ]
         }
       ],
       "route_role": "guided",
@@ -13704,29 +13732,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Expected at least one word."
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "red blue red green"
+          ],
+          "required_stdout_equals": "red blue green\n"
         },
         {
           "name": "edge: empty input should print an error",
           "covers": [
             "empty input should print an error"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected at least one word.\n\n"
+          "required_stdout_equals": "Expected at least one word.\n",
+          "input_lines": [
+            ""
+          ]
         },
         {
           "name": "edge: already unique input should stay unchanged",
           "covers": [
             "already unique input should stay unchanged"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected at least one word.\n\n"
+          "required_stdout_equals": "red blue green\n",
+          "input_lines": [
+            "red blue green"
+          ]
         }
       ],
       "route_role": "both",
@@ -13745,29 +13778,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "0"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "one two three"
+          ],
+          "required_stdout_equals": "3\n"
         },
         {
           "name": "edge: empty input should return 0",
           "covers": [
             "empty input should return 0"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "0\n0\n"
+          "required_stdout_equals": "0\n",
+          "input_lines": [
+            ""
+          ]
         },
         {
           "name": "edge: repeated spaces should not create extra words",
           "covers": [
             "repeated spaces should not create extra words"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "0\n0\n"
+          "required_stdout_equals": "3\n",
+          "input_lines": [
+            "one   two    three"
+          ]
         }
       ],
       "route_role": "guided",
@@ -13786,30 +13824,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Expected a token shaped like name@domain.",
-            "@***"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "alice@example.com"
+          ],
+          "required_stdout_equals": "alice@***\n"
         },
         {
           "name": "edge: missing @ should print an error",
           "covers": [
             "missing @ should print an error"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected a token shaped like name@domain.\n@***\n"
+          "required_stdout_equals": "Expected a token shaped like name@domain.\n",
+          "input_lines": [
+            "alice.example.com"
+          ]
         },
         {
           "name": "edge: uppercase letters should be normalized",
           "covers": [
             "uppercase letters should be normalized"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected a token shaped like name@domain.\n@***\n"
+          "required_stdout_equals": "user@***\n",
+          "input_lines": [
+            "USER@EXAMPLE.COM"
+          ]
         }
       ],
       "route_role": "both",
@@ -13828,29 +13870,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Expected: start callCount"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "10 3"
+          ],
+          "required_stdout_equals": "11\n12\n13\n"
         },
         {
-          "name": "edge: zero calls should print nothing",
+          "name": "edge: zero calls should print a clear message",
           "covers": [
-            "zero calls should print nothing"
+            "zero calls should print a clear message"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected: start callCount\n"
+          "required_stdout_equals": "No calls requested.\n",
+          "input_lines": [
+            "10 0"
+          ]
         },
         {
           "name": "edge: negative start values should still work",
           "covers": [
             "negative start values should still work"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected: start callCount\n"
+          "required_stdout_equals": "-1\n0\n",
+          "input_lines": [
+            "-2 2"
+          ]
         }
       ],
       "route_role": "guided",
@@ -13869,32 +13916,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Expected: outerWord innerWord",
-            "Outer before block:",
-            "Inner block: undefined",
-            "Outer after block:"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "outer inner"
+          ],
+          "required_stdout_equals": "Outer before block: outer\nInner block: inner\nOuter after block: outer\n"
         },
         {
           "name": "edge: empty words should print an error",
           "covers": [
             "empty words should print an error"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected: outerWord innerWord\nOuter before block: \nInner block: undefined\nOuter after block: \n"
+          "required_stdout_equals": "Expected: outerWord innerWord\n",
+          "input_lines": [
+            "outer"
+          ]
         },
         {
           "name": "edge: identical words should still demonstrate two scopes",
           "covers": [
             "identical words should still demonstrate two scopes"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected: outerWord innerWord\nOuter before block: \nInner block: undefined\nOuter after block: \n"
+          "required_stdout_equals": "Outer before block: same\nInner block: same\nOuter after block: same\n",
+          "input_lines": [
+            "same same"
+          ]
         }
       ],
       "route_role": "both",
@@ -13913,30 +13962,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Expected: item quantity unitPrice",
-            "Invalid invoice data."
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "Notebook 3 12.5"
+          ],
+          "required_stdout_equals": "Notebook     |   3 |    37.50\n"
         },
         {
           "name": "edge: quantity 0 should still print cleanly",
           "covers": [
             "quantity 0 should still print cleanly"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected: item quantity unitPrice\nInvalid invoice data.\n             | NaN |      NaN\n"
+          "required_stdout_equals": "Notebook     |   0 |     0.00\n",
+          "input_lines": [
+            "Notebook 0 12.5"
+          ]
         },
         {
           "name": "edge: invalid numbers should print an error",
           "covers": [
             "invalid numbers should print an error"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected: item quantity unitPrice\nInvalid invoice data.\n             | NaN |      NaN\n"
+          "required_stdout_equals": "Invalid invoice data.\n",
+          "input_lines": [
+            "Notebook nope 12.5"
+          ]
         }
       ],
       "route_role": "guided",
@@ -13955,29 +14008,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Expected pairs of name and score."
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "Ana 90 Bob 82.5"
+          ],
+          "required_stdout_equals": "Ana          90.0\nBob          82.5\n"
         },
         {
           "name": "edge: odd token counts should print an error",
           "covers": [
             "odd token counts should print an error"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected pairs of name and score.\n"
+          "required_stdout_equals": "Expected pairs of name and score.\n",
+          "input_lines": [
+            "Ana 90 Bob"
+          ]
         },
         {
           "name": "edge: decimal scores should still align",
           "covers": [
             "decimal scores should still align"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected pairs of name and score.\n"
+          "required_stdout_equals": "Ana          90.3\nBob          82.8\n",
+          "input_lines": [
+            "Ana 90.25 Bob 82.75"
+          ]
         }
       ],
       "route_role": "both",

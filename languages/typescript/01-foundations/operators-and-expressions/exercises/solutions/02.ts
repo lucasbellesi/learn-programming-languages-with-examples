@@ -9,10 +9,11 @@ if (
     (loyaltyText !== "true" && loyaltyText !== "false")
 ) {
     console.log("Expected: subtotal loyaltyFlag");
+} else {
+    const isLoyal = loyaltyText === "true";
+    const discountRate = subtotal >= 100 ? 0.1 : 0.05;
+    const loyaltyBonus = isLoyal ? 5 : 0;
+    console.log(
+        `Final price: ${Math.max(0, subtotal - subtotal * discountRate - loyaltyBonus).toFixed(2)}`,
+    );
 }
-const isLoyal = loyaltyText === "true";
-const discountRate = subtotal >= 100 ? 0.1 : 0.05;
-const loyaltyBonus = isLoyal ? 5 : 0;
-console.log(
-    `Final price: ${Math.max(0, subtotal - subtotal * discountRate - loyaltyBonus).toFixed(2)}`,
-);
