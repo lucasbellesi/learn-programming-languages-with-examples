@@ -1,8 +1,10 @@
 # Module focus: Choosing between branches and repeating work with predictable control flow.
-# Why it matters: practicing control flow patterns makes exercises and checkpoints easier to reason
+# Why it matters: the example makes it possible to select branches that cover normal and boundary
+# conditions before the learner tackles the exercises.
 # about.
 
-# Walk through one fixed scenario so control flow behavior stays repeatable.
+# Fixed inputs make the consequence of not handling non-positive upper bounds before entering
+# loops visible and repeatable.
 value = int(input("Enter an integer: "))
 
 if value > 0:
@@ -18,7 +20,8 @@ factorial = 1
 for i in range(1, n + 1):
     factorial *= i
 
-# Report values so learners can verify the control flow outcome.
+# The printed result shows whether the program can write terminating loops and reason about their
+# invariants.
 print(f"factorial({n}) = {factorial}")
 print("Numbers 1..N:")
 for i in range(1, n + 1):

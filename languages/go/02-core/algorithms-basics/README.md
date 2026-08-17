@@ -37,9 +37,9 @@ python scripts/automation.py run-module --module-path languages/go/02-core/algor
 
 ## Cross-Language Notes
 
-- Compared with the C++ baseline, the same traversal and aggregation ideas are expressed with different defaults for loops, collections, and helper functions.
-- Relative to Python, the statically typed tracks make intermediate state and accumulator types more explicit.
-- The useful comparison is algorithm shape staying constant while the surrounding syntax and safety rails change.
+- In Go, read this module through the native focus ?Algorithms Basics?; the shared folder name remains stable for side-by-side navigation.
+- Use explicit errors, slices/maps, interfaces, and defer to demonstrate how to implement linear scans and accumulations with clear invariants.
+- Compare observable behavior with the other tracks when learning to analyze behavior for empty, duplicate, and missing values; equivalent evidence matters more than identical syntax.
 
 ## Exercise Focus
 

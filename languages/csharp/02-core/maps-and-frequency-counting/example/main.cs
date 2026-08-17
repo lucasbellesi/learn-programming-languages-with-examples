@@ -1,16 +1,20 @@
 // Module focus: Counting repeated values and summarizing them through keyed lookups.
-// Why it matters: practicing maps and frequency counting patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to use key-value collections to aggregate and
+// retrieve data before the learner tackles the exercises.
 
 using System;
 using System.Collections.Generic;
 
-// Helper setup for maps and frequency counting; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to use key-value collections to aggregate
+// and retrieve data.
 class Program
 {
-    // Walk through one fixed scenario so maps and frequency counting behavior stays repeatable.
+    // Fixed inputs make the consequence of assuming missing keys exist before initialization
+    // visible and repeatable.
     static void Main()
     {
-        // Prepare sample inputs that exercise the key maps and frequency counting path.
+        // These values exercise the normal path before the exercises vary the documented
+        // boundaries.
         string text = "banana bandana";
         SortedDictionary<char, int> frequencies = new SortedDictionary<char, int>();
 
@@ -29,7 +33,8 @@ class Program
             frequencies[ch]++;
         }
 
-        // Report values so learners can verify the maps and frequency counting outcome.
+        // The printed result shows whether the program can define normalization and missing-key
+        // behavior explicitly.
         Console.WriteLine("Character frequencies:");
         foreach (KeyValuePair<char, int> entry in frequencies)
         {

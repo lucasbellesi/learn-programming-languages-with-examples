@@ -1,7 +1,13 @@
-#include <iostream>
+namespace {
+void runFunctionsExercise() {
+    // TODO 1: Read or prepare one line of text.
+    // TODO 2: Count vowels in a string.
+    // TODO 3: Produce vowel count; verify empty string returns `0`; uppercase vowels should be
+    //         counted.
+}
+} // namespace
 
 int main() {
-    // TODO: implement the README specification (FND-FUN-01, FND-FUN-02).
-    std::cout << "TODO: implement this exercise\n";
+    runFunctionsExercise();
     return 0;
 }

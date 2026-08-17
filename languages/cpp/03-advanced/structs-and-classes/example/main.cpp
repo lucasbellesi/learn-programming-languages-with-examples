@@ -1,6 +1,6 @@
 // Module focus: Modeling related data and behavior with structured types.
-// Why it matters: practicing structs and classes patterns makes exercises and checkpoints easier to
-// reason about.
+// Why it matters: the example makes it possible to model data and behavior with cohesive domain
+// types before the learner tackles the exercises.
 
 #include <iostream>
 #include <string>
@@ -33,13 +33,15 @@ class BankAccount {
     double balance;
 };
 
-// Walk through one fixed scenario so structs and classes behavior stays repeatable.
+// Fixed inputs make the consequence of exposing mutable state publicly without reason visible and
+// repeatable.
 int main() {
-    // Prepare sample inputs that exercise the key structs and classes path.
+    // These values exercise the normal path before the exercises vary the documented boundaries.
     Student first{"Alex Johnson", 8.7};
     Student second{"Maya Patel", 9.1};
 
-    // Report values so learners can verify the structs and classes outcome.
+    // The printed result shows whether the program can protect invariants through constructors
+    // and methods.
     cout << "Students (struct example):\n";
     cout << "Student{name=\"" << first.name << "\", grade=" << first.grade << "}\n";
     cout << "Student{name=\"" << second.name << "\", grade=" << second.grade << "}\n";

@@ -1,11 +1,13 @@
 // Module focus: Modeling related data and behavior with structured types.
-// Why it matters: practicing structs and classes patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to model data and behavior with cohesive domain
+// types before the learner tackles the exercises.
 
 package main
 
 import "fmt"
 
-// Helper setup for structs and classes; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to model data and behavior with cohesive
+// domain types.
 type Coordinate struct {
 	X int
 	Y int
@@ -37,12 +39,14 @@ func (w *Wallet) Apply(amount float64) bool {
 	return true
 }
 
-// Walk through one fixed scenario so structs and classes behavior stays repeatable.
+// Fixed inputs make the consequence of mutating shared state without clear method boundaries
+// visible and repeatable.
 func main() {
-	// Prepare sample inputs that exercise the key structs and classes path.
+	// These values exercise the normal path before the exercises vary the documented boundaries.
 	route := []Coordinate{{X: 2, Y: 3}, {X: -1, Y: 4}, {X: 5, Y: -2}}
 
-	// Report values so learners can verify the structs and classes outcome.
+	// The printed result shows whether the program can protect invariants through constructors and
+	// methods.
 	fmt.Println("Coordinates (struct example):")
 	for _, point := range route {
 		fmt.Printf("Point (%d, %d), Manhattan distance = %d\n", point.X, point.Y, point.ManhattanDistanceFromOrigin())

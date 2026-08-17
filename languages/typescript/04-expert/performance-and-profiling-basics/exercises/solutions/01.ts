@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { performance } from "node:perf_hooks";
 
 type Pair = {
@@ -15,7 +16,12 @@ function averageDuration(runs: number, work: () => void): number {
 }
 
 function main(): void {
-    const records: Pair[] = Array.from({ length: 4_000 }, (_, index) => ({
+    const requestedSize = Number(readFileSync(0, "utf8").trim());
+    const size =
+        Number.isInteger(requestedSize) && requestedSize >= 0
+            ? requestedSize
+            : 0;
+    const records: Pair[] = Array.from({ length: size }, (_, index) => ({
         key: `key-${index}`,
         value: index,
     }));
@@ -25,16 +31,25 @@ function main(): void {
     const runs = 12;
 
     const scanAverage = averageDuration(runs, () => {
-        for (const target of ["key-10", "key-2000", "key-3999"]) {
+        for (const target of [
+            "key-0",
+            `key-${Math.floor(size / 2)}`,
+            `key-${size - 1}`,
+        ]) {
             void records.find((record) => record.key === target)?.value;
         }
     });
     const mapAverage = averageDuration(runs, () => {
-        for (const target of ["key-10", "key-2000", "key-3999"]) {
+        for (const target of [
+            "key-0",
+            `key-${Math.floor(size / 2)}`,
+            `key-${size - 1}`,
+        ]) {
             void lookupMap.get(target);
         }
     });
 
+    console.log(`Records: ${size}`);
     console.log(`Scan average (ms): ${scanAverage.toFixed(3)}`);
     console.log(`Map average (ms): ${mapAverage.toFixed(3)}`);
 }

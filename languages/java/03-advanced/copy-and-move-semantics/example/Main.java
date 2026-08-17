@@ -1,5 +1,6 @@
 // Module focus: How copying, sharing, or transferring state changes later behavior.
-// Why it matters: practicing copy and move semantics patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to predict aliasing and independence after
+// copying or sharing values before the learner tackles the exercises.
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +61,8 @@ public class Main {
         shallowCopy.adjustReserved(3);
         defensiveCopy.adjustStock(5);
 
-        // Report output values so learners can verify the copy and move semantics result.
+        // The printed result shows whether the program can choose an idiomatic ownership-transfer
+        // strategy for the language.
         System.out.println("Original: " + original.summary());
         System.out.println("Shallow copy: " + shallowCopy.summary());
         System.out.println("Defensive copy: " + defensiveCopy.summary());

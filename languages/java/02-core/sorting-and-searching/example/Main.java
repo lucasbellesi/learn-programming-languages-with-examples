@@ -1,5 +1,6 @@
 // Module focus: Reordering data and locating values with deliberate search logic.
-// Why it matters: practicing sorting and searching patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to choose and apply sorting and searching
+// operations correctly before the learner tackles the exercises.
 
 import java.util.Arrays;
 

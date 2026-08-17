@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+
 class TemporaryBuffer {
     private released = false;
 
@@ -21,12 +23,26 @@ class TemporaryBuffer {
 }
 
 function main(): void {
-    const buffer = new TemporaryBuffer("session-cache");
+    const [label = "buffer", chunkLine = "", mode = "success"] = readFileSync(
+        0,
+        "utf8",
+    )
+        .trimEnd()
+        .split(/\r?\n/);
+    const chunks = chunkLine
+        .split(",")
+        .map((chunk) => chunk.trim())
+        .filter((chunk) => chunk.length > 0);
+    const buffer = new TemporaryBuffer(label.trim() || "buffer");
 
     try {
-        buffer.append("header");
-        buffer.append("payload");
-        throw new Error("Simulated failure after work");
+        for (const chunk of chunks) {
+            buffer.append(chunk);
+        }
+        if (mode.trim() === "failure") {
+            throw new Error("Simulated failure after work");
+        }
+        console.log(`Work complete: ${chunks.length} chunk(s)`);
     } catch (error) {
         if (error instanceof Error) {
             console.log(`Caught: ${error.message}`);

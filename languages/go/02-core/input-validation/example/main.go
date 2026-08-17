@@ -1,5 +1,6 @@
 // Module focus: Rejecting invalid input before the main workflow continues.
-// Why it matters: practicing input validation patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to reject malformed and out-of-domain input
+// without corrupting state before the learner tackles the exercises.
 
 package main
 
@@ -11,7 +12,8 @@ import (
 	"strings"
 )
 
-// Helper setup for input validation; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to reject malformed and out-of-domain input
+// without corrupting state.
 func readRequiredLine(reader *bufio.Reader, prompt string) string {
 	for {
 		fmt.Print(prompt)
@@ -60,15 +62,17 @@ func readFloatInRange(reader *bufio.Reader, prompt string, minValue float64, max
 	}
 }
 
-// Walk through one fixed scenario so input validation behavior stays repeatable.
+// Fixed inputs make the consequence of assuming `Atoi` and `ParseFloat` always succeed visible
+// and repeatable.
 func main() {
-	// Prepare sample inputs that exercise the key input validation path.
+	// These values exercise the normal path before the exercises vary the documented boundaries.
 	reader := bufio.NewReader(os.Stdin)
 
 	age := readIntInRange(reader, "Enter your age (1-120): ", 1, 120)
 	gpa := readFloatInRange(reader, "Enter your GPA (0.0-4.0): ", 0.0, 4.0)
 
-	// Report values so learners can verify the input validation outcome.
+	// The printed result shows whether the program can design retry and termination behavior that
+	// cannot loop accidentally.
 	fmt.Println("\nValidated input summary:")
 	fmt.Printf("Age: %d\n", age)
 	fmt.Printf("GPA: %.2f\n", gpa)

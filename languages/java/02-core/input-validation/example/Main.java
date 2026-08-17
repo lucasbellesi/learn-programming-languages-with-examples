@@ -1,5 +1,6 @@
 // Module focus: Rejecting invalid input before the main workflow continues.
-// Why it matters: practicing input validation patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to reject malformed and out-of-domain input
+// without corrupting state before the learner tackles the exercises.
 
 import java.util.ArrayList;
 import java.util.List;

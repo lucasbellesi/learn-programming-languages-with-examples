@@ -35,6 +35,12 @@ python scripts/automation.py run-module --module-path languages/python/01-founda
 - Applying tax before discount when the exercise requires the opposite.
 - Losing precision by using integer arithmetic for percentages.
 
+## Cross-Language Notes
+
+- In Python, read this module through the native focus ?Operators and Expressions?; the shared folder name remains stable for side-by-side navigation.
+- Use dynamic values, collection protocols, and context managers to demonstrate how to build expressions with correct precedence and explicit intent.
+- Compare observable behavior with the other tracks when learning to distinguish arithmetic, comparison, and logical operations; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - exercises/01.py: convert total seconds into hours, minutes, and seconds.

@@ -1,13 +1,14 @@
 # Module focus: Tying resource cleanup to object lifetime so cleanup stays predictable.
-# Why it matters: practicing memory management and raii patterns makes exercises and checkpoints
-# easier to reason about.
+# Why it matters: the example makes it possible to explain the language's resource and memory
+# lifetime model before the learner tackles the exercises.
 
 from __future__ import annotations
 
 
-# Helper setup for memory management and raii; this keeps the walkthrough readable.
+# Separate helpers keep the main path focused on how to explain the language's resource and memory
+# lifetime model.
 class BufferLease:
-    # Prepare sample inputs that exercise the key memory management and raii path.
+    # These values exercise the normal path before the exercises vary the documented boundaries.
     active_leases = 0
 
     def __init__(self, name: str, size: int) -> None:
@@ -17,7 +18,8 @@ class BufferLease:
 
     def __enter__(self) -> "BufferLease":
         BufferLease.active_leases += 1
-        # Report output values so learners can verify the memory management and raii outcome.
+        # The printed result shows whether the program can guarantee deterministic cleanup for
+        # non-memory resources.
         print(f"[acquire] {self._name} size={len(self._values)} active={BufferLease.active_leases}")
         return self
 
@@ -50,7 +52,8 @@ class BufferLease:
             raise RuntimeError("buffer already closed")
 
 
-# Walk through one fixed scenario so memory management and raii behavior stays repeatable.
+# Fixed inputs make the consequence of assuming cleanup will happen at a predictable time without
+# a context manager visible and repeatable.
 def main() -> None:
     print(f"Active before scope: {BufferLease.active_leases}")
 

@@ -1,5 +1,6 @@
 // Module focus: How names stay visible only inside the blocks that own them.
-// Why it matters: practicing scope and lifetime basics patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to predict name visibility across nested scopes
+// before the learner tackles the exercises.
 
 function makeCounter(start: number): () => number {
     let current = start;
@@ -9,7 +10,8 @@ function makeCounter(start: number): () => number {
     };
 }
 const nextTicket = makeCounter(100);
-// Report output values so learners can verify the scope and lifetime basics result.
+// The printed result shows whether the program can explain when values and resources cease to be
+// usable.
 console.log(`Ticket: ${nextTicket()}`);
 console.log(`Ticket: ${nextTicket()}`);
 {

@@ -1,4 +1,4 @@
-# Arrays and Vectors (Go)
+# Arrays and Slices (Go)
 
 This module practices storing sequences, iterating them, and computing frequencies.
 
@@ -37,9 +37,9 @@ python scripts/automation.py run-module --module-path languages/go/01-foundation
 
 ## Cross-Language Notes
 
-- Compared with the C++ version, each track solves the same sequence problems with a different default dynamic-array model.
-- The key comparison is where bounds safety, resizing behavior, and iteration ergonomics come from in each language.
-- This module is most useful when you notice how similar tasks feel different under `vector`, `List<T>`, slices, Python lists, and TypeScript arrays.
+- In Go, read this module through the native focus ?Arrays and Slices?; the shared folder name remains stable for side-by-side navigation.
+- Use explicit errors, slices/maps, interfaces, and defer to demonstrate how to store and traverse ordered collections safely.
+- Compare observable behavior with the other tracks when learning to handle empty collections and index boundaries explicitly; equivalent evidence matters more than identical syntax.
 
 ## Exercise Focus
 

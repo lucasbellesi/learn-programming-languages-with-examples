@@ -1,9 +1,11 @@
 // Module focus: Tying resource cleanup to object lifetime so cleanup stays predictable.
-// Why it matters: practicing memory management and raii patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to explain the language's resource and memory
+// lifetime model before the learner tackles the exercises.
 
 using System;
 
-// Helper setup for memory management and raii; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to explain the language's resource and
+// memory lifetime model.
 sealed class BufferLease : IDisposable
 {
     private int[] values;

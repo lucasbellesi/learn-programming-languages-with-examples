@@ -1,8 +1,12 @@
 package main
 
-import "fmt"
+func runCopyMoveSemanticsExercise() {
+	// TODO 1: Read or prepare buffer size and values.
+	// TODO 2: Resource-like buffer with clone and transfer operations.
+	// TODO 3: Produce logs showing clone and transfer behavior; verify zero-size buffer; repeated
+	//         transfers.
+}
 
 func main() {
-	// TODO: implement the README specification (ADV-CPY-01, ADV-CPY-02).
-	fmt.Println("TODO: implement this exercise")
+	runCopyMoveSemanticsExercise()
 }

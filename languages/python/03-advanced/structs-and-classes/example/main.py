@@ -1,13 +1,14 @@
 # Module focus: Modeling related data and behavior with structured types.
-# Why it matters: practicing structs and classes patterns makes exercises and checkpoints easier to
-# reason about.
+# Why it matters: the example makes it possible to model data and behavior with cohesive domain
+# types before the learner tackles the exercises.
 
 from dataclasses import dataclass
 
 
-# Prepare sample inputs that exercise the key structs and classes path.
+# These values exercise the normal path before the exercises vary the documented boundaries.
 @dataclass(frozen=True)
-# Helper setup for structs and classes; this keeps the walkthrough readable.
+# Separate helpers keep the main path focused on how to model data and behavior with cohesive
+# domain types.
 class Coordinate:
     x: int
     y: int
@@ -46,11 +47,13 @@ class Wallet:
         return self._balance
 
 
-# Walk through one fixed scenario so structs and classes behavior stays repeatable.
+# Fixed inputs make the consequence of placing mutable shared defaults directly on class
+# definitions visible and repeatable.
 def main() -> None:
     route = [Coordinate(2, 3), Coordinate(-1, 4), Coordinate(5, -2)]
 
-    # Report output values so learners can verify the structs and classes outcome.
+    # The printed result shows whether the program can protect invariants through constructors and
+    # methods.
     print("Coordinates (dataclass example):")
     for point in route:
         print(

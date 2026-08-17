@@ -1,6 +1,6 @@
 // Module focus: Starting multiple units of work and combining their results safely.
-// Why it matters: practicing concurrency basics patterns makes exercises and checkpoints easier to
-// reason about.
+// Why it matters: the example makes it possible to coordinate concurrent work without data races
+// or lost results before the learner tackles the exercises.
 
 #include <iostream>
 #include <mutex>
@@ -8,9 +8,10 @@
 #include <vector>
 using namespace std;
 
-// Walk through one fixed scenario so concurrency basics behavior stays repeatable.
+// Fixed inputs make the consequence of reading/writing shared state without synchronization
+// visible and repeatable.
 int main() {
-    // Prepare sample inputs that exercise the key concurrency basics path.
+    // These values exercise the normal path before the exercises vary the documented boundaries.
     const int threadCount = 4;
     const int incrementsPerThread = 50000;
 
@@ -36,7 +37,8 @@ int main() {
     }
 
     const int expected = threadCount * incrementsPerThread;
-    // Report values so learners can verify the concurrency basics outcome.
+    // The printed result shows whether the program can define completion, cancellation, and error
+    // propagation behavior.
     cout << "Expected: " << expected << '\n';
     cout << "Actual: " << counter << '\n';
 

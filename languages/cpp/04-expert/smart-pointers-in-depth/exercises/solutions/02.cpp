@@ -1,5 +1,6 @@
-﻿#include <iostream>
+#include <iostream>
 #include <memory>
+#include <string>
 using namespace std;
 
 class Parent;
@@ -32,12 +33,22 @@ class Parent : public enable_shared_from_this<Parent> {
 };
 
 int main() {
+    string scenario;
+    cin >> scenario;
     shared_ptr<Child> child(new Child());
+
+    if (scenario == "missing") {
+        child->checkParent();
+        return 0;
+    }
 
     {
         shared_ptr<Parent> parent(new Parent());
         parent->attachChild(child);
-        child->checkParent();
+        if (scenario == "alive") {
+            child->checkParent();
+            return 0;
+        }
     }
 
     child->checkParent();

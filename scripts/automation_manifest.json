@@ -5,6 +5,7 @@
     "## Quick Run",
     "## Topics Covered",
     "## Common Pitfalls",
+    "## Cross-Language Notes",
     "## Exercise Focus",
     "### Exercise Specs",
     "## Check Your Work",
@@ -353,7 +354,7 @@
       "path": "LANGUAGE_PARITY_MATRIX.md",
       "markers": [
         "- Canonical order is defined by the C++ track.",
-        "- All six tracks now reach module and checkpoint parity through `04-expert`.",
+        "- All six tracks have structural parity through `04-expert`.",
         "`04-expert` projects and assessments are now implemented across all six active tracks.",
         "| types-and-io | Done | Done | Done | Done | Done | Done |",
         "| 02-core | Done | Done | Done | Done | Done | Done |",

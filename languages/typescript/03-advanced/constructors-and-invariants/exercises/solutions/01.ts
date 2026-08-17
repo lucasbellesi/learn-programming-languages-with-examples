@@ -8,6 +8,9 @@ class BankAccount {
         if (!owner.trim()) {
             throw new Error("Owner name is required.");
         }
+        if (Number.isNaN(balance)) {
+            throw new Error("Opening balance must be numeric.");
+        }
         if (balance < 0) {
             throw new Error("Balance must be non-negative.");
         }
@@ -15,14 +18,9 @@ class BankAccount {
 }
 
 function main(): void {
-    const tokens = fs
-        .readFileSync(0, "utf8")
-        .trim()
-        .split(/\s+/)
-        .filter((token) => token.length > 0);
-
-    const owner = tokens[0] ?? "";
-    const openingBalance = Number.parseFloat(tokens[1] ?? "");
+    const lines = fs.readFileSync(0, "utf8").replace(/\r/g, "").split("\n");
+    const owner = (lines[0] ?? "").trim();
+    const openingBalance = Number.parseFloat((lines[1] ?? "").trim());
 
     try {
         const account = new BankAccount(owner, openingBalance);

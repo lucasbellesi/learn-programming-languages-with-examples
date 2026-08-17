@@ -1,5 +1,8 @@
 # C++ Progress Checklist
 
+Use the shared [solution rubric](../../LEARNER_SOLUTION_RUBRIC.md) and
+[learning log](../../LEARNING_LOG_TEMPLATE.md); they apply equally to every track.
+
 ## Setup
 
 - [ ] Complete `00-setup`.

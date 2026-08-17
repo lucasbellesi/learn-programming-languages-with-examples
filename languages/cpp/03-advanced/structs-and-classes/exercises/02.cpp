@@ -1,7 +1,13 @@
-#include <iostream>
+namespace {
+void runStructsClassesExercise() {
+    // TODO 1: Read or prepare sequence of commands (`inc`, `dec`, `reset`, `stop`).
+    // TODO 2: Create encapsulated `Counter` class.
+    // TODO 3: Produce counter value updates and final value; verify unknown commands; immediate
+    //         `stop`.
+}
+} // namespace
 
 int main() {
-    // TODO: implement the README specification (ADV-MOD-01, ADV-MOD-02).
-    std::cout << "TODO: implement this exercise\n";
+    runStructsClassesExercise();
     return 0;
 }

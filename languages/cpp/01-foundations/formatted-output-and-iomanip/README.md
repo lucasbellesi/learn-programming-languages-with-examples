@@ -1,4 +1,4 @@
-# Formatted Output and iomanip
+# Formatted Output and iomanip (C++)
 
 This module teaches readable numeric and table output formatting.
 
@@ -39,6 +39,12 @@ python scripts/automation.py run-module --module-path languages/cpp/01-foundatio
 - Forgetting `<iomanip>` include.
 - Mixing inconsistent precision across rows.
 - Not reserving enough width for long labels.
+
+## Cross-Language Notes
+
+- In C++, read this module through the native focus ?Formatted Output and iomanip?; the shared folder name remains stable for side-by-side navigation.
+- Use explicit value/reference semantics and standard-library types to demonstrate how to produce stable human-readable tabular and numeric output.
+- Compare observable behavior with the other tracks when learning to choose precision, alignment, and labels appropriate to the data; equivalent evidence matters more than identical syntax.
 
 ## Exercise Focus
 

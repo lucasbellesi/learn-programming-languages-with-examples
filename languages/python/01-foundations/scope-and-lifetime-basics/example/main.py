@@ -1,12 +1,14 @@
 # Module focus: How names stay visible only inside the blocks that own them.
-# Why it matters: practicing scope and lifetime basics patterns makes exercises and checkpoints
-# easier to reason about.
+# Why it matters: the example makes it possible to predict name visibility across nested
+# scopes before the learner tackles the exercises.
 
-# Walk through one fixed scenario so scope and lifetime basics behavior stays repeatable.
+# Fixed inputs make the consequence of using values before they are assigned in all branches
+# visible and repeatable.
 PASSING_SCORE = 60
 
 
-# Helper setup for scope and lifetime basics; this keeps the walkthrough readable.
+# Separate helpers keep the main path focused on how to predict name visibility across nested
+# scopes.
 def classify(score):
     if score >= 90:
         return "A"
@@ -22,6 +24,7 @@ def classify(score):
 value = int(input("Enter score: "))
 grade = classify(value)
 
-# Report values so learners can verify the scope and lifetime basics outcome.
+# The printed result shows whether the program can explain when values and resources cease to be
+# usable.
 print(f"Grade: {grade}")
 print(f"Passed: {value >= PASSING_SCORE}")

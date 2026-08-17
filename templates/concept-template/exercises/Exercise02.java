@@ -1,5 +1,7 @@
 public class Exercise02 {
     public static void main(String[] args) {
-        System.out.println("Solve exercise 02 here.");
+        // TODO 1: Read and validate the inputs named in Exercise Specs.
+        // TODO 2: Apply the requested transformation or decision.
+        // TODO 3: Print the specified result and handle every documented edge case.
     }
 }

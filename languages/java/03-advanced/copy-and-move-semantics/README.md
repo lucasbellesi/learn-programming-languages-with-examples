@@ -1,4 +1,4 @@
-# Copy and Move Semantics (Java)
+# Reference Aliasing and Defensive Copies (Java)
 
 This module adapts copy and move semantics to Java through references, aliasing, defensive copies, and immutable views.
 

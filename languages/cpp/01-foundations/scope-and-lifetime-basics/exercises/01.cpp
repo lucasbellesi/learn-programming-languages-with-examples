@@ -1,7 +1,13 @@
-#include <iostream>
+namespace {
+void runScopeLifetimeBasicsExercise() {
+    // TODO 1: Read or prepare one exam score.
+    // TODO 2: Identify and fix a shadowing bug in grading logic.
+    // TODO 3: Produce grade label (`A`, `B`, `C`, `D`, `F`); verify boundary scores like `90`,
+    //         `80`, `70`, `60`.
+}
+} // namespace
 
 int main() {
-    // TODO: implement the README specification (FND-SCP-01, FND-SCP-02).
-    std::cout << "TODO: implement this exercise\n";
+    runScopeLifetimeBasicsExercise();
     return 0;
 }

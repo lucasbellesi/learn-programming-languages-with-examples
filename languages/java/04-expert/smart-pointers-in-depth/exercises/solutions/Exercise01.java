@@ -2,6 +2,7 @@
 // Why it matters: managed runtimes still need clear ownership boundaries.
 
 import java.util.Optional;
+import java.util.Scanner;
 
 public class Exercise01 {
     record Document(String name) {
@@ -25,6 +26,10 @@ public class Exercise01 {
                 System.out.println(label + " is empty.");
                 return;
             }
+            if (destination.current != null) {
+                System.out.println(destination.label + " is occupied.");
+                return;
+            }
 
             System.out.println(label + " moves " + current.name() + " to " + destination.label + ".");
             destination.current = current;
@@ -37,17 +42,18 @@ public class Exercise01 {
     }
 
     public static void main(String[] args) {
-        DocumentSlot active = new DocumentSlot("Active", new Document("Roadmap"));
-        DocumentSlot backup = new DocumentSlot("Backup", new Document("Old Notes"));
-        DocumentSlot empty = new DocumentSlot("Empty", null);
+        Scanner scanner = new Scanner(System.in);
+        String sourceName = scanner.hasNextLine() ? scanner.nextLine() : "empty";
+        String destinationName = scanner.hasNextLine() ? scanner.nextLine() : "empty";
+        DocumentSlot active = new DocumentSlot(
+                "Source", sourceName.equals("empty") ? null : new Document(sourceName));
+        DocumentSlot backup = new DocumentSlot(
+                "Destination", destinationName.equals("empty") ? null : new Document(destinationName));
 
         active.print();
         backup.print();
         active.moveTo(backup);
         active.print();
         backup.print();
-        empty.moveTo(active);
-        empty.print();
-        active.print();
     }
 }

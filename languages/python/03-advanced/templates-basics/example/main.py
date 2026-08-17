@@ -1,14 +1,15 @@
 # Module focus: Writing generic code that stays useful across multiple data types.
-# Why it matters: practicing templates basics patterns makes exercises and checkpoints easier to
-# reason about.
+# Why it matters: the example makes it possible to express reusable type-safe behavior with
+# language generics before the learner tackles the exercises.
 
 from typing import Generic, TypeVar
 
-# Prepare sample inputs that exercise the key templates basics path.
+# These values exercise the normal path before the exercises vary the documented boundaries.
 T = TypeVar("T")
 
 
-# Helper setup for templates basics; this keeps the walkthrough readable.
+# Separate helpers keep the main path focused on how to express reusable type-safe behavior with
+# language generics.
 def max_value(left: T, right: T) -> T:
     return left if left > right else right
 
@@ -19,11 +20,13 @@ class Pair(Generic[T]):
         self._second = second
 
     def print(self) -> None:
-        # Report output values so learners can verify the templates basics outcome.
+        # The printed result shows whether the program can apply constraints when an operation
+        # requires specific capabilities.
         print(f"({self._first}, {self._second})")
 
 
-# Walk through one fixed scenario so templates basics behavior stays repeatable.
+# Fixed inputs make the consequence of assuming type hints enforce runtime behavior by themselves
+# visible and repeatable.
 def main() -> None:
     print(f"max_value(4, 7) = {max_value(4, 7)}")
     print(f"max_value(2.5, 1.2) = {max_value(2.5, 1.2)}")

@@ -1,15 +1,18 @@
 // Module focus: Choosing between branches and repeating work with predictable control flow.
-// Why it matters: practicing control flow patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to select branches that cover normal and boundary
+// conditions before the learner tackles the exercises.
 
 package main
 
 import "fmt"
 
-// Walk through one fixed scenario so control flow behavior stays repeatable.
+// Fixed inputs make the consequence of not handling non-positive upper bounds before entering
+// loops visible and repeatable.
 func main() {
-	// Prepare sample inputs that exercise the key control flow path.
+	// These values exercise the normal path before the exercises vary the documented boundaries.
 	var value int
-	// Report values so learners can verify the control flow outcome.
+	// The printed result shows whether the program can write terminating loops and reason about
+	// their invariants.
 	fmt.Print("Enter an integer: ")
 	fmt.Scanln(&value)
 

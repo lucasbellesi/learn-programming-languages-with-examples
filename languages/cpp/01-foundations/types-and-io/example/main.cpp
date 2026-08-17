@@ -1,5 +1,6 @@
 // Module focus: Reading typed input carefully and turning raw text into values.
-// Why it matters: practicing types and io patterns makes exercises and checkpoints easier to reason
+// Why it matters: the example makes it possible to choose suitable primitive values and variables
+// for a small problem before the learner tackles the exercises.
 // about.
 
 #include <iostream>
@@ -7,15 +8,17 @@
 #include <string>
 using namespace std;
 
-// Walk through one fixed scenario so types and io behavior stays repeatable.
+// Fixed inputs make the consequence of mixing `cin >>` and `getline` without clearing newline
+// visible and repeatable.
 int main() {
-    // Prepare sample inputs that exercise the key types and io path.
+    // These values exercise the normal path before the exercises vary the documented boundaries.
     string fullName;
     int age = 0;
     double gpa = 0.0;
     char enrolledAnswer = 'n';
 
-    // Report values so learners can verify the types and io outcome.
+    // The printed result shows whether the program can read, validate, transform, and present
+    // console data.
     cout << "Enter your full name: ";
     getline(cin, fullName);
 

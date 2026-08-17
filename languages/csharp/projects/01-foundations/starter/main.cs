@@ -1,10 +1,15 @@
-using System;
-
 internal static class Program
 {
+    private static void RunProject()
+    {
+        // TODO 1: Ask for number of students.
+        // TODO 2: Read each student name with full-line input and score with numeric
+        //         validation.
+        // TODO 3: Keep score input in the range `0` to `100`.
+    }
+
     private static void Main()
     {
-        // TODO: implement the README specification (FND-TIO-02, FND-CFL-02, FND-FUN-01, FND-SEQ-02).
-        Console.WriteLine("TODO: implement this checkpoint");
+        RunProject();
     }
 }

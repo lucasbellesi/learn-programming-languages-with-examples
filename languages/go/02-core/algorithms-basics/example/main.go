@@ -1,11 +1,13 @@
 // Module focus: Walking data step by step to compute summaries and decisions.
-// Why it matters: practicing algorithms basics patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to implement linear scans and accumulations with
+// clear invariants before the learner tackles the exercises.
 
 package main
 
 import "fmt"
 
-// Helper setup for algorithms basics; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to implement linear scans and accumulations
+// with clear invariants.
 func linearSearch(values []int, target int) int {
 	// A linear search is the direct choice when values are not sorted.
 	for index, value := range values {
@@ -47,14 +49,16 @@ func minMax(values []int) (int, int, bool) {
 	return minValue, maxValue, true
 }
 
-// Walk through one fixed scenario so algorithms basics behavior stays repeatable.
+// Fixed inputs make the consequence of ignoring empty-slice checks before min/max logic visible
+// and repeatable.
 func main() {
-	// Prepare sample inputs that exercise the key algorithms basics path.
+	// These values exercise the normal path before the exercises vary the documented boundaries.
 	values := []int{4, 7, 4, 1, 9, 4, 2}
 	target := 4
 
 	firstIndex := linearSearch(values, target)
-	// Report values so learners can verify the algorithms basics outcome.
+	// The printed result shows whether the program can analyze behavior for empty, duplicate, and
+	// missing values.
 	fmt.Printf("First index of %d: %d\n", target, firstIndex)
 	fmt.Printf("Occurrences of %d: %d\n", target, countOccurrences(values, target))
 

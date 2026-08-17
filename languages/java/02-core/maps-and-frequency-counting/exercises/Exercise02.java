@@ -1,6 +1,12 @@
 public class Exercise02 {
+    private static void runMapsFrequencyCountingExercise() {
+        // TODO 1: Read or prepare count followed by that many integers.
+        // TODO 2: Count integer frequencies from numeric input.
+        // TODO 3: Produce numeric frequencies sorted by value; verify duplicates; negative numbers;
+        //         single value.
+    }
+
     public static void main(String[] args) {
-        // TODO: implement the README specification (COR-MAP-01, COR-MAP-02).
-        System.out.println("TODO: implement this exercise");
+        runMapsFrequencyCountingExercise();
     }
 }

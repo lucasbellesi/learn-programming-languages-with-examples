@@ -46,6 +46,12 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/menu-loop.cpp -o control_flow_men
 - Infinite loops due to missing updates.
 - Missing `break` in `switch` cases.
 
+## Cross-Language Notes
+
+- In C++, read this module through the native focus ?Control Flow?; the shared folder name remains stable for side-by-side navigation.
+- Use explicit value/reference semantics and standard-library types to demonstrate how to select branches that cover normal and boundary conditions.
+- Compare observable behavior with the other tracks when learning to write terminating loops and reason about their invariants; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - `exercises/01.cpp`: implement FizzBuzz.

@@ -1,13 +1,15 @@
 // Module focus: Splitting responsibilities so entrypoints and helpers stay focused.
-// Why it matters: practicing modularization and build structure patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to separate public contracts from implementation
+// details before the learner tackles the exercises.
 
 package main
 
 import "fmt"
 
-// Walk through one fixed scenario so modularization and build structure behavior stays repeatable.
+// Fixed inputs make the consequence of putting every concern directly into `main` visible and
+// repeatable.
 func main() {
-	// Prepare sample inputs that exercise the key modularization and build structure path.
+	// These values exercise the normal path before the exercises vary the documented boundaries.
 	items := []lineItem{
 		{name: "Notebook", quantity: 2, unitPrice: 3.50},
 		{name: "Pencil", quantity: 5, unitPrice: 0.80},
@@ -16,6 +18,7 @@ func main() {
 
 	summary := buildSummary(items, 10.0, 7.5)
 
-	// Report values so learners can verify the modularization and build structure outcome.
+	// The printed result shows whether the program can organize a multi-file program with an
+	// explicit build boundary.
 	fmt.Println(renderSummary(summary))
 }

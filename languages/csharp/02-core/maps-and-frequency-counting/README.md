@@ -35,6 +35,12 @@ python scripts/automation.py run-module --module-path languages/csharp/02-core/m
 - Iterating unsorted dictionary keys when deterministic output is needed.
 - Forgetting to normalize or filter input before counting.
 
+## Cross-Language Notes
+
+- In C#, read this module through the native focus ?Maps and Frequency Counting?; the shared folder name remains stable for side-by-side navigation.
+- Use static types, .NET collections, and managed-resource patterns to demonstrate how to use key-value collections to aggregate and retrieve data.
+- Compare observable behavior with the other tracks when learning to define normalization and missing-key behavior explicitly; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - exercises/01.cs: count digit frequencies.

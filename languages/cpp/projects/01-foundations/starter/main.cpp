@@ -1,7 +1,12 @@
-#include <iostream>
+namespace {
+void runProject() {
+    // TODO 1: Ask for number of students.
+    // TODO 2: Read each student name with `getline` and score with numeric validation.
+    // TODO 3: Keep score input in the range `0` to `100`.
+}
+} // namespace
 
 int main() {
-    // TODO: implement the README specification (FND-TIO-02, FND-CFL-02, FND-FUN-01, FND-SEQ-02).
-    std::cout << "TODO: implement this checkpoint\n";
+    runProject();
     return 0;
 }

@@ -1,4 +1,4 @@
-# Templates Basics
+# Generics Basics (TypeScript)
 
 This module adapts the generic-programming idea to TypeScript generics.
 
@@ -37,9 +37,9 @@ python scripts/automation.py run-module --module-path languages/typescript/03-ad
 
 ## Cross-Language Notes
 
-- Compared with C++, this concept broadens from templates into each language's own reusable generic abstraction model.
-- Relative to Go and C#, TypeScript generics stay expressive without runtime specialization, while Python treats the same idea more informally.
-- The useful comparison is how each language generalizes logic without abandoning type clarity.
+- In TypeScript, read this module through the native focus ?Generics Basics?; the shared folder name remains stable for side-by-side navigation.
+- Use structural types, Node APIs, and explicit reference conventions to demonstrate how to express reusable type-safe behavior with language generics.
+- Compare observable behavior with the other tracks when learning to apply constraints when an operation requires specific capabilities; equivalent evidence matters more than identical syntax.
 
 ## Exercise Focus
 

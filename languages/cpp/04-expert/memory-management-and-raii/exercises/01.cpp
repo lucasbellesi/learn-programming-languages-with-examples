@@ -1,7 +1,13 @@
-#include <iostream>
+namespace {
+void runMemoryManagementRaiiExercise() {
+    // TODO 1: Read or prepare integer `n`, then `n` integers.
+    // TODO 2: Dynamic array with `std::unique_ptr<int[]>`.
+    // TODO 3: Produce sum and reversed sequence; verify `n <= 0` message; negative values in
+    //         sequence.
+}
+} // namespace
 
 int main() {
-    // TODO: implement the README specification (EXP-MEM-01, EXP-MEM-02).
-    std::cout << "TODO: implement this exercise\n";
+    runMemoryManagementRaiiExercise();
     return 0;
 }

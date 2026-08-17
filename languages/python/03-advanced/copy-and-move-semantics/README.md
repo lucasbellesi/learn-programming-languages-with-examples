@@ -1,4 +1,4 @@
-# Copy and Move Semantics (Python)
+# Aliasing, Shallow Copies, and Deep Copies (Python)
 
 This module introduces copying behavior and transfer-style updates with mutable objects.
 

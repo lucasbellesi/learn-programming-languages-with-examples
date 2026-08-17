@@ -12,6 +12,9 @@ class NoteHolder:
         if self._item is None:
             print(f"{self._label} is empty.")
             return
+        if destination._item is not None:
+            print(f"{destination._label} is occupied.")
+            return
         print(f"{self._label} moves {self._item.title} to {destination._label}.")
         destination._item = self._item
         self._item = None
@@ -21,18 +24,18 @@ class NoteHolder:
 
 
 def main() -> None:
-    active = NoteHolder("Active", Note("Roadmap"))
-    backup = NoteHolder("Backup", Note("Old Notes"))
-    empty = NoteHolder("Empty", None)
+    source_title = input()
+    destination_title = input()
+    active = NoteHolder("Source", None if source_title == "empty" else Note(source_title))
+    backup = NoteHolder(
+        "Destination", None if destination_title == "empty" else Note(destination_title)
+    )
 
     active.print()
     backup.print()
     active.move_to(backup)
     active.print()
     backup.print()
-    empty.move_to(active)
-    empty.print()
-    active.print()
 
 
 if __name__ == "__main__":

@@ -1,6 +1,13 @@
+def run_copy_move_semantics_exercise() -> None:
+    # TODO 1: Read or prepare buffer size and values.
+    # TODO 2: Resource-like buffer with clone and transfer operations.
+    # TODO 3: Produce logs showing clone and transfer behavior; verify zero-size buffer; repeated
+    #         transfers.
+    pass
+
+
 def main() -> None:
-    # TODO: implement the README specification (ADV-CPY-01, ADV-CPY-02).
-    print("TODO: implement this exercise")
+    run_copy_move_semantics_exercise()
 
 
 if __name__ == "__main__":

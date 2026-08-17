@@ -26,14 +26,51 @@
             "Bob Lee",
             "77"
           ],
-          "oracle_solution": true,
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
-          ]
+            "normal"
+          ],
+          "required_stdout_equals": "How many students? Please enter a positive number.\nHow many students? Student name 1: Score for Ana Smith (0-100): Score out of range. Enter a value from 0 to 100.\nScore for Ana Smith (0-100): Student name 2: Score for Bob Lee (0-100): \nStudents:\n- Ana Smith: 91\n- Bob Lee: 77\nAverage: 84\nMinimum: 77\nMaximum: 91\n"
+        },
+        {
+          "input_lines": [
+            "0",
+            "2",
+            "Ana Smith",
+            "101",
+            "91",
+            "Bob Lee",
+            "77"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "required_stdout_equals": "How many students? Please enter a positive number.\nHow many students? Student name 1: Score for Ana Smith (0-100): Score out of range. Enter a value from 0 to 100.\nScore for Ana Smith (0-100): Student name 2: Score for Bob Lee (0-100): \nStudents:\n- Ana Smith: 91\n- Bob Lee: 77\nAverage: 84\nMinimum: 77\nMaximum: 91\n",
+          "shared_execution": true
+        },
+        {
+          "input_lines": [
+            "0",
+            "2",
+            "Ana Smith",
+            "101",
+            "91",
+            "Bob Lee",
+            "77"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "required_stdout_equals": "How many students? Please enter a positive number.\nHow many students? Student name 1: Score for Ana Smith (0-100): Score out of range. Enter a value from 0 to 100.\nScore for Ana Smith (0-100): Student name 2: Score for Bob Lee (0-100): \nStudents:\n- Ana Smith: 91\n- Bob Lee: 77\nAverage: 84\nMinimum: 77\nMaximum: 91\n",
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "guided",
+      "starter_mode": "guided"
     },
     {
       "language": "cpp",
@@ -68,14 +105,67 @@
             "smoke-input.txt",
             "report.txt"
           ],
-          "oracle_solution": true,
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
-          ]
+            "normal"
+          ],
+          "required_stdout_equals": "Enter input file path: Report generated: report.txt\n"
+        },
+        {
+          "working_dir": "languages/cpp/projects/02-core/solutions",
+          "setup_files": [
+            {
+              "path": "smoke-input.txt",
+              "lines": [
+                "Ana Smith 91",
+                "Bob Lee 77",
+                "InvalidRow",
+                "Carla Mendez 88"
+              ]
+            }
+          ],
+          "input_file": "smoke-input.txt",
+          "cleanup_paths": [
+            "smoke-input.txt",
+            "report.txt"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "required_stdout_equals": "Enter input file path: Report generated: report.txt\n",
+          "shared_execution": true
+        },
+        {
+          "working_dir": "languages/cpp/projects/02-core/solutions",
+          "setup_files": [
+            {
+              "path": "smoke-input.txt",
+              "lines": [
+                "Ana Smith 91",
+                "Bob Lee 77",
+                "InvalidRow",
+                "Carla Mendez 88"
+              ]
+            }
+          ],
+          "input_file": "smoke-input.txt",
+          "cleanup_paths": [
+            "smoke-input.txt",
+            "report.txt"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "required_stdout_equals": "Enter input file path: Report generated: report.txt\n",
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "guided",
+      "starter_mode": "guided"
     },
     {
       "language": "cpp",
@@ -93,14 +183,33 @@
       "milestones": true,
       "cases": [
         {
-          "oracle_solution": true,
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
-          ]
+            "normal"
+          ],
+          "required_stdout_equals": "Course: CppBasics | 2/2 enrolled\nCourse: Algorithms | 1/3 enrolled\n"
+        },
+        {
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "required_stdout_equals": "Course: CppBasics | 2/2 enrolled\nCourse: Algorithms | 1/3 enrolled\n",
+          "shared_execution": true
+        },
+        {
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "required_stdout_equals": "Course: CppBasics | 2/2 enrolled\nCourse: Algorithms | 1/3 enrolled\n",
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "guided",
+      "starter_mode": "guided"
     },
     {
       "language": "cpp",
@@ -118,14 +227,42 @@
       "milestones": true,
       "cases": [
         {
-          "oracle_solution": true,
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
+            "normal"
+          ],
+          "required_stdout_equals": "Running 3 jobs through 2 steps...\nStep load processed 3 jobs\nStep transform processed 3 jobs\nElapsed (microseconds): 0\n",
+          "oracle_normalizers": [
+            "timings"
+          ]
+        },
+        {
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "required_stdout_equals": "Running 3 jobs through 2 steps...\nStep load processed 3 jobs\nStep transform processed 3 jobs\nElapsed (microseconds): 0\n",
+          "shared_execution": true,
+          "oracle_normalizers": [
+            "timings"
+          ]
+        },
+        {
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "required_stdout_equals": "Running 3 jobs through 2 steps...\nStep load processed 3 jobs\nStep transform processed 3 jobs\nElapsed (microseconds): 0\n",
+          "shared_execution": true,
+          "oracle_normalizers": [
+            "timings"
           ]
         }
-      ]
+      ],
+      "route_role": "guided",
+      "starter_mode": "guided"
     },
     {
       "language": "cpp",
@@ -152,14 +289,51 @@
             "Carla Mendez",
             "88"
           ],
-          "oracle_solution": true,
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
-          ]
+            "normal"
+          ],
+          "required_stdout_equals": "How many students? Student name 1: Score for Ana Smith (0-100): Student name 2: Score for Bob Lee (0-100): Student name 3: Score for Carla Mendez (0-100): \nStudents:\n- Ana Smith: 91\n- Bob Lee: 55\n- Carla Mendez: 88\nAverage: 78\nHighest: Ana Smith (91)\nLowest: Bob Lee (55)\nPassed: 2/3\n"
+        },
+        {
+          "input_lines": [
+            "3",
+            "Ana Smith",
+            "91",
+            "Bob Lee",
+            "55",
+            "Carla Mendez",
+            "88"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "required_stdout_equals": "How many students? Student name 1: Score for Ana Smith (0-100): Student name 2: Score for Bob Lee (0-100): Student name 3: Score for Carla Mendez (0-100): \nStudents:\n- Ana Smith: 91\n- Bob Lee: 55\n- Carla Mendez: 88\nAverage: 78\nHighest: Ana Smith (91)\nLowest: Bob Lee (55)\nPassed: 2/3\n",
+          "shared_execution": true
+        },
+        {
+          "input_lines": [
+            "3",
+            "Ana Smith",
+            "91",
+            "Bob Lee",
+            "55",
+            "Carla Mendez",
+            "88"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "required_stdout_equals": "How many students? Student name 1: Score for Ana Smith (0-100): Student name 2: Score for Bob Lee (0-100): Student name 3: Score for Carla Mendez (0-100): \nStudents:\n- Ana Smith: 91\n- Bob Lee: 55\n- Carla Mendez: 88\nAverage: 78\nHighest: Ana Smith (91)\nLowest: Bob Lee (55)\nPassed: 2/3\n",
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "both",
+      "starter_mode": "independent"
     },
     {
       "language": "cpp",
@@ -189,14 +363,57 @@
           "cleanup_paths": [
             "core_assessment_report.txt"
           ],
-          "oracle_solution": true,
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
-          ]
+            "normal"
+          ],
+          "required_stdout_equals": "Enter integer values (0-100). End with -1.\nIgnoring out-of-range value: 105\nValid count: 4\nMinimum: 60\nMaximum: 91\nAverage: 77.750000\nFrequency table:\n0-9: 0\n10-19: 0\n20-29: 0\n30-39: 0\n40-49: 0\n50-59: 0\n60-69: 1\n70-79: 1\n80-89: 1\n90-100: 1\nReport saved to core_assessment_report.txt\n"
+        },
+        {
+          "working_dir": "languages/cpp/assessments/02-core/solutions",
+          "input_lines": [
+            "91",
+            "88",
+            "72",
+            "105",
+            "60",
+            "-1"
+          ],
+          "cleanup_paths": [
+            "core_assessment_report.txt"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "required_stdout_equals": "Enter integer values (0-100). End with -1.\nIgnoring out-of-range value: 105\nValid count: 4\nMinimum: 60\nMaximum: 91\nAverage: 77.750000\nFrequency table:\n0-9: 0\n10-19: 0\n20-29: 0\n30-39: 0\n40-49: 0\n50-59: 0\n60-69: 1\n70-79: 1\n80-89: 1\n90-100: 1\nReport saved to core_assessment_report.txt\n",
+          "shared_execution": true
+        },
+        {
+          "working_dir": "languages/cpp/assessments/02-core/solutions",
+          "input_lines": [
+            "91",
+            "88",
+            "72",
+            "105",
+            "60",
+            "-1"
+          ],
+          "cleanup_paths": [
+            "core_assessment_report.txt"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "required_stdout_equals": "Enter integer values (0-100). End with -1.\nIgnoring out-of-range value: 105\nValid count: 4\nMinimum: 60\nMaximum: 91\nAverage: 77.750000\nFrequency table:\n0-9: 0\n10-19: 0\n20-29: 0\n30-39: 0\n40-49: 0\n50-59: 0\n60-69: 1\n70-79: 1\n80-89: 1\n90-100: 1\nReport saved to core_assessment_report.txt\n",
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "both",
+      "starter_mode": "independent"
     },
     {
       "language": "cpp",
@@ -222,14 +439,49 @@
             "S-202 Duplicate",
             "S-303 Carla"
           ],
-          "oracle_solution": true,
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
-          ]
+            "normal"
+          ],
+          "required_stdout_equals": "Shape areas:\n- Circle: 12.5664\n- Rectangle: 12\n- Circle: 7.06858\nTotal area: 31.635\nMinimum area: 7.06858\nMaximum area: 12.5664\nSample counts: [1, 2, 3, 4]\nComputed areas: [12.5664, 12, 7.06858]\n"
+        },
+        {
+          "input_lines": [
+            "2",
+            "4",
+            "S-101 Ana",
+            "S-202 Bob",
+            "S-202 Duplicate",
+            "S-303 Carla"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "required_stdout_equals": "Shape areas:\n- Circle: 12.5664\n- Rectangle: 12\n- Circle: 7.06858\nTotal area: 31.635\nMinimum area: 7.06858\nMaximum area: 12.5664\nSample counts: [1, 2, 3, 4]\nComputed areas: [12.5664, 12, 7.06858]\n",
+          "shared_execution": true
+        },
+        {
+          "input_lines": [
+            "2",
+            "4",
+            "S-101 Ana",
+            "S-202 Bob",
+            "S-202 Duplicate",
+            "S-303 Carla"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "required_stdout_equals": "Shape areas:\n- Circle: 12.5664\n- Rectangle: 12\n- Circle: 7.06858\nTotal area: 31.635\nMinimum area: 7.06858\nMaximum area: 12.5664\nSample counts: [1, 2, 3, 4]\nComputed areas: [12.5664, 12, 7.06858]\n",
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "both",
+      "starter_mode": "independent"
     },
     {
       "language": "cpp",
@@ -247,14 +499,42 @@
       "milestones": false,
       "cases": [
         {
-          "oracle_solution": true,
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
+            "normal"
+          ],
+          "required_stdout_equals": "Worker 1 partial sum: 97\nWorker 2 partial sum: 60\nWorker 0 partial sum: 48\n\nFinal summary:\nTotal: 205\nMinimum: 2\nMaximum: 45\n",
+          "oracle_normalizers": [
+            "unordered_lines"
+          ]
+        },
+        {
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "required_stdout_equals": "Worker 1 partial sum: 97\nWorker 2 partial sum: 60\nWorker 0 partial sum: 48\n\nFinal summary:\nTotal: 205\nMinimum: 2\nMaximum: 45\n",
+          "shared_execution": true,
+          "oracle_normalizers": [
+            "unordered_lines"
+          ]
+        },
+        {
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "required_stdout_equals": "Worker 1 partial sum: 97\nWorker 2 partial sum: 60\nWorker 0 partial sum: 48\n\nFinal summary:\nTotal: 205\nMinimum: 2\nMaximum: 45\n",
+          "shared_execution": true,
+          "oracle_normalizers": [
+            "unordered_lines"
           ]
         }
-      ]
+      ],
+      "route_role": "both",
+      "starter_mode": "independent"
     },
     {
       "language": "csharp",
@@ -291,14 +571,69 @@
             "Minimum: 77",
             "Maximum: 91"
           ],
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
+            "normal"
           ]
+        },
+        {
+          "input_lines": [
+            "0",
+            "2",
+            "Ana Smith",
+            "101",
+            "91",
+            "Bob Lee",
+            "77"
+          ],
+          "required_stdout_contains": [
+            "Please enter a positive number.",
+            "Score out of range. Enter a value from 0 to 100.",
+            "Students:",
+            "- Ana Smith: 91",
+            "- Bob Lee: 77",
+            "Average: 84",
+            "Minimum: 77",
+            "Maximum: 91"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "shared_execution": true
+        },
+        {
+          "input_lines": [
+            "0",
+            "2",
+            "Ana Smith",
+            "101",
+            "91",
+            "Bob Lee",
+            "77"
+          ],
+          "required_stdout_contains": [
+            "Please enter a positive number.",
+            "Score out of range. Enter a value from 0 to 100.",
+            "Students:",
+            "- Ana Smith: 91",
+            "- Bob Lee: 77",
+            "Average: 84",
+            "Minimum: 77",
+            "Maximum: 91"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "shared_execution": true
         }
       ],
-      "project_file": "foundations-project.csproj"
+      "project_file": "foundations-project.csproj",
+      "route_role": "guided",
+      "starter_mode": "guided"
     },
     {
       "language": "csharp",
@@ -333,15 +668,68 @@
             "smoke-input.txt",
             "report.txt"
           ],
-          "oracle_solution": true,
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
-          ]
+            "normal"
+          ],
+          "required_stdout_equals": "Enter input file path: Report generated: report.txt\n"
+        },
+        {
+          "working_dir": "languages/csharp/projects/02-core/solutions",
+          "setup_files": [
+            {
+              "path": "smoke-input.txt",
+              "lines": [
+                "Ana Smith 91",
+                "Bob Lee 77",
+                "InvalidRow",
+                "Carla Mendez 88"
+              ]
+            }
+          ],
+          "input_file": "smoke-input.txt",
+          "cleanup_paths": [
+            "smoke-input.txt",
+            "report.txt"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "required_stdout_equals": "Enter input file path: Report generated: report.txt\n",
+          "shared_execution": true
+        },
+        {
+          "working_dir": "languages/csharp/projects/02-core/solutions",
+          "setup_files": [
+            {
+              "path": "smoke-input.txt",
+              "lines": [
+                "Ana Smith 91",
+                "Bob Lee 77",
+                "InvalidRow",
+                "Carla Mendez 88"
+              ]
+            }
+          ],
+          "input_file": "smoke-input.txt",
+          "cleanup_paths": [
+            "smoke-input.txt",
+            "report.txt"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "required_stdout_equals": "Enter input file path: Report generated: report.txt\n",
+          "shared_execution": true
         }
       ],
-      "project_file": "core-project.csproj"
+      "project_file": "core-project.csproj",
+      "route_role": "guided",
+      "starter_mode": "guided"
     },
     {
       "language": "csharp",
@@ -359,15 +747,34 @@
       "milestones": true,
       "cases": [
         {
-          "oracle_solution": true,
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
-          ]
+            "normal"
+          ],
+          "required_stdout_equals": "Course: CSharpBasics | 2/2 enrolled\nCourse: Algorithms | 1/3 enrolled\n"
+        },
+        {
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "required_stdout_equals": "Course: CSharpBasics | 2/2 enrolled\nCourse: Algorithms | 1/3 enrolled\n",
+          "shared_execution": true
+        },
+        {
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "required_stdout_equals": "Course: CSharpBasics | 2/2 enrolled\nCourse: Algorithms | 1/3 enrolled\n",
+          "shared_execution": true
         }
       ],
-      "project_file": "advanced-project.csproj"
+      "project_file": "advanced-project.csproj",
+      "route_role": "guided",
+      "starter_mode": "guided"
     },
     {
       "language": "csharp",
@@ -393,14 +800,47 @@
           "required_stdout_patterns": [
             "Elapsed \\(microseconds\\): \\d+"
           ],
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
+            "normal"
           ]
+        },
+        {
+          "required_stdout_contains": [
+            "Running 3 jobs through 2 steps...",
+            "Step load processed 3 jobs",
+            "Step transform processed 3 jobs"
+          ],
+          "required_stdout_patterns": [
+            "Elapsed \\(microseconds\\): \\d+"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "shared_execution": true
+        },
+        {
+          "required_stdout_contains": [
+            "Running 3 jobs through 2 steps...",
+            "Step load processed 3 jobs",
+            "Step transform processed 3 jobs"
+          ],
+          "required_stdout_patterns": [
+            "Elapsed \\(microseconds\\): \\d+"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "shared_execution": true
         }
       ],
-      "project_file": "expert-project.csproj"
+      "project_file": "expert-project.csproj",
+      "route_role": "guided",
+      "starter_mode": "guided"
     },
     {
       "language": "csharp",
@@ -427,15 +867,52 @@
             "Carla Mendez",
             "88"
           ],
-          "oracle_solution": true,
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
-          ]
+            "normal"
+          ],
+          "required_stdout_equals": "How many students? Student name 1: Score for Ana Smith (0-100): Student name 2: Score for Bob Lee (0-100): Student name 3: Score for Carla Mendez (0-100): \nStudents:\n- Ana Smith: 91\n- Bob Lee: 55\n- Carla Mendez: 88\nAverage: 78\nHighest: Ana Smith (91)\nLowest: Bob Lee (55)\nPassed: 2/3\n"
+        },
+        {
+          "input_lines": [
+            "3",
+            "Ana Smith",
+            "91",
+            "Bob Lee",
+            "55",
+            "Carla Mendez",
+            "88"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "required_stdout_equals": "How many students? Student name 1: Score for Ana Smith (0-100): Student name 2: Score for Bob Lee (0-100): Student name 3: Score for Carla Mendez (0-100): \nStudents:\n- Ana Smith: 91\n- Bob Lee: 55\n- Carla Mendez: 88\nAverage: 78\nHighest: Ana Smith (91)\nLowest: Bob Lee (55)\nPassed: 2/3\n",
+          "shared_execution": true
+        },
+        {
+          "input_lines": [
+            "3",
+            "Ana Smith",
+            "91",
+            "Bob Lee",
+            "55",
+            "Carla Mendez",
+            "88"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "required_stdout_equals": "How many students? Student name 1: Score for Ana Smith (0-100): Student name 2: Score for Bob Lee (0-100): Student name 3: Score for Carla Mendez (0-100): \nStudents:\n- Ana Smith: 91\n- Bob Lee: 55\n- Carla Mendez: 88\nAverage: 78\nHighest: Ana Smith (91)\nLowest: Bob Lee (55)\nPassed: 2/3\n",
+          "shared_execution": true
         }
       ],
-      "project_file": "assessment-01-foundations.csproj"
+      "project_file": "assessment-01-foundations.csproj",
+      "route_role": "both",
+      "starter_mode": "independent"
     },
     {
       "language": "csharp",
@@ -465,15 +942,58 @@
           "cleanup_paths": [
             "core_assessment_report.txt"
           ],
-          "oracle_solution": true,
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
-          ]
+            "normal"
+          ],
+          "required_stdout_equals": "Enter integer values (0-100). End with -1.\nIgnoring out-of-range value: 105\nValid count: 4\nMinimum: 60\nMaximum: 91\nAverage: 77.75\nFrequency table:\n0-9: 0\n10-19: 0\n20-29: 0\n30-39: 0\n40-49: 0\n50-59: 0\n60-69: 1\n70-79: 1\n80-89: 1\n90-100: 1\nReport saved to core_assessment_report.txt\n"
+        },
+        {
+          "working_dir": "languages/csharp/assessments/02-core/solutions",
+          "input_lines": [
+            "91",
+            "88",
+            "72",
+            "105",
+            "60",
+            "-1"
+          ],
+          "cleanup_paths": [
+            "core_assessment_report.txt"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "required_stdout_equals": "Enter integer values (0-100). End with -1.\nIgnoring out-of-range value: 105\nValid count: 4\nMinimum: 60\nMaximum: 91\nAverage: 77.75\nFrequency table:\n0-9: 0\n10-19: 0\n20-29: 0\n30-39: 0\n40-49: 0\n50-59: 0\n60-69: 1\n70-79: 1\n80-89: 1\n90-100: 1\nReport saved to core_assessment_report.txt\n",
+          "shared_execution": true
+        },
+        {
+          "working_dir": "languages/csharp/assessments/02-core/solutions",
+          "input_lines": [
+            "91",
+            "88",
+            "72",
+            "105",
+            "60",
+            "-1"
+          ],
+          "cleanup_paths": [
+            "core_assessment_report.txt"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "required_stdout_equals": "Enter integer values (0-100). End with -1.\nIgnoring out-of-range value: 105\nValid count: 4\nMinimum: 60\nMaximum: 91\nAverage: 77.75\nFrequency table:\n0-9: 0\n10-19: 0\n20-29: 0\n30-39: 0\n40-49: 0\n50-59: 0\n60-69: 1\n70-79: 1\n80-89: 1\n90-100: 1\nReport saved to core_assessment_report.txt\n",
+          "shared_execution": true
         }
       ],
-      "project_file": "assessment-02-core.csproj"
+      "project_file": "assessment-02-core.csproj",
+      "route_role": "both",
+      "starter_mode": "independent"
     },
     {
       "language": "csharp",
@@ -499,14 +1019,47 @@
             "Sample counts:",
             "Computed areas:"
           ],
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
+            "normal"
           ]
+        },
+        {
+          "required_stdout_contains": [
+            "Shape areas:",
+            "Total area:",
+            "Minimum area:",
+            "Maximum area:",
+            "Sample counts:",
+            "Computed areas:"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "shared_execution": true
+        },
+        {
+          "required_stdout_contains": [
+            "Shape areas:",
+            "Total area:",
+            "Minimum area:",
+            "Maximum area:",
+            "Sample counts:",
+            "Computed areas:"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "shared_execution": true
         }
       ],
-      "project_file": "assessment-03-advanced.csproj"
+      "project_file": "assessment-03-advanced.csproj",
+      "route_role": "both",
+      "starter_mode": "independent"
     },
     {
       "language": "csharp",
@@ -533,14 +1086,49 @@
             "Minimum: 2",
             "Maximum: 45"
           ],
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
+            "normal"
           ]
+        },
+        {
+          "required_stdout_contains": [
+            "Worker 0 partial sum: 48",
+            "Worker 1 partial sum: 97",
+            "Worker 2 partial sum: 60",
+            "Final summary:",
+            "Total: 205",
+            "Minimum: 2",
+            "Maximum: 45"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "shared_execution": true
+        },
+        {
+          "required_stdout_contains": [
+            "Worker 0 partial sum: 48",
+            "Worker 1 partial sum: 97",
+            "Worker 2 partial sum: 60",
+            "Final summary:",
+            "Total: 205",
+            "Minimum: 2",
+            "Maximum: 45"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "shared_execution": true
         }
       ],
-      "project_file": "assessment-04-expert.csproj"
+      "project_file": "assessment-04-expert.csproj",
+      "route_role": "both",
+      "starter_mode": "independent"
     },
     {
       "language": "go",
@@ -577,13 +1165,68 @@
             "Minimum: 77",
             "Maximum: 91"
           ],
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
+            "normal"
           ]
+        },
+        {
+          "input_lines": [
+            "0",
+            "2",
+            "Ana Smith",
+            "101",
+            "91",
+            "Bob Lee",
+            "77"
+          ],
+          "required_stdout_contains": [
+            "Please enter a positive number.",
+            "Score out of range. Enter a value from 0 to 100.",
+            "Students:",
+            "- Ana Smith: 91",
+            "- Bob Lee: 77",
+            "Average: 84",
+            "Minimum: 77",
+            "Maximum: 91"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "shared_execution": true
+        },
+        {
+          "input_lines": [
+            "0",
+            "2",
+            "Ana Smith",
+            "101",
+            "91",
+            "Bob Lee",
+            "77"
+          ],
+          "required_stdout_contains": [
+            "Please enter a positive number.",
+            "Score out of range. Enter a value from 0 to 100.",
+            "Students:",
+            "- Ana Smith: 91",
+            "- Bob Lee: 77",
+            "Average: 84",
+            "Minimum: 77",
+            "Maximum: 91"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "guided",
+      "starter_mode": "guided"
     },
     {
       "language": "go",
@@ -618,14 +1261,67 @@
             "smoke-input.txt",
             "report.txt"
           ],
-          "oracle_solution": true,
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
-          ]
+            "normal"
+          ],
+          "required_stdout_equals": "Enter input file path: Report generated: report.txt\n"
+        },
+        {
+          "working_dir": "languages/go/projects/02-core/solutions",
+          "setup_files": [
+            {
+              "path": "smoke-input.txt",
+              "lines": [
+                "Ana Smith 91",
+                "Bob Lee 77",
+                "InvalidRow",
+                "Carla Mendez 88"
+              ]
+            }
+          ],
+          "input_file": "smoke-input.txt",
+          "cleanup_paths": [
+            "smoke-input.txt",
+            "report.txt"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "required_stdout_equals": "Enter input file path: Report generated: report.txt\n",
+          "shared_execution": true
+        },
+        {
+          "working_dir": "languages/go/projects/02-core/solutions",
+          "setup_files": [
+            {
+              "path": "smoke-input.txt",
+              "lines": [
+                "Ana Smith 91",
+                "Bob Lee 77",
+                "InvalidRow",
+                "Carla Mendez 88"
+              ]
+            }
+          ],
+          "input_file": "smoke-input.txt",
+          "cleanup_paths": [
+            "smoke-input.txt",
+            "report.txt"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "required_stdout_equals": "Enter input file path: Report generated: report.txt\n",
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "guided",
+      "starter_mode": "guided"
     },
     {
       "language": "go",
@@ -643,14 +1339,33 @@
       "milestones": true,
       "cases": [
         {
-          "oracle_solution": true,
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
-          ]
+            "normal"
+          ],
+          "required_stdout_equals": "Course: GoBasics | 2/2 enrolled\nCourse: Algorithms | 1/3 enrolled\n"
+        },
+        {
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "required_stdout_equals": "Course: GoBasics | 2/2 enrolled\nCourse: Algorithms | 1/3 enrolled\n",
+          "shared_execution": true
+        },
+        {
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "required_stdout_equals": "Course: GoBasics | 2/2 enrolled\nCourse: Algorithms | 1/3 enrolled\n",
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "guided",
+      "starter_mode": "guided"
     },
     {
       "language": "go",
@@ -676,13 +1391,46 @@
           "required_stdout_patterns": [
             "Elapsed \\(microseconds\\): \\d+"
           ],
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
+            "normal"
           ]
+        },
+        {
+          "required_stdout_contains": [
+            "Running 3 jobs through 2 steps...",
+            "Step load processed 3 jobs",
+            "Step transform processed 3 jobs"
+          ],
+          "required_stdout_patterns": [
+            "Elapsed \\(microseconds\\): \\d+"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "shared_execution": true
+        },
+        {
+          "required_stdout_contains": [
+            "Running 3 jobs through 2 steps...",
+            "Step load processed 3 jobs",
+            "Step transform processed 3 jobs"
+          ],
+          "required_stdout_patterns": [
+            "Elapsed \\(microseconds\\): \\d+"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "guided",
+      "starter_mode": "guided"
     },
     {
       "language": "go",
@@ -709,14 +1457,51 @@
             "Carla Mendez",
             "88"
           ],
-          "oracle_solution": true,
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
-          ]
+            "normal"
+          ],
+          "required_stdout_equals": "How many students? Student name 1: Score for Ana Smith (0-100): Student name 2: Score for Bob Lee (0-100): Student name 3: Score for Carla Mendez (0-100): \nStudents:\n- Ana Smith: 91\n- Bob Lee: 55\n- Carla Mendez: 88\nAverage: 78\nHighest: Ana Smith (91)\nLowest: Bob Lee (55)\nPassed: 2/3\n"
+        },
+        {
+          "input_lines": [
+            "3",
+            "Ana Smith",
+            "91",
+            "Bob Lee",
+            "55",
+            "Carla Mendez",
+            "88"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "required_stdout_equals": "How many students? Student name 1: Score for Ana Smith (0-100): Student name 2: Score for Bob Lee (0-100): Student name 3: Score for Carla Mendez (0-100): \nStudents:\n- Ana Smith: 91\n- Bob Lee: 55\n- Carla Mendez: 88\nAverage: 78\nHighest: Ana Smith (91)\nLowest: Bob Lee (55)\nPassed: 2/3\n",
+          "shared_execution": true
+        },
+        {
+          "input_lines": [
+            "3",
+            "Ana Smith",
+            "91",
+            "Bob Lee",
+            "55",
+            "Carla Mendez",
+            "88"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "required_stdout_equals": "How many students? Student name 1: Score for Ana Smith (0-100): Student name 2: Score for Bob Lee (0-100): Student name 3: Score for Carla Mendez (0-100): \nStudents:\n- Ana Smith: 91\n- Bob Lee: 55\n- Carla Mendez: 88\nAverage: 78\nHighest: Ana Smith (91)\nLowest: Bob Lee (55)\nPassed: 2/3\n",
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "both",
+      "starter_mode": "independent"
     },
     {
       "language": "go",
@@ -746,14 +1531,57 @@
           "cleanup_paths": [
             "core_assessment_report.txt"
           ],
-          "oracle_solution": true,
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
-          ]
+            "normal"
+          ],
+          "required_stdout_equals": "Enter integer values (0-100). End with -1.\nIgnoring out-of-range value: 105\nValid count: 4\nMinimum: 60\nMaximum: 91\nAverage: 77.75\nFrequency table:\n0-9: 0\n10-19: 0\n20-29: 0\n30-39: 0\n40-49: 0\n50-59: 0\n60-69: 1\n70-79: 1\n80-89: 1\n90-100: 1\nReport saved to core_assessment_report.txt\n"
+        },
+        {
+          "working_dir": "languages/go/assessments/02-core/solutions",
+          "input_lines": [
+            "91",
+            "88",
+            "72",
+            "105",
+            "60",
+            "-1"
+          ],
+          "cleanup_paths": [
+            "core_assessment_report.txt"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "required_stdout_equals": "Enter integer values (0-100). End with -1.\nIgnoring out-of-range value: 105\nValid count: 4\nMinimum: 60\nMaximum: 91\nAverage: 77.75\nFrequency table:\n0-9: 0\n10-19: 0\n20-29: 0\n30-39: 0\n40-49: 0\n50-59: 0\n60-69: 1\n70-79: 1\n80-89: 1\n90-100: 1\nReport saved to core_assessment_report.txt\n",
+          "shared_execution": true
+        },
+        {
+          "working_dir": "languages/go/assessments/02-core/solutions",
+          "input_lines": [
+            "91",
+            "88",
+            "72",
+            "105",
+            "60",
+            "-1"
+          ],
+          "cleanup_paths": [
+            "core_assessment_report.txt"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "required_stdout_equals": "Enter integer values (0-100). End with -1.\nIgnoring out-of-range value: 105\nValid count: 4\nMinimum: 60\nMaximum: 91\nAverage: 77.75\nFrequency table:\n0-9: 0\n10-19: 0\n20-29: 0\n30-39: 0\n40-49: 0\n50-59: 0\n60-69: 1\n70-79: 1\n80-89: 1\n90-100: 1\nReport saved to core_assessment_report.txt\n",
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "both",
+      "starter_mode": "independent"
     },
     {
       "language": "go",
@@ -779,13 +1607,46 @@
             "Sample counts:",
             "Computed areas:"
           ],
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
+            "normal"
           ]
+        },
+        {
+          "required_stdout_contains": [
+            "Shape areas:",
+            "Total area:",
+            "Minimum area:",
+            "Maximum area:",
+            "Sample counts:",
+            "Computed areas:"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "shared_execution": true
+        },
+        {
+          "required_stdout_contains": [
+            "Shape areas:",
+            "Total area:",
+            "Minimum area:",
+            "Maximum area:",
+            "Sample counts:",
+            "Computed areas:"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "both",
+      "starter_mode": "independent"
     },
     {
       "language": "go",
@@ -812,13 +1673,48 @@
             "Minimum: 2",
             "Maximum: 45"
           ],
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
+            "normal"
           ]
+        },
+        {
+          "required_stdout_contains": [
+            "Worker 0 partial sum: 48",
+            "Worker 1 partial sum: 97",
+            "Worker 2 partial sum: 60",
+            "Final summary:",
+            "Total: 205",
+            "Minimum: 2",
+            "Maximum: 45"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "shared_execution": true
+        },
+        {
+          "required_stdout_contains": [
+            "Worker 0 partial sum: 48",
+            "Worker 1 partial sum: 97",
+            "Worker 2 partial sum: 60",
+            "Final summary:",
+            "Total: 205",
+            "Minimum: 2",
+            "Maximum: 45"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "both",
+      "starter_mode": "independent"
     },
     {
       "language": "java",
@@ -855,13 +1751,68 @@
             "Minimum: 77",
             "Maximum: 91"
           ],
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
+            "normal"
           ]
+        },
+        {
+          "input_lines": [
+            "0",
+            "2",
+            "Ana Smith",
+            "101",
+            "91",
+            "Bob Lee",
+            "77"
+          ],
+          "required_stdout_contains": [
+            "Please enter a number greater than zero.",
+            "Score must be between 0 and 100.",
+            "Students:",
+            "- Ana Smith: 91",
+            "- Bob Lee: 77",
+            "Average: 84.00",
+            "Minimum: 77",
+            "Maximum: 91"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "shared_execution": true
+        },
+        {
+          "input_lines": [
+            "0",
+            "2",
+            "Ana Smith",
+            "101",
+            "91",
+            "Bob Lee",
+            "77"
+          ],
+          "required_stdout_contains": [
+            "Please enter a number greater than zero.",
+            "Score must be between 0 and 100.",
+            "Students:",
+            "- Ana Smith: 91",
+            "- Bob Lee: 77",
+            "Average: 84.00",
+            "Minimum: 77",
+            "Maximum: 91"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "guided",
+      "starter_mode": "guided"
     },
     {
       "language": "java",
@@ -919,13 +1870,110 @@
             "smoke-input.txt",
             "report.txt"
           ],
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
+            "normal"
           ]
+        },
+        {
+          "working_dir": "languages/java/projects/02-core/solutions",
+          "setup_files": [
+            {
+              "path": "smoke-input.txt",
+              "lines": [
+                "Ana Smith 91",
+                "Bob Lee 77",
+                "InvalidRow",
+                "Carla Mendez 88"
+              ]
+            }
+          ],
+          "input_file": "smoke-input.txt",
+          "required_stdout_contains": [
+            "Valid records: 3",
+            "Invalid rows skipped: 1",
+            "Average: 85.33",
+            "Report written to report.txt"
+          ],
+          "required_outputs": [
+            "report.txt"
+          ],
+          "required_output_contains": [
+            {
+              "path": "report.txt",
+              "contains": [
+                "Grade Report",
+                "Valid records: 3",
+                "Invalid rows skipped: 1",
+                "Average: 85.33",
+                "- Ana Smith: 91",
+                "- Bob Lee: 77",
+                "- Carla Mendez: 88"
+              ]
+            }
+          ],
+          "cleanup_paths": [
+            "smoke-input.txt",
+            "report.txt"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "shared_execution": true
+        },
+        {
+          "working_dir": "languages/java/projects/02-core/solutions",
+          "setup_files": [
+            {
+              "path": "smoke-input.txt",
+              "lines": [
+                "Ana Smith 91",
+                "Bob Lee 77",
+                "InvalidRow",
+                "Carla Mendez 88"
+              ]
+            }
+          ],
+          "input_file": "smoke-input.txt",
+          "required_stdout_contains": [
+            "Valid records: 3",
+            "Invalid rows skipped: 1",
+            "Average: 85.33",
+            "Report written to report.txt"
+          ],
+          "required_outputs": [
+            "report.txt"
+          ],
+          "required_output_contains": [
+            {
+              "path": "report.txt",
+              "contains": [
+                "Grade Report",
+                "Valid records: 3",
+                "Invalid rows skipped: 1",
+                "Average: 85.33",
+                "- Ana Smith: 91",
+                "- Bob Lee: 77",
+                "- Carla Mendez: 88"
+              ]
+            }
+          ],
+          "cleanup_paths": [
+            "smoke-input.txt",
+            "report.txt"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "guided",
+      "starter_mode": "guided"
     },
     {
       "language": "java",
@@ -951,13 +1999,46 @@
             "Catalog courses after external clear: 2",
             "JavaAdvanced roster snapshot: 2"
           ],
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
+            "normal"
           ]
+        },
+        {
+          "required_stdout_contains": [
+            "Course Enrollment Report",
+            "Course: JavaAdvanced | 2/2 enrolled",
+            "Course: Algorithms | 1/3 enrolled",
+            "Overflow accepted: false",
+            "Catalog courses after external clear: 2",
+            "JavaAdvanced roster snapshot: 2"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "shared_execution": true
+        },
+        {
+          "required_stdout_contains": [
+            "Course Enrollment Report",
+            "Course: JavaAdvanced | 2/2 enrolled",
+            "Course: Algorithms | 1/3 enrolled",
+            "Overflow accepted: false",
+            "Catalog courses after external clear: 2",
+            "JavaAdvanced roster snapshot: 2"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "guided",
+      "starter_mode": "guided"
     },
     {
       "language": "java",
@@ -985,13 +2066,50 @@
           "required_stdout_patterns": [
             "Elapsed \\(microseconds\\): [1-9][0-9]*"
           ],
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
+            "normal"
           ]
+        },
+        {
+          "required_stdout_contains": [
+            "Running 3 jobs through 2 steps...",
+            "Step load processed 3 jobs",
+            "Step transform processed 3 jobs",
+            "Every job completed every step: true",
+            "Executor terminated: true"
+          ],
+          "required_stdout_patterns": [
+            "Elapsed \\(microseconds\\): [1-9][0-9]*"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "shared_execution": true
+        },
+        {
+          "required_stdout_contains": [
+            "Running 3 jobs through 2 steps...",
+            "Step load processed 3 jobs",
+            "Step transform processed 3 jobs",
+            "Every job completed every step: true",
+            "Executor terminated: true"
+          ],
+          "required_stdout_patterns": [
+            "Elapsed \\(microseconds\\): [1-9][0-9]*"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "guided",
+      "starter_mode": "guided"
     },
     {
       "language": "java",
@@ -1028,13 +2146,68 @@
             "Lowest: Bob Lee (55)",
             "Passed: 2/3"
           ],
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
+            "normal"
           ]
+        },
+        {
+          "input_lines": [
+            "3",
+            "Ana Smith",
+            "91",
+            "Bob Lee",
+            "55",
+            "Carla Mendez",
+            "88"
+          ],
+          "required_stdout_contains": [
+            "Students:",
+            "- Ana Smith: 91",
+            "- Bob Lee: 55",
+            "- Carla Mendez: 88",
+            "Average: 78.00",
+            "Highest: Ana Smith (91)",
+            "Lowest: Bob Lee (55)",
+            "Passed: 2/3"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "shared_execution": true
+        },
+        {
+          "input_lines": [
+            "3",
+            "Ana Smith",
+            "91",
+            "Bob Lee",
+            "55",
+            "Carla Mendez",
+            "88"
+          ],
+          "required_stdout_contains": [
+            "Students:",
+            "- Ana Smith: 91",
+            "- Bob Lee: 55",
+            "- Carla Mendez: 88",
+            "Average: 78.00",
+            "Highest: Ana Smith (91)",
+            "Lowest: Bob Lee (55)",
+            "Passed: 2/3"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "both",
+      "starter_mode": "independent"
     },
     {
       "language": "java",
@@ -1095,13 +2268,116 @@
           "cleanup_paths": [
             "core_assessment_report.txt"
           ],
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
+            "normal"
           ]
+        },
+        {
+          "working_dir": "languages/java/assessments/02-core/solutions",
+          "input_lines": [
+            "91",
+            "88",
+            "72",
+            "105",
+            "60",
+            "-1"
+          ],
+          "required_stdout_contains": [
+            "Score ignored because it is outside 0-100.",
+            "Valid scores: 4",
+            "Average: 77.75",
+            "Minimum: 60",
+            "Maximum: 91",
+            "Frequency:",
+            "- 60-69: 1",
+            "- 70-79: 1",
+            "- 80-89: 1",
+            "- 90-100: 1",
+            "Report written to core_assessment_report.txt"
+          ],
+          "required_outputs": [
+            "core_assessment_report.txt"
+          ],
+          "required_output_contains": [
+            {
+              "path": "core_assessment_report.txt",
+              "contains": [
+                "Valid scores: 4",
+                "Average: 77.75",
+                "Minimum: 60",
+                "Maximum: 91",
+                "- 60-69: 1",
+                "- 70-79: 1",
+                "- 80-89: 1",
+                "- 90-100: 1"
+              ]
+            }
+          ],
+          "cleanup_paths": [
+            "core_assessment_report.txt"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "shared_execution": true
+        },
+        {
+          "working_dir": "languages/java/assessments/02-core/solutions",
+          "input_lines": [
+            "91",
+            "88",
+            "72",
+            "105",
+            "60",
+            "-1"
+          ],
+          "required_stdout_contains": [
+            "Score ignored because it is outside 0-100.",
+            "Valid scores: 4",
+            "Average: 77.75",
+            "Minimum: 60",
+            "Maximum: 91",
+            "Frequency:",
+            "- 60-69: 1",
+            "- 70-79: 1",
+            "- 80-89: 1",
+            "- 90-100: 1",
+            "Report written to core_assessment_report.txt"
+          ],
+          "required_outputs": [
+            "core_assessment_report.txt"
+          ],
+          "required_output_contains": [
+            {
+              "path": "core_assessment_report.txt",
+              "contains": [
+                "Valid scores: 4",
+                "Average: 77.75",
+                "Minimum: 60",
+                "Maximum: 91",
+                "- 60-69: 1",
+                "- 70-79: 1",
+                "- 80-89: 1",
+                "- 90-100: 1"
+              ]
+            }
+          ],
+          "cleanup_paths": [
+            "core_assessment_report.txt"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "both",
+      "starter_mode": "independent"
     },
     {
       "language": "java",
@@ -1136,13 +2412,64 @@
             "Batch requests after external clear: 4",
             "Roster snapshot: 2"
           ],
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
+            "normal"
           ]
+        },
+        {
+          "input_lines": [
+            "2",
+            "4",
+            "S-101 Ana",
+            "S-202 Bob",
+            "S-202 Duplicate",
+            "S-303 Carla"
+          ],
+          "required_stdout_contains": [
+            "Advanced Assessment Report",
+            "Course: JavaAdvanced | 2/2 enrolled",
+            "Accepted: 2",
+            "Rejected: 2",
+            "External attempts after clear: 0",
+            "Batch requests after external clear: 4",
+            "Roster snapshot: 2"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "shared_execution": true
+        },
+        {
+          "input_lines": [
+            "2",
+            "4",
+            "S-101 Ana",
+            "S-202 Bob",
+            "S-202 Duplicate",
+            "S-303 Carla"
+          ],
+          "required_stdout_contains": [
+            "Advanced Assessment Report",
+            "Course: JavaAdvanced | 2/2 enrolled",
+            "Accepted: 2",
+            "Rejected: 2",
+            "External attempts after clear: 0",
+            "Batch requests after external clear: 4",
+            "Roster snapshot: 2"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "both",
+      "starter_mode": "independent"
     },
     {
       "language": "java",
@@ -1170,13 +2497,50 @@
             "Maximum: 45",
             "Executor terminated: true"
           ],
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
+            "normal"
           ]
+        },
+        {
+          "required_stdout_contains": [
+            "Worker 0 partial sum: 48",
+            "Worker 1 partial sum: 97",
+            "Worker 2 partial sum: 60",
+            "Final summary:",
+            "Total: 205",
+            "Minimum: 2",
+            "Maximum: 45",
+            "Executor terminated: true"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "shared_execution": true
+        },
+        {
+          "required_stdout_contains": [
+            "Worker 0 partial sum: 48",
+            "Worker 1 partial sum: 97",
+            "Worker 2 partial sum: 60",
+            "Final summary:",
+            "Total: 205",
+            "Minimum: 2",
+            "Maximum: 45",
+            "Executor terminated: true"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "both",
+      "starter_mode": "independent"
     },
     {
       "language": "python",
@@ -1213,13 +2577,68 @@
             "Minimum: 77",
             "Maximum: 91"
           ],
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
+            "normal"
           ]
+        },
+        {
+          "input_lines": [
+            "0",
+            "2",
+            "Ana Smith",
+            "101",
+            "91",
+            "Bob Lee",
+            "77"
+          ],
+          "required_stdout_contains": [
+            "Please enter a number greater than zero.",
+            "Score must be between 0 and 100.",
+            "Students:",
+            "- Ana Smith: 91",
+            "- Bob Lee: 77",
+            "Average: 84.00",
+            "Minimum: 77",
+            "Maximum: 91"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "shared_execution": true
+        },
+        {
+          "input_lines": [
+            "0",
+            "2",
+            "Ana Smith",
+            "101",
+            "91",
+            "Bob Lee",
+            "77"
+          ],
+          "required_stdout_contains": [
+            "Please enter a number greater than zero.",
+            "Score must be between 0 and 100.",
+            "Students:",
+            "- Ana Smith: 91",
+            "- Bob Lee: 77",
+            "Average: 84.00",
+            "Minimum: 77",
+            "Maximum: 91"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "guided",
+      "starter_mode": "guided"
     },
     {
       "language": "python",
@@ -1254,14 +2673,67 @@
             "smoke-input.txt",
             "report.txt"
           ],
-          "oracle_solution": true,
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
-          ]
+            "normal"
+          ],
+          "required_stdout_equals": "Enter the input file path: Valid records: 3\nInvalid rows skipped: 1\nAverage: 85.33\nReport written to report.txt\n"
+        },
+        {
+          "working_dir": "languages/python/projects/02-core/solutions",
+          "setup_files": [
+            {
+              "path": "smoke-input.txt",
+              "lines": [
+                "Ana Smith 91",
+                "Bob Lee 77",
+                "InvalidRow",
+                "Carla Mendez 88"
+              ]
+            }
+          ],
+          "input_file": "smoke-input.txt",
+          "cleanup_paths": [
+            "smoke-input.txt",
+            "report.txt"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "required_stdout_equals": "Enter the input file path: Valid records: 3\nInvalid rows skipped: 1\nAverage: 85.33\nReport written to report.txt\n",
+          "shared_execution": true
+        },
+        {
+          "working_dir": "languages/python/projects/02-core/solutions",
+          "setup_files": [
+            {
+              "path": "smoke-input.txt",
+              "lines": [
+                "Ana Smith 91",
+                "Bob Lee 77",
+                "InvalidRow",
+                "Carla Mendez 88"
+              ]
+            }
+          ],
+          "input_file": "smoke-input.txt",
+          "cleanup_paths": [
+            "smoke-input.txt",
+            "report.txt"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "required_stdout_equals": "Enter the input file path: Valid records: 3\nInvalid rows skipped: 1\nAverage: 85.33\nReport written to report.txt\n",
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "guided",
+      "starter_mode": "guided"
     },
     {
       "language": "python",
@@ -1279,14 +2751,33 @@
       "milestones": true,
       "cases": [
         {
-          "oracle_solution": true,
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
-          ]
+            "normal"
+          ],
+          "required_stdout_equals": "Course: PythonBasics | 2/2 enrolled\nCourse: Algorithms | 1/3 enrolled\n"
+        },
+        {
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "required_stdout_equals": "Course: PythonBasics | 2/2 enrolled\nCourse: Algorithms | 1/3 enrolled\n",
+          "shared_execution": true
+        },
+        {
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "required_stdout_equals": "Course: PythonBasics | 2/2 enrolled\nCourse: Algorithms | 1/3 enrolled\n",
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "guided",
+      "starter_mode": "guided"
     },
     {
       "language": "python",
@@ -1312,13 +2803,46 @@
           "required_stdout_patterns": [
             "Elapsed \\(microseconds\\): \\d+"
           ],
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
+            "normal"
           ]
+        },
+        {
+          "required_stdout_contains": [
+            "Running 3 jobs through 2 steps...",
+            "Step load processed 3 jobs",
+            "Step transform processed 3 jobs"
+          ],
+          "required_stdout_patterns": [
+            "Elapsed \\(microseconds\\): \\d+"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "shared_execution": true
+        },
+        {
+          "required_stdout_contains": [
+            "Running 3 jobs through 2 steps...",
+            "Step load processed 3 jobs",
+            "Step transform processed 3 jobs"
+          ],
+          "required_stdout_patterns": [
+            "Elapsed \\(microseconds\\): \\d+"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "guided",
+      "starter_mode": "guided"
     },
     {
       "language": "python",
@@ -1345,14 +2869,51 @@
             "Carla Mendez",
             "88"
           ],
-          "oracle_solution": true,
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
-          ]
+            "normal"
+          ],
+          "required_stdout_equals": "How many students? Student #1 name: Ana Smith's score (0-100): Student #2 name: Bob Lee's score (0-100): Student #3 name: Carla Mendez's score (0-100): Students:\n- Ana Smith: 91\n- Bob Lee: 55\n- Carla Mendez: 88\nAverage: 78.00\nHighest: Ana Smith (91)\nLowest: Bob Lee (55)\nPassed: 2/3\n"
+        },
+        {
+          "input_lines": [
+            "3",
+            "Ana Smith",
+            "91",
+            "Bob Lee",
+            "55",
+            "Carla Mendez",
+            "88"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "required_stdout_equals": "How many students? Student #1 name: Ana Smith's score (0-100): Student #2 name: Bob Lee's score (0-100): Student #3 name: Carla Mendez's score (0-100): Students:\n- Ana Smith: 91\n- Bob Lee: 55\n- Carla Mendez: 88\nAverage: 78.00\nHighest: Ana Smith (91)\nLowest: Bob Lee (55)\nPassed: 2/3\n",
+          "shared_execution": true
+        },
+        {
+          "input_lines": [
+            "3",
+            "Ana Smith",
+            "91",
+            "Bob Lee",
+            "55",
+            "Carla Mendez",
+            "88"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "required_stdout_equals": "How many students? Student #1 name: Ana Smith's score (0-100): Student #2 name: Bob Lee's score (0-100): Student #3 name: Carla Mendez's score (0-100): Students:\n- Ana Smith: 91\n- Bob Lee: 55\n- Carla Mendez: 88\nAverage: 78.00\nHighest: Ana Smith (91)\nLowest: Bob Lee (55)\nPassed: 2/3\n",
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "both",
+      "starter_mode": "independent"
     },
     {
       "language": "python",
@@ -1382,14 +2943,57 @@
           "cleanup_paths": [
             "core_assessment_report.txt"
           ],
-          "oracle_solution": true,
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
-          ]
+            "normal"
+          ],
+          "required_stdout_equals": "Enter a score (0-100) or -1 to finish: Enter a score (0-100) or -1 to finish: Enter a score (0-100) or -1 to finish: Enter a score (0-100) or -1 to finish: Score ignored because it is outside 0-100.\nEnter a score (0-100) or -1 to finish: Enter a score (0-100) or -1 to finish: Valid scores: 4\nAverage: 77.75\nMinimum: 60\nMaximum: 91\nFrequency:\n- 0-9: 0\n- 10-19: 0\n- 20-29: 0\n- 30-39: 0\n- 40-49: 0\n- 50-59: 0\n- 60-69: 1\n- 70-79: 1\n- 80-89: 1\n- 90-100: 1\nReport written to core_assessment_report.txt\n"
+        },
+        {
+          "working_dir": "languages/python/assessments/02-core/solutions",
+          "input_lines": [
+            "91",
+            "88",
+            "72",
+            "105",
+            "60",
+            "-1"
+          ],
+          "cleanup_paths": [
+            "core_assessment_report.txt"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "required_stdout_equals": "Enter a score (0-100) or -1 to finish: Enter a score (0-100) or -1 to finish: Enter a score (0-100) or -1 to finish: Enter a score (0-100) or -1 to finish: Score ignored because it is outside 0-100.\nEnter a score (0-100) or -1 to finish: Enter a score (0-100) or -1 to finish: Valid scores: 4\nAverage: 77.75\nMinimum: 60\nMaximum: 91\nFrequency:\n- 0-9: 0\n- 10-19: 0\n- 20-29: 0\n- 30-39: 0\n- 40-49: 0\n- 50-59: 0\n- 60-69: 1\n- 70-79: 1\n- 80-89: 1\n- 90-100: 1\nReport written to core_assessment_report.txt\n",
+          "shared_execution": true
+        },
+        {
+          "working_dir": "languages/python/assessments/02-core/solutions",
+          "input_lines": [
+            "91",
+            "88",
+            "72",
+            "105",
+            "60",
+            "-1"
+          ],
+          "cleanup_paths": [
+            "core_assessment_report.txt"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "required_stdout_equals": "Enter a score (0-100) or -1 to finish: Enter a score (0-100) or -1 to finish: Enter a score (0-100) or -1 to finish: Enter a score (0-100) or -1 to finish: Score ignored because it is outside 0-100.\nEnter a score (0-100) or -1 to finish: Enter a score (0-100) or -1 to finish: Valid scores: 4\nAverage: 77.75\nMinimum: 60\nMaximum: 91\nFrequency:\n- 0-9: 0\n- 10-19: 0\n- 20-29: 0\n- 30-39: 0\n- 40-49: 0\n- 50-59: 0\n- 60-69: 1\n- 70-79: 1\n- 80-89: 1\n- 90-100: 1\nReport written to core_assessment_report.txt\n",
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "both",
+      "starter_mode": "independent"
     },
     {
       "language": "python",
@@ -1415,13 +3019,46 @@
             "Sample counts:",
             "Computed areas:"
           ],
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
+            "normal"
           ]
+        },
+        {
+          "required_stdout_contains": [
+            "Shape areas:",
+            "Total area:",
+            "Minimum area:",
+            "Maximum area:",
+            "Sample counts:",
+            "Computed areas:"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "shared_execution": true
+        },
+        {
+          "required_stdout_contains": [
+            "Shape areas:",
+            "Total area:",
+            "Minimum area:",
+            "Maximum area:",
+            "Sample counts:",
+            "Computed areas:"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "both",
+      "starter_mode": "independent"
     },
     {
       "language": "python",
@@ -1448,13 +3085,48 @@
             "Minimum: 2",
             "Maximum: 45"
           ],
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
+            "normal"
           ]
+        },
+        {
+          "required_stdout_contains": [
+            "Worker 0 partial sum: 48",
+            "Worker 1 partial sum: 97",
+            "Worker 2 partial sum: 60",
+            "Final summary:",
+            "Total: 205",
+            "Minimum: 2",
+            "Maximum: 45"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "shared_execution": true
+        },
+        {
+          "required_stdout_contains": [
+            "Worker 0 partial sum: 48",
+            "Worker 1 partial sum: 97",
+            "Worker 2 partial sum: 60",
+            "Final summary:",
+            "Total: 205",
+            "Minimum: 2",
+            "Maximum: 45"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "both",
+      "starter_mode": "independent"
     },
     {
       "language": "typescript",
@@ -1491,13 +3163,68 @@
             "Minimum: 77",
             "Maximum: 91"
           ],
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
+            "normal"
           ]
+        },
+        {
+          "input_lines": [
+            "0",
+            "2",
+            "Ana Smith",
+            "101",
+            "91",
+            "Bob Lee",
+            "77"
+          ],
+          "required_stdout_contains": [
+            "Invalid student count. Enter a positive integer.",
+            "Invalid score for Ana Smith. Enter a value between 0 and 100.",
+            "Students:",
+            "- Ana Smith: 91",
+            "- Bob Lee: 77",
+            "Average: 84.00",
+            "Minimum: 77",
+            "Maximum: 91"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "shared_execution": true
+        },
+        {
+          "input_lines": [
+            "0",
+            "2",
+            "Ana Smith",
+            "101",
+            "91",
+            "Bob Lee",
+            "77"
+          ],
+          "required_stdout_contains": [
+            "Invalid student count. Enter a positive integer.",
+            "Invalid score for Ana Smith. Enter a value between 0 and 100.",
+            "Students:",
+            "- Ana Smith: 91",
+            "- Bob Lee: 77",
+            "Average: 84.00",
+            "Minimum: 77",
+            "Maximum: 91"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "guided",
+      "starter_mode": "guided"
     },
     {
       "language": "typescript",
@@ -1532,14 +3259,67 @@
             "smoke-input.txt",
             "report.txt"
           ],
-          "oracle_solution": true,
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
-          ]
+            "normal"
+          ],
+          "required_stdout_equals": "Valid records: 3\nInvalid rows skipped: 1\nAverage: 85.33\nReport written to report.txt\n"
+        },
+        {
+          "working_dir": "languages/typescript/projects/02-core/solutions",
+          "setup_files": [
+            {
+              "path": "smoke-input.txt",
+              "lines": [
+                "Ana Smith 91",
+                "Bob Lee 77",
+                "InvalidRow",
+                "Carla Mendez 88"
+              ]
+            }
+          ],
+          "input_file": "smoke-input.txt",
+          "cleanup_paths": [
+            "smoke-input.txt",
+            "report.txt"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "required_stdout_equals": "Valid records: 3\nInvalid rows skipped: 1\nAverage: 85.33\nReport written to report.txt\n",
+          "shared_execution": true
+        },
+        {
+          "working_dir": "languages/typescript/projects/02-core/solutions",
+          "setup_files": [
+            {
+              "path": "smoke-input.txt",
+              "lines": [
+                "Ana Smith 91",
+                "Bob Lee 77",
+                "InvalidRow",
+                "Carla Mendez 88"
+              ]
+            }
+          ],
+          "input_file": "smoke-input.txt",
+          "cleanup_paths": [
+            "smoke-input.txt",
+            "report.txt"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "required_stdout_equals": "Valid records: 3\nInvalid rows skipped: 1\nAverage: 85.33\nReport written to report.txt\n",
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "guided",
+      "starter_mode": "guided"
     },
     {
       "language": "typescript",
@@ -1561,13 +3341,38 @@
             "Course: TypeScriptBasics | 2/2 enrolled",
             "Course: Algorithms | 1/3 enrolled"
           ],
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
+            "normal"
           ]
+        },
+        {
+          "required_stdout_contains": [
+            "Course: TypeScriptBasics | 2/2 enrolled",
+            "Course: Algorithms | 1/3 enrolled"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "shared_execution": true
+        },
+        {
+          "required_stdout_contains": [
+            "Course: TypeScriptBasics | 2/2 enrolled",
+            "Course: Algorithms | 1/3 enrolled"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "guided",
+      "starter_mode": "guided"
     },
     {
       "language": "typescript",
@@ -1592,13 +3397,44 @@
             "Elapsed (ms):",
             "Report closed: true"
           ],
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
+            "normal"
           ]
+        },
+        {
+          "required_stdout_contains": [
+            "Running 3 jobs through 2 steps...",
+            "Step load processed 3 jobs",
+            "Step transform processed 3 jobs",
+            "Elapsed (ms):",
+            "Report closed: true"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "shared_execution": true
+        },
+        {
+          "required_stdout_contains": [
+            "Running 3 jobs through 2 steps...",
+            "Step load processed 3 jobs",
+            "Step transform processed 3 jobs",
+            "Elapsed (ms):",
+            "Report closed: true"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "guided",
+      "starter_mode": "guided"
     },
     {
       "language": "typescript",
@@ -1632,13 +3468,62 @@
             "Lowest:",
             "Passed:"
           ],
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
+            "normal"
           ]
+        },
+        {
+          "input_lines": [
+            "3",
+            "Ana Smith",
+            "91",
+            "Bob Lee",
+            "55",
+            "Carla Mendez",
+            "88"
+          ],
+          "required_stdout_contains": [
+            "Students:",
+            "Average:",
+            "Highest:",
+            "Lowest:",
+            "Passed:"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "shared_execution": true
+        },
+        {
+          "input_lines": [
+            "3",
+            "Ana Smith",
+            "91",
+            "Bob Lee",
+            "55",
+            "Carla Mendez",
+            "88"
+          ],
+          "required_stdout_contains": [
+            "Students:",
+            "Average:",
+            "Highest:",
+            "Lowest:",
+            "Passed:"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "both",
+      "starter_mode": "independent"
     },
     {
       "language": "typescript",
@@ -1668,14 +3553,57 @@
           "cleanup_paths": [
             "core_assessment_report.txt"
           ],
-          "oracle_solution": true,
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
-          ]
+            "normal"
+          ],
+          "required_stdout_equals": "Ignoring out-of-range value: 105\nValid count: 4\nMinimum: 60\nMaximum: 91\nAverage: 77.75\nFrequency table:\n0-9: 0\n10-19: 0\n20-29: 0\n30-39: 0\n40-49: 0\n50-59: 0\n60-69: 1\n70-79: 1\n80-89: 1\n90-100: 1\nReport saved to core_assessment_report.txt\n"
+        },
+        {
+          "working_dir": "languages/typescript/assessments/02-core/solutions",
+          "input_lines": [
+            "91",
+            "88",
+            "72",
+            "105",
+            "60",
+            "-1"
+          ],
+          "cleanup_paths": [
+            "core_assessment_report.txt"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "required_stdout_equals": "Ignoring out-of-range value: 105\nValid count: 4\nMinimum: 60\nMaximum: 91\nAverage: 77.75\nFrequency table:\n0-9: 0\n10-19: 0\n20-29: 0\n30-39: 0\n40-49: 0\n50-59: 0\n60-69: 1\n70-79: 1\n80-89: 1\n90-100: 1\nReport saved to core_assessment_report.txt\n",
+          "shared_execution": true
+        },
+        {
+          "working_dir": "languages/typescript/assessments/02-core/solutions",
+          "input_lines": [
+            "91",
+            "88",
+            "72",
+            "105",
+            "60",
+            "-1"
+          ],
+          "cleanup_paths": [
+            "core_assessment_report.txt"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "required_stdout_equals": "Ignoring out-of-range value: 105\nValid count: 4\nMinimum: 60\nMaximum: 91\nAverage: 77.75\nFrequency table:\n0-9: 0\n10-19: 0\n20-29: 0\n30-39: 0\n40-49: 0\n50-59: 0\n60-69: 1\n70-79: 1\n80-89: 1\n90-100: 1\nReport saved to core_assessment_report.txt\n",
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "both",
+      "starter_mode": "independent"
     },
     {
       "language": "typescript",
@@ -1701,13 +3629,46 @@
             "Sample counts:",
             "Computed areas:"
           ],
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
+            "normal"
           ]
+        },
+        {
+          "required_stdout_contains": [
+            "Shape areas:",
+            "Total area:",
+            "Minimum area:",
+            "Maximum area:",
+            "Sample counts:",
+            "Computed areas:"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "shared_execution": true
+        },
+        {
+          "required_stdout_contains": [
+            "Shape areas:",
+            "Total area:",
+            "Minimum area:",
+            "Maximum area:",
+            "Sample counts:",
+            "Computed areas:"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "both",
+      "starter_mode": "independent"
     },
     {
       "language": "typescript",
@@ -1734,13 +3695,48 @@
             "Minimum: 2",
             "Maximum: 45"
           ],
-          "name": "reference scenario",
+          "name": "normal behavior",
           "covers": [
-            "normal",
-            "documented boundaries"
+            "normal"
           ]
+        },
+        {
+          "required_stdout_contains": [
+            "Worker 0 partial sum: 48",
+            "Worker 1 partial sum: 97",
+            "Worker 2 partial sum: 60",
+            "Final summary:",
+            "Total: 205",
+            "Minimum: 2",
+            "Maximum: 45"
+          ],
+          "name": "boundary and error behavior",
+          "covers": [
+            "boundary",
+            "error"
+          ],
+          "shared_execution": true
+        },
+        {
+          "required_stdout_contains": [
+            "Worker 0 partial sum: 48",
+            "Worker 1 partial sum: 97",
+            "Worker 2 partial sum: 60",
+            "Final summary:",
+            "Total: 205",
+            "Minimum: 2",
+            "Maximum: 45"
+          ],
+          "name": "state and resource behavior",
+          "covers": [
+            "state",
+            "resources"
+          ],
+          "shared_execution": true
         }
-      ]
+      ],
+      "route_role": "both",
+      "starter_mode": "independent"
     }
   ]
 }

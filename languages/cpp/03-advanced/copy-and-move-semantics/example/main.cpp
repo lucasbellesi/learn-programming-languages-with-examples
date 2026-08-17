@@ -1,6 +1,6 @@
 // Module focus: How copying, sharing, or transferring state changes later behavior.
-// Why it matters: practicing copy and move semantics patterns makes exercises and checkpoints
-// easier to reason about.
+// Why it matters: the example makes it possible to predict aliasing and independence after
+// copying or sharing values before the learner tackles the exercises.
 
 #include <iostream>
 #include <utility>
@@ -37,22 +37,25 @@ class Buffer {
     vector<int> data;
 };
 
-// Helper setup for copy and move semantics; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to predict aliasing and independence after
+// copying or sharing values.
 Buffer makeBuffer() {
     Buffer b(5);
     return b;
 }
 
-// Walk through one fixed scenario so copy and move semantics behavior stays repeatable.
+// Fixed inputs make the consequence of using moved-from objects without reinitialization visible
+// and repeatable.
 int main() {
-    // Prepare sample inputs that exercise the key copy and move semantics path.
+    // These values exercise the normal path before the exercises vary the documented boundaries.
     Buffer first(3);
     Buffer second = first;
     Buffer third = makeBuffer();
 
     second = move(third);
 
-    // Report values so learners can verify the copy and move semantics outcome.
+    // The printed result shows whether the program can choose an idiomatic ownership-transfer
+    // strategy for the language.
     cout << "second size: " << second.size() << '\n';
     return 0;
 }

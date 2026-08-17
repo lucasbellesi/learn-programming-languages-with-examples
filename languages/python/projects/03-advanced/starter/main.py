@@ -1,6 +1,12 @@
+def run_project() -> None:
+    # TODO 1: Define a `Course` class with title and capacity.
+    # TODO 2: Provide methods for enroll, drop, and print status.
+    # TODO 3: Prevent enrollment beyond capacity.
+    pass
+
+
 def main() -> None:
-    # TODO: implement the README specification (ADV-MOD-01, ADV-INV-02, ADV-POL-01, ADV-GEN-01).
-    print("TODO: implement this checkpoint")
+    run_project()
 
 
 if __name__ == "__main__":

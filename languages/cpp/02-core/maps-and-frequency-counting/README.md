@@ -44,6 +44,12 @@ g++ -std=c++17 -Wall -Wextra -pedantic example/top-k-frequency.cpp -o maps_top_k
 - Using wrong key type for comparison needs.
 - Not normalizing input before counting.
 
+## Cross-Language Notes
+
+- In C++, read this module through the native focus ?Maps and Frequency Counting?; the shared folder name remains stable for side-by-side navigation.
+- Use explicit value/reference semantics and standard-library types to demonstrate how to use key-value collections to aggregate and retrieve data.
+- Compare observable behavior with the other tracks when learning to define normalization and missing-key behavior explicitly; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - `exercises/01.cpp`: count digit frequencies.

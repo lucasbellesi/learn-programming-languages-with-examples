@@ -51,7 +51,7 @@ class Program
 {
     static void Main()
     {
-        Console.Write("Items to produce: ");
+        Console.WriteLine("Items to produce:");
         if (!int.TryParse(Console.ReadLine(), out int count))
         {
             Console.WriteLine("Invalid item count.");

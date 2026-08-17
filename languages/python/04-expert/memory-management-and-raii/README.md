@@ -1,4 +1,4 @@
-# Memory Management and RAII (Python)
+# Managed Memory and Context Managers (Python)
 
 This module introduces deterministic cleanup in Python through context managers.
 
@@ -55,9 +55,9 @@ python scripts/automation.py run-module --module-path languages/python/04-expert
 - Edge cases: `n <= 0`; invalid integer input.
 
 2. exercises/02.py
-- Input: none.
+- Input: positive nesting depth.
 - Output: enter/exit logs proving automatic cleanup.
-- Edge cases: nested scopes; final active counter must return to zero.
+- Edge cases: nested scopes; final active counter returns to zero.
 
 ## Check Your Work
 

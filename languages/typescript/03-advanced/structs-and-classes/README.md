@@ -35,6 +35,12 @@ python scripts/automation.py run-module --module-path languages/typescript/03-ad
 - Forgetting that object references stay shared by default.
 - Mixing formatting logic directly into constructors.
 
+## Cross-Language Notes
+
+- In TypeScript, read this module through the native focus ?Structs and Classes?; the shared folder name remains stable for side-by-side navigation.
+- Use structural types, Node APIs, and explicit reference conventions to demonstrate how to model data and behavior with cohesive domain types.
+- Compare observable behavior with the other tracks when learning to protect invariants through constructors and methods; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - exercises/01.ts: parse records into typed objects and print a summary.

@@ -33,20 +33,26 @@ class Program
 {
     static void Main()
     {
-        Console.WriteLine($"Active before scopes: {ScopeGuard.ActiveCount}");
-
-        using (new ScopeGuard("outer"))
+        if (!int.TryParse(Console.ReadLine(), out int depth) || depth <= 0)
         {
-            Console.WriteLine($"Active inside outer: {ScopeGuard.ActiveCount}");
-
-            using (new ScopeGuard("inner"))
-            {
-                Console.WriteLine($"Active inside inner: {ScopeGuard.ActiveCount}");
-            }
-
-            Console.WriteLine($"Active after inner: {ScopeGuard.ActiveCount}");
+            Console.WriteLine("Depth must be positive.");
+            return;
         }
 
+        Console.WriteLine($"Active before scopes: {ScopeGuard.ActiveCount}");
+        RunNestedScopes(depth, 1);
         Console.WriteLine($"Active after scopes: {ScopeGuard.ActiveCount}");
+    }
+
+    static void RunNestedScopes(int depth, int level)
+    {
+        if (level > depth)
+        {
+            Console.WriteLine($"Active at deepest scope: {ScopeGuard.ActiveCount}");
+            return;
+        }
+
+        using ScopeGuard guard = new ScopeGuard($"scope-{level}");
+        RunNestedScopes(depth, level + 1);
     }
 }

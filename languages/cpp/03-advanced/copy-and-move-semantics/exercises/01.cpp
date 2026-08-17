@@ -1,7 +1,13 @@
-#include <iostream>
+namespace {
+void runCopyMoveSemanticsExercise() {
+    // TODO 1: Read or prepare buffer size and values.
+    // TODO 2: Resource-owning buffer with copy and move.
+    // TODO 3: Produce logs showing copy and move operations; verify zero-size buffer;
+    //         self-assignment safety.
+}
+} // namespace
 
 int main() {
-    // TODO: implement the README specification (ADV-CPY-01, ADV-CPY-02).
-    std::cout << "TODO: implement this exercise\n";
+    runCopyMoveSemanticsExercise();
     return 0;
 }

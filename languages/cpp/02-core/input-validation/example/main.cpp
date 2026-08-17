@@ -1,13 +1,14 @@
 // Module focus: Rejecting invalid input before the main workflow continues.
-// Why it matters: practicing input validation patterns makes exercises and checkpoints easier to
-// reason about.
+// Why it matters: the example makes it possible to reject malformed and out-of-domain input
+// without corrupting state before the learner tackles the exercises.
 
 #include <iostream>
 #include <limits>
 #include <string>
 using namespace std;
 
-// Helper setup for input validation; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to reject malformed and out-of-domain input
+// without corrupting state.
 int readIntInRange(const string& label, int minValue, int maxValue) {
     int value = 0;
 
@@ -54,13 +55,15 @@ double readDoubleInRange(const string& label, double minValue, double maxValue) 
     }
 }
 
-// Walk through one fixed scenario so input validation behavior stays repeatable.
+// Fixed inputs make the consequence of continuing reads without clearing failed stream state
+// visible and repeatable.
 int main() {
-    // Prepare sample inputs that exercise the key input validation path.
+    // These values exercise the normal path before the exercises vary the documented boundaries.
     const int age = readIntInRange("Enter your age (1-120): ", 1, 120);
     const double gpa = readDoubleInRange("Enter your GPA (0.0-4.0): ", 0.0, 4.0);
 
-    // Report values so learners can verify the input validation outcome.
+    // The printed result shows whether the program can design retry and termination behavior that
+    // cannot loop accidentally.
     cout << "\nValidated input summary:\n";
     cout << "Age: " << age << '\n';
     cout << "GPA: " << gpa << '\n';

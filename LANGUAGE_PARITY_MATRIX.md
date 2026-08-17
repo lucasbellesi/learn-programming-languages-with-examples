@@ -3,8 +3,15 @@
 This matrix tracks module and checkpoint parity across C++, C#, Go, Java, Python, and TypeScript.
 
 - Canonical order is defined by the C++ track.
-- All six tracks now reach module and checkpoint parity through `04-expert`.
-- `Done` means the module is implemented with an example, exercises, and README.
+- All six tracks have structural parity through `04-expert`.
+- Parity has four independent dimensions: `S` structure, `G` guided starter,
+  `C` mature contracts, and `I` idiomatic adaptation.
+- `Done` is reserved for `S+G+C+I`; file presence alone is `S`.
+
+The current migration status is `S+G+I` for modules. Contract maturity is tracked
+separately because legacy solution-oracle cases are being replaced by explicit,
+mutation-resistant assertions. Projects are guided; assessments intentionally remain
+independent.
 
 ## Foundations (`01-foundations`)
 

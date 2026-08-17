@@ -1,4 +1,4 @@
-# Copy and Move Semantics
+# Reference Aliasing, Cloning, and Transfer Conventions (TypeScript)
 
 This module adapts the C++ ownership topic to TypeScript by focusing on reference behavior, shallow copies, and explicit cloning.
 

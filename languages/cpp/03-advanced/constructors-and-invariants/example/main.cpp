@@ -1,6 +1,6 @@
 // Module focus: Building objects that start valid and stay valid through guarded updates.
-// Why it matters: practicing constructors and invariants patterns makes exercises and checkpoints
-// easier to reason about.
+// Why it matters: the example makes it possible to construct objects only in valid states
+// before the learner tackles the exercises.
 
 #include <iostream>
 #include <string>
@@ -28,11 +28,12 @@ class Temperature {
     double celsius;
 };
 
-// Walk through one fixed scenario so constructors and invariants behavior stays repeatable.
+// Fixed inputs make the consequence of leaving objects in invalid states visible and repeatable.
 int main() {
-    // Prepare sample inputs that exercise the key constructors and invariants path.
+    // These values exercise the normal path before the exercises vary the documented boundaries.
     Temperature temp(-500.0);
-    // Report values so learners can verify the constructors and invariants outcome.
+    // The printed result shows whether the program can keep mutations from violating established
+    // invariants.
     cout << "Initial value (clamped): " << temp.getCelsius() << " C\n";
 
     const bool ok = temp.setCelsius(25.0);

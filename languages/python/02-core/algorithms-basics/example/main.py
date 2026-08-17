@@ -1,8 +1,9 @@
 # Module focus: Walking data step by step to compute summaries and decisions.
-# Why it matters: practicing algorithms basics patterns makes exercises and checkpoints easier to
-# reason about.
+# Why it matters: the example makes it possible to implement linear scans and accumulations with
+# clear invariants before the learner tackles the exercises.
 
-# Helper setup for algorithms basics; this keeps the walkthrough readable.
+# Separate helpers keep the main path focused on how to implement linear scans and accumulations
+# with clear invariants.
 def linear_search(values, target):
     for index, value in enumerate(values):
         if value == target:
@@ -33,12 +34,14 @@ def get_min_max(values):
     return min_value, max_value
 
 
-# Walk through one fixed scenario so algorithms basics behavior stays repeatable.
+# Fixed inputs make the consequence of forgetting to handle empty lists before min/max logic
+# visible and repeatable.
 values = [4, 7, 4, 1, 9, 4, 2]
 target = 4
 
 first_index = linear_search(values, target)
-# Report values so learners can verify the algorithms basics outcome.
+# The printed result shows whether the program can analyze behavior for empty, duplicate, and
+# missing values.
 print(f"First index of {target}: {first_index}")
 print(f"Occurrences of {target}: {count_occurrences(values, target)}")
 

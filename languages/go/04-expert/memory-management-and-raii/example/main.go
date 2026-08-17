@@ -1,11 +1,13 @@
 // Module focus: Tying resource cleanup to object lifetime so cleanup stays predictable.
-// Why it matters: practicing memory management and raii patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to explain the language's resource and memory
+// lifetime model before the learner tackles the exercises.
 
 package main
 
 import "fmt"
 
-// Helper setup for memory management and raii; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to explain the language's resource and
+// memory lifetime model.
 type trackedBuffer struct {
 	name   string
 	values []int
@@ -58,11 +60,13 @@ func (b *trackedBuffer) ensureOpen() {
 	}
 }
 
-// Walk through one fixed scenario so memory management and raii behavior stays repeatable.
+// Fixed inputs make the consequence of assuming the garbage collector closes resources on time
+// visible and repeatable.
 func main() {
-	// Prepare sample inputs that exercise the key memory management and raii path.
+	// These values exercise the normal path before the exercises vary the documented boundaries.
 	active := 0
-	// Report values so learners can verify the memory management and raii outcome.
+	// The printed result shows whether the program can guarantee deterministic cleanup for
+	// non-memory resources.
 	fmt.Printf("Active before scope: %d\n", active)
 
 	func() {

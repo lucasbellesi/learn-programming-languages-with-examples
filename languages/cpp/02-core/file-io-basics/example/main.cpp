@@ -1,20 +1,22 @@
 // Module focus: Reading plain-text files, parsing rows, and writing clear results.
-// Why it matters: practicing file io basics patterns makes exercises and checkpoints easier to
-// reason about.
+// Why it matters: the example makes it possible to read and write explicit paths while reporting
+// I/O failures before the learner tackles the exercises.
 
 #include <fstream>
 #include <iostream>
 #include <string>
 using namespace std;
 
-// Walk through one fixed scenario so file io basics behavior stays repeatable.
+// Fixed inputs make the consequence of assuming files always open successfully visible and
+// repeatable.
 int main() {
-    // Prepare sample inputs that exercise the key file io basics path.
+    // These values exercise the normal path before the exercises vary the documented boundaries.
     const string inputPath = "scores.txt";
     ifstream input(inputPath);
 
     if (!input) {
-        // Report values so learners can verify the file io basics outcome.
+        // The printed result shows whether the program can parse records defensively and
+        // distinguish valid from rejected rows.
         cout << "Could not open " << inputPath << "\n";
         cout << "Create a file named scores.txt with lines like: name score\n";
         return 0;

@@ -35,6 +35,12 @@ python scripts/automation.py run-module --module-path languages/python/03-advanc
 - Letting invalid constructor inputs propagate through the object lifecycle.
 - Updating internal state from outside helper methods.
 
+## Cross-Language Notes
+
+- In Python, read this module through the native focus ?Structs and Classes?; the shared folder name remains stable for side-by-side navigation.
+- Use dynamic values, collection protocols, and context managers to demonstrate how to model data and behavior with cohesive domain types.
+- Compare observable behavior with the other tracks when learning to protect invariants through constructors and methods; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - exercises/01.py: model a rectangle using a class with methods.

@@ -1,6 +1,8 @@
 // Module focus: Proving nested resources close automatically in reverse order.
 // Why it matters: scope guards make cleanup reliable when several resources are active.
 
+import java.util.Scanner;
+
 public class Exercise02 {
     static final class ScopeGuard implements AutoCloseable {
         private static int activeGuards = 0;
@@ -30,12 +32,29 @@ public class Exercise02 {
     }
 
     public static void main(String[] args) {
-        try (ScopeGuard outer = new ScopeGuard("outer")) {
-            try (ScopeGuard inner = new ScopeGuard("inner")) {
-                System.out.println("inside active=" + ScopeGuard.activeGuards());
-            }
+        Scanner scanner = new Scanner(System.in);
+        if (!scanner.hasNextInt()) {
+            System.out.println("Depth must be positive.");
+            return;
+        }
+        int depth = scanner.nextInt();
+        if (depth <= 0) {
+            System.out.println("Depth must be positive.");
+            return;
         }
 
+        runNestedScopes(depth, 1);
         System.out.println("final active=" + ScopeGuard.activeGuards());
+    }
+
+    static void runNestedScopes(int depth, int level) {
+        if (level > depth) {
+            System.out.println("inside active=" + ScopeGuard.activeGuards());
+            return;
+        }
+
+        try (ScopeGuard guard = new ScopeGuard("scope-" + level)) {
+            runNestedScopes(depth, level + 1);
+        }
     }
 }

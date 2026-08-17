@@ -1,11 +1,13 @@
 // Module focus: Measuring hot paths before changing code for speed.
-// Why it matters: practicing performance and profiling basics patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to measure before optimizing and interpret timing
+// data cautiously before the learner tackles the exercises.
 
 using System;
 using System.Diagnostics;
 using System.Text;
 
-// Helper setup for performance and profiling basics; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to measure before optimizing and interpret
+// timing data cautiously.
 class Program
 {
     const int Repetitions = 12;
@@ -15,7 +17,8 @@ class Program
     {
         // First compare string building strategies on the same workload.
         const int lineCount = 4000;
-        // Report values so learners can verify the performance and profiling basics outcome.
+        // The printed result shows whether the program can relate algorithmic and allocation
+        // choices to observed cost.
         Report("Average string concatenation ticks", () => BuildText(lineCount, false));
         Report("Average StringBuilder ticks", () => BuildText(lineCount, true));
 

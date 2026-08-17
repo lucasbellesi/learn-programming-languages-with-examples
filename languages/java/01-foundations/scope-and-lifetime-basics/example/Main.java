@@ -1,5 +1,6 @@
 // Module focus: How names stay visible only inside the blocks that own them.
-// Why it matters: practicing scope and lifetime basics patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to predict name visibility across nested scopes
+// before the learner tackles the exercises.
 
 public class Main {
     static int calls = 0;

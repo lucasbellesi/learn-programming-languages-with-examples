@@ -70,7 +70,7 @@ Use [EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md](EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md)
 - Every concept README in implemented levels should include:
   - required `## Learning Metadata` before `## Quick Run` with `Difficulty`, `Estimated Time`, `Prerequisites`, and `Cross-Language Lens`
   - `## Learning Outcomes` with IDs from `scripts/curriculum_outcomes.json`
-  - recommended `## Cross-Language Notes` after `## Common Pitfalls` and before `## Exercise Focus`
+  - required `## Cross-Language Notes` after `## Common Pitfalls` and before `## Exercise Focus`; notes must describe the current language rather than copy another track
   - `## Quick Run`
   - `## Topics Covered`
   - `## Common Pitfalls`
@@ -94,9 +94,10 @@ Use [EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md](EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md)
   - comments before program flow, validation, core transformation, branching, or output blocks when those blocks are non-trivial
   - language-specific notes when the example is an adaptation rather than a direct translation of the C++ concept
   - no empty scaffolding comments such as `Intent:` and no line-by-line narration of obvious syntax
-- Exercise starters must compile, contain focused TODOs, and remain incomplete; full implementations belong in `exercises/solutions/`.
+- Exercise starters must compile, contain at least three behavior-specific TODOs, and remain incomplete; generic “implement the README” prompts are rejected and full implementations belong in `exercises/solutions/`.
 - Guided-practice modules keep compilable starters at the documented exercise paths and complete reference implementations under `exercises/solutions/`.
-- Add starter, solution, outcome IDs, and named normal/edge cases to `scripts/learning_exercises.json`; it is the canonical exercise contract.
+- Add starter, solution, outcome IDs, `route_role`, `starter_mode`, and named normal/edge cases to `scripts/learning_exercises.json`; it is the canonical exercise contract.
+- Projects use guided starters and assessments use independent starters. Checkpoint contracts require named normal, boundary/error, and state/resource cases.
 - Add or update automation unit tests under `scripts/tests/` when changing the guided exercise runner or configuration contract.
 - Avoid external dependencies and test frameworks for C++ modules.
 - Avoid external dependencies and test frameworks for non-C++ checkpoints.

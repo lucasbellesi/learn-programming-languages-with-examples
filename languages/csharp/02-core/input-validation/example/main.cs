@@ -1,9 +1,11 @@
 // Module focus: Rejecting invalid input before the main workflow continues.
-// Why it matters: practicing input validation patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to reject malformed and out-of-domain input
+// without corrupting state before the learner tackles the exercises.
 
 using System;
 
-// Helper setup for input validation; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to reject malformed and out-of-domain input
+// without corrupting state.
 class Program
 {
     static int ReadIntInRange(string prompt, int minValue, int maxValue)
@@ -52,15 +54,18 @@ class Program
         }
     }
 
-    // Walk through one fixed scenario so input validation behavior stays repeatable.
+    // Fixed inputs make the consequence of using `int.Parse` or `double.Parse` directly for
+    // user-entered text visible and repeatable.
     static void Main()
     {
-        // Prepare sample inputs that exercise the key input validation path.
+        // These values exercise the normal path before the exercises vary the documented
+        // boundaries.
         // Only validated values reach the final summary.
         int age = ReadIntInRange("Enter your age (1-120): ", 1, 120);
         double gpa = ReadDoubleInRange("Enter your GPA (0.0-4.0): ", 0.0, 4.0);
 
-        // Report values so learners can verify the input validation outcome.
+        // The printed result shows whether the program can design retry and termination behavior
+        // that cannot loop accidentally.
         Console.WriteLine();
         Console.WriteLine("Validated input summary:");
         Console.WriteLine($"Age: {age}");

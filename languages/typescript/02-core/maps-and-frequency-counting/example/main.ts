@@ -1,5 +1,6 @@
 // Module focus: Counting repeated values and summarizing them through keyed lookups.
-// Why it matters: practicing maps and frequency counting patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to use key-value collections to aggregate and
+// retrieve data before the learner tackles the exercises.
 
 const text = "go fast go far learn fast";
 const words = text.split(/\s+/);
@@ -16,7 +17,8 @@ const sortedEntries = [...frequencies.entries()].sort((left, right) => {
     return left[0].localeCompare(right[0]);
 });
 
-// Report output values so learners can verify the maps and frequency counting result.
+// The printed result shows whether the program can define normalization and missing-key behavior
+// explicitly.
 console.log(`Text: ${text}`);
 for (const [word, count] of sortedEntries) {
     console.log(`${word}: ${count}`);

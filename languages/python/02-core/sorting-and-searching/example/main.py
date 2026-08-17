@@ -1,10 +1,11 @@
 # Module focus: Reordering data and locating values with deliberate search logic.
-# Why it matters: practicing sorting and searching patterns makes exercises and checkpoints easier
-# to reason about.
+# Why it matters: the example makes it possible to choose and apply sorting and searching
+# operations correctly before the learner tackles the exercises.
 
-# Helper setup for sorting and searching; this keeps the walkthrough readable.
+# Separate helpers keep the main path focused on how to choose and apply sorting and searching
+# operations correctly.
 def binary_search(values, target):
-    # Prepare sample inputs that exercise the key sorting and searching path.
+    # These values exercise the normal path before the exercises vary the documented boundaries.
     left = 0
     right = len(values) - 1
 
@@ -23,12 +24,14 @@ def binary_search(values, target):
     return -1
 
 
-# Walk through one fixed scenario so sorting and searching behavior stays repeatable.
+# Fixed inputs make the consequence of running binary search on unsorted input visible and
+# repeatable.
 def main():
     values = [7, 2, 9, 4, 2, 8]
     values.sort()
 
-    # Report output values so learners can verify the sorting and searching outcome.
+    # The printed result shows whether the program can explain ordering, duplicates, missing
+    # values, and stability tradeoffs.
     print(f"Sorted: {' '.join(str(value) for value in values)}")
 
     target = 4

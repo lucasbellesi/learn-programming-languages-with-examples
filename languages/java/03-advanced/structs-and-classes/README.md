@@ -35,6 +35,12 @@ python scripts/automation.py run-module --module-path languages/java/03-advanced
 - Letting invalid constructor inputs propagate through the object lifecycle.
 - Choosing a full class when a record would communicate immutable data more clearly.
 
+## Cross-Language Notes
+
+- In Java, read this module through the native focus ?Structs and Classes?; the shared folder name remains stable for side-by-side navigation.
+- Use nominal types, JVM collections, and explicit resource scopes to demonstrate how to model data and behavior with cohesive domain types.
+- Compare observable behavior with the other tracks when learning to protect invariants through constructors and methods; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - exercises/Exercise01.java: model a rectangle using a class with methods.

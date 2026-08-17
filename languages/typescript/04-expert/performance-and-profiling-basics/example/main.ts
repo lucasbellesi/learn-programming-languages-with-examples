@@ -1,9 +1,11 @@
 // Module focus: Measuring hot paths before changing code for speed.
-// Why it matters: practicing performance and profiling basics patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to measure before optimizing and interpret timing
+// data cautiously before the learner tackles the exercises.
 
 import { performance } from "node:perf_hooks";
 
-// Helper setup for performance and profiling basics; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to measure before optimizing and interpret
+// timing data cautiously.
 function buildWithConcat(values: string[]): string {
     let output = "";
     for (const value of values) {
@@ -25,9 +27,10 @@ function averageDuration(runs: number, work: () => void): number {
     return (performance.now() - start) / runs;
 }
 
-// Walk through one fixed scenario so performance and profiling basics behavior stays repeatable.
+// Fixed inputs make the consequence of measuring tiny workloads where noise dominates the result
+// visible and repeatable.
 function main(): void {
-    // Prepare sample inputs that exercise the key performance and profiling basics path.
+    // These values exercise the normal path before the exercises vary the documented boundaries.
     const values = Array.from({ length: 8_000 }, (_, index) => `item-${index}`);
     const runs = 12;
 
@@ -38,7 +41,8 @@ function main(): void {
         void buildWithJoin(values).length;
     });
 
-    // Report values so learners can verify the performance and profiling basics outcome.
+    // The printed result shows whether the program can relate algorithmic and allocation choices
+    // to observed cost.
     console.log(
         `Concat average (ms): ${concatAverage.toFixed(3)} over ${runs} runs`,
     );

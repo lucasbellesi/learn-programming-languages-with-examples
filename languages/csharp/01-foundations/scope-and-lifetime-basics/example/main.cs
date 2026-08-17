@@ -1,9 +1,11 @@
 // Module focus: How names stay visible only inside the blocks that own them.
-// Why it matters: practicing scope and lifetime basics patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to predict name visibility across nested scopes
+// before the learner tackles the exercises.
 
 using System;
 
-// Helper setup for scope and lifetime basics; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to predict name visibility across nested
+// scopes.
 class Program
 {
     const int PassingScore = 60;
@@ -21,11 +23,14 @@ class Program
         return "F";
     }
 
-    // Walk through one fixed scenario so scope and lifetime basics behavior stays repeatable.
+    // Fixed inputs make the consequence of using values before they are assigned in all branches
+    // visible and repeatable.
     static void Main()
     {
-        // Prepare sample inputs that exercise the key scope and lifetime basics path.
-        // Report values so learners can verify the scope and lifetime basics outcome.
+        // These values exercise the normal path before the exercises vary the documented
+        // boundaries.
+        // The printed result shows whether the program can explain when values and resources
+        // cease to be usable.
         Console.Write("Enter score: ");
         int score = int.Parse(Console.ReadLine() ?? "0");
 

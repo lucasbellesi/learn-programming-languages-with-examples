@@ -1,6 +1,12 @@
 public class Exercise01 {
+    private static void runTemplatesBasicsExercise() {
+        // TODO 1: Read or prepare two words.
+        // TODO 2: Implement and swap a generic `Pair<T>`.
+        // TODO 3: Produce pair before and after swapping; verify identical words; words with different
+        //         lengths.
+    }
+
     public static void main(String[] args) {
-        // TODO: implement the README specification (ADV-GEN-01, ADV-GEN-02).
-        System.out.println("TODO: implement this exercise");
+        runTemplatesBasicsExercise();
     }
 }

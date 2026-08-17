@@ -102,6 +102,25 @@ class CurriculumTests(unittest.TestCase):
         with self.assertRaisesRegex(CurriculumError, "invalid language adaptation"):
             load_curriculum_outcomes(self.root)
 
+    def test_outcomes_load_display_titles(self) -> None:
+        payload = self.valid_outcomes()
+        payload["modules"]["01-foundations/sample"]["display_titles"] = {
+            "python": "Native Sample Title"
+        }
+        self.write("curriculum_outcomes.json", payload)
+        result = load_curriculum_outcomes(self.root)
+        self.assertEqual(
+            result["01-foundations/sample"].display_titles["python"],
+            "Native Sample Title",
+        )
+
+    def test_outcomes_reject_invalid_display_title(self) -> None:
+        payload = self.valid_outcomes()
+        payload["modules"]["01-foundations/sample"]["display_titles"] = {"python": ""}
+        self.write("curriculum_outcomes.json", payload)
+        with self.assertRaisesRegex(CurriculumError, "invalid display titles"):
+            load_curriculum_outcomes(self.root)
+
     def test_checkpoints_load_copy(self) -> None:
         self.write("learning_checkpoints.json", {"checkpoints": [{"language": "python"}]})
         result = load_learning_checkpoints(self.root)

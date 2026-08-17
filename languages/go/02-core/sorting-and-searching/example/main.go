@@ -1,5 +1,6 @@
 // Module focus: Reordering data and locating values with deliberate search logic.
-// Why it matters: practicing sorting and searching patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to choose and apply sorting and searching
+// operations correctly before the learner tackles the exercises.
 
 package main
 
@@ -8,7 +9,8 @@ import (
 	"sort"
 )
 
-// Helper setup for sorting and searching; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to choose and apply sorting and searching
+// operations correctly.
 func binarySearch(values []int, target int) int {
 	left := 0
 	right := len(values) - 1
@@ -31,13 +33,15 @@ func binarySearch(values []int, target int) int {
 	return -1
 }
 
-// Walk through one fixed scenario so sorting and searching behavior stays repeatable.
+// Fixed inputs make the consequence of applying binary search to unsorted values visible and
+// repeatable.
 func main() {
-	// Prepare sample inputs that exercise the key sorting and searching path.
+	// These values exercise the normal path before the exercises vary the documented boundaries.
 	values := []int{7, 2, 9, 4, 2, 8}
 	sort.Ints(values)
 
-	// Report values so learners can verify the sorting and searching outcome.
+	// The printed result shows whether the program can explain ordering, duplicates, missing values,
+	// and stability tradeoffs.
 	fmt.Printf("Sorted: %v\n", values)
 
 	target := 4

@@ -1,7 +1,12 @@
-#include <iostream>
+namespace {
+void runAlgorithmsBasicsExercise() {
+    // TODO 1: Read or prepare integer `n`, then `n` values, then target.
+    // TODO 2: Linear search and first index.
+    // TODO 3: Produce first index of target or `-1`; verify `n <= 0`; target not present.
+}
+} // namespace
 
 int main() {
-    // TODO: implement the README specification (COR-ALG-01, COR-ALG-02).
-    std::cout << "TODO: implement this exercise\n";
+    runAlgorithmsBasicsExercise();
     return 0;
 }

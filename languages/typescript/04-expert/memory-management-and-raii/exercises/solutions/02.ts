@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+
 class SessionLog {
     private readonly entries: string[] = [];
     private closed = false;
@@ -13,27 +15,37 @@ class SessionLog {
         return this.entries.join(", ");
     }
 
-    close(): void {
+    close(): boolean {
+        if (this.closed) {
+            return false;
+        }
         this.closed = true;
+        return true;
     }
 }
 
 function main(): void {
     const session = new SessionLog();
-    session.record("connected");
-    session.record("validated");
+    const commands = readFileSync(0, "utf8").split(/\r?\n/);
 
-    console.log(`Before close: ${session.snapshot()}`);
-    session.close();
-    console.log("Session closed.");
-
-    try {
-        session.record("late-write");
-    } catch (error) {
-        if (error instanceof Error) {
-            console.log(`Guarded error: ${error.message}`);
+    for (const rawCommand of commands) {
+        const command = rawCommand.trim();
+        if (command.startsWith("record ")) {
+            try {
+                session.record(command.slice("record ".length));
+            } catch (error) {
+                if (error instanceof Error) {
+                    console.log(`Guarded error: ${error.message}`);
+                }
+            }
+        } else if (command === "close") {
+            console.log(
+                session.close() ? "Session closed." : "Session already closed.",
+            );
         }
     }
+
+    console.log(`Snapshot: ${session.snapshot() || "empty"}`);
 }
 
 main();

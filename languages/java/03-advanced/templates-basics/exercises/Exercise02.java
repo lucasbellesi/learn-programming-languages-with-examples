@@ -1,6 +1,11 @@
 public class Exercise02 {
+    private static void runTemplatesBasicsExercise() {
+        // TODO 1: Read or prepare count followed by decimal values.
+        // TODO 2: Compute an average from a generic list of numeric values.
+        // TODO 3: Produce arithmetic average; verify zero count; mixed positive and negative values.
+    }
+
     public static void main(String[] args) {
-        // TODO: implement the README specification (ADV-GEN-01, ADV-GEN-02).
-        System.out.println("TODO: implement this exercise");
+        runTemplatesBasicsExercise();
     }
 }

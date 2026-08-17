@@ -1,6 +1,6 @@
 // Module focus: Storing related values in ordered collections and iterating safely.
-// Why it matters: practicing arrays and vectors patterns makes exercises and checkpoints easier to
-// reason about.
+// Why it matters: the example makes it possible to store and traverse ordered collections safely
+// before the learner tackles the exercises.
 
 #include <iostream>
 #include <vector>
@@ -9,12 +9,13 @@
 
 using namespace std;
 
-// Walk through one fixed scenario so arrays and vectors behavior stays repeatable.
+// Fixed inputs make the consequence of accessing out-of-range indexes visible and repeatable.
 int main() {
-    // Prepare sample inputs that exercise the key arrays and vectors path.
+    // These values exercise the normal path before the exercises vary the documented boundaries.
     const int fixedScores[3] = {72, 88, 95};
 
-    // Report values so learners can verify the arrays and vectors outcome.
+    // The printed result shows whether the program can handle empty collections and index
+    // boundaries explicitly.
     print_fixed_scores(fixedScores, 3);
 
     int count = 0;

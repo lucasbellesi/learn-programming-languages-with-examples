@@ -18,9 +18,9 @@ This module shows how to split a TypeScript console program into reusable files 
 
 Run from the repository root:
 
-~~~bash
+```bash
 python scripts/automation.py run-module --module-path languages/typescript/04-expert/modularization-and-build-structure
-~~~
+```
 
 ## Topics Covered
 
@@ -50,12 +50,14 @@ python scripts/automation.py run-module --module-path languages/typescript/04-ex
 ### Exercise Specs
 
 1. exercises/01.ts
-- Input: none.
+
+- Input: service name and retry count on separate lines.
 - Output: a validated configuration summary with reusable helper functions.
 - Edge cases: missing service name; invalid retry count.
 
 2. exercises/02.ts
-- Input: none.
+
+- Input: zero or more event names, one per line; valid names use lowercase letters and hyphens.
 - Output: parsed event counts plus a short summary report.
 - Edge cases: malformed lines; empty input arrays.
 
@@ -76,4 +78,3 @@ Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercise
 - [ ] I can keep `main` focused on orchestration instead of business logic.
 - [ ] I completed exercises/01.ts.
 - [ ] I completed exercises/02.ts.
-

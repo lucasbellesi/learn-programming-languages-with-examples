@@ -1,7 +1,13 @@
-#include <iostream>
+namespace {
+void runTemplatesBasicsExercise() {
+    // TODO 1: Read or prepare numeric sequence.
+    // TODO 2: Template average over numeric vectors.
+    // TODO 3: Produce arithmetic average; verify empty vector should return `0`; mixed
+    //         positive/negative values.
+}
+} // namespace
 
 int main() {
-    // TODO: implement the README specification (ADV-GEN-01, ADV-GEN-02).
-    std::cout << "TODO: implement this exercise\n";
+    runTemplatesBasicsExercise();
     return 0;
 }

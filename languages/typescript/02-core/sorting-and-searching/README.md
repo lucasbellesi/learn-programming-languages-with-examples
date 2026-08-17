@@ -37,9 +37,9 @@ python scripts/automation.py run-module --module-path languages/typescript/02-co
 
 ## Cross-Language Notes
 
-- Compared with C++, the other tracks keep the same ordering and lookup ideas but differ in how visible comparator design is.
-- Relative to Python and TypeScript, Go and C# ask for more explicit decisions around helper functions and ordering rules.
-- The key comparison is not the algorithm itself, but how much control each language exposes around sorting behavior.
+- In TypeScript, read this module through the native focus ?Sorting and Searching?; the shared folder name remains stable for side-by-side navigation.
+- Use structural types, Node APIs, and explicit reference conventions to demonstrate how to choose and apply sorting and searching operations correctly.
+- Compare observable behavior with the other tracks when learning to explain ordering, duplicates, missing values, and stability tradeoffs; equivalent evidence matters more than identical syntax.
 
 ## Exercise Focus
 

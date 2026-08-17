@@ -1,5 +1,6 @@
 // Module focus: Treating different concrete types through one common interface.
-// Why it matters: practicing inheritance and polymorphism patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to program against a shared behavioral
+// abstraction before the learner tackles the exercises.
 
 package main
 
@@ -8,7 +9,8 @@ import (
 	"math"
 )
 
-// Helper setup for inheritance and polymorphism; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to program against a shared behavioral
+// abstraction.
 type Shape interface {
 	Area() float64
 	Name() string
@@ -39,16 +41,18 @@ func (c Circle) Name() string {
 	return "Circle"
 }
 
-// Walk through one fixed scenario so inheritance and polymorphism behavior stays repeatable.
+// Fixed inputs make the consequence of expecting inheritance syntax instead of
+// composition/interfaces visible and repeatable.
 func main() {
-	// Prepare sample inputs that exercise the key inheritance and polymorphism path.
+	// These values exercise the normal path before the exercises vary the documented boundaries.
 	shapes := []Shape{
 		Rectangle{width: 3.0, height: 4.0},
 		Circle{radius: 2.0},
 	}
 
 	for _, shape := range shapes {
-		// Report values so learners can verify the inheritance and polymorphism outcome.
+		// The printed result shows whether the program can use dynamic dispatch without unsafe type
+		// assumptions.
 		fmt.Printf("%s area: %.2f\n", shape.Name(), shape.Area())
 	}
 }

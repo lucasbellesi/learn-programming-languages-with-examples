@@ -1,16 +1,20 @@
 // Module focus: Splitting responsibilities so entrypoints and helpers stay focused.
-// Why it matters: practicing modularization and build structure patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to separate public contracts from implementation
+// details before the learner tackles the exercises.
 
 using System;
 using ModularizationAndBuildStructureExample.Pricing;
 
-// Helper setup for modularization and build structure; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to separate public contracts from
+// implementation details.
 class Program
 {
-    // Walk through one fixed scenario so modularization and build structure behavior stays repeatable.
+    // Fixed inputs make the consequence of putting every class into `main.cs` even when
+    // responsibilities diverge visible and repeatable.
     static void Main()
     {
-        // Prepare sample inputs that exercise the key modularization and build structure path.
+        // These values exercise the normal path before the exercises vary the documented
+        // boundaries.
         LineItem[] items =
         {
             new LineItem("Notebook", 2, 3.50m),
@@ -20,7 +24,8 @@ class Program
 
         InvoiceSummary summary = InvoiceCalculator.BuildSummary(items, 10.0m, 7.50m);
 
-        // Report values so learners can verify the modularization and build structure outcome.
+        // The printed result shows whether the program can organize a multi-file program with an
+        // explicit build boundary.
         Console.WriteLine(InvoiceFormatter.Render(summary));
     }
 }

@@ -1,5 +1,6 @@
 // Module focus: Tying resource cleanup to object lifetime so cleanup stays predictable.
-// Why it matters: practicing memory management and raii patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to explain the language's resource and memory
+// lifetime model before the learner tackles the exercises.
 
 import java.util.Arrays;
 
@@ -66,7 +67,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        // Report values so learners can verify the memory management and raii outcome.
+        // The printed result shows whether the program can guarantee deterministic cleanup for
+        // non-memory resources.
         System.out.println("Active before scope: " + BufferLease.activeLeases());
 
         // try-with-resources closes resources automatically at the end of this block.

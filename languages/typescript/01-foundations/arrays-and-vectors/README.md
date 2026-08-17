@@ -1,4 +1,4 @@
-# Arrays and Dynamic Lists
+# Arrays and Typed Sequences (TypeScript)
 
 This module uses typed arrays to store, transform, and summarize groups of values.
 
@@ -37,9 +37,9 @@ python scripts/automation.py run-module --module-path languages/typescript/01-fo
 
 ## Cross-Language Notes
 
-- Compared with the C++ version, each track solves the same sequence problems with a different default dynamic-array model.
-- The key comparison is where bounds safety, resizing behavior, and iteration ergonomics come from in each language.
-- This module is most useful when you notice how similar tasks feel different under `vector`, `List<T>`, slices, Python lists, and TypeScript arrays.
+- In TypeScript, read this module through the native focus ?Arrays and Typed Sequences?; the shared folder name remains stable for side-by-side navigation.
+- Use structural types, Node APIs, and explicit reference conventions to demonstrate how to store and traverse ordered collections safely.
+- Compare observable behavior with the other tracks when learning to handle empty collections and index boundaries explicitly; equivalent evidence matters more than identical syntax.
 
 ## Exercise Focus
 

@@ -1,4 +1,4 @@
-# Copy and Move Semantics (Go)
+# Value Copies, Slices, and Ownership (Go)
 
 This module introduces copying behavior and transfer-style updates with slices and pointers.
 

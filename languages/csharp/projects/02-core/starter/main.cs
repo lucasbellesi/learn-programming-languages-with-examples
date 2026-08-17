@@ -1,10 +1,14 @@
-using System;
-
 internal static class Program
 {
+    private static void RunProject()
+    {
+        // TODO 1: Input file path from user.
+        // TODO 2: Parse each line as `name score`.
+        // TODO 3: Skip invalid rows with a warning count.
+    }
+
     private static void Main()
     {
-        // TODO: implement the README specification (COR-VAL-01, COR-ALG-01, COR-FIO-01, COR-ERR-02).
-        Console.WriteLine("TODO: implement this checkpoint");
+        RunProject();
     }
 }

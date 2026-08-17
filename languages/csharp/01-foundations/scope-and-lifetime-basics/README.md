@@ -35,6 +35,12 @@ python scripts/automation.py run-module --module-path languages/csharp/01-founda
 - Declaring accumulators inside loops by mistake.
 - Skipping range validation for score or count inputs.
 
+## Cross-Language Notes
+
+- In C#, read this module through the native focus ?Scope and Lifetime Basics?; the shared folder name remains stable for side-by-side navigation.
+- Use static types, .NET collections, and managed-resource patterns to demonstrate how to predict name visibility across nested scopes.
+- Compare observable behavior with the other tracks when learning to explain when values and resources cease to be usable; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - exercises/01.cs: map numeric score ranges to a letter grade using branch-local logic.

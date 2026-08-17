@@ -1,4 +1,4 @@
-# Memory Management and RAII (Go)
+# Managed Memory, Close, and defer (Go)
 
 This module introduces deterministic cleanup in Go through `defer` and explicit `Close` methods.
 
@@ -55,9 +55,9 @@ python scripts/automation.py run-module --module-path languages/go/04-expert/mem
 - Edge cases: `n <= 0`; invalid integer input.
 
 2. exercises/02.go
-- Input: none.
+- Input: positive nesting depth.
 - Output: enter/exit logs proving automatic cleanup.
-- Edge cases: nested scopes; final active counter must return to zero.
+- Edge cases: nested scopes; final active counter returns to zero.
 
 ## Check Your Work
 

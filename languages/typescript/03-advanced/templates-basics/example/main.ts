@@ -1,5 +1,6 @@
 // Module focus: Writing generic code that stays useful across multiple data types.
-// Why it matters: practicing templates basics patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to express reusable type-safe behavior with
+// language generics before the learner tackles the exercises.
 
 function firstOrNull<T>(values: T[]): T | null {
     return values.length === 0 ? null : values[0]!;
@@ -13,7 +14,8 @@ class Box<T> {
     }
 }
 
-// Report output values so learners can verify the templates basics result.
+// The printed result shows whether the program can apply constraints when an operation requires
+// specific capabilities.
 console.log(firstOrNull([1, 2, 3]));
 console.log(firstOrNull(["go", "ts", "cpp"]));
 console.log(new Box<number>(91).describe());

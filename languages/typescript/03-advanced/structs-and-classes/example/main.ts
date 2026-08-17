@@ -1,5 +1,6 @@
 // Module focus: Modeling related data and behavior with structured types.
-// Why it matters: practicing structs and classes patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to model data and behavior with cohesive domain
+// types before the learner tackles the exercises.
 
 interface StudentRecord {
     // Interfaces capture data shape without adding behavior.
@@ -23,7 +24,8 @@ class CourseSummary {
     }
 
     printSummary(): void {
-        // Report output values so learners can verify the structs and classes result.
+        // The printed result shows whether the program can protect invariants through
+        // constructors and methods.
         console.log(`Course: ${this.title}`);
         for (const student of this.students) {
             console.log(`- ${student.name}: ${student.score}`);

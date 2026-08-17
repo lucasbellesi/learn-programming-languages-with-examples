@@ -1,15 +1,18 @@
 // Module focus: Modeling related data and behavior with structured types.
-// Why it matters: practicing structs and classes patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to model data and behavior with cohesive domain
+// types before the learner tackles the exercises.
 
 using System;
 using System.Collections.Generic;
 
 class Program
 {
-    // Walk through one fixed scenario so structs and classes behavior stays repeatable.
+    // Fixed inputs make the consequence of using mutable structs for shared state visible and
+    // repeatable.
     static void Main()
     {
-        // Prepare sample inputs that exercise the key structs and classes path.
+        // These values exercise the normal path before the exercises vary the documented
+        // boundaries.
         List<Coordinate> route = new List<Coordinate>
         {
             new Coordinate(2, 3),
@@ -17,7 +20,8 @@ class Program
             new Coordinate(5, -2),
         };
 
-        // Report values so learners can verify the structs and classes outcome.
+        // The printed result shows whether the program can protect invariants through
+        // constructors and methods.
         Console.WriteLine("Coordinates (struct example):");
         foreach (Coordinate point in route)
         {

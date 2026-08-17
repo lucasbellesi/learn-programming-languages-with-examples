@@ -1,6 +1,12 @@
+def run_project() -> None:
+    # TODO 1: Represent processing steps as reusable objects.
+    # TODO 2: Process a list of jobs through all steps.
+    # TODO 3: Measure pipeline duration with `time.perf_counter`.
+    pass
+
+
 def main() -> None:
-    # TODO: implement the README specification (EXP-MEM-02, EXP-CON-01, EXP-PER-01, EXP-MOD-01).
-    print("TODO: implement this checkpoint")
+    run_project()
 
 
 if __name__ == "__main__":

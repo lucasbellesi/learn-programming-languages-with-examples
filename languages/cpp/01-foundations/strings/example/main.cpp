@@ -1,5 +1,6 @@
 // Module focus: Cleaning and combining text while preserving readable string logic.
-// Why it matters: practicing strings patterns makes exercises and checkpoints easier to reason
+// Why it matters: the example makes it possible to normalize, inspect, and transform textual data
+// before the learner tackles the exercises.
 // about.
 
 #include <iostream>
@@ -7,14 +8,16 @@
 #include <string>
 using namespace std;
 
-// Walk through one fixed scenario so strings behavior stays repeatable.
+// Fixed inputs make the consequence of forgetting to clear newline before `getline` visible and
+// repeatable.
 int main() {
-    // Prepare sample inputs that exercise the key strings path.
+    // These values exercise the normal path before the exercises vary the documented boundaries.
     int year = 0;
     string fullName;
     string sentence;
 
-    // Report values so learners can verify the strings outcome.
+    // The printed result shows whether the program can handle empty input and character
+    // boundaries safely.
     cout << "Enter your birth year: ";
     cin >> year;
 

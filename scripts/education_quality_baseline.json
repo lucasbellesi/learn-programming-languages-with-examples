@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "maximum_counts": {
+    "generic_exercise_starters": 0,
+    "weak_guided_exercise_starters": 0,
+    "generic_project_starters": 0,
+    "weak_guided_project_starters": 0,
+    "missing_cross_language_notes": 0,
+    "exercise_oracle_cases": 0,
+    "exercise_contracts_with_fewer_than_three_cases": 0,
+    "exercise_shared_execution_facets": 0,
+    "checkpoint_oracle_cases": 0,
+    "checkpoint_contracts_with_fewer_than_three_cases": 0,
+    "checkpoint_shared_execution_facets": 96
+  }
+}

@@ -40,6 +40,12 @@ python scripts/automation.py run-module --module-path languages/cpp/03-advanced/
 - Validating only at use-time, not construction-time.
 - Ignoring boundary conditions.
 
+## Cross-Language Notes
+
+- In C++, read this module through the native focus ?Constructors and Invariants?; the shared folder name remains stable for side-by-side navigation.
+- Use explicit value/reference semantics and standard-library types to demonstrate how to construct objects only in valid states.
+- Compare observable behavior with the other tracks when learning to keep mutations from violating established invariants; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - `exercises/01.cpp`: bank account with non-negative balance.

@@ -1,7 +1,13 @@
-#include <iostream>
+namespace {
+void runControlFlowExercise() {
+    // TODO 1: Read or prepare sequence of integers ending with `-1`.
+    // TODO 2: Read numbers until `-1` and compute average.
+    // TODO 3: Produce average of entered numbers before sentinel; verify immediate `-1` should
+    //         print "no values"; negative values other than `-1` are valid inputs.
+}
+} // namespace
 
 int main() {
-    // TODO: implement the README specification (FND-CFL-01, FND-CFL-02).
-    std::cout << "TODO: implement this exercise\n";
+    runControlFlowExercise();
     return 0;
 }

@@ -1,9 +1,10 @@
 // Module focus: Building objects that start valid and stay valid through guarded updates.
-// Why it matters: practicing constructors and invariants patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to construct objects only in valid states before
+// the learner tackles the exercises.
 
 using System;
 
-// Helper setup for constructors and invariants; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to construct objects only in valid states.
 class Temperature
 {
     private double celsius;
@@ -29,12 +30,15 @@ class Temperature
 
 class Program
 {
-    // Walk through one fixed scenario so constructors and invariants behavior stays repeatable.
+    // Fixed inputs make the consequence of accepting invalid constructor values and fixing later
+    // visible and repeatable.
     static void Main()
     {
-        // Prepare sample inputs that exercise the key constructors and invariants path.
+        // These values exercise the normal path before the exercises vary the documented
+        // boundaries.
         Temperature temperature = new Temperature(-500.0);
-        // Report values so learners can verify the constructors and invariants outcome.
+        // The printed result shows whether the program can keep mutations from violating
+        // established invariants.
         Console.WriteLine($"Initial value (clamped): {temperature.Celsius} C");
 
         bool updated = temperature.SetCelsius(25.0);

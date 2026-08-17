@@ -40,6 +40,12 @@ python scripts/automation.py run-module --module-path languages/cpp/01-foundatio
 - Complex expressions without parentheses.
 - Forgetting `%` only works with integers.
 
+## Cross-Language Notes
+
+- In C++, read this module through the native focus ?Operators and Expressions?; the shared folder name remains stable for side-by-side navigation.
+- Use explicit value/reference semantics and standard-library types to demonstrate how to build expressions with correct precedence and explicit intent.
+- Compare observable behavior with the other tracks when learning to distinguish arithmetic, comparison, and logical operations; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - `exercises/01.cpp`: convert seconds into hours/minutes/seconds.

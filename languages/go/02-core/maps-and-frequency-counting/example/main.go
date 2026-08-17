@@ -1,5 +1,6 @@
 // Module focus: Counting repeated values and summarizing them through keyed lookups.
-// Why it matters: practicing maps and frequency counting patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to use key-value collections to aggregate and
+// retrieve data before the learner tackles the exercises.
 
 package main
 
@@ -8,9 +9,10 @@ import (
 	"sort"
 )
 
-// Walk through one fixed scenario so maps and frequency counting behavior stays repeatable.
+// Fixed inputs make the consequence of reading missing keys without understanding zero-value
+// defaults visible and repeatable.
 func main() {
-	// Prepare sample inputs that exercise the key maps and frequency counting path.
+	// These values exercise the normal path before the exercises vary the documented boundaries.
 	text := "banana bandana"
 	frequencies := make(map[rune]int)
 
@@ -27,7 +29,8 @@ func main() {
 	}
 	sort.Slice(keys, func(i int, j int) bool { return keys[i] < keys[j] })
 
-	// Report values so learners can verify the maps and frequency counting outcome.
+	// The printed result shows whether the program can define normalization and missing-key behavior
+	// explicitly.
 	fmt.Println("Character frequencies:")
 	for _, key := range keys {
 		fmt.Printf("%c -> %d\n", key, frequencies[key])

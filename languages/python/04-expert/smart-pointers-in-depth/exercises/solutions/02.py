@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import gc
 import weakref
 
 
@@ -31,21 +30,17 @@ class WeakCache:
 
 
 def main() -> None:
+    scenario = input()
     cache = WeakCache()
-    stable = CachedValue("Still referenced")
-    cache.store("stable", stable)
+    if scenario == "missing":
+        cache.print_lookup("entry")
+        return
 
-    temporary = CachedValue("Short lived")
-    cache.store("temp", temporary)
-    cache.print_lookup("stable")
-    cache.print_lookup("temp")
-
-    del temporary
-    gc.collect()
-
-    cache.print_lookup("stable")
-    cache.print_lookup("temp")
-    cache.print_lookup("missing")
+    value = CachedValue("payload")
+    cache.store("entry", value)
+    if scenario == "expired":
+        del value
+    cache.print_lookup("entry")
 
 
 if __name__ == "__main__":

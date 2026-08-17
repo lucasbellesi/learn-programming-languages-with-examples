@@ -35,6 +35,12 @@ python scripts/automation.py run-module --module-path languages/csharp/02-core/e
 - Performing division without zero checks.
 - Printing vague errors that do not help recovery.
 
+## Cross-Language Notes
+
+- In C#, read this module through the native focus ?Error Handling and Defensive Programming?; the shared folder name remains stable for side-by-side navigation.
+- Use static types, .NET collections, and managed-resource patterns to demonstrate how to separate expected failures from programming defects.
+- Compare observable behavior with the other tracks when learning to preserve valid state and useful diagnostics when operations fail; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - exercises/01.cs: validate CSV-like row format.

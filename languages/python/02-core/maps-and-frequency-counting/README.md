@@ -35,6 +35,12 @@ python scripts/automation.py run-module --module-path languages/python/02-core/m
 - Printing unsorted dictionary keys when deterministic output is expected.
 - Forgetting to filter separators before counting symbols.
 
+## Cross-Language Notes
+
+- In Python, read this module through the native focus ?Maps and Frequency Counting?; the shared folder name remains stable for side-by-side navigation.
+- Use dynamic values, collection protocols, and context managers to demonstrate how to use key-value collections to aggregate and retrieve data.
+- Compare observable behavior with the other tracks when learning to define normalization and missing-key behavior explicitly; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - exercises/01.py: count digit frequencies.

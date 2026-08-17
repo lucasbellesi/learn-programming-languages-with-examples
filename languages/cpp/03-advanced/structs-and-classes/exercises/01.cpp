@@ -1,7 +1,13 @@
-#include <iostream>
+namespace {
+void runStructsClassesExercise() {
+    // TODO 1: Read or prepare width and height.
+    // TODO 2: Model rectangle using `struct` and methods.
+    // TODO 3: Produce area and perimeter; verify non-positive dimensions should stop with message;
+    //         decimal values should work.
+}
+} // namespace
 
 int main() {
-    // TODO: implement the README specification (ADV-MOD-01, ADV-MOD-02).
-    std::cout << "TODO: implement this exercise\n";
+    runStructsClassesExercise();
     return 0;
 }

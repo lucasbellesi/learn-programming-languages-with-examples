@@ -1,11 +1,12 @@
 // Module focus: Building objects that start valid and stay valid through guarded updates.
-// Why it matters: practicing constructors and invariants patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to construct objects only in valid states before
+// the learner tackles the exercises.
 
 package main
 
 import "fmt"
 
-// Helper setup for constructors and invariants; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to construct objects only in valid states.
 type Temperature struct {
 	celsius float64
 }
@@ -31,11 +32,13 @@ func (t *Temperature) Celsius() float64 {
 	return t.celsius
 }
 
-// Walk through one fixed scenario so constructors and invariants behavior stays repeatable.
+// Fixed inputs make the consequence of building structs directly and bypassing constructor guards
+// visible and repeatable.
 func main() {
-	// Prepare sample inputs that exercise the key constructors and invariants path.
+	// These values exercise the normal path before the exercises vary the documented boundaries.
 	temperature := NewTemperature(-500.0)
-	// Report values so learners can verify the constructors and invariants outcome.
+	// The printed result shows whether the program can keep mutations from violating established
+	// invariants.
 	fmt.Printf("Initial value (clamped): %.2f C\n", temperature.Celsius())
 
 	updated := temperature.SetCelsius(25.0)

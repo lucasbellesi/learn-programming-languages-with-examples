@@ -1,5 +1,6 @@
 // Module focus: Tracking ownership and lifetime when multiple references can observe the same value.
-// Why it matters: practicing smart pointers in depth patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to model exclusive, shared, and non-owning
+// relationships idiomatically before the learner tackles the exercises.
 
 import java.util.ArrayList;
 import java.util.List;

@@ -9,5 +9,6 @@ const values = fs
     .map((token) => Number.parseInt(token, 10));
 if (values.length < 3 || values.some((value) => !Number.isInteger(value))) {
     console.log("Expected three integers.");
+} else {
+    console.log(maxOfThree(values[0]!, values[1]!, values[2]!));
 }
-console.log(maxOfThree(values[0]!, values[1]!, values[2]!));

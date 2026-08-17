@@ -1,10 +1,12 @@
 // Module focus: Reading plain-text files, parsing rows, and writing clear results.
-// Why it matters: practicing file io basics patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to read and write explicit paths while reporting
+// I/O failures before the learner tackles the exercises.
 
 using System;
 using System.IO;
 
-// Helper setup for file io basics; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to read and write explicit paths while
+// reporting I/O failures.
 class Program
 {
     static bool TryParseScoreRow(string line, out string name, out int score)
@@ -23,10 +25,12 @@ class Program
         return true;
     }
 
-    // Walk through one fixed scenario so file io basics behavior stays repeatable.
+    // Fixed inputs make the consequence of assuming input files always exist visible and
+    // repeatable.
     static void Main()
     {
-        // Prepare sample inputs that exercise the key file io basics path.
+        // These values exercise the normal path before the exercises vary the documented
+        // boundaries.
         string inputPath = Path.Combine(Path.GetTempPath(), "learn-lang-file-io-csharp-scores.txt");
         string outputPath = Path.Combine(
             Path.GetTempPath(),
@@ -47,7 +51,8 @@ class Program
 
             validRows++;
             sum += score;
-            // Report values so learners can verify the file io basics outcome.
+            // The printed result shows whether the program can parse records defensively and
+            // distinguish valid from rejected rows.
             Console.WriteLine($"{name} -> {score}");
         }
 

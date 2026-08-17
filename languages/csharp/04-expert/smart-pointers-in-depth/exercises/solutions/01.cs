@@ -29,6 +29,11 @@ sealed class DocumentSlot
             Console.WriteLine($"{Label} is empty.");
             return;
         }
+        if (destination.Current is not null)
+        {
+            Console.WriteLine($"{destination.Label} is occupied.");
+            return;
+        }
 
         Console.WriteLine($"{Label} moves {Current.Name} to {destination.Label}.");
         destination.Current = Current;
@@ -45,17 +50,21 @@ class Program
 {
     static void Main()
     {
-        DocumentSlot active = new DocumentSlot("Active", new Document("Roadmap"));
-        DocumentSlot backup = new DocumentSlot("Backup", new Document("Old Notes"));
-        DocumentSlot empty = new DocumentSlot("Empty", null);
+        string sourceName = Console.ReadLine() ?? "empty";
+        string destinationName = Console.ReadLine() ?? "empty";
+        DocumentSlot active = new DocumentSlot(
+            "Source",
+            sourceName == "empty" ? null : new Document(sourceName)
+        );
+        DocumentSlot backup = new DocumentSlot(
+            "Destination",
+            destinationName == "empty" ? null : new Document(destinationName)
+        );
 
         active.Print();
         backup.Print();
         active.MoveTo(backup);
         active.Print();
         backup.Print();
-        empty.MoveTo(active);
-        empty.Print();
-        active.Print();
     }
 }

@@ -1,5 +1,6 @@
 // Module focus: Reading typed input carefully and turning raw text into values.
-// Why it matters: practicing types and io patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to choose suitable primitive values and variables
+// for a small problem before the learner tackles the exercises.
 
 import java.util.Locale;
 

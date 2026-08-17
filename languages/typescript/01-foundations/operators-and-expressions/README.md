@@ -35,6 +35,12 @@ python scripts/automation.py run-module --module-path languages/typescript/01-fo
 - Mixing string concatenation and arithmetic accidentally.
 - Writing compact expressions that hide the business rule.
 
+## Cross-Language Notes
+
+- In TypeScript, read this module through the native focus ?Operators and Expressions?; the shared folder name remains stable for side-by-side navigation.
+- Use structural types, Node APIs, and explicit reference conventions to demonstrate how to build expressions with correct precedence and explicit intent.
+- Compare observable behavior with the other tracks when learning to distinguish arithmetic, comparison, and logical operations; equivalent evidence matters more than identical syntax.
+
 ## Exercise Focus
 
 - exercises/01.ts: compute quotient, remainder, and parity from two integers.

@@ -1,9 +1,11 @@
 // Module focus: Breaking behavior into reusable functions with clear inputs and outputs.
-// Why it matters: practicing functions patterns makes exercises and checkpoints easier to reason about.
+// Why it matters: the example makes it possible to decompose a problem into focused functions
+// with explicit contracts before the learner tackles the exercises.
 
 using System;
 
-// Helper setup for functions; this keeps the walkthrough readable.
+// Separate helpers keep the main path focused on how to decompose a problem into focused
+// functions with explicit contracts.
 class Program
 {
     static int Add(int a, int b)
@@ -23,11 +25,14 @@ class Program
         Console.WriteLine("[" + string.Join(", ", values) + "]");
     }
 
-    // Walk through one fixed scenario so functions behavior stays repeatable.
+    // Fixed inputs make the consequence of embedding all logic in main instead of reusable
+    // helpers visible and repeatable.
     static void Main()
     {
-        // Prepare sample inputs that exercise the key functions path.
-        // Report values so learners can verify the functions outcome.
+        // These values exercise the normal path before the exercises vary the documented
+        // boundaries.
+        // The printed result shows whether the program can use parameters and return values
+        // without hidden state changes.
         Console.WriteLine(Add(4, 6));
 
         int[] numbers = { 10, 20, 30 };

@@ -21,6 +21,14 @@ sealed class WeakCache
         entries[key] = new WeakReference<CachedValue>(value);
     }
 
+    public void ExpireForDemo(string key)
+    {
+        if (entries.TryGetValue(key, out WeakReference<CachedValue>? reference))
+        {
+            reference.SetTarget(null!);
+        }
+    }
+
     public void PrintLookup(string key)
     {
         if (!entries.TryGetValue(key, out WeakReference<CachedValue>? reference))
@@ -43,21 +51,21 @@ class Program
 {
     static void Main()
     {
+        string scenario = Console.ReadLine() ?? "missing";
         WeakCache cache = new WeakCache();
-        cache.Store("stable", new CachedValue("Still referenced"));
+        if (scenario == "missing")
+        {
+            cache.PrintLookup("entry");
+            return;
+        }
 
-        CachedValue temporary = new CachedValue("Short lived");
-        cache.Store("temp", temporary);
-        cache.PrintLookup("stable");
-        cache.PrintLookup("temp");
-
-        temporary = null!;
-        GC.Collect();
-        GC.WaitForPendingFinalizers();
-        GC.Collect();
-
-        cache.PrintLookup("stable");
-        cache.PrintLookup("temp");
-        cache.PrintLookup("missing");
+        CachedValue value = new CachedValue("payload");
+        cache.Store("entry", value);
+        if (scenario == "expired")
+        {
+            cache.ExpireForDemo("entry");
+        }
+        cache.PrintLookup("entry");
+        GC.KeepAlive(value);
     }
 }

@@ -2,6 +2,17 @@
 
 This course is designed for work from the repository root. Choose one language and keep the same track for a full level before using another language for comparison.
 
+## Choose a Route
+
+The guided route is for a first encounter with the concepts: run each example, complete
+exercises 01 and 02, complete the guided project, then take the independent assessment.
+Request hint stages in order and stop as soon as you can continue.
+
+The comparative route is for programmers transferring existing knowledge: run the
+examples, complete exercise 02, take the independent assessment, and compare the module's
+cross-language notes with a language you know. Projects are optional when the assessment
+already demonstrates transfer.
+
 ## Standard Pace: 8 Weeks
 
 Plan for five sessions of 60-90 minutes each week. For every module: read the README, run the example, implement both starters, run `check-exercise`, and record one mistake or tradeoff you learned.
@@ -78,6 +89,7 @@ Replace the sample language and module identifiers while keeping the commands at
 python scripts/automation.py doctor --language python
 python scripts/automation.py run-module --module-path languages/python/01-foundations/types-and-io
 python scripts/automation.py check-exercise --language python --level 01-foundations --module types-and-io --exercise 01
+python scripts/automation.py hint-exercise --language python --level 01-foundations --module types-and-io --exercise 01 --stage 1
 python scripts/automation.py check-checkpoint --language python --kind project --level 01-foundations
 python scripts/automation.py check-checkpoint --language python --kind assessment --level 01-foundations
 ```
@@ -90,4 +102,5 @@ Reference solutions are intentionally separate. Add `--solution` only after comp
 - [ ] All 48 exercise starters are implemented and pass their named cases.
 - [ ] All four projects and four assessments pass their checkpoint contracts.
 - [ ] The track checklist remains an honest record of your own progress.
+- [ ] I reviewed my work with `LEARNER_SOLUTION_RUBRIC.md`.
 - [ ] You can explain at least one idiomatic difference from another language for each level.

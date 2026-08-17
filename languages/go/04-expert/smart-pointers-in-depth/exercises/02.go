@@ -2,7 +2,16 @@ package main
 
 import "fmt"
 
+func runSmartPointersInDepthExercise() {
+	var scenario string
+	fmt.Scan(&scenario)
+	// TODO 1: Accept `linked`, `child-removed`, or `parent-removed`.
+	// TODO 2: Navigate parent-child pointers safely.
+	// TODO 3: Produce parent/child navigation logs with nil-safe checks; verify detached child
+	//         pointer; missing parent pointer.
+	_ = scenario
+}
+
 func main() {
-	// TODO: implement the README specification (EXP-OWN-01, EXP-OWN-02).
-	fmt.Println("TODO: implement this exercise")
+	runSmartPointersInDepthExercise()
 }

@@ -1,7 +1,13 @@
-#include <iostream>
+namespace {
+void runInputValidationExercise() {
+    // TODO 1: Read or prepare integer attempts until valid.
+    // TODO 2: Read integer in range `[1, 100]` then print square.
+    // TODO 3: Produce square of valid number; verify non-integer input; values below 1 or above
+    //         100.
+}
+} // namespace
 
 int main() {
-    // TODO: implement the README specification (COR-VAL-01, COR-VAL-02).
-    std::cout << "TODO: implement this exercise\n";
+    runInputValidationExercise();
     return 0;
 }

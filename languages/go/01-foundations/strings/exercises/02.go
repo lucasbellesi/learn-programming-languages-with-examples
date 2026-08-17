@@ -1,8 +1,12 @@
 package main
 
-import "fmt"
+func runStringsExercise() {
+	// TODO 1: Read or prepare single line that may contain spaces or punctuation.
+	// TODO 2: Normalize input and detect whether it is a palindrome.
+	// TODO 3: Produce Palindrome or Not palindrome style result; verify input with no letters;
+	//         mixed upper/lower case.
+}
 
 func main() {
-	// TODO: implement the README specification (FND-STR-01, FND-STR-02).
-	fmt.Println("TODO: implement this exercise")
+	runStringsExercise()
 }

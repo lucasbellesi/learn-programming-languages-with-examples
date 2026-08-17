@@ -1,8 +1,12 @@
 package main
 
-import "fmt"
+func runStructsClassesExercise() {
+	// TODO 1: Read or prepare width and height.
+	// TODO 2: Model a rectangle using a `struct` and methods.
+	// TODO 3: Produce area and perimeter; verify non-positive dimensions should stop with a
+	//         message; decimal values should work.
+}
 
 func main() {
-	// TODO: implement the README specification (ADV-MOD-01, ADV-MOD-02).
-	fmt.Println("TODO: implement this exercise")
+	runStructsClassesExercise()
 }

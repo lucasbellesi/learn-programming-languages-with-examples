@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+
 type Parcel = {
     trackingId: string;
     weightKg: number;
@@ -9,13 +11,17 @@ class Dock {
         private parcel: Parcel | null,
     ) {}
 
-    moveTo(target: Dock): void {
+    moveTo(target: Dock): string {
         if (this.parcel === null) {
-            return;
+            return "source empty";
+        }
+        if (target.parcel !== null) {
+            return "destination occupied";
         }
 
         target.parcel = this.parcel;
         this.parcel = null;
+        return "moved";
     }
 
     describe(): string {
@@ -26,16 +32,23 @@ class Dock {
 }
 
 function main(): void {
-    const northDock = new Dock("north", {
-        trackingId: "PKG-204",
-        weightKg: 12,
-    });
-    const southDock = new Dock("south", null);
+    const [sourceLine = "empty", targetLine = "empty"] = readFileSync(0, "utf8")
+        .trimEnd()
+        .split(/\r?\n/);
+    const parseParcel = (line: string): Parcel | null => {
+        if (line.trim() === "empty") {
+            return null;
+        }
+        const [trackingId = "unknown", weight = "0"] = line.split("|");
+        return { trackingId: trackingId.trim(), weightKg: Number(weight) };
+    };
+    const northDock = new Dock("north", parseParcel(sourceLine));
+    const southDock = new Dock("south", parseParcel(targetLine));
 
     console.log(northDock.describe());
     console.log(southDock.describe());
 
-    northDock.moveTo(southDock);
+    console.log(`Transfer: ${northDock.moveTo(southDock)}`);
 
     console.log(northDock.describe());
     console.log(southDock.describe());

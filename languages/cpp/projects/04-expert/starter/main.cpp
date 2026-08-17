@@ -1,7 +1,12 @@
-#include <iostream>
+namespace {
+void runProject() {
+    // TODO 1: Represent processing steps as objects owned by `std::unique_ptr`.
+    // TODO 2: Process a list of jobs through all steps.
+    // TODO 3: Measure pipeline duration with `std::chrono`.
+}
+} // namespace
 
 int main() {
-    // TODO: implement the README specification (EXP-MEM-02, EXP-CON-01, EXP-PER-01, EXP-MOD-01).
-    std::cout << "TODO: implement this checkpoint\n";
+    runProject();
     return 0;
 }

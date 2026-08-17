@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -9,12 +10,31 @@ from scripts.automation_core.ops import (
     assert_output_contract,
     documented_exercise_edge_cases,
     exercise_contract_key,
+    has_valid_oracle_waiver,
+    has_template_narration,
     is_vacuous_stdout_pattern,
     output_contract_case_suffix,
+    run_command,
 )
 
 
 class ContractHelperTests(unittest.TestCase):
+    def test_run_command_can_set_a_reproducible_environment(self) -> None:
+        completed = run_command(
+            [sys.executable, "-c", "import os; print(os.environ['COURSE_LOCALE'])"],
+            environment={"COURSE_LOCALE": "invariant"},
+            capture_stdout=True,
+        )
+        self.assertEqual(completed.stdout.strip(), "invariant")
+
+    def test_oracle_waiver_must_contain_a_reason(self) -> None:
+        self.assertFalse(has_valid_oracle_waiver({"oracle_waiver": "  "}))
+        self.assertTrue(has_valid_oracle_waiver({"oracle_waiver": "unordered runtime output"}))
+
+    def test_template_narration_detects_legacy_exercise_guides(self) -> None:
+        self.assertTrue(has_template_narration("/* Exercise Guide: copied boilerplate */"))
+        self.assertFalse(has_template_narration("// Validate the count before allocating."))
+
     def test_contains_passes(self) -> None:
         assert_output_contract("Total: 10\n", {"required_stdout_contains": ["Total: 10"]}, "x")
 
@@ -47,14 +67,44 @@ class ContractHelperTests(unittest.TestCase):
         self.assertEqual(captured, ["Ready\n"])
 
     def test_oracle_exact_output_rejects_difference(self) -> None:
-        with self.assertRaisesRegex(AutomationError, "reference solution"):
-            assert_output_contract("Actual\n", {"_required_stdout_equals": "Expected\n"}, "x")
+        with self.assertRaisesRegex(AutomationError, "exact output contract"):
+            assert_output_contract("Actual\n", {"required_stdout_equals": "Expected\n"}, "x")
 
     def test_oracle_timing_normalizer_ignores_measurements(self) -> None:
         assert_output_contract(
             "Elapsed time: 92.4 ms\n",
             {
                 "_required_stdout_equals": "Elapsed time: 11.2 ms\n",
+                "oracle_normalizers": ["timings"],
+            },
+            "x",
+        )
+
+    def test_timing_normalizer_handles_compact_second_units(self) -> None:
+        assert_output_contract(
+            "Concatenation: 0.000202s\nJoin: 0.000141s\n",
+            {
+                "required_stdout_equals": "Concatenation: 0.000208s\nJoin: 0.000143s\n",
+                "oracle_normalizers": ["timings"],
+            },
+            "x",
+        )
+
+    def test_timing_normalizer_ignores_compact_unit_resolution(self) -> None:
+        assert_output_contract(
+            "Without capacity: 762.8µs\n",
+            {
+                "required_stdout_equals": "Without capacity: 0s\n",
+                "oracle_normalizers": ["timings"],
+            },
+            "x",
+        )
+
+    def test_timing_normalizer_handles_units_in_labels(self) -> None:
+        assert_output_contract(
+            "Concatenation average ns: 200\n",
+            {
+                "required_stdout_equals": "Concatenation average ns: 220\n",
                 "oracle_normalizers": ["timings"],
             },
             "x",
@@ -109,7 +159,7 @@ class ContractHelperTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir:
             path = Path(temp_dir) / "README.md"
             path.write_text(
-                "### Exercise Specs\n\n1. task\n- Edge cases: empty input; duplicate values.\n\n"
+                "### Exercise Specs\n\n1. task\n- Edge cases: `empty` input; duplicate values.\n\n"
                 "2. task\n- Edge cases: zero.\n\n## Checkpoint\n",
                 encoding="utf-8",
             )

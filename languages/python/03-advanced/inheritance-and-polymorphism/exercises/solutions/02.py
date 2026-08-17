@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from math import pi
+import sys
 
 
 class Shape(ABC):
@@ -25,7 +26,38 @@ class Circle(Shape):
         return pi * self._radius * self._radius
 
 
-shapes: list[Shape] = [Rectangle(2.0, 5.0), Circle(1.5)]
+tokens = sys.stdin.read().split()
+try:
+    count = int(tokens[0])
+except (IndexError, ValueError):
+    print("Expected a non-negative shape count.")
+    raise SystemExit(0)
+
+if count < 0:
+    print("Expected a non-negative shape count.")
+    raise SystemExit(0)
+
+shapes: list[Shape] = []
+cursor = 1
+for _ in range(count):
+    try:
+        kind = tokens[cursor]
+        cursor += 1
+        if kind == "rectangle":
+            width = float(tokens[cursor])
+            height = float(tokens[cursor + 1])
+            cursor += 2
+            shapes.append(Rectangle(width, height))
+        elif kind == "circle":
+            radius = float(tokens[cursor])
+            cursor += 1
+            shapes.append(Circle(radius))
+        else:
+            print("Unknown shape type.")
+            raise SystemExit(0)
+    except (IndexError, ValueError):
+        print("Invalid shape data.")
+        raise SystemExit(0)
 
 total_area = 0.0
 for shape in shapes:
