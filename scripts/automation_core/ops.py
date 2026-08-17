@@ -624,6 +624,7 @@ def run_command(
     *,
     cwd: Path | None = None,
     input_text: str | None = None,
+    environment: dict[str, str] | None = None,
     quiet_stdout: bool = False,
     capture_stdout: bool = False,
     action: str | None = None,
@@ -639,6 +640,7 @@ def run_command(
         completed = subprocess.run(
             command,
             cwd=str(cwd) if cwd else None,
+            env={**os.environ, **environment} if environment else None,
             input=input_text,
             text=True,
             encoding="utf-8",
@@ -1270,8 +1272,8 @@ def check_checkpoint_completeness(ctx: RepoContext) -> None:
                         covered_behaviors.update(
                             value for value in case.get("covers", []) if isinstance(value, str)
                         )
-                        if case.get("oracle_solution") is True and not isinstance(
-                            case.get("oracle_waiver"), str
+                        if case.get("oracle_solution") is True and not has_valid_oracle_waiver(
+                            case
                         ):
                             failures.append(
                                 "scripts/learning_checkpoints.json: oracle_solution requires "
@@ -1303,19 +1305,25 @@ def check_checkpoint_completeness(ctx: RepoContext) -> None:
                     starter_main = starter_dir / checkpoint_main
                     solution_main = solution_dir / checkpoint_main
                     if starter_main.is_file() and solution_main.is_file():
-                        if starter_main.read_text(encoding="utf-8") == solution_main.read_text(
-                            encoding="utf-8"
-                        ):
+                        starter_text = starter_main.read_text(encoding="utf-8")
+                        solution_text = solution_main.read_text(encoding="utf-8")
+                        if starter_text == solution_text:
                             failures.append(f"{checkpoint_dir}: starter equals solution")
-                starter_text = starter_main.read_text(encoding="utf-8")
-                if "TODO" not in starter_text:
-                    failures.append(f"{checkpoint_dir}: starter entrypoint has no TODO")
-                if kind == "projects" and has_generic_starter_prompt(starter_text):
-                    failures.append(f"{checkpoint_dir}: project starter has a generic TODO")
-                if kind == "projects" and guided_todo_count(starter_text) < 3:
-                    failures.append(
-                        f"{checkpoint_dir}: guided project starter needs TODO 1, TODO 2, and TODO 3"
-                    )
+                        if has_template_narration(starter_text) or has_template_narration(
+                            solution_text
+                        ):
+                            failures.append(f"{checkpoint_dir}: template narration remains")
+                    if starter_main.is_file():
+                        starter_text = starter_main.read_text(encoding="utf-8")
+                        if "TODO" not in starter_text:
+                            failures.append(f"{checkpoint_dir}: starter entrypoint has no TODO")
+                        if kind == "projects" and has_generic_starter_prompt(starter_text):
+                            failures.append(f"{checkpoint_dir}: project starter has a generic TODO")
+                        if kind == "projects" and guided_todo_count(starter_text) < 3:
+                            failures.append(
+                                f"{checkpoint_dir}: guided project starter needs TODO 1, "
+                                "TODO 2, and TODO 3"
+                            )
 
     if checkpoint_count == 0:
         raise AutomationError("No checkpoint directories found for completeness validation.")
@@ -1493,14 +1501,36 @@ GENERIC_STARTER_PATTERNS = (
     "solve exercise 02 here",
 )
 
+TEMPLATE_NARRATION_PATTERNS = (
+    "exercise guide:",
+    "define the reusable pieces first so",
+    "run one deterministic scenario so",
+    "run one direct scenario at the top level so",
+    "build the sample state first, then",
+    "helper setup for",
+    "walk through one fixed scenario so",
+    "prepare sample inputs that exercise the key",
+    "report output values so learners can verify",
+)
+
 
 def has_generic_starter_prompt(text: str) -> bool:
     lowered = text.lower()
     return any(pattern in lowered for pattern in GENERIC_STARTER_PATTERNS)
 
 
+def has_template_narration(text: str) -> bool:
+    lowered = text.lower()
+    return any(pattern in lowered for pattern in TEMPLATE_NARRATION_PATTERNS)
+
+
 def guided_todo_count(text: str) -> int:
     return len(re.findall(r"\bTODO\s+[123]\s*:", text, re.IGNORECASE))
+
+
+def has_valid_oracle_waiver(case: dict[str, Any]) -> bool:
+    waiver = case.get("oracle_waiver")
+    return isinstance(waiver, str) and bool(waiver.strip())
 
 
 def education_debt_counts(ctx: RepoContext) -> dict[str, int]:
@@ -2477,6 +2507,7 @@ def smoke_runtime_job(
     *,
     command_builder: Any,
     label: str,
+    environment: dict[str, str] | None = None,
     timeout_seconds: float = 30,
 ) -> None:
     working_dir = repo_path(ctx, job["working_dir"]) if "working_dir" in job else ctx.root
@@ -2509,6 +2540,7 @@ def smoke_runtime_job(
             command,
             cwd=working_dir,
             input_text=input_text,
+            environment=environment,
             quiet_stdout=not capture_stdout,
             capture_stdout=capture_stdout,
             action=label,
@@ -2695,6 +2727,7 @@ def smoke_languages(ctx: RepoContext) -> None:
         project_path = repo_path(ctx, project)
         run_command(
             ["dotnet", str(csharp_output_dll(project_path))],
+            environment={"DOTNET_SYSTEM_GLOBALIZATION_INVARIANT": "1"},
             quiet_stdout=True,
             action=f"C# runtime smoke for {project}",
             timeout_seconds=30,
@@ -2709,6 +2742,7 @@ def smoke_languages(ctx: RepoContext) -> None:
                 str(csharp_output_dll(resolve_job_path(ctx, working_dir, current_job["project"]))),
             ],
             label=f"C# runtime smoke for {job.get('project', job.get('working_dir', 'job'))}",
+            environment={"DOTNET_SYSTEM_GLOBALIZATION_INVARIANT": "1"},
             timeout_seconds=30,
         )
 
@@ -3048,6 +3082,7 @@ def check_learning_checkpoint(
                 label=(
                     f"C# checkpoint {phase} contract for {label}{output_contract_case_suffix(job)}"
                 ),
+                environment={"DOTNET_SYSTEM_GLOBALIZATION_INVARIANT": "1"},
             )
 
     if not use_solution and any(case.get("oracle_solution") for case in cases):
@@ -3228,6 +3263,7 @@ def run_csharp_source_output_contracts(
                     ["dotnet", str(run_target)],
                     cwd=working_dir,
                     input_text=input_text,
+                    environment={"DOTNET_SYSTEM_GLOBALIZATION_INVARIANT": "1"},
                     capture_stdout=capture_stdout,
                     quiet_stdout=not capture_stdout,
                     action=(
@@ -3426,6 +3462,7 @@ def check_example_output_contracts(ctx: RepoContext, *, language_filter: str | N
                     ),
                 ],
                 label=f"C# example output contract for {job['project']}",
+                environment={"DOTNET_SYSTEM_GLOBALIZATION_INVARIANT": "1"},
                 timeout_seconds=30,
             )
             executed_jobs += 1
@@ -3734,7 +3771,7 @@ def documented_exercise_edge_cases(readme: Path, exercise_id: str) -> list[str]:
     if not edge_match:
         return []
     raw = edge_match.group(1).strip().rstrip(".")
-    return [part.strip().strip("`") for part in raw.split(";") if part.strip()]
+    return [part.replace("`", "").strip() for part in raw.split(";") if part.strip()]
 
 
 def learning_exercise_config_failures(ctx: RepoContext) -> list[str]:
@@ -3802,6 +3839,10 @@ def learning_exercise_config_failures(ctx: RepoContext) -> list[str]:
                 failures.append(
                     f"scripts/learning_exercises.json: starter equals solution -> {label}"
                 )
+            if has_template_narration(starter_text) or has_template_narration(solution_text):
+                failures.append(
+                    f"scripts/learning_exercises.json: template narration remains -> {label}"
+                )
             if "TODO" not in starter_text:
                 failures.append(f"scripts/learning_exercises.json: starter has no TODO -> {label}")
             if has_generic_starter_prompt(starter_text):
@@ -3829,7 +3870,7 @@ def learning_exercise_config_failures(ctx: RepoContext) -> list[str]:
         else:
             case_names: set[str] = set()
             covered: set[str] = set()
-            normal_execution: str | None = None
+            execution_cases: dict[str, int] = {}
             for index, case in enumerate(cases, start=1):
                 if not isinstance(case, dict):
                     failures.append(
@@ -3863,13 +3904,14 @@ def learning_exercise_config_failures(ctx: RepoContext) -> list[str]:
                     },
                     sort_keys=True,
                 )
-                if index == 1:
-                    normal_execution = execution
-                elif execution == normal_execution and case.get("shared_execution") is not True:
+                previous_case = execution_cases.get(execution)
+                if previous_case is not None and case.get("shared_execution") is not True:
                     failures.append(
                         "scripts/learning_exercises.json: "
-                        f"{label} case {index} duplicates the normal execution"
+                        f"{label} case {index} duplicates case {previous_case} execution"
                     )
+                else:
+                    execution_cases.setdefault(execution, index)
                 normalizers = case.get("oracle_normalizers", [])
                 if not isinstance(normalizers, list) or any(
                     normalizer not in {"timings", "unordered_lines"} for normalizer in normalizers
@@ -3878,9 +3920,7 @@ def learning_exercise_config_failures(ctx: RepoContext) -> list[str]:
                         "scripts/learning_exercises.json: "
                         f"{label} case {index} has invalid oracle_normalizers"
                     )
-                if case.get("oracle_solution") is True and not isinstance(
-                    case.get("oracle_waiver"), str
-                ):
+                if case.get("oracle_solution") is True and not has_valid_oracle_waiver(case):
                     failures.append(
                         "scripts/learning_exercises.json: oracle_solution requires "
                         f"oracle_waiver -> {label} case {index}"

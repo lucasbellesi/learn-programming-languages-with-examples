@@ -51,7 +51,7 @@ python scripts/automation.py run-module --module-path languages/csharp/03-advanc
 1. exercises/01.cs
 - Input: buffer size and values.
 - Output: logs showing clone and transfer behavior.
-- Edge cases: zero-size buffer; self-transfer safety.
+- Edge cases: zero-size buffer; transferred source becomes empty.
 
 2. exercises/02.cs
 - Input: text values to store.

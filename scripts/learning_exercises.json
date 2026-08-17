@@ -38,9 +38,9 @@
             "20",
             "30"
           ],
-          "name": "edge: N <= 0` should exit with message",
+          "name": "edge: N <= 0 should exit with message",
           "covers": [
-            "N <= 0` should exit with message"
+            "N <= 0 should exit with message"
           ],
           "required_stdout_equals": "How many numbers will you enter? Please enter a positive count.\n"
         },
@@ -92,21 +92,21 @@
           "input_lines": [
             "notebook 2.50 0"
           ],
-          "name": "edge: quantity `0` should give total `0",
+          "name": "edge: quantity 0 should give total 0",
           "covers": [
-            "quantity `0` should give total `0"
+            "quantity 0 should give total 0"
           ],
           "required_stdout_equals": "Enter product price quantity (example: notebook 2.50 4): Product: notebook\nUnit price: 2.5\nQuantity: 0\nTotal price: 0\n"
         },
         {
           "input_lines": [
-            "notebook 0 4"
+            "notebook 2.345 4"
           ],
           "name": "edge: decimal price should keep precision",
           "covers": [
             "decimal price should keep precision"
           ],
-          "required_stdout_equals": "Enter product price quantity (example: notebook 2.50 4): Product: notebook\nUnit price: 0\nQuantity: 4\nTotal price: 0\n"
+          "required_stdout_equals": "Enter product price quantity (example: notebook 2.50 4): Product: notebook\nUnit price: 2.345\nQuantity: 4\nTotal price: 9.38\n"
         }
       ],
       "route_role": "both",
@@ -136,23 +136,23 @@
         },
         {
           "input_lines": [
-            "0 4"
+            "0"
           ],
-          "name": "edge: 0` seconds",
+          "name": "edge: 0 seconds",
           "covers": [
-            "0` seconds"
+            "0 seconds"
           ],
           "required_stdout_equals": "Enter total seconds: Converted time: 0:0:0\n"
         },
         {
           "input_lines": [
-            "0 4"
+            "42"
           ],
           "name": "edge: values under one minute",
           "covers": [
             "values under one minute"
           ],
-          "required_stdout_equals": "Enter total seconds: Converted time: 0:0:0\n"
+          "required_stdout_equals": "Enter total seconds: Converted time: 0:0:42\n"
         }
       ],
       "route_role": "guided",
@@ -232,21 +232,21 @@
           "input_lines": [
             "0"
           ],
-          "name": "edge: N <= 0` should print a friendly message",
+          "name": "edge: N <= 0 should print a friendly message",
           "covers": [
-            "N <= 0` should print a friendly message"
+            "N <= 0 should print a friendly message"
           ],
           "required_stdout_equals": "Run FizzBuzz up to: Please enter a positive upper bound.\n"
         },
         {
           "input_lines": [
-            "0"
+            "15"
           ],
-          "name": "edge: multiples of both 3 and 5 should print `FizzBuzz",
+          "name": "edge: multiples of both 3 and 5 should print FizzBuzz",
           "covers": [
-            "multiples of both 3 and 5 should print `FizzBuzz"
+            "multiples of both 3 and 5 should print FizzBuzz"
           ],
-          "required_stdout_equals": "Run FizzBuzz up to: Please enter a positive upper bound.\n"
+          "required_stdout_equals": "Run FizzBuzz up to: 1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n"
         }
       ],
       "route_role": "guided",
@@ -283,9 +283,9 @@
           "input_lines": [
             "-1"
           ],
-          "name": "edge: immediate `-1` should print \"no values\"",
+          "name": "edge: immediate -1 should print \"no values\"",
           "covers": [
-            "immediate `-1` should print \"no values\""
+            "immediate -1 should print \"no values\""
           ],
           "required_stdout_equals": "Enter integers (-1 to stop):\nNo values were entered before -1.\n"
         },
@@ -298,9 +298,9 @@
             "8",
             "-2"
           ],
-          "name": "edge: negative values other than `-1` are valid inputs",
+          "name": "edge: negative values other than -1 are valid inputs",
           "covers": [
-            "negative values other than `-1` are valid inputs"
+            "negative values other than -1 are valid inputs"
           ],
           "required_stdout_equals": "Enter integers (-1 to stop):\nAverage: -1\n"
         }
@@ -380,9 +380,9 @@
           "input_lines": [
             ""
           ],
-          "name": "edge: empty string returns `0",
+          "name": "edge: empty string returns 0",
           "covers": [
-            "empty string returns `0"
+            "empty string returns 0"
           ],
           "required_stdout_equals": "Enter a line of text: Number of vowels: 0\n"
         },
@@ -434,9 +434,9 @@
             "7",
             "2"
           ],
-          "name": "edge: n <= 0` should print a friendly message",
+          "name": "edge: n <= 0 should print a friendly message",
           "covers": [
-            "n <= 0` should print a friendly message"
+            "n <= 0 should print a friendly message"
           ],
           "required_stdout_equals": "How many integers? Please enter a positive number.\n"
         },
@@ -496,9 +496,9 @@
             "8",
             "999"
           ],
-          "name": "edge: target not found should print `0",
+          "name": "edge: target not found should print 0",
           "covers": [
-            "target not found should print `0"
+            "target not found should print 0"
           ],
           "required_stdout_equals": "How many integers will you enter? Number 1: Number 2: Number 3: Number 4: Number 5: Enter the number to count: 999 appears 0 time(s).\n"
         },
@@ -512,9 +512,9 @@
             "5",
             "8"
           ],
-          "name": "edge: all values equal target should print `n",
+          "name": "edge: all values equal target should print n",
           "covers": [
-            "all values equal target should print `n"
+            "all values equal target should print n"
           ],
           "required_stdout_equals": "How many integers will you enter? Number 1: Number 2: Number 3: Number 4: Number 5: Enter the number to count: 8 appears 0 time(s).\n"
         }
@@ -640,9 +640,9 @@
           "input_lines": [
             "90"
           ],
-          "name": "edge: boundary scores like `90`, `80`, `70`, `60",
+          "name": "edge: boundary scores like 90, 80, 70, 60",
           "covers": [
-            "boundary scores like `90`, `80`, `70`, `60"
+            "boundary scores like 90, 80, 70, 60"
           ],
           "required_stdout_equals": "Enter score (0-100): Grade: A\n"
         }
@@ -722,21 +722,23 @@
           "input_lines": [
             "Notebook 12.5 0"
           ],
-          "name": "edge: quantity `0",
+          "name": "edge: quantity 0",
           "covers": [
-            "quantity `0"
+            "quantity 0"
           ],
           "required_stdout_equals": "Enter item1 (name price qty): Enter item2 (name price qty): Enter item3 (name price qty): \nItem             Price     Qty       Total\n------------------------------------------\nNotebook         12.50       0        0.00\n                  0.00       0        0.00\n                  0.00       0        0.00\nGrand total: 0.00\n"
         },
         {
           "input_lines": [
-            "Notebook 0 3"
+            "Notebook 1.23456 3",
+            "Pen 2 1",
+            "Book 3.5 2"
           ],
           "name": "edge: unit price with many decimals",
           "covers": [
             "unit price with many decimals"
           ],
-          "required_stdout_equals": "Enter item1 (name price qty): Enter item2 (name price qty): Enter item3 (name price qty): \nItem             Price     Qty       Total\n------------------------------------------\nNotebook          0.00       3        0.00\n                  0.00       0        0.00\n                  0.00       0        0.00\nGrand total: 0.00\n"
+          "required_stdout_equals": "Enter item1 (name price qty): Enter item2 (name price qty): Enter item3 (name price qty): \nItem             Price     Qty       Total\n------------------------------------------\nNotebook          1.23       3        3.70\nPen               2.00       1        2.00\nBook              3.50       2        7.00\nGrand total: 12.70\n"
         }
       ],
       "route_role": "guided",
@@ -768,9 +770,9 @@
           "input_lines": [
             "0 0.05 2"
           ],
-          "name": "edge: precision `0",
+          "name": "edge: precision 0",
           "covers": [
-            "precision `0"
+            "precision 0"
           ],
           "required_stdout_equals": "Enter precision (0-6): How many numbers? Please enter a positive count.\n"
         },
@@ -896,9 +898,9 @@
             "0",
             "100"
           ],
-          "name": "edge: boundary values `0`, `100",
+          "name": "edge: boundary values 0, 100",
           "covers": [
-            "boundary values `0`, `100"
+            "boundary values 0, 100"
           ],
           "required_stdout_equals": "How many scores (1-50)? Score 1 (0-100): Score 2 (0-100): Average score: 50\n"
         }
@@ -1012,9 +1014,9 @@
             "7",
             "9"
           ],
-          "name": "edge: all odd numbers (even count `0`)",
+          "name": "edge: all odd numbers (even count 0)",
           "covers": [
-            "all odd numbers (even count `0`)"
+            "all odd numbers (even count 0)"
           ],
           "required_stdout_equals": "How many integers? Value 1: Value 2: Value 3: Value 4: Value 5: Minimum: 1\nMaximum: 9\nEven numbers: 0\n"
         },
@@ -1209,7 +1211,7 @@
               "lines": [
                 "MissingScore",
                 "Ana nope",
-                "Bob 101"
+                "Bob nope"
               ]
             }
           ],
@@ -1223,7 +1225,7 @@
           "covers": [
             "file with no valid rows"
           ],
-          "required_stdout_equals": "Enter file path (name score rows): Valid rows: 1\nInvalid rows: 1\nAverage score: 101\n"
+          "required_stdout_equals": "Enter file path (name score rows): Valid rows: 0\nInvalid rows: 2\nNo valid rows found.\n"
         }
       ],
       "route_role": "both",
@@ -1400,9 +1402,9 @@
             "2",
             "9"
           ],
-          "name": "edge: missing digits should show count `0",
+          "name": "edge: missing digits should show count 0",
           "covers": [
-            "missing digits should show count `0"
+            "missing digits should show count 0"
           ],
           "required_stdout_equals": "How many digits? Please enter a positive count.\n"
         },
@@ -1615,14 +1617,14 @@
         },
         {
           "input_lines": [
-            "0",
+            "1.5",
             "2"
           ],
           "name": "edge: decimal values should work",
           "covers": [
             "decimal values should work"
           ],
-          "required_stdout_equals": "Enter width and height: Width and height must be positive.\n"
+          "required_stdout_equals": "Enter width and height: Area: 3\nPerimeter: 7\n"
         }
       ],
       "route_role": "guided",
@@ -1676,9 +1678,9 @@
           "input_lines": [
             "stop"
           ],
-          "name": "edge: immediate `stop",
+          "name": "edge: immediate stop",
           "covers": [
-            "immediate `stop"
+            "immediate stop"
           ],
           "required_stdout_equals": "Commands: inc, dec, reset, stop\nEnter command: Final value: 0\n"
         }
@@ -1918,14 +1920,14 @@
         },
         {
           "input_lines": [
-            "0",
+            "1.5",
             "4"
           ],
           "name": "edge: decimal dimensions",
           "covers": [
             "decimal dimensions"
           ],
-          "required_stdout_equals": "Enter base and height: Triangle area: 0\n"
+          "required_stdout_equals": "Enter base and height: Triangle area: 3\n"
         }
       ],
       "route_role": "guided",
@@ -1997,25 +1999,23 @@
         },
         {
           "input_lines": [
-            "edge-case",
-            "blue"
+            "5 5"
           ],
           "name": "edge: identical values",
           "covers": [
             "identical values"
           ],
-          "required_stdout_equals": "Enter two integers: Before swap: 0 0\nAfter swap: 0 0\n"
+          "required_stdout_equals": "Enter two integers: Before swap: 5 5\nAfter swap: 5 5\n"
         },
         {
           "input_lines": [
-            "edge-case",
-            "blue"
+            "-2 7"
           ],
           "name": "edge: negative numbers",
           "covers": [
             "negative numbers"
           ],
-          "required_stdout_equals": "Enter two integers: Before swap: 0 0\nAfter swap: 0 0\n"
+          "required_stdout_equals": "Enter two integers: Before swap: -2 7\nAfter swap: 7 -2\n"
         }
       ],
       "route_role": "guided",
@@ -2053,9 +2053,9 @@
             "20",
             "25"
           ],
-          "name": "edge: empty vector should return `0",
+          "name": "edge: empty vector should return 0",
           "covers": [
-            "empty vector should return `0"
+            "empty vector should return 0"
           ],
           "required_stdout_equals": "How many numbers? Please enter a positive count.\n"
         },
@@ -2110,9 +2110,9 @@
             "6",
             "8"
           ],
-          "name": "edge: n <= 0` message",
+          "name": "edge: n <= 0 message",
           "covers": [
-            "n <= 0` message"
+            "n <= 0 message"
           ],
           "required_stdout_equals": "How many integers? Please enter a positive count.\n"
         },
@@ -2376,7 +2376,7 @@
         },
         {
           "input_lines": [
-            "0"
+            "1"
           ],
           "name": "edge: consumer waiting while queue is empty",
           "covers": [
@@ -2385,7 +2385,7 @@
           "oracle_normalizers": [
             "unordered_lines"
           ],
-          "required_stdout_equals": "How many items should be produced? Finished. Total consumed: 0\n"
+          "required_stdout_equals": "How many items should be produced? Produced: 1\nConsumed: 1\nFinished. Total consumed: 1\n"
         }
       ],
       "route_role": "both",
@@ -2647,7 +2647,7 @@
           "covers": [
             "repeated values where minimum equals maximum"
           ],
-          "required_stdout_equals": "How many numbers? Value 1: Value 2: Value 3: Sum: 15,0000\nAverage: 5,0000\nMinimum: 5,0000\nMaximum: 5,0000\n"
+          "required_stdout_equals": "How many numbers? Value 1: Value 2: Value 3: Sum: 15.0000\nAverage: 5.0000\nMinimum: 5.0000\nMaximum: 5.0000\n"
         }
       ],
       "route_role": "guided",
@@ -2688,7 +2688,7 @@
           "covers": [
             "wrong token count"
           ],
-          "required_stdout_equals": "Enter product price quantity: Product: notebook\nTotal price: 0,00\n"
+          "required_stdout_equals": "Enter product price quantity: Product: notebook\nTotal price: 0.00\n"
         },
         {
           "input_lines": [
@@ -2698,7 +2698,7 @@
           "covers": [
             "quantity = 0"
           ],
-          "required_stdout_equals": "Enter product price quantity: Product: notebook\nTotal price: 0,00\n"
+          "required_stdout_equals": "Enter product price quantity: Product: notebook\nTotal price: 0.00\n"
         }
       ],
       "route_role": "both",
@@ -2772,7 +2772,7 @@
           "covers": [
             "normal"
           ],
-          "required_stdout_equals": "Subtotal: Discount percent: Tax percent: Discount value: 18,00\nTax value: 8,16\nFinal total: 110,16\n"
+          "required_stdout_equals": "Subtotal: Discount percent: Tax percent: Discount value: 18.00\nTax value: 8.16\nFinal total: 110.16\n"
         },
         {
           "input_lines": [
@@ -2784,7 +2784,7 @@
           "covers": [
             "subtotal < 0"
           ],
-          "required_stdout_equals": "Subtotal: Discount percent: Tax percent: Discount value: 0,00\nTax value: 0,00\nFinal total: 0,00\n"
+          "required_stdout_equals": "Subtotal: Discount percent: Tax percent: Discount value: 0.00\nTax value: 0.00\nFinal total: 0.00\n"
         },
         {
           "input_lines": [
@@ -2796,7 +2796,7 @@
           "covers": [
             "zero discount or zero tax"
           ],
-          "required_stdout_equals": "Subtotal: Discount percent: Tax percent: Discount value: 18,00\nTax value: 0,00\nFinal total: 102,00\n"
+          "required_stdout_equals": "Subtotal: Discount percent: Tax percent: Discount value: 18.00\nTax value: 0.00\nFinal total: 102.00\n"
         }
       ],
       "route_role": "both",
@@ -2836,13 +2836,13 @@
         },
         {
           "input_lines": [
-            "0"
+            "30"
           ],
           "name": "edge: multiples of both 3 and 5",
           "covers": [
             "multiples of both 3 and 5"
           ],
-          "required_stdout_equals": "Run FizzBuzz up to: Please enter a positive N.\n"
+          "required_stdout_equals": "Run FizzBuzz up to: 1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n16\n17\nFizz\n19\nBuzz\nFizz\n22\n23\nFizz\nBuzz\n26\nFizz\n28\n29\nFizzBuzz\n"
         }
       ],
       "route_role": "guided",
@@ -2870,7 +2870,7 @@
           "covers": [
             "normal"
           ],
-          "required_stdout_equals": "Enter integers (-1 to stop):\nAverage: 4,0000\n"
+          "required_stdout_equals": "Enter integers (-1 to stop):\nAverage: 4.0000\n"
         },
         {
           "input_lines": [
@@ -2882,7 +2882,7 @@
           "covers": [
             "first value already -1"
           ],
-          "required_stdout_equals": "Enter integers (-1 to stop):\nAverage: 1,5000\n"
+          "required_stdout_equals": "Enter integers (-1 to stop):\nAverage: 1.5000\n"
         },
         {
           "input_lines": [
@@ -2894,7 +2894,7 @@
           "covers": [
             "negative values other than sentinel"
           ],
-          "required_stdout_equals": "Enter integers (-1 to stop):\nAverage: -1,0000\n"
+          "required_stdout_equals": "Enter integers (-1 to stop):\nAverage: -1.0000\n"
         }
       ],
       "route_role": "both",
@@ -3169,23 +3169,23 @@
         },
         {
           "input_lines": [
-            "edge-case"
+            "1234!"
           ],
           "name": "edge: input with no letters",
           "covers": [
             "input with no letters"
           ],
-          "required_stdout_equals": "Enter text: Not palindrome\n"
+          "required_stdout_equals": "Enter text: No letters to evaluate.\n"
         },
         {
           "input_lines": [
-            "edge-case"
+            "RaceCar"
           ],
           "name": "edge: mixed upper/lower case",
           "covers": [
             "mixed upper/lower case"
           ],
-          "required_stdout_equals": "Enter text: Not palindrome\n"
+          "required_stdout_equals": "Enter text: Palindrome\n"
         }
       ],
       "route_role": "both",
@@ -3261,7 +3261,7 @@
           "covers": [
             "normal"
           ],
-          "required_stdout_equals": "How many values? Value 1: Value 2: Value 3: Value 4: Sum: 10\nAverage: 2,50\n"
+          "required_stdout_equals": "How many values? Value 1: Value 2: Value 3: Value 4: Sum: 10\nAverage: 2.50\n"
         },
         {
           "input_lines": [
@@ -3321,7 +3321,7 @@
           "covers": [
             "normal"
           ],
-          "required_stdout_equals": "How many products? Product 1 name: Product 1 price: Product 1 quantity: Product 2 name: Product 2 price: Product 2 quantity: Product              Price     Qty       Total\n----------------------------------------------\nNotebook            125,00       3      375,00\nPen                   2,00       4        8,00\n----------------------------------------------\nGrand total                             383,00\n"
+          "required_stdout_equals": "How many products? Product 1 name: Product 1 price: Product 1 quantity: Product 2 name: Product 2 price: Product 2 quantity: Product              Price     Qty       Total\n----------------------------------------------\nNotebook             12.50       3       37.50\nPen                   2.00       4        8.00\n----------------------------------------------\nGrand total                              45.50\n"
         },
         {
           "input_lines": [
@@ -3341,19 +3341,16 @@
         },
         {
           "input_lines": [
-            "0",
-            "Notebook",
-            "12.5",
-            "3",
-            "Pen",
+            "1",
+            "ExtraLongProductName",
             "2",
-            "4"
+            "3"
           ],
           "name": "edge: long product names affecting alignment",
           "covers": [
             "long product names affecting alignment"
           ],
-          "required_stdout_equals": "How many products? Please enter a positive count.\n"
+          "required_stdout_equals": "How many products? Product 1 name: Product 1 price: Product 1 quantity: Product              Price     Qty       Total\n----------------------------------------------\nExtraLongProductName      2.00       3        6.00\n----------------------------------------------\nGrand total                               6.00\n"
         }
       ],
       "route_role": "guided",
@@ -3380,29 +3377,28 @@
           "covers": [
             "normal"
           ],
-          "required_stdout_equals": "Enter numeric values separated by spaces: Decimal precision (0-6): Count: 3\nSum: 6,00\nAverage: 2,00\nMinimum: 1,00\nMaximum: 3,00\n"
+          "required_stdout_equals": "Enter numeric values separated by spaces: Decimal precision (0-6): Count: 3\nSum: 6.00\nAverage: 2.00\nMinimum: 1.00\nMaximum: 3.00\n"
         },
         {
           "input_lines": [
-            "0 2 3",
-            "2"
+            ""
           ],
           "name": "edge: empty numeric input",
           "covers": [
             "empty numeric input"
           ],
-          "required_stdout_equals": "Enter numeric values separated by spaces: Decimal precision (0-6): Count: 3\nSum: 5,00\nAverage: 1,67\nMinimum: 0,00\nMaximum: 3,00\n"
+          "required_stdout_equals": "Enter numeric values separated by spaces: No values entered.\n"
         },
         {
           "input_lines": [
-            "0 2 3",
-            "2"
+            "1 2 3",
+            "9"
           ],
           "name": "edge: precision outside 0..6",
           "covers": [
             "precision outside 0..6"
           ],
-          "required_stdout_equals": "Enter numeric values separated by spaces: Decimal precision (0-6): Count: 3\nSum: 5,00\nAverage: 1,67\nMinimum: 0,00\nMaximum: 3,00\n"
+          "required_stdout_equals": "Enter numeric values separated by spaces: Decimal precision (0-6): Precision must be between 0 and 6.\n"
         }
       ],
       "route_role": "both",
@@ -3510,7 +3506,7 @@
           "covers": [
             "invalid score entered mid-sequence"
           ],
-          "required_stdout_equals": "How many scores (1-50)? Invalid input. Please enter an integer.\nHow many scores (1-50)? Score 1 (0-100): Value must be between 0,0 and 100,0.\nScore 1 (0-100): Score 2 (0-100): Score 3 (0-100): Average score: 80,00\n"
+          "required_stdout_equals": "How many scores (1-50)? Invalid input. Please enter an integer.\nHow many scores (1-50)? Score 1 (0-100): Value must be between 0.0 and 100.0.\nScore 1 (0-100): Score 2 (0-100): Score 3 (0-100): Average score: 80.00\n"
         },
         {
           "input_lines": [
@@ -3522,7 +3518,7 @@
           "covers": [
             "boundary values 0 and 100"
           ],
-          "required_stdout_equals": "How many scores (1-50)? Score 1 (0-100): Score 2 (0-100): Average score: 50,00\n"
+          "required_stdout_equals": "How many scores (1-50)? Score 1 (0-100): Score 2 (0-100): Average score: 50.00\n"
         }
       ],
       "route_role": "both",
@@ -3634,9 +3630,9 @@
             "7",
             "9"
           ],
-          "name": "edge: all odd numbers (even count `0`)",
+          "name": "edge: all odd numbers (even count 0)",
           "covers": [
-            "all odd numbers (even count `0`)"
+            "all odd numbers (even count 0)"
           ],
           "required_stdout_equals": "How many integers? Value 1: Value 2: Value 3: Value 4: Value 5: Minimum: 1\nMaximum: 9\nEven numbers: 0\n"
         },
@@ -3823,7 +3819,7 @@
           "covers": [
             "malformed rows"
           ],
-          "required_stdout_equals": "Enter file path (name score rows): Valid rows: 1\nInvalid rows: 2\nAverage score: 91,00\n"
+          "required_stdout_equals": "Enter file path (name score rows): Valid rows: 1\nInvalid rows: 2\nAverage score: 91.00\n"
         },
         {
           "working_dir": "languages/csharp/02-core/file-io-basics",
@@ -3833,7 +3829,7 @@
               "lines": [
                 "MissingScore",
                 "Ana nope",
-                "Bob 101"
+                "Bob nope"
               ]
             }
           ],
@@ -3847,7 +3843,7 @@
           "covers": [
             "file with no valid rows"
           ],
-          "required_stdout_equals": "Enter file path (name score rows): Valid rows: 1\nInvalid rows: 2\nAverage score: 101,00\n"
+          "required_stdout_equals": "Enter file path (name score rows): Valid rows: 0\nInvalid rows: 3\nNo valid rows found.\n"
         }
       ],
       "route_role": "both",
@@ -4024,9 +4020,9 @@
             "2",
             "9"
           ],
-          "name": "edge: missing digits should show count `0",
+          "name": "edge: missing digits should show count 0",
           "covers": [
-            "missing digits should show count `0"
+            "missing digits should show count 0"
           ],
           "required_stdout_equals": "How many digits? Please enter a positive count.\n"
         },
@@ -4223,7 +4219,7 @@
           "covers": [
             "normal"
           ],
-          "required_stdout_equals": "Enter width and height: Area: 90\nPerimeter: 94\n"
+          "required_stdout_equals": "Enter width and height: Area: 9\nPerimeter: 13\n"
         },
         {
           "input_lines": [
@@ -4237,13 +4233,13 @@
         },
         {
           "input_lines": [
-            "0 2"
+            "1.5 2"
           ],
           "name": "edge: decimal values should work",
           "covers": [
             "decimal values should work"
           ],
-          "required_stdout_equals": "Enter width and height: Width and height must be positive.\n"
+          "required_stdout_equals": "Enter width and height: Area: 3\nPerimeter: 7\n"
         }
       ],
       "route_role": "guided",
@@ -4297,9 +4293,9 @@
           "input_lines": [
             "stop"
           ],
-          "name": "edge: immediate `stop",
+          "name": "edge: immediate stop",
           "covers": [
-            "immediate `stop"
+            "immediate stop"
           ],
           "required_stdout_equals": "Commands: inc, dec, reset, stop\nEnter command: Final value: 0\n"
         }
@@ -4431,24 +4427,24 @@
         {
           "input_lines": [
             "0",
-            "1 2 3 4"
+            ""
           ],
           "name": "edge: zero-size buffer",
           "covers": [
             "zero-size buffer"
           ],
-          "required_stdout_equals": "Buffer size: Buffer values: The amount of values must match the buffer size.\n"
+          "required_stdout_equals": "Buffer size: Buffer values: Constructed IntBuffer (size=0)\nConstructed IntBuffer (size=0)\nCloned IntBuffer\nTransferred IntBuffer (size=0)\na size: 0\nb size: 0\nc size: 0\n"
         },
         {
           "input_lines": [
-            "0",
-            "1 2 3 4"
+            "2",
+            "7 8"
           ],
-          "name": "edge: self-transfer safety",
+          "name": "edge: transferred source becomes empty",
           "covers": [
-            "self-transfer safety"
+            "transferred source becomes empty"
           ],
-          "required_stdout_equals": "Buffer size: Buffer values: The amount of values must match the buffer size.\n"
+          "required_stdout_equals": "Buffer size: Buffer values: Constructed IntBuffer (size=2)\nConstructed IntBuffer (size=2)\nCloned IntBuffer\nTransferred IntBuffer (size=2)\na size: 2\nb size: 0\nc size: 2\n"
         }
       ],
       "route_role": "guided",
@@ -4538,13 +4534,13 @@
         },
         {
           "input_lines": [
-            "0 4"
+            "1.5 4"
           ],
           "name": "edge: decimal dimensions",
           "covers": [
             "decimal dimensions"
           ],
-          "required_stdout_equals": "Enter base and height: Base and height must be positive.\n"
+          "required_stdout_equals": "Enter base and height: Triangle area: 3\n"
         }
       ],
       "route_role": "guided",
@@ -4577,7 +4573,7 @@
             "empty shape list"
           ],
           "shared_execution": true,
-          "required_stdout_equals": "Total area: 17,068583470577035\n"
+          "required_stdout_equals": "Total area: 17.068583470577035\n"
         },
         {
           "name": "edge: mixed shape types",
@@ -4585,7 +4581,7 @@
             "mixed shape types"
           ],
           "shared_execution": true,
-          "required_stdout_equals": "Total area: 17,068583470577035\n"
+          "required_stdout_equals": "Total area: 17.068583470577035\n"
         }
       ],
       "route_role": "both",
@@ -4660,7 +4656,7 @@
           "covers": [
             "normal"
           ],
-          "required_stdout_equals": "How many numbers? Average: 18,333333333333332\n"
+          "required_stdout_equals": "How many numbers? Average: 18.333333333333332\n"
         },
         {
           "input_lines": [
@@ -4669,9 +4665,9 @@
             "20",
             "25"
           ],
-          "name": "edge: empty list should return `0",
+          "name": "edge: empty list should return 0",
           "covers": [
-            "empty list should return `0"
+            "empty list should return 0"
           ],
           "required_stdout_equals": "How many numbers? Average: 0\n"
         },
@@ -4904,8 +4900,8 @@
         },
         {
           "input_lines": [
-            "0 2 3 4 5 6",
-            "3"
+            "1 2",
+            "5"
           ],
           "name": "edge: worker count larger than list size",
           "covers": [
@@ -4914,12 +4910,12 @@
           "oracle_normalizers": [
             "unordered_lines"
           ],
-          "required_stdout_equals": "Values: Worker count: Worker 1 partial: 2\nWorker 2 partial: 7\nWorker 3 partial: 11\nTotal: 20\n"
+          "required_stdout_equals": "Values: Worker count: Worker 1 partial: 1\nWorker 2 partial: 2\nTotal: 3\n"
         },
         {
           "input_lines": [
-            "0 2 3 4 5 6",
-            "3"
+            "1 2",
+            "0"
           ],
           "name": "edge: non-positive worker count",
           "covers": [
@@ -4928,11 +4924,11 @@
           "oracle_normalizers": [
             "unordered_lines"
           ],
-          "required_stdout_equals": "Values: Worker count: Worker 1 partial: 2\nWorker 2 partial: 7\nWorker 3 partial: 11\nTotal: 20\n"
+          "required_stdout_equals": "Values: Worker count: Worker count must be positive.\n"
         },
         {
           "input_lines": [
-            "0 2 3 4 5 6",
+            "",
             "3"
           ],
           "name": "edge: empty list",
@@ -4942,7 +4938,7 @@
           "oracle_normalizers": [
             "unordered_lines"
           ],
-          "required_stdout_equals": "Values: Worker count: Worker 1 partial: 2\nWorker 2 partial: 7\nWorker 3 partial: 11\nTotal: 20\n"
+          "required_stdout_equals": "Values: No values provided.\n"
         }
       ],
       "route_role": "guided",
@@ -4988,7 +4984,7 @@
         },
         {
           "input_lines": [
-            "0"
+            "1"
           ],
           "name": "edge: consumer waiting while queue is empty",
           "covers": [
@@ -4997,7 +4993,7 @@
           "oracle_normalizers": [
             "unordered_lines"
           ],
-          "required_stdout_equals": "Items to produce:\nProduced total: 0\nConsumed total: 0\n"
+          "required_stdout_equals": "Items to produce:\nProduced 1\nConsumed 1\nProduced total: 1\nConsumed total: 1\n"
         }
       ],
       "route_role": "both",
@@ -5043,7 +5039,7 @@
         },
         {
           "input_lines": [
-            "0"
+            "1"
           ],
           "name": "edge: very small workloads produce noisy timings",
           "covers": [
@@ -5052,7 +5048,7 @@
           "oracle_normalizers": [
             "timings"
           ],
-          "required_stdout_equals": "Line count: Concatenation ticks: 1327\nStringBuilder ticks: 1844\n"
+          "required_stdout_equals": "Line count: Concatenation ticks: 9304\nStringBuilder ticks: 1926\n"
         }
       ],
       "route_role": "guided",
@@ -5454,13 +5450,13 @@
         },
         {
           "input_lines": [
-            "0"
+            "15"
           ],
           "name": "edge: multiples of both 3 and 5",
           "covers": [
             "multiples of both 3 and 5"
           ],
-          "required_stdout_equals": "Run FizzBuzz up to: Please enter a positive N.\n"
+          "required_stdout_equals": "Run FizzBuzz up to: 1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n"
         }
       ],
       "route_role": "guided",
@@ -5811,23 +5807,23 @@
         },
         {
           "input_lines": [
-            "edge-case"
+            "1234!"
           ],
           "name": "edge: input with no letters",
           "covers": [
             "input with no letters"
           ],
-          "required_stdout_equals": "Enter text: Not palindrome\n"
+          "required_stdout_equals": "Enter text: No letters to evaluate.\n"
         },
         {
           "input_lines": [
-            "edge-case"
+            "RaceCar"
           ],
           "name": "edge: mixed upper/lower case",
           "covers": [
             "mixed upper/lower case"
           ],
-          "required_stdout_equals": "Enter text: Not palindrome\n"
+          "required_stdout_equals": "Enter text: Palindrome\n"
         }
       ],
       "route_role": "both",
@@ -5959,13 +5955,16 @@
         },
         {
           "input_lines": [
-            "Notebook 0 3"
+            "1",
+            "ExtraLongProductName",
+            "2",
+            "3"
           ],
           "name": "edge: long product names affecting alignment",
           "covers": [
             "long product names affecting alignment"
           ],
-          "required_stdout_equals": "How many products? Please enter a positive count.\n"
+          "required_stdout_equals": "How many products? Product 1 name: Product 1 price: Product 1 quantity: Product              Price     Qty       Total\n----------------------------------------------\nExtraLongProductName      2.00       3        6.00\n----------------------------------------------\nGrand total                               6.00\n"
         }
       ],
       "route_role": "guided",
@@ -6005,13 +6004,17 @@
         },
         {
           "input_lines": [
-            "0 0.05 2"
+            "3",
+            "1",
+            "2",
+            "3",
+            "9"
           ],
           "name": "edge: precision outside 0..6",
           "covers": [
             "precision outside 0..6"
           ],
-          "required_stdout_equals": "How many values? Please enter a positive count.\n"
+          "required_stdout_equals": "How many values? Decimal precision (0-6): Precision must be between 0 and 6.\n"
         }
       ],
       "route_role": "both",
@@ -6241,9 +6244,9 @@
             "7",
             "9"
           ],
-          "name": "edge: all odd numbers (even count `0`)",
+          "name": "edge: all odd numbers (even count 0)",
           "covers": [
-            "all odd numbers (even count `0`)"
+            "all odd numbers (even count 0)"
           ],
           "required_stdout_equals": "How many integers? Value 1: Value 2: Value 3: Value 4: Value 5: Minimum: 1\nMaximum: 9\nEven numbers: 0\n"
         },
@@ -6438,7 +6441,7 @@
               "lines": [
                 "MissingScore",
                 "Ana nope",
-                "Bob 101"
+                "Bob nope"
               ]
             }
           ],
@@ -6452,7 +6455,7 @@
           "covers": [
             "file with no valid rows"
           ],
-          "required_stdout_equals": "Enter file path (name score rows): Valid rows: 1\nInvalid rows: 2\nAverage score: 101.00\n"
+          "required_stdout_equals": "Enter file path (name score rows): Valid rows: 0\nInvalid rows: 3\nNo valid rows found.\n"
         }
       ],
       "route_role": "both",
@@ -6629,9 +6632,9 @@
             "2",
             "9"
           ],
-          "name": "edge: missing digits should show count `0",
+          "name": "edge: missing digits should show count 0",
           "covers": [
-            "missing digits should show count `0"
+            "missing digits should show count 0"
           ],
           "required_stdout_equals": "How many digits? Please enter a positive count.\n"
         },
@@ -6844,14 +6847,14 @@
         },
         {
           "input_lines": [
-            "0",
+            "1.5",
             "2"
           ],
           "name": "edge: decimal values should work",
           "covers": [
             "decimal values should work"
           ],
-          "required_stdout_equals": "Enter width and height: Width and height must be positive.\n"
+          "required_stdout_equals": "Enter width and height: Area: 3\nPerimeter: 7\n"
         }
       ],
       "route_role": "guided",
@@ -6905,9 +6908,9 @@
           "input_lines": [
             "stop"
           ],
-          "name": "edge: immediate `stop",
+          "name": "edge: immediate stop",
           "covers": [
-            "immediate `stop"
+            "immediate stop"
           ],
           "required_stdout_equals": "Commands: inc, dec, reset, stop\nEnter command: Final value: 0\n"
         }
@@ -7148,14 +7151,14 @@
         },
         {
           "input_lines": [
-            "0",
+            "1.5",
             "4"
           ],
           "name": "edge: decimal dimensions",
           "covers": [
             "decimal dimensions"
           ],
-          "required_stdout_equals": "Enter base and height: Base and height must be positive.\n"
+          "required_stdout_equals": "Enter base and height: Triangle area: 3\n"
         }
       ],
       "route_role": "guided",
@@ -7227,25 +7230,23 @@
         },
         {
           "input_lines": [
-            "edge-case",
-            "blue"
+            "5 5"
           ],
           "name": "edge: identical values",
           "covers": [
             "identical values"
           ],
-          "required_stdout_equals": "Enter two integers: Invalid input.\n"
+          "required_stdout_equals": "Enter two integers: Before swap: 5 5\nAfter swap: 5 5\n"
         },
         {
           "input_lines": [
-            "edge-case",
-            "blue"
+            "-2 7"
           ],
           "name": "edge: negative numbers",
           "covers": [
             "negative numbers"
           ],
-          "required_stdout_equals": "Enter two integers: Invalid input.\n"
+          "required_stdout_equals": "Enter two integers: Before swap: -2 7\nAfter swap: 7 -2\n"
         }
       ],
       "route_role": "guided",
@@ -7283,9 +7284,9 @@
             "20",
             "25"
           ],
-          "name": "edge: empty slice should return `0",
+          "name": "edge: empty slice should return 0",
           "covers": [
-            "empty slice should return `0"
+            "empty slice should return 0"
           ],
           "required_stdout_equals": "How many numbers? Average: 0\n"
         },
@@ -7524,14 +7525,8 @@
         },
         {
           "input_lines": [
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "3"
+            "1 2",
+            "5"
           ],
           "name": "edge: worker count larger than list size",
           "covers": [
@@ -7540,18 +7535,12 @@
           "oracle_normalizers": [
             "unordered_lines"
           ],
-          "required_stdout_equals": "Values: Worker count: Worker 1 partial: 0\nTotal: 0\n"
+          "required_stdout_equals": "Values: Worker count: Worker 1 partial: 1\nWorker 2 partial: 2\nTotal: 3\n"
         },
         {
           "input_lines": [
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "3"
+            "1 2",
+            "0"
           ],
           "name": "edge: non-positive worker count",
           "covers": [
@@ -7560,17 +7549,11 @@
           "oracle_normalizers": [
             "unordered_lines"
           ],
-          "required_stdout_equals": "Values: Worker count: Worker 1 partial: 0\nTotal: 0\n"
+          "required_stdout_equals": "Values: Worker count: Worker count must be positive.\n"
         },
         {
           "input_lines": [
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
+            "",
             "3"
           ],
           "name": "edge: empty list",
@@ -7580,7 +7563,7 @@
           "oracle_normalizers": [
             "unordered_lines"
           ],
-          "required_stdout_equals": "Values: Worker count: Worker 1 partial: 0\nTotal: 0\n"
+          "required_stdout_equals": "Values: No valid values provided.\n"
         }
       ],
       "route_role": "guided",
@@ -7626,7 +7609,7 @@
         },
         {
           "input_lines": [
-            "0"
+            "1"
           ],
           "name": "edge: consumer waiting on an empty queue",
           "covers": [
@@ -7635,7 +7618,7 @@
           "oracle_normalizers": [
             "unordered_lines"
           ],
-          "required_stdout_equals": "Items to produce: Produced total: 0\nConsumed total: 0\n"
+          "required_stdout_equals": "Items to produce: Produced 1\nProduced total: 1\nConsumed 1\nConsumed total: 1\n"
         }
       ],
       "route_role": "both",
@@ -7681,7 +7664,7 @@
         },
         {
           "input_lines": [
-            "0"
+            "1"
           ],
           "name": "edge: very small workloads produce noisy timings",
           "covers": [
@@ -8789,10 +8772,9 @@
         },
         {
           "input_lines": [
-            "invalid",
             "3",
-            "101",
             "90",
+            "oops",
             "80",
             "70"
           ],
@@ -8800,7 +8782,7 @@
           "covers": [
             "invalid score in the middle of entry"
           ],
-          "required_stdout_equals": "Invalid integer.\nScore must be 0..100.\nAverage score: 80.00\n"
+          "required_stdout_equals": "Invalid integer.\nAverage score: 80.00\n"
         }
       ],
       "route_role": "both",
@@ -8839,13 +8821,12 @@
         },
         {
           "input_lines": [
-            "0",
-            "8",
-            "3",
-            "8",
+            "4",
             "1",
-            "8",
-            "8"
+            "2",
+            "3",
+            "4",
+            "9"
           ],
           "name": "edge: target missing",
           "covers": [
@@ -8855,19 +8836,18 @@
         },
         {
           "input_lines": [
-            "0",
+            "4",
             "8",
             "3",
             "8",
             "1",
-            "8",
             "8"
           ],
           "name": "edge: target at index 0",
           "covers": [
             "target at index 0"
           ],
-          "required_stdout_equals": "First index: -1\nOccurrences: 0\n"
+          "required_stdout_equals": "First index: 0\nOccurrences: 2\n"
         }
       ],
       "route_role": "guided",
@@ -9347,23 +9327,23 @@
         },
         {
           "input_lines": [
-            "edge-case"
+            "red blue red"
           ],
           "name": "edge: repeated words",
           "covers": [
             "repeated words"
           ],
-          "required_stdout_equals": "Word frequencies:\nedge-case: 1\n"
+          "required_stdout_equals": "Word frequencies:\nblue: 1\nred: 2\n"
         },
         {
           "input_lines": [
-            "edge-case"
+            "Go go GO"
           ],
           "name": "edge: different capitalization",
           "covers": [
             "different capitalization"
           ],
-          "required_stdout_equals": "Word frequencies:\nedge-case: 1\n"
+          "required_stdout_equals": "Word frequencies:\ngo: 3\n"
         }
       ],
       "route_role": "guided",
@@ -9617,14 +9597,14 @@
         },
         {
           "input_lines": [
-            "0",
+            "1.5",
             "2"
           ],
           "name": "edge: decimal values should work",
           "covers": [
             "decimal values should work"
           ],
-          "required_stdout_equals": "Dimensions must be positive.\n"
+          "required_stdout_equals": "Area: 3.00\nPerimeter: 7.00\n"
         }
       ],
       "route_role": "guided",
@@ -9685,9 +9665,9 @@
           "input_lines": [
             "stop"
           ],
-          "name": "edge: immediate `stop",
+          "name": "edge: immediate stop",
           "covers": [
-            "immediate `stop"
+            "immediate stop"
           ],
           "required_stdout_equals": "Final value: 0\n"
         }
@@ -9945,14 +9925,14 @@
         },
         {
           "input_lines": [
-            "0",
+            "1.5",
             "4"
           ],
           "name": "edge: decimal dimensions",
           "covers": [
             "decimal dimensions"
           ],
-          "required_stdout_equals": "Base and height must be positive.\n"
+          "required_stdout_equals": "Triangle area: 3.00\n"
         }
       ],
       "route_role": "guided",
@@ -10027,25 +10007,25 @@
         },
         {
           "input_lines": [
-            "edge-case",
-            "blue"
+            "same",
+            "same"
           ],
           "name": "edge: identical words",
           "covers": [
             "identical words"
           ],
-          "required_stdout_equals": "Before: edge-case blue\nAfter: blue edge-case\n"
+          "required_stdout_equals": "Before: same same\nAfter: same same\n"
         },
         {
           "input_lines": [
-            "edge-case",
-            "blue"
+            "encyclopedia",
+            "go"
           ],
           "name": "edge: words with different lengths",
           "covers": [
             "words with different lengths"
           ],
-          "required_stdout_equals": "Before: edge-case blue\nAfter: blue edge-case\n"
+          "required_stdout_equals": "Before: encyclopedia go\nAfter: go encyclopedia\n"
         }
       ],
       "route_role": "guided",
@@ -10369,14 +10349,10 @@
         },
         {
           "input_lines": [
-            "0",
+            "2",
             "1",
             "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "3"
+            "5"
           ],
           "name": "edge: worker count larger than the value count",
           "covers": [
@@ -10385,7 +10361,7 @@
           "oracle_normalizers": [
             "unordered_lines"
           ],
-          "required_stdout_equals": "Value count must be positive.\n"
+          "required_stdout_equals": "Worker 1 partial: 1\nWorker 2 partial: 2\nWorkers used: 2\nFinal total: 3\n"
         }
       ],
       "route_role": "guided",
@@ -10502,7 +10478,7 @@
         },
         {
           "input_lines": [
-            "0"
+            "1"
           ],
           "name": "edge: small workloads with noisy timings",
           "covers": [
@@ -10511,7 +10487,7 @@
           "oracle_normalizers": [
             "timings"
           ],
-          "required_stdout_equals": "Outputs equal: true\nOutput length: 0\nConcatenation average ns: 160\nStringBuilder average ns: 620\n"
+          "required_stdout_equals": "Outputs equal: true\nOutput length: 7\nConcatenation average ns: 2780\nStringBuilder average ns: 820\n"
         }
       ],
       "route_role": "guided",
@@ -10564,7 +10540,7 @@
         },
         {
           "input_lines": [
-            "0"
+            "1"
           ],
           "name": "edge: small workloads with little visible difference",
           "covers": [
@@ -10573,7 +10549,7 @@
           "oracle_normalizers": [
             "timings"
           ],
-          "required_stdout_equals": "Checksums equal: true\nChecksum: 0\nWithout capacity average ns: 400\nWith capacity average ns: 362\n"
+          "required_stdout_equals": "Checksums equal: true\nChecksum: 0\nWithout capacity average ns: 850\nWith capacity average ns: 750\n"
         }
       ],
       "route_role": "both",
@@ -10934,13 +10910,13 @@
         },
         {
           "input_lines": [
-            "0"
+            "30"
           ],
           "name": "edge: multiples of both 3 and 5",
           "covers": [
             "multiples of both 3 and 5"
           ],
-          "required_stdout_equals": "Run FizzBuzz up to: Please enter a positive upper bound.\n"
+          "required_stdout_equals": "Run FizzBuzz up to: 1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n16\n17\nFizz\n19\nBuzz\nFizz\n22\n23\nFizz\nBuzz\n26\nFizz\n28\n29\nFizzBuzz\n"
         }
       ],
       "route_role": "guided",
@@ -11267,23 +11243,23 @@
         },
         {
           "input_lines": [
-            "edge-case"
+            "1234!"
           ],
           "name": "edge: input with no letters",
           "covers": [
             "input with no letters"
           ],
-          "required_stdout_equals": "Enter text: Not palindrome\n"
+          "required_stdout_equals": "Enter text: No letters to evaluate.\n"
         },
         {
           "input_lines": [
-            "edge-case"
+            "RaceCar"
           ],
           "name": "edge: mixed upper/lower case",
           "covers": [
             "mixed upper/lower case"
           ],
-          "required_stdout_equals": "Enter text: Not palindrome\n"
+          "required_stdout_equals": "Enter text: Palindrome\n"
         }
       ],
       "route_role": "both",
@@ -11439,19 +11415,16 @@
         },
         {
           "input_lines": [
-            "0",
-            "Notebook",
-            "12.5",
-            "3",
-            "Pen",
+            "1",
+            "ExtraLongProductName",
             "2",
-            "4"
+            "3"
           ],
           "name": "edge: long product names affecting alignment",
           "covers": [
             "long product names affecting alignment"
           ],
-          "required_stdout_equals": "How many products? Please enter a positive count.\n"
+          "required_stdout_equals": "How many products? Product 1 name: Product 1 price: Product 1 quantity: Product              Price     Qty       Total\n----------------------------------------------\nExtraLongProductName      2.00       3        6.00\n----------------------------------------------\nGrand total                               6.00\n"
         }
       ],
       "route_role": "guided",
@@ -11482,25 +11455,24 @@
         },
         {
           "input_lines": [
-            "0 2 3",
-            "2"
+            ""
           ],
           "name": "edge: empty numeric input",
           "covers": [
             "empty numeric input"
           ],
-          "required_stdout_equals": "Enter numeric values separated by spaces: Decimal precision (0-6): Count: 3\nSum: 5.00\nAverage: 1.67\nMinimum: 0.00\nMaximum: 3.00\n"
+          "required_stdout_equals": "Enter numeric values separated by spaces: No values entered.\n"
         },
         {
           "input_lines": [
-            "0 2 3",
-            "2"
+            "1 2 3",
+            "9"
           ],
           "name": "edge: precision outside 0..6",
           "covers": [
             "precision outside 0..6"
           ],
-          "required_stdout_equals": "Enter numeric values separated by spaces: Decimal precision (0-6): Count: 3\nSum: 5.00\nAverage: 1.67\nMinimum: 0.00\nMaximum: 3.00\n"
+          "required_stdout_equals": "Enter numeric values separated by spaces: Decimal precision (0-6): Precision must be between 0 and 6.\n"
         }
       ],
       "route_role": "both",
@@ -11730,9 +11702,9 @@
             "7",
             "9"
           ],
-          "name": "edge: all odd numbers (even count `0`)",
+          "name": "edge: all odd numbers (even count 0)",
           "covers": [
-            "all odd numbers (even count `0`)"
+            "all odd numbers (even count 0)"
           ],
           "required_stdout_equals": "How many integers? Value 1: Value 2: Value 3: Value 4: Value 5: Minimum: 1\nMaximum: 9\nEven numbers: 0\n"
         },
@@ -11927,7 +11899,7 @@
               "lines": [
                 "MissingScore",
                 "Ana nope",
-                "Bob 101"
+                "Bob nope"
               ]
             }
           ],
@@ -11941,7 +11913,7 @@
           "covers": [
             "file with no valid rows"
           ],
-          "required_stdout_equals": "Enter file path (name score rows): Valid rows: 1\nInvalid rows: 2\nAverage score: 101.00\n"
+          "required_stdout_equals": "Enter file path (name score rows): Valid rows: 0\nInvalid rows: 3\nNo valid rows found.\n"
         }
       ],
       "route_role": "both",
@@ -12118,9 +12090,9 @@
             "2",
             "9"
           ],
-          "name": "edge: missing digits should show count `0",
+          "name": "edge: missing digits should show count 0",
           "covers": [
-            "missing digits should show count `0"
+            "missing digits should show count 0"
           ],
           "required_stdout_equals": "How many digits? Please enter a positive count.\n"
         },
@@ -12331,13 +12303,13 @@
         },
         {
           "input_lines": [
-            "0 2"
+            "1.5 2"
           ],
           "name": "edge: decimal values should work",
           "covers": [
             "decimal values should work"
           ],
-          "required_stdout_equals": "Enter width and height: Width and height must be positive.\n"
+          "required_stdout_equals": "Enter width and height: Area: 3.0\nPerimeter: 7.0\n"
         }
       ],
       "route_role": "guided",
@@ -12391,9 +12363,9 @@
           "input_lines": [
             "stop"
           ],
-          "name": "edge: immediate `stop",
+          "name": "edge: immediate stop",
           "covers": [
-            "immediate `stop"
+            "immediate stop"
           ],
           "required_stdout_equals": "Commands: inc, dec, reset, stop\nEnter command: Final value: 0\n"
         }
@@ -12635,13 +12607,13 @@
         },
         {
           "input_lines": [
-            "0 4"
+            "1.5 4"
           ],
           "name": "edge: decimal dimensions",
           "covers": [
             "decimal dimensions"
           ],
-          "required_stdout_equals": "Enter base and height: Base and height must be positive.\n"
+          "required_stdout_equals": "Enter base and height: Triangle area: 3.0\n"
         }
       ],
       "route_role": "guided",
@@ -12766,9 +12738,9 @@
             "20",
             "25"
           ],
-          "name": "edge: empty list should return `0",
+          "name": "edge: empty list should return 0",
           "covers": [
-            "empty list should return `0"
+            "empty list should return 0"
           ],
           "required_stdout_equals": "How many numbers? Average: 0.0\n"
         },
@@ -13001,8 +12973,8 @@
         },
         {
           "input_lines": [
-            "0 2 3 4 5 6",
-            "3"
+            "1 2",
+            "5"
           ],
           "name": "edge: worker count larger than list size",
           "covers": [
@@ -13011,12 +12983,12 @@
           "oracle_normalizers": [
             "unordered_lines"
           ],
-          "required_stdout_equals": "Values: Worker count: Worker 1 partial: 2\nWorker 2 partial: 7\nWorker 3 partial: 11\nTotal: 20\n"
+          "required_stdout_equals": "Values: Worker count: Worker 1 partial: 1\nWorker 2 partial: 2\nTotal: 3\n"
         },
         {
           "input_lines": [
-            "0 2 3 4 5 6",
-            "3"
+            "1 2",
+            "0"
           ],
           "name": "edge: non-positive worker count",
           "covers": [
@@ -13025,11 +12997,11 @@
           "oracle_normalizers": [
             "unordered_lines"
           ],
-          "required_stdout_equals": "Values: Worker count: Worker 1 partial: 2\nWorker 2 partial: 7\nWorker 3 partial: 11\nTotal: 20\n"
+          "required_stdout_equals": "Values: Worker count: Worker count must be positive.\n"
         },
         {
           "input_lines": [
-            "0 2 3 4 5 6",
+            "",
             "3"
           ],
           "name": "edge: empty list",
@@ -13039,7 +13011,7 @@
           "oracle_normalizers": [
             "unordered_lines"
           ],
-          "required_stdout_equals": "Values: Worker count: Worker 1 partial: 2\nWorker 2 partial: 7\nWorker 3 partial: 11\nTotal: 20\n"
+          "required_stdout_equals": "Values: No valid values provided.\n"
         }
       ],
       "route_role": "guided",
@@ -13085,7 +13057,7 @@
         },
         {
           "input_lines": [
-            "0"
+            "1"
           ],
           "name": "edge: consumer waiting on an empty queue",
           "covers": [
@@ -13094,7 +13066,7 @@
           "oracle_normalizers": [
             "unordered_lines"
           ],
-          "required_stdout_equals": "Items to produce: Produced total: 0\nConsumed total: 0\n"
+          "required_stdout_equals": "Items to produce: Produced 1\nConsumed 1\nProduced total: 1\nConsumed total: 1\n"
         }
       ],
       "route_role": "both",
@@ -13140,7 +13112,7 @@
         },
         {
           "input_lines": [
-            "0"
+            "1"
           ],
           "name": "edge: very small workloads produce noisy timings",
           "covers": [
@@ -13149,7 +13121,7 @@
           "oracle_normalizers": [
             "timings"
           ],
-          "required_stdout_equals": "Line count: Concatenation: 0.000003s\nJoin: 0.000003s\n"
+          "required_stdout_equals": "Line count: Concatenation: 0.000002s\nJoin: 0.000002s\n"
         }
       ],
       "route_role": "guided",
@@ -13359,16 +13331,16 @@
         },
         {
           "input_lines": [
-            "0",
-            "10",
-            "20",
-            "30"
+            "3",
+            "1.5",
+            "2.5",
+            "3"
           ],
           "name": "edge: decimal input should still work",
           "covers": [
             "decimal input should still work"
           ],
-          "required_stdout_equals": "Count must be a positive integer.\n"
+          "required_stdout_equals": "Sum: 7\nAverage: 2.33\nMinimum: 1.5\nMaximum: 3\n"
         }
       ],
       "route_role": "guided",
@@ -14049,9 +14021,9 @@
           "input_lines": [
             "-5"
           ],
-          "name": "edge: values below `1` or above `100",
+          "name": "edge: values below 1 or above 100",
           "covers": [
-            "values below `1` or above `100"
+            "values below 1 or above 100"
           ],
           "required_stdout_equals": "Value must be in range 1..100.\n"
         }
@@ -14118,9 +14090,9 @@
             "0",
             "100"
           ],
-          "name": "edge: boundary values `0` and `100",
+          "name": "edge: boundary values 0 and 100",
           "covers": [
-            "boundary values `0` and `100"
+            "boundary values 0 and 100"
           ],
           "required_stdout_equals": "Average: 50.00\n"
         }
@@ -14612,19 +14584,19 @@
         },
         {
           "input_lines": [
-            "0",
+            "5",
             "2",
             "4",
             "7",
             "9",
             "11",
-            "7"
+            "8"
           ],
           "name": "edge: target absent",
           "covers": [
             "target absent"
           ],
-          "required_stdout_equals": "Count must be a positive integer.\n"
+          "required_stdout_equals": "Index: -1\n"
         },
         {
           "input_lines": [
@@ -14695,48 +14667,37 @@
         },
         {
           "input_lines": [
-            "edge-case",
-            "blue",
-            "red",
-            "green",
-            "blue",
-            "red"
+            ""
           ],
           "name": "edge: empty input",
           "covers": [
             "empty input"
           ],
-          "required_stdout_equals": "edge-case: 1\nblue: 2\nred: 2\ngreen: 1\n"
+          "required_stdout_equals": "Expected at least one word.\n"
         },
         {
           "input_lines": [
-            "edge-case",
-            "blue",
-            "red",
-            "green",
-            "blue",
-            "red"
+            "Go",
+            "go",
+            "GO"
           ],
           "name": "edge: repeated casing",
           "covers": [
             "repeated casing"
           ],
-          "required_stdout_equals": "edge-case: 1\nblue: 2\nred: 2\ngreen: 1\n"
+          "required_stdout_equals": "Go: 1\ngo: 1\nGO: 1\n"
         },
         {
           "input_lines": [
-            "edge-case",
-            "blue",
             "red",
-            "green",
-            "blue",
+            "red",
             "red"
           ],
           "name": "edge: single repeated word",
           "covers": [
             "single repeated word"
           ],
-          "required_stdout_equals": "edge-case: 1\nblue: 2\nred: 2\ngreen: 1\n"
+          "required_stdout_equals": "red: 3\n"
         }
       ],
       "route_role": "guided",
@@ -14789,18 +14750,13 @@
         },
         {
           "input_lines": [
-            "edge-case",
-            "beta",
-            "alpha",
-            "gamma",
-            "beta",
-            "alpha"
+            ""
           ],
           "name": "edge: empty input should print an error",
           "covers": [
             "empty input should print an error"
           ],
-          "required_stdout_equals": "Most frequent: beta\nCount: 2\n"
+          "required_stdout_equals": "Expected at least one word.\n"
         }
       ],
       "route_role": "both",
@@ -14832,13 +14788,13 @@
         },
         {
           "input_lines": [
-            "Ana Maria 0"
+            "50"
           ],
           "name": "edge: missing name",
           "covers": [
             "missing name"
           ],
-          "required_stdout_equals": "Accepted: Ana Maria (0)\n"
+          "required_stdout_equals": "Expected: Full Name Score\n"
         },
         {
           "input_lines": [
@@ -14852,13 +14808,13 @@
         },
         {
           "input_lines": [
-            "Ana Maria 0"
+            "Ana Maria 101"
           ],
-          "name": "edge: score outside `0..100",
+          "name": "edge: score outside 0..100",
           "covers": [
-            "score outside `0..100"
+            "score outside 0..100"
           ],
-          "required_stdout_equals": "Accepted: Ana Maria (0)\n"
+          "required_stdout_equals": "Invalid record.\n"
         }
       ],
       "route_role": "guided",

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -9,12 +10,31 @@ from scripts.automation_core.ops import (
     assert_output_contract,
     documented_exercise_edge_cases,
     exercise_contract_key,
+    has_valid_oracle_waiver,
+    has_template_narration,
     is_vacuous_stdout_pattern,
     output_contract_case_suffix,
+    run_command,
 )
 
 
 class ContractHelperTests(unittest.TestCase):
+    def test_run_command_can_set_a_reproducible_environment(self) -> None:
+        completed = run_command(
+            [sys.executable, "-c", "import os; print(os.environ['COURSE_LOCALE'])"],
+            environment={"COURSE_LOCALE": "invariant"},
+            capture_stdout=True,
+        )
+        self.assertEqual(completed.stdout.strip(), "invariant")
+
+    def test_oracle_waiver_must_contain_a_reason(self) -> None:
+        self.assertFalse(has_valid_oracle_waiver({"oracle_waiver": "  "}))
+        self.assertTrue(has_valid_oracle_waiver({"oracle_waiver": "unordered runtime output"}))
+
+    def test_template_narration_detects_legacy_exercise_guides(self) -> None:
+        self.assertTrue(has_template_narration("/* Exercise Guide: copied boilerplate */"))
+        self.assertFalse(has_template_narration("// Validate the count before allocating."))
+
     def test_contains_passes(self) -> None:
         assert_output_contract("Total: 10\n", {"required_stdout_contains": ["Total: 10"]}, "x")
 
@@ -139,7 +159,7 @@ class ContractHelperTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir:
             path = Path(temp_dir) / "README.md"
             path.write_text(
-                "### Exercise Specs\n\n1. task\n- Edge cases: empty input; duplicate values.\n\n"
+                "### Exercise Specs\n\n1. task\n- Edge cases: `empty` input; duplicate values.\n\n"
                 "2. task\n- Edge cases: zero.\n\n## Checkpoint\n",
                 encoding="utf-8",
             )

@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func main() {
 	// TODO 1: Read and validate the inputs named in Exercise Specs.
 	// TODO 2: Apply the requested transformation or decision.
