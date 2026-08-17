@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include <memory>
+#include <string>
 #include <vector>
 using namespace std;
 
@@ -31,9 +32,36 @@ class Circle : public Shape {
 };
 
 int main() {
+    int count = 0;
+    if (!(cin >> count) || count < 0) {
+        cout << "Expected a non-negative shape count.\n";
+        return 0;
+    }
+
     vector<unique_ptr<Shape>> shapes;
-    shapes.push_back(unique_ptr<Shape>(new Rectangle(2.0, 5.0)));
-    shapes.push_back(unique_ptr<Shape>(new Circle(1.5)));
+    for (int index = 0; index < count; ++index) {
+        string kind;
+        cin >> kind;
+        if (kind == "rectangle") {
+            double width = 0.0;
+            double height = 0.0;
+            if (!(cin >> width >> height)) {
+                cout << "Invalid rectangle.\n";
+                return 0;
+            }
+            shapes.push_back(unique_ptr<Shape>(new Rectangle(width, height)));
+        } else if (kind == "circle") {
+            double radius = 0.0;
+            if (!(cin >> radius)) {
+                cout << "Invalid circle.\n";
+                return 0;
+            }
+            shapes.push_back(unique_ptr<Shape>(new Circle(radius)));
+        } else {
+            cout << "Unknown shape type.\n";
+            return 0;
+        }
+    }
 
     double totalArea = 0.0;
     for (const auto& shape : shapes) {

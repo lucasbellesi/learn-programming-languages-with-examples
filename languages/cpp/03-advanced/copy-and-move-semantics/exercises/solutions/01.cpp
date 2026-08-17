@@ -27,15 +27,32 @@ class IntBuffer {
         return *this;
     }
 
+    size_t size() const { return data.size(); }
+
   private:
     vector<int> data;
 };
 
 int main() {
-    IntBuffer a(4);
+    size_t size = 0;
+    bool testSelfAssignment = false;
+    if (!(cin >> size >> testSelfAssignment)) {
+        cout << "Expected: size selfAssignmentFlag\n";
+        return 0;
+    }
+
+    IntBuffer a(size);
     IntBuffer b = a;
     IntBuffer c = move(a);
     b = c;
     c = move(b);
+
+    if (testSelfAssignment) {
+        b = b;
+        IntBuffer* sameBuffer = &c;
+        c = move(*sameBuffer);
+        cout << "Self-assignment preserved: " << c.size() << '\n';
+    }
+    cout << "Final sizes: " << a.size() << ' ' << b.size() << ' ' << c.size() << '\n';
     return 0;
 }

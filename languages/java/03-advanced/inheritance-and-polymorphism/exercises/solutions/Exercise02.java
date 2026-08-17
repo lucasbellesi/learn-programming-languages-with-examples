@@ -1,5 +1,7 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Scanner;
 
 public class Exercise02 {
     interface Shape {
@@ -36,7 +38,46 @@ public class Exercise02 {
 
     public static void main(String[] args) {
         Locale.setDefault(Locale.US);
-        List<Shape> shapes = List.of(new Rectangle(2.0, 5.0), new Circle(1.5));
+        Scanner scanner = new Scanner(System.in);
+        if (!scanner.hasNextInt()) {
+            System.out.println("Expected a non-negative shape count.");
+            return;
+        }
+        int count = scanner.nextInt();
+        if (count < 0) {
+            System.out.println("Expected a non-negative shape count.");
+            return;
+        }
+
+        List<Shape> shapes = new ArrayList<>();
+        for (int index = 0; index < count; index++) {
+            if (!scanner.hasNext()) {
+                System.out.println("Missing shape data.");
+                return;
+            }
+            String kind = scanner.next();
+            if (kind.equals("rectangle")) {
+                if (!scanner.hasNextDouble()) {
+                    System.out.println("Invalid rectangle.");
+                    return;
+                }
+                double width = scanner.nextDouble();
+                if (!scanner.hasNextDouble()) {
+                    System.out.println("Invalid rectangle.");
+                    return;
+                }
+                shapes.add(new Rectangle(width, scanner.nextDouble()));
+            } else if (kind.equals("circle")) {
+                if (!scanner.hasNextDouble()) {
+                    System.out.println("Invalid circle.");
+                    return;
+                }
+                shapes.add(new Circle(scanner.nextDouble()));
+            } else {
+                System.out.println("Unknown shape type.");
+                return;
+            }
+        }
 
         double totalArea = 0.0;
         for (Shape shape : shapes) {

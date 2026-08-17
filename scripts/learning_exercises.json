@@ -1802,33 +1802,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Constructed IntBuffer",
-            "Copied IntBuffer",
-            "Moved IntBuffer",
-            "Copy-assigned IntBuffer",
-            "Move-assigned IntBuffer"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "4 0"
+          ],
+          "required_stdout_equals": "Constructed IntBuffer\nCopied IntBuffer\nMoved IntBuffer\nCopy-assigned IntBuffer\nMove-assigned IntBuffer\nFinal sizes: 0 0 4\n"
         },
         {
           "name": "edge: zero-size buffer",
           "covers": [
             "zero-size buffer"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Constructed IntBuffer\nCopied IntBuffer\nMoved IntBuffer\nCopy-assigned IntBuffer\nMove-assigned IntBuffer\n"
+          "required_stdout_equals": "Constructed IntBuffer\nCopied IntBuffer\nMoved IntBuffer\nCopy-assigned IntBuffer\nMove-assigned IntBuffer\nFinal sizes: 0 0 0\n",
+          "input_lines": [
+            "0 0"
+          ]
         },
         {
           "name": "edge: self-assignment safety",
           "covers": [
             "self-assignment safety"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Constructed IntBuffer\nCopied IntBuffer\nMoved IntBuffer\nCopy-assigned IntBuffer\nMove-assigned IntBuffer\n"
+          "required_stdout_equals": "Constructed IntBuffer\nCopied IntBuffer\nMoved IntBuffer\nCopy-assigned IntBuffer\nMove-assigned IntBuffer\nSelf-assignment preserved: 4\nFinal sizes: 0 0 4\n",
+          "input_lines": [
+            "4 1"
+          ]
         }
       ],
       "route_role": "guided",
@@ -1946,29 +1947,39 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Total area:"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "2",
+            "rectangle 2 5",
+            "circle 1.5"
+          ],
+          "required_stdout_equals": "Total area: 17.0686\n"
         },
         {
           "name": "edge: empty shape list",
           "covers": [
             "empty shape list"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Total area: 17.0686\n"
+          "required_stdout_equals": "Total area: 0\n",
+          "input_lines": [
+            "0"
+          ]
         },
         {
           "name": "edge: mixed shape types",
           "covers": [
             "mixed shape types"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Total area: 17.0686\n"
+          "required_stdout_equals": "Total area: 9.92699\n",
+          "input_lines": [
+            "3",
+            "circle 1",
+            "rectangle 2 3",
+            "circle 0.5"
+          ]
         }
       ],
       "route_role": "both",
@@ -4559,29 +4570,39 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Total area:"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "2",
+            "rectangle 2 5",
+            "circle 1.5"
+          ],
+          "required_stdout_equals": "Total area: 17.068583470577035\n"
         },
         {
           "name": "edge: empty shape list",
           "covers": [
             "empty shape list"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Total area: 17.068583470577035\n"
+          "required_stdout_equals": "Total area: 0\n",
+          "input_lines": [
+            "0"
+          ]
         },
         {
           "name": "edge: mixed shape types",
           "covers": [
             "mixed shape types"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Total area: 17.068583470577035\n"
+          "required_stdout_equals": "Total area: 9.926990816987242\n",
+          "input_lines": [
+            "3",
+            "circle 1",
+            "rectangle 2 3",
+            "circle 0.5"
+          ]
         }
       ],
       "route_role": "both",
@@ -7177,29 +7198,39 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Total area:"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "2",
+            "rectangle 2 5",
+            "circle 1.5"
+          ],
+          "required_stdout_equals": "Total area: 17.068583470577035\n"
         },
         {
           "name": "edge: empty shape list",
           "covers": [
             "empty shape list"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Total area: 17.068583470577035\n"
+          "required_stdout_equals": "Total area: 0\n",
+          "input_lines": [
+            "0"
+          ]
         },
         {
           "name": "edge: mixed shape types",
           "covers": [
             "mixed shape types"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Total area: 17.068583470577035\n"
+          "required_stdout_equals": "Total area: 9.926990816987242\n",
+          "input_lines": [
+            "3",
+            "circle 1",
+            "rectangle 2 3",
+            "circle 0.5"
+          ]
         }
       ],
       "route_role": "both",
@@ -9951,29 +9982,39 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Total area: 17.07"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "2",
+            "rectangle 2 5",
+            "circle 1.5"
+          ],
+          "required_stdout_equals": "Total area: 17.07\n"
         },
         {
           "name": "edge: empty shape list",
           "covers": [
             "empty shape list"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Total area: 17.07\n"
+          "required_stdout_equals": "Total area: 0.00\n",
+          "input_lines": [
+            "0"
+          ]
         },
         {
           "name": "edge: mixed shape types",
           "covers": [
             "mixed shape types"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Total area: 17.07\n"
+          "required_stdout_equals": "Total area: 9.93\n",
+          "input_lines": [
+            "3",
+            "circle 1",
+            "rectangle 2 3",
+            "circle 0.5"
+          ]
         }
       ],
       "route_role": "both",
@@ -12632,29 +12673,39 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Total area:"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "2",
+            "rectangle 2 5",
+            "circle 1.5"
+          ],
+          "required_stdout_equals": "Total area: 17.068583470577035\n"
         },
         {
           "name": "edge: empty shape list",
           "covers": [
             "empty shape list"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Total area: 17.068583470577035\n"
+          "required_stdout_equals": "Total area: 0.0\n",
+          "input_lines": [
+            "0"
+          ]
         },
         {
           "name": "edge: mixed shape types",
           "covers": [
             "mixed shape types"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Total area: 17.068583470577035\n"
+          "required_stdout_equals": "Total area: 9.926990816987242\n",
+          "input_lines": [
+            "3",
+            "circle 1",
+            "rectangle 2 3",
+            "circle 0.5"
+          ]
         }
       ],
       "route_role": "both",
@@ -14952,37 +15003,44 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Count must be a positive integer."
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "2 Ana 90 Bob 80"
+          ],
+          "required_stdout_equals": "Ana: 90\nBob: 80\n"
         },
         {
           "name": "edge: n <= 0",
           "covers": [
             "n <= 0"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Count must be a positive integer.\n"
+          "required_stdout_equals": "Count must be a positive integer.\n",
+          "input_lines": [
+            "0"
+          ]
         },
         {
           "name": "edge: missing tokens",
           "covers": [
             "missing tokens"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Count must be a positive integer.\n"
+          "required_stdout_equals": "Invalid student record.\n",
+          "input_lines": [
+            "2 Ana 90"
+          ]
         },
         {
           "name": "edge: invalid scores",
           "covers": [
             "invalid scores"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Count must be a positive integer.\n"
+          "required_stdout_equals": "Invalid student record.\n",
+          "input_lines": [
+            "1 Ana nope"
+          ]
         }
       ],
       "route_role": "guided",
@@ -15001,21 +15059,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Expected: label quantity unitPrice"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "Notebook 3 12.5"
+          ],
+          "required_stdout_equals": "Item: Notebook\nTotal: 37.50\n"
         },
         {
           "name": "edge: negative quantity or price should print an error",
           "covers": [
             "negative quantity or price should print an error"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected: label quantity unitPrice\n"
+          "required_stdout_equals": "Quantity and price must be non-negative.\n",
+          "input_lines": [
+            "Notebook -1 12.5"
+          ]
+        },
+        {
+          "input_lines": [
+            "Notebook 0 12.5"
+          ],
+          "name": "edge: zero quantity produces zero total",
+          "covers": [
+            "zero quantity produces zero total"
+          ],
+          "required_stdout_equals": "Item: Notebook\nTotal: 0.00\n"
         }
       ],
       "route_role": "both",
@@ -15034,29 +15105,37 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Owner name is required."
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "Alice",
+            "100"
+          ],
+          "required_stdout_equals": "Alice: 100.00\n"
         },
         {
           "name": "edge: empty owner",
           "covers": [
             "empty owner"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Owner name is required.\n"
+          "required_stdout_equals": "Owner name is required.\n",
+          "input_lines": [
+            "",
+            "100"
+          ]
         },
         {
           "name": "edge: negative opening balance",
           "covers": [
             "negative opening balance"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Owner name is required.\n"
+          "required_stdout_equals": "Balance must be non-negative.\n",
+          "input_lines": [
+            "Alice",
+            "-1"
+          ]
         }
       ],
       "route_role": "guided",
@@ -15075,29 +15154,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Expected numeric temperatures."
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "-5 30"
+          ],
+          "required_stdout_equals": "Range: -5..30\n"
         },
         {
           "name": "edge: minimum above maximum",
           "covers": [
             "minimum above maximum"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected numeric temperatures.\n"
+          "required_stdout_equals": "Minimum cannot exceed maximum.\n",
+          "input_lines": [
+            "30 -5"
+          ]
         },
         {
           "name": "edge: invalid numbers",
           "covers": [
             "invalid numbers"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected numeric temperatures.\n"
+          "required_stdout_equals": "Expected numeric temperatures.\n",
+          "input_lines": [
+            "cold 20"
+          ]
         }
       ],
       "route_role": "both",
@@ -15116,21 +15200,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Expected: name nonNegativeQuantity"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "Notebook 4"
+          ],
+          "required_stdout_equals": "Original quantity: 5\nCopied quantity: 5\n"
         },
         {
           "name": "edge: negative quantity should print an error",
           "covers": [
             "negative quantity should print an error"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected: name nonNegativeQuantity\n"
+          "required_stdout_equals": "Expected: name nonNegativeQuantity\n",
+          "input_lines": [
+            "Notebook -1"
+          ]
+        },
+        {
+          "input_lines": [
+            "Notebook 0"
+          ],
+          "name": "edge: zero quantity preserves alias behavior",
+          "covers": [
+            "zero quantity preserves alias behavior"
+          ],
+          "required_stdout_equals": "Original quantity: 1\nCopied quantity: 1\n"
         }
       ],
       "route_role": "guided",
@@ -15149,29 +15246,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Expected: name inStock reserved"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "Notebook 10 2"
+          ],
+          "required_stdout_equals": "Original: 10/2\nCloned: 12/2\n"
         },
         {
           "name": "edge: invalid counts",
           "covers": [
             "invalid counts"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected: name inStock reserved\n"
+          "required_stdout_equals": "Expected: name inStock reserved\n",
+          "input_lines": [
+            "Notebook ten 2"
+          ]
         },
         {
           "name": "edge: negative values",
           "covers": [
             "negative values"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected: name inStock reserved\n"
+          "required_stdout_equals": "Expected: name inStock reserved\n",
+          "input_lines": [
+            "Notebook -1 2"
+          ]
         }
       ],
       "route_role": "both",
@@ -15190,29 +15292,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Expected: kind price"
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "digital 12.5"
+          ],
+          "required_stdout_equals": "Digital: 12.50\n"
         },
         {
           "name": "edge: unknown type",
           "covers": [
             "unknown type"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected: kind price\n"
+          "required_stdout_equals": "Unknown product type.\n",
+          "input_lines": [
+            "service 12.5"
+          ]
         },
         {
           "name": "edge: invalid numeric parameter",
           "covers": [
             "invalid numeric parameter"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected: kind price\n"
+          "required_stdout_equals": "Expected: kind price\n",
+          "input_lines": [
+            "digital nope"
+          ]
         }
       ],
       "route_role": "guided",
@@ -15231,21 +15338,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Label is required."
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "Roadmap"
+          ],
+          "required_stdout_equals": "ROADMAP\n[Roadmap]\n"
         },
         {
           "name": "edge: empty label should print an error",
           "covers": [
             "empty label should print an error"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Label is required.\n"
+          "required_stdout_equals": "Label is required.\n",
+          "input_lines": [
+            ""
+          ]
+        },
+        {
+          "input_lines": [
+            "MiXeD label!"
+          ],
+          "name": "edge: punctuation and mixed case are preserved",
+          "covers": [
+            "punctuation and mixed case are preserved"
+          ],
+          "required_stdout_equals": "MIXED LABEL!\n[MiXeD label!]\n"
         }
       ],
       "route_role": "both",
@@ -15264,21 +15384,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Expected at least one value."
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "alpha beta"
+          ],
+          "required_stdout_equals": "First: alpha\n"
         },
         {
           "name": "edge: empty input should print an error",
           "covers": [
             "empty input should print an error"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected at least one value.\n"
+          "required_stdout_equals": "Expected at least one value.\n",
+          "input_lines": [
+            ""
+          ]
+        },
+        {
+          "input_lines": [
+            "only"
+          ],
+          "name": "edge: single value is returned",
+          "covers": [
+            "single value is returned"
+          ],
+          "required_stdout_equals": "First: only\n"
         }
       ],
       "route_role": "guided",
@@ -15297,21 +15430,34 @@
       ],
       "cases": [
         {
-          "required_stdout_contains": [
-            "Expected two values."
-          ],
           "name": "normal behavior",
           "covers": [
             "normal"
-          ]
+          ],
+          "input_lines": [
+            "left right"
+          ],
+          "required_stdout_equals": "left | right\n"
         },
         {
           "name": "edge: missing second value should print an error",
           "covers": [
             "missing second value should print an error"
           ],
-          "shared_execution": true,
-          "required_stdout_equals": "Expected two values.\n"
+          "required_stdout_equals": "Expected two values.\n",
+          "input_lines": [
+            "left"
+          ]
+        },
+        {
+          "input_lines": [
+            "same same"
+          ],
+          "name": "edge: identical values remain distinct pair members",
+          "covers": [
+            "identical values remain distinct pair members"
+          ],
+          "required_stdout_equals": "same | same\n"
         }
       ],
       "route_role": "both",
