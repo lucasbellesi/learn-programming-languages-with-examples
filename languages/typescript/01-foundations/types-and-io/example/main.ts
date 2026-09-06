@@ -11,7 +11,7 @@ const age = Number.parseInt(rawAge, 10);
 const price = Number.parseFloat(rawPrice);
 const isMember = rawMemberFlag === "true";
 if (Number.isNaN(age) || Number.isNaN(price)) {
-    // getline preserves spaces in the name; operator >> extracts the numeric fields.
+    // Report failed numeric conversion before calculating a discounted price.
     console.log("Invalid sample input.");
 } else {
     // Print a 10% member discount; toFixed controls display, not the stored value.
