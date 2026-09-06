@@ -1,3 +1,5 @@
+// Module focus: Representing values with suitable types and printing readable results.
+// Why it matters: converting values explicitly makes calculations and output predictable.
 // Convert fixed text values into numbers and a boolean, then print a price.
 // The exercises extend this idea to records read from standard input.
 

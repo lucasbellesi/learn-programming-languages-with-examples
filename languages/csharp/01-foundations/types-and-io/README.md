@@ -35,7 +35,7 @@ GPA: 3.50
 Adult: True
 ~~~
 
-The output below assumes a dot-decimal locale; GPA formatting also follows your system culture. Change the age to `17` and predict the boolean. `Parse` can throw on invalid numeric text; this example assumes valid input.
+The output above assumes a dot-decimal locale; GPA formatting also follows your system culture. Change the age to `17` and predict the boolean. `Parse` can throw on invalid numeric text; this example assumes valid input.
 
 Restore the original values before moving on to the exercises.
 

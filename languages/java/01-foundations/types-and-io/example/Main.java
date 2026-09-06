@@ -1,3 +1,5 @@
+// Module focus: Representing values with suitable types and printing readable results.
+// Why it matters: converting values explicitly makes calculations and output predictable.
 // Use integer and decimal values to compute and print a score average.
 // The example uses fixed data; the exercises introduce console input with Scanner.
 

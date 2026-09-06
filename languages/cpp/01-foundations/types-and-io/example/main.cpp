@@ -1,3 +1,5 @@
+// Module focus: Representing values with suitable types and printing readable results.
+// Why it matters: converting values explicitly makes calculations and output predictable.
 // Read a full line and numeric fields, then print a student summary.
 // This first example assumes valid input; input-validation teaches stream recovery.
 
