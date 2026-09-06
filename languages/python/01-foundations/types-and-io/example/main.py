@@ -1,16 +1,12 @@
-# Module focus: Reading typed input carefully and turning raw text into values.
-# Why it matters: the example makes it possible to choose suitable primitive values and variables
-# for a small problem before the learner tackles the exercises.
-# about.
+# Read console text, convert numeric fields, and print a student summary.
+# This first example assumes valid input; input-validation teaches error recovery.
 
-# Fixed inputs make the consequence of assuming input parsing always succeeds without validation
-# visible and repeatable.
+# input() returns text; int() and float() convert it and can raise ValueError.
 full_name = input("Enter your full name: ")
 age = int(input("Enter your age: "))
 gpa = float(input("Enter your GPA: "))
 
-# The printed result shows whether the program can read, validate, transform, and present console
-# data.
+# Print GPA with two decimal places and derive adulthood from the numeric age.
 print("\n--- Student Summary ---")
 print(f"Name: {full_name}")
 print(f"Age: {age}")

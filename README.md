@@ -25,6 +25,17 @@ If you only want to learn one track, follow that track README first because lang
 
 ## Start Here
 
+### Your First Session
+
+Install only the prerequisites for your chosen track. You do not need all six
+toolchains to study one language. Open the track guide below, then its first
+`types-and-io` module: each entry module includes a sample run, a small change to
+predict, and visible exercise cases with expected output.
+
+New to terminals or automated checks? Follow the [first-session walkthrough](STUDY_PLAN.md#first-session-walkthrough).
+The examples are complete programs; the exercise files intentionally need your work.
+An initial failed exercise check is expected.
+
 ### Learning Path
 
 1. Choose your language guide:

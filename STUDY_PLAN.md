@@ -13,6 +13,37 @@ examples, complete exercise 02, take the independent assessment, and compare the
 cross-language notes with a language you know. Projects are optional when the assessment
 already demonstrates transfer.
 
+## First-Session Walkthrough
+
+1. Open the repository folder in your editor, then open a terminal in that folder.
+   You should see `README.md`, `languages`, and `scripts` there. All course commands
+   below start from this folder, not the module's `example` directory.
+2. Follow your language guide's prerequisites and run `doctor` for that language.
+   If the terminal cannot find a command, check the installation and reopen the
+   terminal so it picks up your updated PATH.
+3. Open the first module's README and its file under `example/` side by side.
+   Read **Observe, Predict, Modify**, predict the result, then use **Quick Run**.
+   Some examples wait for keyboard input; Java and TypeScript entry examples use
+   fixed data and finish immediately.
+4. Make the suggested change, explain why the output changes, and restore it.
+   If you cannot explain a line, trace the value it reads, computes, or prints.
+5. Open exercise `01` under `exercises/` and implement its TODOs. The worked
+   example teaches the building blocks; the exercise applies them to a new problem.
+   Use the visible input/output cases as a specification, including prompt text
+   where the checker compares full output.
+6. Run `check-exercise`. A failed case is feedback: compare the named case's input,
+   expected output, and actual output. Fix the earliest mismatch and rerun.
+   If stuck, request hint stage 1, then 2, then 3 only as needed.
+7. Try a new input of your own before opening the reference solution. Passing the
+   listed cases is useful evidence, but it does not prove correctness for every input.
+   Record your change and one explanation in [the learning log](LEARNING_LOG_TEMPLATE.md).
+
+The folder names are shared comparison keys. Names such as `templates-basics`,
+`smart-pointers-in-depth`, and `memory-management-and-raii` originate in C++;
+other tracks teach their own approaches. Read each module's title and cross-language
+notes rather than assuming that every language has C++ templates, pointers, or RAII.
+Likewise, `04-expert` names the final course level, not a guarantee of professional mastery.
+
 ## Standard Pace: 8 Weeks
 
 Plan for five sessions of 60-90 minutes each week. For every module: read the README, run the example, implement both starters, run `check-exercise`, and record one mistake or tradeoff you learned.

@@ -19,6 +19,10 @@ This is the current source of truth for repository improvement work. Prior revie
 - Guided and comparative routes, staged hints, a shared rubric, and a learning log.
 - Zero solution-oracle cases: deterministic behavior is recorded as explicit assertions.
 - Three named contract facets for every checkpoint, with normal, boundary/error, and state/resource coverage.
+- First-session guidance and worked input/output observations in all six `types-and-io`
+  modules, with visible exercise cases and a predict-modify practice step.
+- Corrected entry invoice cases for missing/extra fields in C#, Go, and Python and
+  invalid numeric prices in TypeScript, with regression checks on case inputs.
 
 ## Current Quality Priorities
 
@@ -28,6 +32,11 @@ This is the current source of truth for repository improvement work. Prior revie
 4. Continue extracting focused automation modules while preserving the public CLI contract.
 5. Keep local verification below seven minutes and CI below ten by compiling each target once per job.
 6. Review educational size waivers when their explicit trigger conditions are reached.
+7. Extend the entry modules' sample runs and visible practice cases to later modules.
+   Explain prompts and exact formatting wherever output contracts require them.
+8. Audit edge-case inputs against their names, not only their coverage labels.
+   The entry invoice review found valid input labeled as malformed input; automated
+   structure checks alone did not catch this mismatch.
 
 ## Deferred Work
 

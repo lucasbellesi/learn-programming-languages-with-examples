@@ -13,7 +13,10 @@ Thank you for contributing to this repository.
 
 ## Workflow
 
-1. Fork the repository and create a branch for your change.
+1. Fetch the latest `origin/master` and create a new branch from it for each new
+   set of changes. Use the `codex/` prefix for agent-created branches. External
+   contributors can fork first and branch from the latest upstream `master`.
+   Do not make changes or commits directly on `master`.
 2. Make focused updates (one topic per pull request when possible).
 3. Run the full repository validation and lint checks first:
 
@@ -64,7 +67,9 @@ Use [EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md](EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md)
 `verify-repo` fails on blocking education-quality findings: low example-comment ratio, missing output explanation markers, or boilerplate comments. Oversized example findings remain advisory. During focused cleanup work, run `python scripts/automation.py audit-education-quality --fail-on-findings` to make every learner-quality finding fail locally.
 
 4. Update related README files when behavior or structure changes.
-5. Open a pull request with a clear description of what changed and why.
+5. Commit and push your working branch, then open a pull request targeting `master`
+   with a clear description of what changed and why. Keep follow-up revisions on
+   that branch. Agents must not merge the pull request without an explicit user request.
 
 ## Content Expectations
 
@@ -106,6 +111,14 @@ Use [EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md](EDUCATIONAL_EXAMPLE_REVIEW_RUBRIC.md)
 - Keep the TypeScript track on plain Node console programs; do not introduce browser, DOM, or framework dependencies.
 - Keep the Java track on package-free single-file programs; do not introduce Maven, Gradle, or `src/main/java` until the curriculum intentionally adds build tooling.
 - Keep examples aligned with C++17.
+- For beginner modules, include a sample run, an explanation of the result, and one
+  small modification for the learner to predict. State whether input is interactive
+  or fixed and which invalid inputs the example does not yet handle.
+- Show exercise input/output cases without revealing the solution. Copy expectations
+  from the canonical contract and distinguish full-output comparisons from fragments.
+- Review the actual inputs of named edge cases: a malformed-field test must contain
+  missing or extra fields, and an invalid-price test must reach numeric validation.
+  A matching case name alone is not evidence that the behavior was tested.
 - Keep documentation in English and keep path names consistent with folder names.
 - Keep parity planning updated in `LANGUAGE_PARITY_MATRIX.md` when adding modules or checkpoints to non-C++ tracks.
 - Keep root and language README status sections aligned with project and assessment coverage when those directories change.

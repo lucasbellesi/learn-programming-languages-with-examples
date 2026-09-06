@@ -1,6 +1,5 @@
-// Module focus: Reading typed input carefully and turning raw text into values.
-// Why it matters: the example makes it possible to choose suitable primitive values and variables
-// for a small problem before the learner tackles the exercises.
+// Convert fixed text values into numbers and a boolean, then print a price.
+// The exercises extend this idea to records read from standard input.
 
 // Show how TypeScript starts from raw text and turns it into typed values on purpose.
 const rawAge = "27";
@@ -10,10 +9,10 @@ const age = Number.parseInt(rawAge, 10);
 const price = Number.parseFloat(rawPrice);
 const isMember = rawMemberFlag === "true";
 if (Number.isNaN(age) || Number.isNaN(price)) {
-    // The printed result shows whether the program can read, validate, transform, and present
-    // console data.
+    // getline preserves spaces in the name; operator >> extracts the numeric fields.
     console.log("Invalid sample input.");
 } else {
+    // Print a 10% member discount; toFixed controls display, not the stored value.
     const finalPrice = isMember ? price * 0.9 : price;
     console.log(`Age: ${age}`);
     console.log(`Original price: ${price.toFixed(2)}`);
