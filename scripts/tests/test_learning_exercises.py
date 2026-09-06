@@ -152,5 +152,52 @@ class LearningExerciseTests(unittest.TestCase):
             )
 
 
+class EntryExerciseCoverageTests(unittest.TestCase):
+    """Check that named error cases actually reach the advertised input boundary."""
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        path = Path(__file__).resolve().parents[1] / "learning_exercises.json"
+        cls.exercises = {
+            exercise["language"]: exercise
+            for exercise in json.loads(path.read_text(encoding="utf-8"))["exercises"]
+            if exercise["module"] == "types-and-io" and exercise["exercise"] == "02"
+        }
+
+    def test_wrong_token_count_covers_missing_and_extra_fields(self) -> None:
+        for language in ("python", "csharp", "go"):
+            with self.subTest(language=language):
+                cases = [
+                    case
+                    for case in self.exercises[language]["cases"]
+                    if "wrong token count" in case["covers"]
+                ]
+                counts = [len(" ".join(case["input_lines"]).split()) for case in cases]
+                self.assertTrue(any(count < 3 for count in counts))
+                self.assertTrue(any(count > 3 for count in counts))
+                for case, count in zip(cases, counts):
+                    self.assertNotEqual(count, 3)
+                    self.assertIn("Invalid format.", case["required_stdout_equals"])
+                    with self.assertRaises(AutomationError):
+                        assert_output_contract(
+                            "Enter product price quantity: Product: notebook\nTotal price: 0.00\n",
+                            case,
+                            language,
+                        )
+
+    def test_invalid_price_reaches_numeric_validation(self) -> None:
+        case = next(
+            case
+            for case in self.exercises["typescript"]["cases"]
+            if "invalid price should print an error" in case["covers"]
+        )
+        parts = " ".join(case["input_lines"]).split()
+        self.assertEqual(len(parts), 3)
+        with self.assertRaises(ValueError):
+            float(parts[1])
+        self.assertGreaterEqual(int(parts[2]), 0)
+        self.assertEqual(case["required_stdout_equals"], "Invalid invoice data.\n")
+
+
 if __name__ == "__main__":
     unittest.main()

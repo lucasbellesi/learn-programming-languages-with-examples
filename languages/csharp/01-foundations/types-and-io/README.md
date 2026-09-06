@@ -22,6 +22,23 @@ Run from the repository root:
 python scripts/automation.py run-module --module-path languages/csharp/01-foundations/types-and-io
 ~~~
 
+### Observe, Predict, Modify
+
+Enter `Ada Lovelace`, `20`, and a GPA of `3.5`, pressing Enter after each value. Use your system decimal separator (for example, `3,5` in a comma-decimal locale).
+
+Look for these result lines (interactive prompts and the summary heading are omitted):
+
+~~~text
+Name: Ada Lovelace
+Age: 20
+GPA: 3.50
+Adult: True
+~~~
+
+The output above assumes a dot-decimal locale; GPA formatting also follows your system culture. Change the age to `17` and predict the boolean. `Parse` can throw on invalid numeric text; this example assumes valid input.
+
+Restore the original values before moving on to the exercises.
+
 ## Topics Covered
 
 - Reading typed values from standard input.
@@ -67,6 +84,66 @@ python scripts/automation.py check-exercise --language csharp --level 01-foundat
 ```
 
 Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
+
+### Visible Practice Cases
+
+These cases come from the exercise checker. Implement the general behavior; do not
+hardcode these answers. Each input line below is a separate line of standard input.
+The unmodified starters are incomplete, so a failed check before implementation is expected.
+
+**Exercise 01**
+
+Normal input:
+
+~~~text
+3
+10
+20
+30
+~~~
+
+Expected result labels and values (prompts omitted; decimal formatting may add zeros):
+
+~~~text
+Sum: 60
+Average: 20
+Minimum: 10
+Maximum: 30
+~~~
+
+Also check these boundary cases. The checker compares their full output, including
+prompts and spaces. In this table, `\n` means a newline; input typed by the user is
+not part of the program output.
+
+| Case | Input lines (`\n` separates lines) | Exact program output |
+| --- | --- | --- |
+| edge: N <= 0 | `0\n10\n20\n30` | `How many numbers? Please enter a positive count.\n` |
+| edge: repeated values where minimum equals maximum | `3\n5\n5\n5` | `How many numbers? Value 1: Value 2: Value 3: Sum: 15.0000\nAverage: 5.0000\nMinimum: 5.0000\nMaximum: 5.0000\n` |
+
+**Exercise 02**
+
+Normal input:
+
+~~~text
+notebook 2.50 4
+~~~
+
+Expected result labels and values (prompts omitted; decimal formatting may add zeros):
+
+~~~text
+Product: notebook
+Total price: 10
+~~~
+
+Also check these boundary cases. The checker compares their full output, including
+prompts and spaces. In this table, `\n` means a newline; input typed by the user is
+not part of the program output.
+
+| Case | Input lines (`\n` separates lines) | Exact program output |
+| --- | --- | --- |
+| edge: wrong token count | `notebook 2.50` | `Enter product price quantity: Invalid format. Use: product price quantity\n` |
+| edge: quantity = 0 | `notebook 2.50 0` | `Enter product price quantity: Product: notebook\nTotal price: 0.00\n` |
+| edge: extra product field | `notebook 2.50 4 extra` | `Enter product price quantity: Invalid format. Use: product price quantity\n` |
 
 ## Checkpoint
 

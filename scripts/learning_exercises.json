@@ -2730,13 +2730,13 @@
         },
         {
           "input_lines": [
-            "notebook 0 4"
+            "notebook 2.50"
           ],
           "name": "edge: wrong token count",
           "covers": [
             "wrong token count"
           ],
-          "required_stdout_equals": "Enter product price quantity: Product: notebook\nTotal price: 0.00\n"
+          "required_stdout_equals": "Enter product price quantity: Invalid format. Use: product price quantity\n"
         },
         {
           "input_lines": [
@@ -2747,6 +2747,16 @@
             "quantity = 0"
           ],
           "required_stdout_equals": "Enter product price quantity: Product: notebook\nTotal price: 0.00\n"
+        },
+        {
+          "name": "edge: extra product field",
+          "covers": [
+            "wrong token count"
+          ],
+          "input_lines": [
+            "notebook 2.50 4 extra"
+          ],
+          "required_stdout_equals": "Enter product price quantity: Invalid format. Use: product price quantity\n"
         }
       ],
       "route_role": "both",
@@ -5375,13 +5385,13 @@
         },
         {
           "input_lines": [
-            "notebook 0 4"
+            "notebook 2.50"
           ],
           "name": "edge: wrong token count",
           "covers": [
             "wrong token count"
           ],
-          "required_stdout_equals": "Enter product price quantity: Product: notebook\nTotal price: 0.00\n"
+          "required_stdout_equals": "Enter product price quantity: Invalid format. Use: product price quantity\n"
         },
         {
           "input_lines": [
@@ -5392,6 +5402,16 @@
             "quantity = 0"
           ],
           "required_stdout_equals": "Enter product price quantity: Product: notebook\nTotal price: 0.00\n"
+        },
+        {
+          "name": "edge: extra product field",
+          "covers": [
+            "wrong token count"
+          ],
+          "input_lines": [
+            "notebook 2.50 4 extra"
+          ],
+          "required_stdout_equals": "Enter product price quantity: Invalid format. Use: product price quantity\n"
         }
       ],
       "route_role": "both",
@@ -10866,13 +10886,13 @@
         },
         {
           "input_lines": [
-            "notebook 0 4"
+            "notebook 2.50"
           ],
           "name": "edge: wrong token count",
           "covers": [
             "wrong token count"
           ],
-          "required_stdout_equals": "Enter product price quantity: Product: notebook\nTotal price: 0.0\n"
+          "required_stdout_equals": "Enter product price quantity: Invalid format. Use: product price quantity\n"
         },
         {
           "input_lines": [
@@ -10883,6 +10903,16 @@
             "quantity = 0"
           ],
           "required_stdout_equals": "Enter product price quantity: Product: notebook\nTotal price: 0.0\n"
+        },
+        {
+          "name": "edge: extra product field",
+          "covers": [
+            "wrong token count"
+          ],
+          "input_lines": [
+            "notebook 2.50 4 extra"
+          ],
+          "required_stdout_equals": "Enter product price quantity: Invalid format. Use: product price quantity\n"
         }
       ],
       "route_role": "both",
@@ -13520,13 +13550,13 @@
         },
         {
           "input_lines": [
-            "invalid"
+            "notebook invalid 4"
           ],
           "name": "edge: invalid price should print an error",
           "covers": [
             "invalid price should print an error"
           ],
-          "required_stdout_equals": "Invalid format. Use: product price quantity\n"
+          "required_stdout_equals": "Invalid invoice data.\n"
         }
       ],
       "route_role": "both",

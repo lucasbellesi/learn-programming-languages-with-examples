@@ -1,24 +1,21 @@
-// Module focus: Reading typed input carefully and turning raw text into values.
-// Why it matters: the example makes it possible to choose suitable primitive values and variables
-// for a small problem before the learner tackles the exercises.
-// about.
+// Module focus: Representing values with suitable types and printing readable results.
+// Why it matters: converting values explicitly makes calculations and output predictable.
+// Read a full line and numeric fields, then print a student summary.
+// This first example assumes valid input; input-validation teaches stream recovery.
 
 #include <iostream>
 #include <limits>
 #include <string>
 using namespace std;
 
-// Fixed inputs make the consequence of mixing `cin >>` and `getline` without clearing newline
-// visible and repeatable.
 int main() {
-    // These values exercise the normal path before the exercises vary the documented boundaries.
+    // Use separate types for text, whole numbers, decimals, and a yes/no answer.
     string fullName;
     int age = 0;
     double gpa = 0.0;
     char enrolledAnswer = 'n';
 
-    // The printed result shows whether the program can read, validate, transform, and present
-    // console data.
+    // getline preserves spaces in the name; operator >> extracts the numeric fields.
     cout << "Enter your full name: ";
     getline(cin, fullName);
 
@@ -35,6 +32,7 @@ int main() {
     cin >> enrolledAnswer;
     const bool isEnrolled = (enrolledAnswer == 'y' || enrolledAnswer == 'Y');
 
+    // Print the typed values; normalize either y or Y to the same boolean label.
     cout << "\n--- Student Summary ---\n";
     cout << "Name: " << fullName << '\n';
     cout << "Age: " << age << '\n';

@@ -22,6 +22,23 @@ Run from the repository root:
 python scripts/automation.py run-module --module-path languages/typescript/01-foundations/types-and-io
 ~~~
 
+### Observe, Predict, Modify
+
+This example uses fixed strings and does not wait for keyboard input. The exercises read from standard input.
+
+Look for these result lines (interactive prompts and the summary heading are omitted):
+
+~~~text
+Age: 27
+Original price: 14.50
+Member discount applied: true
+Final price: 13.05
+~~~
+
+Change `rawMemberFlag` to `"false"` and predict a final price of `14.50`. Then try `rawAge = "hello"`: the example reports invalid sample input. Numeric parsing can accept a numeric prefix such as `"27years"`; it is not complete input validation.
+
+Restore the original values before moving on to the exercises.
+
 ## Topics Covered
 
 - number, string, and boolean basics.
@@ -67,6 +84,67 @@ python scripts/automation.py check-exercise --language typescript --level 01-fou
 ```
 
 Change `--exercise 01` to `--exercise 02` for the second task. Consult `exercises/solutions/` only after making a complete attempt.
+
+### Visible Practice Cases
+
+These cases come from the exercise checker. Implement the general behavior; do not
+hardcode these answers. Each input line below is a separate line of standard input.
+The unmodified starters are incomplete, so a failed check before implementation is expected.
+
+**Exercise 01**
+
+Normal input:
+
+~~~text
+3
+10
+20
+30
+~~~
+
+Expected result labels and values (prompts omitted; decimal formatting may add zeros):
+
+~~~text
+Sum: 60
+Average: 20.00
+Minimum: 10
+Maximum: 30
+~~~
+
+Also check these boundary cases. The checker compares their full output, including
+prompts and spaces. In this table, `\n` means a newline; input typed by the user is
+not part of the program output.
+
+| Case | Input lines (`\n` separates lines) | Exact program output |
+| --- | --- | --- |
+| edge: N <= 0 should print an error | `0\n10\n20\n30` | `Count must be a positive integer.\n` |
+| edge: decimal input should still work | `3\n1.5\n2.5\n3` | `Sum: 7\nAverage: 2.33\nMinimum: 1.5\nMaximum: 3\n` |
+
+**Exercise 02**
+
+Normal input:
+
+~~~text
+notebook 2.50 4
+~~~
+
+Expected result labels and values (prompts omitted; decimal formatting may add zeros):
+
+~~~text
+Product: notebook
+Quantity: 4
+Price: 2.50
+Total: 10.00
+~~~
+
+Also check these boundary cases. The checker compares their full output, including
+prompts and spaces. In this table, `\n` means a newline; input typed by the user is
+not part of the program output.
+
+| Case | Input lines (`\n` separates lines) | Exact program output |
+| --- | --- | --- |
+| edge: quantity 0 should produce total 0 | `notebook 2.50 0` | `Product: notebook\nQuantity: 0\nPrice: 2.50\nTotal: 0.00\n` |
+| edge: invalid price should print an error | `notebook invalid 4` | `Invalid invoice data.\n` |
 
 ## Checkpoint
 

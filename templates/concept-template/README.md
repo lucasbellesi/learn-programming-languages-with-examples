@@ -1,7 +1,8 @@
 # Concept Template (Language-Agnostic)
 
 Use this template when creating a new concept module in any track.
-All section headings below are required by repository validation scripts.
+The core section headings follow the repository validation contract. The
+walkthrough and visible practice subsections provide additional learner guidance.
 
 Register both exercises in `scripts/learning_exercises.json`. Exercise 01 uses
 `route_role: guided`; exercise 02 uses `route_role: both`. Both use
@@ -30,6 +31,13 @@ Run from the repository root:
 ~~~bash
 python scripts/automation.py run-module --module-path languages/<language>/<level>/<module>
 ~~~
+
+### Observe, Predict, Modify
+
+State whether the example uses fixed data or waits for keyboard input. Provide a
+concrete input and expected result, explain why that result follows, and suggest
+one small change for the learner to predict before running again. Identify any
+input validation deliberately left to a later module.
 
 ## Topics Covered
 
@@ -83,6 +91,13 @@ python scripts/automation.py hint-exercise --language <language> --level <level>
 
 Stages are conceptual, structural, and idiomatic API guidance. They must never reveal
 the reference solution.
+
+### Visible Practice Cases
+
+Show a normal input and expected output for each exercise, plus its named boundary
+cases from `scripts/learning_exercises.json`. Distinguish output fragments from
+exact output, including prompts, spaces, and decimal formatting when required.
+Explain that an unmodified starter is expected to fail until implemented.
 
 ## Checkpoint
 
