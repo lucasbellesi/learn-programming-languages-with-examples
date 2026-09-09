@@ -1,5 +1,68 @@
 import { test, expect } from "@playwright/test";
 
+test("failed storage warns before leaving and still allows downloads", async ({
+    page,
+}) => {
+    await page.addInitScript(() => {
+        indexedDB.open = () => {
+            throw new Error("Storage disabled for this test");
+        };
+    });
+    await page.goto("/learn/python/01-foundations/types-and-io");
+    const editor = page.getByRole("textbox", {
+        name: "Code editor",
+        exact: true,
+    });
+    await expect(editor).toBeVisible();
+    await editor.press("ControlOrMeta+A");
+    await page.keyboard.insertText('print("keep these unsaved edits")\n');
+    await expect(page.getByRole("status")).toHaveText(
+        "Could not save. Download your code.",
+    );
+    let warnings = 0;
+    page.on("dialog", async (dialog) => {
+        warnings++;
+        await dialog.dismiss();
+    });
+    await page.getByRole("link", { name: "← Back to the curriculum" }).click();
+    await expect(page).toHaveURL(/python\/01-foundations\/types-and-io$/);
+    await expect.poll(() => warnings).toBe(1);
+    const downloaded = page.waitForEvent("download");
+    await page.getByRole("button", { name: "Download ↓" }).click();
+    expect((await downloaded).suggestedFilename()).toBe("main.py");
+    expect(warnings).toBe(1);
+});
+
+test("mobile reading and practice preserve edits when switching panels", async ({
+    page,
+}) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/learn/python/01-foundations/types-and-io");
+    await expect(page.locator("article.reading")).toBeVisible();
+    await expect(
+        page.getByRole("region", { name: "Code practice" }),
+    ).toBeHidden();
+    await page.getByRole("button", { name: "Practice", exact: true }).click();
+    await page.getByRole("tab", { name: "Exercise 01", exact: true }).click();
+    const editor = page.getByRole("textbox", {
+        name: "Code editor",
+        exact: true,
+    });
+    await expect(editor).toBeVisible();
+    await editor.press("ControlOrMeta+A");
+    await page.keyboard.insertText('print("mobile draft")\n');
+    await expect(page.getByRole("status")).toHaveText("Saved on this device");
+    await page.getByRole("button", { name: "Read", exact: true }).click();
+    await expect(page.locator("article.reading")).toBeVisible();
+    await page.getByRole("button", { name: "Practice", exact: true }).click();
+    await expect(page.locator(".editor-shell")).toContainText("mobile draft");
+    expect(
+        await page.evaluate(
+            () => document.documentElement.scrollWidth <= window.innerWidth,
+        ),
+    ).toBe(true);
+});
+
 test("language navigation preserves the concept", async ({ page }) => {
     await page.goto("/learn/python/01-foundations/types-and-io");
     await page

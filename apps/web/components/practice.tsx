@@ -123,12 +123,13 @@ export function Practice({ activities }: { activities: Activity[] }) {
         return () => clearTimeout(timer);
     }, [activity, code, ready, completed]);
     useEffect(() => {
+        const needsWarning =
+            saved === "Saving…" ||
+            saved.includes("Could not save") ||
+            saved.includes("storage unavailable") ||
+            busy;
         const warn = (event: BeforeUnloadEvent) => {
-            if (
-                saved === "Saving…" ||
-                saved.includes("Could not save") ||
-                busy
-            ) {
+            if (needsWarning) {
                 event.preventDefault();
                 event.returnValue = "";
             }
@@ -137,11 +138,26 @@ export function Practice({ activities }: { activities: Activity[] }) {
         const navigate = (event: MouseEvent) => {
             const link = (event.target as HTMLElement).closest("a");
             if (
-                link &&
-                !link.hash &&
-                (saved === "Saving…" || busy) &&
+                !link ||
+                link.hasAttribute("download") ||
+                (link.target && link.target !== "_self") ||
+                event.ctrlKey ||
+                event.metaKey ||
+                event.shiftKey ||
+                event.altKey
+            )
+                return;
+            const destination = new URL(link.href);
+            const sameDocument =
+                destination.origin === location.origin &&
+                destination.pathname === location.pathname &&
+                destination.search === location.search &&
+                Boolean(destination.hash);
+            if (
+                !sameDocument &&
+                needsWarning &&
                 !confirm(
-                    "Leave this exercise before the pending save or execution finishes?",
+                    "Leave this exercise? Unsaved edits may be lost and an active execution may be interrupted.",
                 )
             ) {
                 event.preventDefault();

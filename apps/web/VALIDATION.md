@@ -30,7 +30,8 @@ The Sandbox feasibility gate passed on real Vercel Hobby infrastructure using SD
   idempotency, expiry, cancellation races, RLS isolation, and rejection of forged
   progress and unprivileged quota calls.
 - Browser tests cover concept-preserving language navigation, editing and reload,
-  hints, disabled execution, and execution feedback. Cloud responses in CI are
+  hints, disabled execution, execution feedback, mobile panel switching, and
+  navigation warnings with downloads when browser storage fails. Cloud responses in CI are
   mocked; the real integration checks above run only in a trusted environment.
 - Root `verify-repo` passed: 62 automation tests, 149 example jobs, 881 exercise
   jobs, 48 checkpoint solutions, and uncovered C++/Java builds. Root `lint` passed.
