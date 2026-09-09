@@ -10,6 +10,14 @@ This repository teaches programming through small runnable examples and focused 
 - Each implemented level ends with a project and an assessment checkpoint.
 - VS Code-first workflow, with scripts for Windows PowerShell and Bash.
 
+## Web Learning Site
+
+The [Code by Example web app](apps/web/README.md) turns this curriculum into a
+browsable catalog with an online editor. Foundations execution covers all six
+languages when Vercel Sandbox and Supabase are configured. The rest of the
+curriculum remains available for reading and downloading. See the app guide for
+local development, free-tier deployment, quotas, and validation requirements.
+
 ## Repo Prerequisites
 
 For the full local pipeline, install:

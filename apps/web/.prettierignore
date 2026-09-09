@@ -1,0 +1,11 @@
+.next
+node_modules
+generated
+public/monaco
+test-results
+playwright-report
+.next-test
+build
+.vercel
+package-lock.json
+next-env.d.ts
