@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import type { Activity } from "@/lib/catalog";
 import { loadDraft, saveDraft } from "@/lib/browser-db";
 import { download } from "./lesson";
+import { useDarkTheme } from "./theme";
 const Editor = dynamic(
     async () => {
         const module = await import("@monaco-editor/react");
@@ -39,6 +40,7 @@ const editorLanguages: Record<string, string> = {
     typescript: "typescript",
 };
 export function Practice({ activities }: { activities: Activity[] }) {
+    const darkTheme = useDarkTheme();
     const [selected, setSelected] = useState(0);
     const activity = activities[selected];
     const [code, setCode] = useState(activity.source);
@@ -294,7 +296,7 @@ export function Practice({ activities }: { activities: Activity[] }) {
                 <Editor
                     height="440px"
                     language={editorLanguages[activity.language]}
-                    theme="vs-dark"
+                    theme={darkTheme ? "vs-dark" : "light"}
                     value={code}
                     onChange={(value) => {
                         setCode(value ?? "");

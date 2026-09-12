@@ -6,7 +6,34 @@
     --green: #235b43;
     --line: #dce2d8;
     --accent: #d9f59b;
+    --surface: #ffffff;
+    --on-green: #ffffff;
     --reading-width: 44%;
+    color-scheme: light;
+}
+:root[data-theme="dark"] {
+    --bg: #111b17;
+    --ink: #e5eee7;
+    --muted: #a3b4a9;
+    --green: #9bdaa9;
+    --line: #35483c;
+    --accent: #182d20;
+    --surface: #1b2922;
+    --on-green: #12251a;
+    color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        --bg: #111b17;
+        --ink: #e5eee7;
+        --muted: #a3b4a9;
+        --green: #9bdaa9;
+        --line: #35483c;
+        --accent: #182d20;
+        --surface: #1b2922;
+        --on-green: #12251a;
+        color-scheme: dark;
+    }
 }
 * {
     box-sizing: border-box;
@@ -51,7 +78,7 @@ button {
     border: 1px solid var(--line);
     border-radius: 7px;
     padding: 9px 14px;
-    background: white;
+    background: var(--surface);
     color: var(--ink);
 }
 button:disabled {
@@ -66,7 +93,7 @@ textarea,
 select {
     border: 1px solid var(--line);
     border-radius: 7px;
-    background: white;
+    background: var(--surface);
     color: var(--ink);
     padding: 9px;
 }
@@ -124,7 +151,7 @@ nav {
     max-height: 70vh;
     overflow: auto;
     padding: 20px;
-    background: white;
+    background: var(--surface);
     box-shadow: 0 12px 60px #142e2426;
     z-index: 20;
 }
@@ -141,7 +168,7 @@ nav {
     left: 15px;
     top: -100px;
     padding: 10px;
-    background: white;
+    background: var(--surface);
     z-index: 30;
 }
 .skip:focus {
@@ -180,7 +207,7 @@ h1 em {
 }
 .primary {
     background: var(--green);
-    color: white;
+    color: var(--on-green);
     display: inline-flex;
     align-items: center;
     gap: 30px;
@@ -197,7 +224,7 @@ h1 em {
     border-radius: 14px;
     background: #172b24;
     color: #e5ece4;
-    box-shadow: 16px 22px 0 #e5eadf;
+    box-shadow: 16px 22px 0 light-dark(#e5eadf, #26372c);
     transform: rotate(-1deg);
     overflow: hidden;
 }
@@ -282,7 +309,7 @@ h1 em {
     display: flex;
     align-items: center;
     gap: 9px;
-    background: white;
+    background: var(--surface);
     border: 1px solid var(--line);
     padding: 0 12px;
     border-radius: 8px;
@@ -308,7 +335,7 @@ h1 em {
     border-radius: 10px;
 }
 .language.selected {
-    background: #eaf2df;
+    background: light-dark(#eaf2df, #2b4130);
     border: 1px solid var(--green);
 }
 .language strong {
@@ -398,13 +425,13 @@ h1 em {
     align-items: center;
     gap: 18px;
     padding: 20px;
-    background: white;
+    background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 9px;
 }
 .module-card:hover {
     border-color: var(--green);
-    background: #fcfdf9;
+    background: light-dark(#fcfdf9, #25372c);
 }
 .module-number {
     font: 13px monospace;
@@ -432,7 +459,7 @@ h1 em {
     margin-top: 32px;
     border-left: 3px solid #8cab73;
     padding: 14px 20px;
-    background: #ecf0e6;
+    background: light-dark(#ecf0e6, #223328);
     font-size: 13px;
 }
 .practice-note p {
@@ -508,7 +535,7 @@ footer {
     text-decoration: underline;
 }
 .reading pre {
-    background: #e9ede4;
+    background: light-dark(#e9ede4, #24372b);
     padding: 18px;
     border-radius: 8px;
     overflow: auto;
@@ -583,21 +610,21 @@ footer {
 .editor-top {
     display: flex;
     justify-content: space-between;
-    background: #242424;
-    color: #a5aea5;
+    background: light-dark(#e9ede4, #242424);
+    color: var(--muted);
     padding: 10px 15px;
     font-size: 10px;
     margin-top: 12px;
     border-radius: 8px 8px 0 0;
 }
 .editor-shell {
-    background: #1e1e1e;
+    background: light-dark(#ffffff, #1e1e1e);
 }
 .editor-loading {
     height: 440px;
     margin: 0;
     padding: 25px;
-    color: #abb9ab;
+    color: var(--muted);
 }
 .editor-actions {
     display: flex;
@@ -631,7 +658,7 @@ footer {
     margin-top: 7px;
 }
 .results {
-    background: white;
+    background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 8px;
     padding: 15px;
@@ -651,14 +678,14 @@ footer {
 .results pre {
     max-height: 220px;
     overflow: auto;
-    background: #f5f6f2;
+    background: light-dark(#f5f6f2, #142019);
     padding: 12px;
 }
 .pass {
-    color: #28714a;
+    color: light-dark(#28714a, #97dfac);
 }
 .fail {
-    color: #b34437;
+    color: light-dark(#b34437, #ff9a8b);
 }
 .help {
     padding: 15px 0;
@@ -670,7 +697,7 @@ footer {
     font-size: 11px;
 }
 .help pre {
-    background: #edf1e5;
+    background: light-dark(#edf1e5, #223328);
     padding: 14px;
 }
 .help details {
@@ -690,7 +717,7 @@ summary {
 }
 .checkpoint {
     padding: 25px;
-    background: #edf1e5;
+    background: light-dark(#edf1e5, #223328);
     border-radius: 10px;
 }
 .checkpoint pre {
@@ -831,7 +858,7 @@ summary {
     }
     .mobile-tabs button[aria-pressed="true"] {
         background: var(--green);
-        color: white;
+        color: var(--on-green);
     }
     .workspace {
         display: block;
@@ -852,5 +879,20 @@ summary {
     }
     .lesson-end span {
         display: none;
+    }
+}
+
+.theme-button {
+    white-space: nowrap;
+    font-size: 12px;
+}
+@media (max-width: 600px) {
+    header {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+    header nav {
+        gap: 10px;
+        flex-wrap: wrap;
     }
 }
