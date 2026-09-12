@@ -5,6 +5,10 @@ catalog includes all six languages, 144 modules, 288 exercises, and 48 checkpoin
 The first online execution release covers 48 examples and 96 foundations exercises.
 Other levels and checkpoints remain readable and downloadable.
 
+The header's **Theme** button cycles through System, Dark, and Light. System is
+the default and follows live operating-system changes. Explicit choices are saved
+on this device and shared between tabs; the code editor follows the same theme.
+
 ## Local development
 
 Requires Node 22, npm, Python 3, and Git. From this directory:
