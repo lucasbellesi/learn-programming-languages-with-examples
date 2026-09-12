@@ -1,0 +1,9 @@
+.vercel
+.env*
+!.env.example
+generated/
+public/monaco/
+test-results/
+playwright-report/
+.next-test/
+*.tsbuildinfo

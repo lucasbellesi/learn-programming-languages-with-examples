@@ -16,3 +16,7 @@ scores.txt
 report.txt
 core_assessment_report.txt
 node_modules/
+.vercel/
+.env*
+!.env.example
+.next/
