@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { GuideEntry } from "./guided-lesson";
+import type { Guide } from "@/lib/guide-types";
 const names: Record<string, string> = {
     cpp: "C++",
     csharp: "C#",
@@ -16,6 +18,7 @@ const levelNames: Record<string, string> = {
     "04-expert": "Expert",
 };
 type Item = {
+    guide?: Guide;
     id: string;
     language: string;
     level: string;
@@ -93,25 +96,28 @@ export function Explorer({ docs }: { docs: Item[] }) {
             </div>
             <div className="module-grid">
                 {items.map((doc, i) => (
-                    <Link
-                        key={doc.id}
-                        className="module-card"
-                        href={`/learn/${doc.id}`}
-                    >
-                        <span className="module-number">
-                            {String(i + 1).padStart(2, "0")}
-                        </span>
-                        <div>
-                            <span className="card-kind">{doc.kind}</span>
-                            <h3>{doc.title.replace(/^.*?: /, "")}</h3>
-                            <span className="muted">
-                                {doc.kind === "module"
-                                    ? "Example + 2 guided exercises"
-                                    : "Starter files & review guidance"}
+                    <div key={doc.id} className="module-tile">
+                        <Link
+                            key={doc.id}
+                            className="module-card"
+                            href={`/learn/${doc.id}`}
+                        >
+                            <span className="module-number">
+                                {String(i + 1).padStart(2, "0")}
                             </span>
-                        </div>
-                        <span className="arrow">↗</span>
-                    </Link>
+                            <div>
+                                <span className="card-kind">{doc.kind}</span>
+                                <h3>{doc.title.replace(/^.*?: /, "")}</h3>
+                                <span className="muted">
+                                    {doc.kind === "module"
+                                        ? "Example + 2 guided exercises"
+                                        : "Starter files & review guidance"}
+                                </span>
+                            </div>
+                            <span className="arrow">↗</span>
+                        </Link>
+                        {doc.guide && <GuideEntry guide={doc.guide} />}
+                    </div>
                 ))}
             </div>
             {!items.length && <p>No concepts match this search.</p>}

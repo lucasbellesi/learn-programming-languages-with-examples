@@ -6,6 +6,7 @@ import re
 import subprocess
 import sys
 from pathlib import Path
+from guided_content import attach_guides
 
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT / "scripts"))
@@ -178,6 +179,7 @@ def main():
         broken = check_file(ROOT, ROOT / document["path"])
         if broken:
             raise ValueError("Broken curriculum links: " + "; ".join(broken))
+    attach_guides(json.loads(read("apps/web/content/guided-lessons.json")), docs, activities)
     OUT.mkdir(exist_ok=True)
     for name, data in {
         "catalog": {"revision": revision, "docs": docs, "activities": activities},

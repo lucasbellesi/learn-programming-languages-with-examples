@@ -9,6 +9,14 @@ The header's **Theme** button cycles through System, Dark, and Light. System is
 the default and follows live operating-system changes. Explicit choices are saved
 on this device and shared between tabs; the code editor follows the same theme.
 
+Python Types and Input/Output also offers an optional six-step guided lesson.
+Predictions, reviewed steps, and quiz answers stay on this device; coding checks
+remain separate from those learning activities. The guide keeps working when
+execution or account services are unavailable. See the
+[pilot evaluation protocol](PILOT-EVALUATION.md) for observation tasks and content
+versioning. `GET /api/progress` reads only the signed-in user's verified history
+through Supabase RLS; it accepts no progress writes.
+
 ## Local development
 
 Requires Node 22, npm, Python 3, and Git. From this directory:

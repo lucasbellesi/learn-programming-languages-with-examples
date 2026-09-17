@@ -1,4 +1,5 @@
 import raw from "@/generated/catalog.json";
+import type { Guide } from "./guide-types";
 export type Case = {
     name: string;
     input_lines?: string[];
@@ -18,6 +19,7 @@ export type Activity = {
     support?: { name: string; source: string }[];
 };
 export type Doc = {
+    guide?: Guide;
     id: string;
     language: string;
     level: string;

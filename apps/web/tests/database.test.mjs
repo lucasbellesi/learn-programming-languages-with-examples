@@ -136,3 +136,30 @@ test("RLS isolates drafts and prevents forged progress and quota RPC calls", asy
     assert.equal((await db.query("select * from drafts")).rows.length, 0);
     await db.exec("reset role");
 });
+
+test("verified history is readable only by its owner and cannot be updated by a learner", async () => {
+    await reset();
+    await finish(await reserve(`user:${uid}`, uid));
+    await db.exec(`set role authenticated; set request.jwt.claim.sub='${uid}'`);
+    assert.equal(
+        (
+            await db.query(
+                "select activity_id,revision,verified_at from progress",
+            )
+        ).rows.length,
+        1,
+    );
+    // Even permissive table grants cannot bypass the absence of an UPDATE policy.
+    await db.query("update progress set revision='forged'");
+    assert.equal(
+        (await db.query("select revision from progress")).rows[0].revision,
+        "a".repeat(40),
+    );
+    await db.exec(
+        "set request.jwt.claim.sub='22222222-2222-4222-8222-222222222222'",
+    );
+    assert.equal((await db.query("select * from progress")).rows.length, 0);
+    await db.exec("reset role; set role anon");
+    assert.equal((await db.query("select * from progress")).rows.length, 0);
+    await db.exec("reset role");
+});

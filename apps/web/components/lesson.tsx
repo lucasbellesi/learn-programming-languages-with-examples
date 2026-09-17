@@ -1,12 +1,13 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeSanitize from "rehype-sanitize";
 import rehypeSlug from "rehype-slug";
 import type { Activity, Doc } from "@/lib/catalog";
-import { Practice } from "./practice";
+import { Practice, type PracticeHandle } from "./practice";
+import { GuidedLesson } from "./guided-lesson";
 const languages: Record<string, string> = {
     cpp: "C++",
     csharp: "C#",
@@ -56,6 +57,8 @@ export function Lesson({
 }) {
     const [tab, setTab] = useState("read");
     const [width, setWidth] = useState(44);
+    const practice = useRef<PracticeHandle>(null);
+    const practicePanel = useRef<HTMLElement>(null);
     return (
         <>
             <div className="lesson-heading">
@@ -82,6 +85,25 @@ export function Lesson({
                     </select>
                 </label>
             </div>
+            {doc.guide && (
+                <GuidedLesson
+                    guide={doc.guide}
+                    revision={revision}
+                    openPractice={async (id, input) => {
+                        const opened = await practice.current?.open(id, input);
+                        if (opened) {
+                            setTab("practice");
+                            requestAnimationFrame(() => {
+                                practicePanel.current?.scrollIntoView({
+                                    block: "start",
+                                });
+                                practicePanel.current?.focus();
+                            });
+                        }
+                        return Boolean(opened);
+                    }}
+                />
+            )}
             <div className="mobile-tabs">
                 <button
                     aria-pressed={tab === "read"}
@@ -139,11 +161,18 @@ export function Lesson({
                     </label>
                 </div>
                 <section
+                    ref={practicePanel}
+                    tabIndex={-1}
                     className={`practice ${tab === "practice" ? "mobile-active" : ""}`}
                     aria-label="Code practice"
                 >
                     {activities.length ? (
-                        <Practice key={doc.id} activities={activities} />
+                        <Practice
+                            ref={practice}
+                            key={doc.id}
+                            activities={activities}
+                            guide={doc.guide}
+                        />
                     ) : (
                         <div className="checkpoint">
                             <span className="eyebrow">READ & DOWNLOAD</span>

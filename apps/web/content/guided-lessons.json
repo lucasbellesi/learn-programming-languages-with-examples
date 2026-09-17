@@ -1,0 +1,186 @@
+[
+    {
+        "moduleId": "python/01-foundations/types-and-io",
+        "version": 1,
+        "nextModuleId": "python/01-foundations/operators-and-expressions",
+        "exampleId": "python/01-foundations/types-and-io/example",
+        "exerciseIds": [
+            "python/01-foundations/types-and-io/01",
+            "python/01-foundations/types-and-io/02"
+        ],
+        "steps": [
+            {
+                "id": "understand",
+                "title": "Understand",
+                "text": "A value is a piece of data. A variable gives it a name so you can use it later. Python treats text (str), whole numbers (int), decimal numbers (float), and truth values (bool) differently. Read these lines from the example: input() always returns text; int() and float() convert numeric text before calculation. The .2f format displays two decimal places."
+            },
+            {
+                "id": "predict",
+                "title": "Predict",
+                "text": "Imagine the original example receives Ada Lovelace, 17, and 3.5, on separate lines. Make a prediction before revealing the explanation."
+            },
+            {
+                "id": "run",
+                "title": "Run",
+                "text": "Open the example and explicitly load the prepared inputs. Each line supplies one input() call; this is not an interactive terminal. Compare the Adult line in the console with your prediction. If you edited the example, its output may differ from the reference."
+            },
+            {
+                "id": "modify",
+                "title": "Modify",
+                "text": "Try an age of 18 and a GPA of 3.567. Before running, predict whether Adult changes and how many decimal places GPA will show. You can edit the existing code or inputs; nothing is replaced automatically. Compare your prediction with the console output."
+            },
+            {
+                "id": "solve",
+                "title": "Solve",
+                "text": "Exercise 01: read a positive count and summarize that many numbers. Exercise 02: split a product record and calculate price times quantity. Try your own approach, use a hint when stuck, then check each exercise. Checking uses the existing daily execution quota."
+            },
+            {
+                "id": "review",
+                "title": "Review",
+                "text": "Check your understanding without running code. These questions do not approve programming exercises or use execution quota."
+            }
+        ],
+        "fragmentPrefixes": [
+            "full_name =",
+            "age =",
+            "gpa =",
+            "print(f\"GPA:",
+            "print(f\"Adult:"
+        ],
+        "preparedInput": "Ada Lovelace\n17\n3.5",
+        "referenceOutput": "Name: Ada Lovelace\nAge: 17\nGPA: 3.50\nAdult: False",
+        "prediction": {
+            "id": "adult-17",
+            "prompt": "What will the Adult line show for age 17?",
+            "options": [
+                {
+                    "id": "0",
+                    "text": "Adult: True"
+                },
+                {
+                    "id": "1",
+                    "text": "Adult: False"
+                },
+                {
+                    "id": "2",
+                    "text": "Adult: 17"
+                }
+            ],
+            "correct": "1",
+            "explanation": "age >= 18 compares two numbers and produces a bool. Seventeen is less than eighteen, so the result is False."
+        },
+        "review": [
+            {
+                "id": "input-type",
+                "prompt": "What type does input() return when you enter 17?",
+                "options": [
+                    {
+                        "id": "0",
+                        "text": "int"
+                    },
+                    {
+                        "id": "1",
+                        "text": "str"
+                    },
+                    {
+                        "id": "2",
+                        "text": "float"
+                    }
+                ],
+                "correct": "1",
+                "explanation": "input() returns the text \"17\". int() converts that text to the number 17 when you need numeric comparisons or calculations."
+            },
+            {
+                "id": "conversion",
+                "prompt": "Which expression raises ValueError?",
+                "options": [
+                    {
+                        "id": "0",
+                        "text": "int(\"17\")"
+                    },
+                    {
+                        "id": "1",
+                        "text": "float(\"3.5\")"
+                    },
+                    {
+                        "id": "2",
+                        "text": "int(\"Ada\")"
+                    }
+                ],
+                "correct": "2",
+                "explanation": "\"Ada\" is not a whole-number representation. int(\"Ada\") raises ValueError. Check whether the text is numeric or handle that exception."
+            },
+            {
+                "id": "positive-count",
+                "prompt": "Why check that the count is positive before calculating the average?",
+                "options": [
+                    {
+                        "id": "0",
+                        "text": "To avoid division by zero and an empty collection with no minimum or maximum."
+                    },
+                    {
+                        "id": "1",
+                        "text": "Because Python cannot add decimal numbers."
+                    },
+                    {
+                        "id": "2",
+                        "text": "Because input() already rejects zero."
+                    }
+                ],
+                "correct": "0",
+                "explanation": "With no values there is no minimum or maximum, and dividing the total by zero is invalid. Reject non-positive counts before reading values and calculating."
+            }
+        ],
+        "feedback": [
+            {
+                "activityId": "python/01-foundations/types-and-io/01",
+                "caseName": "normal behavior",
+                "expectation": "Read exactly N values and report their sum, average, minimum, and maximum.",
+                "suggestion": "Check that the total includes every value and the average divides by the count.",
+                "hint": 1
+            },
+            {
+                "activityId": "python/01-foundations/types-and-io/01",
+                "caseName": "edge: N <= 0",
+                "expectation": "Reject non-positive counts before calculating a summary.",
+                "suggestion": "Check the guard before division, min(), or max().",
+                "hint": 2
+            },
+            {
+                "activityId": "python/01-foundations/types-and-io/01",
+                "caseName": "edge: repeated values where minimum equals maximum",
+                "expectation": "Repeated values must produce equal minimum and maximum.",
+                "suggestion": "Check how minimum and maximum are initialized and updated.",
+                "hint": 2
+            },
+            {
+                "activityId": "python/01-foundations/types-and-io/02",
+                "caseName": "normal behavior",
+                "expectation": "Split the record into product, price, and quantity; report price times quantity.",
+                "suggestion": "Check token order and numeric conversion before multiplication.",
+                "hint": 1
+            },
+            {
+                "activityId": "python/01-foundations/types-and-io/02",
+                "caseName": "edge: wrong token count",
+                "expectation": "Reject a record with a missing field.",
+                "suggestion": "Check the token count before unpacking the record.",
+                "hint": 2
+            },
+            {
+                "activityId": "python/01-foundations/types-and-io/02",
+                "caseName": "edge: quantity = 0",
+                "expectation": "A quantity of zero is valid and produces a total price of zero.",
+                "suggestion": "Check whether a guard accidentally rejects zero quantity.",
+                "hint": 2
+            },
+            {
+                "activityId": "python/01-foundations/types-and-io/02",
+                "caseName": "edge: extra product field",
+                "expectation": "Reject extra fields instead of ignoring them.",
+                "suggestion": "Check for exactly three tokens before conversion.",
+                "hint": 2
+            }
+        ]
+    }
+]

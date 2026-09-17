@@ -100,6 +100,7 @@ export function Account() {
         );
         await client.auth.signOut();
         setName(undefined);
+        window.dispatchEvent(new Event("learning-account"));
     }
     return (
         <div className="account">

@@ -1,8 +1,15 @@
 "use client";
 import dynamic from "next/dynamic";
-import { useEffect, useRef, useState } from "react";
+import {
+    useEffect,
+    useImperativeHandle,
+    useRef,
+    useState,
+    type Ref,
+} from "react";
 import type { Activity } from "@/lib/catalog";
-import { loadDraft, saveDraft } from "@/lib/browser-db";
+import { loadDraft, saveDraft, recordActivity } from "@/lib/browser-db";
+import type { Guide } from "@/lib/guide-types";
 import { download } from "./lesson";
 import { useDarkTheme } from "./theme";
 const Editor = dynamic(
@@ -39,7 +46,18 @@ const editorLanguages: Record<string, string> = {
     python: "python",
     typescript: "typescript",
 };
-export function Practice({ activities }: { activities: Activity[] }) {
+export type PracticeHandle = {
+    open: (id: string, input?: string) => Promise<boolean>;
+};
+export function Practice({
+    activities,
+    guide,
+    ref,
+}: {
+    activities: Activity[];
+    guide?: Guide;
+    ref?: Ref<PracticeHandle>;
+}) {
     const darkTheme = useDarkTheme();
     const [selected, setSelected] = useState(0);
     const activity = activities[selected];
@@ -58,6 +76,36 @@ export function Practice({ activities }: { activities: Activity[] }) {
     const [canRun, setCanRun] = useState(false);
     const generation = useRef(0);
     const runId = useRef<string | undefined>(undefined);
+    const pendingInput = useRef<string | undefined>(undefined);
+    const [progressWarning, setProgressWarning] = useState("");
+    const [previousPass, setPreviousPass] = useState(false);
+    const track = (kind: "visitedAt" | "attemptedAt" | "passedAt") => {
+        if (guide)
+            void recordActivity(activity.id, kind).catch(() =>
+                setProgressWarning(
+                    "Learning progress could not be saved on this device.",
+                ),
+            );
+    };
+    useImperativeHandle(ref, () => ({
+        async open(id, input) {
+            if (busy || !ready) return false;
+            const index = activities.findIndex((a) => a.id === id);
+            if (index < 0) return false;
+            if (
+                input !== undefined &&
+                !confirm(
+                    "Replace the example's standard input with the guided inputs? Your code will be kept.",
+                )
+            )
+                return false;
+            if (index === selected) {
+                if (input !== undefined) setStdin(input);
+                return true;
+            }
+            return select(index, input);
+        },
+    }));
     const currentCode = useRef(code);
     currentCode.current = code;
     useEffect(() => {
@@ -79,7 +127,14 @@ export function Practice({ activities }: { activities: Activity[] }) {
         setHint(0);
         setSolution("");
         setResult(undefined);
-        setStdin(activity.cases[0]?.input_lines?.join("\n") ?? "");
+        setStdin(
+            pendingInput.current ??
+                activity.cases[0]?.input_lines?.join("\n") ??
+                "",
+        );
+        pendingInput.current = undefined;
+        setPreviousPass(false);
+        track("visitedAt");
         loadDraft(activity.id)
             .then((d) => {
                 if (active) {
@@ -87,6 +142,7 @@ export function Practice({ activities }: { activities: Activity[] }) {
                     setCompleted(
                         Boolean(d?.passed && d.revision === activity.revision),
                     );
+                    setPreviousPass(Boolean(d?.passed));
                     setSaved(
                         d && d.revision !== activity.revision
                             ? "Saved draft from an earlier content revision"
@@ -172,7 +228,8 @@ export function Practice({ activities }: { activities: Activity[] }) {
             document.removeEventListener("click", navigate, true);
         };
     }, [saved, busy]);
-    async function select(index: number) {
+    async function select(index: number, input?: string) {
+        if (index === selected) return true;
         const persisted = await saveDraft({
             id: activity.id,
             code: currentCode.current,
@@ -188,10 +245,14 @@ export function Practice({ activities }: { activities: Activity[] }) {
                 "Your draft could not be saved. Switch activities and discard these edits?",
             )
         )
-            return;
+            return false;
+        pendingInput.current = input;
+        setReady(false);
         setSelected(index);
+        return true;
     }
     async function execute(mode: "run" | "check") {
+        track("attemptedAt");
         const token = ++generation.current;
         setBusy(true);
         setResult({ status: "starting" });
@@ -229,8 +290,11 @@ export function Practice({ activities }: { activities: Activity[] }) {
                 token === generation.current &&
                 mode === "check" &&
                 next.status === "passed"
-            )
+            ) {
                 setCompleted(true);
+                setPreviousPass(true);
+                track("passedAt");
+            }
         } catch (error) {
             if (token === generation.current)
                 setResult({
@@ -288,6 +352,7 @@ export function Practice({ activities }: { activities: Activity[] }) {
                     </button>
                 ))}
             </div>
+            {progressWarning && <p role="alert">{progressWarning}</p>}
             <div className="editor-top">
                 <span>{activity.path.split("/").at(-1)}</span>
                 <span role="status">{saved}</span>
@@ -365,6 +430,12 @@ export function Practice({ activities }: { activities: Activity[] }) {
                     ✓ All exercise cases passed for this saved draft.
                 </p>
             )}
+            {previousPass && !completed && (
+                <p className="execution-note">
+                    Historical pass: an earlier draft passed. This draft has not
+                    passed a check.
+                </p>
+            )}
             {activity.support?.map((file) => (
                 <details key={file.name}>
                     <summary>Read-only support file: {file.name}</summary>
@@ -402,6 +473,23 @@ export function Practice({ activities }: { activities: Activity[] }) {
                 ) : (
                     <>
                         {result.message && <p>{result.message}</p>}
+                        {guide && (
+                            <p className="learning-feedback">
+                                {result.status === "compile_error"
+                                    ? "The program could not be compiled. Read the compiler message and check the indicated syntax before trying again."
+                                    : result.status === "limit"
+                                      ? "A time or resource limit was reached. Review termination conditions and output volume; this does not prove there is an infinite loop."
+                                      : result.status === "unavailable"
+                                        ? "Execution could not complete. You can continue the guide, edit locally, or use the labelled reference output. This is not an exercise failure."
+                                        : result.status === "cancelled"
+                                          ? "Execution was stopped. No new approval was recorded."
+                                          : result.status === "failed"
+                                            ? "At least one case did not pass. Compare each case's input, expected result, and actual output below."
+                                            : result.status === "passed"
+                                              ? "This execution finished successfully. Only Check exercise can approve an exercise draft."
+                                              : "Your execution is in progress."}
+                            </p>
+                        )}
                         {result.compilation && <pre>{result.compilation}</pre>}
                         {result.cases?.map((c, i) => (
                             <details key={i} open={!c.passed}>
@@ -409,6 +497,57 @@ export function Practice({ activities }: { activities: Activity[] }) {
                                     {c.passed ? "✓" : "×"} {c.name}
                                 </summary>
                                 {c.message && <p>{c.message}</p>}
+                                {guide &&
+                                    !c.passed &&
+                                    (() => {
+                                        const tip = guide.feedback.find(
+                                            (t) =>
+                                                t.activityId === activity.id &&
+                                                t.caseName === c.name,
+                                        );
+                                        return (
+                                            <div className="learning-feedback">
+                                                {/limit exceeded/i.test(
+                                                    c.message ?? "",
+                                                ) ? (
+                                                    <p>
+                                                        A resource limit stopped
+                                                        this case. Check loop
+                                                        termination and output
+                                                        size.
+                                                    </p>
+                                                ) : c.stderr ? (
+                                                    <p>
+                                                        The program reported an
+                                                        error. Read the error
+                                                        below and check input
+                                                        conversions or
+                                                        operations on empty
+                                                        values; these are
+                                                        suggestions, not a
+                                                        diagnosis.
+                                                    </p>
+                                                ) : null}
+                                                {tip && (
+                                                    <>
+                                                        <p>
+                                                            <strong>
+                                                                What this case
+                                                                asks:
+                                                            </strong>{" "}
+                                                            {tip.expectation}
+                                                        </p>
+                                                        <p>{tip.suggestion}</p>
+                                                        <p>
+                                                            For more guidance,
+                                                            use hint {tip.hint}{" "}
+                                                            below.
+                                                        </p>
+                                                    </>
+                                                )}
+                                            </div>
+                                        );
+                                    })()}
                                 <p>Input</p>
                                 <pre>{c.input || "(none)"}</pre>
                                 <p>Expected</p>
