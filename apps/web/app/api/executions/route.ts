@@ -8,6 +8,8 @@ import {
     identity,
     json,
     sameOrigin,
+    readJsonLimited,
+    RequestBodyTooLarge,
 } from "@/lib/server";
 import { finish, type Execution } from "@/lib/executions";
 export const maxDuration = 60;
@@ -32,10 +34,7 @@ export async function POST(request: Request) {
                 },
                 503,
             );
-        const text = await request.text();
-        if (Buffer.byteLength(text) > 100000)
-            return json({ message: "Request too large" }, 413);
-        const data = schema.parse(JSON.parse(text));
+        const data = schema.parse(await readJsonLimited(request, 100000));
         const activity = catalog.activities[data.activityId];
         if (
             !activity?.enabled ||
@@ -68,6 +67,27 @@ export async function POST(request: Request) {
                 id: row!.id,
                 ...(row!.result ?? { status: row!.status }),
             });
+        // Every startup write must preserve a cancellation/completion committed
+        // while the provider request was in flight, including pre-registration.
+        const updateActive = (values: Record<string, string>) =>
+            db
+                .from("executions")
+                .update(values)
+                .eq("id", row!.id)
+                .eq("identity", owner.id)
+                .in("status", ["starting", "compiling", "running"])
+                .gt("expires_at", new Date().toISOString())
+                .select("id")
+                .maybeSingle();
+        const startupEnded = async () => {
+            await sandbox!.stop();
+            return json(
+                await finish(row!, {
+                    status: "limit",
+                    message: "Execution ended before startup completed.",
+                }),
+            );
+        };
         sandbox = await Sandbox.create({
             source: {
                 type: "snapshot",
@@ -82,11 +102,9 @@ export async function POST(request: Request) {
             networkPolicy: "deny-all",
             ports: [],
         });
-        let update = await db
-            .from("executions")
-            .update({ sandbox_id: sandbox.name })
-            .eq("id", row!.id);
+        let update = await updateActive({ sandbox_id: sandbox.name });
         if (update.error) throw update.error;
+        if (!update.data) return await startupEnded();
         await sandbox.writeFiles([
             {
                 path: "/tmp/learn-request.json",
@@ -125,13 +143,16 @@ export async function POST(request: Request) {
             sudo: true,
             detached: true,
         });
-        update = await db
-            .from("executions")
-            .update({ command_id: command.cmdId, status: "running" })
-            .eq("id", row!.id);
+        update = await updateActive({
+            command_id: command.cmdId,
+            status: "running",
+        });
         if (update.error) throw update.error;
+        if (!update.data) return await startupEnded();
         return json({ id: row!.id, status: "running" }, 202);
     } catch (error) {
+        if (error instanceof RequestBodyTooLarge)
+            return json({ message: "Request too large" }, 413);
         console.error("execution_start_failed", {
             stage: row ? (sandbox ? "prepare" : "sandbox") : "admission",
             kind: error instanceof Error ? error.name : "unknown",

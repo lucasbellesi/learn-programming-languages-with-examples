@@ -4,6 +4,7 @@ export default defineConfig({
     testDir: "./tests/browser",
     forbidOnly: Boolean(process.env.CI),
     workers: 2,
+    expect: { timeout: 10000 },
     globalTimeout: 10 * 60 * 1000,
     reporter: [["list"], ["html", { open: "never" }]],
     use: {

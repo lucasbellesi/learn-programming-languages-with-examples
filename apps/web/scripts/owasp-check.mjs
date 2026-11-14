@@ -1,6 +1,7 @@
 // Local assessment of trusted repository code. Fixtures never contact cloud services.
 import assert from "node:assert/strict";
 import { createRequire } from "node:module";
+import { randomUUID } from "node:crypto";
 import { readFile, mkdir, writeFile } from "node:fs/promises";
 import { execFileSync } from "node:child_process";
 import { runInNewContext } from "node:vm";
@@ -52,6 +53,7 @@ async function load(path, dependencies = {}, env = {}) {
             URL,
             Request,
             Response,
+            Headers,
             AbortSignal,
             console: { error() {} },
         },
@@ -174,19 +176,160 @@ await check(
         currentUser = null;
     },
 );
-env.SESSION_SECRET = "x";
-cookie =
-    "33333333-3333-4333-8333-333333333333." +
-    server.digest("33333333-3333-4333-8333-333333333333");
-observations.push({
-    id: "S02",
-    observation: "Execution accepts a one-byte session secret",
-    accepted: server.executionConfigured(),
-    chosenGuestAccepted:
-        (await server.identity(request("/"))).id ===
-        "guest:33333333-3333-4333-8333-333333333333",
-});
-env.SESSION_SECRET = "fixture-secret-with-more-than-32-bytes";
+await check(
+    "Weak secrets fail closed and malformed MACs rotate safely",
+    "source fixture",
+    async () => {
+        for (const secret of [
+            "",
+            "x",
+            "x".repeat(64),
+            "change-me".repeat(8),
+            "placeholder-secret-with-more-than-32-bytes",
+        ]) {
+            env.SESSION_SECRET = secret;
+            assert.equal(server.executionConfigured(), false);
+            assert.throws(() => server.digest("chosen-guest"));
+            await assert.rejects(() => server.identity(request("/")));
+        }
+        env.SESSION_SECRET = "fixture-secret-with-more-than-32-bytes";
+        assert.equal(server.executionConfigured(), true);
+        for (const mac of ["é".repeat(64), "0".repeat(64) + ".trailing"]) {
+            cookie = "33333333-3333-4333-8333-333333333333." + mac;
+            assert.notEqual(
+                (await server.identity(request("/"))).id,
+                "guest:33333333-3333-4333-8333-333333333333",
+            );
+        }
+        observations.push({
+            id: "S02",
+            status: "mitigated",
+            weakSecretsRejected: true,
+        });
+    },
+);
+
+await check(
+    "Bounded reader handles UTF-8, declared sizes and streaming overflow",
+    "source fixture",
+    async () => {
+        const bytes = Buffer.from(JSON.stringify({ code: "🙂" }));
+        const streamed = new Request(url, {
+            method: "POST",
+            duplex: "half",
+            body: new ReadableStream({
+                start(controller) {
+                    controller.enqueue(bytes.subarray(0, 11));
+                    controller.enqueue(bytes.subarray(11));
+                    controller.close();
+                },
+            }),
+        });
+        assert.equal(
+            (await server.readJsonLimited(streamed, bytes.length)).code,
+            "🙂",
+        );
+        let pulled = 0;
+        let cancelled = false;
+        const declared = new Request(url, {
+            method: "POST",
+            duplex: "half",
+            headers: { "content-length": "999999" },
+            body: new ReadableStream(
+                {
+                    pull() {
+                        pulled++;
+                    },
+                    cancel() {
+                        cancelled = true;
+                    },
+                },
+                { highWaterMark: 0 },
+            ),
+        });
+        await assert.rejects(
+            () => server.readJsonLimited(declared, 100),
+            (error) => error instanceof server.RequestBodyTooLarge,
+        );
+        assert.equal(pulled, 0);
+        assert.equal(cancelled, true);
+        const dishonest = new Request(url, {
+            method: "POST",
+            headers: { "content-length": "1" },
+            body: "x".repeat(101),
+        });
+        await assert.rejects(
+            () => server.readJsonLimited(dishonest, 100),
+            (error) => error instanceof server.RequestBodyTooLarge,
+        );
+    },
+);
+await check(
+    "CSP overwrites supplied nonces and restricts script and provider origins",
+    "source fixture",
+    async () => {
+        const policy = await load(
+            "proxy.ts",
+            {
+                "next/server": {
+                    NextResponse: {
+                        next: (init) => ({
+                            headers: new Headers(),
+                            forwarded: init.request.headers,
+                        }),
+                    },
+                },
+            },
+            env,
+        );
+        const req = {
+            headers: new Headers({
+                "x-nonce": "attacker-selected",
+                "Content-Security-Policy": "script-src *",
+            }),
+        };
+        const first = policy.proxy(req);
+        const second = policy.proxy(req);
+        const nonce = first.forwarded.get("x-nonce");
+        assert.notEqual(nonce, "attacker-selected");
+        assert.notEqual(nonce, second.forwarded.get("x-nonce"));
+        const csp = first.headers.get("Content-Security-Policy");
+        assert.ok(csp.includes(`'nonce-${nonce}'`));
+        assert.ok(csp.includes("https://provider.invalid"));
+        assert.ok(!/script-src[^;]*(?:unsafe-inline|unsafe-eval)/.test(csp));
+        assert.ok(csp.includes("frame-ancestors 'none'"));
+        assert.ok(csp.includes("object-src 'none'"));
+        assert.match(first.headers.get("Cache-Control"), /no-store/);
+    },
+);
+await check(
+    "Go snapshot recipe and CI use the supported pinned toolchain with a checksum",
+    "source inspection",
+    async () => {
+        const recipe = await readFile(
+            new URL("scripts/sandbox-probe.mjs", root),
+            "utf8",
+        );
+        assert.match(recipe, /const goVersion = "1\.27\.4"/);
+        assert.match(recipe, /sha256sum -c -/);
+        for (const file of ["repository-ci.yml", "windows-compatibility.yml"]) {
+            const workflow = await readFile(
+                new URL(`../../.github/workflows/${file}`, root),
+                "utf8",
+            );
+            const versions = [
+                ...workflow.matchAll(/go-version:\s*"([^"]+)"/g),
+            ].map((match) => match[1]);
+            assert.ok(versions.length);
+            assert.ok(versions.every((version) => version === "1.27.4"));
+        }
+        observations.push({
+            id: "S04",
+            status: "recipe-mitigated",
+            deployedSnapshot: "not verified",
+        });
+    },
+);
 
 const catalog = JSON.parse(
     await readFile(new URL("generated/catalog.json", root), "utf8"),
@@ -216,7 +359,24 @@ const db = {
     from() {
         return {
             update() {
-                return { eq: async () => ({ error: null }) };
+                return {
+                    eq() {
+                        return this;
+                    },
+                    in() {
+                        return this;
+                    },
+                    gt() {
+                        return this;
+                    },
+                    select() {
+                        return this;
+                    },
+                    maybeSingle: async () => ({
+                        data: { id: "fixture" },
+                        error: null,
+                    }),
+                };
             },
         };
     },
@@ -319,7 +479,7 @@ await check(
     },
 );
 await check(
-    "Body-limit observation uses a bounded 256 KiB stream",
+    "Oversized streaming bodies are cancelled before fully buffering",
     "source fixture",
     async () => {
         let chunks = 0;
@@ -342,10 +502,12 @@ await check(
         const response = await execution.POST(req);
         assert.equal(response.status, 413);
         assert.equal(dbCalls, before);
+        assert.ok(chunks * 8192 < 262144);
         observations.push({
             id: "S01",
             bytesRead: chunks * 8192,
             declaredLimit: 100000,
+            cancelledEarly: true,
             status: response.status,
         });
     },
@@ -406,6 +568,43 @@ await check(
     },
 );
 await check(
+    "Authenticated oversized drafts return 413 and cancel the stream",
+    "source fixture",
+    async () => {
+        currentUser = { id: "11111111-1111-4111-8111-111111111111" };
+        try {
+            const drafts = await load("app/api/drafts/route.ts", {
+                "@/lib/server": server,
+                "@/lib/catalog": { catalog },
+            });
+            let chunks = 0;
+            let cancelled = false;
+            const req = new Request(url + "/api/drafts", {
+                method: "PUT",
+                headers: { host: "app.example", origin: url },
+                duplex: "half",
+                body: new ReadableStream(
+                    {
+                        pull(controller) {
+                            chunks++;
+                            controller.enqueue(new Uint8Array(8192));
+                        },
+                        cancel() {
+                            cancelled = true;
+                        },
+                    },
+                    { highWaterMark: 0 },
+                ),
+            });
+            assert.equal((await drafts.PUT(req)).status, 413);
+            assert.equal(cancelled, true);
+            assert.ok(chunks * 8192 <= 80000 + 8192);
+        } finally {
+            currentUser = null;
+        }
+    },
+);
+await check(
     "OAuth callback ignores an attacker-controlled redirect target",
     "source fixture",
     async () => {
@@ -417,15 +616,16 @@ await check(
         );
         assert.equal(response.headers.get("location"), "/");
         providerError = true;
-        try {
-            await callback.GET(request("/auth/callback?code=fixture"));
-        } catch {
-            observations.push({
-                id: "S05",
-                observation:
-                    "Provider outage escapes the OAuth route without a handled Response",
-            });
-        }
+        const unavailable = await callback.GET(
+            request("/auth/callback?code=fixture"),
+        );
+        assert.equal(unavailable.status, 303);
+        assert.equal(unavailable.headers.get("location"), "/?auth=unavailable");
+        observations.push({
+            id: "S05",
+            status: "mitigated",
+            providerExceptionHandled: true,
+        });
         providerError = false;
     },
 );
@@ -509,108 +709,198 @@ await check(
     },
 );
 await check(
-    "Deterministic cancellation/start interleaving observation",
+    "Startup preserves cancellation and expiry at provider await boundaries",
     "source fixture + local PostgreSQL",
     async () => {
-        let job;
-        const adapter = {
-            async rpc(name, values) {
-                assert.equal(name, "reserve_execution");
-                const { rows } = await database.query(
-                    "select reserve_execution($1,$2,$3,$4,$5,$6,$7,$8) as result",
-                    [
-                        values.p_identity,
-                        values.p_user_id,
-                        values.p_ip,
-                        values.p_key,
-                        values.p_hash,
-                        values.p_activity,
-                        values.p_revision,
-                        values.p_mode,
-                    ],
-                );
-                job = rows[0].result.execution;
-                return { data: rows[0].result, error: null };
-            },
-            from(table) {
-                assert.equal(table, "executions");
-                return {
-                    update(record) {
-                        return {
-                            async eq(column, id) {
-                                assert.equal(column, "id");
-                                const entries = Object.entries(record);
-                                assert.ok(
-                                    entries.every(([key]) =>
-                                        [
-                                            "sandbox_id",
-                                            "command_id",
-                                            "status",
-                                        ].includes(key),
-                                    ),
-                                );
-                                await database.query(
-                                    `update executions set ${entries.map(([key], i) => `${key}=$${i + 1}`).join(",")} where id=$${entries.length + 1}`,
-                                    [...entries.map(([, value]) => value), id],
-                                );
-                                return { error: null };
-                            },
-                        };
-                    },
-                };
-            },
-        };
-        const route = await load(
-            "app/api/executions/route.ts",
-            {
-                "@/lib/server": {
-                    ...server,
-                    identity: async () => owner,
-                    admin: () => adapter,
+        const cases = [];
+        for (const stage of [
+            "normal",
+            "cancel-create",
+            "cancel-write",
+            "cancel-install",
+            "cancel-command",
+            "expire-create",
+            "expire-command",
+        ]) {
+            await database.exec("truncate executions,execution_quotas");
+            let job;
+            let helpers;
+            let stopped = 0;
+            const adapter = {
+                async rpc(name, values) {
+                    if (name === "finish_execution") {
+                        const { rows } = await database.query(
+                            "select finish_execution($1,$2,$3) as result",
+                            [
+                                values.p_id,
+                                values.p_identity,
+                                JSON.stringify(values.p_result),
+                            ],
+                        );
+                        return { data: rows[0].result, error: null };
+                    }
+                    assert.equal(name, "reserve_execution");
+                    const { rows } = await database.query(
+                        "select reserve_execution($1,$2,$3,$4,$5,$6,$7,$8) as result",
+                        [
+                            values.p_identity,
+                            values.p_user_id,
+                            values.p_ip,
+                            values.p_key,
+                            values.p_hash,
+                            values.p_activity,
+                            values.p_revision,
+                            values.p_mode,
+                        ],
+                    );
+                    job = rows[0].result.execution;
+                    return { data: rows[0].result, error: null };
                 },
-                "@/lib/catalog": { catalog },
-                "@/lib/executions": { finish: async () => {} },
-                "@vercel/sandbox": {
-                    Sandbox: {
-                        create: async () => ({
-                            name: "fixture",
-                            writeFiles: async () => {},
-                            stop: async () => {},
-                            runCommand: async (command) => {
-                                if (command.cmd === "python3.12") {
-                                    await database.query(
-                                        "select finish_execution($1,$2,$3)",
-                                        [
-                                            job.id,
-                                            owner.id,
-                                            JSON.stringify({
-                                                status: "cancelled",
-                                            }),
-                                        ],
+                from(table) {
+                    assert.equal(table, "executions");
+                    return {
+                        update(record) {
+                            const entries = Object.entries(record);
+                            assert.ok(
+                                entries.every(([key]) =>
+                                    [
+                                        "sandbox_id",
+                                        "command_id",
+                                        "status",
+                                    ].includes(key),
+                                ),
+                            );
+                            const values = entries.map(([, value]) => value);
+                            const filters = [];
+                            const chain = {
+                                eq(key, value) {
+                                    assert.ok(["id", "identity"].includes(key));
+                                    values.push(value);
+                                    filters.push(`${key}=$${values.length}`);
+                                    return chain;
+                                },
+                                in(key, states) {
+                                    assert.equal(key, "status");
+                                    values.push(states);
+                                    filters.push(
+                                        `status=any($${values.length}::text[])`,
                                     );
-                                }
-                                return {
-                                    exitCode: 0,
-                                    cmdId: "fixture-command",
-                                };
-                            },
-                        }),
-                    },
+                                    return chain;
+                                },
+                                gt(key, value) {
+                                    assert.equal(key, "expires_at");
+                                    values.push(value);
+                                    filters.push(
+                                        `expires_at>$${values.length}::timestamptz`,
+                                    );
+                                    return chain;
+                                },
+                                select() {
+                                    return chain;
+                                },
+                                async maybeSingle() {
+                                    const { rows } = await database.query(
+                                        `update executions set ${entries.map(([key], i) => `${key}=$${i + 1}`).join(",")} where ${filters.join(" and ")} returning id`,
+                                        values,
+                                    );
+                                    return {
+                                        data: rows[0] ?? null,
+                                        error: null,
+                                    };
+                                },
+                            };
+                            return chain;
+                        },
+                    };
                 },
-            },
-            env,
-        );
-        const response = await route.POST(
-            request("/api/executions", "POST", payload),
-        );
-        assert.equal(response.status, 202);
-        const row = (
-            await database.query(
-                "select status,result from executions where id=$1",
-                [job.id],
-            )
-        ).rows[0];
-        observations.push({ id: "S06", afterCancellation: row });
+            };
+            async function interleave(boundary) {
+                if (stage === `cancel-${boundary}`) {
+                    const row = (
+                        await database.query(
+                            "select * from executions where id=$1",
+                            [job.id],
+                        )
+                    ).rows[0];
+                    await helpers.inspect(row, true);
+                }
+                if (stage === `expire-${boundary}`)
+                    await database.query(
+                        "update executions set expires_at=now()-interval '1 second' where id=$1",
+                        [job.id],
+                    );
+            }
+            const box = {
+                name: "fixture",
+                stop: async () => {
+                    stopped++;
+                },
+                writeFiles: async () => interleave("write"),
+                runCommand: async (command) => {
+                    await interleave(
+                        command.cmd === "python3.12" ? "command" : "install",
+                    );
+                    return { exitCode: 0, cmdId: "fixture-command" };
+                },
+            };
+            const sandbox = {
+                Sandbox: {
+                    create: async () => {
+                        await interleave("create");
+                        return box;
+                    },
+                    get: async () => box,
+                },
+            };
+            helpers = await load("lib/executions.ts", {
+                "server-only": {},
+                "./server": { ...server, admin: () => adapter },
+                "@vercel/sandbox": sandbox,
+            });
+            const route = await load(
+                "app/api/executions/route.ts",
+                {
+                    "@/lib/server": {
+                        ...server,
+                        identity: async () => owner,
+                        admin: () => adapter,
+                    },
+                    "@/lib/catalog": { catalog },
+                    "@/lib/executions": helpers,
+                    "@vercel/sandbox": sandbox,
+                },
+                env,
+            );
+            const response = await route.POST(
+                request("/api/executions", "POST", {
+                    ...payload,
+                    key: randomUUID(),
+                }),
+            );
+            const row = (
+                await database.query(
+                    "select status,result from executions where id=$1",
+                    [job.id],
+                )
+            ).rows[0];
+            const expected = stage.startsWith("cancel-")
+                ? "cancelled"
+                : stage.startsWith("expire-")
+                  ? "limit"
+                  : "running";
+            assert.equal(row.status, expected, stage);
+            assert.equal(
+                response.status,
+                expected === "running" ? 202 : 200,
+                stage,
+            );
+            if (expected !== "running") {
+                assert.equal(row.result.status, expected);
+                assert.ok(stopped > 0, stage);
+            }
+            cases.push({ stage, status: row.status, stopped });
+        }
+        observations.push({ id: "S06", status: "mitigated", cases });
     },
 );
 await database.close();
@@ -635,8 +925,16 @@ if (argument) {
             );
             assert.equal(response.headers.get("x-frame-options"), "DENY");
             assert.equal(response.headers.get("x-powered-by"), null);
+            const csp = response.headers.get("content-security-policy");
+            assert.match(csp, /'nonce-[^']+'/);
+            assert.ok(
+                !/script-src[^;]*(?:unsafe-inline|unsafe-eval)/.test(csp),
+            );
+            const second = await fetch(target);
+            assert.notEqual(csp, second.headers.get("content-security-policy"));
             observations.push({
                 id: "S03",
+                status: "mitigated",
                 contentSecurityPolicy: response.headers.get(
                     "content-security-policy",
                 ),

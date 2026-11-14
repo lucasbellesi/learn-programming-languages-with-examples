@@ -1,5 +1,12 @@
 import { z } from "zod";
-import { auth, json, sameOrigin, user } from "@/lib/server";
+import {
+    auth,
+    json,
+    sameOrigin,
+    user,
+    readJsonLimited,
+    RequestBodyTooLarge,
+} from "@/lib/server";
 import { catalog } from "@/lib/catalog";
 const schema = z.object({
     id: z.string().max(200),
@@ -36,10 +43,7 @@ export async function PUT(request: Request) {
         sameOrigin(request);
         const current = await user();
         if (!current) return json({ message: "Sign in to sync" }, 401);
-        const text = await request.text();
-        if (Buffer.byteLength(text) > 80000)
-            return json({ message: "Draft too large" }, 413);
-        const draft = schema.parse(JSON.parse(text));
+        const draft = schema.parse(await readJsonLimited(request, 80000));
         if (!catalog.activities[draft.id])
             return json({ message: "Unknown activity" }, 400);
         const client = (await auth())!;
@@ -71,7 +75,9 @@ export async function PUT(request: Request) {
             );
         if (error) throw error;
         return json({ saved: true, updatedAt: record.updated_at });
-    } catch {
+    } catch (error) {
+        if (error instanceof RequestBodyTooLarge)
+            return json({ message: "Draft too large" }, 413);
         return json({ message: "Draft could not be saved" }, 400);
     }
 }

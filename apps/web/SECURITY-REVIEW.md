@@ -8,9 +8,28 @@ Reference: [OWASP Top 10:2025](https://top10.owasp.org/2025/).
 This is a source-assisted, local assessment of the learning site, not a complete
 external penetration test or a production security certification. The assessment
 found **four medium-priority issues and two low-priority issues**. No critical or
-high-severity exploit was demonstrated within the tested scope. Findings remain
-open; this change adds evidence and a reproducible harness without changing the
-application's security behavior.
+high-severity exploit was demonstrated within the tested scope. The original
+evidence below describes that baseline; subsequent remediation changes are
+tracked separately in the status table. Local fixes do not establish the state of
+an already deployed application or immutable Sandbox snapshot.
+
+## Remediation status
+
+| Finding | Repository change                                                                                                                                                                                                             | Validation / deployment status                                                                                                                                                                                                                                    |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| S06     | Both startup writes require the same owner, an active state, and an unexpired row; failed transitions stop the candidate sandbox and preserve the terminal result. Cancellation before sandbox registration is persisted too. | Local source/SQL regression interleaves cancellation at create/write/install/command boundaries and expiry at create/command boundaries, plus normal startup. Hosted provider timing still needs integration verification.                                        |
+| S01     | Shared streaming JSON reader enforces byte budgets while reading, checks declared lengths early, and cancels on overflow. Both execution and draft routes return 413.                                                         | UTF-8 chunk boundaries, declared oversize, dishonest lengths, streamed overflow, and authenticated draft overflow covered. One incoming chunk can cross the limit; the remaining body is not buffered.                                                            |
+| S02     | Execution and guest identities reject short, single-character repeated, and known placeholder secrets. HMAC comparison accepts only canonical UUID/hex signatures.                                                            | Weak-secret and malformed Unicode/trailing-signature regressions pass. Random key generation and hosted secret rotation remain operational responsibilities.                                                                                                      |
+| S03     | Enforced CSP in `proxy.ts` uses a fresh script nonce; layout reads it for the theme bootstrap and Next.js framework scripts. HTML renders dynamically without shared caching.                                                 | Browser tests check nonce freshness, parser-injected script rejection, and editor/theme/download compatibility. Inline styles are allowed for Monaco; script inline/eval allowances are absent in production. Existing Google Fonts origins are narrowly allowed. |
+| S04     | Go 1.27.4 pinned in CI and snapshot recipe; official Linux archive checksum verified before extraction.                                                                                                                       | Recipe/CI pins checked locally. **Hosted snapshot rebuild, real isolation suite, and snapshot-ID promotion remain pending**: the available local Vercel OIDC credential was expired. No claim that the deployed snapshot has changed.                             |
+| S05     | OAuth client creation and code exchange exceptions return the fixed local unavailable redirect and emit only a sanitized event.                                                                                               | Provider-outage and untrusted redirect regressions pass. Live OAuth configuration remains outside local assertions.                                                                                                                                               |
+
+No new database migration is required for the startup fix; it uses conditional
+updates on the existing table and the existing terminal-state completion RPC.
+Before enabling execution after deployment, validate the server secret and rebuild
+the Go snapshot from the pushed, reviewed commit. Refresh Vercel authentication,
+record the new candidate ID, run the trusted integration suite against it, and
+only then promote it in hosted settings. The old validation record is historical.
 
 Evidence was collected from:
 
@@ -26,17 +45,17 @@ Evidence was collected from:
 - Fresh audits of both npm lockfiles, including development and optional packages:
   **zero known npm vulnerabilities** at assessment time.
 
-Fifteen probe groups completed without harness failures. This means the probes
-ran successfully, not that all security controls passed: the JSON observations
-explicitly reproduce open issues S01, S02, S03, S05, and S06. S04 is confirmed by
-source inspection and Go's published support policy.
+The initial run completed fifteen probe groups and reproduced S01, S02, S03,
+S05, and S06 in its observations. The updated harness now asserts the corrected
+behavior and fails if those local regressions recur. S04's deployed inventory is
+reported as unverified even when the recipe check succeeds.
 
 No production requests, cloud quota-consuming jobs, load tests, account attacks,
 or attempts to escape a real Sandbox microVM were performed. No live credentials
 or learner data were used. Fixtures cannot establish the security of deployed
 Supabase policies, OAuth configuration, Vercel forwarding, or the current snapshot.
 
-## Prioritized findings
+## Original findings at the baseline revision
 
 ### S06 — Startup can overwrite a terminal cancellation
 
@@ -188,11 +207,17 @@ disclosure was not demonstrated.
 
 ## Reproduction
 
-The assessment run completed with 15 probe groups, 8 existing web unit/database
+The initial assessment completed with 15 probe groups, 8 existing web unit/database
 tests, the production build, web typechecking/formatting, root lint, and full root
-verification (62 automation tests, 149 example jobs, 881 exercise jobs, 48 checkpoint
-solutions, and uncovered C++/Java builds). These tooling checks do not close the
-findings above.
+verification. Remediation adds failing security assertions to Web CI and browser
+CSP regressions; the status table distinguishes local fixes from pending hosted
+verification.
+
+The remediation run passed 18 offline security groups, 20 groups with local
+HTTP/Chromium enabled, 40 browser tests across Chromium/Firefox/mobile, and the
+8 existing web unit/database tests. Production build, typecheck, web formatting,
+both npm audits, root lint, and full repository verification also passed. Cloud
+snapshot validation was not run because OIDC renewal was unavailable.
 
 Requirements: Node 22, Python, installed web dependencies, Chromium, and the normal
 content prerequisites. Run from `apps/web`:
@@ -232,9 +257,10 @@ fixture loader. The 256 KiB stream is a bounded measurement, not a stress test.
 
 Results are written to ignored `build/owasp-check.json` within `apps/web`. Each
 record distinguishes source fixtures, local PostgreSQL, and local production
-HTTP/Chromium. Exit status 1 denotes a probe/harness failure; observations can
-identify vulnerabilities even when the command exits 0. Compare observations
-with the findings above; do not treat the command as a production approval gate.
+HTTP/Chromium. Exit status 1 denotes a failed security assertion or harness error.
+Exit status 0 means the selected local assertions passed; it does not verify an
+existing hosted snapshot, OAuth settings, or infrastructure. Compare observations
+with the status table; do not treat the command as a production approval gate.
 The result includes the checkout HEAD; uncommitted source changes are not encoded
 in that commit ID. Re-run against a clean reviewed checkout for archival evidence.
 
