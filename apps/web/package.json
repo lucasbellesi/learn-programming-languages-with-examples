@@ -19,7 +19,7 @@
     "dependencies": {
         "@monaco-editor/react": "^4.7.0",
         "@supabase/ssr": "^0.12.6",
-        "@supabase/supabase-js": "^2.116.0",
+        "@supabase/supabase-js": "^2.119.0",
         "@vercel/sandbox": "3.2.1",
         "idb": "^8.0.3",
         "monaco-editor": "^0.56.0",
