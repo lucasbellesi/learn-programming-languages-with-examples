@@ -94,6 +94,12 @@ checked before installation. An existing hosted snapshot is immutable: rebuild
 and validate a new candidate with `npm run sandbox:probe -- --snapshot` and the
 trusted Sandbox integration suite before updating the hosted snapshot ID. Refresh
 the local Vercel OIDC credential first; recipe updates do not patch an existing VM.
+The current validated candidate is recorded in `content/execution-runtime.json`.
+Execution fails closed unless the configured snapshot ID matches that reviewed
+record. Update the metadata only after the full candidate integration suite passes,
+then promote the same ID in hosted settings. The supervisor gives each compile/run
+a private `XDG_RUNTIME_DIR` owned by the unprivileged learner for .NET IPC; snapshot
+creation includes an isolated C# bootstrap gate before saving the image.
 
 From the repository root, audit both npm lockfiles, including development and
 optional dependencies:

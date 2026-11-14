@@ -1,4 +1,5 @@
 import "server-only";
+import runtime from "@/content/execution-runtime.json";
 import { createServerClient } from "@supabase/ssr";
 import { createClient } from "@supabase/supabase-js";
 import { cookies } from "next/headers";
@@ -14,7 +15,7 @@ export const executionConfigured = () =>
         accountConfigured() &&
         process.env.SUPABASE_SERVICE_ROLE_KEY &&
         validSessionSecret() &&
-        process.env.SANDBOX_SNAPSHOT_ID,
+        process.env.SANDBOX_SNAPSHOT_ID === runtime.snapshotId,
     );
 export function validSessionSecret() {
     const secret = process.env.SESSION_SECRET ?? "";

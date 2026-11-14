@@ -21,15 +21,18 @@ an already deployed application or immutable Sandbox snapshot.
 | S01     | Shared streaming JSON reader enforces byte budgets while reading, checks declared lengths early, and cancels on overflow. Both execution and draft routes return 413.                                                         | UTF-8 chunk boundaries, declared oversize, dishonest lengths, streamed overflow, and authenticated draft overflow covered. One incoming chunk can cross the limit; the remaining body is not buffered.                                                            |
 | S02     | Execution and guest identities reject short, single-character repeated, and known placeholder secrets. HMAC comparison accepts only canonical UUID/hex signatures.                                                            | Weak-secret and malformed Unicode/trailing-signature regressions pass. Random key generation and hosted secret rotation remain operational responsibilities.                                                                                                      |
 | S03     | Enforced CSP in `proxy.ts` uses a fresh script nonce; layout reads it for the theme bootstrap and Next.js framework scripts. HTML renders dynamically without shared caching.                                                 | Browser tests check nonce freshness, parser-injected script rejection, and editor/theme/download compatibility. Inline styles are allowed for Monaco; script inline/eval allowances are absent in production. Existing Google Fonts origins are narrowly allowed. |
-| S04     | Go 1.27.4 pinned in CI and snapshot recipe; official Linux archive checksum verified before extraction.                                                                                                                       | Recipe/CI pins checked locally. **Hosted snapshot rebuild, real isolation suite, and snapshot-ID promotion remain pending**: the available local Vercel OIDC credential was expired. No claim that the deployed snapshot has changed.                             |
+| S04     | Go 1.27.4 and its official checksum pinned; execution requires the reviewed snapshot ID in `content/execution-runtime.json`. The supervisor supplies private per-case runtime IPC.                                            | Candidate `snap_hRVmWrp8B3oybHRzftriYThDW4Wk` passed all 151 real Sandbox checks. It is selected locally and pinned in source. Hosted promotion remains pending; the production snapshot setting was not changed.                                                 |
 | S05     | OAuth client creation and code exchange exceptions return the fixed local unavailable redirect and emit only a sanitized event.                                                                                               | Provider-outage and untrusted redirect regressions pass. Live OAuth configuration remains outside local assertions.                                                                                                                                               |
 
 No new database migration is required for the startup fix; it uses conditional
 updates on the existing table and the existing terminal-state completion RPC.
-Before enabling execution after deployment, validate the server secret and rebuild
-the Go snapshot from the pushed, reviewed commit. Refresh Vercel authentication,
-record the new candidate ID, run the trusted integration suite against it, and
-only then promote it in hosted settings. The old validation record is historical.
+Before enabling execution after deployment, validate the server secret and set
+`SANDBOX_SNAPSHOT_ID` to the reviewed ID in `content/execution-runtime.json`.
+Execution fails closed for other IDs, including old snapshots. Candidate source
+revision and validation details are recorded in [the runtime validation record](VALIDATION.md).
+For future runtime updates, build from a pushed reviewed commit, run the trusted
+integration suite against the candidate, update the reviewed metadata, and only
+then promote it in hosted settings.
 
 Evidence was collected from:
 
@@ -50,10 +53,14 @@ S05, and S06 in its observations. The updated harness now asserts the corrected
 behavior and fails if those local regressions recur. S04's deployed inventory is
 reported as unverified even when the recipe check succeeds.
 
-No production requests, cloud quota-consuming jobs, load tests, account attacks,
-or attempts to escape a real Sandbox microVM were performed. No live credentials
-or learner data were used. Fixtures cannot establish the security of deployed
-Supabase policies, OAuth configuration, Vercel forwarding, or the current snapshot.
+The initial attack assessment was local. Remediation subsequently ran 151 trusted
+integration attempts against a new authenticated Vercel Sandbox candidate. These
+checks consumed project Sandbox quota and used synthetic curriculum inputs;
+production application settings and real learner data were not changed. Tests
+verified unprivileged execution, protected supervisor/input files, denied network,
+limits, cancellation, and incomplete starter rejection. No kernel escape exploit
+or live-user account attack was attempted. Deployed Supabase policies, OAuth
+configuration, edge infrastructure, and alerting remain separate checks.
 
 ## Original findings at the baseline revision
 
@@ -195,15 +202,15 @@ disclosure was not demonstrated.
 | OWASP Top 10:2025                          | Evidence and result                                                                                                                                                                                                            | Remaining work                                                                                                                                                          |
 | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | A01 Broken Access Control                  | Anonymous drafts rejected; execution ID and owner predicates checked before inspection; real PostgreSQL RLS blocked cross-user reads/writes/deletes, forged ownership, progress insertion, and private execution/quota access. | Validate the migrations and grants in the deployed Supabase instance with two real test accounts; broaden HTTP IDOR cases across GET/DELETE and draft conflicts.        |
-| A02 Security Misconfiguration              | Sensitive local paths returned 404; defensive headers present; execution disabled without required services. S02/S03 remain.                                                                                                   | Inspect actual edge headers, allowed OAuth redirects, environment scoping, hosting limits, and production exposure.                                                     |
-| A03 Software Supply Chain Failures         | Both complete npm lockfiles audited clean; audit CI and Dependabot configured. S04 remains.                                                                                                                                    | Inventory snapshot OS packages, toolchains, and action dependencies; consider immutable action SHAs and artifact verification.                                          |
-| A04 Cryptographic Failures                 | HMAC rejects a forged signature; guest cookies set Secure/HttpOnly/SameSite=Lax; private canaries absent from collected page JavaScript. S02 remains.                                                                          | Verify real key generation/rotation, TLS/HSTS, database transport/storage controls, and cookie behavior behind hosting.                                                 |
+| A02 Security Misconfiguration              | Sensitive local paths returned 404; defensive headers present; execution disabled without required services. S02/S03 mitigated locally; see the status table.                                                                  | Inspect actual edge headers, allowed OAuth redirects, environment scoping, hosting limits, and production exposure.                                                     |
+| A03 Software Supply Chain Failures         | Both complete npm lockfiles audited clean; audit CI and Dependabot configured. The validated candidate is pinned; hosted promotion remains pending.                                                                            | Inventory snapshot OS packages, toolchains, and action dependencies; consider immutable action SHAs and artifact verification.                                          |
+| A04 Cryptographic Failures                 | HMAC rejects a forged signature; guest cookies set Secure/HttpOnly/SameSite=Lax; private canaries absent from collected page JavaScript. S02 mitigated locally.                                                                | Verify real key generation/rotation, TLS/HSTS, database transport/storage controls, and cookie behavior behind hosting.                                                 |
 | A05 Injection                              | Search and console XSS probes inert; parameterized SQL preserved an injection-shaped code string; submitted commands, filenames, language and expected cases could not replace server metadata.                                | Broaden Markdown/Monaco payload corpus and verify live sandbox/compiler isolation in a trusted environment.                                                             |
-| A06 Insecure Design                        | Existing quota/idempotency/concurrency database tests available and run separately. Bounded stream and lifecycle interleaving reproduce S01/S06.                                                                               | Assess sustained abuse, draft retention/capacity, shared-device draft privacy, and provider-level admission.                                                            |
-| A07 Authentication Failures                | Server identity uses provider-verified user; forged guest MAC rotates the cookie; missing trusted network identity fails closed; OAuth open redirect probe blocked. S02 remains.                                               | Validate live PKCE/OAuth session expiry, revocation, logout, and login-CSRF with dedicated accounts.                                                                    |
-| A08 Software or Data Integrity Failures    | Clients cannot choose grading rules or execution commands; direct progress writes denied; supervisor inspected for root-owned result/oracle separation. S06 remains.                                                           | Validate snapshot provenance and artifact checksums; run real result-tampering and isolation probes.                                                                    |
+| A06 Insecure Design                        | Existing quota/idempotency/concurrency database tests available and run separately. Bounded stream and lifecycle interleaving now reject S01/S06 regressions.                                                                  | Assess sustained abuse, draft retention/capacity, shared-device draft privacy, and provider-level admission.                                                            |
+| A07 Authentication Failures                | Server identity uses provider-verified user; forged guest MAC rotates the cookie; missing trusted network identity fails closed; OAuth open redirect probe blocked. S02 mitigated locally.                                     | Validate live PKCE/OAuth session expiry, revocation, logout, and login-CSRF with dedicated accounts.                                                                    |
+| A08 Software or Data Integrity Failures    | Clients cannot choose grading rules or execution commands; direct progress writes denied; supervisor inspected for root-owned result/oracle separation. Startup finality regressions pass.                                     | Validate snapshot provenance and artifact checksums; run real result-tampering and isolation probes.                                                                    |
 | A09 Security Logging and Alerting Failures | Start failures log sanitized stage/kind/origin-rejected fields; many other denial/failure handlers return without application-specific security events.                                                                        | Hosted log retention, central alerting, account/IDOR/quota anomaly detection, and incident delivery were not assessed. No assertion that external monitoring is absent. |
-| A10 Mishandling of Exceptional Conditions  | Missing services fail closed; oversized input returns 413; existing cancellation-finality SQL checked. S01/S05/S06 remain.                                                                                                     | Inject provider/database failures at every await boundary and verify cleanup, controlled errors, and terminal-state preservation.                                       |
+| A10 Mishandling of Exceptional Conditions  | Missing services fail closed; oversized input returns 413; existing cancellation-finality SQL checked. S01/S05/S06 mitigated locally.                                                                                          | Inject provider/database failures at every await boundary and verify cleanup, controlled errors, and terminal-state preservation.                                       |
 
 ## Reproduction
 
@@ -216,8 +223,10 @@ verification.
 The remediation run passed 18 offline security groups, 20 groups with local
 HTTP/Chromium enabled, 40 browser tests across Chromium/Firefox/mobile, and the
 8 existing web unit/database tests. Production build, typecheck, web formatting,
-both npm audits, root lint, and full repository verification also passed. Cloud
-snapshot validation was not run because OIDC renewal was unavailable.
+both npm audits, root lint, and full repository verification also passed. The new
+Sandbox candidate also passed all 151 integration checks after OIDC renewal; an
+isolated .NET bootstrap failure found in the first candidate was fixed before
+validation. The failed candidate was deleted and production promotion remains pending.
 
 Requirements: Node 22, Python, installed web dependencies, Chromium, and the normal
 content prerequisites. Run from `apps/web`:

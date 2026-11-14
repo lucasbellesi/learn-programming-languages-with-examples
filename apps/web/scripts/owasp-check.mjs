@@ -11,6 +11,9 @@ import { chromium } from "@playwright/test";
 
 const require = createRequire(import.meta.url);
 const root = new URL("../", import.meta.url);
+const runtime = JSON.parse(
+    await readFile(new URL("content/execution-runtime.json", root), "utf8"),
+);
 const checks = [];
 const observations = [];
 const revision = execFileSync("git", ["rev-parse", "HEAD"], {
@@ -68,7 +71,7 @@ const env = {
     NEXT_PUBLIC_SUPABASE_ANON_KEY: "fixture-public-key",
     SUPABASE_SERVICE_ROLE_KEY: "fixture-service-key",
     SESSION_SECRET: "fixture-secret-with-more-than-32-bytes",
-    SANDBOX_SNAPSHOT_ID: "fixture-snapshot",
+    SANDBOX_SNAPSHOT_ID: runtime.snapshotId,
     VERCEL: "1",
 };
 let cookie;
@@ -79,6 +82,7 @@ const server = await load(
     "lib/server.ts",
     {
         "server-only": {},
+        "@/content/execution-runtime.json": { default: runtime },
         "@supabase/ssr": {
             createServerClient: () => ({
                 auth: {
@@ -323,10 +327,16 @@ await check(
             assert.ok(versions.length);
             assert.ok(versions.every((version) => version === "1.27.4"));
         }
+        assert.equal(runtime.goVersion, "1.27.4");
+        assert.equal(runtime.validatedChecks, 151);
+        env.SANDBOX_SNAPSHOT_ID = "unvalidated-snapshot";
+        assert.equal(server.executionConfigured(), false);
+        env.SANDBOX_SNAPSHOT_ID = runtime.snapshotId;
+        assert.equal(server.executionConfigured(), true);
         observations.push({
             id: "S04",
-            status: "recipe-mitigated",
-            deployedSnapshot: "not verified",
+            status: "candidate-validated-and-pinned",
+            deployedSnapshot: "promotion pending",
         });
     },
 );
