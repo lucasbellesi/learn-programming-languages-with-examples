@@ -142,6 +142,68 @@ try {
             ],
             { sudo: true },
         );
+        // Validate the SDK as the isolated learner, not just as the setup user.
+        // Recent .NET releases use user-owned IPC paths during first startup.
+        await sandbox.writeFiles([
+            {
+                path: "/tmp/csharp-probe.json",
+                content: Buffer.from(
+                    JSON.stringify({
+                        language: "csharp",
+                        mode: "run",
+                        stdin: "",
+                        cases: [],
+                        code: 'using System; class Program { static void Main() { Console.WriteLine("isolated"); } }',
+                    }),
+                ),
+            },
+        ]);
+        await run(
+            "install isolated probe",
+            "install",
+            [
+                "-o",
+                "root",
+                "-g",
+                "root",
+                "-m",
+                "600",
+                "/tmp/csharp-probe.json",
+                "/opt/learn/request.json",
+            ],
+            { sudo: true },
+        );
+        await run(
+            "isolated C# supervisor",
+            "python3.12",
+            ["/opt/learn/runner.py"],
+            { sudo: true },
+        );
+        const result = JSON.parse(
+            (
+                await sandbox.readFileToBuffer({
+                    path: "/opt/learn/result.json",
+                })
+            )?.toString("utf8") ?? "{}",
+        );
+        if (
+            result.status !== "passed" ||
+            result.cases?.[0]?.stdout !== "isolated\n"
+        )
+            throw Error(
+                "Isolated C# bootstrap failed; snapshot was not created",
+            );
+        await run(
+            "clear isolated probe",
+            "rm",
+            [
+                "-f",
+                "/tmp/csharp-probe.json",
+                "/opt/learn/request.json",
+                "/opt/learn/result.json",
+            ],
+            { sudo: true },
+        );
         const snapshot = await sandbox.snapshot({ expiration: 0 });
         report.snapshotId = snapshot.snapshotId;
         report.snapshotBytes = snapshot.sizeBytes;

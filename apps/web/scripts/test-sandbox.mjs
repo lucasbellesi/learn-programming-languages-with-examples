@@ -147,7 +147,7 @@ if (report.passed) {
     );
     await attempt("unprivileged and no credentials", {
         ...python,
-        code: 'import os\nassert os.getuid() == 65534\nassert not any(k.startswith(("VERCEL", "SUPABASE", "SESSION_SECRET")) for k in os.environ)\ntry:\n open("/opt/learn/request.json")\n raise RuntimeError("request readable")\nexcept PermissionError:\n pass\ntry:\n open("/opt/learn/runner.py", "w")\n raise RuntimeError("runner writable")\nexcept PermissionError:\n pass\nprint("isolated")',
+        code: 'import os\nassert os.getuid() == 65534\nassert os.environ["XDG_RUNTIME_DIR"] == os.getcwd()\nassert os.stat(os.getcwd()).st_uid == 65534\nassert os.stat(os.getcwd()).st_mode & 0o077 == 0\nassert not any(k.startswith(("VERCEL", "SUPABASE", "SESSION_SECRET")) for k in os.environ)\ntry:\n open("/opt/learn/request.json")\n raise RuntimeError("request readable")\nexcept PermissionError:\n pass\ntry:\n open("/opt/learn/runner.py", "w")\n raise RuntimeError("runner writable")\nexcept PermissionError:\n pass\nprint("isolated")',
     });
     await attempt("network blocked", {
         ...python,
