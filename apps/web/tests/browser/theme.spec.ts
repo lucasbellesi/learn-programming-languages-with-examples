@@ -46,7 +46,7 @@ test("theme changes update Monaco without replacing the draft", async ({
         name: "Code editor",
         exact: true,
     });
-    await expect(editor).toBeVisible();
+    await expect(page.locator(".monaco-editor")).toBeVisible();
     await editor.press("ControlOrMeta+A");
     await page.keyboard.insertText('print("theme keeps my draft")\n');
     await page

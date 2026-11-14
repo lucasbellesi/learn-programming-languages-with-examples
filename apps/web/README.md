@@ -33,6 +33,38 @@ Also run the root repository verification and lint scripts before opening a PR.
 `generated/` is rebuilt from the manifests, Markdown, starter files, and source code.
 It must not be committed. The exported commit identifies the content revision.
 
+## Browser checks before release
+
+Install the browsers after `npm ci`, then run the suite from this directory:
+
+```bash
+npx playwright install chromium firefox
+npm run test:browser
+npx playwright show-report
+```
+
+On Linux CI, use `npx playwright install --with-deps chromium firefox` to install
+system libraries too. Playwright builds the site in `.next-test`, starts the
+production server on `127.0.0.1:3100`, and stops it when tests finish. Keep that
+port free. It does not reuse a development server or modify the regular `.next`
+build. For a focused run, use `npm run test:browser -- --project=chromium`.
+
+Desktop Chromium and Firefox cover catalog search, all six language filters,
+lesson navigation, 404 responses, local drafts, mobile practice panels, themes,
+download contents, reset confirmation, reference solutions, and execution feedback
+and recovery. A mobile Chromium project also checks the catalog and reading layout.
+Each test uses an isolated browser context. Execution is disabled on the test
+server; feedback and quota tests intercept requests without cloud credentials.
+These checks do not certify real OAuth, Supabase sync, or Sandbox execution;
+complete the integration checks below before enabling those services in production.
+
+The **Web CI** workflow runs the suite on pull requests and pushes to `master`.
+It fails on focused tests (`test.only`) and publishes an HTML report, failure
+screenshots, and traces as the `playwright-report` artifact for 14 days. Configure
+the repository's branch protection to require **Web CI / web** before merging.
+Production deployment gating remains a repository/hosting setting; this suite
+does not change deployment settings.
+
 ## Vercel and Supabase setup
 
 1. Use Vercel Hobby for this personal, noncommercial project. Configure the Vercel
@@ -107,8 +139,8 @@ of learner source files.
 
 See [the beta validation record](VALIDATION.md) for measured integration results
 and the release boundary. The editor assets are served locally from the pinned
-Monaco package; no editor CDN is required. Run `npm run test:browser` after
-`npx playwright install chromium` to check browser workflows without cloud access.
+Monaco package; no editor CDN is required. Run the browser checks above to verify
+the production build without cloud access.
 
 `scripts/sandbox-probe.mjs` installs and measures the six toolchains on trusted
 repository code. Its report is in `build/sandbox-feasibility.json`.
