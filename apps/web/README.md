@@ -65,6 +65,27 @@ the repository's branch protection to require **Web CI / web** before merging.
 Production deployment gating remains a repository/hosting setting; this suite
 does not change deployment settings.
 
+## Dependency security
+
+From the repository root, audit both npm lockfiles, including development and
+optional dependencies:
+
+```bash
+npm audit --package-lock-only --audit-level=low
+npm audit --prefix apps/web --package-lock-only --audit-level=low
+```
+
+Repository CI runs both commands on pull requests and pushes to `master`, failing
+on advisories of any severity. Dependabot checks both npm projects and GitHub
+Actions weekly and proposes dependency updates. Review and test those updates
+before merging; an audit only covers vulnerabilities known to the registry.
+
+The DOMPurify override in `package.json` replaces Monaco's exact sanitizer
+dependency with a patched version. Keep this override patched until Monaco's
+upstream dependency is safe, and run the browser suite when changing it. Commit
+the lockfile with every dependency fix so local builds, CI, and deployments use
+the same audited versions.
+
 ## Vercel and Supabase setup
 
 1. Use Vercel Hobby for this personal, noncommercial project. Configure the Vercel

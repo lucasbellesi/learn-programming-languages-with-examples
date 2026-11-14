@@ -10,6 +10,20 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  dependency-audit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Audit curriculum tooling dependencies
+        run: npm audit --package-lock-only --audit-level=low
+      - name: Audit web dependencies
+        run: npm audit --prefix apps/web --package-lock-only --audit-level=low
+
   quality:
     runs-on: ubuntu-latest
     steps:
