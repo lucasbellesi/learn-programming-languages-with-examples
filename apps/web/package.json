@@ -14,6 +14,7 @@
         "format": "prettier --write .",
         "test": "npm run content && node --test tests/*.test.mjs",
         "test:browser": "playwright test",
+        "security:assess": "npm run content && node scripts/owasp-check.mjs",
         "test:sandbox": "node --env-file=.env.local scripts/test-sandbox.mjs --all"
     },
     "dependencies": {

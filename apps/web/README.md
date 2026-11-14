@@ -67,6 +67,12 @@ does not change deployment settings.
 
 ## Dependency security
 
+See [the OWASP assessment](SECURITY-REVIEW.md) for the November 2026 source review,
+local attack probes, reproduced findings, and remaining hosted-service checks.
+`npm run security:assess` runs the offline probes; follow that report to include
+the local production HTTP and Chromium probes. Its observations require review
+and are separate from dependency auditing and release approval.
+
 From the repository root, audit both npm lockfiles, including development and
 optional dependencies:
 
