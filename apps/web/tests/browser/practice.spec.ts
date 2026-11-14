@@ -13,7 +13,7 @@ test("failed storage warns before leaving and still allows downloads", async ({
         name: "Code editor",
         exact: true,
     });
-    await expect(editor).toBeVisible();
+    await expect(page.locator(".monaco-editor")).toBeVisible();
     await editor.press("ControlOrMeta+A");
     await page.keyboard.insertText('print("keep these unsaved edits")\n');
     await expect(page.getByRole("status")).toHaveText(
@@ -48,7 +48,7 @@ test("mobile reading and practice preserve edits when switching panels", async (
         name: "Code editor",
         exact: true,
     });
-    await expect(editor).toBeVisible();
+    await expect(page.locator(".monaco-editor")).toBeVisible();
     await editor.press("ControlOrMeta+A");
     await page.keyboard.insertText('print("mobile draft")\n');
     await expect(page.getByRole("status")).toHaveText("Saved on this device");
@@ -84,7 +84,7 @@ test("draft survives reload while execution is disabled", async ({ page }) => {
         name: "Code editor",
         exact: true,
     });
-    await expect(editor).toBeVisible();
+    await expect(page.locator(".monaco-editor")).toBeVisible();
     await editor.press("ControlOrMeta+A");
     await page.keyboard.insertText('print("saved browser draft")\n');
     await expect(page.getByRole("status")).toHaveText("Saved on this device");
