@@ -44,7 +44,15 @@ def execute(command, cwd, stdin="", seconds=3, compile_step=False):
     if remaining <= 0:
         return {"stdout": "", "stderr": "", "exitCode": -1, "message": "Time limit exceeded"}
     with tempfile.TemporaryFile() as stdout, tempfile.TemporaryFile() as stderr:
-        env = {**ENV, "HOME": str(cwd), "TMPDIR": str(cwd), "DOTNET_CLI_HOME": str(cwd)}
+        # .NET's user-scoped IPC needs a private directory owned by the learner,
+        # rather than the system account's non-writable passwd home directory.
+        env = {
+            **ENV,
+            "HOME": str(cwd),
+            "TMPDIR": str(cwd),
+            "DOTNET_CLI_HOME": str(cwd),
+            "XDG_RUNTIME_DIR": str(cwd),
+        }
 
         # Compile under a separate limit so compiler artifacts may exceed 64 KiB.
         def child():

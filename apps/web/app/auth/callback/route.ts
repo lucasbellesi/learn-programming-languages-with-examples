@@ -2,14 +2,19 @@ import { auth } from "@/lib/server";
 export async function GET(request: Request) {
     const url = new URL(request.url);
     const code = url.searchParams.get("code");
-    const client = await auth();
-    if (code && client) {
-        const { error } = await client.auth.exchangeCodeForSession(code);
-        if (!error)
-            return new Response(null, {
-                status: 303,
-                headers: { Location: "/" },
-            });
+    try {
+        const client = await auth();
+        if (code && client) {
+            const { error } = await client.auth.exchangeCodeForSession(code);
+            if (!error)
+                return new Response(null, {
+                    status: 303,
+                    headers: { Location: "/" },
+                });
+        }
+    } catch {
+        // OAuth codes, tokens, provider messages and cookies must stay out of logs.
+        console.error("oauth_callback_failed", { stage: "session_exchange" });
     }
     return new Response(null, {
         status: 303,

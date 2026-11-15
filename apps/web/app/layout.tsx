@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { headers } from "next/headers";
 import "./globals.css";
 import { Account } from "@/components/account";
 import { ThemeButton, ThemeProvider } from "@/components/theme";
@@ -8,11 +9,17 @@ export const metadata: Metadata = {
     description:
         "Learn six programming languages through examples, guided practice, and clear feedback.",
 };
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default async function Layout({
+    children,
+}: {
+    children: React.ReactNode;
+}) {
+    const nonce = (await headers()).get("x-nonce") ?? undefined;
     return (
         <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
             <head>
                 <script
+                    nonce={nonce}
                     dangerouslySetInnerHTML={{
                         __html: `try{var t=localStorage.getItem('code-by-example-theme');document.documentElement.dataset.theme=(t==='light'||t==='dark')?t:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch{}`,
                     }}

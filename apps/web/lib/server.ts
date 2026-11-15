@@ -1,4 +1,5 @@
 import "server-only";
+import runtime from "@/content/execution-runtime.json";
 import { createServerClient } from "@supabase/ssr";
 import { createClient } from "@supabase/supabase-js";
 import { cookies } from "next/headers";
@@ -13,9 +14,50 @@ export const executionConfigured = () =>
         process.env.EXECUTION_ENABLED === "true" &&
         accountConfigured() &&
         process.env.SUPABASE_SERVICE_ROLE_KEY &&
-        process.env.SESSION_SECRET &&
-        process.env.SANDBOX_SNAPSHOT_ID,
+        validSessionSecret() &&
+        process.env.SANDBOX_SNAPSHOT_ID === runtime.snapshotId,
     );
+export function validSessionSecret() {
+    const secret = process.env.SESSION_SECRET ?? "";
+    return (
+        Buffer.byteLength(secret) >= 32 &&
+        secret === secret.trim() &&
+        !/^(.)\1+$/su.test(secret) &&
+        !/(?:change[-_ ]?me|replace[-_ ]?me|placeholder|your[-_ ]?secret)/i.test(
+            secret,
+        )
+    );
+}
+
+export class RequestBodyTooLarge extends Error {}
+
+export async function readJsonLimited(request: Request, limit: number) {
+    const length = request.headers.get("content-length");
+    if (length && /^\d+$/.test(length) && BigInt(length) > BigInt(limit)) {
+        await request.body?.cancel().catch(() => {});
+        throw new RequestBodyTooLarge();
+    }
+    if (!request.body) throw new SyntaxError("Expected a JSON request body");
+    const reader = request.body.getReader();
+    // A fixed buffer also bounds memory when the sender emits tiny chunks.
+    const buffer = Buffer.alloc(limit);
+    let bytes = 0;
+    try {
+        for (;;) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            if (bytes + value.byteLength > limit) {
+                await reader.cancel().catch(() => {});
+                throw new RequestBodyTooLarge();
+            }
+            buffer.set(value, bytes);
+            bytes += value.byteLength;
+        }
+    } finally {
+        reader.releaseLock();
+    }
+    return JSON.parse(buffer.subarray(0, bytes).toString("utf8"));
+}
 export function admin() {
     if (!process.env.SUPABASE_SERVICE_ROLE_KEY)
         throw Error("Service unavailable");
@@ -72,6 +114,7 @@ export function sameOrigin(request: Request) {
     if (!valid) throw Error("Invalid request origin");
 }
 export function digest(value: string) {
+    if (!validSessionSecret()) throw Error("Guest sessions unavailable");
     return createHmac("sha256", process.env.SESSION_SECRET!)
         .update(value)
         .digest("hex");
@@ -80,19 +123,23 @@ export async function identity(request: Request) {
     const signedIn = await user();
     if (signedIn)
         return { id: `user:${signedIn.id}`, userId: signedIn.id, ip: null };
-    if (!process.env.SESSION_SECRET) throw Error("Guest sessions unavailable");
+    if (!validSessionSecret()) throw Error("Guest sessions unavailable");
     const jar = await cookies();
     const value = jar.get("learn_session")?.value;
     let id = "";
     if (value) {
-        const [candidate, signature] = value.split(".");
-        const expected = digest(candidate ?? "");
+        const match =
+            /^([0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12})\.([0-9a-f]{64})$/.exec(
+                value,
+            );
         if (
-            signature?.length === expected.length &&
-            timingSafeEqual(Buffer.from(signature), Buffer.from(expected)) &&
-            /^[0-9a-f-]{36}$/.test(candidate)
+            match &&
+            timingSafeEqual(
+                Buffer.from(match[2], "hex"),
+                Buffer.from(digest(match[1]), "hex"),
+            )
         )
-            id = candidate;
+            id = match[1];
     }
     if (!id) {
         id = randomUUID();

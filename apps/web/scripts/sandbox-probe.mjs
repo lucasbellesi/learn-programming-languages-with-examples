@@ -10,6 +10,9 @@ const revision = execFileSync("git", ["rev-parse", "HEAD"], {
     encoding: "utf8",
 }).trim();
 const started = Date.now();
+const goVersion = "1.27.4";
+const goSha256 =
+    "7226736c2339719cda28fbf3a54d71aa63bcefe376e98cef00034268dab24840";
 const report = { revision, sdk: "3.2.1", measurements: [], passed: false };
 let sandbox;
 async function run(label, cmd, args, options = {}) {
@@ -57,11 +60,11 @@ try {
         { sudo: true },
     );
     await run(
-        "Go 1.22.12",
+        `Go ${goVersion}`,
         "sh",
         [
             "-ec",
-            "curl -fsSL https://go.dev/dl/go1.22.12.linux-amd64.tar.gz -o /tmp/go.tar.gz; tar -C /usr/local -xzf /tmp/go.tar.gz; rm /tmp/go.tar.gz; ln -s /usr/local/go/bin/go /usr/local/bin/go",
+            `curl -fsSL https://go.dev/dl/go${goVersion}.linux-amd64.tar.gz -o /tmp/go.tar.gz; printf '%s  %s\\n' '${goSha256}' /tmp/go.tar.gz | sha256sum -c -; tar -C /usr/local -xzf /tmp/go.tar.gz; rm /tmp/go.tar.gz; ln -s /usr/local/go/bin/go /usr/local/bin/go`,
         ],
         { sudo: true },
     );
@@ -136,6 +139,68 @@ try {
                 "500",
                 "/tmp/runner.py",
                 "/opt/learn/runner.py",
+            ],
+            { sudo: true },
+        );
+        // Validate the SDK as the isolated learner, not just as the setup user.
+        // Recent .NET releases use user-owned IPC paths during first startup.
+        await sandbox.writeFiles([
+            {
+                path: "/tmp/csharp-probe.json",
+                content: Buffer.from(
+                    JSON.stringify({
+                        language: "csharp",
+                        mode: "run",
+                        stdin: "",
+                        cases: [],
+                        code: 'using System; class Program { static void Main() { Console.WriteLine("isolated"); } }',
+                    }),
+                ),
+            },
+        ]);
+        await run(
+            "install isolated probe",
+            "install",
+            [
+                "-o",
+                "root",
+                "-g",
+                "root",
+                "-m",
+                "600",
+                "/tmp/csharp-probe.json",
+                "/opt/learn/request.json",
+            ],
+            { sudo: true },
+        );
+        await run(
+            "isolated C# supervisor",
+            "python3.12",
+            ["/opt/learn/runner.py"],
+            { sudo: true },
+        );
+        const result = JSON.parse(
+            (
+                await sandbox.readFileToBuffer({
+                    path: "/opt/learn/result.json",
+                })
+            )?.toString("utf8") ?? "{}",
+        );
+        if (
+            result.status !== "passed" ||
+            result.cases?.[0]?.stdout !== "isolated\n"
+        )
+            throw Error(
+                "Isolated C# bootstrap failed; snapshot was not created",
+            );
+        await run(
+            "clear isolated probe",
+            "rm",
+            [
+                "-f",
+                "/tmp/csharp-probe.json",
+                "/opt/learn/request.json",
+                "/opt/learn/result.json",
             ],
             { sudo: true },
         );

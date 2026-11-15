@@ -36,15 +36,16 @@ export async function inspect(row: Execution, cancel = false) {
                 .catch(() => {});
         return finish(row, { status: "limit", message: "Execution expired" });
     }
-    if (!row.sandbox_id) return { id: row.id, status: "starting" };
-    const sandbox = await Sandbox.get({ name: row.sandbox_id });
     if (cancel) {
-        await sandbox.stop();
+        if (row.sandbox_id)
+            await (await Sandbox.get({ name: row.sandbox_id })).stop();
         return finish(row, {
             status: cancel ? "cancelled" : "limit",
             message: cancel ? "Execution stopped" : "Execution expired",
         });
     }
+    if (!row.sandbox_id) return { id: row.id, status: "starting" };
+    const sandbox = await Sandbox.get({ name: row.sandbox_id });
     if (!row.command_id) return { id: row.id, status: "starting" };
     const command = await sandbox.getCommand(row.command_id);
     if (command.exitCode === null) {

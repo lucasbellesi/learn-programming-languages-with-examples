@@ -30,6 +30,7 @@ jobs:
           python-version: '3.12'
       - run: npm ci
       - run: npm test
+      - run: npm run security:assess
       - run: npx playwright install --with-deps chromium firefox
       - run: npm run test:browser
       - uses: actions/upload-artifact@v4
